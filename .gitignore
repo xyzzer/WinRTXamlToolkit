@@ -1,5 +1,8 @@
+_ReSharper.WinRTXamlToolkit/
+WinRTXamlToolkit/bin/
+WinRTXamlToolkit/obj/
+WinRTXamlToolkit.Sample/bin/
 WinRTXamlToolkit.Sample/obj/
+WinRTXamlToolkit.StylesBrowser/bin/
 WinRTXamlToolkit.StylesBrowser/obj/
 WinRTXamlToolkit.v11.suo
-WinRTXamlToolkit/obj/
-_ReSharper.WinRTXamlToolkit/
