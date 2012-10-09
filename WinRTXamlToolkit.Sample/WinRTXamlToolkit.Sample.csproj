@@ -116,6 +116,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj">
+      <Project>{b5ea4b9d-3300-4023-8110-e085854398a7}</Project>
+      <Name>WinRTXamlToolkit.Debugging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.csproj">
       <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
       <Name>WinRTXamlToolkit</Name>

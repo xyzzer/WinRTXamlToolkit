@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Debugging

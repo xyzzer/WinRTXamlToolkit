@@ -315,15 +315,13 @@
     <Compile Include="Converters\DoubleToIntConverter.cs" />
     <Compile Include="Converters\NullableBoolToBoolConverter.cs" />
     <Compile Include="Converters\SecondsToTimeSpanStringConverter.cs" />
-    <Compile Include="Debugging\Debug.cs" />
-    <Compile Include="Debugging\DebugConsole.cs" />
-    <Compile Include="Debugging\DebugConsoleOverlay.cs" />
     <Compile Include="Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="Imaging\ColorExtensions.cs" />
     <Compile Include="Interactivity\Behavior.cs" />
     <Compile Include="Interactivity\BehaviorCollection.cs" />
     <Compile Include="Interactivity\BehaviorOfT.cs" />
     <Compile Include="Interactivity\Interaction.cs" />
+    <Compile Include="Licensing\LicenseHelper.cs" />
     <Compile Include="Tools\EnumExtensions.cs" />
     <Compile Include="Imaging\WriteableBitmapDarkenExtension.cs" />
     <Compile Include="Imaging\WriteableBitmapGrayscaleExtension.cs" />
@@ -346,7 +344,6 @@
     <Compile Include="Net\WebFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BackgroundTimer.cs" />
-    <Compile Include="Debugging\VisualTreeDebugger.cs" />
     <Compile Include="Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />

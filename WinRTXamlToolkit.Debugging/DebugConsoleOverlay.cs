@@ -188,14 +188,14 @@ namespace WinRTXamlToolkit.Debugging
             DebugConsoleOverlay.Trace((value ?? "<null>").ToString());
         }
 
-        private static DateTime _previousTraceDelayTimeStamp = DateTime.Now;
+        private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
 
         [Conditional("DEBUG")]
-        public static void TraceDelay(string message = null)
+        public static void TraceInterval(string message = null)
         {
             var now = DateTime.Now;
-            var delay = now - _previousTraceDelayTimeStamp;
-            _previousTraceDelayTimeStamp = now;
+            var delay = now - _previousTraceIntervalTimeStamp;
+            _previousTraceIntervalTimeStamp = now;
 
             if (message == null)
             {

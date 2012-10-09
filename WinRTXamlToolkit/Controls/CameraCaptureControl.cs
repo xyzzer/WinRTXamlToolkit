@@ -11,12 +11,12 @@ using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
 using WinRTXamlToolkit.AwaitableUI;
-using Debug = WinRTXamlToolkit.Debugging.Debug;
 using LayoutPanel = Windows.UI.Xaml.Controls.Panel;
 using Panel = Windows.Devices.Enumeration.Panel;
 
@@ -901,16 +901,24 @@ namespace WinRTXamlToolkit.Controls
         {
             if (this.ShowOnLoad)
             {
-                CameraInitializationResult args = await InitializeAsync();
+                try
+                {
+                    CameraInitializationResult args = await InitializeAsync();
 
-                if (args.Success)
-                {
-                    await ShowAsync();
+                    if (args.Success)
+                    {
+                        await ShowAsync();
+                    }
+                    else
+                    {
+                        // TODO: Add error handling here
+                        await HideAsync();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    // TODO: Add error handling here
-                    await HideAsync();
+                    new MessageDialog(ex.Message, "Exception").ShowAsync();
+                    throw;
                 }
             }
         }

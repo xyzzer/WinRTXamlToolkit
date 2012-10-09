@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using WinRTXamlToolkit.Debugging;
 
 namespace WinRTXamlToolkit.Tools
 {
@@ -31,7 +30,7 @@ namespace WinRTXamlToolkit.Tools
                         Debugger.Break();
                     }
 
-                    DC.Trace(exception);
+                    Debug.WriteLine(exception);
 
                     if (attempts > retries)
                     {
@@ -71,7 +70,7 @@ namespace WinRTXamlToolkit.Tools
                         Debugger.Break();
                     }
 
-                    DC.Trace(exception);
+                    Debug.WriteLine(exception);
 
                     if (attempts > retries)
                     {
@@ -112,7 +111,7 @@ namespace WinRTXamlToolkit.Tools
                     //    Debugger.Break();
                     //}
 
-                    DC.Trace(exception);
+                    Debug.WriteLine(exception);
 
                     if (attempts > retries)
                     {

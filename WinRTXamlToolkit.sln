@@ -12,13 +12,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56
 		Nuget\NuGet.exe = Nuget\NuGet.exe
 		Nuget\NugetPackWinRTXAMLToolkit.cmd = Nuget\NugetPackWinRTXAMLToolkit.cmd
 		Nuget\NugetPushWinRTXAMLToolkit.cmd = Nuget\NugetPushWinRTXAMLToolkit.cmd
-		Nuget\winrtxamltoolkit.nuspec = Nuget\winrtxamltoolkit.nuspec
+		Nuget\WinRTXamlToolkit.Debugging.nuspec = Nuget\WinRTXamlToolkit.Debugging.nuspec
+		Nuget\WinRTXamlToolkit.nuspec = Nuget\WinRTXamlToolkit.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtensionsSDK", "ExtensionsSDK", "{206675AA-78BD-4D8B-82B9-276067AF2832}"
 	ProjectSection(SolutionItems) = preProject
 		ExtensionsSDK\SDKManifest.xml = ExtensionsSDK\SDKManifest.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Debugging", "WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj", "{B5EA4B9D-3300-4023-8110-E085854398A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +99,22 @@ Global
 		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.ActiveCfg = Release|x86
 		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.Build.0 = Release|x86
 		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.Deploy.0 = Release|x86
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|ARM.Build.0 = Debug|ARM
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|x64.ActiveCfg = Debug|x64
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|x64.Build.0 = Debug|x64
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|x86.ActiveCfg = Debug|x86
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Debug|x86.Build.0 = Debug|x86
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|ARM.ActiveCfg = Release|ARM
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|ARM.Build.0 = Release|ARM
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|x64.ActiveCfg = Release|x64
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|x64.Build.0 = Release|x64
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|x86.ActiveCfg = Release|x86
+		{B5EA4B9D-3300-4023-8110-E085854398A7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

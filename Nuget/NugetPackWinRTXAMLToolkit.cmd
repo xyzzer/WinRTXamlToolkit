@@ -1,3 +1,8 @@
+set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit\WinRTXamlToolkit.csproj
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug ..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj
+pause
+
 mkdir lib
 mkdir lib\winrt45
 mkdir lib\winrt45\WinRTXamlToolkit\Controls
@@ -12,12 +17,14 @@ mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting\Series
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Legend
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Themes
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Title
+mkdir lib\winrt45\WinRTXamlToolkit.Debugging\Themes
 mkdir tools
 mkdir content
 mkdir content\controllers
 
 @rem copy ..\src\SomeController.cs content
 copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\winrt45
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\winrt45
 @rem copy ..\WinRTXamlToolkit\bin\Release\resources.pri lib\winrt45
 copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\winrt45
 copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization
@@ -49,6 +56,8 @@ copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Charting\Series\
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Legend\Legend.xaml							lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Legend
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Themes\Generic.xaml							lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Themes
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Title\Title.xaml							lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Title
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml lib\winrt45\WinRTXamlToolkit.Debugging\Themes
 @rem copy ..\src\SomePowershellScript.ps1 tools
 
-nuget pack winrtxamltoolkit.nuspec
+nuget pack WinRTXamlToolkit.nuspec
+nuget pack WinRTXamlToolkit.Debugging.nuspec
