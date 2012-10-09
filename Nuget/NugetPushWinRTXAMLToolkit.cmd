@@ -1,1 +1,1 @@
-nuget push winrtxamltoolkit.1.3.2.nupkg
+nuget push winrtxamltoolkit.1.3.3.nupkg

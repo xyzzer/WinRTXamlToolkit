@@ -1,4 +1,8 @@
 _ReSharper.WinRTXamlToolkit/
+Nuget/Content
+Nuget/Lib
+Nuget/Tools
+Nuget/*.nupkg
 WinRTXamlToolkit/bin/
 WinRTXamlToolkit/obj/
 WinRTXamlToolkit.Sample/bin/
