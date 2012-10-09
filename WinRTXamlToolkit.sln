@@ -21,21 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtensionsSDK", "Extensions
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs37
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = WinRTXamlToolkit\\WinRTXamlToolkit.csproj
-		SccProjectName1 = WinRTXamlToolkit
-		SccLocalPath1 = WinRTXamlToolkit
-		SccProjectUniqueName2 = WinRTXamlToolkit.Sample\\WinRTXamlToolkit.Sample.csproj
-		SccProjectName2 = WinRTXamlToolkit.Sample
-		SccLocalPath2 = WinRTXamlToolkit.Sample
-		SccProjectUniqueName3 = WinRTXamlToolkit.StylesBrowser\\WinRTXamlToolkit.StylesBrowser.csproj
-		SccProjectName3 = WinRTXamlToolkit.StylesBrowser
-		SccLocalPath3 = WinRTXamlToolkit.StylesBrowser
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
