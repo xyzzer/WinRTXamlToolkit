@@ -266,7 +266,9 @@ namespace WinRTXamlToolkit.Controls
         private void OnValueTextBoxTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
             if (_isChangingTextWithCode)
+            {
                 return;
+            }
 
             double val;
 
@@ -328,7 +330,8 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnDragOverlayManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs manipulationDeltaRoutedEventArgs)
         {
-            if (!this.IsEnabled)
+            if (!this.IsEnabled ||
+                this.IsReadOnly)
                 return;
 
             double delta;
