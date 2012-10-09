@@ -1,0 +1,629 @@
+﻿<Page
+    x:Class="WinRTXamlToolkit.StylesBrowser.AppBarButtonStylesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="AppBar Button Styles"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <GridView
+            Grid.Row="1"
+            Grid.Column="1"
+            SelectionMode="Extended"
+            ItemsPanel="{StaticResource GridViewItemsPanelTemplate}">
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SkipBackAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SkipBackAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SkipAheadAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SkipAheadAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PlayAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PlayAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PauseAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PauseAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource EditAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="EditAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SaveAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SaveAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DeleteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DeleteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DiscardAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DiscardAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RemoveAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RemoveAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AddAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AddAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource NoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="NoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource YesAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="YesAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MoreAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MoreAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RedoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MoreAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UndoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UndoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource HomeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="HomeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OutAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OutAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource NextAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="NextAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PreviousAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PreviousAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FavoriteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FavoriteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PhotoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PhotoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SettingsAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SettingsAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource VideoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="VideoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RefreshAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RefreshAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DownloadAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DownloadAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MailAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MailAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SearchAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SearchAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource HelpAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="HelpAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UploadAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UploadAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource EmojiAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="EmojiAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource TwoPageAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="TwoPageAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource LeaveChatAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="LeaveChatAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MailForwardAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MailForwardAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ClockAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ClockAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SendAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SendAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CropAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CropAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RotateCameraAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RotateCameraAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PeopleAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PeopleAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ClosePaneAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ClosePaneAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OpenPaneAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OpenPaneAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource WorldAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="WorldAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FlagAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FlagAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PreviewLinkAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PreviewLinkAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource GlobeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="GlobeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource TrimAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="TrimAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AttachCameraAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AttachCameraAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ZoomInAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ZoomInAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource BookmarksAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="BookmarksAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DocumentAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DocumentAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ProtectedDocumentAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ProtectedDocumentAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PageAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PageAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource BulletsAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="BulletsAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CommentAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CommentAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource Mail2AppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="Mail2AppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ContactInfoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ContactInfoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource HangUpAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="HangUpAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ViewAllAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ViewAllAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MapPinAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MapPinAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PhoneAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PhoneAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource VideoChatAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="VideoChatAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SwitchAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SwitchAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ContactAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ContactAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RenameAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RenameAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PinAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PinAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MusicInfoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MusicInfoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource GoAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="GoAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource KeyboardAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="KeyboardAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DockLeftAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DockLeftAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DockRightAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DockRightAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DockBottomAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DockBottomAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RemoteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RemoteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SyncAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SyncAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RotateAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RotateAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ShuffleAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ShuffleAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ListAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ListAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ShopAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ShopAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SelectAllAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SelectAllAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OrientationAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OrientationAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ImportAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ImportAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ImportAllAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ImportAllAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource BrowsePhotosAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="BrowsePhotosAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource WebcamAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="WebcamAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PicturesAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PicturesAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SaveLocalAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SaveLocalAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CaptionAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CaptionAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource StopAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="StopAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ShowResultsAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ShowResultsAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource VolumeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="VolumeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource RepairAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="RepairAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MessageAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MessageAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource Page2AppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="Page2AppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CalendarDayAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CalendarDayAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CalendarWeekAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CalendarWeekAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CalendarAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CalendarAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CharactersAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CharactersAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MailReplyAllAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MailReplyAllAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ReadAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ReadAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource LinkAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="LinkAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AccountsAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AccountsAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ShowBccAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ShowBccAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource HideBccAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="HideBccAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CutAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CutAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AttachAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AttachAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PasteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PasteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FilterAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FilterAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CopyAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CopyAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource Emoji2AppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="Emoji2AppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ImportantAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ImportantAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MailReplyAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MailReplyAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SlideShowAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SlideShowAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SortAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SortAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ContactPresenceAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ContactPresenceAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PriorityAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PriorityAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UploadSkyDriveAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UploadSkyDriveAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource GoToTodayAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="GoToTodayAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FontAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FontAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FontColorAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FontColorAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource Contact2AppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="Contact2AppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource FolderppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="FolderppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AudioAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AudioAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PlaceholderAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PlaceholderAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ViewAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ViewAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SetLockScreenAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SetLockScreenAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource SetTitleAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="SetTitleAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource CcAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="CcAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource StopSlideShowAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="StopSlideShowAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource PermissionsAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="PermissionsAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource HighlightAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="HighlightAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DisableUpdatesAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DisableUpdatesAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UnfavoriteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UnfavoriteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UnpinAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UnpinAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OpenLocalAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OpenLocalAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MuteAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MuteAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ItalicAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ItalicAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource UnderlineAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="UnderlineAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource BoldAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="BoldAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource MoveToFolderAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="MoveToFolderAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource LikeDislikeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="LikeDislikeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource DislikeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="DislikeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource LikeAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="LikeAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AlignRightAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AlignRightAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AlignCenterAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AlignCenterAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AlignLeftAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AlignLeftAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ZoomAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ZoomAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource ZoomOutAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="ZoomOutAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OpenFileAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OpenFileAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource OtherUserAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="OtherUserAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+<GridViewItem><Border Width="400"><StackPanel Margin="10" Orientation="Horizontal">
+<Button Style="{StaticResource AdminAppBarButtonStyle}" />
+<TextBox Width="280" IsReadOnly="True" Text="AdminAppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+        </GridView>
+    </Grid>
+</Page>

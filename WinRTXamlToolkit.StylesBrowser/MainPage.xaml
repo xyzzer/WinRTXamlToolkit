@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="WinRTXamlToolkit.StylesBrowser.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="ExitButton"
+            IsTabStop="False"
+            Click="OnExitButtonClick"
+            Margin="10,47,0,0"
+            AutomationProperties.Name=""
+            Style="{StaticResource NoAppBarButtonStyle}" />
+        <TextBlock
+            Text="WinRT XAML Toolkit Styles Browser"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <GridView
+            Grid.Row="1"
+            Grid.Column="1"
+            ItemsPanel="{StaticResource GridViewItemsPanelTemplate}">
+            <controls:ListItemButton
+                x:Name="RichTextBlockStylesButton"
+                Click="OnRichTextBlockStylesButtonClick"
+                Width="400"
+                Height="100">
+                <TextBlock
+                    Text="RichTextBlock Styles"
+                    Style="{StaticResource SubheaderTextStyle}" />
+            </controls:ListItemButton>
+            <controls:ListItemButton
+                x:Name="TextBlockStylesButton"
+                Click="OnTextBlockStylesButtonClick"
+                Width="400"
+                Height="100">
+                <TextBlock
+                    Text="TextBlock Styles"
+                    Style="{StaticResource SubheaderTextStyle}" />
+            </controls:ListItemButton>
+            <controls:ListItemButton
+                x:Name="AppBarButtonStylesButton"
+                Click="OnAppBarButtonStylesButtonClick"
+                Width="400"
+                Height="100">
+                <TextBlock
+                    Text="AppBar Button Styles"
+                    Style="{StaticResource SubheaderTextStyle}"/>
+            </controls:ListItemButton>
+            <controls:ListItemButton
+                x:Name="ButtonStylesButton"
+                Click="OnButtonStylesButtonClick"
+                Width="400"
+                Height="100">
+                <TextBlock
+                    Text="Other Button Styles"
+                    Style="{StaticResource SubheaderTextStyle}" />
+            </controls:ListItemButton>
+        </GridView>
+        <TextBlock
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            Text="Filip Skakun, 2012" 
+            Margin="15,10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom" />
+    </Grid>
+</Page>

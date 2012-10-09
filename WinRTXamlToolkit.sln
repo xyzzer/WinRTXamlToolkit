@@ -1,0 +1,118 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit", "WinRTXamlToolkit\WinRTXamlToolkit.csproj", "{7B7966BE-213F-4B84-867D-2A0CCF61245F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Sample", "WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj", "{239A7CA1-827C-456D-846D-6C97BD111167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.StylesBrowser", "WinRTXamlToolkit.StylesBrowser\WinRTXamlToolkit.StylesBrowser.csproj", "{428B82D1-217F-4868-BB63-10D7419EB138}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56-4BA6-472F-A56E-DEF2DBB2D62E}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\NuGet.exe = Nuget\NuGet.exe
+		Nuget\NugetPackWinRTXAMLToolkit.cmd = Nuget\NugetPackWinRTXAMLToolkit.cmd
+		Nuget\NugetPushWinRTXAMLToolkit.cmd = Nuget\NugetPushWinRTXAMLToolkit.cmd
+		Nuget\winrtxamltoolkit.nuspec = Nuget\winrtxamltoolkit.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtensionsSDK", "ExtensionsSDK", "{206675AA-78BD-4D8B-82B9-276067AF2832}"
+	ProjectSection(SolutionItems) = preProject
+		ExtensionsSDK\SDKManifest.xml = ExtensionsSDK\SDKManifest.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs37
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WinRTXamlToolkit\\WinRTXamlToolkit.csproj
+		SccProjectName1 = WinRTXamlToolkit
+		SccLocalPath1 = WinRTXamlToolkit
+		SccProjectUniqueName2 = WinRTXamlToolkit.Sample\\WinRTXamlToolkit.Sample.csproj
+		SccProjectName2 = WinRTXamlToolkit.Sample
+		SccLocalPath2 = WinRTXamlToolkit.Sample
+		SccProjectUniqueName3 = WinRTXamlToolkit.StylesBrowser\\WinRTXamlToolkit.StylesBrowser.csproj
+		SccProjectName3 = WinRTXamlToolkit.StylesBrowser
+		SccLocalPath3 = WinRTXamlToolkit.StylesBrowser
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|ARM.Build.0 = Debug|ARM
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|x64.ActiveCfg = Debug|x64
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|x64.Build.0 = Debug|x64
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|x86.ActiveCfg = Debug|x86
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Debug|x86.Build.0 = Debug|x86
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|ARM.ActiveCfg = Release|ARM
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|ARM.Build.0 = Release|ARM
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|x64.ActiveCfg = Release|x64
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|x64.Build.0 = Release|x64
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|x86.ActiveCfg = Release|x86
+		{7B7966BE-213F-4B84-867D-2A0CCF61245F}.Release|x86.Build.0 = Release|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|ARM.ActiveCfg = Debug|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|ARM.Build.0 = Debug|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|ARM.Deploy.0 = Debug|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x64.ActiveCfg = Debug|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x64.Build.0 = Debug|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x64.Deploy.0 = Debug|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x86.ActiveCfg = Debug|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x86.Build.0 = Debug|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Debug|x86.Deploy.0 = Debug|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|ARM.ActiveCfg = Release|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|ARM.Build.0 = Release|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|ARM.Deploy.0 = Release|ARM
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x64.ActiveCfg = Release|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x64.Build.0 = Release|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x64.Deploy.0 = Release|x64
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x86.ActiveCfg = Release|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x86.Build.0 = Release|x86
+		{239A7CA1-827C-456D-846D-6C97BD111167}.Release|x86.Deploy.0 = Release|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|ARM.ActiveCfg = Debug|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|ARM.Build.0 = Debug|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|ARM.Deploy.0 = Debug|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x64.ActiveCfg = Debug|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x64.Build.0 = Debug|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x64.Deploy.0 = Debug|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x86.ActiveCfg = Debug|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x86.Build.0 = Debug|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Debug|x86.Deploy.0 = Debug|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|ARM.ActiveCfg = Release|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|ARM.Build.0 = Release|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|ARM.Deploy.0 = Release|ARM
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x64.ActiveCfg = Release|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x64.Build.0 = Release|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x64.Deploy.0 = Release|x64
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.ActiveCfg = Release|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.Build.0 = Release|x86
+		{428B82D1-217F-4868-BB63-10D7419EB138}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

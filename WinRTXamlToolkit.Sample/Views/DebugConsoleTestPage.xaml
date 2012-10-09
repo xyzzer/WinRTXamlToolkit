@@ -1,0 +1,62 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.DebugConsoleTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="DebugConsole Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        
+        <StackPanel
+            x:Name="testPanel"
+            Visibility="Collapsed"
+            Grid.Column="1"
+            Grid.Row="1"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBox
+                x:Name="line"
+                Width="800"
+                Text="Traced information"
+                KeyUp="OnTraceLineKeyUp"/>
+            <Button
+                x:Name="traceButton"
+                Content="Trace"
+                Click="OnTraceButtonClicked"/>
+        </StackPanel>
+
+        <TextBlock
+            x:Name="releaseBuildWarning"
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontSize="72"
+            TextWrapping="Wrap"
+            Text="Only works in Debug builds!" />
+    </Grid>
+</controls:AlternativePage>

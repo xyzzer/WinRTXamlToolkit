@@ -1,0 +1,94 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.CustomGridSplitterTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="CustomGridSplitter Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+
+        <Border
+            Background="DarkKhaki"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Grid.Column="1"
+            Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition
+                        Width="22" />
+                    <ColumnDefinition />
+                    <ColumnDefinition
+                        Width="22" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition
+                            Height="22" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <controls:CustomGridSplitter
+                        x:Name="cgs3"
+                        Grid.Row="1" />
+                </Grid>
+
+                <controls:CustomGridSplitter
+                    x:Name="cgs1"
+                    Grid.Column="1" />
+
+                <Grid
+                    Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition
+                            Height="22" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <controls:CustomGridSplitter
+                        x:Name="cgs4"
+                        Grid.Row="1" />
+                </Grid>
+
+                <controls:CustomGridSplitter
+                    x:Name="cgs2"
+                    Grid.Column="3"
+                    ShowsPreview="True" />
+            </Grid>
+        </Border>
+        <CheckBox
+            x:Name="cbTrace"
+            Content="Trace DraggingCompleted"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Grid.Column="1"
+            Grid.Row="2"/>
+    </Grid>
+</controls:AlternativePage>

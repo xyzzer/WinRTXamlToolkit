@@ -1,0 +1,34 @@
+﻿<Application
+    x:Class="WinRTXamlToolkit.StylesBrowser.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- 
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <ItemsPanelTemplate
+                x:Key="GridViewItemsPanelTemplate">
+                <WrapGrid
+                    Orientation="Vertical">
+                    <WrapGrid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition
+                                IsStaggeringEnabled="True"
+                                FromHorizontalOffset="200"/>
+                        </TransitionCollection>
+                    </WrapGrid.ChildrenTransitions>
+                </WrapGrid>
+            </ItemsPanelTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

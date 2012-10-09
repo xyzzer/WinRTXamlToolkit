@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FileList
+  DisplayName="WinRTXamlToolkit"
+  ProductFamilyName="WinRTXamlToolkit"
+  MinVSVersion="11.0"
+  MinToolsVersion="4.0"
+  CopyRedistToSubDirectory="WinRTXamlToolkit"
+  AppliesTo="WindowsAppContainer+Managed"
+  MoreInfo="http://winrtxamltoolkit.codeplex.com/">
+  <File Reference="WinRTXamlToolkit.dll">
+    <ToolboxItems VSCategory="WinRTXamlToolkit" BlendCategory="WinRTXamlToolkit" />
+  </File>
+</FileList>

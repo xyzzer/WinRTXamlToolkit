@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="af69f4a6-7206-4558-bed7-70320ca7dea3" Publisher="CN=Filip Skakun" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>WinRTXamlToolkit.Sample</DisplayName>
+    <PublisherDisplayName>Filip Skakun</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>WinRTXamlToolkit.Sample</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WinRTXamlToolkit.Sample.App">
+      <VisualElements DisplayName="WinRTXamlToolkit.Sample" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="WinRTXamlToolkit.Sample" ForegroundText="light" BackgroundColor="#222222">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="txt">
+            <DisplayName>txt</DisplayName>
+            <InfoTip>txt</InfoTip>
+            <SupportedFileTypes>
+              <FileType ContentType="text/plain">.txt</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="picturesLibrary" />
+    <Capability Name="documentsLibrary" />
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="webcam" />
+  </Capabilities>
+</Package>

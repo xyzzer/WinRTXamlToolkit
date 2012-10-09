@@ -1,0 +1,170 @@
+﻿<Page x:Class="WinRTXamlToolkit.StylesBrowser.TextBlockStylesPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:WinRTXamlToolkit.StylesBrowser" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="BackButton" Style="{StaticResource BackButtonStyle}" Click="GoBack" />
+        <TextBlock Text="TextBlock Styles" Grid.Column="1" Style="{StaticResource PageHeaderTextStyle}" />
+        <GridView Grid.Row="1" Grid.Column="1" SelectionMode="Extended" ItemsPanel="{StaticResource GridViewItemsPanelTemplate}">
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="BasicTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="BasicTextStyle" Style="{StaticResource BasicTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="BaselineTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="BaselineTextStyle" Style="{StaticResource BaselineTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="HeaderTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="HeaderTextStyle" Style="{StaticResource HeaderTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="SubheaderTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="SubheaderTextStyle" Style="{StaticResource SubheaderTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="TitleTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="TitleTextStyle" Style="{StaticResource TitleTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="ItemTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="ItemTextStyle" Style="{StaticResource ItemTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="BodyTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="BodyTextStyle" Style="{StaticResource BodyTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="CaptionTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="CaptionTextStyle" Style="{StaticResource CaptionTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="PageHeaderTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="PageHeaderTextStyle" Style="{StaticResource PageHeaderTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="PageSubheaderTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="PageSubheaderTextStyle" Style="{StaticResource PageSubheaderTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+
+            <GridViewItem Width="400" Height="200">
+                <Border Width="400">
+                    <StackPanel Margin="10" HorizontalAlignment="Stretch">
+                        <TextBox Margin="0,0,0,10" IsReadOnly="True" Text="SnappedPageHeaderTextStyle" />
+                        <Border Height="130">
+                            <StackPanel>
+                                <TextBlock Text="SnappedPageHeaderTextStyle" Style="{StaticResource SnappedPageHeaderTextStyle}" />
+                                <Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+        </GridView>
+    </Grid>
+</Page>

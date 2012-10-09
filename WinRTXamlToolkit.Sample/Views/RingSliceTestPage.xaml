@@ -1,0 +1,107 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.RingSliceTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition
+                Width="120" />
+        </Grid.ColumnDefinitions>
+        <Button
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="RingSlice/PieSlice Tests"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource PageHeaderTextStyle}" />
+
+        <TextBlock
+            Text="RingSlice"
+            Grid.Column="1"
+            Grid.Row="1"
+            Style="{StaticResource SubheaderTextStyle}"/>
+
+        <controls:RingSlice
+            Fill="White"
+            Grid.Column="1"
+            Grid.Row="2"
+            InnerRadius="{Binding Value, ElementName=InnerRadiusSlider}"
+            Radius="{Binding Value, ElementName=RadiusSlider}"
+            StartAngle="{Binding Value, ElementName=StartAngleSlider}"
+            EndAngle="{Binding Value, ElementName=EndAngleSlider}" />
+        
+        <StackPanel
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Grid.Row="3">
+            <TextBlock
+                Text="StartAngle"
+                Style="{StaticResource TitleTextStyle}" />
+            <Slider
+                x:Name="StartAngleSlider"
+                Minimum="0"
+                Value="0"
+                Maximum="{Binding Value, ElementName=EndAngleSlider}" />
+            <TextBlock
+                Text="EndAngle"
+                Style="{StaticResource TitleTextStyle}" />
+            <Slider
+                x:Name="EndAngleSlider"
+                Minimum="{Binding Value, ElementName=StartAngleSlider}"
+                Value="280"
+                Maximum="359.99" />
+            <TextBlock
+                Text="InnerRadius"
+                Style="{StaticResource TitleTextStyle}" />
+            <Slider
+                x:Name="InnerRadiusSlider"
+                Minimum="0"
+                Value="75"
+                Maximum="{Binding Value, ElementName=RadiusSlider}" />
+            <TextBlock
+                Text="Radius"
+                Style="{StaticResource TitleTextStyle}" />
+            <Slider
+                x:Name="RadiusSlider"
+                Minimum="{Binding Value, ElementName=InnerRadiusSlider}"
+                Value="100"
+                Maximum="200" />
+        </StackPanel>
+
+
+        <TextBlock
+            Text="PieSlice"
+            Grid.Column="2"
+            Grid.Row="1"
+            Style="{StaticResource SubheaderTextStyle}" />
+
+        <controls:PieSlice
+            Fill="White"
+            Grid.Column="2"
+            Grid.Row="2"
+            Radius="{Binding Value, ElementName=RadiusSlider}"
+            StartAngle="{Binding Value, ElementName=StartAngleSlider}"
+            EndAngle="{Binding Value, ElementName=EndAngleSlider}" />
+
+    </Grid>
+</controls:AlternativePage>

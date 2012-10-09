@@ -1,0 +1,170 @@
+﻿<Controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.AlternativeFrameTestPageSubPage3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="page">
+    <Controls:AlternativePage.PageTransition>
+        <Controls:WipeTransition
+            ForwardDirection="Random"
+            BackwardDirection="Random" />
+    </Controls:AlternativePage.PageTransition>
+    <Grid
+        Background="Blue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Text="AlternativePage 3 (Preloaded)"
+            Grid.ColumnSpan="2"
+            FontSize="72" />
+        <StackPanel
+            Grid.Row="1">
+            <TextBlock
+                x:Name="ParameterTextBlock" />
+            <Button
+                x:Name="BackButton"
+                Content="Back"
+                IsEnabled="{Binding Frame.CanGoBack, ElementName=page}"
+                Click="OnBackButtonClick" />
+            <Button
+                x:Name="ForwardButton"
+                Content="Forward"
+                IsEnabled="{Binding Frame.CanGoForward, ElementName=page}"
+                Click="OnForwardButtonClick" />
+            <Button
+                x:Name="NavigateButton"
+                Content="Navigate to page 2"
+                IsEnabled="{Binding Frame.CanNavigate, ElementName=page}"
+                Click="OnNavigateButtonClick" />
+            <TextBlock
+                TextWrapping="Wrap"
+                Width="250"
+                Text="Note that this page has started preloading before you navigated to it so the images can already be shown when you do navigate to it. This is controlled by the Preload() method of the frame and Preload() virtual method in the page" />
+            <TextBlock
+                x:Name="TimeTextBlock" />
+        </StackPanel>
+        <GridView
+            Grid.Row="1"
+            Grid.Column="1"
+            CanDragItems="True"
+            CanReorderItems="True"
+            AllowDrop="True">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VariableSizedWrapGrid
+                        ItemHeight="200"
+                        ItemWidth="200"
+                        Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="/Assets/Logo.png"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/1840182310/twitterface_bigger.png"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="https://lh4.googleusercontent.com/-JuW4oAjvCrg/SgiwxVPqAhI/AAAAAAAAh3Y/KC4of2uj2lc/s640/IMG_5995.jpg"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="https://lh5.googleusercontent.com/-WXbBZUln56E/R4REaBoYBTI/AAAAAAAAh6U/5SK4ox14Rz8/s640/IMG_8839.JPG"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="https://lh5.googleusercontent.com/-a3dofEG8zAM/SKMQU-zaPGI/AAAAAAAAh5A/FWJ0nFz59N8/s912/IMG_1286.JPG"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/1683663238/Avatar4.jpg"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/2020269657/portrait4.jpg"
+                Stretch="UniformToFill" />
+            <!-- Note - images that fail to load will block navigation if the frame is configured to wait for images to load -->
+            <!--<Grid>
+                <Image
+                    Extensions:ImageExtensions.FadeInOnLoaded="True"
+                    Source="http://www.twitter.com/missing_picture.jpg"
+                    Stretch="UniformToFill" />
+                <TextBlock
+                    Text="missing image" />
+            </Grid>-->
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/361579322/00859_radioactive_1920x1200.jpg"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/1845243632/408866_2337950499173_1562199751_31830561_930745686_n.jpg"
+                Stretch="UniformToFill" />
+            <Image
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Source="http://twimg0-a.akamaihd.net/profile_images/1753783858/xoofx.jpg"
+                Stretch="UniformToFill" />
+            <Image
+                Source="http://twimg0-a.akamaihd.net/profile_images/1474336859/el20110730009_902x902.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="http://twimg0-a.akamaihd.net/profile_images/1814616351/tim-ballard-170.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1434283399/CIMG6822_small.JPG"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1440573976/Ginny2011.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1511009885/gillcleeren.png"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/725890828/twitterProfilePhoto.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1770398706/pmb_fall_2011_color_cropped_300px.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1631020698/P19.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1296534306/avatar.png"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/1842858128/IMG_0258.jpg"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+            <Image
+                Source="https://twimg0-a.akamaihd.net/profile_images/2016540246/SilverlightShow_logo_twitter.png"
+                Extensions:ImageExtensions.FadeInOnLoaded="True"
+                Stretch="UniformToFill" />
+        </GridView>
+    </Grid>
+</Controls:AlternativePage>

@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="WinRTXamlToolkit.StylesBrowser.ButtonStylesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="AppBar Button Styles"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <GridView
+            Grid.Row="1"
+            Grid.Column="1"
+            SelectionMode="Extended"
+            ItemsPanel="{StaticResource GridViewItemsPanelTemplate}">
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><Button Style="{StaticResource TextButtonStyle}" Content="Some Text" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="TextButtonStyle" />
+</StackPanel></Border></GridViewItem>
+            
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><RadioButton Style="{StaticResource TextRadioButtonStyle}" Content="Some Text" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="TextRadioButtonStyle" />
+</StackPanel></Border></GridViewItem>    
+            
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Some Text" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="AppBarButtonStyle" />
+</StackPanel></Border></GridViewItem>
+
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><Button Style="{StaticResource BackButtonStyle}" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="BackButtonStyle" />
+</StackPanel></Border></GridViewItem>
+
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><Button Style="{StaticResource PortraitBackButtonStyle}" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="PortraitBackButtonStyle" />
+</StackPanel></Border></GridViewItem>
+
+<GridViewItem><Border Width="400" Height="150"><StackPanel Margin="10,0,10,20" Orientation="Horizontal">
+<Border Width="180"><Button Style="{StaticResource SnappedBackButtonStyle}" /></Border>
+<TextBox Width="200" IsReadOnly="True" Text="SnappedBackButtonStyle" />
+</StackPanel></Border></GridViewItem>
+
+        </GridView>
+    </Grid>
+</Page>

@@ -1,0 +1,65 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.NumericUpDownTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="NumericUpDown Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        
+        <StackPanel
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <controls:NumericUpDown />
+            <controls:NumericUpDown
+                Width="200"
+                Margin="0,20,0,0"
+                Minimum="-100"
+                Maximum="100"
+                SmallChange="0.1"
+                LargeChange="10" />
+            <controls:NumericUpDown
+                Width="600"
+                Margin="0,20,0,0"
+                Minimum="100"
+                Maximum="10000"
+                ValueFormat="F5"
+                SmallChange="0.1"
+                LargeChange="1000" />
+            <controls:NumericUpDown
+                Width="200"
+                Margin="0,20,0,0"
+                Value="30"
+                Minimum="-100"
+                Maximum="100"
+                IsReadOnly="True"
+                SmallChange="0.1"
+                LargeChange="10" />
+        </StackPanel>
+    </Grid>
+</controls:AlternativePage>

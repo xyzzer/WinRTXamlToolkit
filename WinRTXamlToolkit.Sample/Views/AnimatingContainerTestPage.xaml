@@ -1,0 +1,58 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.AnimatingContainerTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="AnimatingContainer Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        
+        <StackPanel
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <controls:AnimatingContainer
+                PulseScale="1.07"
+                Duration="0:0:6">
+                <TextBlock
+                    Style="{StaticResource HeaderTextStyle}"
+                    Text="6s pulse" />
+            </controls:AnimatingContainer>
+            
+            <controls:AnimatingContainer
+                Margin="0,100,0,0"
+                RadiusX="5"
+                RadiusY="2"
+                Duration="0:0:10">
+                <TextBlock
+                    Style="{StaticResource HeaderTextStyle}"
+                    Text="10s rotation" />
+            </controls:AnimatingContainer>
+        </StackPanel>
+    </Grid>
+</controls:AlternativePage>
