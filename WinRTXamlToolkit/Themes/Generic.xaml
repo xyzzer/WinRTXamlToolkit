@@ -2650,6 +2650,62 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         VerticalAlignment="Top">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="IncrementalButtonStates">
+                                <VisualState
+                                    x:Name="IncrementEnabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_IncrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="IncrementDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_IncrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="DecrementalButtonStates">
+                                <VisualState
+                                    x:Name="DecrementEnabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_DecrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="DecrementDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_DecrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -2661,27 +2717,27 @@
                             <Grid
                                 Grid.Column="0">
                                 <Rectangle
-                                    x:Name="ValueBar"
+                                    x:Name="PART_ValueBar"
                                     IsHitTestVisible="False"
                                     Fill="#FFFFFFFF" />
                                 <TextBox
-                                    x:Name="ValueTextBox"
+                                    x:Name="PART_ValueTextBox"
                                     InputScope="Number"
                                     HorizontalAlignment="Stretch"
                                     IsReadOnly="{TemplateBinding IsReadOnly}"
                                     IsEnabled="{TemplateBinding IsEnabled}" />
                                 <Rectangle
-                                    x:Name="DragOverlay"
+                                    x:Name="PART_DragOverlay"
                                     Fill="Transparent" />
                             </Grid>
                             <RepeatButton
                                 Grid.Column="1"
-                                x:Name="DecrementButton"
+                                x:Name="PART_DecrementButton"
                                 Margin="8,0,0,0"
                                 Style="{StaticResource DecrementButtonStyle}" />
                             <RepeatButton
                                 Grid.Column="2"
-                                x:Name="IncrementButton"
+                                x:Name="PART_IncrementButton"
                                 Margin="8,0,0,0"
                                 Style="{StaticResource IncrementButtonStyle}" />
                         </Grid>

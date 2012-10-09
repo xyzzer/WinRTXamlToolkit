@@ -17,8 +17,22 @@ namespace WinRTXamlToolkit.Controls
         Auto
     }
 
+    [TemplatePart(Name = ValueTextBoxName, Type = typeof(TextBox))]
+    [TemplatePart(Name = ValueBarName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = DragOverlayName, Type = typeof(UIElement))]
+    [TemplatePart(Name = DecrementButtonName, Type = typeof(RepeatButton))]
+    [TemplatePart(Name = IncrementButtonName, Type = typeof(RepeatButton))]
+    [TemplateVisualState(GroupName = "IncrementalButtonStates", Name = "IncrementEnabled")]
+    [TemplateVisualState(GroupName = "IncrementalButtonStates", Name = "IncrementDisabled")]
+    [TemplateVisualState(GroupName = "DecrementalButtonStates", Name = "DecrementEnabled")]
+    [TemplateVisualState(GroupName = "DecrementalButtonStates", Name = "DecrementDisabled")]
     public sealed class NumericUpDown : RangeBase
     {
+        private const string DecrementButtonName = "PART_DecrementButton";
+        private const string IncrementButtonName = "PART_IncrementButton";
+        private const string DragOverlayName = "PART_DragOverlay";
+        private const string ValueTextBoxName = "PART_ValueTextBox";
+        private const string ValueBarName = "PART_ValueBar";
         private UIElement _dragOverlay;
         private TextBox _valueTextBox;
         private RepeatButton _decrementButton;
@@ -26,7 +40,6 @@ namespace WinRTXamlToolkit.Controls
         private FrameworkElement _valueBar;
         private bool _isChangingTextWithCode;
         private bool _isChangingValueWithCode;
-
         private double _unusedManipulationDelta;
 
         #region ValueFormat
@@ -201,11 +214,11 @@ namespace WinRTXamlToolkit.Controls
         {
             base.OnApplyTemplate();
 
-            _valueTextBox = GetTemplateChild("ValueTextBox") as TextBox;
-            _dragOverlay = GetTemplateChild("DragOverlay") as UIElement;
-            _decrementButton = GetTemplateChild("DecrementButton") as RepeatButton;
-            _incrementButton = GetTemplateChild("IncrementButton") as RepeatButton;
-            _valueBar = GetTemplateChild("ValueBar") as FrameworkElement;
+            _valueTextBox = GetTemplateChild(ValueTextBoxName) as TextBox;
+            _dragOverlay = GetTemplateChild(DragOverlayName) as UIElement;
+            _decrementButton = GetTemplateChild(DecrementButtonName) as RepeatButton;
+            _incrementButton = GetTemplateChild(IncrementButtonName) as RepeatButton;
+            _valueBar = GetTemplateChild(ValueBarName) as FrameworkElement;
 
             if (_valueTextBox != null)
             {
@@ -247,6 +260,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             UpdateIsReadOnlyDependants();
+            SetValidIncrementDirection();
         }
 
         private void OnValueTextBoxTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
@@ -259,7 +273,7 @@ namespace WinRTXamlToolkit.Controls
             if (double.TryParse(_valueTextBox.Text, NumberStyles.Any, CultureInfo.CurrentUICulture, out val))
             {
                 _isChangingValueWithCode = true;
-                Value = val;
+                SetValueAndUpdateValidDirections(val);
                 _isChangingValueWithCode = false;
             }
         }
@@ -272,7 +286,7 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnDecrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            Value -= SmallChange;
+            Decrement();
         }
 
         private void OnIncrementButtonIsPressedChanged(object incrementButton, bool isPressed)
@@ -281,9 +295,19 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnIncrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            Value += SmallChange;
+            Increment();
         }
         #endregion
+
+        private void Decrement()
+        {
+            SetValueAndUpdateValidDirections(this.Value - this.SmallChange);
+        }
+
+        private void Increment()
+        {
+            SetValueAndUpdateValidDirections(this.Value + this.SmallChange);
+        }
 
         private void OnValueTextBoxGotFocus(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -366,7 +390,7 @@ namespace WinRTXamlToolkit.Controls
 
             var speed = Maximum - Minimum;
             var screenAdjustedDelta = speed * _unusedManipulationDelta / smallerScreenDimension;
-            this.Value += screenAdjustedDelta;
+            SetValueAndUpdateValidDirections(this.Value + screenAdjustedDelta);
             _unusedManipulationDelta = 0;
         }
 
@@ -447,6 +471,34 @@ namespace WinRTXamlToolkit.Controls
             if (_incrementButton != null)
             {
                 _incrementButton.Visibility = IsReadOnly ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
+
+        private void SetValueAndUpdateValidDirections(double value)
+        {
+            // Range coercion is handled by base class.
+            this.Value = value;
+            this.SetValidIncrementDirection();
+        }
+
+        private void SetValidIncrementDirection()
+        {
+            if (this.Value < this.Maximum)
+            {
+                VisualStateManager.GoToState(this, "IncrementEnabled", true);
+            }
+            if (this.Value > this.Minimum)
+            {
+                VisualStateManager.GoToState(this, "DecrementEnabled", true);
+            }
+            if (this.Value == this.Maximum)
+            {
+                VisualStateManager.GoToState(this, "IncrementDisabled", true);
+            }
+
+            if (this.Value == this.Minimum)
+            {
+                VisualStateManager.GoToState(this, "DecrementDisabled", true);
             }
         }
     }
