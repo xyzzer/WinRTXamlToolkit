@@ -317,6 +317,7 @@
     <Compile Include="Converters\SecondsToTimeSpanStringConverter.cs" />
     <Compile Include="Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="Imaging\ColorExtensions.cs" />
+    <Compile Include="Imaging\WriteableBitmapColorPickerExtensions.cs" />
     <Compile Include="Interactivity\Behavior.cs" />
     <Compile Include="Interactivity\BehaviorCollection.cs" />
     <Compile Include="Interactivity\BehaviorOfT.cs" />

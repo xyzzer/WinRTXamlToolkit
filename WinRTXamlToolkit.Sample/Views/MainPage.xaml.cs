@@ -117,6 +117,11 @@ namespace WinRTXamlToolkit.Sample.Views
                 },
                 new ButtonViewModel
                 {
+                    Caption = "Imaging",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(ImagingTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "InputDialog",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(InputDialogTestPage)))
                 },

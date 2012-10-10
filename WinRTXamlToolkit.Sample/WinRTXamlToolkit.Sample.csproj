@@ -181,6 +181,9 @@
     <Compile Include="Views\BehaviorsTestPage.xaml.cs">
       <DependentUpon>BehaviorsTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImagingTestPage.xaml.cs">
+      <DependentUpon>ImagingTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HighlightBehaviorTestPage.xaml.cs">
       <DependentUpon>HighlightBehaviorTestPage.xaml</DependentUpon>
     </Compile>
@@ -353,6 +356,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BehaviorsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ImagingTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
