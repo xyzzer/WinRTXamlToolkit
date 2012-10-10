@@ -35,11 +35,74 @@
         <FlipView
             Grid.Column="1"
             Grid.Row="1">
-            <Image
-                x:Name="hueLightnessImage"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Stretch="Fill" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="HSL Conversion tools"
+                    Style="{StaticResource PageSubheaderTextStyle}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Text="RenderColorPickerHueLightness(1.0)"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueLightnessImage"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+                <TextBlock
+                    Grid.Row="3"
+                    Text="RenderColorPickerHueLightness(0.5)"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueLightnessImage2"
+                    Grid.Row="4"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="RenderColorPickerHueRing()"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueRingImage"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Uniform" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="RenderColorPickerSaturationLightness()"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="saturationLightnessImage"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+                
+            </Grid>
         </FlipView>
     </Grid>
 </controls:AlternativePage>
