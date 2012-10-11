@@ -35,7 +35,8 @@
         <FlipView
             Grid.Column="1"
             Grid.Row="1">
-            <Grid>
+            <Grid
+                x:Name="hslGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition
                         Height="Auto" />
@@ -78,7 +79,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
-                    Text="RenderColorPickerHueRing()"
+                    Text="RenderColorPickerHueRing(), RenderColorPickerSaturationLightnessTriangle()"
                     Style="{StaticResource TitleTextStyle}"
                     Margin="0,0,0,10" />
                 <Image
@@ -86,12 +87,20 @@
                     Grid.Column="1"
                     Grid.Row="2"
                     VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch"
+                    HorizontalAlignment="Center"
+                    SizeChanged="OnHueRingImageSizeChanged"
                     Stretch="Uniform" />
+                <Image
+                    x:Name="saturationLightnessTriangleImage"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Center"
+                    Stretch="None" />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="3"
-                    Text="RenderColorPickerSaturationLightness()"
+                    Text="RenderColorPickerSaturationLightnessRect()"
                     Style="{StaticResource TitleTextStyle}"
                     Margin="0,0,0,10" />
                 <Image
@@ -102,6 +111,83 @@
                     HorizontalAlignment="Stretch"
                     Stretch="Fill" />
                 
+            </Grid>
+            <Grid
+                x:Name="hsvGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="HSV Conversion tools"
+                    Style="{StaticResource PageSubheaderTextStyle}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Text="RenderColorPickerHueValue(1.0)"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueValueImage"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+                <TextBlock
+                    Grid.Row="3"
+                    Text="RenderColorPickerHueValue(0.5)"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueValueImage2"
+                    Grid.Row="4"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="RenderColorPickerHueRing(), RenderColorPickerSaturationValueTriangle()"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="hueRingImage2"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Center"
+                    SizeChanged="OnHueRingImage2SizeChanged"
+                    Stretch="Uniform" />
+                <Image
+                    x:Name="saturationValueTriangleImage"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Center"
+                    Stretch="None" />
+                <TextBlock
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="RenderColorPickerSaturationValueRect()"
+                    Style="{StaticResource TitleTextStyle}"
+                    Margin="0,0,0,10" />
+                <Image
+                    x:Name="saturationValueImage"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Stretch="Fill" />
+
             </Grid>
         </FlipView>
     </Grid>

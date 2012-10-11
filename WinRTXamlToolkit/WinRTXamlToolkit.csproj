@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
+    <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\DataVisualization\AggregatedObservableCollection.cs" />
     <Compile Include="Controls\DataVisualization\Charting\AnimationSequence.cs" />
     <Compile Include="Controls\DataVisualization\Charting\Axis\Axis.cs" />

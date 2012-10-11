@@ -47,6 +47,13 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// <returns></returns>
         public static async Task<MediaElement> WaitToComplete(this MediaElement mediaElement)
         {
+            if (mediaElement.CurrentState != MediaElementState.Buffering &&
+                mediaElement.CurrentState != MediaElementState.Opening &&
+                mediaElement.CurrentState != MediaElementState.Playing)
+            {
+                return mediaElement;
+            }
+
             var tcs = new TaskCompletionSource<MediaElement>();
             RoutedEventHandler reh = null;
 

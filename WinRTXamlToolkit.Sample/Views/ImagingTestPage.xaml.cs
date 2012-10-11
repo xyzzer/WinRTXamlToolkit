@@ -31,18 +31,73 @@ namespace WinRTXamlToolkit.Sample.Views
                 CoreDispatcherPriority.High,
                 () => hueRingBitmap.RenderColorPickerHueRing());
             hueRingImage.Source = hueRingBitmap;
+            hueRingImage2.Source = hueRingBitmap;
 
             var saturationLightnessBitmap = new WriteableBitmap(512, 128);
             await Dispatcher.RunAsync(
                 CoreDispatcherPriority.High,
-                () => saturationLightnessBitmap.RenderColorPickerSaturationLightness());
+                () => saturationLightnessBitmap.RenderColorPickerSaturationLightnessRect());
             saturationLightnessImage.Source = saturationLightnessBitmap;
-            
+
+            var hueValueBitmap = new WriteableBitmap(512, 128);
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () => hueValueBitmap.RenderColorPickerHueValue(1.0));
+            hueValueImage.Source = hueValueBitmap;
+            var hueValueBitmap2 = new WriteableBitmap(512, 128);
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () => hueValueBitmap2.RenderColorPickerHueValue(0.5));
+            hueValueImage2.Source = hueValueBitmap2;
+
+            var saturationValueBitmap = new WriteableBitmap(512, 128);
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
+                () => saturationValueBitmap.RenderColorPickerSaturationValueRect());
+            saturationValueImage.Source = saturationValueBitmap;
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
+        }
+
+        private void OnHueRingImageSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (hueRingImage.ActualHeight == 0 ||
+                hueRingImage.ActualWidth == 0)
+            {
+                return;
+            }
+
+            var minSize = Math.Min(hueRingImage.ActualHeight, hueRingImage.ActualWidth);
+            var outerRingRadius = minSize / 2;
+            var innerRingRadius = outerRingRadius * 2 / 3;
+            var triangleWidth = innerRingRadius * Math.Sqrt(3);
+            var triangleHeight = innerRingRadius * 3 / 2;
+            var wb = new WriteableBitmap((int)triangleWidth, (int)triangleHeight);
+            wb.RenderColorPickerSaturationLightnessTriangle();
+            saturationLightnessTriangleImage.Source = wb;
+            saturationLightnessTriangleImage.Margin = new Thickness(0, outerRingRadius - innerRingRadius, 0, outerRingRadius - innerRingRadius * 0.5);
+        }
+
+        private void OnHueRingImage2SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (hueRingImage2.ActualHeight == 0 ||
+                hueRingImage2.ActualWidth == 0)
+            {
+                return;
+            }
+
+            var minSize = Math.Min(hueRingImage2.ActualHeight, hueRingImage2.ActualWidth);
+            var outerRingRadius = minSize / 2;
+            var innerRingRadius = outerRingRadius * 2 / 3;
+            var triangleWidth = innerRingRadius * Math.Sqrt(3);
+            var triangleHeight = innerRingRadius * 3 / 2;
+            var wb = new WriteableBitmap((int)triangleWidth, (int)triangleHeight);
+            wb.RenderColorPickerSaturationValueTriangle();
+            saturationValueTriangleImage.Source = wb;
+            saturationValueTriangleImage.Margin = new Thickness(0, outerRingRadius - innerRingRadius, 0, outerRingRadius - innerRingRadius * 0.5);
         }
     }
 }
