@@ -132,6 +132,9 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="MyUserControl1.xaml.cs">
+      <DependentUpon>MyUserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ButtonViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\AlternativeFrameTestPageSubPage1.xaml.cs">
@@ -180,6 +183,9 @@
     </Compile>
     <Compile Include="Views\BehaviorsTestPage.xaml.cs">
       <DependentUpon>BehaviorsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ColorPickerTestPage.xaml.cs">
+      <DependentUpon>ColorPickerTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ImagingTestPage.xaml.cs">
       <DependentUpon>ImagingTestPage.xaml</DependentUpon>
@@ -303,6 +309,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyUserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AlternativeFrameTestPageSubPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -356,6 +366,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BehaviorsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ColorPickerTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

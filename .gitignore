@@ -13,3 +13,4 @@ WinRTXamlToolkit.Sample/obj/
 WinRTXamlToolkit.StylesBrowser/bin/
 WinRTXamlToolkit.StylesBrowser/obj/
 WinRTXamlToolkit.v11.suo
+*.user

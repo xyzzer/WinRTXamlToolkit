@@ -45,7 +45,7 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// </summary>
         /// <param name="mediaElement"></param>
         /// <returns></returns>
-        public static async Task<MediaElement> WaitToComplete(this MediaElement mediaElement)
+        public static async Task<MediaElement> WaitToCompleteAsync(this MediaElement mediaElement)
         {
             if (mediaElement.CurrentState != MediaElementState.Buffering &&
                 mediaElement.CurrentState != MediaElementState.Opening &&

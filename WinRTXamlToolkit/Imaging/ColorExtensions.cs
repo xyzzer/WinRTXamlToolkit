@@ -1,4 +1,5 @@
-﻿using System;
+﻿//HSL and HSV conversions credits to Wikipedia contributors (http://en.wikipedia.org/wiki/HSL_and_HSV)
+using System;
 using Windows.UI;
 
 namespace WinRTXamlToolkit.Imaging
@@ -293,9 +294,7 @@ namespace WinRTXamlToolkit.Imaging
             var bytes = new byte[pixels.Length << 2];
             return pixels.ToBytes(bytes);
         } 
-        #endregion
 
-        #region ToBytes()
         /// <summary>
         /// Copies an int array/pixel buffer into an existing byte array.
         /// </summary>

@@ -65,6 +65,11 @@ namespace WinRTXamlToolkit.Sample.Views
                     Caption = "Chart",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(ChartTestPage)))
                 },
+                new ButtonViewModel()
+                {
+                    Caption = "ColorPicker",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(ColorPickerTestPage)))
+                },
                 new ButtonViewModel
                 {
                     Caption = "Content Fade",

@@ -148,6 +148,7 @@
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
+    <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\DataVisualization\AggregatedObservableCollection.cs" />
     <Compile Include="Controls\DataVisualization\Charting\AnimationSequence.cs" />
     <Compile Include="Controls\DataVisualization\Charting\Axis\Axis.cs" />
@@ -304,7 +305,7 @@
     <Compile Include="Controls\Extensions\TextBoxValidationExtensions.cs" />
     <Compile Include="Controls\Extensions\ViewboxExtensions.cs" />
     <Compile Include="Controls\WatermarkTextBox.cs" />
-    <Compile Include="Controls\WebBrowser.cs" />
+    <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
     <Compile Include="Controls\Extensions\WebViewExtensions.cs" />
     <Compile Include="Controls\WrapPanel\OrientedSize.cs" />
     <Compile Include="Controls\WrapPanel\WrapPanel.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="Converters\SecondsToTimeSpanStringConverter.cs" />
     <Compile Include="Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="Imaging\ColorExtensions.cs" />
+    <Compile Include="Imaging\PixelMath.cs" />
     <Compile Include="Imaging\WriteableBitmapColorPickerExtensions.cs" />
     <Compile Include="Interactivity\Behavior.cs" />
     <Compile Include="Interactivity\BehaviorCollection.cs" />
@@ -354,6 +356,10 @@
     <Page Include="Controls\CascadingTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ColorPicker\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\CountdownControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -448,6 +454,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DataVisualization\Title\Title.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WebBrowser\WebBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

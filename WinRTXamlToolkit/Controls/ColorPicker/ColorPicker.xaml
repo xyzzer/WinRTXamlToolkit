@@ -1,0 +1,78 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <Style
+        TargetType="controls:ColorPicker">
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:ColorPicker">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid
+                            x:Name="layoutRoot">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        TargetType="controls:HueRingPicker">
+        <Setter
+            Property="ThumbBorderBrush"
+            Value="White" />
+        <Setter
+            Property="ThumbBorderThickness"
+            Value="10" />
+        <Setter
+            Property="ThumbBackground"
+            Value="Transparent" />
+        <Setter
+            Property="RingThickness"
+            Value="100.0" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:HueRingPicker">
+                    <Border
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            x:Name="PART_ContainerGrid"
+                            Background="Gray">
+                            <Image
+                                x:Name="PART_HueRingImage"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Stretch="None"
+                                Margin="{TemplateBinding ThumbBorderThickness}"/>
+                            <controls:RingSlice
+                                x:Name="PART_RingThumb"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Stroke="{TemplateBinding ThumbBorderBrush}"
+                                StrokeThickness="{TemplateBinding ThumbBorderThickness}"
+                                Fill="{TemplateBinding ThumbBackground}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

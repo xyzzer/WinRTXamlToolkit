@@ -190,9 +190,13 @@ namespace WinRTXamlToolkit.Imaging
                     if (r2 >= irr2 && r2 <= orr2)
                     {
                         var angleRadians = Math.Atan2(y - pcv, x - pch);
-                        var angleDegrees = angleRadians * 180 * piInv + 180;
+                        var angleDegrees = (angleRadians * 180 * piInv + 90 + 360) % 360;
                         var c = ColorExtensions.FromHsl(angleDegrees, 1.0, 0.5);
                         pixels[pw * y + x] = c.AsInt();
+                    }
+                    else
+                    {
+                        pixels[pw * y + x] = int.MaxValue;
                     }
                 }
             }

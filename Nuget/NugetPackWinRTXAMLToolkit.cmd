@@ -8,6 +8,8 @@ mkdir lib\winrt45
 mkdir lib\winrt45\WinRTXamlToolkit\Controls
 mkdir lib\winrt45\WinRTXamlToolkit\Themes
 mkdir lib\winrt45\Controls\DataVisualization
+mkdir lib\winrt45\Controls\ColorPicker
+mkdir lib\winrt45\Controls\WebBrowser
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting\Axis
 mkdir lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting\Chart
@@ -31,6 +33,8 @@ copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\winrt45\WinRTXamlT
 copy ..\WinRTXamlToolkit\Controls\DataVisualization\Resources.resx lib\winrt45\Controls\DataVisualization
 copy ..\WinRTXamlToolkit\Controls\DataVisualization\Resources.resx lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\winrt45\WinRTXamlToolkit\Controls
+copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\winrt45\WinRTXamlToolkit\Controls\ColorPicker
+copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\winrt45\WinRTXamlToolkit\Controls\WebBrowser
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\winrt45\WinRTXamlToolkit\Themes
 @rem copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Charting\DataPointSeriesDragDropTarget.xaml	lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DataVisualization\Charting\Axis\AxisLabel.xaml				lib\winrt45\WinRTXamlToolkit\Controls\DataVisualization\Charting\Axis

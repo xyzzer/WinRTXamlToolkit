@@ -14,6 +14,7 @@ namespace WinRTXamlToolkit.Controls
 {
     [TemplatePart(Name = LayoutRootPanelName, Type = typeof(Panel))]
     [TemplatePart(Name = WebViewName, Type = typeof(WebView))]
+    [TemplatePart(Name = WebViewBrushName, Type = typeof(WebViewBrush))]
     [TemplatePart(Name = AddressBarName, Type = typeof(TextBox))]
     [TemplatePart(Name = TitleTextBlockName, Type = typeof(TextBlock))]
     [TemplatePart(Name = FavIconImageName, Type = typeof(Image))]
@@ -38,6 +39,7 @@ namespace WinRTXamlToolkit.Controls
 
         private const string LayoutRootPanelName = "LayoutRoot";
         private const string WebViewName = "PART_WebView";
+        private const string WebViewBrushName = "PART_WebViewBrush";
         private const string AddressBarName = "PART_AddressBar";
         private const string TitleTextBlockName = "PART_TitleBar";
         private const string FavIconImageName = "PART_FavIconImage";
@@ -52,6 +54,7 @@ namespace WinRTXamlToolkit.Controls
         #region Template Part Fields
         private Panel _layoutRoot;
         private WebView _webView;
+        private WebViewBrush _webViewBrush;
         private TextBox _addressBar;
         private TextBlock _titleBar;
         private Image _favIconImage;
@@ -66,6 +69,63 @@ namespace WinRTXamlToolkit.Controls
         private bool _ctrlPressed;
         private List<Uri> _backStack = new List<Uri>();
         private int _backStackPosition = -1;
+
+        #region AutoNavigate
+        /// <summary>
+        /// AutoNavigate Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty AutoNavigateProperty =
+            DependencyProperty.Register(
+                "AutoNavigate",
+                typeof(bool),
+                typeof(WebBrowser),
+                new PropertyMetadata(true, OnAutoNavigateChanged));
+
+        /// <summary>
+        /// Gets or sets the AutoNavigate property. This dependency property 
+        /// indicates whether the browser should automatically navigate when the Source property is set.
+        /// </summary>
+        public bool AutoNavigate
+        {
+            get { return (bool)GetValue(AutoNavigateProperty); }
+            set { SetValue(AutoNavigateProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the AutoNavigate property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnAutoNavigateChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var target = (WebBrowser)d;
+            bool oldAutoNavigate = (bool)e.OldValue;
+            bool newAutoNavigate = target.AutoNavigate;
+            target.OnAutoNavigateChanged(oldAutoNavigate, newAutoNavigate);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes
+        /// to the AutoNavigate property.
+        /// </summary>
+        /// <param name="oldAutoNavigate">The old AutoNavigate value</param>
+        /// <param name="newAutoNavigate">The new AutoNavigate value</param>
+        private void OnAutoNavigateChanged(
+            bool oldAutoNavigate, bool newAutoNavigate)
+        {
+            if (this.Source != null)
+            {
+                this.Navigate(this.Source);
+            }
+        }
+        #endregion
 
         #region Source
         /// <summary>
@@ -117,6 +177,10 @@ namespace WinRTXamlToolkit.Controls
         protected virtual void OnSourceChanged(
             Uri oldSource, Uri newSource)
         {
+            if (this.AutoNavigate)
+            {
+                this.Navigate(this.Source);
+            }
         }
         #endregion
 
@@ -183,6 +247,7 @@ namespace WinRTXamlToolkit.Controls
             base.OnApplyTemplate();
             _layoutRoot = GetTemplateChild(LayoutRootPanelName) as Panel;
             _webView = GetTemplateChild(WebViewName) as WebView;
+            _webViewBrush = GetTemplateChild(WebViewBrushName) as WebViewBrush;
             _addressBar = GetTemplateChild(AddressBarName) as TextBox;
             _titleBar = GetTemplateChild(TitleTextBlockName) as TextBlock;
             _favIconImage = GetTemplateChild(FavIconImageName) as Image;
@@ -214,6 +279,9 @@ namespace WinRTXamlToolkit.Controls
             _stopButton.Click += OnStopButtonClick;
             _refreshButton.Click += OnRefreshButtonClick;
 
+            _webView.LoadCompleted += OnLoadCompleted;
+            _webView.NavigationFailed += OnNavigationFailed;
+
             if (this.Source != null)
             {
                 _webView.Source = this.Source;
@@ -222,9 +290,6 @@ namespace WinRTXamlToolkit.Controls
             {
                 this.Source = _webView.Source;
             }
-
-            _webView.LoadCompleted += OnLoadCompleted;
-            _webView.NavigationFailed += OnNavigationFailed;
         }
 
         private void OnAddressBarTextChanged(object sender, TextChangedEventArgs e)
@@ -238,7 +303,7 @@ namespace WinRTXamlToolkit.Controls
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
             _backStackPosition--;
-            Navigate(_backStack[_backStackPosition]);
+            this.Navigate(_backStack[_backStackPosition]);
             UpdateBackStackKeys();
         }
 
@@ -386,7 +451,7 @@ namespace WinRTXamlToolkit.Controls
             _goButton.Focus(FocusState.Programmatic);
             _goButton.IsEnabled = false;
 #pragma warning disable 4014
-            NavigateAsync(source);
+            this.NavigateAsync(source);
 #pragma warning restore 4014
         }
 

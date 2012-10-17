@@ -8,6 +8,8 @@ namespace WinRTXamlToolkit.Controls
 {
     public class PieSlice : Path
     {
+        private bool _isUpdating;
+
         #region StartAngle
         public static readonly DependencyProperty StartAngleProperty =
             DependencyProperty.Register(
@@ -99,8 +101,30 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Suspends path updates until EndUpdate is called;
+        /// </summary>
+        public void BeginUpdate()
+        {
+            _isUpdating = true;
+        }
+
+        /// <summary>
+        /// Resumes immediate path updates every time a component property value changes. Updates the path.
+        /// </summary>
+        public void EndUpdate()
+        {
+            _isUpdating = false;
+            UpdatePath();
+        }
+
         private void UpdatePath()
         {
+            if (_isUpdating)
+            {
+                return;
+            }
+
             var pathGeometry = new PathGeometry();
             var pathFigure = new PathFigure();
             pathFigure.StartPoint = new Point(Radius, Radius);
