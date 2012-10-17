@@ -204,5 +204,33 @@ namespace WinRTXamlToolkit.IO.Extensions
             }
         }
         #endregion
+
+        #region ContainsFolderAsync
+        /// <summary>
+        /// Returns true if a folder contains another folder with the given name
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <param name="name"></param>
+        /// <returns>True if the folder contains the folder with given name. False - otherwise</returns>
+        public static async Task<bool> ContainsFolderAsync(this StorageFolder folder, string name)
+        {
+            return (await folder.GetFoldersAsync()).Any(l => l.Name == name);
+        }
+        #endregion
+
+        #region EnsureFolderExistsAsync
+        /// <summary>
+        /// Ensures that a folder with given name exists in given folder
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static async Task EnsureFolderExistsAsync(this StorageFolder folder, string name)
+        {
+            if (await ContainsFolderAsync(folder, name)) return;
+
+            await folder.CreateFolderAsync(name);
+        }
+        #endregion
     }
 }
