@@ -178,6 +178,9 @@ namespace WinRTXamlToolkit.Imaging
 
             // Inner ring radius square
             var irr2 = innerRingRadius * innerRingRadius;
+
+            //var orr22 = (outerRingRadius - 5) * (outerRingRadius - 5);
+            //var irr22 = (innerRingRadius + 5) * (innerRingRadius + 5);
             const double piInv = 1.0 / Math.PI;
 
             for (int y = 0; y < ph; y++)
@@ -191,13 +194,15 @@ namespace WinRTXamlToolkit.Imaging
                     {
                         var angleRadians = Math.Atan2(y - pcv, x - pch);
                         var angleDegrees = (angleRadians * 180 * piInv + 90 + 360) % 360;
-                        var c = ColorExtensions.FromHsl(angleDegrees, 1.0, 0.5);
+                        //var alpha = (r2 - irr22 < 5) || (orr22 - r2 < 5) ? 0.5 : 1;
+                        //var c = ColorExtensions.FromHsl(angleDegrees, 1.0 * alpha, 0.5 * alpha, alpha);
+                        var c = ColorExtensions.FromHsl(angleDegrees, 1.0 , 0.5);
                         pixels[pw * y + x] = c.AsInt();
                     }
-                    else
-                    {
-                        pixels[pw * y + x] = int.MaxValue;
-                    }
+                    //else
+                    //{
+                    //    pixels[pw * y + x] = int.MaxValue;
+                    //}
                 }
             }
 

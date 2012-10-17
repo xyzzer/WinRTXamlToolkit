@@ -131,6 +131,61 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        #region Center
+        /// <summary>
+        /// Center Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CenterProperty =
+            DependencyProperty.Register(
+                "Center",
+                typeof(Point?),
+                typeof(RingSlice),
+                new PropertyMetadata(null, OnCenterChanged));
+
+        /// <summary>
+        /// Gets or sets the Center property. This dependency property 
+        /// indicates the center point.
+        /// Center point is calculated based on Radius and StrokeThickness if not specified.    
+        /// </summary>
+        public Point? Center
+        {
+            get { return (Point?)GetValue(CenterProperty); }
+            set { SetValue(CenterProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the Center property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnCenterChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var target = (RingSlice)d;
+            Point? oldCenter = (Point?)e.OldValue;
+            Point? newCenter = target.Center;
+            target.OnCenterChanged(oldCenter, newCenter);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes
+        /// to the Center property.
+        /// </summary>
+        /// <param name="oldCenter">The old Center value</param>
+        /// <param name="newCenter">The new Center value</param>
+        private void OnCenterChanged(
+            Point? oldCenter, Point? newCenter)
+        {
+            UpdatePath();
+        }
+        #endregion
+
         /// <summary>
         /// Suspends path updates until EndUpdate is called;
         /// </summary>
@@ -159,19 +214,24 @@ namespace WinRTXamlToolkit.Controls
             var pathFigure = new PathFigure();
             pathFigure.IsClosed = true;
 
+            var center = 
+                this.Center ??
+                new Point(
+                    Radius + this.StrokeThickness / 2,
+                    Radius + this.StrokeThickness / 2);
             // Starting Point
             pathFigure.StartPoint =
                 new Point(
-                        Radius + Math.Sin(StartAngle * Math.PI / 180) * InnerRadius,
-                        Radius - Math.Cos(StartAngle * Math.PI / 180) * InnerRadius);
+                    center.X + Math.Sin(StartAngle * Math.PI / 180) * InnerRadius,
+                    center.Y - Math.Cos(StartAngle * Math.PI / 180) * InnerRadius);
 
             // Inner Arc
             var innerArcSegment = new ArcSegment();
             innerArcSegment.IsLargeArc = (EndAngle - StartAngle) >= 180.0;
             innerArcSegment.Point =
                 new Point(
-                        Radius + Math.Sin(EndAngle * Math.PI / 180) * InnerRadius,
-                        Radius - Math.Cos(EndAngle * Math.PI / 180) * InnerRadius);
+                    center.X + Math.Sin(EndAngle * Math.PI / 180) * InnerRadius,
+                    center.Y - Math.Cos(EndAngle * Math.PI / 180) * InnerRadius);
             innerArcSegment.Size = new Size(InnerRadius, InnerRadius);
             innerArcSegment.SweepDirection = SweepDirection.Clockwise;
 
@@ -179,8 +239,8 @@ namespace WinRTXamlToolkit.Controls
                 new LineSegment
                 {
                     Point = new Point(
-                        Radius + Math.Sin(EndAngle * Math.PI / 180) * Radius,
-                        Radius - Math.Cos(EndAngle * Math.PI / 180) * Radius)
+                        center.X + Math.Sin(EndAngle * Math.PI / 180) * Radius,
+                        center.Y - Math.Cos(EndAngle * Math.PI / 180) * Radius)
                 };
 
             // Outer Arc
@@ -188,8 +248,8 @@ namespace WinRTXamlToolkit.Controls
             outerArcSegment.IsLargeArc = (EndAngle - StartAngle) >= 180.0;
             outerArcSegment.Point =
                 new Point(
-                        Radius + Math.Sin(StartAngle * Math.PI / 180) * Radius,
-                        Radius - Math.Cos(StartAngle * Math.PI / 180) * Radius);
+                        center.X + Math.Sin(StartAngle * Math.PI / 180) * Radius,
+                        center.Y - Math.Cos(StartAngle * Math.PI / 180) * Radius);
             outerArcSegment.Size = new Size(Radius, Radius);
             outerArcSegment.SweepDirection = SweepDirection.Counterclockwise;
 

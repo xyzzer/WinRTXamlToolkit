@@ -1,4 +1,5 @@
 ﻿using System;
+using WinRTXamlToolkit.AwaitableUI;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -17,17 +18,21 @@ namespace WinRTXamlToolkit.Controls
     /// <summary>
     /// The Value is the 0..360deg range hue.
     /// </summary>
+    [TemplatePart(Name = ContainerGridName, Type = typeof(Grid))]
     [TemplatePart(Name = HueRingImageName, Type = typeof(Image))]
     [TemplatePart(Name = RingThumbName, Type = typeof(RingSlice))]
+    [TemplatePart(Name = ThumbTransformName, Type = typeof(RotateTransform))]
     public class HueRingPicker : RangeBase
     {
         private const string ContainerGridName = "PART_ContainerGrid";
         private const string HueRingImageName = "PART_HueRingImage";
         private const string RingThumbName = "PART_RingThumb";
+        private const string ThumbTransformName = "PART_ThumbTransform";
 
         private Grid _containerGrid;
         private Image _hueRingImage;
         private RingSlice _ringThumb;
+        private RotateTransform _thumbTransform;
 
         #region RingThickness
         /// <summary>
@@ -322,14 +327,16 @@ namespace WinRTXamlToolkit.Controls
             UpdateRingThumb();
         }
 
-        protected override void OnApplyTemplate()
+        protected override async void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             _containerGrid = (Grid)GetTemplateChild(ContainerGridName);
             _hueRingImage = (Image)GetTemplateChild(HueRingImageName);
             _ringThumb = (RingSlice)GetTemplateChild(RingThumbName);
+            _thumbTransform = (RotateTransform)GetTemplateChild(ThumbTransformName);
             _hueRingImage.PointerPressed += OnPointerPressed;
             _hueRingImage.PointerMoved += OnPointerMoved;
+            await this.WaitForLoadedAsync();
             UpdateVisuals();
         }
 
@@ -385,18 +392,29 @@ namespace WinRTXamlToolkit.Controls
                 _containerGrid.ActualWidth - 2 * ThumbBorderThickness,
                 _containerGrid.ActualHeight - 2 * ThumbBorderThickness);
 
-            //_ringThumb.Width = hueRingSize + 2 * ThumbBorderThickness;
-            //_ringThumb.Height = hueRingSize + 2 * ThumbBorderThickness;
-            _ringThumb.BeginUpdate();
+            //if (_ringThumb.Width != hueRingSize + 2 * ThumbBorderThickness)
+            {
+                _ringThumb.Width = hueRingSize + 2 * ThumbBorderThickness;
+                _ringThumb.Height = hueRingSize + 2 * ThumbBorderThickness;
+                _ringThumb.BeginUpdate();
 
-            // Half of the thumb border stroke goes outside the radius and the other half goes inside,
-            // so radius needs to be 0.5 border thickness larger than the hue ring's outer radius.
-            // Less 1 to make sure there is an overlap.
-            _ringThumb.Radius = (hueRingSize + ThumbBorderThickness) / 2 - 1;
-            _ringThumb.InnerRadius = _ringThumb.Radius - RingThickness - ThumbBorderThickness + 2;
-            _ringThumb.StartAngle = this.Value - ThumbArcAngle / 2;
-            _ringThumb.EndAngle = this.Value + ThumbArcAngle / 2;
-            _ringThumb.EndUpdate();
+                // Half of the thumb border stroke goes outside the radius and the other half goes inside,
+                // so radius needs to be 0.5 border thickness larger than the hue ring's outer radius.
+                // Less 1 to make sure there is an overlap.
+                _ringThumb.Center =
+                    new Point(
+                        hueRingSize / 2 + ThumbBorderThickness,
+                        hueRingSize / 2 + ThumbBorderThickness);
+                _ringThumb.Radius = (hueRingSize + ThumbBorderThickness) / 2 - 1;
+                _ringThumb.InnerRadius = _ringThumb.Radius - RingThickness - ThumbBorderThickness + 2;
+                _ringThumb.StartAngle = this.Value - ThumbArcAngle / 2;
+                _ringThumb.EndAngle = this.Value + ThumbArcAngle / 2;
+                //_ringThumb.StartAngle = - ThumbArcAngle / 2;
+                //_ringThumb.EndAngle = ThumbArcAngle / 2;
+                _ringThumb.EndUpdate();
+            }
+
+            //_thumbTransform.Angle = this.Value;
 
             _ringThumb.Stroke =
                 new SolidColorBrush(
