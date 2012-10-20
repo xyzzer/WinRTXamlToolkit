@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 
 namespace WinRTXamlToolkit.Net
 {
@@ -18,7 +19,8 @@ namespace WinRTXamlToolkit.Net
         /// <returns></returns>
         public static bool IsConnectedToInternet()
         {
-            return System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+            ConnectionProfile connectionProfile = NetworkInformation.GetInternetConnectionProfile();
+            return (connectionProfile != null && connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
         }
 
         /// <summary>
