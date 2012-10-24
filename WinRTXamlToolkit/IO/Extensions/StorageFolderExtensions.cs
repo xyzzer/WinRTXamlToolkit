@@ -227,7 +227,10 @@ namespace WinRTXamlToolkit.IO.Extensions
         /// <returns></returns>
         public static async Task EnsureFolderExistsAsync(this StorageFolder folder, string name)
         {
-            if (await ContainsFolderAsync(folder, name)) return;
+            if (await ContainsFolderAsync(folder, name))
+            {
+                return;
+            }
 
             await folder.CreateFolderAsync(name);
         }

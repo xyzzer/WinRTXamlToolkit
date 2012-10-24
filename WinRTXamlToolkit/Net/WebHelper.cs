@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
 
@@ -19,8 +15,11 @@ namespace WinRTXamlToolkit.Net
         /// <returns></returns>
         public static bool IsConnectedToInternet()
         {
-            ConnectionProfile connectionProfile = NetworkInformation.GetInternetConnectionProfile();
-            return (connectionProfile != null && connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
+            var connectionProfile = NetworkInformation.GetInternetConnectionProfile();
+
+            return
+                (connectionProfile != null &&
+                connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace WinRTXamlToolkit.Net
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        public static async Task<string> DownloadPageAsync(string url)
+        public static async Task<string> DownloadStringAsync(string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true, AllowAutoRedirect = true };
             HttpClient client = new HttpClient(handler);
@@ -38,8 +37,8 @@ namespace WinRTXamlToolkit.Net
             response.EnsureSuccessStatusCode();
 
             string responseBody = await response.Content.ReadAsStringAsync();
+
             return responseBody;
         }
     }
-
 }

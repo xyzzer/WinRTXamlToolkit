@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using Windows.System.Profile;
 
 namespace WinRTXamlToolkit.Device
 {
@@ -18,17 +15,16 @@ namespace WinRTXamlToolkit.Device
         /// <returns>Unique Device indetifier</returns>
         public static string GetDeviceId()
         {
-            var packageSpecificToken = Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(null);
+            var packageSpecificToken = HardwareIdentification.GetPackageSpecificToken(null);
 
             var hardwareId = packageSpecificToken.Id;
-            var signature = packageSpecificToken.Signature;
-            var certificate = packageSpecificToken.Certificate;
             var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(hardwareId);
 
             var array = new byte[hardwareId.Length];
-            dataReader.ReadBytes(array);            
+            dataReader.ReadBytes(array);
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
+
             for (var i = 0; i < array.Length; i++)
             {
                 sb.Append(array[i].ToString());
