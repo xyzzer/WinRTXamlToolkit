@@ -101,6 +101,16 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        public PieSlice()
+        {
+            this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdatePath();
+        }
+
         /// <summary>
         /// Suspends path updates until EndUpdate is called;
         /// </summary>
