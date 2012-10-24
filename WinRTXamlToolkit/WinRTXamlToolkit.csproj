@@ -240,6 +240,7 @@
     <Compile Include="Controls\DataVisualization\GridExtensions.cs" />
     <Compile Include="Controls\DataVisualization\IRequireSeriesHost.cs" />
     <Compile Include="Controls\DataVisualization\IResourceDictionaryDispenser.cs" />
+    <Compile Include="Controls\Extensions\DialogExtensions.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
     <Compile Include="Controls\DataVisualization\Legend\Legend.cs" />
     <Compile Include="Controls\DataVisualization\NoResetObservableCollection.cs" />
@@ -321,6 +322,7 @@
     <Compile Include="Converters\PolynomialConverter.cs" />
     <Compile Include="Converters\SecondsToTimeSpanStringConverter.cs" />
     <Compile Include="Diagnostics\LittleWatson.cs" />
+    <Compile Include="Device\DeviceHelper.cs" />
     <Compile Include="Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="Imaging\ColorExtensions.cs" />
     <Compile Include="Imaging\PixelMath.cs" />
@@ -330,6 +332,7 @@
     <Compile Include="Interactivity\BehaviorOfT.cs" />
     <Compile Include="Interactivity\Interaction.cs" />
     <Compile Include="Licensing\LicenseHelper.cs" />
+    <Compile Include="Net\WebHelper.cs" />
     <Compile Include="Tools\EnumExtensions.cs" />
     <Compile Include="Imaging\WriteableBitmapDarkenExtension.cs" />
     <Compile Include="Imaging\WriteableBitmapGrayscaleExtension.cs" />
