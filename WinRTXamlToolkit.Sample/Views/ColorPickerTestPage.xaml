@@ -34,8 +34,22 @@
             Grid.Column="1"
             Grid.Row="1">
             <controls:HueRingPicker
+                x:Name="hueRing"
                 VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"/>
+                HorizontalAlignment="Stretch"
+                ValueChanged="hueRing_ValueChanged_1"/>
+            <controls:TrianglePicker
+                x:Name="trianglePicker"
+                SizeChanged="trianglePicker_SizeChanged_1"
+                Margin="0,115,0,0"
+                Width="458"
+                Height="396.6396"
+                VerticalAlignment="Top">
+                <controls:TrianglePicker.Foreground>
+                    <ImageBrush
+                        x:Name="triangleBrush" />
+                </controls:TrianglePicker.Foreground>
+            </controls:TrianglePicker>
         </Grid>
     </Grid>
 </controls:AlternativePage>

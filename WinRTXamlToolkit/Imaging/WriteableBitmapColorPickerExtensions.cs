@@ -62,7 +62,7 @@ namespace WinRTXamlToolkit.Imaging
 
             for (int y = 0; y < ph; y++)
             {
-                double lightness = 1.0 * (ph - 1 - y) / ph;
+                double lightness = 1 - 1.0 * (ph - 1 - y) / ph;
 
                 var xmin = (int)(hw * (1 - invPh * y));
                 var xmax = pw - xmin;
@@ -70,7 +70,7 @@ namespace WinRTXamlToolkit.Imaging
                 for (int x = xmin; x < xmax; x++)
                 {
                     //var saturation = (double)x / pw;
-                    var saturation = (double)(x - xmin) / (xmax - xmin);
+                    var saturation = 1 - (double)(x + xmax - pw) / pw;
                     var c = ColorExtensions.FromHsl(hue, saturation, lightness);
                     pixels[pw * y + x] = c.AsInt();
                 }
@@ -135,9 +135,14 @@ namespace WinRTXamlToolkit.Imaging
             var invPh = 1.0 / ph;
             var pixels = target.PixelBuffer.GetPixels();
 
+            //var side = Math.Sqrt(ph * ph + 0.25 * pw * pw);
+            //var bottom = pw;
+            //var h = ph;
+            //var hside = Math.Sqrt(bottom * bottom - 0.25 * (side * side));
+
             for (int y = 0; y < ph; y++)
             {
-                double value = 1.0 * (ph - 1 - y) / ph;
+                double value = 1 - 1.0 * (ph - 1 - y) / ph;
 
                 var xmin = (int)(hw * (1 - invPh * y));
                 var xmax = pw - xmin;
@@ -145,7 +150,7 @@ namespace WinRTXamlToolkit.Imaging
                 for (int x = xmin; x < xmax; x++)
                 {
                     //var saturation = (double)x / pw;
-                    var saturation = (double)(x - xmin) / (xmax - xmin);
+                    var saturation = 1 - (double)(x + xmax - pw) / pw;
                     var c = ColorExtensions.FromHsv(hue, saturation, value);
                     pixels[pw * y + x] = c.AsInt();
                 }

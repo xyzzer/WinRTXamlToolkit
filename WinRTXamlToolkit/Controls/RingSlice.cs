@@ -186,6 +186,16 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        public RingSlice()
+        {
+            this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            UpdatePath();
+        }
+
         /// <summary>
         /// Suspends path updates until EndUpdate is called;
         /// </summary>
@@ -219,6 +229,7 @@ namespace WinRTXamlToolkit.Controls
                 new Point(
                     Radius + this.StrokeThickness / 2,
                     Radius + this.StrokeThickness / 2);
+
             // Starting Point
             pathFigure.StartPoint =
                 new Point(

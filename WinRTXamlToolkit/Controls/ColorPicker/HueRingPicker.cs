@@ -1,7 +1,6 @@
 ﻿using System;
 using WinRTXamlToolkit.AwaitableUI;
 using Windows.Foundation;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,18 +20,15 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name = ContainerGridName, Type = typeof(Grid))]
     [TemplatePart(Name = HueRingImageName, Type = typeof(Image))]
     [TemplatePart(Name = RingThumbName, Type = typeof(RingSlice))]
-    [TemplatePart(Name = ThumbTransformName, Type = typeof(RotateTransform))]
     public class HueRingPicker : RangeBase
     {
         private const string ContainerGridName = "PART_ContainerGrid";
         private const string HueRingImageName = "PART_HueRingImage";
         private const string RingThumbName = "PART_RingThumb";
-        private const string ThumbTransformName = "PART_ThumbTransform";
 
         private Grid _containerGrid;
         private Image _hueRingImage;
         private RingSlice _ringThumb;
-        private RotateTransform _thumbTransform;
 
         #region RingThickness
         /// <summary>
@@ -253,6 +249,7 @@ namespace WinRTXamlToolkit.Controls
         private void OnThumbBorderThicknessChanged(
             double oldThumbBorderThickness, double newThumbBorderThickness)
         {
+            UpdateRingThumb();
         }
         #endregion
 
@@ -313,7 +310,16 @@ namespace WinRTXamlToolkit.Controls
         {
             this.DefaultStyleKey = typeof (HueRingPicker);
             InitializeMinMaxCoercion();
-            this.SizeChanged += OnSizeChanged; 
+            this.SizeChanged += OnSizeChanged;
+            DelayedUpdateWorkaround();
+        }
+
+        private async void DelayedUpdateWorkaround()
+        {
+            // Not sure why the thumb starts at the wrong position without this code.
+            // Perhaps something with path positioning overall, but I don't want to dig into this now.
+            await Task.Delay(10);
+            UpdateRingThumb();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -333,7 +339,6 @@ namespace WinRTXamlToolkit.Controls
             _containerGrid = (Grid)GetTemplateChild(ContainerGridName);
             _hueRingImage = (Image)GetTemplateChild(HueRingImageName);
             _ringThumb = (RingSlice)GetTemplateChild(RingThumbName);
-            _thumbTransform = (RotateTransform)GetTemplateChild(ThumbTransformName);
             _hueRingImage.PointerPressed += OnPointerPressed;
             _hueRingImage.PointerMoved += OnPointerMoved;
             await this.WaitForLoadedAsync();
@@ -388,7 +393,7 @@ namespace WinRTXamlToolkit.Controls
             //VisualTreeDebugger2.DebugVisualTree(_ringThumb, true);
 
             // Hue ring needs to be smaller than available container space so the thumb fits
-            var hueRingSize = (int)Math.Min(
+            var hueRingSize = Math.Min(
                 _containerGrid.ActualWidth - 2 * ThumbBorderThickness,
                 _containerGrid.ActualHeight - 2 * ThumbBorderThickness);
 
@@ -396,6 +401,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 _ringThumb.Width = hueRingSize + 2 * ThumbBorderThickness;
                 _ringThumb.Height = hueRingSize + 2 * ThumbBorderThickness;
+
                 _ringThumb.BeginUpdate();
 
                 // Half of the thumb border stroke goes outside the radius and the other half goes inside,
@@ -413,8 +419,6 @@ namespace WinRTXamlToolkit.Controls
                 //_ringThumb.EndAngle = ThumbArcAngle / 2;
                 _ringThumb.EndUpdate();
             }
-
-            //_thumbTransform.Angle = this.Value;
 
             _ringThumb.Stroke =
                 new SolidColorBrush(
@@ -530,7 +534,7 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnBreakOnLoadedChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -596,7 +600,7 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnBreakOnTapChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -615,6 +619,29 @@ namespace WinRTXamlToolkit.Controls
             {
                 ((FrameworkElement)d).Tapped -= BreakOnControlTapped;
             }
+        }
+
+        /// <summary>
+        /// Called when the control gets tapped or clicked.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The <see cref="Windows.UI.Xaml.Input.TappedRoutedEventArgs"/> instance
+        /// containing the event data.
+        /// </param>
+        private static async void BreakOnControlTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var startElement = (DependencyObject)sender;
+            var delay = GetBreakDelay(startElement);
+
+            if (delay > 0)
+            {
+                await Task.Delay((int)(delay * 1000));
+            }
+
+            DebugVisualTree(startElement);
         }
         #endregion
 
@@ -668,19 +695,22 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnBreakOnLayoutUpdatedChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var frameworkElement = d as FrameworkElement;
+            var frameworkElement = (FrameworkElement)d;
 
-            Debug.Assert(
-                frameworkElement != null,
-                "BreakOnLayoutUpdatedProperty should only be set on FrameworkElements.");
-
-            frameworkElement.LayoutUpdated += (s, o) =>
+            frameworkElement.LayoutUpdated += async (s, o) =>
             {
+                var delay = GetBreakDelay(frameworkElement);
+
+                if (delay > 0)
+                {
+                    await Task.Delay((int)(delay * 1000));
+                }
+
                 DebugVisualTree(frameworkElement);
             };
         }
@@ -730,54 +760,12 @@ namespace WinRTXamlToolkit.Controls
         {
             var startElement = (DependencyObject)sender;
             var delay = GetBreakDelay(startElement);
-            if (delay > 0)
-            {
-                await Task.Delay((int)(delay * 1000));
-            }
-            DebugVisualTree(startElement);
-        }
-        #endregion
 
-        #region BreakOnControlTapped()
-        /// <summary>
-        /// Called when the control gets tapped or clicked.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
-        /// containing the event data.</param>
-        private static async void BreakOnControlTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var startElement = (DependencyObject)sender;
-            var delay = GetBreakDelay(startElement);
             if (delay > 0)
             {
                 await Task.Delay((int)(delay * 1000));
             }
-            DebugVisualTree(startElement);
-        }
-        #endregion
 
-        #region BreakOnControlLayoutUpdated()
-        /// <summary>
-        /// Called when the control's layout updates.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
-        /// containing the event data.</param>
-        private static async void BreakOnControlLayoutUpdated(object sender, object e)
-        {
-            var startElement = (DependencyObject)sender;
-            var delay = GetBreakDelay(startElement);
-            if (delay > 0)
-            {
-                await Task.Delay((int)(delay * 1000));
-            }
             DebugVisualTree(startElement);
         }
         #endregion
@@ -831,7 +819,7 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnTraceOnLoadedChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -897,7 +885,7 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnTraceOnTapChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -969,21 +957,14 @@ namespace WinRTXamlToolkit.Controls
         /// The DependencyObject.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/>
+        /// The <see cref="Windows.UI.Xaml.DependencyPropertyChangedEventArgs"/>
         /// instance containing the event data.</param>
         private static void OnTraceOnLayoutUpdatedChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var frameworkElement = d as FrameworkElement;
+            var frameworkElement = (FrameworkElement)d;
 
-            Debug.Assert(
-                frameworkElement != null,
-                "TraceOnLayoutUpdatedProperty should only be set on FrameworkElements.");
-
-            frameworkElement.LayoutUpdated += (s, o) =>
-            {
-                DebugVisualTree(frameworkElement);
-            };
+            frameworkElement.LayoutUpdated += (s, o) => DebugVisualTree(frameworkElement, false);
         }
         #endregion
 
@@ -995,7 +976,7 @@ namespace WinRTXamlToolkit.Controls
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.RoutedEventArgs"/> instance containing
+        /// The <see cref="Windows.UI.Xaml.RoutedEventArgs"/> instance containing
         /// the event data.</param>
         private static void TraceOnControlLoaded(object sender, RoutedEventArgs e)
         {
@@ -1012,26 +993,9 @@ namespace WinRTXamlToolkit.Controls
         /// The sender.
         /// </param>
         /// <param name="e">
-        /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
+        /// The <see cref="Windows.UI.Xaml.Input.TappedRoutedEventArgs"/> instance
         /// containing the event data.</param>
         private static void TraceOnControlTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var startElement = (DependencyObject)sender;
-            DebugVisualTree(startElement, false);
-        }
-        #endregion
-
-        #region TraceOnControlLayoutUpdated()
-        /// <summary>
-        /// Called when the control's layout updates.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
-        /// containing the event data.</param>
-        private static void TraceOnControlLayoutUpdated(object sender, object e)
         {
             var startElement = (DependencyObject)sender;
             DebugVisualTree(startElement, false);
@@ -1045,6 +1009,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="startElement">
         /// The start element.
         /// </param>
+        /// <param name="breakInDebugger">If true and debugger is attached - it will break execution once done tracing the visual tree properties.</param>
         public static void DebugVisualTree(DependencyObject startElement, bool breakInDebugger = true)
         {
             var path = new List<DependencyObject>();

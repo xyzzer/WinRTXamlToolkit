@@ -149,6 +149,7 @@
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
+    <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
     <Compile Include="Controls\DataVisualization\AggregatedObservableCollection.cs" />
     <Compile Include="Controls\DataVisualization\Charting\AnimationSequence.cs" />
     <Compile Include="Controls\DataVisualization\Charting\Axis\Axis.cs" />
@@ -313,10 +314,13 @@
     <Compile Include="Converters\BooleanToDataTemplateConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\MultiplyConverter.cs" />
     <Compile Include="Converters\NullableBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\DoubleToIntConverter.cs" />
     <Compile Include="Converters\NullableBoolToBoolConverter.cs" />
+    <Compile Include="Converters\PolynomialConverter.cs" />
     <Compile Include="Converters\SecondsToTimeSpanStringConverter.cs" />
+    <Compile Include="Diagnostics\LittleWatson.cs" />
     <Compile Include="Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="Imaging\ColorExtensions.cs" />
     <Compile Include="Imaging\PixelMath.cs" />
@@ -484,7 +488,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <PRIResource Include="Controls\DataVisualization\Resources.resx">
       <SubType>Designer</SubType>

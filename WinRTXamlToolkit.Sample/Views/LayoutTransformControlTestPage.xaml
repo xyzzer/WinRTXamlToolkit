@@ -52,27 +52,66 @@
                     Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style
+                    x:Key="TestRectStyle"
+                    TargetType="Rectangle">
+                    <Setter
+                        Property="Width"
+                        Value="115" />
+                    <Setter
+                        Property="Height"
+                        Value="115" />
+                    <Setter
+                        Property="Fill"
+                        Value="Red" />
+                    <Setter
+                        Property="Margin"
+                        Value="10" />
+                </Style>
+            </Grid.Resources>
             <TextBlock
                 Style="{StaticResource PageSubheaderTextStyle}"
                 Text="Note the limited performance of animations around LayoutTransformControl" />
-            <Border
-                BorderThickness="3"
-                CornerRadius="3"
-                BorderBrush="Yellow"
-                VerticalAlignment="Center"
+            <controls:WrapPanel
+                VerticalAlignment="Stretch"
                 HorizontalAlignment="Center"
-                Grid.Row="1">
-                <controls:LayoutTransformControl
-                    x:Name="transformControl">
-                    <controls:LayoutTransformControl.Transform>
-                        <RotateTransform
-                            x:Name="rotateTransform" />
-                    </controls:LayoutTransformControl.Transform>
-                    <TextBlock
-                        Style="{StaticResource SubheaderTextStyle}"
-                        Text="Hello LayoutTransformControl" />
-                </controls:LayoutTransformControl>
-            </Border>
+                Grid.Row="1"
+                Width="500">
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Border
+                    BorderThickness="3"
+                    CornerRadius="3"
+                    BorderBrush="Yellow"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <controls:LayoutTransformControl
+                        x:Name="transformControl">
+                        <controls:LayoutTransformControl.Transform>
+                            <RotateTransform
+                                x:Name="rotateTransform" />
+                        </controls:LayoutTransformControl.Transform>
+                        <TextBlock
+                            Style="{StaticResource SubheaderTextStyle}"
+                            Text="Hello LayoutTransformControl" />
+                    </controls:LayoutTransformControl>
+                </Border>
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+                <Rectangle
+                    Style="{StaticResource TestRectStyle}" />
+            </controls:WrapPanel>
         </Grid>
 
     </Grid>
