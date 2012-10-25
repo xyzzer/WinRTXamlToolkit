@@ -95,7 +95,7 @@ namespace WinRTXamlToolkit.Sample.Views
             var triangleWidth = innerRingRadius * Math.Sqrt(3);
             var triangleHeight = innerRingRadius * 3 / 2;
             var wb = new WriteableBitmap((int)triangleWidth, (int)triangleHeight);
-            wb.RenderColorPickerSaturationValueTriangle();
+            wb.RenderColorPickerSaturationValueTriangleAsync();
             saturationValueTriangleImage.Source = wb;
             saturationValueTriangleImage.Margin = new Thickness(0, outerRingRadius - innerRingRadius, 0, outerRingRadius - innerRingRadius * 0.5);
         }

@@ -156,7 +156,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
-                    Text="RenderColorPickerHueRing(), RenderColorPickerSaturationValueTriangle()"
+                    Text="RenderColorPickerHueRing(), RenderColorPickerSaturationValueTriangleAsync()"
                     Style="{StaticResource TitleTextStyle}"
                     Margin="0,0,0,10" />
                 <Image

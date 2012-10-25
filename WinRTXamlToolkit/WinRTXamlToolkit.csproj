@@ -116,6 +116,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Async\AutoResetEventAsync.cs" />
     <Compile Include="AwaitableUI\BitmapImageExtensions.cs" />
     <Compile Include="AwaitableUI\ButtonExtensions.cs" />
     <Compile Include="AwaitableUI\ControlExtensions.cs" />

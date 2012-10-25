@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
@@ -126,8 +127,8 @@ namespace WinRTXamlToolkit.Imaging
         }
         #endregion
 
-        #region RenderColorPickerSaturationValueTriangle()
-        public static void RenderColorPickerSaturationValueTriangle(this WriteableBitmap target, double hue = 0)
+        #region RenderColorPickerSaturationValueTriangleAsync()
+        public static async Task RenderColorPickerSaturationValueTriangleAsync(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
             var hw = pw / 2;
@@ -140,6 +141,14 @@ namespace WinRTXamlToolkit.Imaging
             //var h = ph;
             //var hside = Math.Sqrt(bottom * bottom - 0.25 * (side * side));
 
+            await Task.Run(() => RenderColorPickerSaturationValueTriangleCore(hue, ph, hw, invPh, pw, pixels));
+
+            target.Invalidate();
+        }
+
+        private static void RenderColorPickerSaturationValueTriangleCore(
+            double hue, int ph, int hw, double invPh, int pw, IBufferExtensions.PixelBufferInfo pixels)
+        {
             for (int y = 0; y < ph; y++)
             {
                 double value = 1 - 1.0 * (ph - 1 - y) / ph;
@@ -155,8 +164,6 @@ namespace WinRTXamlToolkit.Imaging
                     pixels[pw * y + x] = c.AsInt();
                 }
             }
-
-            target.Invalidate();
         }
         #endregion
 
