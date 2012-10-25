@@ -10,7 +10,7 @@ namespace WinRTXamlToolkit.Sample.Views
     public sealed partial class ColorPickerTestPage : WinRTXamlToolkit.Controls.AlternativePage
     {
         private bool _isLoaded;
-        private AutoResetEventAsync _triangleUpdateRequired = new AutoResetEventAsync();
+        private AsyncAutoResetEvent _triangleUpdateRequired = new AsyncAutoResetEvent();
 
         public ColorPickerTestPage()
         {
