@@ -116,7 +116,13 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Async\AutoResetEventAsync.cs" />
+    <Compile Include="Async\AsyncAutoResetEvent.cs" />
+    <Compile Include="Async\AsyncBarrier.cs" />
+    <Compile Include="Async\AsyncCountdownEvent.cs" />
+    <Compile Include="Async\AsyncLock.cs" />
+    <Compile Include="Async\AsyncManualResetEvent.cs" />
+    <Compile Include="Async\AsyncReaderWriterLock.cs" />
+    <Compile Include="Async\AsyncSemaphore.cs" />
     <Compile Include="AwaitableUI\BitmapImageExtensions.cs" />
     <Compile Include="AwaitableUI\ButtonExtensions.cs" />
     <Compile Include="AwaitableUI\ControlExtensions.cs" />
@@ -497,6 +503,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Async\Credits.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

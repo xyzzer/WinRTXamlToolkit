@@ -13,6 +13,8 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name = ThumbName, Type = typeof(Ellipse))]
     public class TrianglePicker : Control
     {
+        public event EventHandler ValueChanged;
+
         #region X
         /// <summary>
         /// X Dependency Property
@@ -237,6 +239,13 @@ namespace WinRTXamlToolkit.Controls
                 X = 1 - x2;
                 Y = x2 * a * tw / th;
                 //Debug.WriteLine("Right of triangle (x: {0}, y: {1})", rx, ry);
+            }
+
+            var handler = ValueChanged;
+
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
             }
         }
 

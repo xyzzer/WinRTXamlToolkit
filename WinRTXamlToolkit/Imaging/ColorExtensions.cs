@@ -23,6 +23,17 @@ namespace WinRTXamlToolkit.Imaging
         } 
         #endregion
 
+        #region FromRgb()
+        public static Color FromRgb(double red, double green, double blue)
+        {
+            return Color.FromArgb(
+                255,
+                (byte)(255.0 * red),
+                (byte)(255.0 * green),
+                (byte)(255.0 * blue));
+        } 
+        #endregion
+
         #region FromHsl()
         /// <summary>
         /// Returns a Color struct based on HSL model.

@@ -45,11 +45,50 @@ namespace WinRTXamlToolkit.Sample.Views
                         (int)trianglePicker.ActualWidth,
                         (int)trianglePicker.ActualHeight);
 
-                    await wb.RenderColorPickerSaturationValueTriangleAsync(hueRing.Value);
+                    var wbHue = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var wbSaturation = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var wbLightness = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var wbRed = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var wbGreen = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var wbBlue = new WriteableBitmap(
+                        (int)slidersPanel.ActualWidth - 80,
+                        1);
+
+                    var color = ColorExtensions.FromHsl(hueRing.Value, 1, 0.5);
+
+                    await Task.WhenAll(
+                        wb.RenderColorPickerSaturationValueTriangleAsync(hueRing.Value),
+                        wbHue.RenderColorPickerHSLHueBarAsync(1.0, 0.5),
+                        wbSaturation.RenderColorPickerHSLSaturationBarAsync(hueRing.Value, 0.5),
+                        wbLightness.RenderColorPickerHSLLightnessBarAsync(hueRing.Value, 0.5),
+                        wbRed.RenderColorPickerRGBRedBarAsync(color.G, color.B),
+                        wbGreen.RenderColorPickerRGBGreenBarAsync(color.R, color.B),
+                        wbBlue.RenderColorPickerRGBBlueBarAsync(color.R, color.G));
 
                     if (_isLoaded)
                     {
                         triangleBrush.ImageSource = wb;
+                        hueBackground.ImageSource = wbHue;
+                        saturationBackground.ImageSource = wbSaturation;
+                        lightnessBackground.ImageSource = wbLightness;
+                        redBackground.ImageSource = wbRed;
+                        greenBackground.ImageSource = wbGreen;
+                        blueBackground.ImageSource = wbBlue;
                     }
                 }
             } while (_isLoaded);

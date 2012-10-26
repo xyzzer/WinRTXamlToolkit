@@ -219,7 +219,7 @@ namespace WinRTXamlToolkit.Controls
             _decrementButton = GetTemplateChild(DecrementButtonName) as RepeatButton;
             _incrementButton = GetTemplateChild(IncrementButtonName) as RepeatButton;
             _valueBar = GetTemplateChild(ValueBarName) as FrameworkElement;
-
+            
             if (_valueTextBox != null)
             {
                 _valueTextBox.LostFocus += OnValueTextBoxLostFocus;
@@ -232,6 +232,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 _dragOverlay.Tapped += OnDragOverlayTapped;
                 _dragOverlay.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+                _dragOverlay.PointerPressed += OnDragOverlayPointerPressed;
                 _dragOverlay.ManipulationDelta += OnDragOverlayManipulationDelta;
             }
 
@@ -256,6 +257,7 @@ namespace WinRTXamlToolkit.Controls
             if (_valueBar != null)
             {
                 _valueBar.SizeChanged += OnValueBarSizeChanged;
+
                 UpdateValueBar();
             }
 
@@ -328,6 +330,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        private void OnDragOverlayPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            _dragOverlay.CapturePointer(e.Pointer);
+        }
+
         private void OnDragOverlayManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs manipulationDeltaRoutedEventArgs)
         {
             if (!this.IsEnabled ||
@@ -347,6 +354,8 @@ namespace WinRTXamlToolkit.Controls
             }
 
             ApplyManipulationDelta(delta);
+
+            manipulationDeltaRoutedEventArgs.Handled = true;
         }
 
         private void ApplyManipulationDelta(double delta)
@@ -433,6 +442,7 @@ namespace WinRTXamlToolkit.Controls
             if (effectiveValueBarVisibility == NumericUpDownValueBarVisibility.Collapsed)
             {
                 _valueBar.Visibility = Visibility.Collapsed;
+
                 return;
             }
 
@@ -447,6 +457,9 @@ namespace WinRTXamlToolkit.Controls
                         Width = _valueBar.ActualWidth * (Value - Minimum) / (Maximum - Minimum)
                     }
                 };
+
+            //_valueBar.Width =
+            //    _valueTextBox.ActualWidth * (Value - Minimum) / (Maximum - Minimum);
         }
 
         private void OnValueBarSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
