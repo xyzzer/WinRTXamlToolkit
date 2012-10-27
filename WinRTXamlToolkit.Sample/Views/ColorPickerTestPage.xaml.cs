@@ -1,8 +1,11 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Async;
 using WinRTXamlToolkit.Imaging;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Sample.Views
@@ -76,9 +79,9 @@ namespace WinRTXamlToolkit.Sample.Views
                         wbHue.RenderColorPickerHSLHueBarAsync(1.0, 0.5),
                         wbSaturation.RenderColorPickerHSLSaturationBarAsync(hueRing.Value, 0.5),
                         wbLightness.RenderColorPickerHSLLightnessBarAsync(hueRing.Value, 0.5),
-                        wbRed.RenderColorPickerRGBRedBarAsync(color.G, color.B),
-                        wbGreen.RenderColorPickerRGBGreenBarAsync(color.R, color.B),
-                        wbBlue.RenderColorPickerRGBBlueBarAsync(color.R, color.G));
+                        wbRed.RenderColorPickerRGBRedBarAsync(color.G / 255.0, color.B / 255.0),
+                        wbGreen.RenderColorPickerRGBGreenBarAsync(color.R / 255.0, color.B / 255.0),
+                        wbBlue.RenderColorPickerRGBBlueBarAsync(color.R / 255.0, color.G / 255.0));
 
                     if (_isLoaded)
                     {

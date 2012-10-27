@@ -248,6 +248,7 @@
     <Compile Include="Controls\DataVisualization\IRequireSeriesHost.cs" />
     <Compile Include="Controls\DataVisualization\IResourceDictionaryDispenser.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
+    <Compile Include="Controls\Extensions\StyleExtensions.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
     <Compile Include="Controls\DataVisualization\Legend\Legend.cs" />
     <Compile Include="Controls\DataVisualization\NoResetObservableCollection.cs" />
