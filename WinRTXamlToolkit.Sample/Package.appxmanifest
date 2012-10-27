@@ -34,6 +34,7 @@
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="videosLibrary" />
     <Capability Name="internetClientServer" />
     <Capability Name="privateNetworkClientServer" />
     <Capability Name="picturesLibrary" />

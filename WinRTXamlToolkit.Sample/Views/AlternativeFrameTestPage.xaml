@@ -6,7 +6,7 @@
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions" mc:Ignorable="d">
 
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -38,11 +38,42 @@
             x:Name="subFrame"
             Grid.Column="1"
             Grid.Row="1"
+            Extensions:FrameworkElementExtensions.ClipToBounds="True"
             Visibility="Collapsed">
             <controls:AlternativeFrame.PageTransition>
                 <controls:PushTransition
                     ForwardDirection="Random"
                     BackwardDirection="Random" />
+                <!--<controls:WipeTransition />-->
+                <!--<controls:DissolveTransition />-->
+
+                <!-- FlipTransitions look cool, but unfortunately the XAML framework is not stable when working with Projections -->
+                <!--<controls:FlipTransition
+                        AxisOfFlip="Center"
+                        Duration="0:0:1.5"/>-->
+                <!--<controls:FlipTransition
+                        AxisOfFlip="Center" />-->
+                <!--<controls:FlipTransition
+                        AxisOfFlip="Random"
+                        ForwardDirection="Random"
+                        BackwardDirection="Random" />-->
+                <!-- Looks like a fluorescent lamp with a slow start :) -->
+                <!--<controls:DissolveTransition
+                        Duration="0:0:1.5">
+                        <controls:DissolveTransition.EasingFunction>
+                            <BounceEase
+                                EasingMode="EaseInOut" />
+                        </controls:DissolveTransition.EasingFunction>
+                    </controls:DissolveTransition>-->
+
+                <!-- Looks weird -->
+                <!--<controls:WipeTransition
+                        Duration="0:0:1.5">
+                        <controls:WipeTransition.EasingFunction>
+                            <BounceEase
+                                EasingMode="EaseInOut" />
+                        </controls:WipeTransition.EasingFunction>
+                    </controls:WipeTransition>-->
             </controls:AlternativeFrame.PageTransition>
         </controls:AlternativeFrame>
         <controls:CustomGridSplitter

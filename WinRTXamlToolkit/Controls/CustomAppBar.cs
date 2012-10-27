@@ -124,10 +124,10 @@ namespace WinRTXamlToolkit.Controls
             {
                 Debug.Assert(false, "It should not be allowed to toggle an invisible app bar! Use CanOpen property instead of Visibility/Opacity.");
 
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
+                //if (Debugger.IsAttached)
+                //{
+                //    Debugger.Break();
+                //}
             }
 
             foreach (var ancestor in this.GetAncestorsOfType<FrameworkElement>())
@@ -138,10 +138,10 @@ namespace WinRTXamlToolkit.Controls
                 {
                     Debug.Assert(false, "It should not be allowed to toggle an invisible app bar! Use CanOpen property instead of Visibility/Opacity.");
 
-                    if (Debugger.IsAttached)
-                    {
-                        Debugger.Break();
-                    }
+                    //if (Debugger.IsAttached)
+                    //{
+                    //    Debugger.Break();
+                    //}
                 }
             }
         }

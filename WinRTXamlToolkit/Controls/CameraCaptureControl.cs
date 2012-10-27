@@ -754,7 +754,6 @@ namespace WinRTXamlToolkit.Controls
                 return _videoFile;
             }
 
-            _internalState = CameraCaptureControlStates.Recording;
             _recordingTaskSource = new TaskCompletionSource<bool>(false);
 
             if (_internalState != CameraCaptureControlStates.Shown)
@@ -770,6 +769,8 @@ namespace WinRTXamlToolkit.Controls
                     //TODO: Add error handling here.
                 }
             }
+
+            _internalState = CameraCaptureControlStates.Recording;
 
             if (_mediaCapture == null)
             {

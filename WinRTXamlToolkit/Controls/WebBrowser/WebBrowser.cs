@@ -23,6 +23,8 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name = ForwardButtonName, Type = typeof(Button))]
     [TemplatePart(Name = GoButtonName, Type = typeof(Button))]
     [TemplatePart(Name = RefreshButtonName, Type = typeof(Button))]
+    [TemplatePart(Name = AddressAppBarName, Type = typeof(CustomAppBar))]
+    [TemplatePart(Name = TitleAppBarName, Type = typeof(CustomAppBar))]
     [TemplateVisualState(GroupName = LoadingStatesGroupName, Name = LoadingStateName)]
     [TemplateVisualState(GroupName = LoadingStatesGroupName, Name = LoadedStateName)]
     [TemplateVisualState(GroupName = AddressBarStatesGroupName, Name = AddressBarFocusedStateName)]
@@ -42,6 +44,8 @@ namespace WinRTXamlToolkit.Controls
         private const string WebViewBrushName = "PART_WebViewBrush";
         private const string AddressBarName = "PART_AddressBar";
         private const string TitleTextBlockName = "PART_TitleBar";
+        private const string AddressAppBarName = "PART_AddressAppBar";
+        private const string TitleAppBarName = "PART_TitleAppBar";
         private const string FavIconImageName = "PART_FavIconImage";
         private const string ProgressIndicatorName = "PART_ProgressIndicator";
         private const string BackButtonName = "PART_BackButton";
@@ -57,6 +61,8 @@ namespace WinRTXamlToolkit.Controls
         private WebViewBrush _webViewBrush;
         private TextBox _addressBar;
         private TextBlock _titleBar;
+        private CustomAppBar _addressAppBar;
+        private CustomAppBar _titleAppBar;
         private Image _favIconImage;
         private ProgressBar _progressIndicator;
         private Button _backButton;
@@ -69,6 +75,8 @@ namespace WinRTXamlToolkit.Controls
         private bool _ctrlPressed;
         private List<Uri> _backStack = new List<Uri>();
         private int _backStackPosition = -1;
+        private bool _settingSourceWithCode;
+        private bool _pendingNavigation;
 
         #region AutoNavigate
         /// <summary>
@@ -120,7 +128,8 @@ namespace WinRTXamlToolkit.Controls
         private void OnAutoNavigateChanged(
             bool oldAutoNavigate, bool newAutoNavigate)
         {
-            if (this.Source != null)
+            if (newAutoNavigate &&
+                this.Source != null)
             {
                 this.Navigate(this.Source);
             }
@@ -177,7 +186,9 @@ namespace WinRTXamlToolkit.Controls
         protected virtual void OnSourceChanged(
             Uri oldSource, Uri newSource)
         {
-            if (this.AutoNavigate)
+            if (this.AutoNavigate &&
+                !_settingSourceWithCode &&
+                oldSource != newSource)
             {
                 this.Navigate(this.Source);
             }
@@ -246,7 +257,7 @@ namespace WinRTXamlToolkit.Controls
         {
             base.OnApplyTemplate();
             _layoutRoot = GetTemplateChild(LayoutRootPanelName) as Panel;
-            _webView = GetTemplateChild(WebViewName) as WebView;
+            _webView = (WebView)GetTemplateChild(WebViewName);
             _webViewBrush = GetTemplateChild(WebViewBrushName) as WebViewBrush;
             _addressBar = GetTemplateChild(AddressBarName) as TextBox;
             _titleBar = GetTemplateChild(TitleTextBlockName) as TextBlock;
@@ -257,27 +268,55 @@ namespace WinRTXamlToolkit.Controls
             _goButton = GetTemplateChild(GoButtonName) as Button;
             _stopButton = GetTemplateChild(StopButtonName) as Button;
             _refreshButton = GetTemplateChild(RefreshButtonName) as Button;
+            _addressAppBar = GetTemplateChild(AddressAppBarName) as CustomAppBar;
+            _titleAppBar = GetTemplateChild(TitleAppBarName) as CustomAppBar;
             
             VisualStateManager.GoToState(this, AddressBarUnfocusedStateName, true);
 
-            _addressBar.KeyDown += OnAddressBarKeyDown;
-            _addressBar.KeyUp += OnAddressBarKeyUp;
-            _addressBar.GotFocus += OnAddressBarGotFocus;
-            _addressBar.LostFocus += OnAddressBarLostFocus;
-            _addressBar.TextChanged += OnAddressBarTextChanged;
+            if (_addressBar != null)
+            {
+                _addressBar.KeyDown += OnAddressBarKeyDown;
+                _addressBar.KeyUp += OnAddressBarKeyUp;
+                _addressBar.GotFocus += OnAddressBarGotFocus;
+                _addressBar.LostFocus += OnAddressBarLostFocus;
+                _addressBar.TextChanged += OnAddressBarTextChanged;
+            }
 
-            // TODO: Handle undefined template parts
-            _backButton.IsEnabled = false;
-            _forwardButton.IsEnabled = false;
-            _goButton.IsEnabled = false;
-            _stopButton.IsEnabled = false;
-            _refreshButton.IsEnabled = false;
-
-            _backButton.Click += OnBackButtonClick;
-            _forwardButton.Click += OnForwardButtonClick;
-            _goButton.Click += OnGoButtonClick;
-            _stopButton.Click += OnStopButtonClick;
-            _refreshButton.Click += OnRefreshButtonClick;
+            if (_backButton != null)
+            {
+                _backButton.IsEnabled = false;
+                _backButton.Click += OnBackButtonClick;
+            }
+            if (_forwardButton != null)
+            {
+                _forwardButton.IsEnabled = false;
+                _forwardButton.Click += OnForwardButtonClick;
+            }
+            if (_goButton != null)
+            {
+                _goButton.IsEnabled = false;
+                _goButton.Click += OnGoButtonClick;
+            }
+            if (_stopButton != null)
+            {
+                _stopButton.IsEnabled = false;
+                _stopButton.Click += OnStopButtonClick;
+            }
+            if (_refreshButton != null)
+            {
+                _refreshButton.IsEnabled = false;
+                _refreshButton.Click += OnRefreshButtonClick;
+            }
+            if (_addressAppBar != null)
+            {
+                _addressAppBar.Opened += OnAppBarOpenedOrClosed;
+                _addressAppBar.Closed += OnAppBarOpenedOrClosed;
+            }
+            if (_titleAppBar != null)
+            {
+                _titleAppBar.Opened += OnAppBarOpenedOrClosed;
+                _titleAppBar.Closed += OnAppBarOpenedOrClosed;
+            }
 
             _webView.LoadCompleted += OnLoadCompleted;
             _webView.NavigationFailed += OnNavigationFailed;
@@ -289,6 +328,25 @@ namespace WinRTXamlToolkit.Controls
             else
             {
                 this.Source = _webView.Source;
+            }
+
+            if (_pendingNavigation)
+            {
+                Navigate(this.Source);
+            }
+        }
+
+        private void OnAppBarOpenedOrClosed(object sender, object e)
+        {
+            if (_addressAppBar != null && _addressAppBar.IsOpen ||
+                _titleAppBar != null && _titleAppBar.IsOpen)
+            {
+                _webViewBrush.SetSource(_webView);
+                _webView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                _webView.Visibility = Visibility.Visible;
             }
         }
 
@@ -398,6 +456,7 @@ namespace WinRTXamlToolkit.Controls
         {
             VisualStateManager.GoToState(this, LoadedStateName, true);
 
+            _webViewBrush.SetSource(_webView);
             var address = _webView.GetAddress();
 
             this.Source = address == null ? null : new Uri(address);
@@ -436,23 +495,32 @@ namespace WinRTXamlToolkit.Controls
             UpdateBackStackKeys();
         }
 
-        public async Task NavigateAsync(Uri source)
-        {
-            VisualStateManager.GoToState(this, LoadingStateName, true);
-            _refreshButton.IsEnabled = false;
-            _goButton.IsEnabled = false;
-            _addressBar.Text = source.ToString();
-            await _webView.NavigateAsync(source);
-        }
-
         public void Navigate(Uri source)
         {
-            _refreshButton.IsEnabled = true;
-            _goButton.Focus(FocusState.Programmatic);
-            _goButton.IsEnabled = false;
 #pragma warning disable 4014
             this.NavigateAsync(source);
 #pragma warning restore 4014
+        }
+
+        public async Task NavigateAsync(Uri source)
+        {
+            _settingSourceWithCode = true;
+            this.Source = source;
+            _settingSourceWithCode = false;
+
+            if (_webView == null)
+            {
+                _pendingNavigation = true;
+                return;
+            }
+
+            VisualStateManager.GoToState(this, LoadingStateName, true);
+            _refreshButton.IsEnabled = false;
+            _goButton.Focus(FocusState.Programmatic);
+            _goButton.IsEnabled = false;
+            _addressBar.Text = source.ToString();
+            await _webView.NavigateAsync(source);
+            _refreshButton.IsEnabled = true;
         }
 
         public void Refresh()

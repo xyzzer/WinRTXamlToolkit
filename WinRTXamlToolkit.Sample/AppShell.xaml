@@ -13,39 +13,7 @@
         <Controls:AlternativeFrame
             x:Name="RootFrame">
             <Controls:AlternativeFrame.PageTransition>
-                <!--<Controls:WipeTransition />-->
                 <Controls:DissolveTransition />
-
-                <!--<Controls:FlipTransition
-                    AxisOfFlip="Center"
-                    Duration="0:0:1.5"/>-->
-                <!--<Controls:FlipTransition
-                    AxisOfFlip="Center" />-->
-                <!--<Controls:FlipTransition
-                    AxisOfFlip="Random"
-                    ForwardDirection="Random"
-                    BackwardDirection="Random" />-->
-                <!--<Controls:FlipTransition
-                    AxisOfFlip="Random"
-                    ForwardDirection="Random"
-                    BackwardDirection="Random" />-->
-                <!-- Looks like a fluorescent lamp with a slow start :) -->
-                <!--<Controls:DissolveTransition
-                    Duration="0:0:1.5">
-                    <Controls:DissolveTransition.EasingFunction>
-                        <BounceEase
-                            EasingMode="EaseInOut" />
-                    </Controls:DissolveTransition.EasingFunction>
-                </Controls:DissolveTransition>-->
-
-                <!-- Looks weird -->
-                <!--<Controls:WipeTransition
-                    Duration="0:0:1.5">
-                    <Controls:WipeTransition.EasingFunction>
-                        <BounceEase
-                            EasingMode="EaseInOut" />
-                    </Controls:WipeTransition.EasingFunction>
-                </Controls:WipeTransition>-->
             </Controls:AlternativeFrame.PageTransition>
         </Controls:AlternativeFrame>
     </Grid>
