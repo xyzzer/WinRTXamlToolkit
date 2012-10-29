@@ -43,6 +43,8 @@ namespace WinRTXamlToolkit.Sample.Views
             var stream = await file.OpenReadAsync();
             bi.SetSource(stream);
             PhotoImage.Source = bi;
+            CapturedVideoElement.Visibility = Visibility.Collapsed;
+            PhotoImage.Visibility = Visibility.Visible;
         }
 
         private bool _capturingVideo;
@@ -55,6 +57,8 @@ namespace WinRTXamlToolkit.Sample.Views
                 CaptureVideoButton.Content = "Stop";
                 _capturingVideo = true;
                 _videoFile = await TestedControl.StartVideoCaptureAsync(ApplicationData.Current.TemporaryFolder);
+                CapturedVideoElement.Visibility = Visibility.Visible;
+                PhotoImage.Visibility = Visibility.Collapsed;
                 CapturedVideoElement.SetSource(await _videoFile.OpenReadAsync(), _videoFile.ContentType);
             }
             else

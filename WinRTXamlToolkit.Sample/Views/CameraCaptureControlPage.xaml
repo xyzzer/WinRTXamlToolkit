@@ -19,7 +19,10 @@
             <ColumnDefinition
                 Width="120" />
             <ColumnDefinition
-                Width="Auto"/>
+                Width="Auto"
+                MinWidth="240" />
+            <ColumnDefinition
+                Width="22" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Button
@@ -29,47 +32,53 @@
         <TextBlock
             Text="CameraCaptureControl Test"
             Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             Style="{StaticResource PageHeaderTextStyle}" />
+        <controls:CustomGridSplitter
+            Grid.Row="1"
+            Grid.Column="2" />
         <controls:CameraCaptureControl
             x:Name="TestedControl"
             CameraFailed="OnTestedControlCameraFailed"
             Grid.Row="1"
-            Grid.Column="2"
+            Grid.Column="3"
             ShowOnLoad="True" />
-        <ScrollViewer
+        <StackPanel
+            Grid.Row="1">
+            <Button
+                x:Name="ShowPreviewButton"
+                HorizontalAlignment="Stretch"
+                Click="OnShowPreviewButtonClick"
+                Content="Show" />
+            <Button
+                x:Name="HidePreviewButton"
+                HorizontalAlignment="Stretch"
+                Click="OnHidePreviewButtonClick"
+                Content="Hide" />
+            <Button
+                x:Name="CycleCamerasButton"
+                HorizontalAlignment="Stretch"
+                Click="OnCycleCamerasButtonClick"
+                Content="Cycle" />
+            <Button
+                x:Name="CapturePhotoButton"
+                HorizontalAlignment="Stretch"
+                Click="OnCapturePhotoButtonClick"
+                Content="Take a pic" />
+            <Button
+                x:Name="CaptureVideoButton"
+                HorizontalAlignment="Stretch"
+                Click="OnCaptureVideoButtonClick"
+                Content="Record" />
+        </StackPanel>
+        <MediaElement
+            x:Name="CapturedVideoElement"
             Grid.Row="1"
             Grid.Column="1"
-            Style="{StaticResource VerticalScrollViewerStyle}">
-            <StackPanel
-                x:Name="TestPanel"
-                Width="240">
-                <Button
-                    x:Name="ShowPreviewButton"
-                    Click="OnShowPreviewButtonClick"
-                    Content="Show" />
-                <Button
-                    x:Name="HidePreviewButton"
-                    Click="OnHidePreviewButtonClick"
-                    Content="Hide" />
-                <Button
-                    x:Name="CycleCamerasButton"
-                    Click="OnCycleCamerasButtonClick"
-                    Content="Cycle" />
-                <Button
-                    x:Name="CapturePhotoButton"
-                    Click="OnCapturePhotoButtonClick"
-                    Content="Take a pic" />
-                <Image
-                    x:Name="PhotoImage" />
-                <Button
-                    x:Name="CaptureVideoButton"
-                    Click="OnCaptureVideoButtonClick"
-                    Content="Record" />
-                <MediaElement
-                    x:Name="CapturedVideoElement"
-                    IsLooping="True" />
-            </StackPanel>
-        </ScrollViewer>
+            IsLooping="True" />
+        <Image
+            x:Name="PhotoImage"
+            Grid.Row="1"
+            Grid.Column="1" />
     </Grid>
 </controls:AlternativePage>
