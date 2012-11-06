@@ -1,15 +1,15 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
-using WinRTXamlToolkit.IO.Extensions;
 using Windows.Media.Capture;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using WinRTXamlToolkit.Sample.ViewModels;
 using WinRTXamlToolkit.Controls;
+using WinRTXamlToolkit.IO.Extensions;
 using WinRTXamlToolkit.Net;
+using WinRTXamlToolkit.Sample.ViewModels;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -60,15 +60,20 @@ namespace WinRTXamlToolkit.Sample.Views
                     Caption = "CascadingTextBlock",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(CascadingTextBlockTestPage)))
                 },
-                new ButtonViewModel()
+                new ButtonViewModel
                 {
                     Caption = "Chart",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(ChartTestPage)))
                 },
-                new ButtonViewModel()
+                new ButtonViewModel
                 {
                     Caption = "ColorPicker",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(ColorPickerTestPage)))
+                },
+                new ButtonViewModel
+                {
+                    Caption = "ColorPicker Primitives",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(ColorPickerPrimitivesTestPage)))
                 },
                 new ButtonViewModel
                 {
@@ -217,7 +222,6 @@ namespace WinRTXamlToolkit.Sample.Views
         protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
         {
             GC.Collect();
-
             base.OnNavigatedTo(e);
         }
 

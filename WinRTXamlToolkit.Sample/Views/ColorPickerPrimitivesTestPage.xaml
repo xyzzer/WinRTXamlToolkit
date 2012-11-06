@@ -1,5 +1,5 @@
 ﻿<controls:AlternativePage
-    x:Class="WinRTXamlToolkit.Sample.Views.ColorPickerTestPage"
+    x:Class="WinRTXamlToolkit.Sample.Views.ColorPickerPrimitivesTestPage"
     IsTabStop="false"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -217,12 +217,203 @@
             Style="{StaticResource BackButtonStyle}"
             Click="GoBack" />
         <TextBlock
-            Text="ColorPicker Test"
+            Text="ColorPicker Primitives Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
         
-        <controls:ColorPicker
+        <Grid
             Grid.Column="1"
-            Grid.Row="1" />
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="2*" />
+                <ColumnDefinition
+                    Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <controls:HueRingPicker
+                x:Name="hueRing"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                ValueChanged="hueRing_ValueChanged_1"/>
+            <controls:TrianglePicker
+                x:Name="trianglePicker"
+                SizeChanged="trianglePicker_SizeChanged_1"
+                Margin="0,115,0,0"
+                Width="458"
+                Height="396.6396"
+                VerticalAlignment="Top">
+                <controls:TrianglePicker.Foreground>
+                    <ImageBrush
+                        x:Name="triangleBrush" />
+                </controls:TrianglePicker.Foreground>
+            </controls:TrianglePicker>
+            <!--<Viewbox
+                x:Name="slidersBox"
+                Grid.Column="2"
+                Stretch="Uniform">-->
+            <StackPanel
+                x:Name="slidersPanel"
+                Margin="15,0,15,0"
+                VerticalAlignment="Center"
+                Grid.Column="2">
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Hue" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=hueSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="360"
+                    StepFrequency="1">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="hueBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="hueSlider"
+                    ValueFormat="F0"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="360"
+                    SmallChange="1"
+                    LargeChange="1" />
+
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Saturation" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=saturationSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="1"
+                    StepFrequency="0.001">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="saturationBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="saturationSlider"
+                    ValueFormat="F3"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.001"
+                    LargeChange="0.001" />
+
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Lightness" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=lightnessSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="1"
+                    StepFrequency="0.001">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="lightnessBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="lightnessSlider"
+                    ValueFormat="F3"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.001"
+                    LargeChange="0.001" />
+
+
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Red" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=redSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="1"
+                    StepFrequency="0.001">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="redBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="redSlider"
+                    ValueFormat="F3"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.001"
+                    LargeChange="0.001" />
+
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Green" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=greenSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="1"
+                    StepFrequency="0.001">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="greenBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="greenSlider"
+                    ValueFormat="F3"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.001"
+                    LargeChange="0.001" />
+
+                <TextBlock
+                    Margin="0,15,0,0"
+                    Text="Blue" />
+                <Slider
+                    Style="{StaticResource stretchySliderStyle}"
+                    Value="{Binding Value, ElementName=blueSlider, Mode=TwoWay}"
+                    Margin="0,0,80,5"
+                    Height="15"
+                    Minimum="0"
+                    Maximum="1"
+                    StepFrequency="0.001">
+                    <Slider.Foreground>
+                        <ImageBrush
+                            x:Name="blueBackground"
+                            Stretch="Fill" />
+                    </Slider.Foreground>
+                </Slider>
+                <controls:NumericUpDown
+                    x:Name="blueSlider"
+                    ValueFormat="F3"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="1"
+                    SmallChange="0.001"
+                    LargeChange="0.001" />
+            </StackPanel>
+            <!--</Viewbox>-->
+        </Grid>
     </Grid>
 </controls:AlternativePage>

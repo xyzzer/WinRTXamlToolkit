@@ -1,4 +1,5 @@
 ﻿using System;
+using WinRTXamlToolkit.Async;
 using WinRTXamlToolkit.AwaitableUI;
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -29,6 +30,9 @@ namespace WinRTXamlToolkit.Controls
         private Grid _containerGrid;
         private Image _hueRingImage;
         private RingSlice _ringThumb;
+
+        private bool _isLoaded;
+        private AsyncAutoResetEvent _bitmapUpdateRequired = new AsyncAutoResetEvent();
 
         #region RingThickness
         /// <summary>
@@ -312,6 +316,52 @@ namespace WinRTXamlToolkit.Controls
             InitializeMinMaxCoercion();
             this.SizeChanged += OnSizeChanged;
             DelayedUpdateWorkaround();
+
+            this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _isLoaded = true;
+            _bitmapUpdateRequired.Set();
+            RunBitmapUpdaterAsync();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            _isLoaded = false;
+            _bitmapUpdateRequired.Set();
+        }
+
+        private async void RunBitmapUpdaterAsync()
+        {
+            do
+            {
+                await _bitmapUpdateRequired.WaitAsync();
+
+                if (_isLoaded)
+                {
+                    if (_hueRingImage == null)
+                    {
+                        continue;
+                    }
+
+                    if (_containerGrid.ActualHeight <= 2 * (RingThickness + ThumbBorderThickness) ||
+                        _containerGrid.ActualWidth <= 2 * (RingThickness + ThumbBorderThickness))
+                    {
+                        continue;
+                    }
+
+                    var hueRingSize = (int)Math.Min(
+                        _containerGrid.ActualWidth - 2 * ThumbBorderThickness,
+                        _containerGrid.ActualHeight - 2 * ThumbBorderThickness);
+
+                    var wb = new WriteableBitmap(hueRingSize, hueRingSize);
+                    await wb.RenderColorPickerHueRingAsync(hueRingSize / 2 - (int)RingThickness);
+                    _hueRingImage.Source = wb;
+                }
+            } while (_isLoaded);
         }
 
         private async void DelayedUpdateWorkaround()
@@ -428,24 +478,7 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateHueRingImage()
         private void UpdateHueRingImage()
         {
-            if (_hueRingImage == null)
-            {
-                return;
-            }
-
-            if (_containerGrid.ActualHeight <= 2 * (RingThickness + ThumbBorderThickness) ||
-                _containerGrid.ActualWidth <= 2 * (RingThickness + ThumbBorderThickness))
-            {
-                return;
-            }
-
-            var hueRingSize = (int)Math.Min(
-                _containerGrid.ActualWidth - 2 * ThumbBorderThickness,
-                _containerGrid.ActualHeight - 2 * ThumbBorderThickness);
-
-            var wb = new WriteableBitmap(hueRingSize, hueRingSize);
-            wb.RenderColorPickerHueRing(hueRingSize / 2 - (int)RingThickness);
-            _hueRingImage.Source = wb;
+            _bitmapUpdateRequired.Set();
         } 
         #endregion
 

@@ -5,8 +5,6 @@
     xmlns:converters="using:WinRTXamlToolkit.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/DataVisualization/Themes/Generic.xaml" />
-        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
@@ -325,15 +323,16 @@
                                         <DoubleAnimation
                                             Storyboard.TargetName="PART_LayoutRoot"
                                             Storyboard.TargetProperty="Opacity"
-                                            Duration="0:0:0.4"
+                                            Duration="0:0:0.3"
                                             To="1.0" />
                                         <DoubleAnimation
                                             x:Name="PART_FloatingVisibleHorizontalTransition"
                                             Storyboard.TargetName="PART_TransitionTransform"
                                             Storyboard.TargetProperty="TranslateX"
-                                            Duration="0:0:0.4">
+                                            Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <PowerEase
+                                                    EasingMode="EaseOut"
                                                     Power="2" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
@@ -341,9 +340,10 @@
                                             x:Name="PART_FloatingVisibleVerticalTransition"
                                             Storyboard.TargetName="PART_TransitionTransform"
                                             Storyboard.TargetProperty="TranslateY"
-                                            Duration="0:0:0.4">
+                                            Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <PowerEase
+                                                    EasingMode="EaseOut"
                                                     Power="2" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
@@ -357,15 +357,16 @@
                                         <DoubleAnimation
                                             Storyboard.TargetName="PART_LayoutRoot"
                                             Storyboard.TargetProperty="Opacity"
-                                            Duration="0:0:0.4"
+                                            Duration="0:0:0.3"
                                             To="0.0" />
                                         <DoubleAnimation
                                             x:Name="PART_FloatingHiddenHorizontalTransition"
                                             Storyboard.TargetName="PART_TransitionTransform"
                                             Storyboard.TargetProperty="TranslateX"
-                                            Duration="0:0:0.4">
+                                            Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <PowerEase
+                                                    EasingMode="EaseOut"
                                                     Power="2" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
@@ -373,9 +374,10 @@
                                             x:Name="PART_FloatingHiddenVerticalTransition"
                                             Storyboard.TargetName="PART_TransitionTransform"
                                             Storyboard.TargetProperty="TranslateY"
-                                            Duration="0:0:0.4">
+                                            Duration="0:0:0.3">
                                             <DoubleAnimation.EasingFunction>
                                                 <PowerEase
+                                                    EasingMode="EaseOut"
                                                     Power="2" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>

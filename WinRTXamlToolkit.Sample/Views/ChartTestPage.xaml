@@ -82,6 +82,47 @@
                     DependentValueBinding="{Binding Value}"
                     IsSelectionEnabled="True" />
             </charting:Chart>
+
+            <charting:Chart
+                x:Name="LineChart2"
+                Title="Line Chart Without Data Points"
+                Margin="70,0">
+                <charting:LineSeries
+                    Title="Population"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True">
+                    <charting:LineSeries.DataPointStyle>
+                        <Style
+                            TargetType="charting:LineDataPoint">
+                            <Setter
+                                Property="BorderThickness"
+                                Value="0" />
+                            <Setter
+                                Property="IsTabStop"
+                                Value="False" />
+                            <Setter
+                                Property="Width"
+                                Value="0" />
+                            <Setter
+                                Property="Height"
+                                Value="0" />
+                            <Setter
+                                Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate
+                                        TargetType="charting:LineDataPoint">
+                                        <Grid
+                                            x:Name="Root"
+                                            Opacity="0" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </charting:LineSeries.DataPointStyle>
+                </charting:LineSeries>
+            </charting:Chart>
+
             <charting:Chart
                 x:Name="MixedChart"
                 Title="Mixed Chart"
@@ -119,8 +160,8 @@
                     IsSelectionEnabled="True" />
             </charting:Chart>
             <charting:Chart
-                x:Name="ScatteredChart"
-                Title="Scattered Chart"
+                x:Name="ScatterChart"
+                Title="Scatter Chart"
                 Margin="70,0">
                 <charting:ScatterSeries
                     Title="Population"

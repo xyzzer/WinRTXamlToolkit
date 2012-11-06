@@ -11,7 +11,6 @@ using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,7 +37,7 @@ namespace WinRTXamlToolkit.Controls
             Shown,
             Recording,
             Deinitializing
-        } 
+        }
         #endregion
 
         #region Private fields
@@ -464,7 +463,7 @@ namespace WinRTXamlToolkit.Controls
             get { return (VideoEncodingQuality)GetValue(VideoEncodingQualityProperty); }
             set { SetValue(VideoEncodingQualityProperty, value); }
         }
-        #endregion 
+        #endregion
 
         #region VideoDeviceEnclosureLocation
         /// <summary>
@@ -515,9 +514,9 @@ namespace WinRTXamlToolkit.Controls
         #region CTOR
         public CameraCaptureControl()
         {
-            this.DefaultStyleKey = typeof (CameraCaptureControl);
+            this.DefaultStyleKey = typeof(CameraCaptureControl);
             this.Loaded += OnLoaded;
-        } 
+        }
         #endregion
 
         #region Public methods
@@ -684,7 +683,7 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CapturePhotoToStorageFileAsync()
-        public async Task<StorageFile> CapturePhotoToStorageFileAsync(StorageFolder folder = null, string fileName = null)
+        public async Task<StorageFile> CapturePhotoToStorageFileAsync(StorageFolder folder = null, string fileName = null, string defaultExtension = ".jpg")
         {
             if (_countdownControl != null &&
                 this.PhotoCaptureCountdownSeconds > 0)
@@ -704,7 +703,7 @@ namespace WinRTXamlToolkit.Controls
 
             if (fileName == null)
             {
-                fileName = await folder.CreateTempFileNameAsync(".png");
+                fileName = await folder.CreateTempFileNameAsync(defaultExtension);
             }
 
             var photoFile = await folder.CreateFileAsync(
@@ -754,6 +753,7 @@ namespace WinRTXamlToolkit.Controls
                 return _videoFile;
             }
 
+            _internalState = CameraCaptureControlStates.Recording;
             _recordingTaskSource = new TaskCompletionSource<bool>(false);
 
             if (_internalState != CameraCaptureControlStates.Shown)
@@ -769,8 +769,6 @@ namespace WinRTXamlToolkit.Controls
                     //TODO: Add error handling here.
                 }
             }
-
-            _internalState = CameraCaptureControlStates.Recording;
 
             if (_mediaCapture == null)
             {
@@ -838,7 +836,7 @@ namespace WinRTXamlToolkit.Controls
             _recordingTaskSource.SetResult(true);
             return _videoFile;
         }
-        #endregion 
+        #endregion
 
         #region CycleCamerasAsync()
         public async Task CycleCamerasAsync()
@@ -902,24 +900,16 @@ namespace WinRTXamlToolkit.Controls
         {
             if (this.ShowOnLoad)
             {
-                try
-                {
-                    CameraInitializationResult args = await InitializeAsync();
+                CameraInitializationResult args = await InitializeAsync();
 
-                    if (args.Success)
-                    {
-                        await ShowAsync();
-                    }
-                    else
-                    {
-                        // TODO: Add error handling here
-                        await HideAsync();
-                    }
-                }
-                catch (Exception ex)
+                if (args.Success)
                 {
-                    new MessageDialog(ex.Message, "Exception").ShowAsync();
-                    throw;
+                    await ShowAsync();
+                }
+                else
+                {
+                    // TODO: Add error handling here
+                    await HideAsync();
                 }
             }
         }
@@ -1104,7 +1094,7 @@ namespace WinRTXamlToolkit.Controls
         private void OnMediaCaptureFailed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
         {
             OnCameraFailed(sender, errorEventArgs);
-        } 
+        }
         #endregion
 
         #region CheckStreamingCaptureModeConfiguration()
@@ -1189,7 +1179,7 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 #endif
-        #endregion 
+        #endregion
         #endregion
     }
 

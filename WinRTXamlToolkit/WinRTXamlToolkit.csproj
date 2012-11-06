@@ -157,118 +157,9 @@
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
-    <Compile Include="Controls\DataVisualization\AggregatedObservableCollection.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\AnimationSequence.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\Axis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\AxisIntervalType.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\AxisLabel.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\AxisLocation.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\AxisOrientation.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\CategoryAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\CategorySortOrder.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\DateTimeAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\DateTimeAxisLabel.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\DateTimeIntervalType.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\DisplayAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\DisplayAxisGridLines.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IAnchoredToOrigin.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IAxisListener.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\ICategoryAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IDataConsumer.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IDataProvider.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IRangeAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IRangeConsumer.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IRangeProvider.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IValueMarginConsumer.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\IValueMarginProvider.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\LinearAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\NumericAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\NumericAxisLabel.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\OrientedAxisGridLines.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\RangeAxis.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Axis\ValueMargin.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Chart\Chart.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Chart\SeriesHostAxesCollection.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\AreaDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\BarDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\BubbleDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\ColumnDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\DataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\DataPointState.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\LineDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\PieDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\DataPoint\ScatterDataPoint.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\FrameworkElementExtensions.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\ISeriesHost.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\ISeriesHostExtensions.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Primitives\DelegatingListBox.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Primitives\Edge.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Primitives\EdgePanel.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\ResourceDictionaryDispensedEventArgs.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\ResourceDictionaryEnumerator.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\AreaSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\BarSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\ColumnSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\BubbleSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\ColumnBarBaseSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\DataPointSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\DataPointSeriesWithAxes.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\DataPointSingleSeriesWithAxes.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\DefinitionSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\IRequireGlobalSeriesIndex.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\ISeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\LegendItem.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\LineAreaBaseSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\LineSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\PieSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\ScatterSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\Series.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\SeriesDefinition.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\SeriesSelectionMode.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\Stacked100AreaSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\Stacked100BarSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\Stacked100ColumnSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\Stacked100LineSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedAreaLineSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedAreaSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedBarColumnSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedBarSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedColumnSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\Series\StackedLineSeries.cs" />
-    <Compile Include="Controls\DataVisualization\Charting\ValueMarginCoordinateAndOverlap.cs" />
-    <Compile Include="Controls\DataVisualization\Collections\LeftLeaningRedBlackTree.cs" />
-    <Compile Include="Controls\DataVisualization\Collections\MultipleDictionary.cs" />
-    <Compile Include="Controls\DataVisualization\Collections\OrderedMultipleDictionary.cs" />
-    <Compile Include="Controls\DataVisualization\DependencyPropertyAnimationHelper.cs" />
-    <Compile Include="Controls\DataVisualization\EnumerableExtensions.cs" />
-    <Compile Include="Controls\DataVisualization\EnumerableFunctions.cs" />
-    <Compile Include="Controls\DataVisualization\GenericEqualityComparer.cs" />
-    <Compile Include="Controls\DataVisualization\GridExtensions.cs" />
-    <Compile Include="Controls\DataVisualization\IRequireSeriesHost.cs" />
-    <Compile Include="Controls\DataVisualization\IResourceDictionaryDispenser.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
-    <Compile Include="Controls\DataVisualization\Legend\Legend.cs" />
-    <Compile Include="Controls\DataVisualization\NoResetObservableCollection.cs" />
-    <Compile Include="Controls\DataVisualization\ObjectPool.cs" />
-    <Compile Include="Controls\DataVisualization\ObservableCollectionListAdapter.cs" />
-    <Compile Include="Controls\DataVisualization\OrientedPanel.cs" />
-    <Compile Include="Controls\DataVisualization\PropertyChangedEventHandler.cs" />
-    <Compile Include="Controls\DataVisualization\Range.cs" />
-    <Compile Include="Controls\DataVisualization\RangeEnumerableFunctions.cs" />
-    <Compile Include="Controls\DataVisualization\ResourceDictionaryCollection.cs" />
-    <Compile Include="Controls\DataVisualization\ResourceDictionaryDispenser.cs" />
-    <Compile Include="Controls\DataVisualization\ResourceDictionaryExtensions.cs" />
-    <Compile Include="Controls\DataVisualization\Resources.Designer.cs" />
-    <Compile Include="Controls\DataVisualization\StoryboardQueue.cs" />
-    <Compile Include="Controls\DataVisualization\StringFormatConverter.cs" />
-    <Compile Include="Controls\DataVisualization\Title\Title.cs" />
-    <Compile Include="Controls\DataVisualization\UniqueObservableCollection.cs" />
-    <Compile Include="Controls\DataVisualization\Unit.cs" />
-    <Compile Include="Controls\DataVisualization\UnitValue.cs" />
-    <Compile Include="Controls\DataVisualization\ValueHelper.cs" />
     <Compile Include="Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="Controls\Extensions\AnimationHelper.cs" />
     <Compile Include="Controls\Extensions\AppBarExtensions.cs" />
@@ -380,98 +271,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\DataVisualization\Charting\Axis\AxisLabel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Axis\DateTimeAxisLabel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Axis\DisplayAxis.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Axis\NumericAxisLabel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Axis\RangeAxis.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Chart\Chart.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\AreaDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\BarDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\BubbleDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\ColumnDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\LineDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\PieDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\DataPoint\ScatterDataPoint.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Primitives\DelegatingListBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\AreaSeries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\DataPointSeries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\DefinitionSeries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\LegendItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\LineSeries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Charting\Series\PieSeries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Legend\Legend.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DataVisualization\Title\Title.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\WebBrowser\WebBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -498,12 +297,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Controls\DataVisualization\Resources.resx">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Async\Credits.txt" />

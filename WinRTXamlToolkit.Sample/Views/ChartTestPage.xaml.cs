@@ -20,11 +20,12 @@ namespace WinRTXamlToolkit.Sample.Views
             ((ColumnSeries)Chart.Series[0]).ItemsSource = items;
             ((BarSeries)BarChart.Series[0]).ItemsSource = items;
             ((LineSeries)LineChart.Series[0]).ItemsSource = items;
+            ((LineSeries)LineChart2.Series[0]).ItemsSource = items;
             ((ColumnSeries)MixedChart.Series[0]).ItemsSource = items;
             ((LineSeries)MixedChart.Series[1]).ItemsSource = items;
             ((AreaSeries)AreaChart.Series[0]).ItemsSource = items;
             ((BubbleSeries)BubbleChart.Series[0]).ItemsSource = items;
-            ((ScatterSeries)ScatteredChart.Series[0]).ItemsSource = items;
+            ((ScatterSeries)ScatterChart.Series[0]).ItemsSource = items;
             ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items;
             ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items;
             ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items;

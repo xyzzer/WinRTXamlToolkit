@@ -18,7 +18,7 @@ namespace WinRTXamlToolkit.Controls
                 typeof(RingSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnStartAngleChanged)));
+                    OnStartAngleChanged));
 
         public double StartAngle
         {
@@ -48,7 +48,7 @@ namespace WinRTXamlToolkit.Controls
                 typeof(RingSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnEndAngleChanged)));
+                    OnEndAngleChanged));
 
         public double EndAngle
         {
@@ -78,7 +78,7 @@ namespace WinRTXamlToolkit.Controls
                 typeof(RingSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnRadiusChanged)));
+                    OnRadiusChanged));
 
         public double Radius
         {
@@ -109,7 +109,7 @@ namespace WinRTXamlToolkit.Controls
                 typeof(RingSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnInnerRadiusChanged)));
+                    OnInnerRadiusChanged));
 
         public double InnerRadius
         {
@@ -127,6 +127,11 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnInnerRadiusChanged(double oldInnerRadius, double newInnerRadius)
         {
+            if (newInnerRadius < 0)
+            {
+                throw new ArgumentException("InnerRadius can't be a negative value.", "InnerRadius");
+            }
+
             UpdatePath();
         }
         #endregion

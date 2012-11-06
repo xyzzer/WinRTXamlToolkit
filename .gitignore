@@ -6,10 +6,14 @@ Nuget/msbuild.log
 Nuget/*.nupkg
 WinRTXamlToolkit/bin/
 WinRTXamlToolkit/obj/
+WinRTXamlToolkit.Controls.DataVisualization/bin/
+WinRTXamlToolkit.Controls.DataVisualization/obj/
 WinRTXamlToolkit.Debugging/bin/
 WinRTXamlToolkit.Debugging/obj/
+WinRTXamlToolkit.Sample/AppPackages/
 WinRTXamlToolkit.Sample/bin/
 WinRTXamlToolkit.Sample/obj/
+WinRTXamlToolkit.StylesBrowser/AppPackages/
 WinRTXamlToolkit.StylesBrowser/bin/
 WinRTXamlToolkit.StylesBrowser/obj/
 WinRTXamlToolkit.v11.suo
