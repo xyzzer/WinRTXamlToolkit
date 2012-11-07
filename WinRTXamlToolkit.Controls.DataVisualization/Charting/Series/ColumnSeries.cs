@@ -53,7 +53,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
                     if (rangeAxis.Origin == null)
                     {
-                        throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DataPointSeriesWithAxes_NoSuitableAxisAvailableForPlottingDependentValue);
+                        throw new InvalidOperationException(Properties.Resources.DataPointSeriesWithAxes_NoSuitableAxisAvailableForPlottingDependentValue);
                     }
 
                     DisplayAxis axis = rangeAxis as DisplayAxis;
@@ -88,7 +88,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
             if (coordinateRange.Maximum.Unit != Unit.Pixels || coordinateRange.Minimum.Unit != Unit.Pixels)
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DataPointSeriesWithAxes_ThisSeriesDoesNotSupportRadialAxes);
+                throw new InvalidOperationException(Properties.Resources.DataPointSeriesWithAxes_ThisSeriesDoesNotSupportRadialAxes);
             }
 
             double minimum = (double)coordinateRange.Minimum.Value;

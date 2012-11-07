@@ -2,7 +2,10 @@
 
 namespace WinRTXamlToolkit.IO.Extensions
 {
-    public static class StringMimeExtensions
+    /// <summary>
+    /// Helpers for file name to MIME content type conversion.
+    /// </summary>
+    public static class FileNameMimeContentConversion
     {
         /// <summary>
         /// Gets the MIME content type based on file name.
@@ -14,7 +17,7 @@ namespace WinRTXamlToolkit.IO.Extensions
         /// </remarks>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static string GetMimeExtensionFromFileName(this string fileName)
+        public static string GetMimeContentTypeFromFileName(this string fileName)
         {
             var ext = Path.GetExtension(fileName);
 

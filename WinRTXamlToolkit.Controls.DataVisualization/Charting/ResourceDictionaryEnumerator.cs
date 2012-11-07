@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using WinRTXamlToolkit.Controls.DataVisualization.Properties;
 using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
@@ -214,7 +215,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// </summary>
         public void Reset()
         {
-            throw new NotSupportedException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.ResourceDictionaryEnumerator_CantResetEnumeratorResetDispenserInstead);
+            throw new NotSupportedException(Resources.ResourceDictionaryEnumerator_CantResetEnumeratorResetDispenserInstead);
         }
 
         /// <summary>

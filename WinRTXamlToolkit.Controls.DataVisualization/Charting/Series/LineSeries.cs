@@ -107,7 +107,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     DisplayAxis axis = (DisplayAxis)CreateRangeAxisFromData(firstDataPoint.DependentValue);
                     if (axis == null)
                     {
-                        throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DataPointSeriesWithAxes_NoSuitableAxisAvailableForPlottingDependentValue);
+                        throw new InvalidOperationException(Properties.Resources.DataPointSeriesWithAxes_NoSuitableAxisAvailableForPlottingDependentValue);
                     }
                     axis.ShowGridLines = true;
                     axis.Orientation = AxisOrientation.Y;

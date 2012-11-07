@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinRTXamlToolkit.Controls.DataVisualization.Charting {
+namespace WinRTXamlToolkit.Controls.DataVisualization.Properties
+{
     using System;
     using System.Reflection;
     
@@ -40,7 +41,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinRTXamlToolkit.Controls.DataVisualization.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

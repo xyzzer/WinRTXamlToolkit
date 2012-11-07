@@ -209,7 +209,11 @@
     <Compile Include="ResourceDictionaryCollection.cs" />
     <Compile Include="ResourceDictionaryDispenser.cs" />
     <Compile Include="ResourceDictionaryExtensions.cs" />
-    <Compile Include="Resources.Designer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StoryboardQueue.cs" />
     <Compile Include="StringFormatConverter.cs" />
     <Compile Include="Title\Title.cs" />
@@ -313,7 +317,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Resources.resx">
+    <PRIResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PRIResource>

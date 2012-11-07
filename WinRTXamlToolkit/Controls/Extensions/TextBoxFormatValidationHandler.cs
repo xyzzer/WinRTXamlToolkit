@@ -2,14 +2,17 @@
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Handles validation of TextBox.Text whenever TextChanged property is raised.
+    /// </summary>
     public class TextBoxFormatValidationHandler
     {
         private TextBox _textBox;
 
         internal void Detach()
         {
-            _textBox = null;
             _textBox.TextChanged -= OnTextBoxTextChanged;
+            _textBox = null;
         }
 
         internal void Attach(TextBox textBox)

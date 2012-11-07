@@ -2,9 +2,25 @@ using System;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Represents an entry in either back or forward navigation history.
+    /// </summary>
     public class JournalEntry
     {
+        /// <summary>
+        /// Gets the type of the page that was navigated to.
+        /// </summary>
+        /// <value>
+        /// The type of the page that was navigated to.
+        /// </value>
         public Type SourcePageType { get; internal set; }
+
+        /// <summary>
+        /// Gets the parameter passed to the page when it was navigated to.
+        /// </summary>
+        /// <value>
+        /// The parameter passed to the page when it was navigated to.
+        /// </value>
         public object Parameter { get; internal set; }
 
         public override bool Equals(object obj)

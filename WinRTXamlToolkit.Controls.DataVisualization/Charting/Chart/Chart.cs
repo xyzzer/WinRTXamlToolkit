@@ -63,7 +63,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             }
             set
             {
-                throw new NotSupportedException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Chart_Axes_SetterNotSupported);
+                throw new NotSupportedException(Properties.Resources.Chart_Axes_SetterNotSupported);
             }
         }
 
@@ -140,7 +140,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             }
             set
             {
-                throw new NotSupportedException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Chart_Series_SetterNotSupported);
+                throw new NotSupportedException(Properties.Resources.Chart_Series_SetterNotSupported);
             }
         }
 
@@ -501,7 +501,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
             if (args.NewValue == AxisLocation.Auto)
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Chart_AxisLocationChanged_CantBeChangedToAutoWhenHostedInsideOfASeriesHost);
+                throw new InvalidOperationException(Properties.Resources.Chart_AxisLocationChanged_CantBeChangedToAutoWhenHostedInsideOfASeriesHost);
             }
 
             SetEdge(axis);

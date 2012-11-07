@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using WinRTXamlToolkit.Controls.DataVisualization.Properties;
 
 namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 {
@@ -47,7 +48,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 if (!HasData)
                 {
-                    throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Range_get_Maximum_CannotReadTheMaximumOfAnEmptyRange);
+                    throw new InvalidOperationException(Resources.Range_get_Maximum_CannotReadTheMaximumOfAnEmptyRange);
                 }
                 return _maximum;
             }
@@ -67,7 +68,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 if (!HasData)
                 {
-                    throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Range_get_Minimum_CannotReadTheMinimumOfAnEmptyRange);
+                    throw new InvalidOperationException(Resources.Range_get_Minimum_CannotReadTheMinimumOfAnEmptyRange);
                 }
                 return _minimum;
             }
@@ -96,7 +97,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             int compareValue = ValueHelper.Compare(minimum, maximum);
             if (compareValue == 1)
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Range_ctor_MaximumValueMustBeLargerThanOrEqualToMinimumValue);
+                throw new InvalidOperationException(Resources.Range_ctor_MaximumValueMustBeLargerThanOrEqualToMinimumValue);
             }
         }
 
@@ -260,11 +261,11 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (!this.HasData)
             {
-                return WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Range_ToString_NoData;
+                return Resources.Range_ToString_NoData;
             }
             else
             {
-                return string.Format(CultureInfo.CurrentCulture, WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Range_ToString_Data, this.Minimum, this.Maximum);
+                return string.Format(CultureInfo.CurrentCulture, Resources.Range_ToString_Data, this.Minimum, this.Maximum);
             }
         }
     }

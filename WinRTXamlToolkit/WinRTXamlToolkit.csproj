@@ -244,7 +244,7 @@
     <Compile Include="IO\Extensions\StorageFileExtensions.cs" />
     <Compile Include="IO\Extensions\StorageFolderExtensions.cs" />
     <Compile Include="IO\Extensions\StringIOExtensions.cs" />
-    <Compile Include="IO\Extensions\StringMimeExtensions.cs" />
+    <Compile Include="IO\Extensions\FileNameMimeContentConversion.cs" />
     <Compile Include="Imaging\WriteableBitmapBlitBlockExtensions.cs" />
     <Compile Include="Imaging\WriteableBitmapCopyExtensions.cs" />
     <Compile Include="Imaging\WriteableBitmapCropExtensions.cs" />
@@ -299,7 +299,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Async\Credits.txt" />
+    <None Include="Async\Credits.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

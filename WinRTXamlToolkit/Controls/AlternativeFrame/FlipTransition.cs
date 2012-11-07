@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// 3D flip transition
+    /// </summary>
     public class FlipTransition : PageTransition
     {
         private Random _random = new Random();

@@ -8,6 +8,12 @@ namespace WinRTXamlToolkit.Controls
 {
     public abstract class PageTransition : DependencyObject
     {
+        /// <summary>
+        /// Gets the page transition mode.
+        /// </summary>
+        /// <value>
+        /// The page transition mode.
+        /// </value>
         protected abstract PageTransitionMode Mode { get; }
 
         #region ForwardOutAnimation

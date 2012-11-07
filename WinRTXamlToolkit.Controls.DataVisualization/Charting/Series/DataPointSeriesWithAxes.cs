@@ -426,7 +426,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     }
                     else
                     {
-                        throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DataPointSeriesWithAxes_GetAxes_AssignedIndependentAxisCannotBeUsed);
+                        throw new InvalidOperationException(Properties.Resources.DataPointSeriesWithAxes_GetAxes_AssignedIndependentAxisCannotBeUsed);
                     }
                 }
 
@@ -464,7 +464,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     }
                     else
                     {
-                        throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DataPointSeriesWithAxes_GetAxes_AssignedDependentAxisCannotBeUsed);
+                        throw new InvalidOperationException(Properties.Resources.DataPointSeriesWithAxes_GetAxes_AssignedDependentAxisCannotBeUsed);
                     }
                 }
 

@@ -554,7 +554,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 _seriesHost = value;
                 if (!(_seriesHost is DefinitionSeries) && (null != value))
                 {
-                    throw new NotSupportedException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.SeriesDefinition_SeriesHost_InvalidParent);
+                    throw new NotSupportedException(Properties.Resources.SeriesDefinition_SeriesHost_InvalidParent);
                 }
 
                 if (null != _seriesHost)
@@ -589,7 +589,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             if (globalIndex.HasValue)
             {
                 // TODO: Figure out what's wrong here
-                //AutomaticTitle = string.Format(CultureInfo.CurrentCulture, WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Series_OnGlobalSeriesIndexPropertyChanged_UntitledSeriesFormatString, globalIndex + 1);
+                //AutomaticTitle = string.Format(CultureInfo.CurrentCulture, WinRTXamlToolkit.Controls.DataVisualization.Properties.Resources.Series_OnGlobalSeriesIndexPropertyChanged_UntitledSeriesFormatString, globalIndex + 1);
             }
         }
 

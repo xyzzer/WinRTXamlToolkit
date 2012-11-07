@@ -165,7 +165,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (!CustomTitleInUse)// && (null == GetBindingExpression(TitleProperty)))
             {
-                Title = newValue.HasValue ? string.Format(CultureInfo.CurrentCulture, WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Series_OnGlobalSeriesIndexPropertyChanged_UntitledSeriesFormatString, newValue.Value + 1) : null;
+                Title = newValue.HasValue ? string.Format(CultureInfo.CurrentCulture, Properties.Resources.Series_OnGlobalSeriesIndexPropertyChanged_UntitledSeriesFormatString, newValue.Value + 1) : null;
                 // Setting Title will set CustomTitleInUse; reset it now
                 CustomTitleInUse = false;
             }

@@ -1,7 +1,16 @@
 ﻿namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Transition in which the new page fades in on top of the old page.
+    /// </summary>
     public class DissolveTransition : PageTransition
     {
+        /// <summary>
+        /// Gets the page transition mode.
+        /// </summary>
+        /// <value>
+        /// The page transition mode.
+        /// </value>
         protected override PageTransitionMode Mode
         {
             get
@@ -10,6 +19,9 @@
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DissolveTransition" /> class.
+        /// </summary>
         public DissolveTransition()
         {
             this.ForwardOutAnimation = null;

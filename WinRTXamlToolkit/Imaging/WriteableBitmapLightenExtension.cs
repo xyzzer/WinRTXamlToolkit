@@ -2,8 +2,17 @@
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// WriteableBitmap extensions to make the image brighter.
+    /// </summary>
     public static class WriteableBitmapLightenExtension
     {
+        /// <summary>
+        /// Lightens the specified bitmap.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="amount">The 0..1 range amount to lighten by where 0 does not affect the bitmap and 1 makes the bitmap completely white.</param>
+        /// <returns></returns>
         public static WriteableBitmap Lighten(this WriteableBitmap target, double amount)
         {
             var pixels = target.PixelBuffer.GetPixels();

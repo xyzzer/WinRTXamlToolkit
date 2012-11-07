@@ -1,13 +1,21 @@
 using System;
-using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Transition in which the old page is pushed off the screen by the new page moving into the screen
+    /// </summary>
     public class PushTransition : PageTransition
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
 
+        /// <summary>
+        /// Gets the page transition mode.
+        /// </summary>
+        /// <value>
+        /// The page transition mode.
+        /// </value>
         protected override PageTransitionMode Mode
         {
             get

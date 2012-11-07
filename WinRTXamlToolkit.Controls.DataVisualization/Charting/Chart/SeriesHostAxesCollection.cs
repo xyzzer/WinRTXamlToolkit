@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using WinRTXamlToolkit.Controls.DataVisualization.Properties;
 
 namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 {
@@ -137,11 +138,11 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
             if (SeriesHost.IsUsedByASeries(axis))
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.SeriesHostAxesCollection_RemoveItem_AxisCannotBeRemovedFromASeriesHostWhenOneOrMoreSeriesAreListeningToIt);
+                throw new InvalidOperationException(Resources.SeriesHostAxesCollection_RemoveItem_AxisCannotBeRemovedFromASeriesHostWhenOneOrMoreSeriesAreListeningToIt);
             }
             else if (PersistentAxes.Contains(axis))
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.SeriesHostAxesCollection_InvalidAttemptToRemovePermanentAxisFromSeriesHost);
+                throw new InvalidOperationException(Resources.SeriesHostAxesCollection_InvalidAttemptToRemovePermanentAxisFromSeriesHost);
             }
             else
             {

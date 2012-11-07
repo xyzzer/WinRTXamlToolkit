@@ -2,8 +2,16 @@
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// WriteableBitmap extensions to remove the color from the image.
+    /// </summary>
     public static class WriteableBitmapGrayscaleExtension
     {
+        /// <summary>
+        /// Removes all color from the specified bitmap.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <returns></returns>
         public static WriteableBitmap Grayscale(this WriteableBitmap target)
         {
             var pixels = target.PixelBuffer.GetPixels();
@@ -36,6 +44,17 @@ namespace WinRTXamlToolkit.Imaging
             return target;
         }
 
+        /// <summary>
+        /// Removes color from the specified bitmap.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="amount">
+        /// The 0..1 range amount of color to remove
+        /// from the bitmap where
+        /// 0 does not affect the bitmap and
+        /// 1 makes the bitmap completely grayscale.
+        /// </param>
+        /// <returns></returns>
         public static WriteableBitmap Grayscale(this WriteableBitmap target, double amount)
         {
             var pixels = target.PixelBuffer.GetPixels();

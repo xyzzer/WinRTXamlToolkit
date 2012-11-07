@@ -20,6 +20,7 @@ mkdir lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 mkdir lib\netcore45\WinRTXamlToolkit\Themes
 
 @rem WinRTXamlToolkit.Controls.DataVisualization folders
+mkdir lib\netcore45\Properties
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
@@ -39,10 +40,10 @@ mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Themes
 copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\netcore45
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.* lib\netcore45
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45
-copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\netcore45
-copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
-@rem copy ..\WinRTXamlToolkit.Controls.DataVisualization\Resources.resx lib\netcore45\Controls\DataVisualization
-copy ..\WinRTXamlToolkit.Controls.DataVisualization\Resources.resx lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
+@rem copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\netcore45
+@rem copy ..\WinRTXamlToolkit.Sample\bin\Release\resources.pri lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
+copy ..\WinRTXamlToolkit.Controls.DataVisualization\Properties\Resources.resx lib\netcore45\Properties
+@rem copy ..\WinRTXamlToolkit.Controls.DataVisualization\Resources.resx lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
@@ -70,7 +71,7 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Legend
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
-copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml lib\netcore45\WinRTXamlToolkit.Debugging\Themes
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Themes
 @rem copy ..\src\SomePowershellScript.ps1 tools
 
 nuget pack WinRTXamlToolkit.nuspec

@@ -109,7 +109,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
 
                 string message = string.Format(
                     CultureInfo.InvariantCulture,
-                    WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.EdgePanel_OnEdgePropertyChanged,
+                    Properties.Resources.EdgePanel_OnEdgePropertyChanged,
                     value);
                  
                 throw new ArgumentException(message, "value");

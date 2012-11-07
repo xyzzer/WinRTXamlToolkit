@@ -310,7 +310,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         public Collection<SeriesDefinition> SeriesDefinitions
         {
             get { return _seriesDefinitions; }
-            set { throw new NotSupportedException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DefinitionSeries_SeriesDefinitions_SetterNotSupported); }
+            set { throw new NotSupportedException(Properties.Resources.DefinitionSeries_SeriesDefinitions_SetterNotSupported); }
         }
 
         /// <summary>
@@ -1008,11 +1008,11 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 if (null == definition.DependentValueBinding)
                 {
-                    throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DefinitionSeries_EnsureAxes_MissingDependentValueBinding);
+                    throw new InvalidOperationException(Properties.Resources.DefinitionSeries_EnsureAxes_MissingDependentValueBinding);
                 }
                 if (null == definition.IndependentValueBinding)
                 {
-                    throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DefinitionSeries_EnsureAxes_MissingIndependentValueBinding);
+                    throw new InvalidOperationException(Properties.Resources.DefinitionSeries_EnsureAxes_MissingIndependentValueBinding);
                 }
             }
             if ((null != SeriesHost) && DataItems.Any())

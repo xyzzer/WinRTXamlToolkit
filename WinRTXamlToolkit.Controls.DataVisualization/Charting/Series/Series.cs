@@ -53,7 +53,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (newValue != null && oldValue != null)
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.Series_SeriesHost_SeriesHostPropertyNotNull);
+                throw new InvalidOperationException(Properties.Resources.Series_SeriesHost_SeriesHostPropertyNotNull);
             }
         }
         #endregion public ISeriesHost SeriesHost

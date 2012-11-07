@@ -112,7 +112,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             }
             else
             {
-                throw new InvalidOperationException(WinRTXamlToolkit.Controls.DataVisualization.Charting.Resources.DisplayAxis_GetLength_CannotDetermineTheLengthOfAnAxisWithAnOrientationOfNone);
+                throw new InvalidOperationException(Properties.Resources.DisplayAxis_GetLength_CannotDetermineTheLengthOfAnAxisWithAnOrientationOfNone);
             }
         }
 

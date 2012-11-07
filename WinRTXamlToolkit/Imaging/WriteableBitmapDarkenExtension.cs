@@ -2,8 +2,17 @@
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// WriteableBitmap extensions to make the image darker.
+    /// </summary>
     public static class WriteableBitmapDarkenExtension
     {
+        /// <summary>
+        /// Darkens the specified bitmap.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="amount">The 0..1 range amount to darken by where 0 does not affect the bitmap and 1 makes the bitmap completely black.</param>
+        /// <returns></returns>
         public static WriteableBitmap Darken(this WriteableBitmap target, double amount)
         {
             var pixels = target.PixelBuffer.GetPixels();
