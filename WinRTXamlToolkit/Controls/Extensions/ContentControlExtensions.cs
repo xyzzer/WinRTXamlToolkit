@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extensions/attached properties for a ContentControl
+    /// </summary>
     public static class ContentControlExtensions
     {
         #region FadeTransitioningContentTemplate

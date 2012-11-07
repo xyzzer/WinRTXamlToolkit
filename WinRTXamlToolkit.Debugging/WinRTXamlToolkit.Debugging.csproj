@@ -106,6 +106,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\BindingDebugConverter.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DebugConsole.cs" />
     <Compile Include="DebugConsoleOverlay.cs" />

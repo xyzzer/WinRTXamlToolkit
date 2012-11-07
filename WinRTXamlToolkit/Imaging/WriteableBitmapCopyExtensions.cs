@@ -4,8 +4,16 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
 {
-    public static class WriteableBitmapExtensions
+    /// <summary>
+    /// Extension methods for WriteableBitmap to copy pixels from a source bitmap.
+    /// </summary>
+    public static class WriteableBitmapCopyExtensions
     {
+        /// <summary>
+        /// Copies the specified source bitmap into a new bitmap.
+        /// </summary>
+        /// <param name="source">The source bitmap.</param>
+        /// <returns></returns>
         public static WriteableBitmap Copy(this WriteableBitmap source)
         {
             var copiedBytes =

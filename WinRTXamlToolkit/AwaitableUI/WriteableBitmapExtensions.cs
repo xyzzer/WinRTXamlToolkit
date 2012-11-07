@@ -3,8 +3,17 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for awaiting WriteableBitmap events.
+    /// </summary>
     public static class WriteableBitmapExtensions
     {
+        /// <summary>
+        /// Waits for the given WriteableBitmap to be loaded (non-zero size).
+        /// </summary>
+        /// <param name="wb">The WriteableBitmap to wait for.</param>
+        /// <param name="timeoutInMs">The timeout in ms after which the wait will be cancelled. Use 0 to wait without a timeout.</param>
+        /// <returns></returns>
         public async static Task WaitForLoaded(this WriteableBitmap wb, int timeoutInMs = 0)
         {
             int totalWait = 0;

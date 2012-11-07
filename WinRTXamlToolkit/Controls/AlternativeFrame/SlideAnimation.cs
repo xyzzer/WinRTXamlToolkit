@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// The transition where the new page slides on top of the old page.
+    /// </summary>
     public class SlideAnimation : PageTransitionAnimation
     {
         #region Direction

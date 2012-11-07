@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Async
 {
-    // Stephen Toub's version
+    /// <summary>
+    /// Notifies one or more waiting awaiters that an event has occurred
+    /// </summary>
     public class AsyncAutoResetEvent
     {
         private readonly static Task CompletedTask = Task.FromResult(true);

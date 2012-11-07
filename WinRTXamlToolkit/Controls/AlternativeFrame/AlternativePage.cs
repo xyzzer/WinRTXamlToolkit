@@ -4,6 +4,10 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Alternative to the standard Page control, with a similar API,
+    /// for use with the AlternativeFrame control.
+    /// </summary>
     public class AlternativePage : UserControl
     {
         #region Frame

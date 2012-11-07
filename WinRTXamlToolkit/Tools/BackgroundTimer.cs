@@ -4,15 +4,40 @@ using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Tools
 {
+    /// <summary>
+    /// A timer that raises the Tick events on a background thread,
+    /// similar to ThreadPoolTimer, but with API compatible with
+    /// DispatcherTimer.
+    /// </summary>
+    /// <remarks>
+    /// It was written in response to this SO question: Controlled non UI timer in metro app (.NET)
+    /// (http://stackoverflow.com/questions/10493253/controlled-non-ui-timer-in-metro-app-net).
+    /// The purpose was to have ticks on a background thread and have
+    /// the same API as the DispatcherTimer. It also has an option to self adjust a bit
+    /// to have an average frequency closer to what you would expect given the configured Interval.
+    /// That said I was not aware of the ThreadPoolTimer,
+    /// so it is possible it makes more sense to use that one.
+    /// It is a bit strange that the two timers we get have different APIs though,
+    /// so perhaps that is one case where using the BackgroundTimer makes a little bit of sense.
+    /// </remarks>
     public class BackgroundTimer
     {
         private readonly AutoResetEvent _stopRequestEvent;
         private readonly AutoResetEvent _stoppedEvent;
 
+        /// <summary>
+        /// Occurs when the timer interval has elapsed.
+        /// </summary>
         public event EventHandler<object> Tick;
 
         #region Interval
         private TimeSpan _interval;
+        /// <summary>
+        /// Gets or sets the period of time between timer ticks.
+        /// </summary>
+        /// <value>
+        /// The interval.
+        /// </value>
         public TimeSpan Interval
         {
             get
@@ -37,6 +62,14 @@ namespace WinRTXamlToolkit.Tools
 
         #region AdjustDelays
         private bool _adjustDelays = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether delays between Tick events should be adjusted to
+        /// have Tick intervals averaging the given Interval property
+        /// instead of being minimum of Interval property value.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if delays should be adjusted; otherwise, <c>false</c>.
+        /// </value>
         public bool AdjustDelays
         {
             get
@@ -61,6 +94,12 @@ namespace WinRTXamlToolkit.Tools
 
         #region IsEnabled
         private bool _isEnabled;
+        /// <summary>
+        /// Gets or sets a value that indicates whether the timer is running.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool IsEnabled
         {
             get
@@ -80,12 +119,18 @@ namespace WinRTXamlToolkit.Tools
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BackgroundTimer" /> class.
+        /// </summary>
         public BackgroundTimer()
         {
             _stopRequestEvent = new AutoResetEvent(false);
             _stoppedEvent = new AutoResetEvent(false);
         }
 
+        /// <summary>
+        /// Starts the BackgroundTimer.
+        /// </summary>
         public void Start()
         {
             if (_isEnabled)
@@ -102,6 +147,9 @@ namespace WinRTXamlToolkit.Tools
                 Task.Run((Action)Run);
         }
 
+        /// <summary>
+        /// Stops the BackgroundTimer.
+        /// </summary>
         public void Stop()
         {
             if (!_isEnabled)

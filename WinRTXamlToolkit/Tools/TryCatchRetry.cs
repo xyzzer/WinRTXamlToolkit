@@ -4,8 +4,19 @@ using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Tools
 {
+    /// <summary>
+    /// Helper methods for running a specified action or task multiple times ignoring exceptions,
+    /// until a retry count is reached.
+    /// </summary>
     public static class TryCatchRetry
     {
+        /// <summary>
+        /// Runs the specified action until it succeeds or max number of retries is reached.
+        /// </summary>
+        /// <typeparam name="T">Type of expected exception.</typeparam>
+        /// <param name="action">The action.</param>
+        /// <param name="retries">The number of retries.</param>
+        /// <param name="throwOnFail">if set to <c>true</c> - throws upon reaching the given max number of retries.</param>
         public static void Run<T>(
             Action action,
             int retries = 1,
@@ -45,6 +56,16 @@ namespace WinRTXamlToolkit.Tools
             }
         }
 
+        /// <summary>
+        /// Runs the specified task until it succeeds or max number of retries is reached,
+        /// with a delay in between retries.
+        /// </summary>
+        /// <typeparam name="T">Type of expected exception.</typeparam>
+        /// <param name="task">The task.</param>
+        /// <param name="delay">The delay.</param>
+        /// <param name="retries">The number of retries.</param>
+        /// <param name="throwOnFail">if set to <c>true</c> - throws upon reaching the given max number of retries.</param>
+        /// <returns></returns>
         public static async Task RunWithDelayAsync<T>(
             Task task,
             TimeSpan delay,
@@ -87,6 +108,17 @@ namespace WinRTXamlToolkit.Tools
             }
         }
 
+        /// <summary>
+        /// Runs the specified task until it succeeds or max number of retries is reached,
+        /// with a delay in between retries and specific return type.
+        /// </summary>
+        /// <typeparam name="TException">Type of expected exception.</typeparam>
+        /// <typeparam name="TResult">Returned result type.</typeparam>
+        /// <param name="task">The task.</param>
+        /// <param name="delay">The delay.</param>
+        /// <param name="retries">The number of retries.</param>
+        /// <param name="throwOnFail">if set to <c>true</c> - throws upon reaching the given max number of retries.</param>
+        /// <returns></returns>
         public static async Task<TResult> RunWithDelayAsync<TException, TResult>(
             Task<TResult> task,
             TimeSpan delay,

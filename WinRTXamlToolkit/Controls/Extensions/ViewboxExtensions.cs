@@ -4,8 +4,17 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extension methods for the Viewbox control.
+    /// </summary>
     public static class ViewboxExtensions
     {
+        /// <summary>
+        /// Gets the child horizontal scale factor.
+        /// </summary>
+        /// <param name="viewbox">The viewbox.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">Can't tell effective scale of a Viewbox child for a Viewbox with no child.</exception>
         public static double GetChildScaleX(this Viewbox viewbox)
         {
             if (viewbox.Child == null)
@@ -22,6 +31,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
             return viewbox.ActualWidth / fe.ActualWidth;
         }
 
+        /// <summary>
+        /// Gets the child vertical scale factor.
+        /// </summary>
+        /// <param name="viewbox">The viewbox.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">Can't tell effective scale of a Viewbox child for a Viewbox with no child.</exception>
         public static double GetChildScaleY(this Viewbox viewbox)
         {
             if (viewbox.Child == null)

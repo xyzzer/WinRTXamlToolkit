@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Async
 {
+    /// <summary>
+    /// Defines a lock that supports single writers and multiple readers.
+    /// </summary>
+    /// <see cref="http://blogs.msdn.com/b/pfxteam/archive/2012/02/12/building-async-coordination-primitives-part-7-asyncreaderwriterlock.aspx"/>
     public class AsyncReaderWriterLock
     {
         private readonly Task<Releaser> _readerReleaser;
@@ -15,12 +19,19 @@ namespace WinRTXamlToolkit.Async
         private int _readersWaiting;
         private int _status;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncReaderWriterLock" /> class.
+        /// </summary>
         public AsyncReaderWriterLock()
         {
             _readerReleaser = Task.FromResult(new Releaser(this, false));
             _writerReleaser = Task.FromResult(new Releaser(this, true));
         }
 
+        /// <summary>
+        /// ReaderLockAsync is used when a new reader wants in.
+        /// </summary>
+        /// <returns></returns>
         public Task<Releaser> ReaderLockAsync()
         {
             lock (_waitingWriters)
@@ -37,6 +48,10 @@ namespace WinRTXamlToolkit.Async
             }
         }
 
+        /// <summary>
+        /// WriterLockAsync is used when a new writer wants in.
+        /// </summary>
+        /// <returns></returns>
         public Task<Releaser> WriterLockAsync()
         {
             lock (_waitingWriters)
@@ -54,6 +69,9 @@ namespace WinRTXamlToolkit.Async
             }
         }
 
+        /// <summary>
+        /// Called when an active reader completes its work.
+        /// </summary>
         private void ReaderRelease()
         {
             TaskCompletionSource<Releaser> toWake = null;
@@ -72,6 +90,9 @@ namespace WinRTXamlToolkit.Async
                 toWake.SetResult(new Releaser(this, true));
         }
 
+        /// <summary>
+        /// Called when an active writer completes its work.
+        /// </summary>
         private void WriterRelease()
         {
             TaskCompletionSource<Releaser> toWake = null;
@@ -98,6 +119,9 @@ namespace WinRTXamlToolkit.Async
                 toWake.SetResult(new Releaser(this, toWakeIsWriter));
         }
 
+        /// <summary>
+        /// Disposable Releaser to make it easy to use AsyncReaderWriterLock in a scoped manner with a using block.
+        /// </summary>
         public struct Releaser : IDisposable
         {
             private readonly AsyncReaderWriterLock _toRelease;

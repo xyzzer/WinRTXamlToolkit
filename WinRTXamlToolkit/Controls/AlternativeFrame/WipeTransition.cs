@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// The transition where the new page gets revealed with a moving rectangular clip rectangle.
+    /// </summary>
     public class WipeTransition : PageTransition
     {
         private readonly Random _random = new Random();
@@ -146,6 +149,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WipeTransition" /> class.
+        /// </summary>
         public WipeTransition()
         {
             this.ForwardOutAnimation = null;

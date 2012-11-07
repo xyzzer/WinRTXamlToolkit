@@ -7,6 +7,15 @@ namespace WinRTXamlToolkit.Imaging
 {
     public static class WriteableBitmapCropExtensions
     {
+        /// <summary>
+        /// Crops the bitmap and returns a new bitmap from the specified rectangle of the source bitmap.
+        /// </summary>
+        /// <param name="source">The bitmap to crop.</param>
+        /// <param name="x1">x coordinate of the top left corner.</param>
+        /// <param name="y1">y coordinate ot the top left corner.</param>
+        /// <param name="x2">x coordinate of the bottom right corner.</param>
+        /// <param name="y2">y coordinate of the bottom right corner.</param>
+        /// <returns></returns>
         public static WriteableBitmap Crop(this WriteableBitmap source, int x1, int y1, int x2, int y2)
         {
             if (x1 >= x2 ||

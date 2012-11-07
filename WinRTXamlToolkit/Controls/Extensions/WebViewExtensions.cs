@@ -4,13 +4,26 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extension methods for WebView control.
+    /// </summary>
     public static class WebViewExtensions
     {
+        /// <summary>
+        /// Gets the title of the currently displayed page.
+        /// </summary>
+        /// <param name="webView">The web view.</param>
+        /// <returns></returns>
         public static string GetTitle(this WebView webView)
         {
             return webView.InvokeScript("eval", new[] {"document.title"});
         }
 
+        /// <summary>
+        /// Gets the address of the current page.
+        /// </summary>
+        /// <param name="webView">The web view.</param>
+        /// <returns></returns>
         public static string GetAddress(this WebView webView)
         {
             var address = webView.InvokeScript("eval", new[] { "document.location.href" });
@@ -23,12 +36,31 @@ namespace WinRTXamlToolkit.Controls.Extensions
             return address;
         }
 
+        /// <summary>
+        /// Gets the HTML head inner string of the current page.
+        /// </summary>
+        /// <param name="webView">The web view.</param>
+        /// <returns></returns>
         public static string GetHead(this WebView webView)
         {
             return webView.InvokeScript("eval", new[] {"document.getElementsByTagName('head')[0].innerHTML"});
         }
 
-        private static string GetTagAttributeBySpecificAttribute(string htmlFragment, string tagName, string testAttributeName, string testAttributeValue, string attributeToGet)
+        /// <summary>
+        /// Gets the tag attribute value for specific other attribute name and value.
+        /// </summary>
+        /// <param name="htmlFragment">The HTML fragment.</param>
+        /// <param name="tagName">Name of the tag.</param>
+        /// <param name="testAttributeName">Name of the test attribute.</param>
+        /// <param name="testAttributeValue">The test attribute value.</param>
+        /// <param name="attributeToGet">The attribute to get.</param>
+        /// <returns></returns>
+        private static string GetTagAttributeBySpecificAttribute(
+            string htmlFragment,
+            string tagName,
+            string testAttributeName,
+            string testAttributeValue,
+            string attributeToGet)
         {
             var regex = new Regex(
                 string.Format(
@@ -63,6 +95,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
             return null;
         }
 
+        /// <summary>
+        /// Gets the fav icon URI.
+        /// </summary>
+        /// <param name="webView">The web view.</param>
+        /// <returns></returns>
         public static Uri GetFavIconLink(this WebView webView)
         {
             var head = webView.GetHead().ToLower();

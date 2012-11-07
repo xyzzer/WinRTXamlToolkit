@@ -1,8 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml.Media.Animation;
+﻿using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Page transition animation used to fade the target page in or out.
+    /// </summary>
     public class FadeAnimation : PageTransitionAnimation
     {
         protected override Storyboard Animation
@@ -23,7 +25,7 @@ namespace WinRTXamlToolkit.Controls
         }
 
         /// <summary>
-        /// Gets or sets the Mode property. This dependency property 
+        /// Gets or sets the Mode property. This dependency property
         /// indicates whether this is an animation to slide in or out.
         /// </summary>
         public AnimationMode Mode

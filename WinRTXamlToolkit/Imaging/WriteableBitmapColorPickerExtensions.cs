@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// Extension methods for WriteableBitmap used for generating color picker bitmaps.
+    /// </summary>
     public static class WriteableBitmapColorPickerExtensions
     {
         #region RenderColorPickerHueLightness()
@@ -716,14 +719,14 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
     }
 
-    public enum ColorChannel
-    {
-        Red,
-        Green,
-        Blue,
-        Hue,
-        Saturation,
-        Value,
-        Lightness
-    }
+    //public enum ColorChannel
+    //{
+    //    Red,
+    //    Green,
+    //    Blue,
+    //    Hue,
+    //    Saturation,
+    //    Value,
+    //    Lightness
+    //}
 }
