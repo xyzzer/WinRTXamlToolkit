@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extension methods and attached properties for UIElement class.
+    /// </summary>
     public static class UIElementAnimationExtensions
     {
         #region AttachedFadeStoryboard

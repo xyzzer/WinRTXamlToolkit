@@ -16,6 +16,7 @@ mkdir content\controllers
 @rem WinRTXamlToolkit folders
 mkdir lib\netcore45\WinRTXamlToolkit\Controls
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 mkdir lib\netcore45\WinRTXamlToolkit\Themes
 
@@ -46,6 +47,7 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\Properties\Resources.resx li
 @rem copy ..\WinRTXamlToolkit.Controls.DataVisualization\Resources.resx lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
+copy ..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis

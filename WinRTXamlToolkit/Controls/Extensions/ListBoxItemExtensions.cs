@@ -6,12 +6,12 @@ using WinRTXamlToolkit.AwaitableUI;
 namespace WinRTXamlToolkit.Controls.Extensions
 {
     /// <summary>
-    /// Attached properties for use with a ListViewItem.
+    /// Attached properties for use with a ListBoxItem.
     /// </summary>
     /// <remarks>
-    /// Note that the IsEnabled property is to be used on an element inside of a ListView and not the ListViewItem itself.
+    /// Note that the IsEnabled property is to be used on an element inside of a ListBox and not the ListBoxItem itself.
     /// </remarks>
-    public static class ListViewItemExtensions
+    public static class ListBoxItemExtensions
     {
         #region IsEnabled
         /// <summary>
@@ -21,17 +21,17 @@ namespace WinRTXamlToolkit.Controls.Extensions
             DependencyProperty.RegisterAttached(
                 "IsEnabled",
                 typeof(bool),
-                typeof(ListViewItemExtensions),
+                typeof(ListBoxItemExtensions),
                 new PropertyMetadata(true, OnIsEnabledChanged));
 
         /// <summary>
         /// Gets the IsEnabled property. This dependency property 
-        /// indicates whether the first ListViewItem found in ancestors is enabled.
+        /// indicates whether the first ListBoxItem found in ancestors is enabled.
         /// </summary>
         /// <remarks>
-        /// Note that the IsEnabled property is to be used on an element inside of a ListView and not the ListViewItem itself.
-        /// Setting this property will update the IsEnabled property of the ListViewItem making it easier to
-        /// disable selection of ListViewItems in the databound collection scenarios.
+        /// Note that the IsEnabled property is to be used on an element inside of a ListBox and not the ListBoxItem itself.
+        /// Setting this property will update the IsEnabled property of the ListBoxItem making it easier to
+        /// disable selection of ListBoxItems in the databound collection scenarios.
         /// </remarks>
         public static bool GetIsEnabled(DependencyObject d)
         {
@@ -40,12 +40,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
         /// <summary>
         /// Sets the IsEnabled property. This dependency property 
-        /// indicates whether the first ListViewItem found in ancestors is enabled.
+        /// indicates whether the first ListBoxItem found in ancestors is enabled.
         /// </summary>
         /// <remarks>
-        /// Note that the IsEnabled property is to be used on an element inside of a ListView and not the ListViewItem itself.
-        /// Setting this property will update the IsEnabled property of the ListViewItem making it easier to
-        /// disable selection of ListViewItems in the databound collection scenarios.
+        /// Note that the IsEnabled property is to be used on an element inside of a ListBox and not the ListBoxItem itself.
+        /// Setting this property will update the IsEnabled property of the ListBoxItem making it easier to
+        /// disable selection of ListBoxItems in the databound collection scenarios.
         /// </remarks>
         public static void SetIsEnabled(DependencyObject d, bool value)
         {
@@ -72,14 +72,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
             if (!d.IsInVisualTree())
                 await ((FrameworkElement)d).WaitForLoadedAsync();
 
-            var listViewItem =
-                d as ListViewItem ??
-                d.GetAncestors().OfType<ListViewItem>().FirstOrDefault();
-            if (listViewItem == null)
+            var listBoxItem =
+                d as ListBoxItem ??
+                d.GetAncestors().OfType<ListBoxItem>().FirstOrDefault();
+            if (listBoxItem == null)
                 return;
-            //throw new InvalidOperationException("ListViewItemExtensions.IsEnabled can only be set on a ListViewItem or its descendant in the visual tree");
+            //throw new InvalidOperationException("ListBoxItemExtensions.IsEnabled can only be set on a ListBoxItem or its descendant in the visual tree");
 
-            listViewItem.IsEnabled = newIsEnabled;
+            listBoxItem.IsEnabled = newIsEnabled;
         }
         #endregion
 
@@ -91,17 +91,17 @@ namespace WinRTXamlToolkit.Controls.Extensions
             DependencyProperty.RegisterAttached(
                 "IsSelected",
                 typeof(bool),
-                typeof(ListViewItemExtensions),
+                typeof(ListBoxItemExtensions),
                 new PropertyMetadata(false, OnIsSelectedChanged));
 
         /// <summary>
         /// Gets the IsSelected property. This dependency property 
-        /// indicates whether the first ListViewItem found in ancestors is selected.
+        /// indicates whether the first ListBoxItem found in ancestors is selected.
         /// </summary>
         /// <remarks>
-        /// Note that the IsSelected property is to be used on an element inside of a ListView and not the ListViewItem itself.
-        /// Setting this property will update the IsSelected property of the ListViewItem making it easier to
-        /// disable selection of ListViewItems in the databound collection scenarios.
+        /// Note that the IsSelected property is to be used on an element inside of a ListBox and not the ListBoxItem itself.
+        /// Setting this property will update the IsSelected property of the ListBoxItem making it easier to
+        /// disable selection of ListBoxItems in the databound collection scenarios.
         /// </remarks>
         public static bool GetIsSelected(DependencyObject d)
         {
@@ -110,12 +110,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
         /// <summary>
         /// Sets the IsSelected property. This dependency property 
-        /// indicates whether the first ListViewItem found in ancestors is selected.
+        /// indicates whether the first ListBoxItem found in ancestors is selected.
         /// </summary>
         /// <remarks>
-        /// Note that the IsSelected property is to be used on an element inside of a ListView and not the ListViewItem itself.
-        /// Setting this property will update the IsSelected property of the ListViewItem making it easier to
-        /// disable selection of ListViewItems in the databound collection scenarios.
+        /// Note that the IsSelected property is to be used on an element inside of a ListBox and not the ListBoxItem itself.
+        /// Setting this property will update the IsSelected property of the ListBoxItem making it easier to
+        /// disable selection of ListBoxItems in the databound collection scenarios.
         /// </remarks>
         public static void SetIsSelected(DependencyObject d, bool value)
         {
@@ -142,13 +142,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
             if (!d.IsInVisualTree())
                 await ((FrameworkElement)d).WaitForLoadedAsync();
 
-            var listViewItem =
-                d as ListViewItem ??
-                d.GetAncestors().OfType<ListViewItem>().FirstOrDefault();
-            if (listViewItem == null)
+            var ListBoxItem =
+                d as ListBoxItem ??
+                d.GetAncestors().OfType<ListBoxItem>().FirstOrDefault();
+            if (ListBoxItem == null)
                 return;
-            //throw new InvalidOperationException("ListViewItemExtensions.IsSelected can only be set on a ListViewItem or its descendant in the visual tree");
-            listViewItem.IsSelected = newIsSelected;
+            //throw new InvalidOperationException("ListBoxItemExtensions.IsSelected can only be set on a ListBoxItem or its descendant in the visual tree");
+            ListBoxItem.IsSelected = newIsSelected;
         }
         #endregion
     }

@@ -6,11 +6,22 @@ using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A Path that represents a ring slice with a given
+    /// (outer) Radius,
+    /// InnerRadius,
+    /// StartAngle,
+    /// EndAngle and
+    /// Center.
+    /// </summary>
     public class RingSlice : Path
     {
         private bool _isUpdating;
 
         #region StartAngle
+        /// <summary>
+        /// The start angle property.
+        /// </summary>
         public static readonly DependencyProperty StartAngleProperty =
             DependencyProperty.Register(
                 "StartAngle",
@@ -20,6 +31,12 @@ namespace WinRTXamlToolkit.Controls
                     0d,
                     OnStartAngleChanged));
 
+        /// <summary>
+        /// Gets or sets the start angle.
+        /// </summary>
+        /// <value>
+        /// The start angle.
+        /// </value>
         public double StartAngle
         {
             get { return (double)GetValue(StartAngleProperty); }
@@ -41,6 +58,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region EndAngle
+        /// <summary>
+        /// The end angle property.
+        /// </summary>
         public static readonly DependencyProperty EndAngleProperty =
             DependencyProperty.Register(
                 "EndAngle",
@@ -50,6 +70,12 @@ namespace WinRTXamlToolkit.Controls
                     0d,
                     OnEndAngleChanged));
 
+        /// <summary>
+        /// Gets or sets the end angle.
+        /// </summary>
+        /// <value>
+        /// The end angle.
+        /// </value>
         public double EndAngle
         {
             get { return (double)GetValue(EndAngleProperty); }
@@ -71,6 +97,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Radius
+        /// <summary>
+        /// The radius property
+        /// </summary>
         public static readonly DependencyProperty RadiusProperty =
             DependencyProperty.Register(
                 "Radius",
@@ -80,6 +109,12 @@ namespace WinRTXamlToolkit.Controls
                     0d,
                     OnRadiusChanged));
 
+        /// <summary>
+        /// Gets or sets the outer radius.
+        /// </summary>
+        /// <value>
+        /// The outer radius.
+        /// </value>
         public double Radius
         {
             get { return (double)GetValue(RadiusProperty); }
@@ -102,6 +137,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region InnerRadius
+        /// <summary>
+        /// The inner radius property
+        /// </summary>
         public static readonly DependencyProperty InnerRadiusProperty =
             DependencyProperty.Register(
                 "InnerRadius",
@@ -111,6 +149,12 @@ namespace WinRTXamlToolkit.Controls
                     0d,
                     OnInnerRadiusChanged));
 
+        /// <summary>
+        /// Gets or sets the inner radius.
+        /// </summary>
+        /// <value>
+        /// The inner radius.
+        /// </value>
         public double InnerRadius
         {
             get { return (double)GetValue(InnerRadiusProperty); }
@@ -191,6 +235,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RingSlice" /> class.
+        /// </summary>
         public RingSlice()
         {
             this.SizeChanged += OnSizeChanged;

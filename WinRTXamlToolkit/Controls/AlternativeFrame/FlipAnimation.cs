@@ -7,6 +7,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Animation used in FlipTransition for a 3D flip of a page element.
+    /// </summary>
     public class FlipAnimation : PageTransitionAnimation
     {
         #region Direction

@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for awaiting MediaElement state changes.
+    /// </summary>
     public static class MediaElementExtensions
     {
         /// <summary>

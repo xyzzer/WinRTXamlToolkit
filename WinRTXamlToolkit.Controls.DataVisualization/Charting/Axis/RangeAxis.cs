@@ -309,7 +309,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             // Repeat this after layout pass.
             if (this.ActualLength == 0.0)
             {
+#pragma warning disable 4014
                 this.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(action));
+#pragma warning restore 4014
             }
 
             action();
@@ -509,7 +511,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             // Repeat this after layout pass.
             if (this.ActualLength == 0)
             {
+#pragma warning disable 4014
                 this.Dispatcher.RunAsync(CoreDispatcherPriority.High, new DispatchedHandler(action));
+#pragma warning restore 4014
             }
             else
             {

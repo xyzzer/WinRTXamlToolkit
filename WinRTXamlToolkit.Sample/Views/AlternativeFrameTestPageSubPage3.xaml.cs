@@ -17,12 +17,14 @@ namespace WinRTXamlToolkit.Sample.Views
         private int _secondsOfLife;
         private bool _isPreloaded;
 
+#pragma warning disable 1998
         protected override async Task Preload(object parameter)
         {
             _secondsOfLife = 0;
             _isPreloaded = true;
             DoWhilePreloaded();
         }
+#pragma warning restore 1998
 
         private async void DoWhilePreloaded()
         {
@@ -34,10 +36,12 @@ namespace WinRTXamlToolkit.Sample.Views
             }
         }
 
+#pragma warning disable 1998
         protected override async Task UnloadPreloaded()
         {
             _isPreloaded = false;
         }
+#pragma warning restore 1998
 
         protected override async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
         {

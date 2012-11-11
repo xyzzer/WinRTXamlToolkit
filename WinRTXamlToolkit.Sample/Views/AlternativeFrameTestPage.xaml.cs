@@ -18,10 +18,10 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private async Task subFrame_Navigated(object sender, Controls.AlternativeNavigationEventArgs args)
         {
-            UpdateStacks();
+            await UpdateStacks();
         }
 
-        private async void UpdateStacks()
+        private async Task UpdateStacks()
         {
             // Wait for the transition to complete to keep it smooth
             await Task.Delay(400);
@@ -34,7 +34,7 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             await this.WaitForLoadedAsync();
             subFrame.Visibility = Visibility.Visible;
-            subFrame.Navigate(typeof(AlternativeFrameTestPageSubPage1), (int)1);
+            await subFrame.Navigate(typeof(AlternativeFrameTestPageSubPage1), (int)1);
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
@@ -55,7 +55,9 @@ namespace WinRTXamlToolkit.Sample.Views
             }
             catch(Exception ex)
             {
+#pragma warning disable 4014
                 new MessageDialog(ex.ToString(), "Exception").ShowAsync();
+#pragma warning restore 4014
             }
         }
     }

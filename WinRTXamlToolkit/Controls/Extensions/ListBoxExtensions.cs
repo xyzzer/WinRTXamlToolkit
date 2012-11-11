@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extension methods and attached properties for the ListBox class.
+    /// </summary>
     public static class ListBoxExtensions
     {
         #region BindableSelection

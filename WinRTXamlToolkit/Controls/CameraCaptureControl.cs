@@ -689,7 +689,7 @@ namespace WinRTXamlToolkit.Controls
                 this.PhotoCaptureCountdownSeconds > 0)
             {
                 _countdownControl.FadeInCustom();
-                await _countdownControl.StartCountdown(this.PhotoCaptureCountdownSeconds);
+                await _countdownControl.StartCountdownAsync(this.PhotoCaptureCountdownSeconds);
                 _countdownControl.FadeOutCustom();
             }
 

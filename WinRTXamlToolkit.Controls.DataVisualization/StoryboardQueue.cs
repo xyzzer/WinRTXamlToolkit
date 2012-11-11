@@ -57,7 +57,9 @@ namespace Controls.DataVisualization.Toolkit
             if (_storyBoards.Count > 0)
             {
                 Storyboard storyboard = _storyBoards.Peek();
+#pragma warning disable 4014
                 storyboard.Dispatcher.RunAsync(CoreDispatcherPriority.High, storyboard.Begin);
+#pragma warning restore 4014
                 //storyboard.Begin();
             }
         }

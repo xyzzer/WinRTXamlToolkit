@@ -22,7 +22,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
         protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
         {
-            this.Frame.Preload(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
+            await this.Frame.Preload(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
         }
 
         private void OnNavigateButtonClick(object sender, RoutedEventArgs e)

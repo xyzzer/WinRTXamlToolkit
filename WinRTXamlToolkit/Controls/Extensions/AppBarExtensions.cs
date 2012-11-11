@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extensions for the AppBar class
+    /// </summary>
     public static class AppBarExtensions
     {
         #region HideWhenSnapped
@@ -108,6 +111,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Handles hiding an AppBar when the app goes to a snapped view.
+    /// </summary>
     public class HideWhenSnappedHandler
     {
         private AppBar _appBar;

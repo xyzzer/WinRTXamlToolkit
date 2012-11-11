@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Abstract base class for page transitions used with AlternativeFrame control.
+    /// </summary>
     public abstract class PageTransition : DependencyObject
     {
         /// <summary>

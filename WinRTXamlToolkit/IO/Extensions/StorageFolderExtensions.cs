@@ -7,6 +7,9 @@ using Windows.Storage;
 
 namespace WinRTXamlToolkit.IO.Extensions
 {
+    /// <summary>
+    /// Extension methods for the StorageFolder class.
+    /// </summary>
     public static class StorageFolderExtensions
     {
         #region ContainsFileAsync()

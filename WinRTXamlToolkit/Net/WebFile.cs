@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using WinRTXamlToolkit.IO.Extensions;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
-using WinRTXamlToolkit.IO;
 
 namespace WinRTXamlToolkit.Net
 {
+    /// <summary>
+    /// Contains a helper method for downloading a file from a web uri.
+    /// </summary>
     public static class WebFile
     {
         /// <summary>

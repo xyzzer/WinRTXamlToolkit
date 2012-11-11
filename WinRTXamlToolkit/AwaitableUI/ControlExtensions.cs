@@ -7,8 +7,12 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for Control class.
+    /// </summary>
     public static class ControlExtensions
     {
+        #region GoToVisualStateAsync()
         /// <summary>
         /// Goes to specified visual state, waiting for the transition to complete.
         /// </summary>
@@ -35,7 +39,7 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// </remarks>
         public static async Task GoToVisualStateAsync(
             this Control control,
-            FrameworkElement visualStatesHost, 
+            FrameworkElement visualStatesHost,
             string stateGroupName,
             string stateName)
         {
@@ -65,8 +69,10 @@ namespace WinRTXamlToolkit.AwaitableUI
             }
 
             await tcs.Task;
-        }
+        } 
+        #endregion
 
+        #region GetStoryboardForVisualState()
         /// <summary>
         /// Gets the state transition storyboard for the specified state.
         /// </summary>
@@ -123,6 +129,7 @@ namespace WinRTXamlToolkit.AwaitableUI
             }
 
             return storyboard;
-        }
+        } 
+        #endregion
     }
 }

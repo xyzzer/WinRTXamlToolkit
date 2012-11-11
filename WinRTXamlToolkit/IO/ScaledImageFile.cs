@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage;
 
 namespace WinRTXamlToolkit.IO
 {
+    /// <summary>
+    /// Contains a helper method for getting a file with the applicable scale qualifier.
+    /// </summary>
     public static class ScaledImageFile
     {
         /// <summary>
@@ -18,7 +18,7 @@ namespace WinRTXamlToolkit.IO
         public static async Task<StorageFile> Get(string relativePath)
         {
             string resourceKey = string.Format("Files/{0}", relativePath);
-            var mainResourceMap = ResourceManager.Current.MainResourceMap ;
+            var mainResourceMap = ResourceManager.Current.MainResourceMap;
 
             if (!mainResourceMap.ContainsKey(resourceKey))
                 return null;

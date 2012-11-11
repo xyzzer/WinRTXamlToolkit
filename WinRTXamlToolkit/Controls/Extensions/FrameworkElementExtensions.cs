@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extensions for the FrameworkElement class.
+    /// </summary>
     public static class FrameworkElementExtensions
     {
         #region ClipToBounds

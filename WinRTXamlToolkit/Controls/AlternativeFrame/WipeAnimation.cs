@@ -7,6 +7,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Animation used in WipeTransition that reveals the page using a clip rectangle animation.
+    /// </summary>
     public class WipeAnimation : PageTransitionAnimation
     {
         #region Direction
@@ -35,8 +38,6 @@ namespace WinRTXamlToolkit.Controls
         {
             get
             {
-                //return _sb;
-
                 // NOTE: There seem to be problems with WinRT when reusing same Storyboard for multiple elements, so we need to always get a new storyboard.
                 var sb = new Storyboard();
                 var da = new DoubleAnimation();

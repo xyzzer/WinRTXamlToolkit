@@ -73,7 +73,9 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             if (this.IsInVisualTree())
             {
-                new MessageDialog(e.Message, "Error").ShowAsync();
+#pragma warning disable 4014
+                new MessageDialog(e != null ? e.Message : "Camera Capture Failed", "Error").ShowAsync();
+#pragma warning restore 4014
             }
         }
     }

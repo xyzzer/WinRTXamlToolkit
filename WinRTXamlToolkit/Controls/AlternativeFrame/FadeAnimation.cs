@@ -7,6 +7,12 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     public class FadeAnimation : PageTransitionAnimation
     {
+        /// <summary>
+        /// Gets the generated animation.
+        /// </summary>
+        /// <value>
+        /// The animation.
+        /// </value>
         protected override Storyboard Animation
         {
             get
@@ -21,22 +27,6 @@ namespace WinRTXamlToolkit.Controls
                 sb.Children.Add(da);
 
                 return sb;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Mode property. This dependency property
-        /// indicates whether this is an animation to slide in or out.
-        /// </summary>
-        public AnimationMode Mode
-        {
-            get
-            {
-                return (AnimationMode)GetValue(ModeProperty);
-            }
-            set
-            {
-                SetValue(ModeProperty, value);
             }
         }
     }

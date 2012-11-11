@@ -4,21 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinRTXamlToolkit.Sample.Views"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
-    xmlns:controlsonv="using:WinRTXamlToolkit.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dconv="using:WinRTXamlToolkit.Debugging.Converters"
     mc:Ignorable="d">
     <controls:AlternativePage.Resources>
-        <controlsonv:BindingDebugConverter
+        <dconv:BindingDebugConverter
             x:Key="BindingDebugConverterBreaksAlways"
             BreaksAlways="True"
             Traces="False" />
-        <controlsonv:BindingDebugConverter
+        <dconv:BindingDebugConverter
             x:Key="BindingDebugConverterBreaks" />
-        <controlsonv:BindingDebugConverter
+        <dconv:BindingDebugConverter
             x:Key="BindingDebugConverterTrace"
             Breaks="False" />
-        <controlsonv:BindingDebugConverter
+        <dconv:BindingDebugConverter
             x:Key="BindingDebugConverterSavesTrace"
             Breaks="False"
             SavesTrace="True" />
@@ -47,7 +47,7 @@
             Grid.Column="1"
             Grid.ColumnSpan="3"
             Style="{StaticResource PageHeaderTextStyle}" />
-        
+
         <StackPanel
             Grid.Row="1"
             Grid.Column="1"
@@ -57,10 +57,10 @@
                 <ToggleButton
                     x:Name="BreakButton"
                     Content="Break if debugged"
-                    IsChecked="{Binding IsChecked, ElementName=BreakButton2, Mode=TwoWay, Converter={StaticResource BindingDebugConverterBreaks}}"/>
+                    IsChecked="{Binding IsChecked, ElementName=BreakButton2, Mode=TwoWay, Converter={StaticResource BindingDebugConverterBreaks}}" />
                 <ToggleButton
                     x:Name="BreakButton2"
-                    Content="Break if debugged"/>
+                    Content="Break if debugged" />
             </StackPanel>
 
             <StackPanel

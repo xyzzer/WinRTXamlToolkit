@@ -157,6 +157,8 @@
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
+    <Compile Include="Controls\DelayedLoadControl\DelayedLoadControl.cs" />
+    <Compile Include="Controls\Extensions\ListBoxItemExtensions.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
@@ -181,9 +183,6 @@
     </Compile>
     <Compile Include="Controls\CustomAppBar.cs" />
     <Compile Include="Controls\CustomGridSplitter.cs" />
-    <Compile Include="Controls\DelayedLoadControl.xaml.cs">
-      <DependentUpon>DelayedLoadControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Extensions\GridViewItemExtensions.cs" />
     <Compile Include="Controls\ImageButton.cs" />
     <Compile Include="Controls\Extensions\ImageExtensions.cs" />
@@ -198,9 +197,6 @@
     <Compile Include="Controls\PropertyChangeEventSource.cs" />
     <Compile Include="Controls\Extensions\RichTextBlockExtensions.cs" />
     <Compile Include="Controls\RingSlice.cs" />
-    <Compile Include="Controls\RotatingContainer.xaml.cs">
-      <DependentUpon>RotatingContainer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Extensions\TextBlockExtensions.cs" />
     <Compile Include="Controls\Extensions\TextBoxFormatValidationHandler.cs" />
     <Compile Include="Controls\Extensions\TextBoxValidationExtensions.cs" />
@@ -270,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\WebBrowser\WebBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -277,18 +277,6 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\DelayedLoadControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\RotatingContainer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

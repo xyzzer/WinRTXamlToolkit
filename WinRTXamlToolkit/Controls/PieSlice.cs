@@ -6,11 +6,20 @@ using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A path that represents a pie slice with a given
+    /// Radius,
+    /// StartAngle and
+    /// EndAngle.
+    /// </summary>
     public class PieSlice : Path
     {
         private bool _isUpdating;
 
         #region StartAngle
+        /// <summary>
+        /// The start angle property
+        /// </summary>
         public static readonly DependencyProperty StartAngleProperty =
             DependencyProperty.Register(
                 "StartAngle",
@@ -18,8 +27,14 @@ namespace WinRTXamlToolkit.Controls
                 typeof(PieSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnStartAngleChanged)));
+                    OnStartAngleChanged));
 
+        /// <summary>
+        /// Gets or sets the start angle.
+        /// </summary>
+        /// <value>
+        /// The start angle.
+        /// </value>
         public double StartAngle
         {
             get { return (double)GetValue(StartAngleProperty); }
@@ -41,6 +56,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region EndAngle
+        /// <summary>
+        /// The end angle property.
+        /// </summary>
         public static readonly DependencyProperty EndAngleProperty =
             DependencyProperty.Register(
                 "EndAngle",
@@ -48,8 +66,14 @@ namespace WinRTXamlToolkit.Controls
                 typeof(PieSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnEndAngleChanged)));
+                    OnEndAngleChanged));
 
+        /// <summary>
+        /// Gets or sets the end angle.
+        /// </summary>
+        /// <value>
+        /// The end angle.
+        /// </value>
         public double EndAngle
         {
             get { return (double)GetValue(EndAngleProperty); }
@@ -71,6 +95,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Radius
+        /// <summary>
+        /// The radius property.
+        /// </summary>
         public static readonly DependencyProperty RadiusProperty =
             DependencyProperty.Register(
                 "Radius",
@@ -101,6 +128,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PieSlice" /> class.
+        /// </summary>
         public PieSlice()
         {
             this.SizeChanged += OnSizeChanged;

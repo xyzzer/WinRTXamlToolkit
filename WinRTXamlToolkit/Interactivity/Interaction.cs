@@ -10,7 +10,7 @@ namespace WinRTXamlToolkit.Interactivity
 {
     /// <summary>
     /// Static class that owns the Behaviors attached properties. Handles
-    //  propagation of AssociatedObject change notifications.
+    /// propagation of AssociatedObject change notifications.
     /// </summary>
     public static class Interaction
     {

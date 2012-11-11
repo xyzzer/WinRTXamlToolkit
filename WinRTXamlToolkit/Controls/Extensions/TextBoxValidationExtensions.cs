@@ -6,15 +6,33 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Defines basic formats accepted by TextBox Text.
+    /// </summary>
     [Flags]
     public enum ValidTextBoxFormats
     {
+        /// <summary>
+        /// Any content is valid.
+        /// </summary>
         Any = 0,
+        /// <summary>
+        /// Text property can't be empty.
+        /// </summary>
         NonEmpty = 1,
+        /// <summary>
+        /// Text property needs to be numeric (parse to a double).
+        /// </summary>
         Numeric = 2,
+        /// <summary>
+        /// Text property needs to be numeric (parse to a double) and non-empty.
+        /// </summary>
         NonEmptyNumeric = 3
     }
 
+    /// <summary>
+    /// Attached properties for handling basic validation of TextBox Text.
+    /// </summary>
     public static class TextBoxValidationExtensions
     {
         #region Format

@@ -6,10 +6,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for WebView class.
+    /// </summary>
     public static class WebViewExtensions
     {
         /// <summary>
-        /// Begins a storyboard and waits for it to complete.
+        /// Navigates to the given source URI and waits for the loading to complete or fail.
         /// </summary>
         public static async Task NavigateAsync(this WebView webView, Uri source)
         {

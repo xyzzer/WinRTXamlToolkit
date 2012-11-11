@@ -7,7 +7,10 @@ namespace WinRTXamlToolkit.Async
     /// <summary>
     /// Defines a lock that supports single writers and multiple readers.
     /// </summary>
-    /// <see cref="http://blogs.msdn.com/b/pfxteam/archive/2012/02/12/building-async-coordination-primitives-part-7-asyncreaderwriterlock.aspx"/>
+    /// <remarks>
+    /// See <a href="http://blogs.msdn.com/b/pfxteam/archive/2012/02/12/building-async-coordination-primitives-part-7-asyncreaderwriterlock.aspx">
+    /// http://blogs.msdn.com/b/pfxteam/archive/2012/02/12/building-async-coordination-primitives-part-7-asyncreaderwriterlock.aspx </a>
+    /// </remarks>
     public class AsyncReaderWriterLock
     {
         private readonly Task<Releaser> _readerReleaser;

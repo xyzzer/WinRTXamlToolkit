@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A UserControl that applies animation to its content.
+    /// </summary>
     [ContentProperty(Name="RotatingContent")]
     public sealed partial class AnimatingContainer : UserControl
     {

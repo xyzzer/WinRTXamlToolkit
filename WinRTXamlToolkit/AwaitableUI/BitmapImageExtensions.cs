@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for awaiting BitmapImage state changes.
+    /// </summary>
     public static class BitmapImageExtensions
     {
         public async static Task<ExceptionRoutedEventArgs> WaitForLoadedAsync(this BitmapImage bitmapImage, int timeoutInMs = 0)

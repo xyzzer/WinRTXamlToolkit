@@ -17,7 +17,7 @@ namespace WinRTXamlToolkit.Sample.Views
             while (true)
             {
                 myCountdownControl.Visibility = Visibility.Visible;
-                await myCountdownControl.StartCountdown(3);
+                await myCountdownControl.StartCountdownAsync(3);
                 myCountdownControl.Visibility = Visibility.Collapsed;
                 await Task.Delay(1000);
             }

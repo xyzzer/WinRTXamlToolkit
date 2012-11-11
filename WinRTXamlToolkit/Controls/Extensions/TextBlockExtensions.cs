@@ -5,8 +5,17 @@ using Windows.UI.Xaml.Documents;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Contains extension methods for TextBlock.
+    /// </summary>
     public static class TextBlockExtensions
     {
+        /// <summary>
+        /// Gets the rectangle boundaries of a character in a TextBlock.
+        /// </summary>
+        /// <param name="tb">The TextBlock.</param>
+        /// <param name="characterIndex">Index of the character.</param>
+        /// <returns></returns>
         public static Rect GetCharacterRect(this TextBlock tb, int characterIndex)
         {
             var aw = tb.ActualWidth;

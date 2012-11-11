@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// Contains extension methods for cropping a bitmap.
+    /// </summary>
     public static class WriteableBitmapCropExtensions
     {
         /// <summary>

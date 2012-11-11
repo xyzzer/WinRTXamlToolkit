@@ -366,6 +366,7 @@ namespace WinRTXamlToolkit.Sample.Common
             }
         }
 
+#pragma warning disable 1998
         /// <summary>
         /// Invoked when this page will no longer be displayed in a Frame.
         /// </summary>
@@ -378,6 +379,7 @@ namespace WinRTXamlToolkit.Sample.Common
             this.SaveState(pageState);
             frameState[_pageKey] = pageState;
         }
+#pragma warning restore 1998
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also

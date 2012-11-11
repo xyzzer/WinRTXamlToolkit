@@ -8,6 +8,9 @@ using WinRTXamlToolkit.IO;
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// Contains extension and helper methods for loading WriteableBitmaps.
+    /// </summary>
     public static class WriteableBitmapLoadExtensions
     {
         public static async Task<WriteableBitmap> LoadAsync(

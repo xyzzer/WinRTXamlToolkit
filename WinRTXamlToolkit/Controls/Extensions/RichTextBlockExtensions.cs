@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Documents;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Attached properties and extension methods for RichTextBlock class.
+    /// </summary>
     public static class RichTextBlockExtensions
     {
         #region PlainText
@@ -118,6 +121,15 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
+        /// <summary>
+        /// Sets the linked HTML fragment.
+        /// </summary>
+        /// <remarks>
+        /// Note that only simple html text with opening and closing anchor tags and href attribute with double-quotes is supported.
+        /// No escapes or other tags will be parsed.
+        /// </remarks>
+        /// <param name="richTextBlock">The rich text block.</param>
+        /// <param name="htmlFragment">The HTML fragment.</param>
         public static void SetLinkedHtmlFragment(this RichTextBlock richTextBlock, string htmlFragment)
         {
             richTextBlock.Blocks.Clear();
@@ -151,6 +163,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
             }
         }
 
+        /// <summary>
+        /// Appends a paragraph of plain text to the RichTextBlock.
+        /// </summary>
+        /// <param name="richTextBlock">The rich text block.</param>
+        /// <param name="text">The text.</param>
         public static void AppendText(this RichTextBlock richTextBlock, string text)
         {
             Paragraph paragraph;
@@ -165,6 +182,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
             paragraph.Inlines.Add(new Run { Text = text });
         }
 
+        /// <summary>
+        /// Appends a HyperlinkButton with
+        /// the given text and navigate uri to the given RichTextBlock.
+        /// </summary>
+        /// <param name="richTextBlock">The rich text block.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="uri">The URI.</param>
         public static void AppendLink(this RichTextBlock richTextBlock, string text, Uri uri)
         {
             Paragraph paragraph;

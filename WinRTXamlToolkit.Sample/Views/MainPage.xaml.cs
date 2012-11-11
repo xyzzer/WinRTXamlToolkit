@@ -157,6 +157,11 @@ namespace WinRTXamlToolkit.Sample.Views
                 },
                 new ButtonViewModel
                 {
+                    Caption = "ListViewItemExtensions",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(ListViewItemExtensionsTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "NumericUpDown",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(NumericUpDownTestPage)))
                 },
@@ -219,11 +224,13 @@ namespace WinRTXamlToolkit.Sample.Views
             buttonsGridView.ItemsSource = buttonVMs;
         }
 
+#pragma warning disable 1998
         protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
         {
             GC.Collect();
             base.OnNavigatedTo(e);
         }
+#pragma warning restore 1998
 
         private static async void RunWebFileTest()
         {

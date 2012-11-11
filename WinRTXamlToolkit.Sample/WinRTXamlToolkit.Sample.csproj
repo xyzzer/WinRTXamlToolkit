@@ -191,6 +191,9 @@
     <Compile Include="Views\ColorPickerPrimitivesTestPage.xaml.cs">
       <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListViewItemExtensionsTestPage.xaml.cs">
+      <DependentUpon>ListViewItemExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ImagingTestPage.xaml.cs">
       <DependentUpon>ImagingTestPage.xaml</DependentUpon>
     </Compile>
@@ -374,6 +377,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPickerPrimitivesTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ListViewItemExtensionsTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

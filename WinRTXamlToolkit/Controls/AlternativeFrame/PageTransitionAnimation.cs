@@ -6,8 +6,17 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Base class for page transition animations used with an AlternativeFrame control.
+    /// </summary>
     public abstract class PageTransitionAnimation : DependencyObject
     {
+        /// <summary>
+        /// Gets the generated animation.
+        /// </summary>
+        /// <value>
+        /// The animation.
+        /// </value>
         protected abstract Storyboard Animation { get; }
 
         #region Mode
@@ -98,7 +107,7 @@ namespace WinRTXamlToolkit.Controls
             return anim;
         }
 
-        public async Task Animate(DependencyObject target)
+        internal async Task Animate(DependencyObject target)
         {
             var anim = this.Animation;
             Storyboard.SetTarget(anim, target);

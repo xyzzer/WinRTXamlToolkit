@@ -1,18 +1,28 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Animation;
 using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A control that displays a countdown visualization
+    /// and raises a CountdownComplete event when countdown is complete.
+    /// Countdown duration is specified in Seconds.
+    /// </summary>
     public sealed partial class CountdownControl
     {
-        private bool countingDown;
+        private bool _countingDown;
+        /// <summary>
+        /// Occurs when the countdown is complete.
+        /// </summary>
         public event RoutedEventHandler CountdownComplete;
 
         #region Seconds
+        /// <summary>
+        /// The seconds property.
+        /// </summary>
         public static readonly DependencyProperty SecondsProperty =
             DependencyProperty.Register(
                 "Seconds",
@@ -20,8 +30,14 @@ namespace WinRTXamlToolkit.Controls
                 typeof(CountdownControl),
                 new PropertyMetadata(
                     0,
-                    new PropertyChangedCallback(OnSecondsChanged)));
+                    OnSecondsChanged));
 
+        /// <summary>
+        /// Gets or sets the seconds to countdown.
+        /// </summary>
+        /// <value>
+        /// The seconds.
+        /// </value>
         public int Seconds
         {
             get { return (int)GetValue(SecondsProperty); }
@@ -38,23 +54,31 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnSecondsChanged(int oldSeconds, int newSeconds)
         {
-            if (!countingDown && newSeconds > 0)
+            if (!_countingDown && newSeconds > 0)
             {
 #pragma warning disable 4014
-                StartCountdown(newSeconds);
+                StartCountdownAsync(newSeconds);
 #pragma warning restore 4014
             }
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CountdownControl" /> class.
+        /// </summary>
         public CountdownControl()
         {
             InitializeComponent();
         }
 
-        public async Task StartCountdown(int seconds)
+        /// <summary>
+        /// Starts the countdown and completes when the countdown completes.
+        /// </summary>
+        /// <param name="seconds">The seconds.</param>
+        /// <returns></returns>
+        public async Task StartCountdownAsync(int seconds)
         {
-            countingDown = true;
+            _countingDown = true;
 
             this.Seconds = seconds;
 
@@ -131,7 +155,7 @@ namespace WinRTXamlToolkit.Controls
                 CountdownComplete(this, new RoutedEventArgs());
             }
 
-            countingDown = false;
+            _countingDown = false;
         }
     }
 }
