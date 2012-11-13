@@ -9,12 +9,22 @@ using Windows.ApplicationModel.Store;
 
 namespace WinRTXamlToolkit.Licensing
 {
+    /// <summary>
+    /// Helper methods for app license information.
+    /// </summary>
     public class LicenseChecker : INotifyPropertyChanged
     {
         private static LicenseInformation _licenseInformation;
 
         #region IsTrial
         private bool _isTrial;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the app is in trial mode.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if in trial mode; otherwise, <c>false</c>.
+        /// </value>
         public bool IsTrial
         {
             get
@@ -33,6 +43,9 @@ namespace WinRTXamlToolkit.Licensing
         #endregion
 
         #region InitializeLicense()
+        /// <summary>
+        /// Initializes the license checke.
+        /// </summary>
         public void InitializeLicense()
         {
             // Initialize the license info for use in the app that is uploaded to the Store.
@@ -57,7 +70,7 @@ namespace WinRTXamlToolkit.Licensing
         #endregion
 
         #region LicenseChangedEventHandler()
-        public void LicenseChangedEventHandler()
+        private void LicenseChangedEventHandler()
         {
             // code is in next steps
             ReloadLicense();
@@ -65,6 +78,9 @@ namespace WinRTXamlToolkit.Licensing
         #endregion
 
         #region ReloadLicense()
+        /// <summary>
+        /// Reloads license information.
+        /// </summary>
         public void ReloadLicense()
         {
             if (_licenseInformation.IsActive)

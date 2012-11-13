@@ -13,12 +13,24 @@ namespace WinRTXamlToolkit.Imaging
     /// </summary>
     public static class WriteableBitmapLoadExtensions
     {
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the path relative to the installation folder.
+        /// </summary>
+        /// <param name="relativePath">The relative path.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             string relativePath)
         {
             return await new WriteableBitmap(1, 1).LoadAsync(relativePath);
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the path relative to the installation folder and the dimensions.
+        /// </summary>
+        /// <param name="relativePath">The relative path.</param>
+        /// <param name="decodePixelWidth">Width in pixels of the decoded bitmap.</param>
+        /// <param name="decodePixelHeight">Height in pixels of the decoded bitmap.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             string relativePath,
             uint decodePixelWidth,
@@ -27,20 +39,38 @@ namespace WinRTXamlToolkit.Imaging
             return await new WriteableBitmap(1, 1).LoadAsync(relativePath, decodePixelWidth, decodePixelHeight);
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the storage file.
+        /// </summary>
+        /// <param name="storageFile">The storage file.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
-            StorageFile file)
+            StorageFile storageFile)
         {
-            return await new WriteableBitmap(1, 1).LoadAsync(file);
+            return await new WriteableBitmap(1, 1).LoadAsync(storageFile);
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the storage file and the dimensions.
+        /// </summary>
+        /// <param name="storageFile">The storage file.</param>
+        /// <param name="decodePixelWidth">Width in pixels of the decoded bitmap.</param>
+        /// <param name="decodePixelHeight">Height in pixels of the decoded bitmap.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
-            StorageFile file,
+            StorageFile storageFile,
             uint decodePixelWidth,
             uint decodePixelHeight)
         {
-            return await new WriteableBitmap(1, 1).LoadAsync(file, decodePixelWidth, decodePixelHeight);
+            return await new WriteableBitmap(1, 1).LoadAsync(storageFile, decodePixelWidth, decodePixelHeight);
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the storage file and the dimensions.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="relativePath">The relative path.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             this WriteableBitmap writeableBitmap,
             string relativePath)
@@ -50,6 +80,12 @@ namespace WinRTXamlToolkit.Imaging
             return await writeableBitmap.LoadAsync(resolvedFile);
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the storage file.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="storageFile">The storage file.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             this WriteableBitmap writeableBitmap,
             StorageFile storageFile)
@@ -64,6 +100,14 @@ namespace WinRTXamlToolkit.Imaging
             return wb;
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the storage file and the dimensions.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="storageFile">The storage file.</param>
+        /// <param name="decodePixelWidth">Width in pixels of the decoded bitmap.</param>
+        /// <param name="decodePixelHeight">Height in pixels of the decoded bitmap.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             this WriteableBitmap writeableBitmap,
             StorageFile storageFile,
@@ -81,6 +125,14 @@ namespace WinRTXamlToolkit.Imaging
             return writeableBitmap;
         }
 
+        /// <summary>
+        /// Loads the WriteableBitmap asynchronously given the file path relative to install location and the dimensions.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="relativePath">The relative path.</param>
+        /// <param name="decodePixelWidth">Width in pixels of the decoded bitmap.</param>
+        /// <param name="decodePixelHeight">Height in pixels of the decoded bitmap.</param>
+        /// <returns></returns>
         public static async Task<WriteableBitmap> LoadAsync(
             this WriteableBitmap writeableBitmap,
             string relativePath,
@@ -96,6 +148,14 @@ namespace WinRTXamlToolkit.Imaging
         }
 
         // The Tim Heuer method (see https://twitter.com/timheuer/status/217521386720198656)
+        /// <summary>
+        /// Sets the WriteableBitmap source asynchronously given a stream and dimensions.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="streamSource">The stream source.</param>
+        /// <param name="decodePixelWidth">Width in pixels of the decoded bitmap.</param>
+        /// <param name="decodePixelHeight">Height in pixels of the decoded bitmap.</param>
+        /// <returns></returns>
         public static async Task SetSourceAsync(
             this WriteableBitmap writeableBitmap,
             IRandomAccessStream streamSource,

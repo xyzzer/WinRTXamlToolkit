@@ -10,6 +10,11 @@ namespace WinRTXamlToolkit.Imaging
     public static class WriteableBitmapColorPickerExtensions
     {
         #region RenderColorPickerHueLightness()
+        /// <summary>
+        /// Renders the color picker rectangle based on hue and lightness.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="saturation">The saturation.</param>
         public static void RenderColorPickerHueLightness(this WriteableBitmap target, double saturation)
         {
             var pw = target.PixelWidth;
@@ -21,6 +26,12 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker rectangle based on hue and lightness asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHueLightnessAsync(this WriteableBitmap target, double saturation)
         {
             var pw = target.PixelWidth;
@@ -53,6 +64,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerSaturationLightnessRect()
+        /// <summary>
+        /// Renders the color picker rectangle based on saturation and lightness.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static void RenderColorPickerSaturationLightnessRect(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -64,6 +80,11 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker rectangle based on saturation and lightness asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static async Task RenderColorPickerSaturationLightnessRectAsync(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -96,6 +117,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerSaturationLightnessTriangle()
+        /// <summary>
+        /// Renders the color picker triangle based on saturation and lightness.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static void RenderColorPickerSaturationLightnessTriangle(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -107,6 +133,11 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker triangle based on saturation and lightness asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static async Task RenderColorPickerSaturationLightnessTriangleAsync(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -143,6 +174,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHueValue()
+        /// <summary>
+        /// Renders the color picker rectangle based on hue and value.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="saturation">The saturation.</param>
         public static void RenderColorPickerHueValue(this WriteableBitmap target, double saturation)
         {
             var pw = target.PixelWidth;
@@ -154,6 +190,11 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker rectangle based on hue and value asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="saturation">The saturation.</param>
         public static async Task RenderColorPickerHueValueAsync(this WriteableBitmap target, double saturation)
         {
             var pw = target.PixelWidth;
@@ -186,6 +227,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerSaturationValueRect()
+        /// <summary>
+        /// Renders the color picker rectangle based on saturation and value.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static void RenderColorPickerSaturationValueRect(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -197,6 +243,11 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker rectangle based on saturation and value asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static async Task RenderColorPickerSaturationValueRectAsync(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -229,6 +280,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerSaturationValueTriangleAsync()
+        /// <summary>
+        /// Renders the color picker triangle based on saturation and value.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static void RenderColorPickerSaturationValueTriangle(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -242,6 +298,11 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker triangle based on saturation and value asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="hue">The hue.</param>
         public static async Task RenderColorPickerSaturationValueTriangleAsync(this WriteableBitmap target, double hue = 0)
         {
             var pw = target.PixelWidth;
@@ -277,6 +338,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHueRing()
+        /// <summary>
+        /// Renders the color picker hue ring.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="innerRingRadius">The inner ring radius.</param>
+        /// <param name="outerRingRadius">The outer ring radius.</param>
         public static void RenderColorPickerHueRing(this WriteableBitmap target, int innerRingRadius = 0, int outerRingRadius = 0)
         {
             var pw = target.PixelWidth;
@@ -288,6 +355,12 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker hue ring asynchronously.
+        /// </summary>
+        /// <param name="target">The target bitmap.</param>
+        /// <param name="innerRingRadius">The inner ring radius.</param>
+        /// <param name="outerRingRadius">The outer ring radius.</param>
         public static async Task RenderColorPickerHueRingAsync(this WriteableBitmap target, int innerRingRadius = 0, int outerRingRadius = 0)
         {
             var pw = target.PixelWidth;
@@ -351,6 +424,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion 
 
         #region RenderColorPickerHSVHueBar()
+        /// <summary>
+        /// Renders the color picker HSV hue bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <param name="value">The value.</param>
         public static void RenderColorPickerHSVHueBar(this WriteableBitmap target, double saturation, double value)
         {
             var pw = target.PixelWidth;
@@ -362,6 +441,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSV hue bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSVHueBarAsync(this WriteableBitmap target, double saturation, double value)
         {
             var pw = target.PixelWidth;
@@ -392,6 +478,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHSVSaturationBar()
+        /// <summary>
+        /// Renders the color picker HSV saturation bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="value">The value.</param>
         public static void RenderColorPickerHSVSaturationBar(this WriteableBitmap target, double hue, double value)
         {
             var pw = target.PixelWidth;
@@ -403,6 +495,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSV saturation bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSVSaturationBarAsync(this WriteableBitmap target, double hue, double value)
         {
             var pw = target.PixelWidth;
@@ -433,6 +532,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHSVValueBar()
+        /// <summary>
+        /// Renders the color picker HSV value bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="saturation">The saturation.</param>
         public static void RenderColorPickerHSVValueBar(this WriteableBitmap target, double hue, double saturation)
         {
             var pw = target.PixelWidth;
@@ -444,6 +549,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSV value bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSVValueBarAsync(this WriteableBitmap target, double hue, double saturation)
         {
             var pw = target.PixelWidth;
@@ -474,6 +586,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHSLHueBar()
+        /// <summary>
+        /// Renders the color picker HSL hue bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <param name="lightness">The lightness.</param>
         public static void RenderColorPickerHSLHueBar(this WriteableBitmap target, double saturation, double lightness)
         {
             var pw = target.PixelWidth;
@@ -484,6 +602,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSL hue bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <param name="lightness">The lightness.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSLHueBarAsync(this WriteableBitmap target, double saturation, double lightness)
         {
             var pw = target.PixelWidth;
@@ -514,6 +639,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHSLSaturationBar()
+        /// <summary>
+        /// Renders the color picker HSL saturation bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="lightness">The lightness.</param>
         public static void RenderColorPickerHSLSaturationBar(this WriteableBitmap target, double hue, double lightness)
         {
             var pixels = target.PixelBuffer.GetPixels();
@@ -525,6 +656,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSL saturation bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="lightness">The lightness.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSLSaturationBarAsync(this WriteableBitmap target, double hue, double lightness)
         {
             var pixels = target.PixelBuffer.GetPixels();
@@ -555,6 +693,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerHSLLightnessBar()
+        /// <summary>
+        /// Renders the color picker HSL lightness bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="saturation">The saturation.</param>
         public static void RenderColorPickerHSLLightnessBar(this WriteableBitmap target, double hue, double saturation)
         {
             var pw = target.PixelWidth;
@@ -566,6 +710,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker HSL lightness bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="hue">The hue.</param>
+        /// <param name="saturation">The saturation.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerHSLLightnessBarAsync(this WriteableBitmap target, double hue, double saturation)
         {
             var pw = target.PixelWidth;
@@ -596,6 +747,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerRGBRedBar()
+        /// <summary>
+        /// Renders the color picker RGB red bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="green">The green.</param>
+        /// <param name="blue">The blue.</param>
         public static void RenderColorPickerRGBRedBar(this WriteableBitmap target, double green, double blue)
         {
             var pw = target.PixelWidth;
@@ -607,6 +764,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker RGB red bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="green">The green.</param>
+        /// <param name="blue">The blue.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerRGBRedBarAsync(this WriteableBitmap target, double green, double blue)
         {
             var pw = target.PixelWidth;
@@ -637,6 +801,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerRGBGreenBar()
+        /// <summary>
+        /// Renders the color picker RGB green bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="red">The red.</param>
+        /// <param name="blue">The blue.</param>
         public static void RenderColorPickerRGBGreenBar(this WriteableBitmap target, double red, double blue)
         {
             var pw = target.PixelWidth;
@@ -648,6 +818,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker RGB green bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="red">The red.</param>
+        /// <param name="blue">The blue.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerRGBGreenBarAsync(this WriteableBitmap target, double red, double blue)
         {
             var pw = target.PixelWidth;
@@ -678,6 +855,12 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region RenderColorPickerRGBBlueBar()
+        /// <summary>
+        /// Renders the color picker RGB blue bar.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="red">The red.</param>
+        /// <param name="green">The green.</param>
         public static void RenderColorPickerRGBBlueBar(this WriteableBitmap target, double red, double green)
         {
             var pw = target.PixelWidth;
@@ -689,6 +872,13 @@ namespace WinRTXamlToolkit.Imaging
             target.Invalidate();
         }
 
+        /// <summary>
+        /// Renders the color picker RGB blue bar async.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="red">The red.</param>
+        /// <param name="green">The green.</param>
+        /// <returns></returns>
         public static async Task RenderColorPickerRGBBlueBarAsync(this WriteableBitmap target, double red, double green)
         {
             var pw = target.PixelWidth;

@@ -21,6 +21,10 @@ using Panel = Windows.Devices.Enumeration.Panel;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A camera capture control that looks similar to the CameraCaptureUI,
+    /// but works as an embeddable control that you can blend into your app's UI.
+    /// </summary>
     [TemplatePart(Name = CaptureElementName, Type = typeof(CaptureElement))]
     [TemplatePart(Name = WebCamSelectorPopupName, Type = typeof(Popup))]
     [TemplatePart(Name = WebCamSelectorName, Type = typeof(Selector))]
@@ -61,7 +65,7 @@ namespace WinRTXamlToolkit.Controls
         private Storyboard _flashAnimation;
         #endregion
 
-        private CameraCaptureControlStates _internalState;
+        private CameraCaptureControlStates _internalState = CameraCaptureControlStates.Hidden;
 
         /// <summary>
         /// List of audio devices found.
@@ -88,10 +92,21 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         private DeviceInformation _preferredVideoCaptureDevice;
 
+        private MediaCapture _mediaCapture;
         /// <summary>
         /// Media capture class associated with current capture.
         /// </summary>
-        private MediaCapture _mediaCapture;
+        private MediaCapture MediaCapture
+        {
+            get
+            {
+                return _mediaCapture;
+            }
+            set
+            {
+                _mediaCapture = value;
+            }
+        }
 
         private TaskCompletionSource<bool> _recordingTaskSource;
         #endregion
@@ -100,11 +115,19 @@ namespace WinRTXamlToolkit.Controls
 
         #region CameraFailedEvent
 
+        /// <summary>
+        /// Occurs when there is a problem working with the camera.
+        /// </summary>
         public event CameraFailedHandler CameraFailed;
 
+        /// <summary>
+        /// Handles CameraFailed events occuring when there is a problem working with the camera
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MediaCaptureFailedEventArgs" /> instance containing the event data.</param>
         public delegate void CameraFailedHandler(object sender, MediaCaptureFailedEventArgs e);
 
-        public void OnCameraFailed(object sender, MediaCaptureFailedEventArgs e)
+        private void OnCameraFailed(object sender, MediaCaptureFailedEventArgs e)
         {
             if (CameraFailed != null)
                 CameraFailed(sender, e);
@@ -113,6 +136,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region ShowOnLoad
+        /// <summary>
+        /// The ShowOnLoadProperty.
+        /// </summary>
         public static readonly DependencyProperty ShowOnLoadProperty =
             DependencyProperty.Register(
                 "ShowOnLoad",
@@ -120,6 +146,13 @@ namespace WinRTXamlToolkit.Controls
                 typeof(CameraCaptureControl),
                 new PropertyMetadata(true));
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the camera preview
+        /// should show when the control is loaded.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if it should show on load; otherwise, <c>false</c>.
+        /// </value>
         public bool ShowOnLoad
         {
             get { return (bool)GetValue(ShowOnLoadProperty); }
@@ -128,6 +161,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region PreferredCameraType
+        /// <summary>
+        /// The preferred camera type property.
+        /// </summary>
         public static readonly DependencyProperty PreferredCameraTypeProperty =
             DependencyProperty.Register(
                 "PreferredCameraType",
@@ -135,6 +171,12 @@ namespace WinRTXamlToolkit.Controls
                 typeof(CameraCaptureControl),
                 new PropertyMetadata(Windows.Devices.Enumeration.Panel.Unknown));
 
+        /// <summary>
+        /// Gets or sets the preferred type (panel location) of the default camera.
+        /// </summary>
+        /// <value>
+        /// The type of the preferred camera.
+        /// </value>
         public Windows.Devices.Enumeration.Panel PreferredCameraType
         {
             get
@@ -512,6 +554,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraCaptureControl" /> class.
+        /// </summary>
         public CameraCaptureControl()
         {
             this.DefaultStyleKey = typeof(CameraCaptureControl);
@@ -521,11 +566,28 @@ namespace WinRTXamlToolkit.Controls
 
         #region Public methods
         #region InitializeAsync()
-        public async Task<CameraInitializationResult> InitializeAsync()
+        private TaskCompletionSource<CameraInitializationResult> _initializationTaskSource;
+
+        /// <summary>
+        /// Performs the one time initialization and shows the preview (if video).
+        /// </summary>
+        /// <returns></returns>
+        private async Task<CameraInitializationResult> InitializeAsync()
         {
+            CameraInitializationResult result;
+
             try
             {
+                Debug.Assert(Dispatcher.HasThreadAccess);
+
+                if (_initializationTaskSource != null)
+                {
+                    // Already initializing or initialized
+                    return await _initializationTaskSource.Task;
+                }
+
                 _internalState = CameraCaptureControlStates.Initializing;
+                _initializationTaskSource = new TaskCompletionSource<CameraInitializationResult>();
 
                 if (_currentAudioCaptureDeviceIndex < 0 &&
                     (this.StreamingCaptureMode == StreamingCaptureMode.AudioAndVideo ||
@@ -540,7 +602,10 @@ namespace WinRTXamlToolkit.Controls
                             _internalState = CameraCaptureControlStates.Hidden;
                             Debugger.Break();
 
-                            return new CameraInitializationResult(false, "No audio devices found.");
+                            result = new CameraInitializationResult(false, "No audio devices found.");
+                            _initializationTaskSource.SetResult(result);
+
+                            return result;
                         }
                     }
                     else if (this.AudioDeviceId != null)
@@ -575,17 +640,26 @@ namespace WinRTXamlToolkit.Controls
                             Debugger.Break();
                             _internalState = CameraCaptureControlStates.Hidden;
 
-                            return new CameraInitializationResult(false, "No video devices found.");
+                            result = new CameraInitializationResult(false, "No video devices found.");
+                            _initializationTaskSource.SetResult(result);
+
+                            return result;
                         }
 
                         // Audio only
-                        return new CameraInitializationResult(true);
+                        result = new CameraInitializationResult(true);
+                        _initializationTaskSource.SetResult(result);
+
+                        return result;
                     }
 
                     if (_videoCaptureDevices.Length == 1)
                     {
                         _currentVideoCaptureDeviceIndex = 0;
-                        return await StartPreviewAsync();
+                        result = await this.StartPreviewAsync();
+                        _initializationTaskSource.SetResult(result);
+
+                        return result;
                     }
 
                     if (this.VideoDeviceId != null)
@@ -595,7 +669,10 @@ namespace WinRTXamlToolkit.Controls
                         if (device != null)
                         {
                             _currentVideoCaptureDeviceIndex = Array.IndexOf(_videoCaptureDevices, device);
-                            return await StartPreviewAsync();
+                            result = await this.StartPreviewAsync();
+                            _initializationTaskSource.SetResult(result);
+
+                            return result;
                         }
 
                         // If requested device was not found - don't give up, but look for another one
@@ -604,42 +681,70 @@ namespace WinRTXamlToolkit.Controls
                     if (_preferredVideoCaptureDevice != null)
                     {
                         _currentVideoCaptureDeviceIndex = Array.IndexOf(_videoCaptureDevices, _preferredVideoCaptureDevice);
-                        return await StartPreviewAsync();
+                        result = await this.StartPreviewAsync();
+                        _initializationTaskSource.SetResult(result);
+
+                        return result;
                     }
 
                     if (PickVideoDeviceAutomatically)
                     {
                         _currentVideoCaptureDeviceIndex = 0;
-                        return await StartPreviewAsync();
+                        result = await this.StartPreviewAsync();
+                        _initializationTaskSource.SetResult(result);
+
+                        return result;
                     }
 
                     bool success = await ShowWebCamSelector();
 
                     if (success)
                     {
-                        return new CameraInitializationResult(true);
+                        result = new CameraInitializationResult(true);
+                        _initializationTaskSource.SetResult(result);
+
+                        return result;
+                        
                     }
 
-                    return new CameraInitializationResult(false, "Unable to select video device.");
+                    result = new CameraInitializationResult(false, "Unable to select video device.");
+                    _initializationTaskSource.SetResult(result);
+
+                    return result;
                 }
 
                 // Audio only recording
-                return await StartPreviewAsync();
+                result = await this.StartPreviewAsync();
+                _initializationTaskSource.SetResult(result);
+
+                return result;
             }
             catch (Exception ex)
             {
-                return new CameraInitializationResult(false, "An unkown error has occured.", ex);
+                result = new CameraInitializationResult(false, "An unkown error has occured.", ex);
+
+                if (_initializationTaskSource != null)
+                {
+                    _initializationTaskSource.SetResult(result);
+                }
+
+                return result;
             }
         }
         #endregion
 
         #region ShowAsync()
-        public async Task<bool> ShowAsync()
+        /// <summary>
+        /// Shows the preview asynchronously (completes when the camera is initialized)..
+        /// </summary>
+        /// <returns></returns>
+        public async Task<CameraInitializationResult> ShowAsync()
         {
-            if (_internalState != CameraCaptureControlStates.Initializing)
+            var result = await InitializeAsync();
+
+            if (!result.Success)
             {
-                //TODO: Handle this case better - wait for the state to be hidden if deinitializing or wait for initialization to complete before returning if initializing
-                return false;
+                return result;
             }
 
             try
@@ -648,29 +753,33 @@ namespace WinRTXamlToolkit.Controls
 
                 if (_captureElement != null)
                 {
-                    _captureElement.Source = _mediaCapture;
-                    await _mediaCapture.StartPreviewAsync();
+                    _captureElement.Source = MediaCapture;
+                    await MediaCapture.StartPreviewAsync();
                 }
 
-
-                return true;
+                return result;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                return new CameraInitializationResult(false, "Camera display failed", ex);
             }
         }
         #endregion
 
         #region HideAsync()
+        /// <summary>
+        /// Hides the camera preview asynchronously.
+        /// </summary>
+        /// <returns></returns>
         public async Task HideAsync()
         {
             _internalState = CameraCaptureControlStates.Deinitializing;
 
-            if (_mediaCapture != null)
+            if (MediaCapture != null)
             {
-                await _mediaCapture.StopPreviewAsync();
-                _mediaCapture = null;
+                await MediaCapture.StopPreviewAsync();
+                //_mediaCapture.Failed -= OnMediaCaptureFailed;
+                //_mediaCapture = null;
             }
 
             if (_captureElement != null)
@@ -683,14 +792,23 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CapturePhotoToStorageFileAsync()
+        /// <summary>
+        /// Captures the photo to storage file asynchronously.
+        /// </summary>
+        /// <param name="folder">The folder.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="defaultExtension">The default extension.</param>
+        /// <returns></returns>
         public async Task<StorageFile> CapturePhotoToStorageFileAsync(StorageFolder folder = null, string fileName = null, string defaultExtension = ".jpg")
         {
             if (_countdownControl != null &&
                 this.PhotoCaptureCountdownSeconds > 0)
             {
+#pragma warning disable 4014
                 _countdownControl.FadeInCustom();
                 await _countdownControl.StartCountdownAsync(this.PhotoCaptureCountdownSeconds);
                 _countdownControl.FadeOutCustom();
+#pragma warning restore 4014
             }
 
             if (_flashAnimation != null)
@@ -724,7 +842,7 @@ namespace WinRTXamlToolkit.Controls
 
             try
             {
-                await _mediaCapture.CapturePhotoToStorageFileAsync(imageEncodingProperties, photoFile);
+                await MediaCapture.CapturePhotoToStorageFileAsync(imageEncodingProperties, photoFile);
             }
             catch
             {
@@ -736,14 +854,27 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region CapturePhotoToStorageFileAsync()
+        #region CapturePhotoToStreamAsync()
+        /// <summary>
+        /// Captures a photo to a stream asynchronously.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <param name="imageEncodingProperties">The image encoding properties.</param>
+        /// <returns></returns>
         public async Task CapturePhotoToStreamAsync(IRandomAccessStream stream, ImageEncodingProperties imageEncodingProperties)
         {
-            await _mediaCapture.CapturePhotoToStreamAsync(imageEncodingProperties, stream);
+            await MediaCapture.CapturePhotoToStreamAsync(imageEncodingProperties, stream);
         }
         #endregion
 
         #region StartVideoCaptureAsync()
+        /// <summary>
+        /// Starts the video capture asynchronously.
+        /// </summary>
+        /// <param name="folder">The folder.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException"></exception>
         public async Task<StorageFile> StartVideoCaptureAsync(StorageFolder folder = null, string fileName = null)
         {
             if (_internalState == CameraCaptureControlStates.Recording)
@@ -753,24 +884,22 @@ namespace WinRTXamlToolkit.Controls
                 return _videoFile;
             }
 
-            _internalState = CameraCaptureControlStates.Recording;
-            _recordingTaskSource = new TaskCompletionSource<bool>(false);
-
             if (_internalState != CameraCaptureControlStates.Shown)
             {
-                CameraInitializationResult result = await InitializeAsync();
+                var result = await ShowAsync();
 
-                if (result.Success)
-                {
-                    await ShowAsync();
-                }
-                else
+                if (!result.Success)
                 {
                     //TODO: Add error handling here.
+
+                    return null;
                 }
             }
 
-            if (_mediaCapture == null)
+            _internalState = CameraCaptureControlStates.Recording;
+            _recordingTaskSource = new TaskCompletionSource<bool>(false);
+
+            if (MediaCapture == null)
             {
                 throw new InvalidOperationException();
             }
@@ -804,7 +933,7 @@ namespace WinRTXamlToolkit.Controls
                 MediaEncodingProfile.CreateWmv(VideoEncodingQuality) :
                 MediaEncodingProfile.CreateMp4(VideoEncodingQuality);
 
-            await _mediaCapture.StartRecordToStorageFileAsync(encodingProfile, _videoFile);
+            await MediaCapture.StartRecordToStorageFileAsync(encodingProfile, _videoFile);
             await _recordingTaskSource.Task;
             _recordingTaskSource = null;
 
@@ -819,11 +948,16 @@ namespace WinRTXamlToolkit.Controls
             }
 
             _internalState = CameraCaptureControlStates.Shown;
+
             return _videoFile;
         }
         #endregion
 
         #region StopCapture()
+        /// <summary>
+        /// Stops the video capture.
+        /// </summary>
+        /// <returns></returns>
         public async Task<StorageFile> StopCapture()
         {
             if (_internalState != CameraCaptureControlStates.Recording)
@@ -832,13 +966,17 @@ namespace WinRTXamlToolkit.Controls
                 return null;
             }
 
-            await _mediaCapture.StopRecordAsync();
+            await MediaCapture.StopRecordAsync();
             _recordingTaskSource.SetResult(true);
             return _videoFile;
         }
         #endregion
 
         #region CycleCamerasAsync()
+        /// <summary>
+        /// Cycles the cameras asynchronously.
+        /// </summary>
+        /// <returns></returns>
         public async Task CycleCamerasAsync()
         {
             if (_videoCaptureDevices.Length <= 1)
@@ -875,15 +1013,19 @@ namespace WinRTXamlToolkit.Controls
 
         #region Private/Protected/Internal methods
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate.
+        /// In simplest terms, this means the method is called just before a UI element displays in your app.
+        /// Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             _captureElement = (CaptureElement)GetTemplateChild(CaptureElementName);
 
-            if (_mediaCapture != null)
+            if (MediaCapture != null)
             {
-                _captureElement.Source = _mediaCapture;
-                _mediaCapture.StartPreviewAsync();
+                _captureElement.Source = MediaCapture;
             }
 
             _webCamSelectorPopup = GetTemplateChild(WebCamSelectorPopupName) as Popup;
@@ -900,17 +1042,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (this.ShowOnLoad)
             {
-                CameraInitializationResult args = await InitializeAsync();
-
-                if (args.Success)
-                {
-                    await ShowAsync();
-                }
-                else
-                {
-                    // TODO: Add error handling here
-                    await HideAsync();
-                }
+                await ShowAsync();
             }
         }
         #endregion
@@ -944,7 +1076,8 @@ namespace WinRTXamlToolkit.Controls
                 _webCamSelectorPopup.IsOpen = false;
             }
 
-            await StartPreviewAsync();
+            await this.StartPreviewAsync();
+
             return true;
         }
         #endregion
@@ -1024,13 +1157,13 @@ namespace WinRTXamlToolkit.Controls
         {
             try
             {
-                if (_mediaCapture != null)
+                if (MediaCapture != null)
                 {
-                    _mediaCapture.Failed -= OnMediaCaptureFailed;
+                    MediaCapture.Failed -= OnMediaCaptureFailed;
                 }
 
-                _mediaCapture = new MediaCapture();
-                _mediaCapture.Failed += OnMediaCaptureFailed;
+                MediaCapture = new MediaCapture();
+                MediaCapture.Failed += OnMediaCaptureFailed;
 
                 if (_currentVideoCaptureDeviceIndex >= 0)
                 {
@@ -1072,7 +1205,7 @@ namespace WinRTXamlToolkit.Controls
                     settings.AudioDeviceId = this.AudioDeviceId;
                 }
 
-                await _mediaCapture.InitializeAsync(settings);
+                await MediaCapture.InitializeAsync(settings);
             }
             catch (Exception ex)
             {
@@ -1183,13 +1316,42 @@ namespace WinRTXamlToolkit.Controls
         #endregion
     }
 
+    /// <summary>
+    /// The result of camera initialization.
+    /// </summary>
     public class CameraInitializationResult
     {
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
         public Exception Error { get; private set; }
+
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
         public string ErrorMessage { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="CameraInitializationResult" /> is success.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if success; otherwise, <c>false</c>.
+        /// </value>
         public bool Success { get; private set; }
 
-        public CameraInitializationResult(bool success, string error = null, Exception exception = null)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraInitializationResult" /> class.
+        /// </summary>
+        /// <param name="success">if set to <c>true</c> if initialization was successful.</param>
+        /// <param name="error">The error.</param>
+        /// <param name="exception">The exception.</param>
+        internal CameraInitializationResult(bool success, string error = null, Exception exception = null)
         {
             this.Error = exception;
             this.ErrorMessage = error;

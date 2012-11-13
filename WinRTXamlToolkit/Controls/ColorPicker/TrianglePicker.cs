@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -8,11 +7,17 @@ using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Triangle shaped picker control.
+    /// </summary>
     [TemplatePart(Name = SelectionCanvasName, Type = typeof(Canvas))]
     [TemplatePart(Name = TouchTargetTriangleName, Type = typeof(Path))]
     [TemplatePart(Name = ThumbName, Type = typeof(Ellipse))]
     public class TrianglePicker : Control
     {
+        /// <summary>
+        /// Occurs when the value changes.
+        /// </summary>
         public event EventHandler ValueChanged;
 
         #region X

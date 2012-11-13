@@ -9,61 +9,69 @@ using Windows.UI.Xaml.Controls.Primitives;
 
 namespace WinRTXamlToolkit.Controls
 {
-    // Summary:
-    //     Specifies the rows or columns that are resized by a WinRTXamlToolkit.Controls.CustomGridSplitter
-    //     control.
+    /// <summary>
+    /// Specifies the rows or columns that are resized
+    /// by a WinRTXamlToolkit.Controls.CustomGridSplitter control.
+    /// </summary>
     public enum GridResizeBehavior
     {
-        // Summary:
-        //     Space is redistributed based on the value of the Windows.UI.Xaml.FrameworkElement.HorizontalAlignment
-        //     and Windows.UI.Xaml.FrameworkElement.VerticalAlignment properties.
+        /// <summary>
+        /// Space is redistributed based on the value of the
+        /// Windows.UI.Xaml.FrameworkElement.HorizontalAlignment and
+        /// Windows.UI.Xaml.FrameworkElement.VerticalAlignment properties.
+        /// </summary>
         BasedOnAlignment = 0,
-        //
-        // Summary:
-        //     For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
-        //     between the row that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
-        //     and the next row that is below it. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
-        //     space is redistributed between the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
-        //     and the next column that is to the right.
+        /// <summary>
+        /// For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
+        /// between the row that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
+        /// and the next row that is below it. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
+        /// space is redistributed between the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
+        /// and the next column that is to the right.
+        /// </summary>
         CurrentAndNext = 1,
-        //
-        // Summary:
-        //     For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
-        //     between the row that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
-        //     and the next row that is above it. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
-        //     space is redistributed between the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
-        //     and the next column that is to the left.
+        /// <summary>
+        /// For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
+        /// between the row that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
+        /// and the next row that is above it. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
+        /// space is redistributed between the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter
+        /// and the next column that is to the left.
+        /// </summary>
         PreviousAndCurrent = 2,
-        //
-        // Summary:
-        //     For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
-        //     between the rows that are above and below the row that is specified for the
-        //     WinRTXamlToolkit.Controls.CustomGridSplitter. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
-        //     space is redistributed between the columns that are to the left and right
-        //     of the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter.
+        /// <summary>
+        /// For a horizontal WinRTXamlToolkit.Controls.CustomGridSplitter, space is redistributed
+        /// between the rows that are above and below the row that is specified for the
+        /// WinRTXamlToolkit.Controls.CustomGridSplitter. For a vertical WinRTXamlToolkit.Controls.CustomGridSplitter,
+        /// space is redistributed between the columns that are to the left and right
+        /// of the column that is specified for the WinRTXamlToolkit.Controls.CustomGridSplitter.
+        /// </summary>
         PreviousAndNext = 3,
     }
 
-    // Summary:
-    //     Specifies whether a WinRTXamlToolkit.Controls.CustomGridSplitter control redistributes
-    //     space between rows or between columns.
+    /// <summary>
+    /// Specifies whether a WinRTXamlToolkit.Controls.CustomGridSplitter control redistributes
+    /// space between rows or between columns.
+    /// </summary>
     public enum GridResizeDirection
     {
-        // Summary:
-        //     Space is redistributed based on the values of the Windows.UI.Xaml.FrameworkElement.HorizontalAlignment,
-        //     Windows.UI.Xaml.FrameworkElement.VerticalAlignment, Windows.UI.Xaml.FrameworkElement.ActualWidth,
-        //     and Windows.UI.Xaml.FrameworkElement.ActualHeight properties of the WinRTXamlToolkit.Controls.CustomGridSplitter.
+        /// <summary>
+        /// Space is redistributed based on the values of the Windows.UI.Xaml.FrameworkElement.HorizontalAlignment,
+        /// Windows.UI.Xaml.FrameworkElement.VerticalAlignment, Windows.UI.Xaml.FrameworkElement.ActualWidth,
+        /// and Windows.UI.Xaml.FrameworkElement.ActualHeight properties of the WinRTXamlToolkit.Controls.CustomGridSplitter.
+        /// </summary>
         Auto = 0,
-        //
-        // Summary:
-        //     Space is redistributed between columns.
+        /// <summary>
+        /// Space is redistributed between columns.
+        /// </summary>
         Columns = 1,
-        //
-        // Summary:
-        //     Space is redistributed between rows.
+        /// <summary>
+        /// Space is redistributed between rows.
+        /// </summary>
         Rows = 2,
     }
 
+    /// <summary>
+    /// A control similar to the GridSplitter seen in WPF and Sivlerlight.
+    /// </summary>
     [TemplateVisualState(GroupName = OrientationStatesGroupName, Name = VerticalOrientationStateName)]
     [TemplateVisualState(GroupName = OrientationStatesGroupName, Name = HorizontalOrientationStateName)]
     [TemplateVisualState(GroupName = FocusStatesGroupName, Name = FocusedStateName)]
@@ -80,20 +88,23 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         private const double DefaultKeyboardIncrement = 1d;
-        private Point lastPosition;
-        private Point previewDraggingStartPosition;
-        private bool isDragging;
-        private bool isDraggingPreview;
-        private GridResizeDirection effectiveResizeDirection;
-        private Grid parentGrid;
+        private Point _lastPosition;
+        private Point _previewDraggingStartPosition;
+        private bool _isDragging;
+        private bool _isDraggingPreview;
+        private GridResizeDirection _effectiveResizeDirection;
+        private Grid _parentGrid;
 
-        private Grid previewPopupHostGrid;
-        private Popup previewPopup;
-        private Grid previewGrid;
-        private CustomGridSplitter previewGridSplitter;
-        private Border previewControlBorder;
-        private GridSplitterPreviewControl previewControl;
+        private Grid _previewPopupHostGrid;
+        private Popup _previewPopup;
+        private Grid _previewGrid;
+        private CustomGridSplitter _previewGridSplitter;
+        private Border _previewControlBorder;
+        private GridSplitterPreviewControl _previewControl;
 
+        /// <summary>
+        /// Occurs when dragging completes.
+        /// </summary>
         public event EventHandler DraggingCompleted;
 
         #region ResizeBehavior
@@ -418,6 +429,9 @@ namespace WinRTXamlToolkit.Controls
         //        new UIPropertyMetadata(true));
         //}
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomGridSplitter" /> class.
+        /// </summary>
         public CustomGridSplitter()
         {
             this.DefaultStyleKey = typeof(CustomGridSplitter);
@@ -474,19 +488,19 @@ namespace WinRTXamlToolkit.Controls
             this.DetermineResizeCursor();
         }
 
-        private uint? dragPointer;
+        private uint? _dragPointer;
 
         protected override void OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (this.dragPointer != null)
+            if (this._dragPointer != null)
                 return;
 
-            this.dragPointer = e.Pointer.PointerId;
-            this.effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
-            this.parentGrid = GetGrid();
-            this.previewDraggingStartPosition = e.GetCurrentPoint(this.parentGrid).Position;
-            this.lastPosition = this.previewDraggingStartPosition;
-            this.isDragging = true;
+            this._dragPointer = e.Pointer.PointerId;
+            this._effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
+            this._parentGrid = GetGrid();
+            this._previewDraggingStartPosition = e.GetCurrentPoint(this._parentGrid).Position;
+            this._lastPosition = this._previewDraggingStartPosition;
+            this._isDragging = true;
 
             if (ShowsPreview)
             {
@@ -503,36 +517,36 @@ namespace WinRTXamlToolkit.Controls
 
         private void StartPreviewDragging(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            this.isDraggingPreview = true;
-            this.previewPopup = new Popup
+            this._isDraggingPreview = true;
+            this._previewPopup = new Popup
             {
-                Width = this.parentGrid.ActualWidth,
-                Height = this.parentGrid.ActualHeight
+                Width = this._parentGrid.ActualWidth,
+                Height = this._parentGrid.ActualHeight
             };
 
-            this.previewPopup.IsOpen = true;
-            this.previewPopupHostGrid = new Grid
+            this._previewPopup.IsOpen = true;
+            this._previewPopupHostGrid = new Grid
             {
                 VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch,
                 HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch
             };
 
-            this.parentGrid.Children.Add(this.previewPopupHostGrid);
-            if (this.parentGrid.RowDefinitions.Count > 0)
-                Grid.SetRowSpan(this.previewPopupHostGrid, this.parentGrid.RowDefinitions.Count);
-            if (this.parentGrid.ColumnDefinitions.Count > 0)
-                Grid.SetColumnSpan(this.previewPopupHostGrid, this.parentGrid.ColumnDefinitions.Count);
-            this.previewPopupHostGrid.Children.Add(this.previewPopup);
+            this._parentGrid.Children.Add(this._previewPopupHostGrid);
+            if (this._parentGrid.RowDefinitions.Count > 0)
+                Grid.SetRowSpan(this._previewPopupHostGrid, this._parentGrid.RowDefinitions.Count);
+            if (this._parentGrid.ColumnDefinitions.Count > 0)
+                Grid.SetColumnSpan(this._previewPopupHostGrid, this._parentGrid.ColumnDefinitions.Count);
+            this._previewPopupHostGrid.Children.Add(this._previewPopup);
 
-            this.previewGrid = new Grid
+            this._previewGrid = new Grid
             {
-                Width = this.parentGrid.ActualWidth,
-                Height = this.parentGrid.ActualHeight
+                Width = this._parentGrid.ActualWidth,
+                Height = this._parentGrid.ActualHeight
             };
 
-            this.previewPopup.Child = this.previewGrid;
+            this._previewPopup.Child = this._previewGrid;
 
-            foreach (var definition in this.parentGrid.RowDefinitions)
+            foreach (var definition in this._parentGrid.RowDefinitions)
             {
                 var definitionCopy = new RowDefinition
                 {
@@ -541,10 +555,10 @@ namespace WinRTXamlToolkit.Controls
                     MinHeight = definition.MinHeight
                 };
 
-                this.previewGrid.RowDefinitions.Add(definitionCopy);
+                this._previewGrid.RowDefinitions.Add(definitionCopy);
             }
 
-            foreach (var definition in this.parentGrid.ColumnDefinitions)
+            foreach (var definition in this._parentGrid.ColumnDefinitions)
             {
                 var w = definition.Width;
                 var mxw = definition.MaxWidth;
@@ -564,10 +578,10 @@ namespace WinRTXamlToolkit.Controls
                 //    MinWidth = definition.MinWidth
                 //};
 
-                this.previewGrid.ColumnDefinitions.Add(definitionCopy);
+                this._previewGrid.ColumnDefinitions.Add(definitionCopy);
             }
 
-            this.previewGridSplitter = new CustomGridSplitter
+            this._previewGridSplitter = new CustomGridSplitter
             {
                 Opacity = 0.0,
                 ShowsPreview = false,
@@ -581,17 +595,17 @@ namespace WinRTXamlToolkit.Controls
                 KeyboardIncrement = this.KeyboardIncrement
             };
 
-            Grid.SetColumn(this.previewGridSplitter, Grid.GetColumn(this));
+            Grid.SetColumn(this._previewGridSplitter, Grid.GetColumn(this));
             var cs = Grid.GetColumnSpan(this);
             if (cs > 0)
-                Grid.SetColumnSpan(this.previewGridSplitter, cs);
-            Grid.SetRow(this.previewGridSplitter, Grid.GetRow(this));
+                Grid.SetColumnSpan(this._previewGridSplitter, cs);
+            Grid.SetRow(this._previewGridSplitter, Grid.GetRow(this));
             var rs = Grid.GetRowSpan(this);
             if (rs > 0)
-                Grid.SetRowSpan(this.previewGridSplitter, rs);
-            this.previewGrid.Children.Add(this.previewGridSplitter);
+                Grid.SetRowSpan(this._previewGridSplitter, rs);
+            this._previewGrid.Children.Add(this._previewGridSplitter);
 
-            this.previewControlBorder = new Border
+            this._previewControlBorder = new Border
             {
                 Width = this.Width,
                 Height = this.Height,
@@ -600,80 +614,84 @@ namespace WinRTXamlToolkit.Controls
                 HorizontalAlignment = this.HorizontalAlignment,
             };
 
-            Grid.SetColumn(this.previewControlBorder, Grid.GetColumn(this));
+            Grid.SetColumn(this._previewControlBorder, Grid.GetColumn(this));
             if (cs > 0)
-                Grid.SetColumnSpan(this.previewControlBorder, cs);
-            Grid.SetRow(this.previewControlBorder, Grid.GetRow(this));
+                Grid.SetColumnSpan(this._previewControlBorder, cs);
+            Grid.SetRow(this._previewControlBorder, Grid.GetRow(this));
             if (rs > 0)
-                Grid.SetRowSpan(this.previewControlBorder, rs);
-            this.previewGrid.Children.Add(this.previewControlBorder);
+                Grid.SetRowSpan(this._previewControlBorder, rs);
+            this._previewGrid.Children.Add(this._previewControlBorder);
 
-            this.previewControl = new GridSplitterPreviewControl();
+            this._previewControl = new GridSplitterPreviewControl();
             if (this.PreviewStyle != null)
-                this.previewControl.Style = this.PreviewStyle;
-            this.previewControlBorder.Child = this.previewControl;
+                this._previewControl.Style = this.PreviewStyle;
+            this._previewControlBorder.Child = this._previewControl;
 
-            this.previewPopup.Child = this.previewGrid;
+            this._previewPopup.Child = this._previewGrid;
             //await this.previewGridSplitter.WaitForLoadedAsync();
 
             //this.previewGridSplitter.OnPointerPressed(e);
-            this.previewGridSplitter.dragPointer = e.Pointer.PointerId;
-            this.previewGridSplitter.effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
-            this.previewGridSplitter.parentGrid = this.previewGrid;
-            this.previewGridSplitter.lastPosition = e.GetCurrentPoint(this.previewGrid).Position;
-            this.previewGridSplitter.isDragging = true;
-            this.previewGridSplitter.StartDirectDragging(e);
-            this.previewGridSplitter.DraggingCompleted += previewGridSplitter_DraggingCompleted;
+            this._previewGridSplitter._dragPointer = e.Pointer.PointerId;
+            this._previewGridSplitter._effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
+            this._previewGridSplitter._parentGrid = this._previewGrid;
+            this._previewGridSplitter._lastPosition = e.GetCurrentPoint(this._previewGrid).Position;
+            this._previewGridSplitter._isDragging = true;
+            this._previewGridSplitter.StartDirectDragging(e);
+            this._previewGridSplitter.DraggingCompleted += PreviewGridSplitter_DraggingCompleted;
         }
 
-        void previewGridSplitter_DraggingCompleted(object sender, EventArgs e)
+        private void PreviewGridSplitter_DraggingCompleted(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.previewGrid.RowDefinitions.Count; i++)
+            for (int i = 0; i < this._previewGrid.RowDefinitions.Count; i++)
             {
-                this.parentGrid.RowDefinitions[i].Height =
-                    this.previewGrid.RowDefinitions[i].Height;
+                this._parentGrid.RowDefinitions[i].Height =
+                    this._previewGrid.RowDefinitions[i].Height;
             }
 
-            for (int i = 0; i < this.previewGrid.ColumnDefinitions.Count; i++)
+            for (int i = 0; i < this._previewGrid.ColumnDefinitions.Count; i++)
             {
-                this.parentGrid.ColumnDefinitions[i].Width =
-                    this.previewGrid.ColumnDefinitions[i].Width;
+                this._parentGrid.ColumnDefinitions[i].Width =
+                    this._previewGrid.ColumnDefinitions[i].Width;
             }
 
-            this.previewGridSplitter.DraggingCompleted -= previewGridSplitter_DraggingCompleted;
-            this.parentGrid.Children.Remove(previewPopupHostGrid);
+            this._previewGridSplitter.DraggingCompleted -= PreviewGridSplitter_DraggingCompleted;
+            this._parentGrid.Children.Remove(_previewPopupHostGrid);
 
-            this.isDragging = false;
-            this.isDraggingPreview = false;
-            this.dragPointer = null;
-            this.parentGrid = null;
+            this._isDragging = false;
+            this._isDraggingPreview = false;
+            this._dragPointer = null;
+            this._parentGrid = null;
             if (this.DraggingCompleted != null)
                 this.DraggingCompleted(this, EventArgs.Empty);
         }
 
         private void StartDirectDragging(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            this.isDraggingPreview = false;
+            this._isDraggingPreview = false;
             this.CapturePointer(e.Pointer);
             this.Focus(FocusState.Pointer);
         }
 
+        /// <summary>
+        /// Called before the PointerMoved event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (!this.isDragging ||
-                this.dragPointer != e.Pointer.PointerId)
+            if (!this._isDragging ||
+                this._dragPointer != e.Pointer.PointerId)
             {
                 return;
             }
 
-            var position = e.GetCurrentPoint(this.parentGrid).Position;
+            var position = e.GetCurrentPoint(this._parentGrid).Position;
 
-            if (isDraggingPreview)
+            if (_isDraggingPreview)
                 ContinuePreviewDragging(position);
             else
                 ContinueDirectDragging(position);
 
-            this.lastPosition = position;
+            this._lastPosition = position;
         }
 
         private void ContinuePreviewDragging(Point position)
@@ -682,35 +700,43 @@ namespace WinRTXamlToolkit.Controls
 
         private void ContinueDirectDragging(Point position)
         {
-            if (this.effectiveResizeDirection == GridResizeDirection.Columns)
+            if (this._effectiveResizeDirection == GridResizeDirection.Columns)
             {
-                var deltaX = position.X - this.lastPosition.X;
-                this.ResizeColumns(this.parentGrid, deltaX);
+                var deltaX = position.X - this._lastPosition.X;
+                this.ResizeColumns(this._parentGrid, deltaX);
             }
             else
             {
-                var deltaY = position.Y - this.lastPosition.Y;
-                this.ResizeRows(this.parentGrid, deltaY);
+                var deltaY = position.Y - this._lastPosition.Y;
+                this.ResizeRows(this._parentGrid, deltaY);
             }
         }
 
+        /// <summary>
+        /// Called before the PointerReleased event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (!this.isDragging ||
-                this.dragPointer != e.Pointer.PointerId)
+            if (!this._isDragging ||
+                this._dragPointer != e.Pointer.PointerId)
             {
                 return;
             }
 
             this.ReleasePointerCapture(e.Pointer);
-            this.isDragging = false;
-            this.isDraggingPreview = false;
-            this.dragPointer = null;
-            this.parentGrid = null;
+            this._isDragging = false;
+            this._isDraggingPreview = false;
+            this._dragPointer = null;
+            this._parentGrid = null;
             if (this.DraggingCompleted != null)
                 this.DraggingCompleted(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Called before the KeyDown event occurs.
+        /// </summary>
+        /// <param name="e">The data for the event.</param>
         protected override void OnKeyDown(Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             base.OnKeyDown(e);
@@ -1154,8 +1180,14 @@ namespace WinRTXamlToolkit.Controls
         #endregion
     }
 
+    /// <summary>
+    /// A primitive control used for representing a preview of the manipulated CustomGridSplitter
+    /// </summary>
     public class GridSplitterPreviewControl : ContentControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GridSplitterPreviewControl" /> class.
+        /// </summary>
         public GridSplitterPreviewControl()
         {
             this.DefaultStyleKey = typeof(GridSplitterPreviewControl);

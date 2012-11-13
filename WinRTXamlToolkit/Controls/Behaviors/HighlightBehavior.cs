@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls.Behaviors
 {
+    /// <summary>
+    /// An attached behavior used to highlight instances of the SearchString in a TextBlock.
+    /// </summary>
     public class HighlightBehavior : Behavior<TextBlock>
     {
         #region SearchString

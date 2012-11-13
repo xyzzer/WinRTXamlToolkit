@@ -12,6 +12,9 @@ using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A simple web browser control based on the WebView control with address bar, navigation buttons and navigation history.
+    /// </summary>
     [TemplatePart(Name = LayoutRootPanelName, Type = typeof(Panel))]
     [TemplatePart(Name = WebViewName, Type = typeof(WebView))]
     [TemplatePart(Name = WebViewBrushName, Type = typeof(WebViewBrush))]
@@ -523,6 +526,9 @@ namespace WinRTXamlToolkit.Controls
             _refreshButton.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Refreshes the current page.
+        /// </summary>
         public void Refresh()
         {
             Navigate(_webView.Source);

@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Input;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A TextBox with watermark text
+    /// </summary>
     [TemplatePart(Name = WatermarkTextBlockName, Type = typeof(TextBlock))]
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkVisibleStateName)]
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkHiddenStateName)]
@@ -17,8 +20,6 @@ namespace WinRTXamlToolkit.Controls
         private const string WatermarkHiddenStateName = "WatermarkHidden";
         private const string WatermarkTextBlockName = "WatermarkTextBlock"; 
         #endregion
-
-        private TextBlock _watermarkTextBlock;
 
         #region WatermarkText
         /// <summary>
@@ -42,8 +43,6 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        
-
         #region WatermarkStyle
         /// <summary>
         /// WatermarkStyle Dependency Property
@@ -66,6 +65,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WatermarkTextBox" /> class.
+        /// </summary>
         public WatermarkTextBox()
         {
             DefaultStyleKey = typeof (WatermarkTextBox);
@@ -75,7 +77,6 @@ namespace WinRTXamlToolkit.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _watermarkTextBlock = GetTemplateChild(WatermarkTextBlockName) as TextBlock;
             UpdateWatermarkVisualState();
         }
 

@@ -10,6 +10,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// WriteableBitmap extensions for filling regions of the bitmap with flood fill and similar algorithms.
+    /// </summary>
     public static class WriteableBitmapFloodFillExtensions
     {
         private struct Pnt
@@ -140,20 +143,16 @@ namespace WinRTXamlToolkit.Imaging
             var width = target.PixelWidth;
             var height = target.PixelHeight;
             var stack = new Stack<Pnt>();
-            bool spanLeft;
-            bool spanRight;
-            int y1;
-            Pnt pnt;
 
             stack.Push(new Pnt { X = x, Y = y });
 
             while (stack.Count > 0)
             {
-                pnt = stack.Pop();
+                Pnt pnt = stack.Pop();
                 x = pnt.X;
                 y = pnt.Y;
 
-                y1 = y;
+                int y1 = y;
 
                 // Find first unfilled point in line
                 while (
@@ -165,8 +164,8 @@ namespace WinRTXamlToolkit.Imaging
                 }
 
                 y1++;
-                spanLeft = false;
-                spanRight = false;
+                bool spanLeft = false;
+                bool spanRight = false;
 
                 while (
                     y1 < height &&
@@ -243,20 +242,16 @@ namespace WinRTXamlToolkit.Imaging
             }
             
             var stack = new Stack<Pnt>();
-            bool spanLeft;
-            bool spanRight;
-            int y1;
-            Pnt pnt;
 
             stack.Push(new Pnt { X = x, Y = y });
 
             while (stack.Count > 0)
             {
-                pnt = stack.Pop();
+                Pnt pnt = stack.Pop();
                 x = pnt.X;
                 y = pnt.Y;
 
-                y1 = y;
+                int y1 = y;
 
                 // Find first unfilled point in line
                 while (
@@ -267,8 +262,8 @@ namespace WinRTXamlToolkit.Imaging
                 }
 
                 y1++;
-                spanLeft = false;
-                spanRight = false;
+                bool spanLeft = false;
+                bool spanRight = false;
 
                 while (
                     y1 < height &&
@@ -310,7 +305,6 @@ namespace WinRTXamlToolkit.Imaging
             }
         }
 
-        /// <param name="maxDiff">Max difference.</param>
         /// <summary>
         /// Fills a region of the bitmap replacing
         /// the <paramref name="oldColor"/>
@@ -343,20 +337,16 @@ namespace WinRTXamlToolkit.Imaging
             }
 
             var stack = new Stack<Pnt>();
-            bool spanLeft;
-            bool spanRight;
-            int y1;
-            Pnt pnt;
 
             stack.Push(new Pnt { X = x, Y = y });
 
             while (stack.Count > 0)
             {
-                pnt = stack.Pop();
+                Pnt pnt = stack.Pop();
                 x = pnt.X;
                 y = pnt.Y;
 
-                y1 = y;
+                int y1 = y;
 
                 // Find first unfilled point in line
                 while (
@@ -368,8 +358,8 @@ namespace WinRTXamlToolkit.Imaging
                 }
 
                 y1++;
-                spanLeft = false;
-                spanRight = false;
+                bool spanLeft = false;
+                bool spanRight = false;
 
                 while (
                     y1 < height &&

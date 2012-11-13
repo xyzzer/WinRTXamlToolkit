@@ -34,6 +34,12 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Gets the generated animation.
+        /// </summary>
+        /// <value>
+        /// The animation.
+        /// </value>
         protected override Storyboard Animation
         {
             get

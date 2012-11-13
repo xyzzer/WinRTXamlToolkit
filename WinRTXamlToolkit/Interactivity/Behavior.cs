@@ -15,6 +15,9 @@ namespace WinRTXamlToolkit.Interactivity
     public abstract class Behavior : FrameworkElement
     {
         #region AssociatedObject
+        /// <summary>
+        /// The backing field for AssociatedObject.
+        /// </summary>
         protected internal DependencyObject _associatedObject;
 
         /// <summary>
@@ -30,7 +33,11 @@ namespace WinRTXamlToolkit.Interactivity
         #endregion
 
         #region AssociatedType
+        /// <summary>
+        /// The backing field for AssociatedType property.
+        /// </summary>
         protected internal Type _associatedType = typeof(object);
+
         /// <summary>
         /// The type to which this behavior can be attached.
         /// </summary>

@@ -9,8 +9,14 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     public class FlipTransition : PageTransition
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
 
+        /// <summary>
+        /// Gets the page transition mode.
+        /// </summary>
+        /// <value>
+        /// The page transition mode.
+        /// </value>
         protected override PageTransitionMode Mode
         {
             get

@@ -17,6 +17,10 @@ using System.Windows.Controls.Primitives;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Extension methods for waiting for button clicks
+    /// on one or one of a collection of buttons.
+    /// </summary>
     public static class ButtonExtensions
     {
         /// <summary>

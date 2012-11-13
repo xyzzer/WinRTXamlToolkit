@@ -49,9 +49,11 @@ namespace WinRTXamlToolkit.Debugging
 
             if (!_debugTextBox.Dispatcher.HasThreadAccess)
             {
+#pragma warning disable 4014
                 _debugTextBox.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.High,
-                    () => Append(line));
+                                    CoreDispatcherPriority.High,
+                                    () => Append(line));
+#pragma warning restore 4014
                 return;
             }
 

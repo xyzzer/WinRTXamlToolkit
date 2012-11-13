@@ -20,6 +20,13 @@ namespace WinRTXamlToolkit.Controls.Behaviors
         private Canvas _canvas;
         private Point _startPosition;
 
+        /// <summary>
+        /// Called after the AssociatedObject is loaded (added to visual tree).
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">FlickBehavior can only be used on elements hosted inside of a Canvas.</exception>
+        /// <remarks>
+        /// Override this to hook up functionality to the AssociatedObject.
+        /// </remarks>
         protected override void OnLoaded()
         {
             _canvas = this.AssociatedObject.GetFirstAncestorOfType<Canvas>();
@@ -37,6 +44,12 @@ namespace WinRTXamlToolkit.Controls.Behaviors
             this.AssociatedObject.ManipulationDelta += OnAssociatedObjectManipulationDelta;
         }
 
+        /// <summary>
+        /// Called after the AssociatedObject is unloaded (removed from visual tree).
+        /// </summary>
+        /// <remarks>
+        /// Override this to hook up functionality to the AssociatedObject.
+        /// </remarks>
         protected override void OnUnloaded()
         {
             this.AssociatedObject.ManipulationStarting -= OnAssociatedObjectManipulationStarting;

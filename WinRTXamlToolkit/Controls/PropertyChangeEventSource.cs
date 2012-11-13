@@ -13,8 +13,11 @@ namespace WinRTXamlToolkit.Controls
     public class PropertyChangeEventSource<TPropertyType>
         : FrameworkElement
     {
+        /// <summary>
+        /// Occurs when the value changes.
+        /// </summary>
         public event EventHandler<TPropertyType> ValueChanged;
-        private DependencyObject _source;
+        private readonly DependencyObject _source;
 
         #region Value
         /// <summary>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using WinRTXamlToolkit.Controls.Data;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -11,6 +6,9 @@ using Windows.UI.Xaml.Data;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Represents a control that contains multiple items and has a header.
+    /// </summary>
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(ContentPresenter))]
     public partial class HeaderedItemsControl : ItemsControl
     {

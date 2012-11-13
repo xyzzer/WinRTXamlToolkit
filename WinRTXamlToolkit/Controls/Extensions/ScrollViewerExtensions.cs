@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Extension methods for the ScrollViewer class.
+    /// </summary>
     public static class ScrollViewerExtensions
     {
         private static readonly TimeSpan DefaultAnimatedScrollDuration = TimeSpan.FromSeconds(1.5);

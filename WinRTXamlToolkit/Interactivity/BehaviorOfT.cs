@@ -28,7 +28,7 @@ namespace WinRTXamlToolkit.Interactivity
 
         #region AssociatedObject
         /// <summary>
-        /// Gets the object to which this <see cref="Behavior&lt;T&gt;"/> is attached.
+        /// Gets the object to which this <see cref="Behavior&lt;T&gt;" /> is attached.
         /// </summary>
         public T AssociatedObject
         {

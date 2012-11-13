@@ -13,6 +13,9 @@ using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A dialog control for collecting user's text input.
+    /// </summary>
     [TemplatePart(Name=LayoutRootPanelName, Type=typeof(Panel))]
     [TemplatePart(Name=ContentBorderName, Type=typeof(Border))]
     [TemplatePart(Name=InputTextBoxName, Type=typeof(TextBox))]
@@ -557,6 +560,13 @@ namespace WinRTXamlToolkit.Controls
             _dismissTaskSource.TrySetResult((string)clickedButton.Content);
         }
 
+        /// <summary>
+        /// Provides the behavior for the Arrange pass of layout. Classes can override this method to define their own Arrange pass behavior.
+        /// </summary>
+        /// <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+        /// <returns>
+        /// The actual size that is used after the element is arranged in layout.
+        /// </returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             ResizeLayoutRoot();

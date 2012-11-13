@@ -12,12 +12,25 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Alternative to the Frame control.
+    /// Supports page transition animations, page preloading and asynchronous navigate event handlers.
+    /// Requires using AlternativePage instead of Page though.
+    /// Its API surface is similar enough to the Frame control that it is pretty easy to swap it in.
+    /// </summary>
     [TemplatePart(Name = "PagePresentersPanelName", Type = typeof(Panel))]
     public class AlternativeFrame : ContentControl
     {
         private const int WaitForImagesToLoadTimeout = 1000;
 
+        /// <summary>
+        /// Occurs when navigation completes.
+        /// </summary>
         public event AlternativeNavigationEventHandler Navigated;
+
+        /// <summary>
+        /// Occurs when navigation starts.
+        /// </summary>
         public event AlternativeNavigatingCancelEventHandler Navigating;
 
         #region fields
@@ -30,9 +43,36 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Gets the back stack.
+        /// </summary>
+        /// <value>
+        /// The back stack.
+        /// </value>
         public Stack<JournalEntry> BackStack { get; private set; }
+
+        /// <summary>
+        /// Gets the current journal entry.
+        /// </summary>
+        /// <value>
+        /// The current journal entry.
+        /// </value>
         public JournalEntry CurrentJournalEntry { get; private set; }
+
+        /// <summary>
+        /// Gets the forward stack.
+        /// </summary>
+        /// <value>
+        /// The forward stack.
+        /// </value>
         public Stack<JournalEntry> ForwardStack { get; private set; }
+
+        /// <summary>
+        /// Gets the type of the current source page.
+        /// </summary>
+        /// <value>
+        /// The type of the current source page.
+        /// </value>
         public Type CurrentSourcePageType
         {
             get
@@ -705,6 +745,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

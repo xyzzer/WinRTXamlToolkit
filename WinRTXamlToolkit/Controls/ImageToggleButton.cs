@@ -9,6 +9,10 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A ToggleButton control templated to use images for its states.
+    /// Provides ImageSource properties for each of the button's states as well as mechanisms for generating missing images.
+    /// </summary>
     [TemplatePart(Name = NormalStateImageName, Type = typeof(Image))]
     [TemplatePart(Name = HoverStateImageName, Type = typeof(Image))]
     [TemplatePart(Name = HoverStateRecycledNormalStateImageName, Type = typeof(Image))]
@@ -1620,12 +1624,18 @@ namespace WinRTXamlToolkit.Controls
         } 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageToggleButton" /> class.
+        /// </summary>
         public ImageToggleButton()
         {
             DefaultStyleKey = typeof (ImageToggleButton);
         }
 
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

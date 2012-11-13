@@ -14,6 +14,9 @@ using System.Windows.Controls.Primitives;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Contains an extension method for awaiting selection changes on a Selector control, such as a ListBox.
+    /// </summary>
     public static class SelectorExtensions
     {
         /// <summary>

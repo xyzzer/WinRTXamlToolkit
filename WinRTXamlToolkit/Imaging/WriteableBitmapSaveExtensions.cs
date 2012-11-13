@@ -9,12 +9,20 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
 {
+    /// <summary>
+    /// Extension methods used for saving a WriteableBitmap to a file.
+    /// </summary>
     public static class WriteableBitmapSaveExtensions
     {
-        public static async Task SaveToFile(
+        /// <summary>
+        /// Saves the WriteableBitmap to a png file with a unique file name.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <returns>The file the bitmap was saved to.</returns>
+        public static async Task<StorageFile> SaveToFile(
             this WriteableBitmap writeableBitmap)
         {
-            await writeableBitmap.SaveToFile(
+            return await writeableBitmap.SaveToFile(
                 KnownFolders.PicturesLibrary,
                 string.Format(
                     "{0}_{1}.png",
@@ -22,6 +30,12 @@ namespace WinRTXamlToolkit.Imaging
                     Guid.NewGuid()));
         }
 
+        /// <summary>
+        /// Saves the WriteableBitmap to a png file in the given folder with a unique file name.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="storageFolder">The storage folder.</param>
+        /// <returns>The file the bitmap was saved to.</returns>
         public static async Task<StorageFile> SaveToFile(
             this WriteableBitmap writeableBitmap,
             StorageFolder storageFolder)
@@ -34,6 +48,13 @@ namespace WinRTXamlToolkit.Imaging
                     Guid.NewGuid()));
         }
 
+        /// <summary>
+        /// Saves the WriteableBitmap to a file in the given folder with the given file name.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="storageFolder">The storage folder.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
         public static async Task<StorageFile> SaveToFile(
             this WriteableBitmap writeableBitmap,
             StorageFolder storageFolder,
@@ -78,39 +99,39 @@ namespace WinRTXamlToolkit.Imaging
             return outputFile;
         }
 
+        /// <summary>
+        /// Saves the WriteableBitmap to the given file with the specified BitmapEncoder ID.
+        /// </summary>
+        /// <param name="writeableBitmap">The writeable bitmap.</param>
+        /// <param name="outputFile">The output file.</param>
+        /// <param name="encoderId">The encoder id.</param>
+        /// <returns></returns>
         public static async Task SaveToFile(
             this WriteableBitmap writeableBitmap,
             StorageFile outputFile,
             Guid encoderId)
         {
-            try
-            {
-                Stream stream = writeableBitmap.PixelBuffer.AsStream();
-                byte[] pixels = new byte[(uint)stream.Length];
-                await stream.ReadAsync(pixels, 0, pixels.Length);
+            Stream stream = writeableBitmap.PixelBuffer.AsStream();
+            byte[] pixels = new byte[(uint)stream.Length];
+            await stream.ReadAsync(pixels, 0, pixels.Length);
 
-                using (var writeStream = await outputFile.OpenAsync(FileAccessMode.ReadWrite))
+            using (var writeStream = await outputFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                var encoder = await BitmapEncoder.CreateAsync(encoderId, writeStream);
+                encoder.SetPixelData(
+                    BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Premultiplied,
+                    (uint)writeableBitmap.PixelWidth,
+                    (uint)writeableBitmap.PixelHeight,
+                    96,
+                    96,
+                    pixels);
+                await encoder.FlushAsync();
+
+                using (var outputStream = writeStream.GetOutputStreamAt(0))
                 {
-                    var encoder = await BitmapEncoder.CreateAsync(encoderId, writeStream);
-                    encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Premultiplied,
-                        (uint)writeableBitmap.PixelWidth,
-                        (uint)writeableBitmap.PixelHeight,
-                        96,
-                        96,
-                        pixels);
-                    await encoder.FlushAsync();
-
-                    using (var outputStream = writeStream.GetOutputStreamAt(0))
-                    {
-                        await outputStream.FlushAsync();
-                    }
+                    await outputStream.FlushAsync();
                 }
-            }
-            catch (Exception ex)
-            {
-                string s = ex.ToString();
             }
         }
     }

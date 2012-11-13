@@ -10,8 +10,20 @@ using Windows.Storage;
 
 namespace WinRTXamlToolkit.IO.Serialization
 {
+    /// <summary>
+    /// XML serialization helpers
+    /// </summary>
     public static class XmlSerialization
     {
+        /// <summary>
+        /// Serializes the object graph as XML using DataContractSerializer and writes it to a file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objectGraph">The object graph.</param>
+        /// <param name="fileName">Name of the file to write to.</param>
+        /// <param name="folder">The folder to put the file in.</param>
+        /// <param name="overwriteIfNull">if set to <c>true</c> file will be written even if objectGraph is null.</param>
+        /// <returns></returns>
         public async static Task SerializeAsXmlDataContract<T>(
             this T objectGraph,
             string fileName,
@@ -26,15 +38,28 @@ namespace WinRTXamlToolkit.IO.Serialization
             }
         }
 
-        public static string SerializeAsXmlDataContract<T>(this T graph)
+        /// <summary>
+        /// Serializes the object graph as XML using DataContractSerializer.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objectGraph">The object graph.</param>
+        /// <returns></returns>
+        public static string SerializeAsXmlDataContract<T>(this T objectGraph)
         {
             var ser = new DataContractSerializer(typeof(T));
             var ms = new MemoryStream();
-            ser.WriteObject(ms, graph);
+            ser.WriteObject(ms, objectGraph);
             var bytes = ms.ToArray();
-            return UTF8Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
+        /// <summary>
+        /// Loads object graph from XML file serialized using DataContractSerializer.
+        /// </summary>
+        /// <typeparam name="T">The type of the returned object graph reference.</typeparam>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="folder">The folder.</param>
+        /// <returns>Object graph reference.</returns>
         public static async Task<T> LoadFromXmlDataContractFile<T>(
             string fileName,
             StorageFolder folder = null)
@@ -46,6 +71,15 @@ namespace WinRTXamlToolkit.IO.Serialization
             return result;
         }
 
+        /// <summary>
+        /// Serializes the object graph as XML using XmlSerializer and writes it to a file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objectGraph">The object graph.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="folder">The folder.</param>
+        /// <param name="overwriteIfNull">if set to <c>true</c> file will be written even when the object graph reference is null.</param>
+        /// <returns></returns>
         public async static Task SerializeAsXml<T>(
             this T objectGraph,
             string fileName,
@@ -74,15 +108,28 @@ namespace WinRTXamlToolkit.IO.Serialization
             }
         }
 
-        public static string SerializeAsXml<T>(this T graph)
+        /// <summary>
+        /// Serializes the object graph as XML using XmlSerializer.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="objectGraph">The object graph.</param>
+        /// <returns></returns>
+        public static string SerializeAsXml<T>(this T objectGraph)
         {
             var ser = new XmlSerializer(typeof(T));
             var ms = new MemoryStream();
-            ser.Serialize(ms, graph);
+            ser.Serialize(ms, objectGraph);
             var bytes = ms.ToArray();
             return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
+        /// <summary>
+        /// Loads an object graph from XML file serialized using XmlSerializer.
+        /// </summary>
+        /// <typeparam name="T">Type of the returned object graph reference.</typeparam>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="folder">The folder.</param>
+        /// <returns>Object graph reference.</returns>
         public static async Task<T> LoadFromXmlFile<T>(
             string fileName,
             StorageFolder folder = null)

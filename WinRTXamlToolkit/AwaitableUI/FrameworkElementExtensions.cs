@@ -16,6 +16,9 @@ using System.Windows;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Contains extension methods to wait for FrameworkElement events.
+    /// </summary>
     public static class FrameworkElementExtensions
     {
         /// <summary>
@@ -41,6 +44,11 @@ namespace WinRTXamlToolkit.AwaitableUI
                 eh => frameworkElement.Unloaded -= eh);
         }
 
+        /// <summary>
+        /// Waits for the next layout update event.
+        /// </summary>
+        /// <param name="frameworkElement">The framework element.</param>
+        /// <returns></returns>
         public static async Task WaitForLayoutUpdateAsync(this FrameworkElement frameworkElement)
         {
             await EventAsync.FromEvent<object>(
@@ -48,6 +56,11 @@ namespace WinRTXamlToolkit.AwaitableUI
                 eh => frameworkElement.LayoutUpdated -= eh);
         }
 
+        /// <summary>
+        /// Waits for the size of the element to become non-zero.
+        /// </summary>
+        /// <param name="frameworkElement">The framework element.</param>
+        /// <returns></returns>
         public static async Task WaitForNonZeroSizeAsync(this FrameworkElement frameworkElement)
         {
             while (frameworkElement.ActualWidth == 0 && frameworkElement.ActualHeight == 0)
@@ -75,10 +88,16 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// <summary>
         /// Waits for all the image sources in the visual tree to complete loading (useful to call before a page transition).
         /// </summary>
-        /// <param name="frameworkElement"></param>
+        /// <remarks>
+        /// Note that it does not take popups into account.
+        /// </remarks>
+        /// <param name="frameworkElement">The framework element.</param>
+        /// <param name="millisecondsTimeout">The timeout in milliseconds.</param>
         /// <returns></returns>
         public static async Task WaitForImagesToLoad(this FrameworkElement frameworkElement, int millisecondsTimeout = 0)
         {
+            //TODO: See if finding popups would be possible too.
+
             foreach (var image in frameworkElement.GetDescendantsOfType<Image>())
             {
                 if (image.Source != null)

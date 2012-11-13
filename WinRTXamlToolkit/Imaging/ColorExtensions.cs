@@ -28,6 +28,13 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region FromRgb()
+        /// <summary>
+        /// Returns a Color based on 0..1 double RGB values.
+        /// </summary>
+        /// <param name="red">The red.</param>
+        /// <param name="green">The green.</param>
+        /// <param name="blue">The blue.</param>
+        /// <returns></returns>
         public static Color FromRgb(double red, double green, double blue)
         {
             return Color.FromArgb(
@@ -165,6 +172,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region ToHsl()
+        /// <summary>
+        /// Converts an RGBA Color the HSL representation.
+        /// </summary>
+        /// <param name="rgba">The rgba.</param>
+        /// <returns></returns>
         public static HslColor ToHsl(this Color rgba)
         {
             const double toDouble = 1.0 / 255;
@@ -207,6 +219,11 @@ namespace WinRTXamlToolkit.Imaging
         #endregion
 
         #region ToHsv()
+        /// <summary>
+        /// Converts an RGBA Color the HSV representation.
+        /// </summary>
+        /// <param name="rgba">The rgba.</param>
+        /// <returns></returns>
         public static HsvColor ToHsv(this Color rgba)
         {
             const double toDouble = 1.0 / 255;

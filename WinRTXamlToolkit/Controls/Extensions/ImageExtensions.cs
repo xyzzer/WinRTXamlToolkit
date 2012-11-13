@@ -11,6 +11,9 @@ using Debug = System.Diagnostics.Debug;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Attached properties that extend the Image control class.
+    /// </summary>
     public static class ImageExtensions
     {
         #region FadeInOnLoaded
@@ -244,6 +247,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Handles fade in animations on mage controls.
+    /// </summary>
     public class FadeInOnLoadedHandler
     {
         // TODO: Note - this leaks memory. Improve it to use WeakReferences instead.
@@ -256,11 +262,19 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private BitmapImage _source;
         private double _targetOpacity;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FadeInOnLoadedHandler" /> class.
+        /// </summary>
+        /// <param name="image">The image.</param>
         public FadeInOnLoadedHandler(Image image)
         {
             Attach(image);
         }
 
+        /// <summary>
+        /// Attaches the specified image.
+        /// </summary>
+        /// <param name="image">The image.</param>
         private void Attach(Image image)
         {
             _image = image;

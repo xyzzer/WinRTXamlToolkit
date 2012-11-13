@@ -13,6 +13,12 @@ namespace WinRTXamlToolkit.IO.Extensions
     /// </remarks>
     public static class StringIOExtensions
     {
+        /// <summary>
+        /// Reads a string from a text file.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="folder">The folder.</param>
+        /// <returns></returns>
         public static async Task<string> ReadFromFile(
             string fileName,
             StorageFolder folder = null)
@@ -35,8 +41,15 @@ namespace WinRTXamlToolkit.IO.Extensions
             }
         }
 
+        /// <summary>
+        /// Writes a string to a text file.
+        /// </summary>
+        /// <param name="text">The text to write.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="folder">The folder.</param>
+        /// <returns></returns>
         public static async Task WriteToFile(
-            this string contents,
+            this string text,
             string fileName,
             StorageFolder folder = null)
         {
@@ -50,8 +63,8 @@ namespace WinRTXamlToolkit.IO.Extensions
                 {
                     using (var dataWriter = new DataWriter(outStream))
                     {
-                        if (contents != null)
-                            dataWriter.WriteString(contents);
+                        if (text != null)
+                            dataWriter.WriteString(text);
 
                         await dataWriter.StoreAsync();
                         dataWriter.DetachStream();

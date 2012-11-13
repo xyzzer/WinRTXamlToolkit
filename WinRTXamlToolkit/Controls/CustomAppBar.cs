@@ -13,6 +13,15 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// AppBar control replacement. To be used anywhere in the visual tree.
+    /// The standard AppBar does not do the slide transitions
+    /// when not placed in the Page.Bottom/Top-AppBar properties,
+    /// which makes it less useful when used e.g. with the AlternativeFrame control.
+    /// There are also other cases when it just makes sense to put it elsewhere on screen.
+    /// Contains improvements such properties that lock it in opened or closed states,
+    /// apart from simply giving you the source code you can tweak to your liking.
+    /// </summary>
     [TemplateVisualState(GroupName=FloatingStatesGroupName, Name=FloatingVisibleStateName)]
     [TemplateVisualState(GroupName=FloatingStatesGroupName, Name=FloatingHiddenStateName)]
     [TemplatePart(Name=LayoutRootPartName)]
@@ -511,6 +520,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

@@ -16,7 +16,10 @@ using System.Windows;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
-    // Based on: http://social.msdn.microsoft.com/Forums/sk/async/thread/30f3339c-5e04-4aa8-9a09-9be72d9d9a1b
+    /// <summary>
+    /// Contains helper methods used to generate Tasks for waiting for event occurrence.
+    /// Based on: <a href="http://social.msdn.microsoft.com/Forums/sk/async/thread/30f3339c-5e04-4aa8-9a09-9be72d9d9a1b">http://social.msdn.microsoft.com/Forums/sk/async/thread/30f3339c-5e04-4aa8-9a09-9be72d9d9a1b</a>.
+    /// </summary>
     public static class EventAsync
     {
         /// <summary>

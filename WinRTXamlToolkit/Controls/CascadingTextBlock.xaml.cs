@@ -13,6 +13,9 @@ using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A TextBlock-like control with unique 3D transitions.
+    /// </summary>
     public partial class CascadingTextBlock : UserControl
     {
         #region AnimateOnLoaded
@@ -650,8 +653,14 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Occurs when cascade animation completes.
+        /// </summary>
         public event EventHandler CascadeCompleted;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CascadingTextBlock" /> class.
+        /// </summary>
         public CascadingTextBlock()
         {
             InitializeComponent();
@@ -666,6 +675,10 @@ namespace WinRTXamlToolkit.Controls
 #pragma warning restore 4014
         }
 
+        /// <summary>
+        /// Begins the cascading transition asynchronously (waits for it to complete).
+        /// </summary>
+        /// <returns></returns>
         public async Task BeginCascadingTransitionAsync()
         {
             var transparentBrush =

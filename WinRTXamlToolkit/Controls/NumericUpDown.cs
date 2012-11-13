@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -10,13 +9,27 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Determins whether the value bar behind the value text should be visible
+    /// </summary>
     public enum NumericUpDownValueBarVisibility
     {
+        /// <summary>
+        /// Visible
+        /// </summary>
         Visible,
-        Collapsed,
-        Auto
+        /// <summary>
+        /// Collapsed
+        /// </summary>
+        Collapsed
     }
 
+    /// <summary>
+    /// NumericUpDown control - for representing values that can be
+    /// entered with keyboard,
+    /// using increment/decrement buttons
+    /// as well as swiping over the control.
+    /// </summary>
     [TemplatePart(Name = ValueTextBoxName, Type = typeof(TextBox))]
     [TemplatePart(Name = ValueBarName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = DragOverlayName, Type = typeof(UIElement))]
@@ -105,7 +118,7 @@ namespace WinRTXamlToolkit.Controls
                 "ValueBarVisibility",
                 typeof(NumericUpDownValueBarVisibility),
                 typeof(NumericUpDown),
-                new PropertyMetadata(NumericUpDownValueBarVisibility.Auto, OnValueBarVisibilityChanged));
+                new PropertyMetadata(NumericUpDownValueBarVisibility.Visible, OnValueBarVisibilityChanged));
 
         /// <summary>
         /// Gets or sets the ValueBarVisibility property. This dependency property 
@@ -204,6 +217,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NumericUpDown" /> class.
+        /// </summary>
         public NumericUpDown()
         {
             this.DefaultStyleKey = typeof(NumericUpDown);
@@ -365,13 +381,13 @@ namespace WinRTXamlToolkit.Controls
             else
                 _unusedManipulationDelta = delta;
 
-            if (Value == Maximum && _unusedManipulationDelta > 0)
+            if (this.Value == this.Maximum && _unusedManipulationDelta > 0)
             {
                 _unusedManipulationDelta = 0;
                 return;
             }
 
-            if (Value == Minimum && _unusedManipulationDelta < 0)
+            if (this.Value == this.Minimum && _unusedManipulationDelta < 0)
             {
                 _unusedManipulationDelta = 0;
                 return;
@@ -433,11 +449,6 @@ namespace WinRTXamlToolkit.Controls
                 return;
 
             var effectiveValueBarVisibility = ValueBarVisibility;
-
-            if (effectiveValueBarVisibility == NumericUpDownValueBarVisibility.Auto)
-            {
-                effectiveValueBarVisibility = NumericUpDownValueBarVisibility.Visible;
-            }
 
             if (effectiveValueBarVisibility == NumericUpDownValueBarVisibility.Collapsed)
             {
@@ -519,57 +530,57 @@ namespace WinRTXamlToolkit.Controls
         }
     }
 
-    public sealed class NumericUpDownAccelerationCollection : List<NumericUpDownAcceleration>
-    {
-        //TODO: Consider adding this
-    }
+    //public sealed class NumericUpDownAccelerationCollection : List<NumericUpDownAcceleration>
+    //{
+    //    //TODO: Consider adding this
+    //}
 
-    public sealed class NumericUpDownAcceleration : DependencyObject
-    {
-        #region Seconds
-        /// <summary>
-        /// Seconds Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty SecondsProperty =
-            DependencyProperty.Register(
-                "Seconds",
-                typeof(int),
-                typeof(NumericUpDownAcceleration),
-                new PropertyMetadata(0));
+    //public sealed class NumericUpDownAcceleration : DependencyObject
+    //{
+    //    #region Seconds
+    //    /// <summary>
+    //    /// Seconds Dependency Property
+    //    /// </summary>
+    //    public static readonly DependencyProperty SecondsProperty =
+    //        DependencyProperty.Register(
+    //            "Seconds",
+    //            typeof(int),
+    //            typeof(NumericUpDownAcceleration),
+    //            new PropertyMetadata(0));
 
-        /// <summary>
-        /// Gets or sets the Seconds property. This dependency property 
-        /// indicates the number of seconds before the acceleration takes place.
-        /// </summary>
-        public int Seconds
-        {
-            get { return (int)GetValue(SecondsProperty); }
-            set { SetValue(SecondsProperty, value); }
-        }
-        #endregion
+    //    /// <summary>
+    //    /// Gets or sets the Seconds property. This dependency property 
+    //    /// indicates the number of seconds before the acceleration takes place.
+    //    /// </summary>
+    //    public int Seconds
+    //    {
+    //        get { return (int)GetValue(SecondsProperty); }
+    //        set { SetValue(SecondsProperty, value); }
+    //    }
+    //    #endregion
 
-        #region Increment
-        /// <summary>
-        /// Increment Dependency Property
-        /// </summary>
-        public static readonly DependencyProperty IncrementProperty =
-            DependencyProperty.Register(
-                "Increment",
-                typeof(double),
-                typeof(NumericUpDownAcceleration),
-                new PropertyMetadata(0));
+    //    #region Increment
+    //    /// <summary>
+    //    /// Increment Dependency Property
+    //    /// </summary>
+    //    public static readonly DependencyProperty IncrementProperty =
+    //        DependencyProperty.Register(
+    //            "Increment",
+    //            typeof(double),
+    //            typeof(NumericUpDownAcceleration),
+    //            new PropertyMetadata(0));
 
-        /// <summary>
-        /// Gets or sets the Increment property. This dependency property 
-        /// indicates the increment that takes place every button click
-        /// after the button has been pressed for the duration specified
-        /// by the Seconds property.
-        /// </summary>
-        public double Increment
-        {
-            get { return (double)GetValue(IncrementProperty); }
-            set { SetValue(IncrementProperty, value); }
-        }
-        #endregion
-    }
+    //    /// <summary>
+    //    /// Gets or sets the Increment property. This dependency property 
+    //    /// indicates the increment that takes place every button click
+    //    /// after the button has been pressed for the duration specified
+    //    /// by the Seconds property.
+    //    /// </summary>
+    //    public double Increment
+    //    {
+    //        get { return (double)GetValue(IncrementProperty); }
+    //        set { SetValue(IncrementProperty, value); }
+    //    }
+    //    #endregion
+    //}
 }

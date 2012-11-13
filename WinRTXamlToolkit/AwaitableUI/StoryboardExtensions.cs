@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 
 namespace WinRTXamlToolkit.AwaitableUI
 {
+    /// <summary>
+    /// Contains an extension method for waiting for Storyboard to complete.
+    /// </summary>
     public static class StoryboardExtensions
     {
         /// <summary>

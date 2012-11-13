@@ -10,6 +10,12 @@ namespace WinRTXamlToolkit.AwaitableUI
     /// </summary>
     public static class BitmapImageExtensions
     {
+        /// <summary>
+        /// Waits for the BitmapImage to load.
+        /// </summary>
+        /// <param name="bitmapImage">The bitmap image.</param>
+        /// <param name="timeoutInMs">The timeout in ms.</param>
+        /// <returns></returns>
         public async static Task<ExceptionRoutedEventArgs> WaitForLoadedAsync(this BitmapImage bitmapImage, int timeoutInMs = 0)
         {
             var tcs = new TaskCompletionSource<ExceptionRoutedEventArgs>();
