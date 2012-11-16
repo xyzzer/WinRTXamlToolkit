@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -44,18 +45,31 @@ namespace WinRTXamlToolkit.AwaitableUI
         }
 
         /// <summary>
+        /// Plays to end and waits asynchronously.
+        /// </summary>
+        /// <param name="mediaElement">The media element.</param>
+        /// <param name="source">The source to play.</param>
+        /// <returns></returns>
+        public static async Task<MediaElement> PlayToEndAsync(this MediaElement mediaElement, Uri source)
+        {
+            mediaElement.Source = source;
+            return await mediaElement.WaitToCompleteAsync();
+        }
+
+        /// <summary>
         /// Waits for the MediaElement to complete playback.
         /// </summary>
-        /// <param name="mediaElement"></param>
+        /// <param name="mediaElement">The media element.</param>
         /// <returns></returns>
         public static async Task<MediaElement> WaitToCompleteAsync(this MediaElement mediaElement)
         {
-            if (mediaElement.CurrentState != MediaElementState.Buffering &&
-                mediaElement.CurrentState != MediaElementState.Opening &&
-                mediaElement.CurrentState != MediaElementState.Playing)
-            {
-                return mediaElement;
-            }
+            //if (mediaElement.CurrentState != MediaElementState.Closed &&
+            //    mediaElement.CurrentState != MediaElementState.Buffering &&
+            //    mediaElement.CurrentState != MediaElementState.Opening &&
+            //    mediaElement.CurrentState != MediaElementState.Playing)
+            //{
+            //    return mediaElement;
+            //}
 
             var tcs = new TaskCompletionSource<MediaElement>();
             RoutedEventHandler reh = null;

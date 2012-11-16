@@ -405,12 +405,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
             Storyboard.SetTarget(sb, _sliderHorizontal);
             Storyboard.SetTargetProperty(da, "Value");
             await sb.BeginAsync();
-            sb.Stop();
-
-            if (_scrollViewer != null)
-            {
-                _scrollViewer.ScrollToHorizontalOffset(offset);
-            }
         }
         #endregion
 
@@ -431,12 +425,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
             Storyboard.SetTarget(sb, _sliderVertical);
             Storyboard.SetTargetProperty(da, "Value");
             await sb.BeginAsync();
-            sb.Stop();
-
-            if (_scrollViewer != null)
-            {
-                _scrollViewer.ScrollToVerticalOffset(offset);
-            }
         }
         #endregion
     }

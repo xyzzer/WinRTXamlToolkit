@@ -138,6 +138,7 @@
     <Compile Include="Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs" />
     <Compile Include="Controls\AlternativeFrame\AlternativeNavigationEventArgs.cs" />
     <Compile Include="Controls\AlternativeFrame\AlternativePage.cs" />
+    <Compile Include="Controls\AlternativeFrame\CutTransition.cs" />
     <Compile Include="Controls\AlternativeFrame\DissolveTransition.cs" />
     <Compile Include="Controls\AlternativeFrame\FadeAnimation.cs" />
     <Compile Include="Controls\AlternativeFrame\FlipAnimation.cs" />
