@@ -57,7 +57,8 @@ namespace WinRTXamlToolkit.IO.Serialization
             var ms = new MemoryStream();
             ser.WriteObject(ms, graph);
             var bytes = ms.ToArray();
-            return UTF8Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
         /// <summary>
@@ -72,9 +73,22 @@ namespace WinRTXamlToolkit.IO.Serialization
             StorageFolder folder = null)
         {
             var json = await StringIOExtensions.ReadFromFile(fileName, folder);
-            var ms = new MemoryStream(UTF8Encoding.UTF8.GetBytes(json));
+
+            return LoadFromJsonString<T>(json);
+        }
+
+        /// <summary>
+        /// Loads an object graph from a JSON string.
+        /// </summary>
+        /// <typeparam name="T">The type of the expected object graph reference.</typeparam>
+        /// <param name="json">The JSON string.</param>
+        /// <returns></returns>
+        public static T LoadFromJsonString<T>(string json)
+        {
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
             var ser = new DataContractJsonSerializer(typeof(T));
             T result = (T)ser.ReadObject(ms);
+
             return result;
         }
     }
