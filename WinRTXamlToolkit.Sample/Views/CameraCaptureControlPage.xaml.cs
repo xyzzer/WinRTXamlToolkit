@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.Extensions;
+using WinRTXamlToolkit.Tools;
 using Windows.Media.Capture;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -36,11 +39,31 @@ namespace WinRTXamlToolkit.Sample.Views
             TestedControl.HideAsync();
         }
 
+        private delegate Task TaskDelegate();
+
         private async void OnCapturePhotoButtonClick(object sender, RoutedEventArgs e)
         {
             var file = await TestedControl.CapturePhotoToStorageFileAsync(ApplicationData.Current.TemporaryFolder);
             var bi = new BitmapImage();
-            var stream = await file.OpenReadAsync();
+
+            IRandomAccessStreamWithContentType stream;
+
+            try
+            {
+                stream = await TryCatchRetry.RunWithDelayAsync<Exception, IRandomAccessStreamWithContentType>(
+                    file.OpenReadAsync(),
+                    TimeSpan.FromSeconds(0.5),
+                    10,
+                    true);
+            }
+            catch (Exception ex)
+            {
+                // Seems like a bug with WinRT not closing the file sometimes that writes the photo to.
+                new MessageDialog(ex.Message, "Error").ShowAsync();
+
+                return;
+            }
+
             bi.SetSource(stream);
             PhotoImage.Source = bi;
             CapturedVideoElement.Visibility = Visibility.Collapsed;
@@ -59,7 +82,25 @@ namespace WinRTXamlToolkit.Sample.Views
                 _videoFile = await TestedControl.StartVideoCaptureAsync(ApplicationData.Current.TemporaryFolder);
                 CapturedVideoElement.Visibility = Visibility.Visible;
                 PhotoImage.Visibility = Visibility.Collapsed;
-                CapturedVideoElement.SetSource(await _videoFile.OpenReadAsync(), _videoFile.ContentType);
+
+                IRandomAccessStreamWithContentType stream;
+
+                try
+                {
+                    stream = await TryCatchRetry.RunWithDelayAsync<Exception, IRandomAccessStreamWithContentType>(
+                        _videoFile.OpenReadAsync(),
+                        TimeSpan.FromSeconds(0.5),
+                        10);
+                }
+                catch (Exception ex)
+                {
+                    // Seems like a bug with WinRT not closing the file sometimes that it writes the video to.
+                    new MessageDialog(ex.Message, "Error").ShowAsync();
+
+                    return;
+                }
+
+                CapturedVideoElement.SetSource(stream, _videoFile.ContentType);
             }
             else
             {

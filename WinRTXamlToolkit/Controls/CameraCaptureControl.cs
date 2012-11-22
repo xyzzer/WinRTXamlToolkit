@@ -561,6 +561,7 @@ namespace WinRTXamlToolkit.Controls
         {
             this.DefaultStyleKey = typeof(CameraCaptureControl);
             this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
         }
         #endregion
 
@@ -583,7 +584,8 @@ namespace WinRTXamlToolkit.Controls
                 if (_initializationTaskSource != null)
                 {
                     // Already initializing or initialized
-                    return await _initializationTaskSource.Task;
+                    await _initializationTaskSource.Task;
+                    _initializationTaskSource = new TaskCompletionSource<CameraInitializationResult>();
                 }
 
                 _internalState = CameraCaptureControlStates.Initializing;
@@ -740,6 +742,8 @@ namespace WinRTXamlToolkit.Controls
         /// <returns></returns>
         public async Task<CameraInitializationResult> ShowAsync()
         {
+            await this.WaitForLoadedAsync();
+            await this.WaitForNonZeroSizeAsync();
             var result = await InitializeAsync();
 
             if (!result.Success)
@@ -777,7 +781,12 @@ namespace WinRTXamlToolkit.Controls
 
             if (MediaCapture != null)
             {
-                await MediaCapture.StopPreviewAsync();
+                try
+                {
+                    await MediaCapture.StopPreviewAsync();
+                }
+                catch {}
+
                 //_mediaCapture.Failed -= OnMediaCaptureFailed;
                 //_mediaCapture = null;
             }
@@ -977,11 +986,11 @@ namespace WinRTXamlToolkit.Controls
         /// Cycles the cameras asynchronously.
         /// </summary>
         /// <returns></returns>
-        public async Task CycleCamerasAsync()
+        public async Task<CameraInitializationResult> CycleCamerasAsync()
         {
             if (_videoCaptureDevices.Length <= 1)
             {
-                return;
+                return new CameraInitializationResult(true);
             }
 
             // Need to set the ID to null so that the current device does not get set again.
@@ -990,16 +999,7 @@ namespace WinRTXamlToolkit.Controls
                 await HideAsync();
                 _currentVideoCaptureDeviceIndex = (_currentVideoCaptureDeviceIndex + 1) % _videoCaptureDevices.Length;
 
-                var result = await InitializeAsync();
-
-                if (result.Success)
-                {
-                    await ShowAsync();
-                }
-                else
-                {
-                    //TODO: Add error handling here
-                }
+                return await ShowAsync();
             }
             else
             {
@@ -1007,6 +1007,8 @@ namespace WinRTXamlToolkit.Controls
             }
 
             this.VideoDeviceId = _videoCaptureDevices[_currentVideoCaptureDeviceIndex].Id;
+
+            return new CameraInitializationResult(true);
         }
         #endregion
         #endregion
@@ -1043,6 +1045,24 @@ namespace WinRTXamlToolkit.Controls
             if (this.ShowOnLoad)
             {
                 await ShowAsync();
+            }
+        }
+        #endregion
+
+        #region OnUnloaded()
+        private async void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (_internalState == CameraCaptureControlStates.Initializing &&
+                _initializationTaskSource != null)
+            {
+                await _initializationTaskSource.Task;
+            }
+
+            if (_internalState == CameraCaptureControlStates.Shown)
+            {
+#pragma warning disable 4014
+                HideAsync();
+#pragma warning restore 4014
             }
         }
         #endregion
