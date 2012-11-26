@@ -19,7 +19,7 @@ namespace Controls.DataVisualization.Toolkit
         /// <summary>
         /// A queue of the storyboards.
         /// </summary>
-        private Queue<Storyboard> _storyBoards = new Queue<Storyboard>();
+        private readonly Queue<Storyboard> _storyBoards = new Queue<Storyboard>();
 
         /// <summary>
         /// Accepts a new storyboard to play in sequence.
@@ -58,7 +58,7 @@ namespace Controls.DataVisualization.Toolkit
             {
                 Storyboard storyboard = _storyBoards.Peek();
 #pragma warning disable 4014
-                storyboard.Dispatcher.RunAsync(CoreDispatcherPriority.High, storyboard.Begin);
+                storyboard.Dispatcher.RunAsync(CoreDispatcherPriority.High, () => storyboard.Begin());
 #pragma warning restore 4014
                 //storyboard.Begin();
             }

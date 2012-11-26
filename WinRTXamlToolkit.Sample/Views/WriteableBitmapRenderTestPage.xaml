@@ -1,0 +1,63 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.WriteableBitmapRenderTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:WinRTXamlToolkit.Interactivity"
+    xmlns:views="using:WinRTXamlToolkit.Sample.Views"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition 
+                Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition
+                Height="140" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="WriteableBitmap.Render() Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <TextBlock
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="Source XAML Tree"/>
+        <Grid
+            x:Name="source"
+            Grid.Column="1"
+            Grid.Row="2">
+            <TextBlock
+                Text="Hello WriteableBitmap.Render()! ;&gt;" />
+        </Grid>
+
+        <TextBlock
+            Grid.Column="2"
+            Grid.Row="1"
+            Text="Target WriteableBitmap" />
+        <Image
+            x:Name="target"
+            Grid.Column="2"
+            Grid.Row="2" />
+        <!--<Button
+            Content="Test"
+            Grid.Column="1"
+            Grid.Row="2" />-->
+    </Grid>
+</controls:AlternativePage>

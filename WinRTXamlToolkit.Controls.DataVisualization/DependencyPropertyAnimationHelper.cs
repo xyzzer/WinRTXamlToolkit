@@ -133,6 +133,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 if (ValueHelper.TryConvert(fromValue, out fromDoubleValue) && ValueHelper.TryConvert(toValue, out toDoubleValue))
                 {
                     DoubleAnimation doubleAnimation = new DoubleAnimation();
+                    doubleAnimation.EnableDependentAnimation = true;
 #if !NO_EASING_FUNCTIONS
                     doubleAnimation.EasingFunction = easingFunction;
 #endif
@@ -145,6 +146,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 else if (ValueHelper.TryConvert(fromValue, out fromDateTime) && ValueHelper.TryConvert(toValue, out toDateTime))
                 {
                     ObjectAnimationUsingKeyFrames keyFrameAnimation = new ObjectAnimationUsingKeyFrames();
+                    keyFrameAnimation.EnableDependentAnimation = true;
                     keyFrameAnimation.Duration = durationTimeSpan;
 
                     long intervals = (long)(durationTimeSpan.TotalSeconds * KeyFramesPerSecond);
@@ -178,6 +180,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             if (storyBoard.Children.Count == 0)
             {
                 ObjectAnimationUsingKeyFrames keyFrameAnimation = new ObjectAnimationUsingKeyFrames();
+                keyFrameAnimation.EnableDependentAnimation = true;
                 DiscreteObjectKeyFrame endFrame = new DiscreteObjectKeyFrame() { Value = toValue, KeyTime = new TimeSpan(0, 0, 0) };
                 keyFrameAnimation.KeyFrames.Add(endFrame);
 

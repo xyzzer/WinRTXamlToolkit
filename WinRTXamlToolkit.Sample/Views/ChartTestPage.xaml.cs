@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI.Xaml;
 
@@ -10,38 +11,54 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             this.InitializeComponent();
 
+            UpdateCharts();
+        }
+
+        private Random _random = new Random();
+
+        private void UpdateCharts()
+        {
             List<NameValueItem> items = new List<NameValueItem>();
-            items.Add(new NameValueItem { Name = "Test1", Value = 40 });
-            items.Add(new NameValueItem { Name = "Test2", Value = 50 });
-            items.Add(new NameValueItem { Name = "Test3", Value = 20 });
-            items.Add(new NameValueItem { Name = "Test4", Value = 10 });
-            items.Add(new NameValueItem { Name = "Test5", Value = 100 });
+            items.Add(new NameValueItem { Name = "Test1", Value = _random.Next(10, 100) });
+            items.Add(new NameValueItem { Name = "Test2", Value = _random.Next(10, 100) });
+            items.Add(new NameValueItem { Name = "Test3", Value = _random.Next(10, 100) });
+            items.Add(new NameValueItem { Name = "Test4", Value = _random.Next(10, 100) });
+            items.Add(new NameValueItem { Name = "Test5", Value = _random.Next(10, 100) });
 
-            ((ColumnSeries)Chart.Series[0]).ItemsSource = items;
-            ((BarSeries)BarChart.Series[0]).ItemsSource = items;
-            ((LineSeries)LineChart.Series[0]).ItemsSource = items;
-            ((LineSeries)LineChart2.Series[0]).ItemsSource = items;
-            ((ColumnSeries)MixedChart.Series[0]).ItemsSource = items;
-            ((LineSeries)MixedChart.Series[1]).ItemsSource = items;
-            ((AreaSeries)AreaChart.Series[0]).ItemsSource = items;
-            ((BubbleSeries)BubbleChart.Series[0]).ItemsSource = items;
-            ((ScatterSeries)ScatterChart.Series[0]).ItemsSource = items;
-            ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items;
-            ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items;
-            ((StackedBarSeries)StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items;
-            ((Stacked100BarSeries)StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource = items;
-            ((Stacked100BarSeries)StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource = items;
-            ((Stacked100BarSeries)StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource = items;
+            ((ColumnSeries)this.Chart.Series[0]).ItemsSource = items;
+            ((BarSeries)this.BarChart.Series[0]).ItemsSource = items;
+            ((LineSeries)this.LineChart.Series[0]).ItemsSource = items;
+            ((LineSeries)this.LineChart2.Series[0]).ItemsSource = items;
+            ((ColumnSeries)this.MixedChart.Series[0]).ItemsSource = items;
+            ((LineSeries)this.MixedChart.Series[1]).ItemsSource = items;
+            ((AreaSeries)this.AreaChart.Series[0]).ItemsSource = items;
+            ((BubbleSeries)this.BubbleChart.Series[0]).ItemsSource = items;
+            ((ScatterSeries)this.ScatterChart.Series[0]).ItemsSource = items;
+            ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items;
+            ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items;
+            ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource =
+                items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource =
+                items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource =
+                items;
 
-            ((StackedColumnSeries)StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource = items;
-            ((StackedColumnSeries)StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource = items;
-            ((StackedColumnSeries)StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource = items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource =
+                items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource =
+                items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource =
+                items;
 
-            ((Stacked100ColumnSeries)StackedColumn100.Series[0]).SeriesDefinitions[0].ItemsSource = items;
-            ((Stacked100ColumnSeries)StackedColumn100.Series[0]).SeriesDefinitions[1].ItemsSource = items;
-            ((Stacked100ColumnSeries)StackedColumn100.Series[0]).SeriesDefinitions[2].ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[0]
+                .ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[1]
+                .ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[2]
+                .ItemsSource = items;
 
-            ((PieSeries)PieChart.Series[0]).ItemsSource = items;
+            ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
@@ -53,6 +70,11 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             public string Name { get; set; }
             public int Value { get; set; }
+        }
+
+        private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
+        {
+            UpdateCharts();
         }
     }
 }

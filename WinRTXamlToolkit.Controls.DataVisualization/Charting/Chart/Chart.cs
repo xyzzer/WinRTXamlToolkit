@@ -48,7 +48,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// An adapter that synchronizes changes to the ChartAreaChildren
         /// property to the ChartArea panel's children collection.
         /// </summary>
-        private ObservableCollectionListAdapter<UIElement> _chartAreaChildrenListAdapter = new ObservableCollectionListAdapter<UIElement>();
+        private readonly ObservableCollectionListAdapter<UIElement> _chartAreaChildrenListAdapter = new ObservableCollectionListAdapter<UIElement>();
 
         /// <summary>
         /// Gets or sets a collection of Axes in the Chart.
@@ -70,17 +70,17 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <summary>
         /// Stores the collection of Axes in the Chart.
         /// </summary>
-        private Collection<IAxis> _axes;
+        private readonly Collection<IAxis> _axes;
 
         /// <summary>
         /// The collection of foreground elements.
         /// </summary>
-        private ObservableCollection<UIElement> _foregroundElements = new NoResetObservableCollection<UIElement>();
+        private readonly ObservableCollection<UIElement> _foregroundElements = new NoResetObservableCollection<UIElement>();
 
         /// <summary>
         /// The collection of background elements.
         /// </summary>
-        private ObservableCollection<UIElement> _backgroundElements = new NoResetObservableCollection<UIElement>();
+        private readonly ObservableCollection<UIElement> _backgroundElements = new NoResetObservableCollection<UIElement>();
 
         /// <summary>
         /// Gets the collection of foreground elements.
@@ -105,7 +105,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <summary>
         /// Axes arranged along the edges.
         /// </summary>
-        private ObservableCollection<Axis> _edgeAxes = new NoResetObservableCollection<Axis>();
+        private readonly ObservableCollection<Axis> _edgeAxes = new NoResetObservableCollection<Axis>();
 
         /// <summary>
         /// Gets or sets the axes that are currently in the chart.
@@ -147,7 +147,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <summary>
         /// Stores the collection of Series displayed by the Chart.
         /// </summary>
-        private Collection<ISeries> _series;
+        private readonly Collection<ISeries> _series;
 
         #region public Style ChartAreaStyle
         /// <summary>
@@ -343,7 +343,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             DefaultStyleKey = typeof(Chart);
             // Create the backing collection for Series
             UniqueObservableCollection<ISeries> series = new UniqueObservableCollection<ISeries>();
-            series.CollectionChanged += new NotifyCollectionChangedEventHandler(SeriesCollectionChanged);
+            series.CollectionChanged += SeriesCollectionChanged;
             _series = series;
 
             // Create the backing collection for Axes
@@ -398,14 +398,14 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (axis.Orientation == AxisOrientation.X)
             {
-                int numberOfTopAxes = InternalActualAxes.OfType<Axis>().Where(currentAxis => currentAxis.Location == AxisLocation.Top).Count();
-                int numberOfBottomAxes = InternalActualAxes.OfType<Axis>().Where(currentAxis => currentAxis.Location == AxisLocation.Bottom).Count();
+                int numberOfTopAxes = this.InternalActualAxes.OfType<Axis>().Count(currentAxis => currentAxis.Location == AxisLocation.Top);
+                int numberOfBottomAxes = this.InternalActualAxes.OfType<Axis>().Count(currentAxis => currentAxis.Location == AxisLocation.Bottom);
                 return (numberOfBottomAxes > numberOfTopAxes) ? AxisLocation.Top : AxisLocation.Bottom;
             }
             else if (axis.Orientation == AxisOrientation.Y)
             {
-                int numberOfLeftAxes = InternalActualAxes.OfType<Axis>().Where(currentAxis => currentAxis.Location == AxisLocation.Left).Count();
-                int numberOfRightAxes = InternalActualAxes.OfType<Axis>().Where(currentAxis => currentAxis.Location == AxisLocation.Right).Count();
+                int numberOfLeftAxes = this.InternalActualAxes.OfType<Axis>().Count(currentAxis => currentAxis.Location == AxisLocation.Left);
+                int numberOfRightAxes = this.InternalActualAxes.OfType<Axis>().Count(currentAxis => currentAxis.Location == AxisLocation.Right);
                 return (numberOfLeftAxes > numberOfRightAxes) ? AxisLocation.Right : AxisLocation.Left;
             }
             else

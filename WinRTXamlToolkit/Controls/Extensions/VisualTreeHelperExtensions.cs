@@ -72,6 +72,22 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
 
         /// <summary>
+        /// Gets the children.
+        /// </summary>
+        /// <param name="parent">The parent element.</param>
+        /// <returns></returns>
+        public static IEnumerable<DependencyObject> GetChildren(this DependencyObject parent)
+        {
+            var count = VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                yield return child;
+            }
+        }
+
+        /// <summary>
         /// Gets the first ancestor that is of the given type.
         /// </summary>
         /// <remarks>

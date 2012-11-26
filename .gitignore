@@ -6,6 +6,8 @@ Nuget/msbuild.log
 Nuget/*.nupkg
 WinRTXamlToolkit/bin/
 WinRTXamlToolkit/obj/
+WinRTXamlToolkit.Composition/bin/
+WinRTXamlToolkit.Composition/obj/
 WinRTXamlToolkit.Controls.DataVisualization/bin/
 WinRTXamlToolkit.Controls.DataVisualization/obj/
 WinRTXamlToolkit.Debugging/bin/

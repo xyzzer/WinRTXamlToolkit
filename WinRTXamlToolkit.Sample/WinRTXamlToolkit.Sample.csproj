@@ -116,6 +116,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj">
+      <Project>{aefca5b7-b382-41a4-af43-14441ae610c0}</Project>
+      <Name>WinRTXamlToolkit.Composition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj">
       <Project>{141f0d30-7788-4a47-a32c-d432b42b5ccb}</Project>
       <Name>WinRTXamlToolkit.Controls.DataVisualization</Name>
@@ -190,6 +194,9 @@
     </Compile>
     <Compile Include="Views\ColorPickerPrimitivesTestPage.xaml.cs">
       <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WriteableBitmapRenderTestPage.xaml.cs">
+      <DependentUpon>WriteableBitmapRenderTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListViewItemExtensionsTestPage.xaml.cs">
       <DependentUpon>ListViewItemExtensionsTestPage.xaml</DependentUpon>
@@ -377,6 +384,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPickerPrimitivesTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WriteableBitmapRenderTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -23,6 +23,16 @@
             <ColumnDefinition
                 Width="*" />
         </Grid.ColumnDefinitions>
+        <controls:CustomAppBar
+            Grid.Row="1"
+            VerticalAlignment="Bottom">
+            <StackPanel
+                Orientation="Horizontal">
+                <Button
+                    Content="Update"
+                    Click="OnUpdateButtonClick"/>
+            </StackPanel>
+        </controls:CustomAppBar>
         <Button
             x:Name="BackButton"
             Style="{StaticResource BackButtonStyle}"
@@ -235,7 +245,6 @@
                         IndependentValuePath="Name"
                         IsTapEnabled="True"
                         Title="Widget" />
-
                 </charting:StackedColumnSeries>
             </charting:Chart>
             <charting:Chart

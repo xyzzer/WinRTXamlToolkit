@@ -1202,6 +1202,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 // Create an Animation
                 ObjectAnimationUsingKeyFrames objectAnimationUsingKeyFrames = new ObjectAnimationUsingKeyFrames();
+                objectAnimationUsingKeyFrames.EnableDependentAnimation = true;
                 Storyboard.SetTarget(objectAnimationUsingKeyFrames, dataPoint);
                 Storyboard.SetTargetProperty(objectAnimationUsingKeyFrames, "State");
 
@@ -1227,9 +1228,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 objectAnimationUsingKeyFrames.KeyFrames.Add(discreteObjectKeyFrame);
                 stateChangeStoryBoard.Children.Add(objectAnimationUsingKeyFrames);
             });
-            stateChangeStoryBoard.Duration = new Duration(AnimationSequence.Simultaneous == AnimationSequence ?
-                TimeSpan.FromTicks(1) :
-                TimeSpan.FromMilliseconds(1001));
+            //stateChangeStoryBoard.Duration = new Duration(AnimationSequence.Simultaneous == AnimationSequence ?
+            //    TimeSpan.FromTicks(1) :
+            //    TimeSpan.FromMilliseconds(1001));
 
             _storyBoardQueue.Enqueue(
                 stateChangeStoryBoard,
