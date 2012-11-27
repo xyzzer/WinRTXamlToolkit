@@ -39,22 +39,89 @@
             Grid.Column="1"
             Grid.Row="1"
             Text="Source XAML Tree"/>
-        <Grid
-            x:Name="source"
+        <Border
+            BorderThickness="1"
+            BorderBrush="WhiteSmoke"
             Grid.Column="1"
-            Grid.Row="2">
-            <TextBlock
-                Text="Hello WriteableBitmap.Render()! ;&gt;" />
-        </Grid>
+            Grid.Row="2"
+            Margin="0,5,5,5">
+            <Grid
+                x:Name="source">
+                <StackPanel>
+                    <Rectangle
+                        Margin="20,10"
+                        HorizontalAlignment="Left"
+                        Width="200"
+                        Height="80"
+                        RadiusX="5"
+                        RadiusY="15">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush
+                                StartPoint="0,0"
+                                EndPoint="0.5,1">
+                                <GradientStop
+                                    Offset="0"
+                                    Color="#222F" />
+                                <GradientStop
+                                    Offset="1.0"
+                                    Color="Black" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock
+                        Margin="0,15"
+                        Text="Hello WriteableBitmap.Render()! ;&gt;"
+                        TextWrapping="Wrap"
+                        FontFamily="Consolas"
+                        FontSize="72" />
+                    <Border
+                        Margin="40"
+                        Background="DimGray"
+                        CornerRadius="20,0,5,10">
+                        <TextBlock
+                            Text="&#xE125;"
+                            FontFamily="Segoe UI Symbol"
+                            HorizontalAlignment="Center"
+                            FontSize="72">
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush
+                                    StartPoint="0,0"
+                                    EndPoint="1,1">
+                                    <GradientStop
+                                        Offset="0"
+                                        Color="Yellow" />
+                                    <GradientStop
+                                        Offset="0.2"
+                                        Color="White" />
+                                    <GradientStop
+                                        Offset="0.4"
+                                        Color="Yellow" />
+                                    <GradientStop
+                                        Offset="1.0"
+                                        Color="Orange" />
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <TextBlock
             Grid.Column="2"
             Grid.Row="1"
             Text="Target WriteableBitmap" />
-        <Image
-            x:Name="target"
+        <Border
+            BorderThickness="1"
+            BorderBrush="WhiteSmoke"
             Grid.Column="2"
-            Grid.Row="2" />
+            Grid.Row="2"
+            Margin="0,5,5,5">
+            <Image
+                x:Name="target"
+                Grid.Column="2"
+                Grid.Row="2" />
+        </Border>
         <!--<Button
             Content="Test"
             Grid.Column="1"

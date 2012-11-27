@@ -1,0 +1,33 @@
+﻿* Modify the overloads to render to
+	* WriteableBitmap (using pixel buffer copy)
+	* PNG file (already implemented)
+	* PNG stream (already implemented)
+* Create separate renderer classes for various UIElements
+	* TextBlock
+	* Border
+	* Shapes
+		* Rectangle
+		* Ellipse
+		* Line
+		* Path
+    -------------------
+	The ones below seem to be lower priority
+
+		* Polygon
+		* Polyline
+	* TextBox
+	* RichTextBlock
+	* RichTextBox
+	* DirectX interop components?
+* Add support for element properties
+	* Opacity
+	* Clip
+	* RenderTransform
+	* TextBlock Inlines
+	* Strokes
+		* Brush
+		* Stroke line joins
+		* ends
+		* dashes etc.
+	* Fills
+	* Brushes
