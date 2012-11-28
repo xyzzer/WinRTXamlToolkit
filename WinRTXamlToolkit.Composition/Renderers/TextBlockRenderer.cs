@@ -20,6 +20,9 @@ namespace WinRTXamlToolkit.Composition.Renderers
             };
 
             var rect = textBlock.GetBoundingRect(rootElement).ToSharpDX();
+            // For some reason we need a bigger rect for the TextBlock rendering to fit in the same boundaries
+            rect.Right++;
+            rect.Bottom++;
             var textBrush = textBlock.Foreground.ToSharpDX(renderTarget, rect);
 
             var layer = new Layer(renderTarget);

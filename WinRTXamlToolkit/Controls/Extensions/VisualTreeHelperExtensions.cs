@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls.Extensions
@@ -72,7 +73,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
 
         /// <summary>
-        /// Gets the children.
+        /// Gets the child elements.
         /// </summary>
         /// <param name="parent">The parent element.</param>
         /// <returns></returns>
@@ -85,6 +86,25 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 var child = VisualTreeHelper.GetChild(parent, i);
                 yield return child;
             }
+        }
+
+        /// <summary>
+        /// Gets the child elements sorted in render order (by ZIndex first, declaration order second).
+        /// </summary>
+        /// <param name="parent">The parent element.</param>
+        /// <returns></returns>
+        public static IEnumerable<DependencyObject> GetChildrenByZIndex(
+            this DependencyObject parent)
+        {
+            int i = 0;
+            var indexedChildren =
+                parent.GetChildren().Cast<FrameworkElement>().Select(
+                child => new {Index = i++, ZIndex = Canvas.GetZIndex(child), Child = child});
+
+            return
+                from indexedChild in indexedChildren
+                orderby indexedChild.ZIndex, indexedChild.Index
+                select indexedChild.Child;
         }
 
         /// <summary>

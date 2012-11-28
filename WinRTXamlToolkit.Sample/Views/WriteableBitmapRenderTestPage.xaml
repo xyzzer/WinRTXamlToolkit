@@ -10,121 +10,319 @@
     xmlns:views="using:WinRTXamlToolkit.Sample.Views"
     mc:Ignorable="d">
 
-    <Grid
-        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="140" />
-            <RowDefinition 
-                Height="Auto"/>
-            <RowDefinition />
-            <RowDefinition
-                Height="140" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="120" />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Button
-            x:Name="BackButton"
-            Style="{StaticResource BackButtonStyle}"
-            Click="GoBack" />
-        <TextBlock
-            Text="WriteableBitmap.Render() Test"
-            Grid.Column="1"
-            Style="{StaticResource PageHeaderTextStyle}" />
-        <TextBlock
-            Grid.Column="1"
-            Grid.Row="1"
-            Text="Source XAML Tree"/>
-        <Border
-            BorderThickness="1"
-            BorderBrush="WhiteSmoke"
-            Grid.Column="1"
-            Grid.Row="2"
-            Margin="0,5,5,5">
-            <Grid
-                x:Name="source">
-                <StackPanel>
-                    <Rectangle
-                        Margin="20,10"
-                        HorizontalAlignment="Left"
-                        Width="200"
-                        Height="80"
-                        RadiusX="5"
-                        RadiusY="15">
-                        <Rectangle.Fill>
-                            <LinearGradientBrush
-                                StartPoint="0,0"
-                                EndPoint="0.5,1">
-                                <GradientStop
-                                    Offset="0"
-                                    Color="#222F" />
-                                <GradientStop
-                                    Offset="1.0"
-                                    Color="Black" />
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                    <TextBlock
-                        Margin="0,15"
-                        Text="Hello WriteableBitmap.Render()! ;&gt;"
-                        TextWrapping="Wrap"
-                        FontFamily="Consolas"
-                        FontSize="72" />
-                    <Border
-                        Margin="40"
-                        Background="DimGray"
-                        CornerRadius="20,0,5,10">
-                        <TextBlock
-                            Text="&#xE125;"
-                            FontFamily="Segoe UI Symbol"
-                            HorizontalAlignment="Center"
-                            FontSize="72">
-                            <TextBlock.Foreground>
-                                <LinearGradientBrush
-                                    StartPoint="0,0"
-                                    EndPoint="1,1">
-                                    <GradientStop
-                                        Offset="0"
-                                        Color="Yellow" />
-                                    <GradientStop
-                                        Offset="0.2"
-                                        Color="White" />
-                                    <GradientStop
-                                        Offset="0.4"
-                                        Color="Yellow" />
-                                    <GradientStop
-                                        Offset="1.0"
-                                        Color="Orange" />
-                                </LinearGradientBrush>
-                            </TextBlock.Foreground>
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Grid>
-        </Border>
+    <Grid>
+        <Grid
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="140" />
+                <RowDefinition 
+                    Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="120" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="BackButton"
+                Style="{StaticResource BackButtonStyle}"
+                Click="GoBack" />
+            <TextBlock
+                Text="WriteableBitmap.Render() Test"
+                Grid.Column="1"
+                Style="{StaticResource PageHeaderTextStyle}" />
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="Source XAML Tree"/>
+            <Border
+                BorderThickness="1"
+                BorderBrush="WhiteSmoke"
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="0,5,5,5">
+                <Grid>
+                    <Grid
+                        x:Name="source">
+                        <StackPanel>
+                            <Grid>
+                                <Border
+                                    Margin="20,10"
+                                    HorizontalAlignment="Left"
+                                    Width="250"
+                                    Height="100"
+                                    CornerRadius="10">
+                                    <Border.Background>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="0.5,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="#222F" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border
+                                    Margin="20,10"
+                                    HorizontalAlignment="Right"
+                                    BorderBrush="LawnGreen"
+                                    BorderThickness="15,5,20,25"
+                                    Width="250"
+                                    Height="100"
+                                    CornerRadius="10">
+                                    <Border.Background>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="0.5,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="#222F" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                            <Ellipse
+                                Margin="20,10"
+                                HorizontalAlignment="Right"
+                                Width="200"
+                                Height="80">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush
+                                        StartPoint="0,0"
+                                        EndPoint="1,1">
+                                        <GradientStop
+                                            Offset="0"
+                                            Color="Yellow" />
+                                        <GradientStop
+                                            Offset=".5"
+                                            Color="GreenYellow" />
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock
+                                Margin="0,15"
+                                Text="Hello WriteableBitmap.Render()! ;&gt;"
+                                TextWrapping="Wrap"
+                                FontFamily="Consolas"
+                                FontSize="32" />
+                            <Border
+                                Margin="20"
+                                Background="DimGray"
+                                CornerRadius="20,0,5,10">
+                                <TextBlock
+                                    Text="&#xE125;"
+                                    FontFamily="Segoe UI Symbol"
+                                    HorizontalAlignment="Center"
+                                    FontSize="72">
+                                    <TextBlock.Foreground>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="1,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Yellow" />
+                                            <GradientStop
+                                                Offset="0.2"
+                                                Color="White" />
+                                            <GradientStop
+                                                Offset="0.4"
+                                                Color="Yellow" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Orange" />
+                                        </LinearGradientBrush>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle
+                                    Height="100"
+                                    Margin="5"
+                                    RadiusX="25"
+                                    RadiusY="25">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle
+                                    Grid.Column="1"
+                                    Height="100"
+                                    Margin="5"
+                                    RadiusX="25"
+                                    RadiusY="25"
+                                    StrokeThickness="25">
+                                    <Rectangle.Stroke>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Black" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Gray" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Stroke>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle
+                                    Grid.Column="2"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    Fill="Yellow"
+                                    StrokeThickness="25" />
+                                <Rectangle
+                                    Grid.Column="3"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    StrokeThickness="5"
+                                    StrokeDashArray="2,2,5,2"
+                                    StrokeDashCap="Triangle" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Ellipse
+                                    Height="100"
+                                    Margin="5">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse
+                                    Grid.Column="1"
+                                    Height="100"
+                                    Margin="5"
+                                    StrokeThickness="25">
+                                    <Ellipse.Stroke>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Black" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Gray" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Stroke>
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse
+                                    Grid.Column="2"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    Fill="Yellow"
+                                    StrokeThickness="25" />
+                                <Ellipse
+                                    Grid.Column="3"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    StrokeThickness="5"
+                                    StrokeDashArray="5,2,15,2"
+                                    StrokeDashCap="Triangle" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <Image
+                        x:Name="overlaidPreview"
+                        Opacity="0.5"/>
+                </Grid>
+            </Border>
 
-        <TextBlock
-            Grid.Column="2"
-            Grid.Row="1"
-            Text="Target WriteableBitmap" />
-        <Border
-            BorderThickness="1"
-            BorderBrush="WhiteSmoke"
-            Grid.Column="2"
-            Grid.Row="2"
-            Margin="0,5,5,5">
-            <Image
-                x:Name="target"
+            <TextBlock
                 Grid.Column="2"
-                Grid.Row="2" />
-        </Border>
-        <!--<Button
-            Content="Test"
-            Grid.Column="1"
-            Grid.Row="2" />-->
+                Grid.Row="1"
+                Text="Target WriteableBitmap" />
+            <Border
+                BorderThickness="1"
+                BorderBrush="WhiteSmoke"
+                Grid.Column="2"
+                Grid.Row="2"
+                Margin="0,5,5,5">
+                <Image
+                    x:Name="target"
+                    Grid.Column="2"
+                    Grid.Row="2" />
+            </Border>
+            <!--<Button
+                Content="Test"
+                Grid.Column="1"
+                Grid.Row="2" />-->
+        </Grid>
+        <controls:CustomAppBar
+            Background="Black"
+            VerticalAlignment="Bottom">
+            <StackPanel
+                Orientation="Horizontal">
+                <ToggleButton
+                    x:Name="overlaidPreviewButton"
+                    Checked="OverlaidPreviewButton_OnChecked"
+                    Unchecked="OverlaidPreviewButton_OnUnchecked">OverlaidPreview</ToggleButton>
+            </StackPanel>
+        </controls:CustomAppBar>
     </Grid>
 </controls:AlternativePage>

@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using SharpDX.Direct2D1;
-using SharpDX.DirectWrite;
 using SharpDX.DXGI;
 using SharpDX.WIC;
 using WinRTXamlToolkit.Composition.Renderers;
@@ -14,8 +13,7 @@ using AlphaMode = SharpDX.Direct2D1.AlphaMode;
 using Bitmap = SharpDX.WIC.Bitmap;
 using Color = SharpDX.Color;
 using D2DPixelFormat = SharpDX.Direct2D1.PixelFormat;
-using SolidColorBrush = Windows.UI.Xaml.Media.SolidColorBrush;
-using TextAlignment = Windows.UI.Xaml.TextAlignment;
+using Ellipse = Windows.UI.Xaml.Shapes.Ellipse;
 using WicPixelFormat = SharpDX.WIC.PixelFormat;
 
 namespace WinRTXamlToolkit.Composition
@@ -156,12 +154,20 @@ namespace WinRTXamlToolkit.Composition
                 return;
             }
 
+            var ellipse = fe as Ellipse;
+
+            if (ellipse != null)
+            {
+                EllipseRenderer.Render(this, renderTarget, rootElement, ellipse);
+                return;
+            }
+
             FrameworkElementRenderer.Render(this, renderTarget, rootElement, fe);
         }
 
         internal void RenderChildren(RenderTarget renderTarget, FrameworkElement rootElement, FrameworkElement fe)
         {
-            var children = fe.GetChildren();
+            var children = fe.GetChildrenByZIndex();
 
             foreach (var dependencyObject in children)
             {

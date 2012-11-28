@@ -15,6 +15,8 @@ namespace WinRTXamlToolkit.Sample
         /// </summary>
         public App()
         {
+            //DebugSettings.IsOverdrawHeatMapEnabled = true;
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

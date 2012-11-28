@@ -1,6 +1,9 @@
 ﻿using System;
 using SharpDX;
+using WinRTXamlToolkit.Imaging;
 using Windows.Foundation;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Jupiter = Windows.UI.Xaml;
 using D2D = SharpDX.Direct2D1;
 
@@ -30,6 +33,9 @@ namespace WinRTXamlToolkit.Composition
             D2D.RenderTarget renderTarget,
             RectangleF rect)
         {
+            if (brush == null)
+                return null;
+
             var solidColorBrush = brush as Jupiter.Media.SolidColorBrush;
 
             if (solidColorBrush != null)
@@ -80,6 +86,25 @@ namespace WinRTXamlToolkit.Composition
                     //brushProperties,
                     gradientStopCollection);
             }
+
+            //var imageBrush = brush as Jupiter.Media.ImageBrush;
+
+            //if (imageBrush != null)
+            //{
+            //    var writeableBitmap = imageBrush.ImageSource as WriteableBitmap;
+            //    var bitmapImage = imageBrush.ImageSource as BitmapImage;
+
+            //    if (bitmapImage != null)
+            //    {
+            //        writeableBitmap =
+            //            await WriteableBitmapFromBitmapImageExtension.FromBitmapImage(bitmapImage);
+            //    }
+            //    CompositionEngine c;
+
+            //    return new D2D.BitmapBrush(
+            //        renderTarget,
+            //        writeableBitmap.ToSharpDX(),
+            //}
 
 #if DEBUG
             throw new NotSupportedException("Only SolidColorBrush supported for now");
@@ -142,9 +167,41 @@ namespace WinRTXamlToolkit.Composition
             return new SharpDX.Color(color.R, color.G, color.B, color.A);
         }
 
-        public   static SharpDX.RectangleF ToSharpDX(this Rect rect)
+        public static SharpDX.RectangleF ToSharpDX(this Rect rect)
         {
-            return new RectangleF((float)rect.Left, (float)rect.Top, (float)rect.Right + 1, (float)rect.Bottom + 1);
+            return new RectangleF((float)rect.Left, (float)rect.Top, (float)rect.Right, (float)rect.Bottom);
+        }
+
+        public static D2D.CapStyle ToSharpDX(this Jupiter.Media.PenLineCap lineCap)
+        {
+            switch (lineCap)
+            {
+                case PenLineCap.Flat:
+                    return D2D.CapStyle.Flat;
+                case PenLineCap.Round:
+                    return D2D.CapStyle.Round;
+                case PenLineCap.Square:
+                    return D2D.CapStyle.Square;
+                case PenLineCap.Triangle:
+                    return D2D.CapStyle.Triangle;
+                default:
+                    throw new NotSupportedException("Unexpected PenLineCap value - not available in Windows 8 RTM.");
+            }
+        }
+
+        public static D2D.LineJoin ToSharpDX(this Jupiter.Media.PenLineJoin lineJoin)
+        {
+            switch (lineJoin)
+            {
+                case PenLineJoin.Miter:
+                    return D2D.LineJoin.Miter;
+                case PenLineJoin.Bevel:
+                    return D2D.LineJoin.Bevel;
+                case PenLineJoin.Round:
+                    return D2D.LineJoin.Round;
+                default:
+                    throw new NotSupportedException("Unexpected PenLineJoin value - not available in Windows 8 RTM.");
+            }
         }
     }
 }

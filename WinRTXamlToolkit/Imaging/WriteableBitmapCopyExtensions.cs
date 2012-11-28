@@ -16,6 +16,7 @@ namespace WinRTXamlToolkit.Imaging
         /// <returns></returns>
         public static WriteableBitmap Copy(this WriteableBitmap source)
         {
+            source.Invalidate();
             var copiedBytes =
                 new byte[4 * source.PixelWidth * source.PixelHeight];
             var inputStream = source.PixelBuffer.AsStream();
@@ -26,7 +27,7 @@ namespace WinRTXamlToolkit.Imaging
             var outputStream = target.PixelBuffer.AsStream();
             outputStream.Seek(0, SeekOrigin.Begin);
             outputStream.Write(copiedBytes, 0, copiedBytes.Length);
-
+            target.Invalidate();
             return target;
         }
     }

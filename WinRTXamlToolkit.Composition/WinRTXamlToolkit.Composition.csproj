@@ -99,11 +99,26 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\VisualTreeHelperExtensions.cs">
+      <Link>VisualTreeHelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapFromBitmapImageExtension.cs">
+      <Link>WriteableBitmapFromBitmapImageExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapLoadExtensions.cs">
+      <Link>WriteableBitmapLoadExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\ScaledImageFile.cs">
+      <Link>ScaledImageFile.cs</Link>
+    </Compile>
     <Compile Include="CompositionEngine.cs" />
     <Compile Include="Conversion.cs" />
+    <Compile Include="RectangleFExtensions.cs" />
     <Compile Include="Renderers\BorderRenderer.cs" />
+    <Compile Include="Renderers\EllipseRenderer.cs" />
     <Compile Include="Renderers\RectangleRenderer.cs" />
     <Compile Include="MemoryRandomAccessStream.cs" />
+    <Compile Include="Renderers\ShapeExtensions.cs" />
     <Compile Include="Renderers\TextBlockRenderer.cs" />
     <Compile Include="Renderers\FrameworkElementRenderer.cs" />
     <Compile Include="WriteableBitmapRenderExtensions.cs" />
@@ -124,12 +139,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.csproj">
-      <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
-      <Name>WinRTXamlToolkit</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Renderers\Note.txt" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

@@ -1,13 +1,10 @@
 ﻿* Modify the overloads to render to
-	* WriteableBitmap (using pixel buffer copy)
+	* WriteableBitmap (using texture buffer to pixel buffer copy)
 	* PNG file (already implemented)
 	* PNG stream (already implemented)
-* Create separate renderer classes for various UIElements
-	* TextBlock
-	* Border
-	* Shapes
-		* Rectangle
-		* Ellipse
+* Add renderers
+	* ImageRenderer
+	* Shape renderers
 		* Line
 		* Path
     -------------------
@@ -20,14 +17,8 @@
 	* RichTextBox
 	* DirectX interop components?
 * Add support for element properties
+	* Border's border (it supports various weird thickness combinations for each side)
 	* Opacity
 	* Clip
 	* RenderTransform
 	* TextBlock Inlines
-	* Strokes
-		* Brush
-		* Stroke line joins
-		* ends
-		* dashes etc.
-	* Fills
-	* Brushes
