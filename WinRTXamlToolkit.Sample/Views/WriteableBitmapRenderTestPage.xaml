@@ -33,6 +33,7 @@
             <TextBlock
                 Text="WriteableBitmap.Render() Test"
                 Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Style="{StaticResource PageHeaderTextStyle}" />
             <TextBlock
                 Grid.Column="1"
