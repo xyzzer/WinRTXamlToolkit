@@ -14,6 +14,23 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var rect = border.GetBoundingRect(rootElement).ToSharpDX();
             var brush = border.Background.ToSharpDX(renderTarget, rect);
 
+            var geometry = GetBorderFillGeometry(compositionEngine, border, rect);
+
+            //var layer = new Layer(renderTarget);
+            //var layerParameters = new LayerParameters();
+            //layerParameters.ContentBounds = rect;
+            //renderTarget.PushLayer(ref layerParameters, layer);
+
+            renderTarget.FillGeometry(geometry, brush);
+
+            //renderTarget.PopLayer();
+
+            compositionEngine.RenderChildren(renderTarget, rootElement, border);
+        }
+
+        private static D2D.PathGeometry GetBorderFillGeometry(
+            CompositionEngine compositionEngine, Border border, RectangleF rect)
+        {
             var topLeftCornerSize = new DrawingSizeF(
                 (float)border.CornerRadius.TopLeft,
                 (float)border.CornerRadius.TopLeft);
@@ -158,17 +175,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             geometrySink.EndFigure(D2D.FigureEnd.Closed);
             geometrySink.Close();
-
-            //var layer = new Layer(renderTarget);
-            //var layerParameters = new LayerParameters();
-            //layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
-
-            renderTarget.FillGeometry(geometry, brush);
-
-            //renderTarget.PopLayer();
-
-            compositionEngine.RenderChildren(renderTarget, rootElement, border);
+            return geometry;
         }
     }
 }

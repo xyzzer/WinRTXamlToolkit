@@ -1,9 +1,7 @@
 ﻿using System;
 using SharpDX;
-using WinRTXamlToolkit.Imaging;
 using Windows.Foundation;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Jupiter = Windows.UI.Xaml;
 using D2D = SharpDX.Direct2D1;
 
@@ -202,6 +200,31 @@ namespace WinRTXamlToolkit.Composition
                 default:
                     throw new NotSupportedException("Unexpected PenLineJoin value - not available in Windows 8 RTM.");
             }
+        }
+
+        public static SharpDX.DrawingPointF ToSharpDX(
+            this Windows.Foundation.Point point)
+        {
+            return new DrawingPointF(
+                (float)point.X,
+                (float)point.Y);
+        }
+
+        public static SharpDX.DrawingSizeF ToSharpDX(
+            this Windows.Foundation.Size size)
+        {
+            return new DrawingSizeF(
+                (float)size.Width,
+                (float)size.Height);
+        }
+
+        public static D2D.SweepDirection ToSharpDX(
+            this Jupiter.Media.SweepDirection sweepDirection)
+        {
+            return
+                sweepDirection == SweepDirection.Clockwise
+                    ? D2D.SweepDirection.Clockwise
+                    : D2D.SweepDirection.CounterClockwise;
         }
     }
 }

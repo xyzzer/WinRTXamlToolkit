@@ -5,8 +5,9 @@
 * Add renderers
 	* ImageRenderer
 	* Shape renderers
-		* Line
 		* Path
+			* Stretch property support
+			* Better positioning than with transform
     -------------------
 	The ones below seem to be lower priority
 

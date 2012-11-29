@@ -14,6 +14,7 @@ using Bitmap = SharpDX.WIC.Bitmap;
 using Color = SharpDX.Color;
 using D2DPixelFormat = SharpDX.Direct2D1.PixelFormat;
 using Ellipse = Windows.UI.Xaml.Shapes.Ellipse;
+using Path = Windows.UI.Xaml.Shapes.Path;
 using WicPixelFormat = SharpDX.WIC.PixelFormat;
 
 namespace WinRTXamlToolkit.Composition
@@ -159,6 +160,22 @@ namespace WinRTXamlToolkit.Composition
             if (ellipse != null)
             {
                 EllipseRenderer.Render(this, renderTarget, rootElement, ellipse);
+                return;
+            }
+
+            var line = fe as Line;
+
+            if (line != null)
+            {
+                LineRenderer.Render(this, renderTarget, rootElement, line);
+                return;
+            }
+
+            var path = fe as Path;
+
+            if (path != null)
+            {
+                PathRenderer.Render(this, renderTarget, rootElement, path);
                 return;
             }
 
