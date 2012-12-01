@@ -22,19 +22,37 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="objectGraph">The object graph.</param>
         /// <param name="fileName">Name of the file to write to.</param>
         /// <param name="folder">The folder to put the file in.</param>
-        /// <param name="overwriteIfNull">if set to <c>true</c> file will be written even if objectGraph is null.</param>
+        /// <param name="options">
+        /// The enum value that determines how responds if the desiredName is the same
+        /// as the name of an existing file in the current folder. Defaults to FailIfExists.
+        /// </param>
         /// <returns></returns>
         public async static Task SerializeAsXmlDataContract<T>(
             this T objectGraph,
             string fileName,
             StorageFolder folder = null,
-            bool overwriteIfNull = true)
+            CreationCollisionOption options = CreationCollisionOption.FailIfExists)
         {
-            string xmlString = objectGraph.SerializeAsXmlDataContract();
+            folder = folder ?? ApplicationData.Current.LocalFolder;
 
-            if (xmlString != null || overwriteIfNull)
+            try
             {
-                await xmlString.WriteToFile(fileName, folder);
+                var file = await folder.CreateFileAsync(fileName, options);
+
+                using (var stream = await file.OpenStreamForWriteAsync())
+                {
+                    var ser = new DataContractSerializer(typeof(T));
+                    ser.WriteObject(stream, objectGraph);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+
+                throw;
             }
         }
 
@@ -78,19 +96,28 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="objectGraph">The object graph.</param>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
-        /// <param name="overwriteIfNull">if set to <c>true</c> file will be written even when the object graph reference is null.</param>
+        /// <param name="options">
+        /// The enum value that determines how responds if the desiredName is the same
+        /// as the name of an existing file in the current folder. Defaults to FailIfExists.
+        /// </param>
         /// <returns></returns>
         public async static Task SerializeAsXml<T>(
             this T objectGraph,
             string fileName,
             StorageFolder folder = null,
-            bool overwriteIfNull = true)
+            CreationCollisionOption options = CreationCollisionOption.FailIfExists)
         {
-            string xmlString;
+            folder = folder ?? ApplicationData.Current.LocalFolder;
 
             try
             {
-                xmlString = objectGraph.SerializeAsXml();
+                var file = await folder.CreateFileAsync(fileName, options);
+
+                using (var stream = await file.OpenStreamForWriteAsync())
+                {
+                    var ser = new XmlSerializer(typeof(T));
+                    ser.Serialize(stream, objectGraph);
+                }
             }
             catch (Exception ex)
             {
@@ -100,11 +127,6 @@ namespace WinRTXamlToolkit.IO.Serialization
                     Debugger.Break();
 
                 throw;
-            }
-
-            if (xmlString != null || overwriteIfNull)
-            {
-                await xmlString.WriteToFile(fileName, folder);
             }
         }
 
