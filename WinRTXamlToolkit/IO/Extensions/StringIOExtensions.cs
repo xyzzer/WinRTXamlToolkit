@@ -47,16 +47,21 @@ namespace WinRTXamlToolkit.IO.Extensions
         /// <param name="text">The text to write.</param>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
+        /// <param name="options">
+        /// The enum value that determines how responds if the desiredName is the same
+        /// as the name of an existing file in the current folder. Defaults to ReplaceExisting.
+        /// </param>
         /// <returns></returns>
         public static async Task WriteToFile(
             this string text,
             string fileName,
-            StorageFolder folder = null)
+            StorageFolder folder = null,
+            CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
         {
             folder = folder ?? ApplicationData.Current.LocalFolder;
             var file = await folder.CreateFileAsync(
                 fileName,
-                CreationCollisionOption.ReplaceExisting);
+                options);
             using (var fs = await file.OpenAsync(FileAccessMode.ReadWrite))
             {
                 using (var outStream = fs.GetOutputStreamAt(0))
