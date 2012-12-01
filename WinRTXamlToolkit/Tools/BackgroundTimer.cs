@@ -22,8 +22,8 @@ namespace WinRTXamlToolkit.Tools
     /// </remarks>
     public class BackgroundTimer
     {
-        private readonly AutoResetEvent _stopRequestEvent;
-        private readonly AutoResetEvent _stoppedEvent;
+        private readonly ManualResetEvent _stopRequestEvent;
+        private readonly ManualResetEvent _stoppedEvent;
 
         /// <summary>
         /// Occurs when the timer interval has elapsed.
@@ -124,8 +124,8 @@ namespace WinRTXamlToolkit.Tools
         /// </summary>
         public BackgroundTimer()
         {
-            _stopRequestEvent = new AutoResetEvent(false);
-            _stoppedEvent = new AutoResetEvent(false);
+            _stopRequestEvent = new ManualResetEvent(false);
+            _stoppedEvent = new ManualResetEvent(false);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace WinRTXamlToolkit.Tools
         }
 
         /// <summary>
-        /// Stops the BackgroundTimer.
+        /// Stops the BackgroundTimer. Waits for it to stop before returning.
         /// </summary>
         public void Stop()
         {
@@ -158,8 +158,23 @@ namespace WinRTXamlToolkit.Tools
             }
 
             _isEnabled = false;
+            _stoppedEvent.Reset();
             _stopRequestEvent.Set();
             _stoppedEvent.WaitOne();
+        }
+
+        /// <summary>
+        /// Stops the BackgroundTimer - non blocking.
+        /// </summary>
+        public void StopNonBlocking()
+        {
+            if (!_isEnabled)
+            {
+                return;
+            }
+
+            _isEnabled = false;
+            _stopRequestEvent.Set();
         }
 
         private void Run()
@@ -189,7 +204,10 @@ namespace WinRTXamlToolkit.Tools
                 var timeRunning = waitStart - start;
                 var effectiveInterval = TimeSpan.FromSeconds(_interval.TotalSeconds * (tickCount + 1)) - timeRunning;
 
-                _stopRequestEvent.WaitOne(effectiveInterval);
+                if (effectiveInterval > TimeSpan.Zero)
+                {
+                    _stopRequestEvent.WaitOne(effectiveInterval);
+                }
 
                 if (_isEnabled &&
                     Tick != null)
