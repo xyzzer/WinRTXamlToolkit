@@ -336,6 +336,8 @@ namespace WinRTXamlToolkit.Controls
             _pagePresentersPanel.Children.Insert(0, cp);
             _preloadedPageCache.Add(je, cp);
             await newPage.PreloadInternal(parameter);
+            cp.Opacity = 0;
+
             return true;
         } 
         #endregion
