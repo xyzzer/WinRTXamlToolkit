@@ -27,7 +27,8 @@ namespace WinRTXamlToolkit.Imaging
                 string.Format(
                     "{0}_{1}.png",
                     DateTime.Now.ToString("yyyyMMdd_HHmmss_fff"),
-                    Guid.NewGuid()));
+                    Guid.NewGuid()),
+                CreationCollisionOption.GenerateUniqueName);
         }
 
         /// <summary>
@@ -45,7 +46,8 @@ namespace WinRTXamlToolkit.Imaging
                 string.Format(
                     "{0}_{1}.png",
                     DateTime.Now.ToString("yyyyMMdd_HHmmss_fff"),
-                    Guid.NewGuid()));
+                    Guid.NewGuid()),
+                CreationCollisionOption.GenerateUniqueName);
         }
 
         /// <summary>
@@ -54,16 +56,21 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="writeableBitmap">The writeable bitmap.</param>
         /// <param name="storageFolder">The storage folder.</param>
         /// <param name="fileName">Name of the file.</param>
+        /// <param name="options">
+        /// The enum value that determines how responds if the fileName is the same
+        /// as the name of an existing file in the current folder. Defaults to ReplaceExisting.
+        /// </param>
         /// <returns></returns>
         public static async Task<StorageFile> SaveToFile(
             this WriteableBitmap writeableBitmap,
             StorageFolder storageFolder,
-            string fileName)
+            string fileName,
+            CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
         {
             StorageFile outputFile =
                 await storageFolder.CreateFileAsync(
                     fileName,
-                    CreationCollisionOption.ReplaceExisting);
+                    options);
 
             Guid encoderId;
 
