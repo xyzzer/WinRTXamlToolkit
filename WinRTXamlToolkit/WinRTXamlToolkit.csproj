@@ -202,6 +202,7 @@
     <Compile Include="Controls\Extensions\TextBoxFormatValidationHandler.cs" />
     <Compile Include="Controls\Extensions\TextBoxValidationExtensions.cs" />
     <Compile Include="Controls\Extensions\ViewboxExtensions.cs" />
+    <Compile Include="Controls\UniformGrid\UniformGrid.cs" />
     <Compile Include="Controls\WatermarkTextBox.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
     <Compile Include="Controls\Extensions\WebViewExtensions.cs" />

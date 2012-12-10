@@ -195,6 +195,9 @@
     <Compile Include="Views\ColorPickerPrimitivesTestPage.xaml.cs">
       <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UniformGridTestPage.xaml.cs">
+      <DependentUpon>UniformGridTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WriteableBitmapRenderTestPage.xaml.cs">
       <DependentUpon>WriteableBitmapRenderTestPage.xaml</DependentUpon>
     </Compile>
@@ -384,6 +387,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPickerPrimitivesTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UniformGridTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
