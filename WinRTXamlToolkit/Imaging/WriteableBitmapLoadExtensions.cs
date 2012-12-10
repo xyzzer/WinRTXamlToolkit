@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
+using WinRTXamlToolkit.AwaitableUI;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -77,6 +79,9 @@ namespace WinRTXamlToolkit.Imaging
         {
             var resolvedFile = await ScaledImageFile.Get(relativePath);
 
+            if (resolvedFile == null)
+                throw new FileNotFoundException("Could not load image.", relativePath);
+
             return await writeableBitmap.LoadAsync(resolvedFile);
         }
 
@@ -96,6 +101,8 @@ namespace WinRTXamlToolkit.Imaging
             {
                 await wb.SetSourceAsync(stream);
             }
+
+            //await wb.WaitForLoadedAsync();
 
             return wb;
         }
