@@ -187,6 +187,11 @@ namespace WinRTXamlToolkit.Sample.Views
                 },
                 new ButtonViewModel
                 {
+                    Caption = "UniformGrid",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(UniformGridTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "WatermarkTextBox",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(WatermarkTextBoxTestPage)))
                 },
