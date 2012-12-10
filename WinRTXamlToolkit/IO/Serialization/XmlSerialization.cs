@@ -23,7 +23,7 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="fileName">Name of the file to write to.</param>
         /// <param name="folder">The folder to put the file in.</param>
         /// <param name="options">
-        /// The enum value that determines how responds if the desiredName is the same
+        /// The enum value that determines how responds if the fileName is the same
         /// as the name of an existing file in the current folder. Defaults to FailIfExists.
         /// </param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
         /// <param name="options">
-        /// The enum value that determines how responds if the desiredName is the same
+        /// The enum value that determines how responds if the fileName is the same
         /// as the name of an existing file in the current folder. Defaults to FailIfExists.
         /// </param>
         /// <returns></returns>

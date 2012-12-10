@@ -251,7 +251,7 @@ namespace WinRTXamlToolkit.Debugging
 
         /// <summary>
         /// Gets the BreakDelay property. This dependency property 
-        /// indicates the delay to wait after the trigger is fired before breaking in debugger.
+        /// indicates the delay in seconds to wait after the trigger is fired before breaking in debugger.
         /// </summary>
         public static double GetBreakDelay(DependencyObject d)
         {
@@ -260,7 +260,7 @@ namespace WinRTXamlToolkit.Debugging
 
         /// <summary>
         /// Sets the BreakDelay property. This dependency property 
-        /// indicates the delay to wait after the trigger is fired before breaking in debugger.
+        /// indicates the delay in seconds to wait after the trigger is fired before breaking in debugger.
         /// </summary>
         public static void SetBreakDelay(DependencyObject d, double value)
         {
