@@ -1,4 +1,5 @@
-﻿* Modify the overloads to render to
+﻿* Make sure all SharpDX objects get disposed after use
+* Modify the overloads to render to
 	* WriteableBitmap (using texture buffer to pixel buffer copy)
 	* PNG file (already implemented)
 	* PNG stream (already implemented)
