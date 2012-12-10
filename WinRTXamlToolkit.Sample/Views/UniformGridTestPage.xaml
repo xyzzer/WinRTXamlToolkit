@@ -35,27 +35,48 @@
             Grid.Column="1">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:UniformGrid />
+                    <controls:UniformGrid>
+                        <!--<controls:UniformGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition
+                                    FromVerticalOffset="100"
+                                    FromHorizontalOffset="100" />
+                            </TransitionCollection>
+                        </controls:UniformGrid.ChildrenTransitions>-->
+                    </controls:UniformGrid>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Rectangle
-                        ToolTipService.ToolTip="{Binding DisplayName}"
-                        PointerEntered="UIElement_OnPointerEntered"
-                        PointerExited="UIElement_OnPointerExited"
-                        RenderTransformOrigin="0.5,0.5">
-                        <Rectangle.Fill>
-                            <SolidColorBrush
-                                Color="{Binding Color}" />
-                        </Rectangle.Fill>
-                        <Rectangle.RenderTransform>
-                            <ScaleTransform />
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
+                    <Grid>
+                        <Border
+                            Tapped="OnBorderTapped"
+                            ToolTipService.ToolTip="{Binding DisplayName}"
+                            PointerEntered="UIElement_OnPointerEntered"
+                            PointerExited="UIElement_OnPointerExited"
+                            RenderTransformOrigin="0.5,0.5">
+                            <Border.Background>
+                                <SolidColorBrush
+                                    Color="{Binding Color}" />
+                            </Border.Background>
+                            <Border.RenderTransform>
+                                <ScaleTransform />
+                            </Border.RenderTransform>
+                            <TextBlock
+                                IsHitTestVisible="False"
+                                Text="{Binding MultilineName}"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Left"
+                                Margin="5">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush
+                                        Color="{Binding AccentColor}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
     </Grid>
 </controls:AlternativePage>
