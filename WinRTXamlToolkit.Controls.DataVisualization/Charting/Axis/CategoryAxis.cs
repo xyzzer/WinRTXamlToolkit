@@ -91,8 +91,8 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// </summary>
         public CategoryAxis()
         {
-            this._labelPool = new ObjectPool<Control>(() => CreateAxisLabel());
-            this._majorTickMarkPool = new ObjectPool<Line>(() => CreateMajorTickMark());
+            _labelPool = new ObjectPool<Control>(() => CreateAxisLabel());
+            _majorTickMarkPool = new ObjectPool<Line>(() => CreateMajorTickMark());
             this.Categories = new List<object>();
             this.GridLineCoordinatesToDisplay = new List<UnitValue>();
         }

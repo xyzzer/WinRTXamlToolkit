@@ -492,15 +492,15 @@ namespace WinRTXamlToolkit.Controls
 
         protected override void OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (this._dragPointer != null)
+            if (_dragPointer != null)
                 return;
 
-            this._dragPointer = e.Pointer.PointerId;
-            this._effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
-            this._parentGrid = GetGrid();
-            this._previewDraggingStartPosition = e.GetCurrentPoint(this._parentGrid).Position;
-            this._lastPosition = this._previewDraggingStartPosition;
-            this._isDragging = true;
+            _dragPointer = e.Pointer.PointerId;
+            _effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
+            _parentGrid = GetGrid();
+            _previewDraggingStartPosition = e.GetCurrentPoint(_parentGrid).Position;
+            _lastPosition = _previewDraggingStartPosition;
+            _isDragging = true;
 
             if (ShowsPreview)
             {
@@ -517,36 +517,36 @@ namespace WinRTXamlToolkit.Controls
 
         private void StartPreviewDragging(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            this._isDraggingPreview = true;
-            this._previewPopup = new Popup
+            _isDraggingPreview = true;
+            _previewPopup = new Popup
             {
-                Width = this._parentGrid.ActualWidth,
-                Height = this._parentGrid.ActualHeight
+                Width = _parentGrid.ActualWidth,
+                Height = _parentGrid.ActualHeight
             };
 
-            this._previewPopup.IsOpen = true;
-            this._previewPopupHostGrid = new Grid
+            _previewPopup.IsOpen = true;
+            _previewPopupHostGrid = new Grid
             {
                 VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch,
                 HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch
             };
 
-            this._parentGrid.Children.Add(this._previewPopupHostGrid);
-            if (this._parentGrid.RowDefinitions.Count > 0)
-                Grid.SetRowSpan(this._previewPopupHostGrid, this._parentGrid.RowDefinitions.Count);
-            if (this._parentGrid.ColumnDefinitions.Count > 0)
-                Grid.SetColumnSpan(this._previewPopupHostGrid, this._parentGrid.ColumnDefinitions.Count);
-            this._previewPopupHostGrid.Children.Add(this._previewPopup);
+            _parentGrid.Children.Add(_previewPopupHostGrid);
+            if (_parentGrid.RowDefinitions.Count > 0)
+                Grid.SetRowSpan(_previewPopupHostGrid, _parentGrid.RowDefinitions.Count);
+            if (_parentGrid.ColumnDefinitions.Count > 0)
+                Grid.SetColumnSpan(_previewPopupHostGrid, _parentGrid.ColumnDefinitions.Count);
+            _previewPopupHostGrid.Children.Add(_previewPopup);
 
-            this._previewGrid = new Grid
+            _previewGrid = new Grid
             {
-                Width = this._parentGrid.ActualWidth,
-                Height = this._parentGrid.ActualHeight
+                Width = _parentGrid.ActualWidth,
+                Height = _parentGrid.ActualHeight
             };
 
-            this._previewPopup.Child = this._previewGrid;
+            _previewPopup.Child = _previewGrid;
 
-            foreach (var definition in this._parentGrid.RowDefinitions)
+            foreach (var definition in _parentGrid.RowDefinitions)
             {
                 var definitionCopy = new RowDefinition
                 {
@@ -555,10 +555,10 @@ namespace WinRTXamlToolkit.Controls
                     MinHeight = definition.MinHeight
                 };
 
-                this._previewGrid.RowDefinitions.Add(definitionCopy);
+                _previewGrid.RowDefinitions.Add(definitionCopy);
             }
 
-            foreach (var definition in this._parentGrid.ColumnDefinitions)
+            foreach (var definition in _parentGrid.ColumnDefinitions)
             {
                 var w = definition.Width;
                 var mxw = definition.MaxWidth;
@@ -578,10 +578,10 @@ namespace WinRTXamlToolkit.Controls
                 //    MinWidth = definition.MinWidth
                 //};
 
-                this._previewGrid.ColumnDefinitions.Add(definitionCopy);
+                _previewGrid.ColumnDefinitions.Add(definitionCopy);
             }
 
-            this._previewGridSplitter = new CustomGridSplitter
+            _previewGridSplitter = new CustomGridSplitter
             {
                 Opacity = 0.0,
                 ShowsPreview = false,
@@ -595,17 +595,17 @@ namespace WinRTXamlToolkit.Controls
                 KeyboardIncrement = this.KeyboardIncrement
             };
 
-            Grid.SetColumn(this._previewGridSplitter, Grid.GetColumn(this));
+            Grid.SetColumn(_previewGridSplitter, Grid.GetColumn(this));
             var cs = Grid.GetColumnSpan(this);
             if (cs > 0)
-                Grid.SetColumnSpan(this._previewGridSplitter, cs);
-            Grid.SetRow(this._previewGridSplitter, Grid.GetRow(this));
+                Grid.SetColumnSpan(_previewGridSplitter, cs);
+            Grid.SetRow(_previewGridSplitter, Grid.GetRow(this));
             var rs = Grid.GetRowSpan(this);
             if (rs > 0)
-                Grid.SetRowSpan(this._previewGridSplitter, rs);
-            this._previewGrid.Children.Add(this._previewGridSplitter);
+                Grid.SetRowSpan(_previewGridSplitter, rs);
+            _previewGrid.Children.Add(_previewGridSplitter);
 
-            this._previewControlBorder = new Border
+            _previewControlBorder = new Border
             {
                 Width = this.Width,
                 Height = this.Height,
@@ -614,60 +614,60 @@ namespace WinRTXamlToolkit.Controls
                 HorizontalAlignment = this.HorizontalAlignment,
             };
 
-            Grid.SetColumn(this._previewControlBorder, Grid.GetColumn(this));
+            Grid.SetColumn(_previewControlBorder, Grid.GetColumn(this));
             if (cs > 0)
-                Grid.SetColumnSpan(this._previewControlBorder, cs);
-            Grid.SetRow(this._previewControlBorder, Grid.GetRow(this));
+                Grid.SetColumnSpan(_previewControlBorder, cs);
+            Grid.SetRow(_previewControlBorder, Grid.GetRow(this));
             if (rs > 0)
-                Grid.SetRowSpan(this._previewControlBorder, rs);
-            this._previewGrid.Children.Add(this._previewControlBorder);
+                Grid.SetRowSpan(_previewControlBorder, rs);
+            _previewGrid.Children.Add(_previewControlBorder);
 
-            this._previewControl = new GridSplitterPreviewControl();
+            _previewControl = new GridSplitterPreviewControl();
             if (this.PreviewStyle != null)
-                this._previewControl.Style = this.PreviewStyle;
-            this._previewControlBorder.Child = this._previewControl;
+                _previewControl.Style = this.PreviewStyle;
+            _previewControlBorder.Child = _previewControl;
 
-            this._previewPopup.Child = this._previewGrid;
+            _previewPopup.Child = _previewGrid;
             //await this.previewGridSplitter.WaitForLoadedAsync();
 
             //this.previewGridSplitter.OnPointerPressed(e);
-            this._previewGridSplitter._dragPointer = e.Pointer.PointerId;
-            this._previewGridSplitter._effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
-            this._previewGridSplitter._parentGrid = this._previewGrid;
-            this._previewGridSplitter._lastPosition = e.GetCurrentPoint(this._previewGrid).Position;
-            this._previewGridSplitter._isDragging = true;
-            this._previewGridSplitter.StartDirectDragging(e);
-            this._previewGridSplitter.DraggingCompleted += PreviewGridSplitter_DraggingCompleted;
+            _previewGridSplitter._dragPointer = e.Pointer.PointerId;
+            _previewGridSplitter._effectiveResizeDirection = this.DetermineEffectiveResizeDirection();
+            _previewGridSplitter._parentGrid = _previewGrid;
+            _previewGridSplitter._lastPosition = e.GetCurrentPoint(_previewGrid).Position;
+            _previewGridSplitter._isDragging = true;
+            _previewGridSplitter.StartDirectDragging(e);
+            _previewGridSplitter.DraggingCompleted += PreviewGridSplitter_DraggingCompleted;
         }
 
         private void PreviewGridSplitter_DraggingCompleted(object sender, EventArgs e)
         {
-            for (int i = 0; i < this._previewGrid.RowDefinitions.Count; i++)
+            for (int i = 0; i < _previewGrid.RowDefinitions.Count; i++)
             {
-                this._parentGrid.RowDefinitions[i].Height =
-                    this._previewGrid.RowDefinitions[i].Height;
+                _parentGrid.RowDefinitions[i].Height =
+                    _previewGrid.RowDefinitions[i].Height;
             }
 
-            for (int i = 0; i < this._previewGrid.ColumnDefinitions.Count; i++)
+            for (int i = 0; i < _previewGrid.ColumnDefinitions.Count; i++)
             {
-                this._parentGrid.ColumnDefinitions[i].Width =
-                    this._previewGrid.ColumnDefinitions[i].Width;
+                _parentGrid.ColumnDefinitions[i].Width =
+                    _previewGrid.ColumnDefinitions[i].Width;
             }
 
-            this._previewGridSplitter.DraggingCompleted -= PreviewGridSplitter_DraggingCompleted;
-            this._parentGrid.Children.Remove(_previewPopupHostGrid);
+            _previewGridSplitter.DraggingCompleted -= PreviewGridSplitter_DraggingCompleted;
+            _parentGrid.Children.Remove(_previewPopupHostGrid);
 
-            this._isDragging = false;
-            this._isDraggingPreview = false;
-            this._dragPointer = null;
-            this._parentGrid = null;
+            _isDragging = false;
+            _isDraggingPreview = false;
+            _dragPointer = null;
+            _parentGrid = null;
             if (this.DraggingCompleted != null)
                 this.DraggingCompleted(this, EventArgs.Empty);
         }
 
         private void StartDirectDragging(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            this._isDraggingPreview = false;
+            _isDraggingPreview = false;
             this.CapturePointer(e.Pointer);
             this.Focus(FocusState.Pointer);
         }
@@ -678,20 +678,20 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="e">Event data for the event.</param>
         protected override void OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (!this._isDragging ||
-                this._dragPointer != e.Pointer.PointerId)
+            if (!_isDragging ||
+                _dragPointer != e.Pointer.PointerId)
             {
                 return;
             }
 
-            var position = e.GetCurrentPoint(this._parentGrid).Position;
+            var position = e.GetCurrentPoint(_parentGrid).Position;
 
             if (_isDraggingPreview)
                 ContinuePreviewDragging(position);
             else
                 ContinueDirectDragging(position);
 
-            this._lastPosition = position;
+            _lastPosition = position;
         }
 
         private void ContinuePreviewDragging(Point position)
@@ -700,15 +700,15 @@ namespace WinRTXamlToolkit.Controls
 
         private void ContinueDirectDragging(Point position)
         {
-            if (this._effectiveResizeDirection == GridResizeDirection.Columns)
+            if (_effectiveResizeDirection == GridResizeDirection.Columns)
             {
-                var deltaX = position.X - this._lastPosition.X;
-                this.ResizeColumns(this._parentGrid, deltaX);
+                var deltaX = position.X - _lastPosition.X;
+                this.ResizeColumns(_parentGrid, deltaX);
             }
             else
             {
-                var deltaY = position.Y - this._lastPosition.Y;
-                this.ResizeRows(this._parentGrid, deltaY);
+                var deltaY = position.Y - _lastPosition.Y;
+                this.ResizeRows(_parentGrid, deltaY);
             }
         }
 
@@ -718,17 +718,17 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="e">Event data for the event.</param>
         protected override void OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            if (!this._isDragging ||
-                this._dragPointer != e.Pointer.PointerId)
+            if (!_isDragging ||
+                _dragPointer != e.Pointer.PointerId)
             {
                 return;
             }
 
             this.ReleasePointerCapture(e.Pointer);
-            this._isDragging = false;
-            this._isDraggingPreview = false;
-            this._dragPointer = null;
-            this._parentGrid = null;
+            _isDragging = false;
+            _isDraggingPreview = false;
+            _dragPointer = null;
+            _parentGrid = null;
             if (this.DraggingCompleted != null)
                 this.DraggingCompleted(this, EventArgs.Empty);
         }

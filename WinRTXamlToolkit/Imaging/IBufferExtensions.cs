@@ -95,10 +95,10 @@ namespace WinRTXamlToolkit.Imaging
             /// <param name="pixelBuffer">The pixel buffer returned by WriteableBitmap.PixelBuffer.</param>
             public PixelBufferInfo(IBuffer pixelBuffer)
             {
-                this._pixelStream = pixelBuffer.AsStream();
-                this.Bytes = new byte[this._pixelStream.Length];
-                this._pixelStream.Seek(0, SeekOrigin.Begin);
-                this._pixelStream.Read(this.Bytes, 0, Bytes.Length);
+                _pixelStream = pixelBuffer.AsStream();
+                this.Bytes = new byte[_pixelStream.Length];
+                _pixelStream.Seek(0, SeekOrigin.Begin);
+                _pixelStream.Read(this.Bytes, 0, Bytes.Length);
                 //this.Pixels = bytes.ToPixels();
             }
 

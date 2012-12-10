@@ -57,9 +57,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             int minimumObjectsInThePool,
             Func<T> createObject)
         {
-            this._objects = new List<T>(minimumObjectsInThePool);
+            _objects = new List<T>(minimumObjectsInThePool);
             this.minimumObjectsInThePool = minimumObjectsInThePool;
-            this._createObject = createObject;
+            _createObject = createObject;
 
             Reset();
         }

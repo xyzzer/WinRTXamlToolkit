@@ -146,9 +146,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         protected RangeAxis()
         {
             this.DefaultStyleKey = typeof(RangeAxis);
-            this._labelPool = new ObjectPool<Control>(() => CreateAxisLabel());
-            this._majorTickMarkPool = new ObjectPool<Line>(() => CreateMajorTickMark());
-            this._minorTickMarkPool = new ObjectPool<Line>(() => CreateMinorTickMark());
+            _labelPool = new ObjectPool<Control>(() => CreateAxisLabel());
+            _majorTickMarkPool = new ObjectPool<Line>(() => CreateMajorTickMark());
+            _minorTickMarkPool = new ObjectPool<Line>(() => CreateMinorTickMark());
 
             // Update actual range when size changes for the first time.  This
             // is necessary because the value margins may have changed after

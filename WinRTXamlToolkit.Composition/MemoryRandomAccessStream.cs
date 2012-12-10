@@ -13,32 +13,32 @@ namespace WinRTXamlToolkit.Composition
 
         public MemoryRandomAccessStream(Stream stream)
         {
-            this._internalStream = stream;
+            _internalStream = stream;
         }
 
         public MemoryRandomAccessStream(byte[] bytes)
         {
-            this._internalStream = new MemoryStream(bytes);
+            _internalStream = new MemoryStream(bytes);
         }
 
         public IInputStream GetInputStreamAt(ulong position)
         {
-            this._internalStream.Position = (long)position;
+            _internalStream.Position = (long)position;
 
-            return this._internalStream.AsInputStream();
+            return _internalStream.AsInputStream();
         }
 
         public IOutputStream GetOutputStreamAt(ulong position)
         {
-            this._internalStream.Position = (long)position;
+            _internalStream.Position = (long)position;
 
-            return this._internalStream.AsOutputStream();
+            return _internalStream.AsOutputStream();
         }
 
         public ulong Size
         {
-            get { return (ulong)this._internalStream.Length; }
-            set { this._internalStream.SetLength((long)value); }
+            get { return (ulong)_internalStream.Length; }
+            set { _internalStream.SetLength((long)value); }
         }
 
         public bool CanRead
@@ -58,17 +58,17 @@ namespace WinRTXamlToolkit.Composition
 
         public ulong Position
         {
-            get { return (ulong)this._internalStream.Position; }
+            get { return (ulong)_internalStream.Position; }
         }
 
         public void Seek(ulong position)
         {
-            this._internalStream.Seek((long)position, 0);
+            _internalStream.Seek((long)position, 0);
         }
 
         public void Dispose()
         {
-            this._internalStream.Dispose();
+            _internalStream.Dispose();
         }
 
         public Windows.Foundation.IAsyncOperationWithProgress<IBuffer, uint> ReadAsync(IBuffer buffer, uint count, InputStreamOptions options)
