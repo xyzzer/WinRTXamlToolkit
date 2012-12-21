@@ -48,5 +48,21 @@ namespace WinRTXamlToolkit.Sample.Views
             new MessageDialog(content, "Result").ShowAsync();
 #pragma warning restore 4014
         }
+
+        private void GridHostedTest(object sender, RoutedEventArgs e)
+        {
+            GridHostedDialog.ShowAsync(
+                "Grid-hosted InputDialog",
+                "This dialog is defined as a child of a Grid",
+                "OK");
+        }
+
+        private void ContentControlHostedTest(object sender, RoutedEventArgs e)
+        {
+            ContentControlHostedDialog.ShowAsync(
+                "ContentControl-hosted InputDialog",
+                "This dialog is defined as Content of a ContentControl",
+                "OK");
+        }
     }
 }

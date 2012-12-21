@@ -187,7 +187,7 @@
     <Compile Include="Controls\Extensions\GridViewItemExtensions.cs" />
     <Compile Include="Controls\ImageButton.cs" />
     <Compile Include="Controls\Extensions\ImageExtensions.cs" />
-    <Compile Include="Controls\InputDialog.cs" />
+    <Compile Include="Controls\InputDialog\InputDialog.cs" />
     <Compile Include="Controls\Extensions\ListBoxExtensions.cs" />
     <Compile Include="Controls\ListItemButton.cs" />
     <Compile Include="Controls\Extensions\ListViewExtensions.cs" />
@@ -269,6 +269,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\InputDialog\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

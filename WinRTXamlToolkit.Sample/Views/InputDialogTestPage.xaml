@@ -285,6 +285,22 @@
                 Content="Custom InputDialog Style"
                 Style="{StaticResource TextButtonStyle}"
                 Click="CustomStyleTest" />
+            <Button
+                Content="Grid-hosted InputDialog"
+                Style="{StaticResource TextButtonStyle}"
+                Click="GridHostedTest" />
+            <Button
+                Content="ContentControl-hosted InputDialog"
+                Style="{StaticResource TextButtonStyle}"
+                Click="ContentControlHostedTest" />
         </GridView>
+        
+        <controls:InputDialog
+            x:Name="GridHostedDialog"/>
+        
+        <ContentControl>
+            <controls:InputDialog
+                x:Name="ContentControlHostedDialog" />
+        </ContentControl>
     </Grid>
 </controls:AlternativePage>

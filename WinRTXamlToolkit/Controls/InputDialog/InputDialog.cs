@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using WinRTXamlToolkit.AwaitableUI;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -40,7 +41,6 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Template Part Fields
-        private Popup _dialogPopup;
         private Panel _layoutRoot;
         private Border _contentBorder;
         private TextBox _inputTextBox;
@@ -55,6 +55,11 @@ namespace WinRTXamlToolkit.Controls
         private bool _shown;
         private TaskCompletionSource<string> _dismissTaskSource;
         private List<ButtonBase> _buttons;
+
+        private Popup _dialogPopup;
+        private Panel _parentPanel;
+        private Panel _temporaryParentPanel;
+        private ContentControl _parentContentControl;
 
         #region ButtonStyle
         /// <summary>
@@ -389,6 +394,9 @@ namespace WinRTXamlToolkit.Controls
         public InputDialog()
         {
             this.DefaultStyleKey = typeof(InputDialog);
+
+            // The dialog can now be hosted in a Panel or ContentControl, but should not be visible until first shown and moved into a Popup
+            this.Visibility = Visibility.Collapsed;
         }
 
         protected override void OnApplyTemplate()
@@ -480,14 +488,48 @@ namespace WinRTXamlToolkit.Controls
         {
             if (_shown)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("The dialog is already shown.");
             }
 
+            this.Visibility = Visibility.Visible;
             _shown = true;
             //this.Focus(Windows.UI.Xaml.FocusState.Programmatic);
             Window.Current.Content.KeyUp += OnGlobalKeyUp;
             _dismissTaskSource = new TaskCompletionSource<string>();
+
+            _parentPanel = this.Parent as Panel;
+            _parentContentControl = this.Parent as ContentControl;
+
+            if (_parentPanel != null)
+            {
+                _parentPanel.Children.Remove(this);
+            }
+
+            if (_parentContentControl != null)
+            {
+                _parentContentControl.Content = null;
+            }
+
             _dialogPopup = new Popup { Child = this };
+
+            if (_parentPanel != null)
+            {
+                _parentPanel.Children.Add(_dialogPopup);
+            }
+            else if (_parentContentControl != null)
+            {
+                _parentContentControl.Content = _dialogPopup;
+            }
+            else
+            {
+                _temporaryParentPanel = Window.Current.Content.GetFirstDescendantOfType<Panel>();
+
+                if (_temporaryParentPanel != null)
+                {
+                    _temporaryParentPanel.Children.Add(_dialogPopup);
+                }
+            }
+
             _dialogPopup.IsOpen = true;
             await this.WaitForLayoutUpdateAsync();
             _titleTextBlock.Text = title;
@@ -534,11 +576,17 @@ namespace WinRTXamlToolkit.Controls
             }
 
             Window.Current.Content.KeyUp -= OnGlobalKeyUp;
+
             return result;
         }
 
         private async Task CloseAsync()
         {
+            if (!_shown)
+            {
+                throw new InvalidOperationException("The dialog isn't shown, so it can't be closed.");
+            }
+
             await this.GoToVisualStateAsync(_layoutRoot, PopupStatesGroupName, ClosedPopupStateName);
             _dialogPopup.IsOpen = false;
             _buttonsPanel.Children.Clear();
@@ -551,6 +599,29 @@ namespace WinRTXamlToolkit.Controls
 
             _buttons.Clear();
 
+            _dialogPopup.Child = null;
+
+            if (_parentPanel != null)
+            {
+                _parentPanel.Children.Remove(_dialogPopup);
+                _parentPanel.Children.Add(this);
+                _parentPanel = null;
+            }
+
+            if (_parentContentControl != null)
+            {
+                _parentContentControl.Content = this;
+                _parentContentControl = null;
+            }
+
+            if (_temporaryParentPanel != null)
+            {
+                _temporaryParentPanel.Children.Remove(_dialogPopup);
+                _temporaryParentPanel = null;
+            }
+
+            _dialogPopup = null;
+            this.Visibility = Visibility.Collapsed;
             _shown = false;
         }
 
