@@ -476,14 +476,6 @@ namespace WinRTXamlToolkit.Controls
             this.InputText = _inputTextBox.Text;
         }
 
-        private FrameworkElement RootFrameworkElement
-        {
-            get
-            {
-                return (FrameworkElement)Window.Current.Content;
-            }
-        }
-
         public async Task<string> ShowAsync(string title, string text, params string[] buttonTexts)
         {
             if (_shown)
@@ -515,10 +507,12 @@ namespace WinRTXamlToolkit.Controls
             if (_parentPanel != null)
             {
                 _parentPanel.Children.Add(_dialogPopup);
+                _parentPanel.SizeChanged += OnParentSizeChanged;
             }
             else if (_parentContentControl != null)
             {
                 _parentContentControl.Content = _dialogPopup;
+                _parentContentControl.SizeChanged += OnParentSizeChanged;
             }
             else
             {
@@ -527,6 +521,7 @@ namespace WinRTXamlToolkit.Controls
                 if (_temporaryParentPanel != null)
                 {
                     _temporaryParentPanel.Children.Add(_dialogPopup);
+                    _temporaryParentPanel.SizeChanged += OnParentSizeChanged;
                 }
             }
 
@@ -580,6 +575,21 @@ namespace WinRTXamlToolkit.Controls
             return result;
         }
 
+        private void ResizeLayoutRoot()
+        {
+            FrameworkElement root =
+                _parentPanel ??
+                _parentContentControl ??
+                _temporaryParentPanel as FrameworkElement;
+            _layoutRoot.Width = root.ActualWidth;
+            _layoutRoot.Height = root.ActualHeight;
+        }
+
+        private void OnParentSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            ResizeLayoutRoot();
+        }
+
         private async Task CloseAsync()
         {
             if (!_shown)
@@ -605,18 +615,21 @@ namespace WinRTXamlToolkit.Controls
             {
                 _parentPanel.Children.Remove(_dialogPopup);
                 _parentPanel.Children.Add(this);
+                _parentPanel.SizeChanged -= OnParentSizeChanged;
                 _parentPanel = null;
             }
 
             if (_parentContentControl != null)
             {
                 _parentContentControl.Content = this;
+                _parentContentControl.SizeChanged -= OnParentSizeChanged;
                 _parentContentControl = null;
             }
 
             if (_temporaryParentPanel != null)
             {
                 _temporaryParentPanel.Children.Remove(_dialogPopup);
+                _temporaryParentPanel.SizeChanged -= OnParentSizeChanged;
                 _temporaryParentPanel = null;
             }
 
@@ -629,26 +642,6 @@ namespace WinRTXamlToolkit.Controls
         {
             var clickedButton = (ButtonBase)sender;
             _dismissTaskSource.TrySetResult((string)clickedButton.Content);
-        }
-
-        /// <summary>
-        /// Provides the behavior for the Arrange pass of layout. Classes can override this method to define their own Arrange pass behavior.
-        /// </summary>
-        /// <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
-        /// <returns>
-        /// The actual size that is used after the element is arranged in layout.
-        /// </returns>
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            ResizeLayoutRoot();
-            return base.ArrangeOverride(finalSize);
-        }
-
-        private void ResizeLayoutRoot()
-        {
-            var root = RootFrameworkElement;
-            _layoutRoot.Width = root.ActualWidth;
-            _layoutRoot.Height = root.ActualHeight;
         }
 
         private void OnInputTextBoxKeyUp(object sender, KeyRoutedEventArgs e)
@@ -666,7 +659,6 @@ namespace WinRTXamlToolkit.Controls
             {
                 FocusOnButton(CancelButton);
                 e.Handled = true;
-                return;
             }
         }
 
