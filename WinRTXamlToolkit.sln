@@ -28,6 +28,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Composition", "WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj", "{AEFCA5B7-B382-41A4-AF43-14441AE610C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{C9D59FB1-F56B-41A3-9719-81E207BC6A5F}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\CodePlexLogo.png = Documents\CodePlexLogo.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
