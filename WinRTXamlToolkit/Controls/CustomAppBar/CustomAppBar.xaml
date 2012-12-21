@@ -1,0 +1,135 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <!-- CustomAppBar default style -->
+    <Style
+        TargetType="controls:CustomAppBar">
+        <Setter
+            Property="Background"
+            Value="#E5000000" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Bottom" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:CustomAppBar">
+                    <Border
+                        x:Name="PART_LayoutRoot"
+                        Opacity="0.0"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                        <Border.RenderTransform>
+                            <CompositeTransform
+                                x:Name="PART_TransitionTransform" />
+                        </Border.RenderTransform>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="FloatingStates">
+                                <VisualState
+                                    x:Name="FloatingVisible">
+                                    <Storyboard
+                                        x:Name="PART_FloatingVisibleStoryboard">
+                                        <!--<FadeInThemeAnimation
+                                            TargetName="PART_LayoutRoot" />-->
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_LayoutRoot"
+                                            Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0:0:0.3"
+                                                Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="PART_LayoutRoot"
+                                            Storyboard.TargetProperty="Opacity"
+                                            Duration="0:0:0.3"
+                                            To="1.0" />
+                                        <DoubleAnimation
+                                            x:Name="PART_FloatingVisibleHorizontalTransition"
+                                            Storyboard.TargetName="PART_TransitionTransform"
+                                            Storyboard.TargetProperty="TranslateX"
+                                            Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase
+                                                    EasingMode="EaseOut"
+                                                    Power="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation
+                                            x:Name="PART_FloatingVisibleVerticalTransition"
+                                            Storyboard.TargetName="PART_TransitionTransform"
+                                            Storyboard.TargetProperty="TranslateY"
+                                            Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase
+                                                    EasingMode="EaseOut"
+                                                    Power="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="FloatingHidden">
+                                    <Storyboard>
+                                        <!--<FadeOutThemeAnimation
+                                            TargetName="PART_LayoutRoot" />-->
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_LayoutRoot"
+                                            Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0:0:0"
+                                                Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="PART_LayoutRoot"
+                                            Storyboard.TargetProperty="Opacity"
+                                            Duration="0:0:0.3"
+                                            To="0.0" />
+                                        <DoubleAnimation
+                                            x:Name="PART_FloatingHiddenHorizontalTransition"
+                                            Storyboard.TargetName="PART_TransitionTransform"
+                                            Storyboard.TargetProperty="TranslateX"
+                                            Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase
+                                                    EasingMode="EaseOut"
+                                                    Power="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation
+                                            x:Name="PART_FloatingHiddenVerticalTransition"
+                                            Storyboard.TargetName="PART_TransitionTransform"
+                                            Storyboard.TargetProperty="TranslateY"
+                                            Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase
+                                                    EasingMode="EaseOut"
+                                                    Power="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            Content="{TemplateBinding Content}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

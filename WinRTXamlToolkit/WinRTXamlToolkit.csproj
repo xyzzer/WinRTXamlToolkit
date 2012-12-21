@@ -182,7 +182,7 @@
     <Compile Include="Controls\CountdownControl.xaml.cs">
       <DependentUpon>CountdownControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomAppBar.cs" />
+    <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
     <Compile Include="Controls\CustomGridSplitter.cs" />
     <Compile Include="Controls\Extensions\GridViewItemExtensions.cs" />
     <Compile Include="Controls\ImageButton.cs" />
@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\CountdownControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CustomAppBar\CustomAppBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
