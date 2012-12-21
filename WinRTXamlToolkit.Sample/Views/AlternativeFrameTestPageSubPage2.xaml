@@ -11,8 +11,11 @@
     d:DesignWidth="400"
     x:Name="page">
     <Controls:AlternativePage.PageTransition>
-        <!--<Controls:FlipTransition
+        <Controls:FlipTransition
             AxisOfFlip="Center"
+            ForwardDirection="Random"
+            BackwardDirection="Random" />
+        <!--<Controls:WipeTransition
             ForwardDirection="Random"
             BackwardDirection="Random" />-->
     </Controls:AlternativePage.PageTransition>
@@ -56,12 +59,14 @@
                 Width="250"
                 Text="Note the images to the right should already by loaded once this page starts showing up. This is controlled by the ShouldWaitForImagesToLoad property." />
         </StackPanel>
-        <VariableSizedWrapGrid
+        <GridView
             Grid.Column="1"
             Grid.Row="1">
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GrayButton.png" />
+                Source="/Assets/Images/GrayButton.png" 
+                Width="80"
+                Height="80" />
             <Image
                 Stretch="None"
                 Source="/Assets/Images/GreenButton_Disabled.png" />
@@ -92,6 +97,6 @@
             <Image
                 Stretch="None"
                 Source="/Assets/Images/GreenButtonMultiScale.png" />
-        </VariableSizedWrapGrid>
+        </GridView>
     </Grid>
 </Controls:AlternativePage>
