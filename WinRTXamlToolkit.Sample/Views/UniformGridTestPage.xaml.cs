@@ -239,13 +239,13 @@ namespace WinRTXamlToolkit.Sample.Views
                         child.RenderTransform = new CompositeTransform();
                         child.RenderTransformOrigin = new Point(0.5, 0.5); 
                         var nc = (NamedColor)((FrameworkElement)child).DataContext;
-                        var hsv = nc.Color.ToHsv();
+                        var hsv = nc.Color.ToHsl();
                         var targetX = center.X +
                                         center.X * Math.Sin(hsv.H * Math.PI / 180) *
-                                        (0.25 + 0.75 * Math.Min(hsv.V, hsv.S));
+                                        (0.25 + 0.75 * Math.Min(hsv.L, hsv.S));
                         var targetY = center.Y -
                                         center.Y * Math.Cos(hsv.H * Math.PI / 180) *
-                                        (0.25 + 0.75 * Math.Min(hsv.V, hsv.S));
+                                        (0.25 + 0.75 * Math.Min(hsv.L, hsv.S));
                         var actualPosition =
                             child.TransformToVisual(grid)
                                     .TransformPoint(new Point(0, 0));
@@ -293,18 +293,18 @@ namespace WinRTXamlToolkit.Sample.Views
                     child.RenderTransform = new CompositeTransform();
                     child.RenderTransformOrigin = new Point(0.5, 0.5); 
                     var nc = (NamedColor)((FrameworkElement)child).DataContext;
-                    var hsv = nc.Color.ToHsv();
+                    var hsv = nc.Color.ToHsl();
                     var actualPosition = child.TransformToVisual(grid).TransformPoint(new Point(0, 0));
 
                     var sb = new Storyboard();
                     sb.RepeatBehavior = RepeatBehavior.Forever;
 
-                    var minX = center.X - center.X * (0.25 + 0.75 * Math.Min(hsv.V, hsv.S)) - actualPosition.X;
+                    var minX = center.X - center.X * (0.25 + 0.75 * Math.Min(hsv.L, hsv.S)) - actualPosition.X;
                     var midX = center.X - actualPosition.X;
-                    var maxX = center.X + center.X * (0.25 + 0.75 * Math.Min(hsv.V, hsv.S)) - actualPosition.X;
-                    var minY = center.Y - center.Y * (0.25 + 0.75 * Math.Min(hsv.V, hsv.S)) - actualPosition.Y;
+                    var maxX = center.X + center.X * (0.25 + 0.75 * Math.Min(hsv.L, hsv.S)) - actualPosition.X;
+                    var minY = center.Y - center.Y * (0.25 + 0.75 * Math.Min(hsv.L, hsv.S)) - actualPosition.Y;
                     var midY = center.Y - actualPosition.Y;
-                    var maxY = center.Y + center.Y * (0.25 + 0.75 * Math.Min(hsv.V, hsv.S)) - actualPosition.Y;
+                    var maxY = center.Y + center.Y * (0.25 + 0.75 * Math.Min(hsv.L, hsv.S)) - actualPosition.Y;
 
                     var xa = new DoubleAnimationUsingKeyFrames();
                     xa.KeyFrames.Add(new DiscreteDoubleKeyFrame { KeyTime = TimeSpan.Zero, Value = midX});
