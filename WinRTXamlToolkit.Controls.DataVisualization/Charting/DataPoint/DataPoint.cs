@@ -358,7 +358,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 handler(this, new RoutedPropertyChangedEventArgs<IComparable>(oldValue, newValue));
             }
 
-            if (this.State == DataPointState.Created)
+            if (this.State == (int)DataPointState.Created)
             {
                 // Prefer setting the value as a double...
                 double coercedNewValue;
@@ -511,7 +511,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 handler(this, new RoutedPropertyChangedEventArgs<object>(oldValue, newValue));
             }
 
-            if (this.State == DataPointState.Created)
+            if (this.State == (int)DataPointState.Created)
             {
                 // Prefer setting the value as a double...
                 double coercedNewValue;
@@ -674,9 +674,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <summary>
         /// Gets or sets the state of the data point.
         /// </summary>
-        internal DataPointState State
+        internal int State
         {
-            get { return (DataPointState)GetValue(StateProperty); }
+            get { return (int)GetValue(StateProperty); }
             set { SetValue(StateProperty, value); }
         }
 
@@ -686,9 +686,9 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         internal static readonly DependencyProperty StateProperty =
             DependencyProperty.Register(
                 "State",
-                typeof(DataPointState),
+                typeof(int),
                 typeof(DataPoint),
-                new PropertyMetadata(DataPointState.Created, OnStatePropertyChanged));
+                new PropertyMetadata((int)DataPointState.Created, OnStatePropertyChanged));
 
         /// <summary>
         /// Called when the value of the State property changes.
@@ -724,7 +724,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     // than when we go back to normal from updating) coerce to 
                     // old value.
                     IsCoercingState = true;
-                    this.State = oldValue;
+                    this.State = (int)oldValue;
                     IsCoercingState = false;
                 }
                 else
@@ -737,6 +737,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
                     // Start state transition
                     bool transitionStarted = false;
+
                     switch (newValue)
                     {
                         case DataPointState.Showing:
@@ -758,10 +759,10 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                         switch (newValue)
                         {
                             case DataPointState.Showing:
-                                State = DataPointState.Normal;
+                                State = (int)DataPointState.Normal;
                                 break;
                             case DataPointState.Hiding:
-                                State = DataPointState.Hidden;
+                                State = (int)DataPointState.Hidden;
                                 break;
                         }
                     }
@@ -818,14 +819,14 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             string stateName = null;
             switch (State)
             {
-                case DataPointState.Showing:
-                case DataPointState.Created:
+                case (int)DataPointState.Showing:
+                case (int)DataPointState.Created:
                     if (_haveStateRevealShown)
                     {
                         stateName = StateRevealShown;
                     }
                     break;
-                case DataPointState.Hiding:
+                case (int)DataPointState.Hiding:
                     if (_haveStateRevealHidden)
                     {
                         stateName = StateRevealHidden;
@@ -883,7 +884,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 // Transition to Showing state in design mode so DataPoint will be visible
-                State = DataPointState.Showing;
+                State = (int)DataPointState.Showing;
             }
         }
 
@@ -897,15 +898,15 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             switch (e.NewState.Name)
             {
                 case StateRevealShown:
-                    if (State == DataPointState.Showing)
+                    if (State == (int)DataPointState.Showing)
                     {
-                        State = DataPointState.Normal;
+                        State = (int)DataPointState.Normal;
                     }
                     break;
                 case StateRevealHidden:
-                    if (State == DataPointState.Hiding)
+                    if (State == (int)DataPointState.Hiding)
                     {
-                        State = DataPointState.Hidden;
+                        State = (int)DataPointState.Hidden;
                     }
                     break;
             }

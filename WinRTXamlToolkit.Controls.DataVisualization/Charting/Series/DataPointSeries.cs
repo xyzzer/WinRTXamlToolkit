@@ -1004,7 +1004,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
             ActiveDataPointCount--;
 
-            dataPoint.State = DataPointState.PendingRemoval;
+            dataPoint.State = (int)DataPointState.PendingRemoval;
         }
 
         /// <summary>
@@ -1208,7 +1208,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
                 // Create a key frame
                 DiscreteObjectKeyFrame discreteObjectKeyFrame = new DiscreteObjectKeyFrame();
-                discreteObjectKeyFrame.Value = (object)newState;
+                discreteObjectKeyFrame.Value = (object)((int)newState);
 
                 // Create the specified animation type
                 switch (AnimationSequence)
@@ -1258,7 +1258,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <param name="newValue">The new value.</param>
         protected virtual void OnDataPointStateChanged(DataPoint dataPoint, DataPointState oldValue, DataPointState newValue)
         {
-            if (dataPoint.State == DataPointState.Hidden)
+            if (dataPoint.State == (int)DataPointState.Hidden)
             {
                 DetachEventHandlersFromDataPoint(dataPoint);
                 PlotArea.Children.Remove(dataPoint);

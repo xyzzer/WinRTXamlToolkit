@@ -576,7 +576,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             dataPoint.SetBinding(DataPoint.IsSelectionEnabledProperty, selectionEnabledBinding);
             dataPoint.SetBinding(DataPoint.IsSelectedProperty, new Binding(){Path=new PropertyPath("IsSelected") ,Source = container, Mode = BindingMode.TwoWay });
             dataPoint.Visibility = Visibility.Collapsed;
-            dataPoint.State = DataPointState.Showing;
+            dataPoint.State = (int)DataPointState.Showing;
             PrepareDataPoint(dataPoint);
             container.Content = dataPoint;
         }
@@ -717,7 +717,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         private void DataPointStateChanged(object sender, RoutedPropertyChangedEventArgs<DataPointState> e)
         {
             DataPoint dataPoint = (DataPoint)sender;
-            if (DataPointState.Hidden == dataPoint.State)
+            if ((int)DataPointState.Hidden == dataPoint.State)
             {
                 DataItems.Remove(DataItems.Where(di => di.DataPoint == dataPoint).Single());
                 RemovedDataItems();
@@ -911,7 +911,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                         oldDataItem.Index = -1;
                         if (null != oldDataItem.DataPoint)
                         {
-                            oldDataItem.DataPoint.State = DataPointState.Hiding;
+                            oldDataItem.DataPoint.State = (int)DataPointState.Hiding;
                         }
                     }
                     // Adjust index of shifted items

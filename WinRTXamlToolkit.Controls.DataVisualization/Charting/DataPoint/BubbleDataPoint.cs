@@ -65,7 +65,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 handler(this, new RoutedPropertyChangedEventArgs<double>(oldValue, newValue));
             }
 
-            if (this.State == DataPointState.Created)
+            if (this.State == (int)DataPointState.Created)
             {
                 this.ActualSize = newValue;
             }
