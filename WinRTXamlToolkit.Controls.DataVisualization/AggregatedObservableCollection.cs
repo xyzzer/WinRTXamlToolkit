@@ -46,7 +46,8 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                         int startingIndex = GetStartingIndexOfCollectionAtIndex(e.NewStartingIndex + index);
                         foreach (T item in newCollection.OfType<T>().Reverse())
                         {
-                            this.Items.Insert(startingIndex, item);
+                            //this.Items.Insert(startingIndex, item);
+                            this.Insert(startingIndex, item);
                         }
 
                         INotifyCollectionChanged notifyCollectionChanged = newCollection as INotifyCollectionChanged;
@@ -68,7 +69,8 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
                     foreach (T item in oldCollection)
                     {
-                        this.Items.Remove(item);
+                        //this.Items.Remove(item);
+                        this.Remove(item);
                     }
                 }
             }
@@ -113,14 +115,16 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     .OfType<T>()
                     .ForEachWithIndex((item, index) =>
                         {
-                            this.Items.Insert(startingIndex + e.NewStartingIndex + index, item);
+                            this.Insert(startingIndex + e.NewStartingIndex + index, item);
+                            //this.Items.Insert(startingIndex + e.NewStartingIndex + index, item);
                         });
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 foreach (T item in e.OldItems.OfType<T>())
                 {
-                    this.Items.Remove(item);
+                    this.Remove(item);
+                    //this.Items.Remove(item);
                 }
             }
             else if (e.Action == NotifyCollectionChangedAction.Replace)
@@ -130,8 +134,10 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                     T oldItem = (T)e.OldItems[cnt];
                     T newItem = (T)e.NewItems[cnt];
                     int oldItemIndex = this.IndexOf(oldItem);
-                    this.Items.Remove(oldItem);
-                    this.Items.Insert(oldItemIndex,newItem);
+                    this.Remove(oldItem);
+                    this.Insert(oldItemIndex, newItem);
+                    //this.Items.Remove(oldItem);
+                    //this.Items.Insert(oldItemIndex,newItem);
                         
                 }
             }
@@ -155,12 +161,14 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// </summary>
         private void Rebuild()
         {
-            this.Items.Clear();
+            this.Clear();
+            //this.Items.Clear();
             
             IList<T> items = ChildCollections.OfType<IEnumerable>().Select(collection => collection.CastWrapper<T>()).SelectMany(collection => collection).ToList();
             foreach (T item in items)
             {
-                        this.Items.Add(item);
+                //this.Items.Add(item);
+                this.Add(item);
             }
         }
         

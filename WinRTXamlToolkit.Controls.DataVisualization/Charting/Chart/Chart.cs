@@ -440,7 +440,8 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 _edgeAxes.Add(axis);
 
-                if (this.ChartArea != null)
+                if (this.ChartArea != null &&
+                    !this.ChartArea.Children.Contains(axis))
                 {
                     this.ChartArea.Children.Add(axis);
                     if (BackgroundElements.Count > 0)
