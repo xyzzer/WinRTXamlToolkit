@@ -142,10 +142,10 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Views\AlternativeFrameTestPageSubPage1.xaml.cs">
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AnimatingContainerTestPage.xaml.cs">
+    <Compile Include="Views\Controls\AnimatingContainerTestPage.xaml.cs">
       <DependentUpon>AnimatingContainerTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackgroundTimerTestPage.xaml.cs">
@@ -154,7 +154,7 @@
     <Compile Include="Views\BindingDebugConverterTestPage.xaml.cs">
       <DependentUpon>BindingDebugConverterTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CameraCaptureControlPage.xaml.cs">
+    <Compile Include="Views\Controls\CameraCaptureControlPage.xaml.cs">
       <DependentUpon>CameraCaptureControlPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BindableBase.cs" />
@@ -165,37 +165,40 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CascadingTextBlockTestPage.xaml.cs">
+    <Compile Include="Views\Controls\CascadingTextBlockTestPage.xaml.cs">
       <DependentUpon>CascadingTextBlockTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ContentControlExtensionsTestPage.xaml.cs">
       <DependentUpon>ContentControlExtensionsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AlternativeFrameTestPage.xaml.cs">
+    <Compile Include="Views\Controls\AlternativeFrameTestPage.xaml.cs">
       <DependentUpon>AlternativeFrameTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AlternativeFrameTestPageSubPage2.xaml.cs">
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage2.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AlternativeFrameTestPageSubPage3.xaml.cs">
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage3.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlExtensionsCursorTestPage.xaml.cs">
       <DependentUpon>ControlExtensionsCursorTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChartTestPage.xaml.cs">
+    <Compile Include="Views\Controls\ChartTestPage.xaml.cs">
       <DependentUpon>ChartTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BehaviorsTestPage.xaml.cs">
       <DependentUpon>BehaviorsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorPickerTestPage.xaml.cs">
+    <Compile Include="Views\Controls\ColorPickerTestPage.xaml.cs">
       <DependentUpon>ColorPickerTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorPickerPrimitivesTestPage.xaml.cs">
+    <Compile Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml.cs">
       <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UniformGridTestPage.xaml.cs">
+    <Compile Include="Views\Controls\CascadingImageTestPage.xaml.cs">
+      <DependentUpon>CascadingImageTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\UniformGridTestPage.xaml.cs">
       <DependentUpon>UniformGridTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WriteableBitmapRenderTestPage.xaml.cs">
@@ -210,10 +213,10 @@
     <Compile Include="Views\HighlightBehaviorTestPage.xaml.cs">
       <DependentUpon>HighlightBehaviorTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LayoutTransformControlTestPage.xaml.cs">
+    <Compile Include="Views\Controls\LayoutTransformControlTestPage.xaml.cs">
       <DependentUpon>LayoutTransformControlTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WrapPanelTestPage.xaml.cs">
+    <Compile Include="Views\Controls\WrapPanelTestPage.xaml.cs">
       <DependentUpon>WrapPanelTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListViewExtensionsItemToBringIntoViewTestPage.xaml.cs">
@@ -222,7 +225,7 @@
     <Compile Include="Views\ScrollViewerExtensionsTestPage.xaml.cs">
       <DependentUpon>ScrollViewerExtensionsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NumericUpDownTestPage.xaml.cs">
+    <Compile Include="Views\Controls\NumericUpDownTestPage.xaml.cs">
       <DependentUpon>NumericUpDownTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DebugConsoleTestPage.xaml.cs">
@@ -231,25 +234,25 @@
     <Compile Include="Views\UIElementAnimationExtensionsTestPage.xaml.cs">
       <DependentUpon>UIElementAnimationExtensionsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ImageToggleButtonTestPage.xaml.cs">
+    <Compile Include="Views\Controls\ImageToggleButtonTestPage.xaml.cs">
       <DependentUpon>ImageToggleButtonTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CountdownTestPage.xaml.cs">
+    <Compile Include="Views\Controls\CountdownTestPage.xaml.cs">
       <DependentUpon>CountdownTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomAppBarTestPage.xaml.cs">
+    <Compile Include="Views\Controls\CustomAppBarTestPage.xaml.cs">
       <DependentUpon>CustomAppBarTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomGridSplitterTestPage.xaml.cs">
+    <Compile Include="Views\Controls\CustomGridSplitterTestPage.xaml.cs">
       <DependentUpon>CustomGridSplitterTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ImageButtonTestPage.xaml.cs">
+    <Compile Include="Views\Controls\ImageButtonTestPage.xaml.cs">
       <DependentUpon>ImageButtonTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ImageExtensionsTestPage.xaml.cs">
       <DependentUpon>ImageExtensionsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InputDialogTestPage.xaml.cs">
+    <Compile Include="Views\Controls\InputDialogTestPage.xaml.cs">
       <DependentUpon>InputDialogTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListViewExtensionsTestPage.xaml.cs">
@@ -259,16 +262,16 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\RingSliceTestPage.xaml.cs">
+    <Compile Include="Views\Controls\RingSliceTestPage.xaml.cs">
       <DependentUpon>RingSliceTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextBoxValidationTestPage.xaml.cs">
       <DependentUpon>TextBoxValidationTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WatermarkTextBoxTestPage.xaml.cs">
+    <Compile Include="Views\Controls\WatermarkTextBoxTestPage.xaml.cs">
       <DependentUpon>WatermarkTextBoxTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WebBrowserTestPage.xaml.cs">
+    <Compile Include="Views\Controls\WebBrowserTestPage.xaml.cs">
       <DependentUpon>WebBrowserTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WriteableBitmapLoadExtensionsTestPage.xaml.cs">
@@ -326,11 +329,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AlternativeFrameTestPageSubPage1.xaml">
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AnimatingContainerTestPage.xaml">
+    <Page Include="Views\Controls\AnimatingContainerTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -342,7 +345,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CameraCaptureControlPage.xaml">
+    <Page Include="Views\Controls\CameraCaptureControlPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,7 +353,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CascadingTextBlockTestPage.xaml">
+    <Page Include="Views\Controls\CascadingTextBlockTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -358,15 +361,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AlternativeFrameTestPage.xaml">
+    <Page Include="Views\Controls\AlternativeFrameTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AlternativeFrameTestPageSubPage2.xaml">
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AlternativeFrameTestPageSubPage3.xaml">
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -374,7 +377,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ChartTestPage.xaml">
+    <Page Include="Views\Controls\ChartTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -382,15 +385,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ColorPickerTestPage.xaml">
+    <Page Include="Views\Controls\ColorPickerTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ColorPickerPrimitivesTestPage.xaml">
+    <Page Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UniformGridTestPage.xaml">
+    <Page Include="Views\Controls\CascadingImageTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\UniformGridTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -410,11 +417,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LayoutTransformControlTestPage.xaml">
+    <Page Include="Views\Controls\LayoutTransformControlTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WrapPanelTestPage.xaml">
+    <Page Include="Views\Controls\WrapPanelTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -426,7 +433,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NumericUpDownTestPage.xaml">
+    <Page Include="Views\Controls\NumericUpDownTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -438,23 +445,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ImageToggleButtonTestPage.xaml">
+    <Page Include="Views\Controls\ImageToggleButtonTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CountdownTestPage.xaml">
+    <Page Include="Views\Controls\CountdownTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomAppBarTestPage.xaml">
+    <Page Include="Views\Controls\CustomAppBarTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomGridSplitterTestPage.xaml">
+    <Page Include="Views\Controls\CustomGridSplitterTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ImageButtonTestPage.xaml">
+    <Page Include="Views\Controls\ImageButtonTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -462,7 +469,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InputDialogTestPage.xaml">
+    <Page Include="Views\Controls\InputDialogTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -474,7 +481,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RingSliceTestPage.xaml">
+    <Page Include="Views\Controls\RingSliceTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -482,11 +489,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WatermarkTextBoxTestPage.xaml">
+    <Page Include="Views\Controls\WatermarkTextBoxTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WebBrowserTestPage.xaml">
+    <Page Include="Views\Controls\WebBrowserTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

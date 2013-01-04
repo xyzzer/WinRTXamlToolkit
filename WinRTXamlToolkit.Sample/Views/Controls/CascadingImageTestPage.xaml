@@ -1,0 +1,47 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.CascadingImageTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:controlsonv="using:WinRTXamlToolkit.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="CascadingImage Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <controls:CascadingImageControl
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="620"
+            Height="300"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Columns="12"
+            Rows="6"
+            ColumnDelay="0:0:0.025"
+            RowDelay="0:0:0.05"
+            TileDuration="0:0:.5"
+            ImageSource="/Assets/SplashScreen.png"
+            Tapped="UIElement_OnTapped" />
+    </Grid>
+</controls:AlternativePage>

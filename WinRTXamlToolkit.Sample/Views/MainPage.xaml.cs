@@ -57,6 +57,11 @@ namespace WinRTXamlToolkit.Sample.Views
                 },
                 new ButtonViewModel
                 {
+                    Caption = "CascadingImage",
+                    Command = new RelayCommand(() => Frame.Navigate(typeof(CascadingImageTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "CascadingTextBlock",
                     Command = new RelayCommand(() => Frame.Navigate(typeof(CascadingTextBlockTestPage)))
                 },

@@ -5,15 +5,17 @@
     xmlns:converters="using:WinRTXamlToolkit.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
-        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />
+            Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <!-- GridSplitterPreviewControl default style -->
     <Style

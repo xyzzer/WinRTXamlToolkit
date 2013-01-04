@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
+    <Compile Include="Controls\CascadingImageControl\CascadingImageControl.cs" />
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
@@ -256,6 +257,10 @@
     <Compile Include="Tools\TryCatchRetry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CascadingImageControl\CascadingImageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\CascadingTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

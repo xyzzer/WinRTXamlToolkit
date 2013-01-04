@@ -18,6 +18,7 @@ mkdir content\controllers
 
 @rem WinRTXamlToolkit folders
 mkdir lib\netcore45\WinRTXamlToolkit\Controls
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
@@ -51,6 +52,7 @@ copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\ne
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\Properties\Resources.resx lib\netcore45\Properties
 @rem copy ..\WinRTXamlToolkit.Controls.DataVisualization\Resources.resx lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
+copy ..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
