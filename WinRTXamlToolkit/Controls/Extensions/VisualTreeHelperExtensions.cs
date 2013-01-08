@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -160,6 +161,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// </returns>
         public static bool IsInVisualTree(this DependencyObject dob)
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return false;
+            }
+
             //TODO: consider making it work with Popups too.
             if (Window.Current == null)
             {
@@ -181,6 +187,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <exception cref="System.InvalidOperationException">Element not in visual tree.</exception>
         public static Rect GetBoundingRect(this FrameworkElement dob, FrameworkElement relativeTo = null)
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return Rect.Empty;
+            }
+
             if (relativeTo == null)
             {
                 relativeTo = Window.Current.Content as FrameworkElement;

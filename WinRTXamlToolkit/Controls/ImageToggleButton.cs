@@ -1,6 +1,7 @@
 ﻿using System;
 using WinRTXamlToolkit.AwaitableUI;
 using WinRTXamlToolkit.Imaging;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -1515,6 +1516,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateHoverStateImage()
         private async void GenerateHoverStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -1526,6 +1532,11 @@ namespace WinRTXamlToolkit.Controls
         #region GeneratePressedStateImage()
         private async void GeneratePressedStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -1537,6 +1548,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateDisabledStateImage()
         private async void GenerateDisabledStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -1548,6 +1564,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateCheckedStateImage()
         private async void GenerateCheckedStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -1559,6 +1580,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateCheckedHoverStateImage()
         private async void GenerateCheckedHoverStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
 
             if (CheckedStateImageSource != null)
@@ -1579,6 +1605,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateCheckedPressedStateImage()
         private async void GenerateCheckedPressedStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
 
             if (CheckedStateImageSource != null)
@@ -1599,6 +1630,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateCheckedDisabledStateImage()
         private async void GenerateCheckedDisabledStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
 
             if (CheckedStateImageSource != null)

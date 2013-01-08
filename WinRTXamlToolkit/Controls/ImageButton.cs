@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.AwaitableUI;
 using WinRTXamlToolkit.Imaging;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -764,6 +765,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateHoverStateImage()
         private async void GenerateHoverStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -775,6 +781,11 @@ namespace WinRTXamlToolkit.Controls
         #region GeneratePressedStateImage()
         private async void GeneratePressedStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -786,6 +797,11 @@ namespace WinRTXamlToolkit.Controls
         #region GenerateDisabledStateImage()
         private async void GenerateDisabledStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoaded();
@@ -829,6 +845,11 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateNormalStateImage()
         private async void UpdateNormalStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             await _waitForApplyTemplateTaskSource.Task;
 
             _normalStateImage.Source = NormalStateImageSource;
@@ -838,6 +859,11 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateHoverStateImage()
         private async void UpdateHoverStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             await _waitForApplyTemplateTaskSource.Task;
 
             if (HoverStateImageSource != null)
@@ -862,6 +888,11 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateRecycledHoverStateImages()
         private async void UpdateRecycledHoverStateImages()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             await _waitForApplyTemplateTaskSource.Task;
 
             if (RecyclePressedStateImageForHover &&
@@ -881,6 +912,11 @@ namespace WinRTXamlToolkit.Controls
         #region UpdatePressedStateImage()
         private async void UpdatePressedStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             await _waitForApplyTemplateTaskSource.Task;
 
             if (PressedStateImageSource != null)
@@ -901,6 +937,11 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateDisabledStateImage()
         private async void UpdateDisabledStateImage()
         {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             await _waitForApplyTemplateTaskSource.Task;
 
             if (DisabledStateImageSource != null)
