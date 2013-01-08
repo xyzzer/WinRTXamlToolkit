@@ -16,6 +16,7 @@ namespace WinRTXamlToolkit.Sample
         public App()
         {
             //DebugSettings.IsOverdrawHeatMapEnabled = true;
+            //DebugSettings.EnableFrameRateCounter = true;
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;

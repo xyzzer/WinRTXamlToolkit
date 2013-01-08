@@ -253,6 +253,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BackgroundTimer.cs" />
     <Compile Include="Controls\Extensions\VisualTreeHelperExtensions.cs" />
+    <Compile Include="Tools\ListExtensions.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />
   </ItemGroup>
