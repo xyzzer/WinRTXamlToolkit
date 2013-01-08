@@ -73,9 +73,9 @@
             HorizontalAlignment="Center"
             Columns="{Binding Value, ElementName=ColumnsSlider, Converter={StaticResource DoubleToIntConverter}}"
             Rows="{Binding Value, ElementName=RowsSlider, Converter={StaticResource DoubleToIntConverter}}"
-            ColumnDelay="0:0:0.025"
-            RowDelay="0:0:0.05"
-            TileDuration="0:0:.5"
+            ColumnDelay="0:0:0.05"
+            RowDelay="0:0:0.1"
+            TileDuration="0:0:4"
             ImageSource="/Assets/SplashScreen.png"
             Tapped="UIElement_OnTapped" />
     </Grid>

@@ -272,7 +272,7 @@ namespace WinRTXamlToolkit.Controls
                 "RowDelay",
                 typeof(TimeSpan),
                 typeof(CascadingImageControl),
-                new PropertyMetadata(TimeSpan.FromSeconds(0.1), OnRowDelayChanged));
+                new PropertyMetadata(TimeSpan.FromSeconds(0.05), OnRowDelayChanged));
 
         /// <summary>
         /// Gets or sets the RowDelay property. This dependency property 
@@ -326,7 +326,7 @@ namespace WinRTXamlToolkit.Controls
                 "TileDuration",
                 typeof(TimeSpan),
                 typeof(CascadingImageControl),
-                new PropertyMetadata(TimeSpan.FromSeconds(1.0), OnTileDurationChanged));
+                new PropertyMetadata(TimeSpan.FromSeconds(2.0), OnTileDurationChanged));
 
         /// <summary>
         /// Gets or sets the TileDuration property. This dependency property 
@@ -401,7 +401,7 @@ namespace WinRTXamlToolkit.Controls
                 "CascadeInEasingFunction",
                 typeof(EasingFunctionBase),
                 typeof(CascadingImageControl),
-                new PropertyMetadata(new PowerEase { EasingMode = EasingMode.EaseOut, Power = 2 }));
+                new PropertyMetadata(new ElasticEase { EasingMode = EasingMode.EaseOut, Oscillations = 3, Springiness= 0.0 }));
 
         /// <summary>
         /// Gets or sets the CascadeInEasingFunction property. This dependency property 
@@ -423,7 +423,7 @@ namespace WinRTXamlToolkit.Controls
                 "CascadeSequence",
                 typeof(CascadeSequence),
                 typeof(CascadingImageControl),
-                new PropertyMetadata(CascadeSequence.EndTogether));
+                new PropertyMetadata(CascadeSequence.EqualDuration));
 
         /// <summary>
         /// Gets or sets the CascadeSequence property. This dependency property 
