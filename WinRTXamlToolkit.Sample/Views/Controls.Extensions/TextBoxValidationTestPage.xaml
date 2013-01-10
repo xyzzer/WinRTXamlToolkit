@@ -6,7 +6,8 @@
     xmlns:local="using:WinRTXamlToolkit.Sample.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions" mc:Ignorable="d">
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d">
 
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -41,7 +42,7 @@
             <TextBox
                 Width="400"
                 HorizontalAlignment="Left"
-                Extensions:TextBoxValidationExtensions.Format="Any" />
+                extensions:TextBoxValidationExtensions.Format="Any" />
             <TextBlock
                 Style="{StaticResource BasicTextStyle}"
                 Margin="0,20,0,0"
@@ -49,7 +50,7 @@
             <TextBox
                 Width="400"
                 HorizontalAlignment="Left"
-                Extensions:TextBoxValidationExtensions.Format="NonEmpty" />
+                extensions:TextBoxValidationExtensions.Format="NonEmpty" />
             <TextBlock
                 Style="{StaticResource BasicTextStyle}"
                 Margin="0,20,0,0"
@@ -57,7 +58,7 @@
             <TextBox
                 Width="400"
                 HorizontalAlignment="Left"
-                Extensions:TextBoxValidationExtensions.Format="Numeric" />
+                extensions:TextBoxValidationExtensions.Format="Numeric" />
             <TextBlock
                 Style="{StaticResource BasicTextStyle}"
                 Margin="0,20,0,0"
@@ -65,7 +66,7 @@
             <TextBox
                 Width="400"
                 HorizontalAlignment="Left"
-                Extensions:TextBoxValidationExtensions.Format="NonEmptyNumeric" />
+                extensions:TextBoxValidationExtensions.Format="NonEmptyNumeric" />
             <TextBlock
                 Style="{StaticResource BasicTextStyle}"
                 Margin="0,20,0,0"
@@ -73,9 +74,9 @@
             <TextBox
                 Width="400"
                 HorizontalAlignment="Left"
-                Extensions:TextBoxValidationExtensions.Format="NonEmptyNumeric"
-                Extensions:TextBoxValidationExtensions.InvalidBrush="Red"
-                Extensions:TextBoxValidationExtensions.ValidBrush="Green" />
+                extensions:TextBoxValidationExtensions.Format="NonEmptyNumeric"
+                extensions:TextBoxValidationExtensions.InvalidBrush="Red"
+                extensions:TextBoxValidationExtensions.ValidBrush="Green" />
         </StackPanel>
     </Grid>
 </controls:AlternativePage>
