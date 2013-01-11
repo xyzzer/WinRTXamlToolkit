@@ -144,6 +144,9 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml.cs">
+      <DependentUpon>ParallaxBackgroundBehaviorTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage1.xaml</DependentUpon>
     </Compile>
@@ -330,6 +333,10 @@
     <Page Include="AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml">
       <SubType>Designer</SubType>

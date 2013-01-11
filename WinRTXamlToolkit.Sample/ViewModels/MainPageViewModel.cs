@@ -171,6 +171,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
+                    Caption = "ParallaxBackgroundBehavior",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ParallaxBackgroundBehaviorTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "RingSlice/PieSlice",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(RingSliceTestPage)))
                 },

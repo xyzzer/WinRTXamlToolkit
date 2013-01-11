@@ -110,4 +110,5 @@ namespace WinRTXamlToolkit.Controls.Behaviors
             Canvas.SetLeft(this.AssociatedObject, x);
             Canvas.SetTop(this.AssociatedObject, y);
         }
-    }}
+    }
+}

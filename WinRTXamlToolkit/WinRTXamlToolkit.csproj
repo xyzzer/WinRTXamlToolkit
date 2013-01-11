@@ -153,6 +153,7 @@
     <Compile Include="Controls\AnimatingContainer.xaml.cs">
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="Controls\CascadingImageControl\CascadingImageControl.cs" />
