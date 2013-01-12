@@ -691,6 +691,11 @@ namespace WinRTXamlToolkit.Debugging
                     Debug.WriteLine("\tOpacity={0}", frameworkElement.Opacity);
                 }
 
+                if (frameworkElement.Visibility != Visibility.Visible)
+                {
+                    Debug.WriteLine("\tVisibility={0}", frameworkElement.Visibility);
+                }
+
                 // DataContext often turns out to be a surprise
                 Debug.WriteLine(
                     "\tDataContext: {0} {1}",
