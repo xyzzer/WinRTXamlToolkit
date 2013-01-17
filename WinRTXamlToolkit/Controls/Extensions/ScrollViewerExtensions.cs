@@ -318,6 +318,128 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 offset, duration, easingFunction);
         }
         #endregion
+
+        #region ZoomToFactorWithAnimation()
+        /// <summary>
+        /// Zooms to the specified factor using an animation instead of
+        /// immediately jumping to that value as with ZoomToFactor().
+        /// </summary>
+        /// <remarks>
+        /// Note that calling ZoomToFactor() does not update ZoomFactor immediately,
+        /// so it is important to wait for it to change before calling this method.
+        /// </remarks>
+        /// <param name="scrollViewer"></param>
+        /// <param name="factor"></param>
+        /// <returns></returns>
+        public static async Task ZoomToFactorWithAnimation(
+            this ScrollViewer scrollViewer,
+            double factor)
+        {
+            await scrollViewer.ZoomToFactorWithAnimation(factor, DefaultAnimatedScrollDuration);
+        }
+
+        /// <summary>
+        /// Zooms to the specified factor using an animation instead of
+        /// immediately jumping to that value as with ZoomToFactor().
+        /// </summary>
+        /// <remarks>
+        /// Note that calling ZoomToFactor() does not update ZoomFactor immediately,
+        /// so it is important to wait for it to change before calling this method.
+        /// </remarks>
+        /// <param name="scrollViewer"></param>
+        /// <param name="factor"></param>
+        /// <param name="durationInSeconds"></param>
+        /// <returns></returns>
+        public static async Task ZoomToFactorWithAnimation(
+            this ScrollViewer scrollViewer,
+            double factor,
+            double durationInSeconds)
+        {
+            await scrollViewer.ZoomToFactorWithAnimation(
+                factor,
+                TimeSpan.FromSeconds(durationInSeconds),
+                DefaultEasingFunction);
+        }
+
+        /// <summary>
+        /// Zooms to the specified factor using an animation instead of
+        /// immediately jumping to that value as with ZoomToFactor().
+        /// </summary>
+        /// <remarks>
+        /// Note that calling ZoomToFactor() does not update ZoomFactor immediately,
+        /// so it is important to wait for it to change before calling this method.
+        /// </remarks>
+        /// <param name="scrollViewer"></param>
+        /// <param name="factor"></param>
+        /// <param name="durationInSeconds"></param>
+        /// <param name="easingFunction"></param>
+        /// <returns></returns>
+        public static async Task ZoomToFactorWithAnimation(
+            this ScrollViewer scrollViewer,
+            double factor,
+            double durationInSeconds,
+            EasingFunctionBase easingFunction)
+        {
+            await scrollViewer.ZoomToFactorWithAnimation(
+                factor,
+                TimeSpan.FromSeconds(durationInSeconds),
+                easingFunction);
+        }
+
+        /// <summary>
+        /// Zooms to the specified factor using an animation instead of
+        /// immediately jumping to that value as with ZoomToFactor().
+        /// </summary>
+        /// <remarks>
+        /// Note that calling ZoomToFactor() does not update ZoomFactor immediately,
+        /// so it is important to wait for it to change before calling this method.
+        /// </remarks>
+        /// <param name="scrollViewer"></param>
+        /// <param name="factor"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
+        public static async Task ZoomToFactorWithAnimation(
+            this ScrollViewer scrollViewer,
+            double factor,
+            TimeSpan duration)
+        {
+            await scrollViewer.ZoomToFactorWithAnimation(
+                factor,
+                duration,
+                DefaultEasingFunction);
+        }
+
+        /// <summary>
+        /// Zooms to the specified factor using an animation instead of
+        /// immediately jumping to that value as with ZoomToFactor().
+        /// </summary>
+        /// <remarks>
+        /// Note that calling ZoomToFactor() does not update ZoomFactor immediately,
+        /// so it is important to wait for it to change before calling this method.
+        /// </remarks>
+        /// <param name="scrollViewer"></param>
+        /// <param name="factor"></param>
+        /// <param name="duration"></param>
+        /// <param name="easingFunction"></param>
+        /// <returns></returns>
+        public static async Task ZoomToFactorWithAnimation(
+            this ScrollViewer scrollViewer,
+            double factor,
+            TimeSpan duration,
+            EasingFunctionBase easingFunction)
+        {
+            var handler = GetAnimatedScrollHandler(scrollViewer);
+
+            if (handler == null)
+            {
+                handler = new ScrollViewerAnimatedScrollHandler();
+                SetAnimatedScrollHandler(scrollViewer, handler);
+            }
+
+            await handler.ZoomToFactorWithAnimation(
+                factor, duration, easingFunction);
+        }
+        #endregion
     }
 
     public class ScrollViewerAnimatedScrollHandler : FrameworkElement
@@ -327,6 +449,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         // Sliders are used as animation targets due to problems with custom property animation
         private Slider _sliderHorizontal;
         private Slider _sliderVertical;
+        private Slider _sliderZoom;
 
         #region CTOR
         public ScrollViewerAnimatedScrollHandler()
@@ -334,6 +457,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
+        #region Attach()
         public void Attach(ScrollViewer scrollViewer)
         {
             _scrollViewer = scrollViewer;
@@ -349,8 +473,16 @@ namespace WinRTXamlToolkit.Controls.Extensions
             _sliderVertical.Maximum = double.MaxValue;
             _sliderVertical.StepFrequency = 0.0000000001;
             _sliderVertical.ValueChanged += OnVerticalOffsetChanged;
+            _sliderZoom = new Slider();
+            _sliderZoom.SmallChange = 0.0000000001;
+            _sliderZoom.Minimum = double.MinValue;
+            _sliderZoom.Maximum = double.MaxValue;
+            _sliderZoom.StepFrequency = 0.0000000001;
+            _sliderZoom.ValueChanged += OnZoomFactorChanged;
         }
+        #endregion Attach()
 
+        #region Detach()
         public void Detach()
         {
             _scrollViewer = null;
@@ -366,7 +498,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 _sliderVertical.ValueChanged -= OnHorizontalOffsetChanged;
                 _sliderVertical = null;
             }
+
+            if (_sliderZoom != null)
+            {
+                _sliderZoom.ValueChanged -= OnZoomFactorChanged;
+                _sliderZoom = null;
+            }
         }
+        #endregion Detach()
 
         #region OnHorizontalOffsetChanged()
         private void OnHorizontalOffsetChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -384,6 +523,16 @@ namespace WinRTXamlToolkit.Controls.Extensions
             if (_scrollViewer != null)
             {
                 _scrollViewer.ScrollToVerticalOffset(e.NewValue);
+            }
+        }
+        #endregion
+
+        #region OnZoomFactorChanged()
+        private void OnZoomFactorChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            if (_scrollViewer != null)
+            {
+                _scrollViewer.ZoomToFactor((float)e.NewValue);
             }
         }
         #endregion
@@ -423,6 +572,26 @@ namespace WinRTXamlToolkit.Controls.Extensions
             da.Duration = duration;
             sb.Children.Add(da);
             Storyboard.SetTarget(sb, _sliderVertical);
+            Storyboard.SetTargetProperty(da, "Value");
+            await sb.BeginAsync();
+        }
+        #endregion
+
+        #region ZoomToFactorWithAnimation()
+        internal async Task ZoomToFactorWithAnimation(
+            double factor,
+            TimeSpan duration,
+            EasingFunctionBase easingFunction)
+        {
+            var sb = new Storyboard();
+            var da = new DoubleAnimation();
+            da.EnableDependentAnimation = true;
+            da.From = _scrollViewer.ZoomFactor;
+            da.To = factor;
+            da.EasingFunction = easingFunction;
+            da.Duration = duration;
+            sb.Children.Add(da);
+            Storyboard.SetTarget(sb, _sliderZoom);
             Storyboard.SetTargetProperty(da, "Value");
             await sb.BeginAsync();
         }

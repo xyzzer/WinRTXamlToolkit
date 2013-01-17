@@ -50,7 +50,15 @@ namespace WinRTXamlToolkit.Sample.Views
         private void OnAnimatedScrollTestButtonClick(object sender, RoutedEventArgs e)
         {
             scrollViewer.ScrollToHorizontalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
-            scrollViewer.ScrollToVerticalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight)); 
+            scrollViewer.ScrollToVerticalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight));
+            //scrollViewer.ScrollToHorizontalOffsetWithAnimation(500 - scrollViewer.HorizontalOffset);
+            //scrollViewer.ScrollToVerticalOffsetWithAnimation(500 - scrollViewer.VerticalOffset);
+        }
+
+        private void OnAnimatedZoomTestButtonClick(object sender, RoutedEventArgs e)
+        {
+            scrollViewer.ZoomToFactorWithAnimation((float)
+                (r.NextDouble() * (scrollViewer.MaxZoomFactor - scrollViewer.MinZoomFactor) + scrollViewer.MinZoomFactor));
         }
     }
 }

@@ -45,12 +45,19 @@
             Text="ScrollViewerExtensions Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
-        <Button
-            x:Name="AnimatedScrollTestButton"
+        <StackPanel
             Grid.Column="1"
             Grid.Row="2"
-            Content="Animated Scroll"
-            Click="OnAnimatedScrollTestButtonClick" />
+            Orientation="Horizontal">
+            <Button
+                x:Name="AnimatedScrollTestButton"
+                Content="Animated Scroll"
+                Click="OnAnimatedScrollTestButtonClick" />
+            <Button
+                x:Name="AnimatedZoomTestButton"
+                Content="Animated Zoom"
+                Click="OnAnimatedZoomTestButtonClick" />
+        </StackPanel>
 
         <ScrollViewer
             x:Name="scrollViewer"
@@ -60,7 +67,9 @@
             HorizontalScrollMode="Auto"
             VerticalScrollBarVisibility="Auto"
             VerticalScrollMode="Auto"
-            ScrollViewer.ZoomMode="Disabled">
+            ZoomMode="Enabled"
+            MinZoomFactor="0.1"
+            MaxZoomFactor="2">
             <Grid
                 x:Name="scrolledGrid"
                 Width="2500"
