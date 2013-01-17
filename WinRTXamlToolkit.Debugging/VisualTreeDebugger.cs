@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -599,6 +600,9 @@ namespace WinRTXamlToolkit.Debugging
         /// </param>
         public static void DebugVisualTree(DependencyObject startElement, bool breakInDebugger = true)
         {
+            if (DesignMode.DesignModeEnabled)
+                return;
+
             var path = new List<DependencyObject>();
             var dob = startElement;
 
@@ -694,6 +698,11 @@ namespace WinRTXamlToolkit.Debugging
                 if (frameworkElement.Visibility != Visibility.Visible)
                 {
                     Debug.WriteLine("\tVisibility={0}", frameworkElement.Visibility);
+                }
+
+                if (frameworkElement.Clip != null)
+                {
+                    Debug.WriteLine("\tClip={0}", frameworkElement.Clip.Rect);
                 }
 
                 // DataContext often turns out to be a surprise
