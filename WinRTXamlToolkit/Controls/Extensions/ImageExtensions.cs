@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using WinRTXamlToolkit.AwaitableUI;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
@@ -198,6 +197,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the CustomSource property. This dependency property 
         /// indicates the location of the image file to be used as a source of the Image.
         /// </summary>
+        /// <remarks>
+        /// This property can be used to use custom loading and tracing code for the Source,
+        /// though it currently requires modifying the toolkit code.
+        /// </remarks>
         public static string GetCustomSource(DependencyObject d)
         {
             return (string)d.GetValue(CustomSourceProperty);
@@ -207,6 +210,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the CustomSource property. This dependency property 
         /// indicates the location of the image file to be used as a source of the Image.
         /// </summary>
+        /// <remarks>
+        /// This property can be used to use custom loading and tracing code for the Source,
+        /// though it currently requires modifying the toolkit code.
+        /// </remarks>
         public static void SetCustomSource(DependencyObject d, string value)
         {
             d.SetValue(CustomSourceProperty, value);
@@ -252,12 +259,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
     /// </summary>
     public class FadeInOnLoadedHandler
     {
-        // TODO: Note - this leaks memory. Improve it to use WeakReferences instead.
-        // It should be fairly harmless in most cases - 
-        // 1000 different images would leak something like 20kB of memory
-        // assuming 20B URIs.
-        private static readonly HashSet<string> CachedImages = new HashSet<string>();
-
         private Image _image;
         private BitmapImage _source;
         private double _targetOpacity;
@@ -282,8 +283,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             if (_source != null)
             {
-                if (_source.UriSource != null &&
-                    CachedImages.Contains(_source.UriSource.OriginalString))
+                if (_source.PixelWidth > 0)
                 {
                     image.Opacity = 1;
                     _image = null;
@@ -313,14 +313,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             var source = (BitmapImage)sender;
 
-            if (_source.UriSource != null)
-                CachedImages.Add(_source.UriSource.OriginalString);
-
-            //Debug.WriteLine("Opened: " + source.UriSource);
             source.ImageOpened -= OnSourceImageOpened;
             source.ImageFailed -= OnSourceImageFailed;
 
-            //_image.Opacity = 0;
 #pragma warning disable 4014
             _image.FadeInCustom(TimeSpan.FromSeconds(1), null, _targetOpacity);
 #pragma warning restore 4014
