@@ -166,6 +166,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
+                    Caption = "MessageDialogExtensions",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(MessageDialogExtensionsTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "NumericUpDown",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(NumericUpDownTestPage)))
                 },
