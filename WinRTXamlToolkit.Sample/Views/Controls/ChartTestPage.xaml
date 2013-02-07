@@ -59,6 +59,81 @@
                 </charting:Chart.Series>
             </charting:Chart>
             <charting:Chart
+                x:Name="PieChartWithCustomPalette"
+                Title="Pie Chart with Custom Palette"
+                Margin="70,0">
+                <charting:Chart.Palette>
+                    <charting:ResourceDictionaryCollection>
+                        <!-- Blue -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                                x:Key="Background"
+                                Color="#4586d8" />
+                            <Style
+                                x:Key="DataPointStyle"
+                                TargetType="Control">
+                                <Setter
+                                    Property="Background"
+                                    Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                                x:Key="DataShapeStyle"
+                                TargetType="Shape">
+                                <Setter
+                                    Property="Stroke"
+                                    Value="{StaticResource Background}" />
+                                <Setter
+                                    Property="StrokeThickness"
+                                    Value="2" />
+                                <Setter
+                                    Property="StrokeMiterLimit"
+                                    Value="1" />
+                                <Setter
+                                    Property="Fill"
+                                    Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                        <!-- Red -->
+                        <ResourceDictionary>
+                            <SolidColorBrush
+                                x:Key="Background"
+                                Color="#dc443f" />
+                            <Style
+                                x:Key="DataPointStyle"
+                                TargetType="Control">
+                                <Setter
+                                    Property="Background"
+                                    Value="{StaticResource Background}" />
+                            </Style>
+                            <Style
+                                x:Key="DataShapeStyle"
+                                TargetType="Shape">
+                                <Setter
+                                    Property="Stroke"
+                                    Value="{StaticResource Background}" />
+                                <Setter
+                                    Property="StrokeThickness"
+                                    Value="2" />
+                                <Setter
+                                    Property="StrokeMiterLimit"
+                                    Value="1" />
+                                <Setter
+                                    Property="Fill"
+                                    Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+                    </charting:ResourceDictionaryCollection>
+                </charting:Chart.Palette>
+                <charting:Chart.Series>
+                    <Series:PieSeries
+                        Title="Population"
+                        ItemsSource="{Binding Items}"
+                        IndependentValueBinding="{Binding Name}"
+                        DependentValueBinding="{Binding Value}"
+                        IsSelectionEnabled="True" />
+                </charting:Chart.Series>
+            </charting:Chart>
+            <charting:Chart
                 x:Name="Chart"
                 Title="Column Chart"
                 Margin="70,0">

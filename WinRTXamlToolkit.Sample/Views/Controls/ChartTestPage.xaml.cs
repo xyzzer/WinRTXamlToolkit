@@ -59,6 +59,7 @@ namespace WinRTXamlToolkit.Sample.Views
                 .ItemsSource = items;
 
             ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
+            ((PieSeries)this.PieChartWithCustomPalette.Series[0]).ItemsSource = items;
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
