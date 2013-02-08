@@ -195,9 +195,16 @@ namespace WinRTXamlToolkit.Controls.Extensions
             _listBox = listBox;
             _listBox.Unloaded += OnListBoxUnloaded;
             _listBox.SelectionChanged += OnListBoxSelectionChanged;
+            _boundSelection = boundSelection;
             _listBox.SelectedItems.Clear();
 
-            _boundSelection = boundSelection;
+            foreach (object item in _boundSelection)
+            {
+                if (!_listBox.SelectedItems.Contains(item))
+                {
+                    _listBox.SelectedItems.Add(item);
+                }
+            }
 
             var eventInfo =
                 _boundSelection.GetType().GetDeclaredEvent("CollectionChanged");
@@ -210,11 +217,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             foreach (dynamic item in e.RemovedItems)
             {
-                _boundSelection.Remove(item);
+                if (_boundSelection.Contains(item))
+                {
+                    _boundSelection.Remove(item);
+                }
             }
+
             foreach (dynamic item in e.AddedItems)
             {
-                _boundSelection.Add(item);
+                if (!_boundSelection.Contains(item))
+                {
+                    _boundSelection.Add(item);
+                }
             }
         }
 
@@ -228,7 +242,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
                 foreach (var item in _boundSelection)
                 {
-                    _listBox.SelectedItems.Add(item);
+                    if (!_listBox.SelectedItems.Contains(item))
+                    {
+                        _listBox.SelectedItems.Add(item);
+                    }
                 }
 
                 return;
@@ -238,7 +255,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.OldItems)
                 {
-                    _listBox.SelectedItems.Remove(item);
+                    if (_listBox.SelectedItems.Contains(item))
+                    {
+                        _listBox.SelectedItems.Remove(item);
+                    }
                 }
             }
 
@@ -246,7 +266,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.NewItems)
                 {
-                    _listBox.SelectedItems.Add(item);
+                    if (!_listBox.SelectedItems.Contains(item))
+                    {
+                        _listBox.SelectedItems.Add(item);
+                    }
                 }
             }
         }

@@ -196,9 +196,16 @@ namespace WinRTXamlToolkit.Controls.Extensions
             _listView = listView;
             _listView.Unloaded += OnListViewUnloaded;
             _listView.SelectionChanged += OnListViewSelectionChanged;
+            _boundSelection = boundSelection;
             _listView.SelectedItems.Clear();
 
-            _boundSelection = boundSelection;
+            foreach (object item in _boundSelection)
+            {
+                if (!_listView.SelectedItems.Contains(item))
+                {
+                    _listView.SelectedItems.Add(item);
+                }
+            }
 
             var eventInfo =
                 _boundSelection.GetType().GetDeclaredEvent("CollectionChanged");
@@ -211,11 +218,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             foreach (dynamic item in e.RemovedItems)
             {
-                _boundSelection.Remove(item);
+                if (_boundSelection.Contains(item))
+                {
+                    _boundSelection.Remove(item);
+                }
             }
+
             foreach (dynamic item in e.AddedItems)
             {
-                _boundSelection.Add(item);
+                if (!_boundSelection.Contains(item))
+                {
+                    _boundSelection.Add(item);
+                }
             }
         }
 
@@ -229,7 +243,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
                 foreach (var item in _boundSelection)
                 {
-                    _listView.SelectedItems.Add(item);
+                    if (!_listView.SelectedItems.Contains(item))
+                    {
+                        _listView.SelectedItems.Add(item);
+                    }
                 }
 
                 return;
@@ -239,7 +256,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.OldItems)
                 {
-                    _listView.SelectedItems.Remove(item);
+                    if (_listView.SelectedItems.Contains(item))
+                    {
+                        _listView.SelectedItems.Remove(item);
+                    }
                 }
             }
 
@@ -247,7 +267,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.NewItems)
                 {
-                    _listView.SelectedItems.Add(item);
+                    if (!_listView.SelectedItems.Contains(item))
+                    {
+                        _listView.SelectedItems.Add(item);
+                    }
                 }
             }
         }
