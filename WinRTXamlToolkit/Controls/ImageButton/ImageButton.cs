@@ -37,6 +37,33 @@ namespace WinRTXamlToolkit.Controls
         private Image _disabledStateImage;
         private readonly TaskCompletionSource<bool> _waitForApplyTemplateTaskSource = new TaskCompletionSource<bool>(false);
 
+        #region Stretch
+        /// <summary>
+        /// Stretch Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty StretchProperty =
+            DependencyProperty.Register(
+                "Stretch",
+                typeof(Stretch),
+                typeof(ImageButton),
+                new PropertyMetadata(Stretch.None));
+
+        /// <summary>
+        /// Gets or sets the Stretch property. This dependency property 
+        /// indicates how an Image should be stretched to fill the button.
+        /// </summary>
+        /// <remarks>
+        /// A value of the Stretch enumeration specifies how the source image is
+        /// applied if the Height and Width of the ImageButton are specified and are different
+        /// than the source image's height and width. The default value is None.
+        /// </remarks>
+        public Stretch Stretch
+        {
+            get { return (Stretch)GetValue(StretchProperty); }
+            set { SetValue(StretchProperty, value); }
+        }
+        #endregion
+        
         #region RecyclePressedStateImageForHover
         /// <summary>
         /// RecyclePressedStateImageForHover Dependency Property
