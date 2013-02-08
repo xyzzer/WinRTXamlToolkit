@@ -35,7 +35,22 @@
             Grid.Column="1"
             Grid.ColumnSpan="2"
             Style="{StaticResource PageHeaderTextStyle}" />
-        
+
+        <controls:ImageToggleButton
+            Grid.Column="1"
+            Grid.Row="1"
+            Stretch="Fill"
+            Width="40"
+            Height="35"
+            NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
+            HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
+            PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
+            DisabledStateImageSource="/Assets/Images/RedButton_Disabled.png"
+            CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
+            CheckedHoverStateImageSource="/Assets/Images/GreenButton_Hover.png"
+            CheckedPressedStateImageSource="/Assets/Images/GreenButton_Pressed.png"
+            CheckedDisabledStateImageSource="/Assets/Images/GreenButton_Disabled.png"
+            IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
         <StackPanel
             Grid.Column="1"
             Grid.Row="1"

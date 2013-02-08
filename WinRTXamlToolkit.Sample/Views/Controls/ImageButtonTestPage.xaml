@@ -33,6 +33,15 @@
             Grid.Column="1"
             Grid.ColumnSpan="2"
             Style="{StaticResource PageHeaderTextStyle}" />
+        <controls:ImageButton
+            Grid.Column="1"
+            Grid.Row="1"
+            Stretch="Fill"
+            Width="40"
+            Height="35"
+            NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
+            HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
+            PressedStateImageSource="/Assets/Images/RedButton_Pressed.png" />
         
         <StackPanel
             Grid.Column="1"

@@ -180,14 +180,14 @@
     <Compile Include="Controls\Extensions\UIElementAnimationExtensions.cs" />
     <Compile Include="Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
     <Compile Include="Controls\HeaderedItemsControl\ItemsControlHelper.cs" />
-    <Compile Include="Controls\ImageToggleButton.cs" />
+    <Compile Include="Controls\ImageToggleButton\ImageToggleButton.cs" />
     <Compile Include="Controls\CountdownControl.xaml.cs">
       <DependentUpon>CountdownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
     <Compile Include="Controls\CustomGridSplitter.cs" />
     <Compile Include="Controls\Extensions\GridViewItemExtensions.cs" />
-    <Compile Include="Controls\ImageButton.cs" />
+    <Compile Include="Controls\ImageButton\ImageButton.cs" />
     <Compile Include="Controls\Extensions\ImageExtensions.cs" />
     <Compile Include="Controls\InputDialog\InputDialog.cs" />
     <Compile Include="Controls\Extensions\ListBoxExtensions.cs" />
@@ -280,6 +280,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ImageButton\ImageButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ImageToggleButton\ImageToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
