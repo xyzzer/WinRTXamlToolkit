@@ -46,6 +46,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
+                    Caption = "ButtonBaseExtensions",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ButtonBaseExtensionsTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "CameraCaptureControl",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CameraCaptureControlPage)))
                 },

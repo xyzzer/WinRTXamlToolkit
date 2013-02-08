@@ -161,6 +161,7 @@
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
     <Compile Include="Controls\DelayedLoadControl\DelayedLoadControl.cs" />
+    <Compile Include="Controls\Extensions\ButtonBaseExtensions.cs" />
     <Compile Include="Controls\Extensions\ListBoxItemExtensions.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
