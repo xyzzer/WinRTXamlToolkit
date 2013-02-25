@@ -15,6 +15,7 @@
                 Height="140" />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -36,12 +37,13 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <xc:WatermarkTextBox
-                Width="300" />
+                Width="300"
+                WatermarkText="Type something..."/>
             
             <TextBlock
                 Style="{StaticResource TitleTextStyle}"
                 TextAlignment="Center"
-                Text="Default WatermarkTextBox" />
+                Text="Default WatermarkTextBox with WatermarkText" />
         </StackPanel>
 
         <StackPanel
@@ -51,8 +53,41 @@
             HorizontalAlignment="Center">
             <xc:WatermarkTextBox
                 Width="300"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Left">
+                <xc:WatermarkTextBox.Watermark>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="Type Here"
+                            FontWeight="Bold"
+                            Foreground="WhiteSmoke"/>
+                        <Path
+                            Margin="10,0,0,0"
+                            Width="60"
+                            Height="20"
+                            Stretch="Fill"
+                            Fill="WhiteSmoke"
+                            Data="M0,8 L60,8 60,0 C60,1 90,10 100,10 C90,10 60,19 60,20 L60,12 0,12 z" />
+                    </StackPanel>
+                </xc:WatermarkTextBox.Watermark>
+            </xc:WatermarkTextBox>
+
+            <TextBlock
+                Style="{StaticResource TitleTextStyle}"
+                TextAlignment="Center"
+                Text="Default WatermarkTextBox with (non-text) Watermark" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <xc:WatermarkTextBox
+                Width="300"
                 WatermarkText="&gt;&gt; custom prompt... &lt;&lt;">
-                <xc:WatermarkTextBox.WatermarkStyle>
+                <xc:WatermarkTextBox.WatermarkTextStyle>
                     <Style
                         TargetType="TextBlock">
                         <Setter
@@ -80,13 +115,13 @@
                             Property="FontWeight"
                             Value="Black" />
                     </Style>
-                </xc:WatermarkTextBox.WatermarkStyle>
+                </xc:WatermarkTextBox.WatermarkTextStyle>
             </xc:WatermarkTextBox>
 
             <TextBlock
                 Style="{StaticResource TitleTextStyle}"
                 TextAlignment="Center"
-                Text="WatermarkTextBox with custom WatermarkStyle" />
+                Text="WatermarkTextBox with custom WatermarkTextStyle" />
         </StackPanel>
     </Grid>
 </xc:AlternativePage>

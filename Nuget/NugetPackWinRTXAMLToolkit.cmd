@@ -23,6 +23,7 @@ mkdir lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 mkdir lib\netcore45\WinRTXamlToolkit\Themes
 
@@ -58,6 +59,7 @@ copy ..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\*.xaml lib\netcore45\
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
+copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DateTimeAxisLabel.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis

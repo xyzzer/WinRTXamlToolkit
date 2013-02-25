@@ -9,16 +9,37 @@ namespace WinRTXamlToolkit.Controls
     /// <summary>
     /// A TextBox with watermark text
     /// </summary>
-    [TemplatePart(Name = WatermarkTextBlockName, Type = typeof(TextBlock))]
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkVisibleStateName)]
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkHiddenStateName)]
+    [StyleTypedProperty(Property = "WatermarkTextStyle", StyleTargetType = typeof(TextBlock))]
     public class WatermarkTextBox : TextBox
     {
         #region Consts
         private const string WatermarkStatesGroupName = "WatermarkStates";
         private const string WatermarkVisibleStateName = "WatermarkVisible";
         private const string WatermarkHiddenStateName = "WatermarkHidden";
-        private const string WatermarkTextBlockName = "WatermarkTextBlock"; 
+        #endregion
+
+        #region Watermark
+        /// <summary>
+        /// Watermark Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty WatermarkProperty =
+            DependencyProperty.Register(
+                "Watermark",
+                typeof(object),
+                typeof(WatermarkTextBox),
+                new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets or sets the Watermark property. This dependency property 
+        /// indicates an arbitrary content to use as a Watermark.
+        /// </summary>
+        public object Watermark
+        {
+            get { return (object)GetValue(WatermarkProperty); }
+            set { SetValue(WatermarkProperty, value); }
+        }
         #endregion
 
         #region WatermarkText
@@ -30,7 +51,7 @@ namespace WinRTXamlToolkit.Controls
                 "WatermarkText",
                 typeof(string),
                 typeof(WatermarkTextBox),
-                new PropertyMetadata("Type something..."));
+                new PropertyMetadata(null));
 
         /// <summary>
         /// Gets or sets the WatermarkText property. This dependency property 
@@ -43,25 +64,25 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region WatermarkStyle
+        #region WatermarkTextStyle
         /// <summary>
-        /// WatermarkStyle Dependency Property
+        /// WatermarkTextStyle Dependency Property
         /// </summary>
-        public static readonly DependencyProperty WatermarkStyleProperty =
+        public static readonly DependencyProperty WatermarkTextStyleProperty =
             DependencyProperty.Register(
-                "WatermarkStyle",
+                "WatermarkTextStyle",
                 typeof(Style),
                 typeof(WatermarkTextBox),
                 new PropertyMetadata(null));
 
         /// <summary>
-        /// Gets or sets the WatermarkStyle property. This dependency property 
-        /// indicates the style of the watermark (TextBlock).
+        /// Gets or sets the WatermarkTextStyle property. This dependency property 
+        /// indicates the style of the watermark TextBlock.
         /// </summary>
-        public Style WatermarkStyle
+        public Style WatermarkTextStyle
         {
-            get { return (Style)GetValue(WatermarkStyleProperty); }
-            set { SetValue(WatermarkStyleProperty, value); }
+            get { return (Style)GetValue(WatermarkTextStyleProperty); }
+            set { SetValue(WatermarkTextStyleProperty, value); }
         }
         #endregion
 
