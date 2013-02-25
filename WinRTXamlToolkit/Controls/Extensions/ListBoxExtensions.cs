@@ -193,7 +193,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private void Attach(ListBox listBox, dynamic boundSelection)
         {
             _listBox = listBox;
-            _listBox.Unloaded += OnListBoxUnloaded;
             _listBox.SelectionChanged += OnListBoxSelectionChanged;
             _boundSelection = boundSelection;
             _listBox.SelectedItems.Clear();
@@ -274,14 +273,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
             }
         }
 
-        private void OnListBoxUnloaded(object sender, RoutedEventArgs e)
-        {
-            Detach();
-        }
-
         internal void Detach()
         {
-            _listBox.Unloaded -= OnListBoxUnloaded;
             _listBox.SelectionChanged -= OnListBoxSelectionChanged;
             _listBox = null;
             var eventInfo =

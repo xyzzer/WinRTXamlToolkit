@@ -181,7 +181,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
     public class GridViewBindableSelectionHandler
     {
-        private GridView _GridView;
+        private GridView _gridView;
         private dynamic _boundSelection;
         private readonly NotifyCollectionChangedEventHandler _handler;
 
@@ -192,14 +192,20 @@ namespace WinRTXamlToolkit.Controls.Extensions
             Attach(GridView, boundSelection);
         }
 
-        private void Attach(GridView GridView, dynamic boundSelection)
+        private void Attach(GridView gridView, dynamic boundSelection)
         {
-            _GridView = GridView;
-            _GridView.Unloaded += OnGridViewUnloaded;
-            _GridView.SelectionChanged += OnGridViewSelectionChanged;
-            _GridView.SelectedItems.Clear();
-
+            _gridView = gridView;
+            _gridView.SelectionChanged += OnGridViewSelectionChanged;
             _boundSelection = boundSelection;
+            _gridView.SelectedItems.Clear();
+
+            foreach (object item in _boundSelection)
+            {
+                if (!_gridView.SelectedItems.Contains(item))
+                {
+                    _gridView.SelectedItems.Add(item);
+                }
+            }
 
             var eventInfo =
                 _boundSelection.GetType().GetDeclaredEvent("CollectionChanged");
@@ -212,11 +218,17 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             foreach (dynamic item in e.RemovedItems)
             {
-                _boundSelection.Remove(item);
+                if (_boundSelection.Contains(item))
+                {
+                    _boundSelection.Remove(item);
+                }
             }
             foreach (dynamic item in e.AddedItems)
             {
-                _boundSelection.Add(item);
+                if (!_boundSelection.Contains(item))
+                {
+                    _boundSelection.Add(item);
+                }
             }
         }
 
@@ -226,11 +238,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
             if (e.Action ==
                 NotifyCollectionChangedAction.Reset)
             {
-                _GridView.SelectedItems.Clear();
+                _gridView.SelectedItems.Clear();
 
                 foreach (var item in _boundSelection)
                 {
-                    _GridView.SelectedItems.Add(item);
+                    if (!_gridView.SelectedItems.Contains(item))
+                    {
+                        _gridView.SelectedItems.Add(item);
+                    }
                 }
 
                 return;
@@ -240,7 +255,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.OldItems)
                 {
-                    _GridView.SelectedItems.Remove(item);
+                    if (_gridView.SelectedItems.Contains(item))
+                    {
+                        _gridView.SelectedItems.Remove(item);
+                    }
                 }
             }
 
@@ -248,21 +266,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 foreach (var item in e.NewItems)
                 {
-                    _GridView.SelectedItems.Add(item);
+                    if (!_gridView.SelectedItems.Contains(item))
+                    {
+                        _gridView.SelectedItems.Add(item);
+                    }
                 }
             }
         }
 
-        private void OnGridViewUnloaded(object sender, RoutedEventArgs e)
-        {
-            Detach();
-        }
-
         internal void Detach()
         {
-            _GridView.Unloaded -= OnGridViewUnloaded;
-            _GridView.SelectionChanged -= OnGridViewSelectionChanged;
-            _GridView = null;
+            _gridView.SelectionChanged -= OnGridViewSelectionChanged;
+            _gridView = null;
             var eventInfo =
                 _boundSelection.GetType().GetDeclaredEvent("CollectionChanged");
             eventInfo.RemoveEventHandler(_boundSelection, _handler);
