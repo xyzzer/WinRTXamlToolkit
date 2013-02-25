@@ -76,6 +76,7 @@ namespace WinRTXamlToolkit.Controls
     [TemplateVisualState(GroupName = OrientationStatesGroupName, Name = HorizontalOrientationStateName)]
     [TemplateVisualState(GroupName = FocusStatesGroupName, Name = FocusedStateName)]
     [TemplateVisualState(GroupName = FocusStatesGroupName, Name = UnfocusedStateName)]
+    [StyleTypedProperty(Property = "PreviewStyle", StyleTargetType = typeof(GridSplitterPreviewControl))]
     public class CustomGridSplitter : Control
     {
         #region Template Part and Visual State names

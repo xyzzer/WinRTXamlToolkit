@@ -19,6 +19,7 @@ namespace WinRTXamlToolkit.Controls
     /// Its API surface is similar enough to the Frame control that it is pretty easy to swap it in.
     /// </summary>
     [TemplatePart(Name = "PagePresentersPanelName", Type = typeof(Panel))]
+    [StyleTypedProperty(Property = "PagePresenterStyle", StyleTargetType = typeof(ContentPresenter))]
     public class AlternativeFrame : ContentControl
     {
         private const int WaitForImagesToLoadTimeout = 1000;

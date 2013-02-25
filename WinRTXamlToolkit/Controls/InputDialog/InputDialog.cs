@@ -25,6 +25,10 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name=ButtonsPanelName, Type=typeof(Panel))]
     [TemplateVisualState(GroupName=PopupStatesGroupName, Name=OpenPopupStateName)]
     [TemplateVisualState(GroupName=PopupStatesGroupName, Name=ClosedPopupStateName)]
+    [StyleTypedProperty(Property = "ButtonStyle", StyleTargetType = typeof(ButtonBase))]
+    [StyleTypedProperty(Property = "TitleStyle", StyleTargetType = typeof(TextBlock))]
+    [StyleTypedProperty(Property = "TextStyle", StyleTargetType = typeof(TextBlock))]
+    [StyleTypedProperty(Property = "InputTextStyle", StyleTargetType = typeof(TextBox))]
     public class InputDialog : Control
     {
         #region Template Part Names
