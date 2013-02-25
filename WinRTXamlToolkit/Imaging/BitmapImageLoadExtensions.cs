@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using WinRTXamlToolkit.IO.Extensions;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
@@ -56,6 +57,44 @@ namespace WinRTXamlToolkit.Imaging
             }
 
             return bitmap;
+        }
+
+        /// <summary>
+        /// Loads a BitmapImage from a Base64 encoded string.
+        /// </summary>
+        /// <param name="bitmap">The bitmap into which the image will be loaded.</param>
+        /// <param name="img">The Base64-encoded image string.</param>
+        /// <returns></returns>
+        public static async Task<BitmapImage> LoadFromBase64String(this BitmapImage bitmap, string img)
+        {
+            //img = @"/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQ ... "; // Full Base64 image as string here
+            var imgBytes = Convert.FromBase64String(img);
+
+            using (var ms = new InMemoryRandomAccessStream())
+            {
+                using (var dw = new DataWriter(ms))
+                {
+                    dw.WriteBytes(imgBytes);
+                    await dw.StoreAsync();
+                    ms.Seek(0);
+                    await bitmap.SetSourceAsync(ms);
+                }
+            }
+
+            return bitmap;
+        }
+
+        /// <summary>
+        /// Loads a BitmapImage from a Base64-encoded string.
+        /// </summary>
+        /// <param name="img">The Base64-encoded image string.</param>
+        /// <returns></returns>
+        public static async Task<BitmapImage> LoadFromBase64String(string img)
+        {
+            var bm = new BitmapImage();
+            await bm.LoadFromBase64String(img);
+
+            return bm;
         }
     }
 }
