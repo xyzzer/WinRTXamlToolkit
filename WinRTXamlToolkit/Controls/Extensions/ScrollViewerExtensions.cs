@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.AwaitableUI;
@@ -32,6 +33,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the AnimatedScrollHandler property. This dependency property 
         /// indicates the handler object that handles animated scrolling of the ScrollViewer.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ScrollViewerAnimatedScrollHandler GetAnimatedScrollHandler(DependencyObject d)
         {
             return (ScrollViewerAnimatedScrollHandler)d.GetValue(AnimatedScrollHandlerProperty);
@@ -41,6 +43,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the AnimatedScrollHandler property. This dependency property 
         /// indicates the handler object that handles animated scrolling of the ScrollViewer.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetAnimatedScrollHandler(DependencyObject d, ScrollViewerAnimatedScrollHandler value)
         {
             d.SetValue(AnimatedScrollHandlerProperty, value);

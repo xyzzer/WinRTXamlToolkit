@@ -1,4 +1,5 @@
-﻿using Windows.Foundation;
+﻿using System.ComponentModel;
+using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -78,6 +79,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the ClipToBoundsHandler property. This dependency property 
         /// indicates the handler that handles the updates to the clipping geometry when ClipToBounds is set to true.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static ClipToBoundsHandler GetClipToBoundsHandler(DependencyObject d)
         {
             return (ClipToBoundsHandler)d.GetValue(ClipToBoundsHandlerProperty);
@@ -87,6 +89,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the ClipToBoundsHandler property. This dependency property 
         /// indicates the handler that handles the updates to the clipping geometry when ClipToBounds is set to true.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetClipToBoundsHandler(DependencyObject d, ClipToBoundsHandler value)
         {
             d.SetValue(ClipToBoundsHandlerProperty, value);
@@ -257,6 +260,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the CursorDisplayHandler property. This dependency property 
         /// indicates the handler for displaying the Cursor when a mouse is moved over the control.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static CursorDisplayHandler GetCursorDisplayHandler(DependencyObject d)
         {
             return (CursorDisplayHandler)d.GetValue(CursorDisplayHandlerProperty);
@@ -266,6 +270,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the CursorDisplayHandler property. This dependency property 
         /// indicates the handler for displaying the Cursor when a mouse is moved over the control.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetCursorDisplayHandler(DependencyObject d, CursorDisplayHandler value)
         {
             d.SetValue(CursorDisplayHandlerProperty, value);

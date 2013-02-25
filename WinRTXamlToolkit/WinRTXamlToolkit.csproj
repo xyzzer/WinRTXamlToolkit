@@ -162,9 +162,15 @@
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
     <Compile Include="Controls\DelayedLoadControl\DelayedLoadControl.cs" />
     <Compile Include="Controls\Extensions\ButtonBaseExtensions.cs" />
+    <Compile Include="Controls\Extensions\Forms\FieldValidationHandler.cs" />
+    <Compile Include="Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs" />
+    <Compile Include="Controls\Extensions\Forms\ValidationChecks.cs" />
     <Compile Include="Controls\Extensions\ListBoxItemExtensions.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
+    <Compile Include="Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs" />
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
+    <Compile Include="Controls\Extensions\Forms\TextBoxFocusExtensions.cs" />
+    <Compile Include="Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
     <Compile Include="Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="Controls\Extensions\AnimationHelper.cs" />
@@ -174,7 +180,7 @@
       <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Extensions\ContentControlExtensions.cs" />
-    <Compile Include="Controls\Extensions\ControlExtensions.cs" />
+    <Compile Include="Controls\Extensions\Forms\ControlExtensions.cs" />
     <Compile Include="Controls\Extensions\GridViewExtensions.cs" />
     <Compile Include="Controls\Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Controls\Extensions\ScrollViewerExtensions.cs" />
@@ -202,11 +208,11 @@
     <Compile Include="Controls\Extensions\RichTextBlockExtensions.cs" />
     <Compile Include="Controls\RingSlice.cs" />
     <Compile Include="Controls\Extensions\TextBlockExtensions.cs" />
-    <Compile Include="Controls\Extensions\TextBoxFormatValidationHandler.cs" />
-    <Compile Include="Controls\Extensions\TextBoxValidationExtensions.cs" />
+    <Compile Include="Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs" />
+    <Compile Include="Controls\Extensions\Forms\FieldValidationExtensions.cs" />
     <Compile Include="Controls\Extensions\ViewboxExtensions.cs" />
     <Compile Include="Controls\UniformGrid\UniformGrid.cs" />
-    <Compile Include="Controls\WatermarkTextBox.cs" />
+    <Compile Include="Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
     <Compile Include="Controls\Extensions\WebViewExtensions.cs" />
     <Compile Include="Controls\WrapPanel\OrientedSize.cs" />
@@ -296,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\WatermarkTextBox\WatermarkTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\WebBrowser\WebBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -313,6 +323,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Async\Credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\Extensions\Forms\ReadMe.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

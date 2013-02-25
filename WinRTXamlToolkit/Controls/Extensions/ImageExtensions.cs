@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using WinRTXamlToolkit.AwaitableUI;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
@@ -110,6 +111,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the FadeInOnLoadedHandler property. This dependency property 
         /// indicates the handler for the FadeInOnLoaded property.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static FadeInOnLoadedHandler GetFadeInOnLoadedHandler(DependencyObject d)
         {
             return (FadeInOnLoadedHandler)d.GetValue(FadeInOnLoadedHandlerProperty);
@@ -119,6 +121,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the FadeInOnLoadedHandler property. This dependency property 
         /// indicates the handler for the FadeInOnLoaded property.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetFadeInOnLoadedHandler(DependencyObject d, FadeInOnLoadedHandler value)
         {
             d.SetValue(FadeInOnLoadedHandlerProperty, value);

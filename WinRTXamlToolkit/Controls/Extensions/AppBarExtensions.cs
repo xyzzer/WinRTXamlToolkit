@@ -1,4 +1,5 @@
-﻿using Windows.UI.Core;
+﻿using System.ComponentModel;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -95,6 +96,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the HideWhenSnappedHandler property. This dependency property 
         /// indicates the handler for HideWhenSnapped behavior.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static HideWhenSnappedHandler GetHideWhenSnappedHandler(DependencyObject d)
         {
             return (HideWhenSnappedHandler)d.GetValue(HideWhenSnappedHandlerProperty);
@@ -104,6 +106,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Sets the HideWhenSnappedHandler property. This dependency property 
         /// indicates the handler for HideWhenSnapped behavior.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetHideWhenSnappedHandler(DependencyObject d, HideWhenSnappedHandler value)
         {
             d.SetValue(HideWhenSnappedHandlerProperty, value);
