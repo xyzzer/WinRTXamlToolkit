@@ -10,7 +10,6 @@
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:Series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:datavis="using:WinRTXamlToolkit.Controls.DataVisualization">
-
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -22,16 +21,19 @@
             <ColumnDefinition
                 Width="120" />
             <ColumnDefinition
+                Width="310" />
+            <ColumnDefinition
                 Width="*" />
         </Grid.ColumnDefinitions>
         <controls:CustomAppBar
             Grid.Row="1"
+            Grid.ColumnSpan="3"
             VerticalAlignment="Bottom">
             <StackPanel
                 Orientation="Horizontal">
                 <Button
                     Content="Update"
-                    Click="OnUpdateButtonClick"/>
+                    Click="OnUpdateButtonClick" />
             </StackPanel>
         </controls:CustomAppBar>
         <Button
@@ -41,10 +43,46 @@
         <TextBlock
             Text="Chart Test"
             Grid.Column="1"
+            Grid.ColumnSpan="2"
             Style="{StaticResource PageHeaderTextStyle}" />
-        
-        <FlipView
+        <ListView
+            x:Name="ChartsIndex"
+            Grid.Row="1"
             Grid.Column="1"
+            SelectionMode="Single"
+            SelectedIndex="{Binding SelectedIndex, ElementName=ChartsList, Mode=TwoWay}">
+            <ListView.ItemContainerStyle>
+                <Style
+                    TargetType="ListViewItem">
+                    <Setter
+                        Property="Padding"
+                        Value="12,5" />
+                    <Setter
+                        Property="FontWeight"
+                        Value="SemiBold" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <TextBlock>Pie Chart</TextBlock>
+            <TextBlock>Pie Chart with Custom Design</TextBlock>
+            <TextBlock>Column Chart</TextBlock>
+            <TextBlock>Bar Chart</TextBlock>
+            <TextBlock>Line Chart</TextBlock>
+            <TextBlock>Line Chart w/Manually Set Axis Range</TextBlock>
+            <TextBlock>Line Chart Without Data Points</TextBlock>
+            <TextBlock>Mixed Chart</TextBlock>
+            <TextBlock>Area Chart</TextBlock>
+            <TextBlock>Bubble Chart</TextBlock>
+            <TextBlock>Scatter Chart</TextBlock>
+            <TextBlock>Stacked Bar Chart</TextBlock>
+            <TextBlock>100% Stacked Bar Chart</TextBlock>
+            <TextBlock>Stacked Column Chart</TextBlock>
+            <TextBlock>100% Stacked Column Chart</TextBlock>
+            <!--ItemsSource="{Binding Items, ElementName=ChartsList}"
+            DisplayMemberPath="Content.Title">-->
+        </ListView>
+        <FlipView
+            x:Name="ChartsList"
+            Grid.Column="2"
             Grid.Row="1">
             <charting:Chart
                 x:Name="PieChart"
@@ -392,7 +430,6 @@
                     DependentValueBinding="{Binding Value}"
                     IsSelectionEnabled="True" />
             </charting:Chart>
-
             <charting:Chart
                 x:Name="LineChart"
                 Title="Line Chart"
@@ -403,7 +440,16 @@
                     DependentValueBinding="{Binding Value}"
                     IsSelectionEnabled="True" />
             </charting:Chart>
-
+            <charting:Chart
+                x:Name="LineChartWithAxes"
+                Title="Line Chart w/Manually Set Axis Range"
+                Margin="70,0">
+                <charting:LineSeries
+                    Title="Population"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True" />
+            </charting:Chart>
             <charting:Chart
                 x:Name="LineChart2"
                 Title="Line Chart Without Data Points"
@@ -443,7 +489,6 @@
                     </charting:LineSeries.DataPointStyle>
                 </charting:LineSeries>
             </charting:Chart>
-
             <charting:Chart
                 x:Name="MixedChart"
                 Title="Mixed Chart"

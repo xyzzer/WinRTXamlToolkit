@@ -60,6 +60,16 @@ namespace WinRTXamlToolkit.Sample.Views
 
             ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
             ((PieSeries)this.PieChartWithCustomDesign.Series[0]).ItemsSource = items;
+            ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = items;
+            ((LineSeries)LineChartWithAxes.Series[0]).DependentRangeAxis =
+                new LinearAxis
+                {
+                    Minimum = 0,
+                    Maximum = 100,
+                    Orientation = AxisOrientation.Y,
+                    Interval = 20,
+                    ShowGridLines = true
+                };
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
