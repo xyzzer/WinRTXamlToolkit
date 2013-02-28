@@ -160,6 +160,7 @@
     <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
     <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
     <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
+    <Compile Include="Controls\Common\PropertyChangedEventHandler.cs" />
     <Compile Include="Controls\DelayedLoadControl\DelayedLoadControl.cs" />
     <Compile Include="Controls\Extensions\ButtonBaseExtensions.cs" />
     <Compile Include="Controls\Extensions\Forms\FieldValidationHandler.cs" />
@@ -211,6 +212,14 @@
     <Compile Include="Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs" />
     <Compile Include="Controls\Extensions\Forms\FieldValidationExtensions.cs" />
     <Compile Include="Controls\Extensions\ViewboxExtensions.cs" />
+    <Compile Include="Controls\Common\InteractionHelper.cs" />
+    <Compile Include="Controls\Common\IUpdateVisualState.cs" />
+    <Compile Include="Controls\Common\ScrollExtensions.cs" />
+    <Compile Include="Controls\TreeView\TreeView.cs" />
+    <Compile Include="Controls\TreeView\TreeViewAutomationPeer.cs" />
+    <Compile Include="Controls\TreeView\TreeViewItem.cs" />
+    <Compile Include="Controls\TreeView\TreeViewItemAutomationPeer.cs" />
+    <Compile Include="Controls\Common\VisualStates.cs" />
     <Compile Include="Controls\UniformGrid\UniformGrid.cs" />
     <Compile Include="Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
@@ -301,6 +310,14 @@
     <Page Include="Controls\InputDialog\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TreeView\TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TreeView\TreeViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\WatermarkTextBox\WatermarkTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>

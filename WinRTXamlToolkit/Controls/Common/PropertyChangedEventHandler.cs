@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
+namespace WinRTXamlToolkit.Controls
 {
     //public delegate void PropertyChangedEventHandler(object sender, object OldValue, object NewValue);
     //public delegate void RoutedPropertyChangedEventHandler<T>(object sender, T OldValue, T NewValue);

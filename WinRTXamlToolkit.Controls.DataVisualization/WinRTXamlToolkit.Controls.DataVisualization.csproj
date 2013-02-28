@@ -203,7 +203,6 @@
     <Compile Include="ObjectPool.cs" />
     <Compile Include="ObservableCollectionListAdapter.cs" />
     <Compile Include="OrientedPanel.cs" />
-    <Compile Include="PropertyChangedEventHandler.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="RangeEnumerableFunctions.cs" />
     <Compile Include="ResourceDictionaryCollection.cs" />

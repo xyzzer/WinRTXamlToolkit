@@ -1,0 +1,51 @@
+﻿<xc:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.TreeViewTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xc="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="TreeView Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <xc:TreeView
+            Grid.Row="1"
+            Grid.Column="1">
+            <xc:TreeViewItem
+                Header="Hello 1"/>
+            <xc:TreeViewItem
+                Header="Hello 2">
+                <xc:TreeViewItem
+                    Header="Hello A" />
+                <xc:TreeViewItem
+                    Header="Hello B" />
+                <xc:TreeViewItem
+                    Header="Hello C" />
+            </xc:TreeViewItem>
+            <xc:TreeViewItem
+                Header="Hello 3" />
+            <xc:TreeViewItem
+                Header="Hello 4" />
+        </xc:TreeView>
+    </Grid>
+</xc:AlternativePage>

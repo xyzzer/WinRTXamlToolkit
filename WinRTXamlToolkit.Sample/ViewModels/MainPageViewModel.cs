@@ -201,6 +201,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
+                    Caption = "TreeView",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TreeViewTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "UIElementAnimationExtensions",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(UIElementAnimationExtensionsTestPage)))
                 },
