@@ -17,7 +17,7 @@ namespace WinRTXamlToolkit.Controls.Data
     /// such as <see cref="T:System.Windows.Controls.TreeViewItem" />.
     /// </summary>
     /// <QualityBand>Stable</QualityBand>
-    public partial class HierarchicalDataTemplate : DataTemplate
+    public partial class HierarchicalDataTemplate : FrameworkElement
     {
         /// <summary>
         /// Gets or sets the collection that is used to generate content for the

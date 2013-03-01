@@ -508,11 +508,12 @@ namespace WinRTXamlToolkit.Controls
 
             base.OnItemsChanged(e);
 
-            List<object> newItems = null;
-            if (items != null)
+            if (items == null)
             {
-                newItems = Items.Except(items).ToList();
+                items = new List<object>();
             }
+
+            List<object> newItems = Items.Except(items).ToList();
 
             // Associate any TreeViewItems with their parent
             if (newItems != null)
@@ -547,10 +548,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             List<object> oldItems = null;
-            if (items != null)
-            {
-                oldItems = items.Except(Items).ToList();
-            }
+            oldItems = items.Except(Items).ToList();
 
             // Remove the association with the Parent ItemsControl
             if (oldItems != null)

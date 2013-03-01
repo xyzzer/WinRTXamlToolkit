@@ -309,40 +309,49 @@ namespace WinRTXamlToolkit.Controls
                 // for the type of the item if the headerTemplate were null.
 
                 // Setup a hierarchical template
-                HierarchicalDataTemplate headerTemplate = parentItemTemplate as HierarchicalDataTemplate;
+                //HierarchicalDataTemplate headerTemplate = parentItemTemplate as HierarchicalDataTemplate;
+                var headerTemplate = parentItemTemplate as DataTemplate;
                 if (headerTemplate != null)
                 {
-                    if (headerTemplate.ItemsSource != null && HasDefaultValue(control, HeaderedItemsControl.ItemsSourceProperty))
+                    var hierarchy = DataTemplateExtensions.GetHierarchy(headerTemplate);
+
+                    if (hierarchy != null &&
+                        hierarchy.ItemsSource != null &&
+                        HasDefaultValue(control, HeaderedItemsControl.ItemsSourceProperty))
                     {
                         control.SetBinding(
                             HeaderedItemsControl.ItemsSourceProperty,
                             new Binding
                             {
-                                Converter = headerTemplate.ItemsSource.Converter,
-                                ConverterLanguage = headerTemplate.ItemsSource.ConverterLanguage,
-                                ConverterParameter = headerTemplate.ItemsSource.ConverterParameter,
-                                Mode = headerTemplate.ItemsSource.Mode,
+                                Converter = hierarchy.ItemsSource.Converter,
+                                ConverterLanguage = hierarchy.ItemsSource.ConverterLanguage,
+                                ConverterParameter = hierarchy.ItemsSource.ConverterParameter,
+                                Mode = hierarchy.ItemsSource.Mode,
                                 //NotifyOnValidationError = headerTemplate.ItemsSource.NotifyOnValidationError,
-                                Path = headerTemplate.ItemsSource.Path,
+                                Path = hierarchy.ItemsSource.Path,
                                 Source = control.Header,
                                 //ElementName = 
                                 //ValidatesOnExceptions = headerTemplate.ItemsSource.ValidatesOnExceptions
                             });
                     }
-                    if (headerTemplate.IsItemTemplateSet && control.ItemTemplate == parentItemTemplate)
+                    if (hierarchy != null &&
+                        hierarchy.IsItemTemplateSet &&
+                        control.ItemTemplate == parentItemTemplate)
                     {
                         control.ClearValue(HeaderedItemsControl.ItemTemplateProperty);
-                        if (headerTemplate.ItemTemplate != null)
+                        if (hierarchy.ItemTemplate != null)
                         {
-                            control.ItemTemplate = headerTemplate.ItemTemplate;
+                            control.ItemTemplate = hierarchy.ItemTemplate;
                         }
                     }
-                    if (headerTemplate.IsItemContainerStyleSet && control.ItemContainerStyle == parentItemContainerStyle)
+                    if (hierarchy != null &&
+                        hierarchy.IsItemContainerStyleSet &&
+                        control.ItemContainerStyle == parentItemContainerStyle)
                     {
                         control.ClearValue(HeaderedItemsControl.ItemContainerStyleProperty);
-                        if (headerTemplate.ItemContainerStyle != null)
+                        if (hierarchy.ItemContainerStyle != null)
                         {
-                            control.ItemContainerStyle = headerTemplate.ItemContainerStyle;
+                            control.ItemContainerStyle = hierarchy.ItemContainerStyle;
                         }
                     }
                 }
