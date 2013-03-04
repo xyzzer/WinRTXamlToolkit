@@ -106,13 +106,5 @@ namespace WinRTXamlToolkit.Controls.Data
             }
         }
         #endregion public Style ItemContainerStyle
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:WinRTXamlToolkit.Controls.Data.HierarchicalDataTemplate" /> class.
-        /// </summary>
-        public HierarchicalDataTemplate()
-        {
-        }
     }
 }

@@ -254,37 +254,37 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion public string SelectedValuePath
 
-        #region public Style ItemContainerStyle
-        /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Style" /> that is
-        /// applied to the container element generated for each item.
-        /// </summary>
-        /// <value>
-        /// The <see cref="T:System.Windows.Style" /> applied to the container
-        /// element that contains each item.
-        /// </value>
-        public Style ItemContainerStyle
-        {
-            get { return GetValue(ItemContainerStyleProperty) as Style; }
-            set { SetValue(ItemContainerStyleProperty, value); }
-        }
+        //#region public Style ItemContainerStyle
+        ///// <summary>
+        ///// Gets or sets the <see cref="T:System.Windows.Style" /> that is
+        ///// applied to the container element generated for each item.
+        ///// </summary>
+        ///// <value>
+        ///// The <see cref="T:System.Windows.Style" /> applied to the container
+        ///// element that contains each item.
+        ///// </value>
+        //public Style ItemContainerStyle
+        //{
+        //    get { return GetValue(ItemContainerStyleProperty) as Style; }
+        //    set { SetValue(ItemContainerStyleProperty, value); }
+        //}
 
-        /// <summary>
-        /// Identifies the
-        /// <see cref="P:WinRTXamlToolkit.Controls.TreeView.ItemContainerStyle" />
-        /// dependency property.
-        /// </summary>
-        /// <value>
-        /// The identifier for the
-        /// <see cref="P:WinRTXamlToolkit.Controls.TreeView.ItemContainerStyle" />
-        /// dependency property.
-        /// </value>
-        public static readonly DependencyProperty ItemContainerStyleProperty =
-            DependencyProperty.Register(
-                "ItemContainerStyle",
-                typeof(Style),
-                typeof(TreeView),
-                new PropertyMetadata(null, OnItemContainerStylePropertyChanged));
+        ///// <summary>
+        ///// Identifies the
+        ///// <see cref="P:WinRTXamlToolkit.Controls.TreeView.ItemContainerStyle" />
+        ///// dependency property.
+        ///// </summary>
+        ///// <value>
+        ///// The identifier for the
+        ///// <see cref="P:WinRTXamlToolkit.Controls.TreeView.ItemContainerStyle" />
+        ///// dependency property.
+        ///// </value>
+        //public static readonly DependencyProperty ItemContainerStyleProperty =
+        //    DependencyProperty.Register(
+        //        "ItemContainerStyle",
+        //        typeof(Style),
+        //        typeof(TreeView),
+        //        new PropertyMetadata(null, OnItemContainerStylePropertyChanged));
 
         /// <summary>
         /// ItemContainerStyleProperty property changed handler.
@@ -293,13 +293,11 @@ namespace WinRTXamlToolkit.Controls
         /// TreeView that changed its ItemContainerStyle.
         /// </param>
         /// <param name="e">Event arguments.</param>
-        private static void OnItemContainerStylePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void OnItemContainerStylePropertyChanged(object sender, Style style)
         {
-            TreeView source = d as TreeView;
-            Style value = e.NewValue as Style;
-            source.ItemsControlHelper.UpdateItemContainerStyle(value);
+            this.ItemsControlHelper.UpdateItemContainerStyle(style);
         }
-        #endregion public Style ItemContainerStyle
+        //#endregion public Style ItemContainerStyle
 
         /// <summary>
         /// Gets the currently selected TreeViewItem container.
@@ -366,6 +364,8 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public TreeView()
         {
+            var pcc = new PropertyChangeEventSource<Style>(this, "ItemContainerStyle");
+            pcc.ValueChanged += OnItemContainerStylePropertyChanged;
             DefaultStyleKey = typeof(TreeView);
             ItemsControlHelper = new ItemsControlHelper(this);
             Interaction = new InteractionHelper(this);
