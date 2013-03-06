@@ -304,6 +304,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
+    <None Include="packages.config" />
     <None Include="WinRTXamlToolkit.Sample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -541,7 +542,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\packages\SharpDX.2.4.2\lib\win8\SharpDX.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
