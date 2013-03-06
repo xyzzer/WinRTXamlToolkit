@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -14,14 +15,28 @@ namespace WinRTXamlToolkit.Composition
     {
         public static async Task Render(this WriteableBitmap wb, FrameworkElement fe)
         {
-            var ms = RenderToStream(fe);
-            var msrandom = new MemoryRandomAccessStream(ms);
-            await wb.SetSourceAsync(msrandom);
+            var ms = RenderToPngStream(fe);
+
+            using (var msrandom = new MemoryRandomAccessStream(ms))
+            {
+                await wb.SetSourceAsync(msrandom);
+            }
         }
 
-        public static MemoryStream RenderToStream(FrameworkElement fe)
+        public static WriteableBitmap Render(FrameworkElement fe)
         {
-            return new CompositionEngine().RenderToPngStream(fe);
+            using (var engine = new CompositionEngine())
+            {
+                return engine.RenderToWriteableBitmap(fe);
+            }
+        }
+
+        public static MemoryStream RenderToPngStream(FrameworkElement fe)
+        {
+            using (var engine = new CompositionEngine())
+            {
+                return engine.RenderToPngStream(fe);
+            }
         }
     }
 }

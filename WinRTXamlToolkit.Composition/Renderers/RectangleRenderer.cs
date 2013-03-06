@@ -1,6 +1,6 @@
 ﻿using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
-using Rectangle = Windows.UI.Xaml.Shapes.Rectangle;
+using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Composition.Renderers
 {
@@ -12,66 +12,76 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var fill = rectangle.Fill.ToSharpDX(renderTarget, rect);
             var stroke = rectangle.Stroke.ToSharpDX(renderTarget, rect);
 
-            //var layer = new Layer(renderTarget);
-            //var layerParameters = new LayerParameters();
-            //layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
-
-            if (rectangle.RadiusX > 0 &&
-                rectangle.RadiusY > 0)
+            try
             {
-                var roundedRect = new SharpDX.Direct2D1.RoundedRect();
-                roundedRect.Rect = rect;
-                roundedRect.RadiusX = (float)rectangle.RadiusX;
-                roundedRect.RadiusY = (float)rectangle.RadiusY;
+                //var layer = new Layer(renderTarget);
+                //var layerParameters = new LayerParameters();
+                //layerParameters.ContentBounds = rect;
+                //renderTarget.PushLayer(ref layerParameters, layer);
 
-                if (rectangle.StrokeThickness > 0 &&
-                    stroke != null)
+                if (rectangle.RadiusX > 0 &&
+                    rectangle.RadiusY > 0)
                 {
-                    var halfThickness = (float)(rectangle.StrokeThickness * 0.5);
-                    roundedRect.Rect = rect.Eroded(halfThickness);
+                    var roundedRect = new SharpDX.Direct2D1.RoundedRectangle();
+                    roundedRect.Rect = rect;
+                    roundedRect.RadiusX = (float)rectangle.RadiusX;
+                    roundedRect.RadiusY = (float)rectangle.RadiusY;
 
-                    if (fill != null)
+                    if (rectangle.StrokeThickness > 0 &&
+                        stroke != null)
+                    {
+                        var halfThickness = (float)(rectangle.StrokeThickness * 0.5);
+                        roundedRect.Rect = rect.Eroded(halfThickness);
+
+                        if (fill != null)
+                        {
+                            renderTarget.FillRoundedRectangle(roundedRect, fill);
+                        }
+
+                        renderTarget.DrawRoundedRectangle(
+                            roundedRect,
+                            stroke,
+                            (float)rectangle.StrokeThickness,
+                            rectangle.GetStrokeStyle(compositionEngine.D2DFactory));
+                    }
+                    else
                     {
                         renderTarget.FillRoundedRectangle(roundedRect, fill);
                     }
-
-                    renderTarget.DrawRoundedRectangle(
-                        roundedRect,
-                        stroke,
-                        (float)rectangle.StrokeThickness,
-                        rectangle.GetStrokeStyle(compositionEngine.D2DFactory));
                 }
                 else
                 {
-                    renderTarget.FillRoundedRectangle(roundedRect, fill);
-                }
-            }
-            else
-            {
-                if (rectangle.StrokeThickness > 0 &&
-                    stroke != null)
-                {
-                    var halfThickness = (float)(rectangle.StrokeThickness * 0.5);
-
-                    if (fill != null)
+                    if (rectangle.StrokeThickness > 0 &&
+                        stroke != null)
                     {
-                        renderTarget.FillRectangle(rect.Eroded(halfThickness), fill);
-                    }
+                        var halfThickness = (float)(rectangle.StrokeThickness * 0.5);
 
-                    var strokeRect = rect.Eroded(halfThickness);
-                    renderTarget.DrawRectangle(
-                        strokeRect,
-                        stroke,
-                        (float)rectangle.StrokeThickness,
-                        rectangle.GetStrokeStyle(compositionEngine.D2DFactory));
+                        if (fill != null)
+                        {
+                            renderTarget.FillRectangle(rect.Eroded(halfThickness), fill);
+                        }
+
+                        var strokeRect = rect.Eroded(halfThickness);
+                        renderTarget.DrawRectangle(
+                            strokeRect,
+                            stroke,
+                            (float)rectangle.StrokeThickness,
+                            rectangle.GetStrokeStyle(compositionEngine.D2DFactory));
+                    }
+                    else
+                    {
+                        renderTarget.FillRectangle(rect, fill);
+                    }
                 }
-                else
-                {
-                    renderTarget.FillRectangle(rect, fill);
-                }
+                //renderTarget.PopLayer();
             }
-            //renderTarget.PopLayer();
+            finally
+            {
+                if (fill != null)
+                    fill.Dispose();
+                if (stroke != null)
+                    stroke.Dispose();
+            }
         }
     }
 }

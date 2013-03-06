@@ -10,37 +10,43 @@ namespace WinRTXamlToolkit.Composition.Renderers
     {
         internal static void Render(CompositionEngine compositionEngine, RenderTarget renderTarget, FrameworkElement rootElement, TextBlock textBlock)
         {
-            var textFormat = new TextFormat(
+            using (var textFormat = new TextFormat(
                 compositionEngine.DWriteFactory,
                 textBlock.FontFamily.Source,
                 (float)textBlock.FontSize)
             {
                 TextAlignment = textBlock.TextAlignment.ToSharpDX(),
                 ParagraphAlignment = ParagraphAlignment.Near
-            };
+            })
+            {
+                var rect = textBlock.GetBoundingRect(rootElement).ToSharpDX();
+                // For some reason we need a bigger rect for the TextBlock rendering to fit in the same boundaries
+                rect.Right++;
+                rect.Bottom++;
 
-            var rect = textBlock.GetBoundingRect(rootElement).ToSharpDX();
-            // For some reason we need a bigger rect for the TextBlock rendering to fit in the same boundaries
-            rect.Right++;
-            rect.Bottom++;
-            var textBrush = textBlock.Foreground.ToSharpDX(renderTarget, rect);
+                using (
+                    var textBrush = textBlock.Foreground.ToSharpDX(renderTarget, rect))
+                {
+                    //using(var layer = new Layer(renderTarget))
+                    //{
+                    //var layerParameters = new LayerParameters();
+                    //layerParameters.ContentBounds = rect;
+                    //renderTarget.PushLayer(ref layerParameters, layer);
 
-            var layer = new Layer(renderTarget);
-            var layerParameters = new LayerParameters();
-            layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
+                    // You can render the bounding rectangle to debug composition
+                    //renderTarget.DrawRectangle(
+                    //    rect,
+                    //    textBrush);
+                    renderTarget.DrawText(
+                        textBlock.Text,
+                        textFormat,
+                        rect,
+                        textBrush);
 
-            // You can render the bounding rectangle to debug composition
-            //renderTarget.DrawRectangle(
-            //    rect,
-            //    textBrush);
-            renderTarget.DrawText(
-                textBlock.Text,
-                textFormat,
-                rect,
-                textBrush);
-
-            //renderTarget.PopLayer();
+                    //renderTarget.PopLayer();
+                    //}
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using WinRTXamlToolkit.AwaitableUI;
+﻿using System;
+using WinRTXamlToolkit.AwaitableUI;
 using WinRTXamlToolkit.Composition;
 using WinRTXamlToolkit.Imaging;
 using Windows.UI.Xaml;
@@ -18,9 +19,31 @@ namespace WinRTXamlToolkit.Sample.Views
         private async void RunTest()
         {
             await this.WaitForLoadedAsync();
-            var wb = new WriteableBitmap(1, 1);
-            await wb.Render(this.source);
-            this.target.Source = wb;
+            await this.source.WaitForNonZeroSizeAsync();
+
+            WriteableBitmap wb = null;
+
+            var start = DateTime.Now;
+
+            const int count = 1;
+
+            for (int i = 0; i < count; i++)
+            {
+                //wb = new WriteableBitmap(1, 1);
+                //GC.Collect();
+                //GC.WaitForPendingFinalizers();
+                //await wb.Render(this.source);
+                wb = WriteableBitmapRenderExtensions.Render(this.source);
+                //if (i == 100)
+                //    Debugger.Break();
+            }
+
+            var end = DateTime.Now;
+            var duration = end - start;
+            var renderInS = duration.TotalMilliseconds / count;
+
+            if (renderInS > 0)
+                this.target.Source = wb;
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
