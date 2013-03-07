@@ -1,4 +1,5 @@
-﻿using SharpDX;
+﻿using System.Threading.Tasks;
+using SharpDX;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -9,10 +10,10 @@ namespace WinRTXamlToolkit.Composition.Renderers
 {
     public static class BorderRenderer
     {
-        internal static void Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Border border)
+        internal static async Task Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Border border)
         {
             var rect = border.GetBoundingRect(rootElement).ToSharpDX();
-            var brush = border.Background.ToSharpDX(renderTarget, rect);
+            var brush = await border.Background.ToSharpDX(renderTarget, rect);
 
             var geometry = GetBorderFillGeometry(compositionEngine, border, rect);
 
@@ -25,7 +26,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             //renderTarget.PopLayer();
 
-            compositionEngine.RenderChildren(renderTarget, rootElement, border);
+            await compositionEngine.RenderChildren(renderTarget, rootElement, border);
         }
 
         private static D2D.PathGeometry GetBorderFillGeometry(

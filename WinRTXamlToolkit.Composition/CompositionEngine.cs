@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
@@ -83,7 +84,7 @@ namespace WinRTXamlToolkit.Composition
             }
         }
 
-        public WriteableBitmap RenderToWriteableBitmap(FrameworkElement fe)
+        public async Task<WriteableBitmap> RenderToWriteableBitmap(FrameworkElement fe)
         {
             var width = (int)Math.Ceiling(fe.ActualWidth);
             var height = (int)Math.Ceiling(fe.ActualHeight);
@@ -100,7 +101,7 @@ namespace WinRTXamlToolkit.Composition
                 _d2DDeviceContext.AntialiasMode = D2D.AntialiasMode.PerPrimitive;
                 _d2DDeviceContext.TextAntialiasMode = D2D.TextAntialiasMode.Grayscale;
 
-                Compose(_d2DDeviceContext, fe);
+                await Compose(_d2DDeviceContext, fe);
 
                 using (var cpuReadBitmap = CreateCpuReadBitmap(width, height))
                 {
@@ -121,14 +122,14 @@ namespace WinRTXamlToolkit.Composition
                         {
                             var wb = new WriteableBitmap(width, height);
 
-                            using (var stream = wb.PixelBuffer.AsStream())
+                            using (var writeStream = wb.PixelBuffer.AsStream())
                             {
                                 var buffer = new byte[mappedRect.Pitch];
 
                                 for (int i = 0; i < height; i++)
                                 {
                                     readStream.Read(buffer, 0, mappedRect.Pitch);
-                                    stream.Write(buffer, 0, buffer.Length);
+                                    writeStream.Write(buffer, 0, buffer.Length);
                                 }
                             }
 
@@ -145,7 +146,7 @@ namespace WinRTXamlToolkit.Composition
             }
         }
 
-        private static D2D.Bitmap CreateRenderTargetBitmap(int width, int height)
+        internal static D2D.Bitmap1 CreateRenderTargetBitmap(int width, int height)
         {
             var renderTargetBitmap = new D2D.Bitmap1(
                 _d2DDeviceContext,
@@ -160,14 +161,14 @@ namespace WinRTXamlToolkit.Composition
             return renderTargetBitmap;
         }
 
-        private static D2D.Bitmap1 CreateCpuReadBitmap(int width, int height)
+        internal static D2D.Bitmap1 CreateCpuReadBitmap(int width, int height)
         {
             var cpuReadBitmap = new D2D.Bitmap1(
                 _d2DDeviceContext,
                 new DrawingSize(width, height),
                 new D2D.BitmapProperties1(
                     new D2D.PixelFormat(
-                        Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),
+                        SharpDX.DXGI.Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),
                         Windows.Graphics.Display.DisplayProperties.LogicalDpi,
                         Windows.Graphics.Display.DisplayProperties.LogicalDpi,
                         D2D.BitmapOptions.CpuRead | D2D.BitmapOptions.CannotDraw));
@@ -175,7 +176,7 @@ namespace WinRTXamlToolkit.Composition
             return cpuReadBitmap;
         }
 
-        public MemoryStream RenderToPngStream(FrameworkElement fe)
+        public async Task<MemoryStream> RenderToPngStream(FrameworkElement fe)
         {
             var width = (int)Math.Ceiling(fe.ActualWidth);
             var height = (int)Math.Ceiling(fe.ActualHeight);
@@ -216,7 +217,7 @@ namespace WinRTXamlToolkit.Composition
                         // this is the best we can do for bitmaps with alpha channels
                     })
                 {
-                    Compose(renderTarget, fe);
+                    await Compose(renderTarget, fe);
                 }
 
                 // TODO: There is no need to encode the bitmap to PNG - we could just copy the texture pixel buffer to a WriteableBitmap pixel buffer.
@@ -257,21 +258,21 @@ namespace WinRTXamlToolkit.Composition
             return ms;
         }
 
-        public void Compose(D2D.RenderTarget renderTarget, FrameworkElement fe)
+        public async Task Compose(D2D.RenderTarget renderTarget, FrameworkElement fe)
         {
             renderTarget.BeginDraw();
             renderTarget.Clear(new SharpDX.Color(0, 0, 0, 0));
-            this.Render(renderTarget, fe, fe);
+            await this.Render(renderTarget, fe, fe);
             renderTarget.EndDraw();
         }
 
-        public void Render(D2D.RenderTarget renderTarget, FrameworkElement rootElement, FrameworkElement fe)
+        public async Task Render(D2D.RenderTarget renderTarget, FrameworkElement rootElement, FrameworkElement fe)
         {
             var textBlock = fe as TextBlock;
 
             if (textBlock != null)
             {
-                TextBlockRenderer.Render(this, renderTarget, rootElement, textBlock);
+                await TextBlockRenderer.Render(this, renderTarget, rootElement, textBlock);
                 return;
             }
 
@@ -279,7 +280,7 @@ namespace WinRTXamlToolkit.Composition
 
             if (rectangle != null)
             {
-                RectangleRenderer.Render(this, renderTarget, rootElement, rectangle);
+                await RectangleRenderer.Render(this, renderTarget, rootElement, rectangle);
                 return;
             }
 
@@ -287,7 +288,15 @@ namespace WinRTXamlToolkit.Composition
 
             if (border != null)
             {
-                BorderRenderer.Render(this, renderTarget, rootElement, border);
+                await BorderRenderer.Render(this, renderTarget, rootElement, border);
+                return;
+            }
+
+            var image = fe as Image;
+
+            if (image != null)
+            {
+                await ImageRenderer.Render(this, renderTarget, rootElement, image);
                 return;
             }
 
@@ -303,7 +312,7 @@ namespace WinRTXamlToolkit.Composition
 
             if (line != null)
             {
-                LineRenderer.Render(this, renderTarget, rootElement, line);
+                await LineRenderer.Render(this, renderTarget, rootElement, line);
                 return;
             }
 
@@ -311,14 +320,14 @@ namespace WinRTXamlToolkit.Composition
 
             if (path != null)
             {
-                PathRenderer.Render(this, renderTarget, rootElement, path);
+                await PathRenderer.Render(this, renderTarget, rootElement, path);
                 return;
             }
 
-            FrameworkElementRenderer.Render(this, renderTarget, rootElement, fe);
+            await FrameworkElementRenderer.Render(this, renderTarget, rootElement, fe);
         }
 
-        internal void RenderChildren(D2D.RenderTarget renderTarget, FrameworkElement rootElement, FrameworkElement fe)
+        internal async Task RenderChildren(D2D.RenderTarget renderTarget, FrameworkElement rootElement, FrameworkElement fe)
         {
             var children = fe.GetChildrenByZIndex();
 
@@ -330,7 +339,7 @@ namespace WinRTXamlToolkit.Composition
 
                 if (child != null)
                 {
-                    this.Render(renderTarget, rootElement, child);
+                    await this.Render(renderTarget, rootElement, child);
                 }
             }
         }

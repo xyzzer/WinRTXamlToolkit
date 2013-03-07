@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SharpDX;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
@@ -10,11 +11,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
 {
     public static class PathRenderer
     {
-        internal static void Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Jupiter.Shapes.Path path)
+        internal static async Task Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Jupiter.Shapes.Path path)
         {
             var rect = path.GetBoundingRect(rootElement).ToSharpDX();
-            var fill = path.Fill.ToSharpDX(renderTarget, rect);
-            var stroke = path.Stroke.ToSharpDX(renderTarget, rect);
+            var fill = await path.Fill.ToSharpDX(renderTarget, rect);
+            var stroke = await path.Stroke.ToSharpDX(renderTarget, rect);
 
             //var layer = new D2D.Layer(renderTarget);
             //var layerParameters = new D2D.LayerParameters();

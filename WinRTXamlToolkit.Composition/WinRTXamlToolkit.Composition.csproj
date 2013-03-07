@@ -103,6 +103,7 @@
     <Compile Include="Conversion.cs" />
     <Compile Include="RectangleFExtensions.cs" />
     <Compile Include="Renderers\BorderRenderer.cs" />
+    <Compile Include="Renderers\ImageRenderer.cs" />
     <Compile Include="Renderers\PathRenderer.cs" />
     <Compile Include="Renderers\LineRenderer.cs" />
     <Compile Include="Renderers\EllipseRenderer.cs" />

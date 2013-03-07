@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using SharpDX;
+using WinRTXamlToolkit.Imaging;
 using Windows.Foundation;
 using Windows.UI.Xaml.Media;
 using Jupiter = Windows.UI.Xaml;
@@ -9,7 +12,8 @@ namespace WinRTXamlToolkit.Composition
 {
     public static class Conversion
     {
-        public static SharpDX.DirectWrite.TextAlignment ToSharpDX(this Jupiter.TextAlignment alignment)
+        public static SharpDX.DirectWrite.TextAlignment ToSharpDX(
+            this Jupiter.TextAlignment alignment)
         {
             switch (alignment)
             {
@@ -26,7 +30,7 @@ namespace WinRTXamlToolkit.Composition
             }
         }
 
-        public static D2D.Brush ToSharpDX(
+        public static async Task<D2D.Brush> ToSharpDX(
             this Jupiter.Media.Brush brush,
             D2D.RenderTarget renderTarget,
             RectangleF rect)
@@ -39,10 +43,14 @@ namespace WinRTXamlToolkit.Composition
             if (solidColorBrush != null)
             {
                 var color = solidColorBrush.Color.ToSharpDX();
-
+                
                 return new D2D.SolidColorBrush(
                     renderTarget,
-                    color);
+                    color,
+                    new D2D.BrushProperties
+                    {
+                        Opacity = (float)solidColorBrush.Opacity
+                    });
             }
 
             var linearGradientBrush = brush as Jupiter.Media.LinearGradientBrush;
@@ -81,28 +89,104 @@ namespace WinRTXamlToolkit.Composition
                 return new D2D.LinearGradientBrush(
                     renderTarget,
                     properties,
-                    //brushProperties,
+                    brushProperties,
                     gradientStopCollection);
             }
 
-            //var imageBrush = brush as Jupiter.Media.ImageBrush;
+            var imageBrush = brush as Jupiter.Media.ImageBrush;
 
-            //if (imageBrush != null)
-            //{
-            //    var writeableBitmap = imageBrush.ImageSource as WriteableBitmap;
-            //    var bitmapImage = imageBrush.ImageSource as BitmapImage;
+            if (imageBrush != null)
+            {
+                var bitmap = await imageBrush.ImageSource.ToSharpDX(renderTarget);
 
-            //    if (bitmapImage != null)
-            //    {
-            //        writeableBitmap =
-            //            await WriteableBitmapFromBitmapImageExtension.FromBitmapImage(bitmapImage);
-            //    }
-            //    CompositionEngine c;
+                var w = bitmap.PixelSize.Width;
+                var h = bitmap.PixelSize.Height;
+                Matrix3x2 transform = Matrix3x2.Identity;
 
-            //    return new D2D.BitmapBrush(
-            //        renderTarget,
-            //        writeableBitmap.ToSharpDX(),
-            //}
+                switch (imageBrush.Stretch)
+                {
+                    case Stretch.None:
+                        transform.M31 += rect.Left + rect.Width * 0.5f - w / 2;
+                        transform.M32 += rect.Top + rect.Height * 0.5f - h / 2;
+                        break;
+                    case Stretch.Fill:
+                        transform = Matrix3x2.Scaling(
+                            rect.Width / w,
+                            rect.Height / h);
+                        transform.M31 += rect.Left;
+                        transform.M32 += rect.Top;
+                        break;
+                    case Stretch.Uniform:
+                        var bitmapAspectRatio = (float)w / h;
+                        var elementAspectRatio = rect.Width / rect.Height;
+
+                        if (bitmapAspectRatio > elementAspectRatio)
+                        {
+                            var scale = rect.Width / w;
+                            transform = Matrix3x2.Scaling(scale);
+                            transform.M31 += rect.Left;
+                            transform.M32 += rect.Top + rect.Height * 0.5f - scale * h / 2;
+                        }
+                        else // (elementAspectRatio >= bitmapAspectRatio)
+                        {
+                            var scale = rect.Height / h;
+                            transform = Matrix3x2.Scaling(scale);
+                            transform.M31 += rect.Left + rect.Width * 0.5f - scale * w / 2;
+                            transform.M32 += rect.Top;
+                        }
+
+                        break;
+                    case Stretch.UniformToFill:
+                        var bitmapAspectRatio2 = (float)w / h;
+                        var elementAspectRatio2 = rect.Width / rect.Height;
+
+                        if (bitmapAspectRatio2 > elementAspectRatio2)
+                        {
+                            var scale = rect.Height / h;
+                            transform = Matrix3x2.Scaling(scale);
+                            transform.M31 += rect.Left + rect.Width * 0.5f - scale * w / 2;
+                            transform.M32 += rect.Top;
+                        }
+                        else // (elementAspectRatio >= bitmapAspectRatio)
+                        {
+                            var scale = rect.Width / w;
+                            transform = Matrix3x2.Scaling(scale);
+                            transform.M31 += rect.Left;
+                            transform.M32 += rect.Top + rect.Height * 0.5f - scale * h / 2;
+                        }
+
+                        break;
+                }
+                
+
+                return new D2D.BitmapBrush1(
+                    (D2D.DeviceContext)renderTarget,
+                    bitmap,
+                    new D2D.BitmapBrushProperties1
+                    {
+                        ExtendModeX = D2D.ExtendMode.Clamp,
+                        ExtendModeY = D2D.ExtendMode.Clamp,
+                        InterpolationMode = D2D.InterpolationMode.HighQualityCubic
+                    })
+                    {
+                        Opacity = (float)imageBrush.Opacity,
+                        Transform = transform
+                    };
+                //    var writeableBitmap = imageBrush.ImageSource as WriteableBitmap;
+                //    var bitmapImage = imageBrush.ImageSource as BitmapImage;
+
+                //    if (bitmapImage != null)
+                //    {
+                //        writeableBitmap =
+                //            await WriteableBitmapFromBitmapImageExtension.FromBitmapImage(bitmapImage);
+                //    }
+                //    CompositionEngine c;
+
+                //    return new D2D.BitmapBrush(
+                //        renderTarget,
+                //        writeableBitmap.ToSharpDX(),
+                //}
+            }
 
 #if DEBUG
             throw new NotSupportedException("Only SolidColorBrush supported for now");
@@ -160,42 +244,45 @@ namespace WinRTXamlToolkit.Composition
                    };
         }
 
-        public static SharpDX.Color ToSharpDX(this Windows.UI.Color color)
+        public static SharpDX.Color ToSharpDX(
+            this Windows.UI.Color color)
         {
             return new SharpDX.Color(color.R, color.G, color.B, color.A);
         }
 
-        public static SharpDX.RectangleF ToSharpDX(this Rect rect)
+        public static RectangleF ToSharpDX(this Rect rect)
         {
             return new RectangleF((float)rect.Left, (float)rect.Top, (float)rect.Right, (float)rect.Bottom);
         }
 
-        public static D2D.CapStyle ToSharpDX(this Jupiter.Media.PenLineCap lineCap)
+        public static D2D.CapStyle ToSharpDX(
+            this Jupiter.Media.PenLineCap lineCap)
         {
             switch (lineCap)
             {
-                case PenLineCap.Flat:
+                case Jupiter.Media.PenLineCap.Flat:
                     return D2D.CapStyle.Flat;
-                case PenLineCap.Round:
+                case Jupiter.Media.PenLineCap.Round:
                     return D2D.CapStyle.Round;
-                case PenLineCap.Square:
+                case Jupiter.Media.PenLineCap.Square:
                     return D2D.CapStyle.Square;
-                case PenLineCap.Triangle:
+                case Jupiter.Media.PenLineCap.Triangle:
                     return D2D.CapStyle.Triangle;
                 default:
                     throw new NotSupportedException("Unexpected PenLineCap value - not available in Windows 8 RTM.");
             }
         }
 
-        public static D2D.LineJoin ToSharpDX(this Jupiter.Media.PenLineJoin lineJoin)
+        public static D2D.LineJoin ToSharpDX(
+            this Jupiter.Media.PenLineJoin lineJoin)
         {
             switch (lineJoin)
             {
-                case PenLineJoin.Miter:
+                case Jupiter.Media.PenLineJoin.Miter:
                     return D2D.LineJoin.Miter;
-                case PenLineJoin.Bevel:
+                case Jupiter.Media.PenLineJoin.Bevel:
                     return D2D.LineJoin.Bevel;
-                case PenLineJoin.Round:
+                case Jupiter.Media.PenLineJoin.Round:
                     return D2D.LineJoin.Round;
                 default:
                     throw new NotSupportedException("Unexpected PenLineJoin value - not available in Windows 8 RTM.");
@@ -222,9 +309,63 @@ namespace WinRTXamlToolkit.Composition
             this Jupiter.Media.SweepDirection sweepDirection)
         {
             return
-                sweepDirection == SweepDirection.Clockwise
+                sweepDirection == Jupiter.Media.SweepDirection.Clockwise
                     ? D2D.SweepDirection.Clockwise
                     : D2D.SweepDirection.CounterClockwise;
+        }
+
+        public static async Task<D2D.Bitmap1> ToSharpDX(this ImageSource imageSource, D2D.RenderTarget renderTarget)
+        {
+            var wb = imageSource as Jupiter.Media.Imaging.WriteableBitmap;
+
+            if (wb == null)
+            {
+                var bi = imageSource as Jupiter.Media.Imaging.BitmapImage;
+
+                if (bi == null)
+                {
+                    return null;
+                }
+
+                wb = await WriteableBitmapFromBitmapImageExtension.FromBitmapImage(bi);
+
+                if (wb == null)
+                {
+                    return null;
+                }
+            }
+
+            int width = wb.PixelWidth;
+            int height = wb.PixelHeight;
+            //var cpuReadBitmap = CompositionEngine.CreateCpuReadBitmap(width, height);
+            var cpuReadBitmap = CompositionEngine.CreateRenderTargetBitmap(width, height);
+            //var mappedRect = cpuReadBitmap.Map(D2D.MapOptions.Write | D2D.MapOptions.Read | D2D.MapOptions.Discard);
+
+            using (var readStream = wb.PixelBuffer.AsStream())
+            {
+                var pitch = width * 4;
+                //using (var writeStream =
+                //    new DataStream(
+                //        userBuffer: mappedRect.DataPointer,
+                //        sizeInBytes: mappedRect.Pitch * height,
+                //        canRead: false,
+                //        canWrite: true))
+                {
+                    var buffer = new byte[pitch * height];
+                    readStream.Read(buffer, 0, buffer.Length);
+                    cpuReadBitmap.CopyFromMemory(buffer, pitch);
+
+                    //for (int i = 0; i < height; i++)
+                    //{
+                    //    readStream.Read(buffer, 0, mappedRect.Pitch);
+                    //    writeStream.Write(buffer, 0, buffer.Length);
+                    //}
+                    
+                }
+            }
+            //cpuReadBitmap.CopyFromMemory();
+
+            return cpuReadBitmap;
         }
     }
 }

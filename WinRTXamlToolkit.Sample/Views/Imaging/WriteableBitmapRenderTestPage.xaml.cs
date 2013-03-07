@@ -33,7 +33,7 @@ namespace WinRTXamlToolkit.Sample.Views
                 //GC.Collect();
                 //GC.WaitForPendingFinalizers();
                 //await wb.Render(this.source);
-                wb = WriteableBitmapRenderExtensions.Render(this.source);
+                wb = await WriteableBitmapRenderExtensions.Render(this.source);
                 //if (i == 100)
                 //    Debugger.Break();
             }

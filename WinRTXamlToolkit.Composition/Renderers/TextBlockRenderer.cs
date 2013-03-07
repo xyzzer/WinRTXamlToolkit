@@ -1,4 +1,5 @@
-﻿using SharpDX.Direct2D1;
+﻿using System.Threading.Tasks;
+using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
@@ -8,7 +9,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 {
     public static class TextBlockRenderer
     {
-        internal static void Render(CompositionEngine compositionEngine, RenderTarget renderTarget, FrameworkElement rootElement, TextBlock textBlock)
+        internal static async Task Render(CompositionEngine compositionEngine, RenderTarget renderTarget, FrameworkElement rootElement, TextBlock textBlock)
         {
             using (var textFormat = new TextFormat(
                 compositionEngine.DWriteFactory,
@@ -25,7 +26,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
                 rect.Bottom++;
 
                 using (
-                    var textBrush = textBlock.Foreground.ToSharpDX(renderTarget, rect))
+                    var textBrush = await textBlock.Foreground.ToSharpDX(renderTarget, rect))
                 {
                     //using(var layer = new Layer(renderTarget))
                     //{

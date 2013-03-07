@@ -140,6 +140,25 @@
                                         </LinearGradientBrush>
                                     </Ellipse.Fill>
                                 </Ellipse>
+                                <Image
+                                    HorizontalAlignment="Left"
+                                    Margin="15,0,0,0"
+                                    VerticalAlignment="Top"
+                                    Source="https://twimg0-a.akamaihd.net/profile_images/3047493942/36780b14f38d1108a60cdca6068cd91c.jpeg"
+                                    Width="100"
+                                    Height="100" />
+                                <Rectangle
+                                    HorizontalAlignment="Left"
+                                    Margin="120,0,0,0"
+                                    VerticalAlignment="Top"
+                                    Width="90"
+                                    Height="70">
+                                    <Rectangle.Fill>
+                                        <ImageBrush
+                                            Stretch="UniformToFill"
+                                            ImageSource="ms-appx:///Assets/Images/BlogFace.jpg" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
                             </Grid>
                             <TextBlock
                                 Margin="0,15,0,0"
@@ -810,7 +829,8 @@
                         ManipulationMode="TranslateX,TranslateY"
                         ManipulationDelta="OverlaidPreview_OnManipulationDelta"
                         ManipulationCompleted="OverlaidPreview_OnManipulationCompleted"
-                        Opacity="0.5">
+                        Opacity="0.5"
+                        d:IsHidden="True">
                         <Image.RenderTransform>
                             <TranslateTransform
                                 x:Name="overlaidPreviewTransform"/>

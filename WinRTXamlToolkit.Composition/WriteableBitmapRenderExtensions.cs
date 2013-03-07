@@ -15,7 +15,7 @@ namespace WinRTXamlToolkit.Composition
     {
         public static async Task Render(this WriteableBitmap wb, FrameworkElement fe)
         {
-            var ms = RenderToPngStream(fe);
+            var ms = await RenderToPngStream(fe);
 
             using (var msrandom = new MemoryRandomAccessStream(ms))
             {
@@ -23,19 +23,19 @@ namespace WinRTXamlToolkit.Composition
             }
         }
 
-        public static WriteableBitmap Render(FrameworkElement fe)
+        public static async Task<WriteableBitmap> Render(FrameworkElement fe)
         {
             using (var engine = new CompositionEngine())
             {
-                return engine.RenderToWriteableBitmap(fe);
+                return await engine.RenderToWriteableBitmap(fe);
             }
         }
 
-        public static MemoryStream RenderToPngStream(FrameworkElement fe)
+        public static async Task<MemoryStream> RenderToPngStream(FrameworkElement fe)
         {
             using (var engine = new CompositionEngine())
             {
-                return engine.RenderToPngStream(fe);
+                return await engine.RenderToPngStream(fe);
             }
         }
     }

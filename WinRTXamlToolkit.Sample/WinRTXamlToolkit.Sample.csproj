@@ -308,6 +308,7 @@
     <None Include="WinRTXamlToolkit.Sample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\BlogFace.jpg" />
     <Content Include="Assets\Images\GrayButton.png" />
     <Content Include="Assets\Images\GreenButton_Disabled.png" />
     <Content Include="Assets\Images\GreenButton_Hover.png" />

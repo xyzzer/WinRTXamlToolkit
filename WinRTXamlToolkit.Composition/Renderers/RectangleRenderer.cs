@@ -1,4 +1,5 @@
-﻿using WinRTXamlToolkit.Controls.Extensions;
+﻿using System.Threading.Tasks;
+using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Shapes;
 
@@ -6,11 +7,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
 {
     public static class RectangleRenderer
     {
-        internal static void Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Rectangle rectangle)
+        internal static async Task Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Rectangle rectangle)
         {
             var rect = rectangle.GetBoundingRect(rootElement).ToSharpDX();
-            var fill = rectangle.Fill.ToSharpDX(renderTarget, rect);
-            var stroke = rectangle.Stroke.ToSharpDX(renderTarget, rect);
+            var fill = await rectangle.Fill.ToSharpDX(renderTarget, rect);
+            var stroke = await rectangle.Stroke.ToSharpDX(renderTarget, rect);
 
             try
             {

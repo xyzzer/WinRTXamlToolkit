@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using WinRTXamlToolkit.Net;
+using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Imaging
@@ -16,6 +19,7 @@ namespace WinRTXamlToolkit.Imaging
         public static async Task<WriteableBitmap> FromBitmapImage(BitmapImage source)
         {
             var ret = new WriteableBitmap(1, 1);
+
             return await FromBitmapImage(ret, source);
         }
 
@@ -27,8 +31,26 @@ namespace WinRTXamlToolkit.Imaging
         /// <returns></returns>
         public static async Task<WriteableBitmap> FromBitmapImage(this WriteableBitmap target, BitmapImage source)
         {
-            string installedFolderImageSourceUri = source.UriSource.OriginalString.Replace("ms-appx:/", "");
-            await target.LoadAsync(installedFolderImageSourceUri);
+            if (source.UriSource == null ||
+                source.UriSource.OriginalString == null)
+            {
+                return target;
+            }
+
+            string originalString = source.UriSource.OriginalString;
+
+            if (originalString.StartsWith("ms-appx:/"))
+            {
+                string installedFolderImageSourceUri = originalString.Replace("ms-appx:/", "");
+                await target.LoadAsync(installedFolderImageSourceUri);
+            }
+            else
+            {
+                var file = await WebFile.SaveAsync(source.UriSource, ApplicationData.Current.TemporaryFolder);
+                await target.LoadAsync(file);
+                await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+            }
+
             return target;
         }
 
