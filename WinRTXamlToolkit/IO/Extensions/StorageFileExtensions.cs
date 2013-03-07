@@ -18,6 +18,7 @@ namespace WinRTXamlToolkit.IO.Extensions
         {
             var props = await file.GetBasicPropertiesAsync();
             ulong sizeInB = props.Size;
+
             return sizeInB;
         }
 

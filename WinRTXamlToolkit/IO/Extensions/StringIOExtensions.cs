@@ -35,6 +35,7 @@ namespace WinRTXamlToolkit.IO.Extensions
                         await reader.LoadAsync((uint)fs.Size);
                         string data = reader.ReadString((uint)fs.Size);
                         reader.DetachStream();
+
                         return data;
                     }
                 }

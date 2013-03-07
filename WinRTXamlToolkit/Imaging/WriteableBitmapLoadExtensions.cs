@@ -170,14 +170,17 @@ namespace WinRTXamlToolkit.Imaging
             uint decodePixelHeight)
         {
             var decoder = await BitmapDecoder.CreateAsync(streamSource);
-            var inMemoryStream = new InMemoryRandomAccessStream();
-            var encoder = await BitmapEncoder.CreateForTranscodingAsync(inMemoryStream, decoder);
-            encoder.BitmapTransform.ScaledWidth = decodePixelWidth;
-            encoder.BitmapTransform.ScaledHeight = decodePixelHeight;
-            await encoder.FlushAsync();
-            inMemoryStream.Seek(0);
 
-            await writeableBitmap.SetSourceAsync(inMemoryStream);
+            using (var inMemoryStream = new InMemoryRandomAccessStream())
+            {
+                var encoder = await BitmapEncoder.CreateForTranscodingAsync(inMemoryStream, decoder);
+                encoder.BitmapTransform.ScaledWidth = decodePixelWidth;
+                encoder.BitmapTransform.ScaledHeight = decodePixelHeight;
+                await encoder.FlushAsync();
+                inMemoryStream.Seek(0);
+
+                await writeableBitmap.SetSourceAsync(inMemoryStream);
+            }
         }
     }
 }
