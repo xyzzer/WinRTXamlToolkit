@@ -4,6 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <UseXamlSpy Condition=" Exists('$(ProgramFiles)\First Floor Software\XAML Spy\Libraries\WinRT\XamlSpy.WinRT45.dll') ">True</UseXamlSpy>
+    <UseXamlSpy Condition=" !Exists('$(ProgramFiles)\First Floor Software\XAML Spy\Libraries\WinRT\XamlSpy.WinRT45.dll') ">False</UseXamlSpy>
     <ProjectGuid>{239A7CA1-827C-456D-846D-6C97BD111167}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -548,10 +550,19 @@
       <HintPath>..\packages\SharpDX.2.4.2\lib\win8\SharpDX.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup Condition=" '$(UseXamlSpy)' == 'True' ">
+    <Reference Include="XamlSpy.WinRT45">
+      <HintPath>$(ProgramFiles)\First Floor Software\XAML Spy\Libraries\WinRT\XamlSpy.WinRT45.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

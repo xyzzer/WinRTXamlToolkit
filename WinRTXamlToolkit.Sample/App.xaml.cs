@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel;
+﻿//#define USE_XAML_SPY
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -9,17 +10,37 @@ namespace WinRTXamlToolkit.Sample
     /// </summary>
     sealed partial class App : Application
     {
+        // This can be used if you have XAML Spy, which you can get from http://xamlspy.com/download
+#if USE_XAML_SPY
+        private FirstFloor.XamlSpy.XamlSpyService service;
+        private const string XamlSpyServicePassword = "13155";
+        //"[get your own - http://xamlspy.com/learn/tutorials/connect/winrt]"
+#endif
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
+#if USE_XAML_SPY
+            this.service = new FirstFloor.XamlSpy.XamlSpyService(this) { Password = XamlSpyServicePassword };
+#endif
             //DebugSettings.IsOverdrawHeatMapEnabled = true;
             //DebugSettings.EnableFrameRateCounter = true;
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            base.OnWindowCreated(args);
+
+            // This starts XAML Spy service
+#if USE_XAML_SPY
+            this.service.StartService();
+#endif
         }
 
         //protected override void OnFileActivated(FileActivatedEventArgs args)
