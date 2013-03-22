@@ -1,6 +1,7 @@
 ﻿//HSL and HSV conversions credits to Wikipedia contributors (http://en.wikipedia.org/wiki/HSL_and_HSV)
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Windows.UI;
@@ -193,6 +194,9 @@ namespace WinRTXamlToolkit.Imaging
         /// <returns></returns>
         public static Color FromHsl(double hue, double saturation, double lightness, double alpha = 1.0)
         {
+            Debug.Assert(hue >= 0);
+            Debug.Assert(hue <= 360);
+
             double chroma = (1 - Math.Abs(2 * lightness - 1)) * saturation;
             double h1 = hue / 60;
             double x = chroma * (1 - Math.Abs(h1 % 2 - 1));
@@ -256,6 +260,9 @@ namespace WinRTXamlToolkit.Imaging
         /// <returns></returns>
         public static Color FromHsv(double hue, double saturation, double value, double alpha = 1.0)
         {
+            Debug.Assert(hue >= 0);
+            Debug.Assert(hue <= 360);
+
             double chroma = value * saturation;
             double h1 = hue / 60;
             double x = chroma * (1 - Math.Abs(h1 % 2 - 1));
