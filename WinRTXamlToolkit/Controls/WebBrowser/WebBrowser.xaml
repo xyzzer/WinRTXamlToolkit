@@ -450,9 +450,9 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition
-                                        Width="Auto" />
+                                        Width="60" />
                                     <ColumnDefinition
-                                        Width="Auto" />
+                                        Width="41" />
                                     <ColumnDefinition />
                                     <ColumnDefinition
                                         Width="Auto" />
@@ -468,13 +468,14 @@
                                     Background="White"
                                     VerticalAlignment="Center"
                                     BorderThickness="0"
-                                    Width="{Binding ActualHeight, ElementName=PART_AddressBar}"
-                                    Height="{Binding ActualHeight, ElementName=PART_AddressBar}"
+                                    Width="41"
+                                    Height="41"
                                     Grid.Column="1">
                                     <Image
                                         x:Name="PART_FavIconImage"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
+                                        Margin="4"
                                         Stretch="Uniform" />
                                 </Border>
                                 <TextBox

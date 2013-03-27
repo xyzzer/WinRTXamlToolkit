@@ -297,7 +297,7 @@ namespace WinRTXamlToolkit.Controls
             }
             if (_goButton != null)
             {
-                _goButton.IsEnabled = false;
+                //_goButton.IsEnabled = false;
                 _goButton.Click += OnGoButtonClick;
             }
             if (_stopButton != null)
@@ -355,10 +355,11 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnAddressBarTextChanged(object sender, TextChangedEventArgs e)
         {
-            _goButton.IsEnabled =
-                _addressBar.Text.Length > 0 &&
-                (_backStackPosition < 0 || _backStack[_backStackPosition] == _webView.Source) &&
-                _goButton.FocusState != FocusState.Unfocused;
+            //_goButton.IsEnabled =
+            //    _addressBar.Text.Length > 0 &&
+            //    (_backStackPosition < 0 ||
+            //     _backStack[_backStackPosition] == _webView.Source);
+            //&& _goButton.FocusState != FocusState.Unfocused;
         }
 
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
@@ -455,11 +456,15 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private void OnLoadCompleted(object sender, NavigationEventArgs e)
+        private async void OnLoadCompleted(object sender, NavigationEventArgs e)
         {
             VisualStateManager.GoToState(this, LoadedStateName, true);
-
-            _webViewBrush.SetSource(_webView);
+            //await Task.Delay(100);
+            // This doesn't work
+            //_webViewBrush.SetSource(_webView);
+            // Need to close the app bars instead to force the WebView to show up
+            _addressAppBar.IsOpen = false;
+            _titleAppBar.IsOpen = false;
             var address = _webView.GetAddress();
 
             this.Source = address == null ? null : new Uri(address);
@@ -478,8 +483,10 @@ namespace WinRTXamlToolkit.Controls
                 address != null)
             {
                 var favIconUri = _webView.GetFavIconLink();
-            
-                _favIconImage.Source = new BitmapImage(favIconUri);
+                if (favIconUri == null)
+                    _favIconImage.Source = null;
+                else
+                    _favIconImage.Source = new BitmapImage(favIconUri);
             }
 
             if (_backStackPosition < 0 ||
@@ -520,7 +527,7 @@ namespace WinRTXamlToolkit.Controls
             VisualStateManager.GoToState(this, LoadingStateName, true);
             _refreshButton.IsEnabled = false;
             _goButton.Focus(FocusState.Programmatic);
-            _goButton.IsEnabled = false;
+            //_goButton.IsEnabled = false;
             _addressBar.Text = source.ToString();
             await _webView.NavigateAsync(source);
             _refreshButton.IsEnabled = true;

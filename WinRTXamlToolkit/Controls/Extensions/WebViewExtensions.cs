@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Controls;
 
@@ -43,7 +44,19 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns></returns>
         public static string GetHead(this WebView webView)
         {
-            return webView.InvokeScript("eval", new[] {"document.getElementsByTagName('head')[0].innerHTML"});
+            //var headCount = webView.InvokeScript(
+            //    "eval", new[] {"document.getElementsByTagName('head').innerHTML"});
+            //Debug.WriteLine(headCount);
+
+            try
+            {
+                var head = webView.InvokeScript("eval", new[] { "document.getElementsByTagName('head')[0].innerHTML" });
+                return head;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -102,7 +115,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns></returns>
         public static Uri GetFavIconLink(this WebView webView)
         {
-            var head = webView.GetHead().ToLower();
+            var head = webView.GetHead();
+
+            if (head == null)
+                return null;
+
+            head = head.ToLower();
             var favIconString = GetTagAttributeBySpecificAttribute(
                 head, "link", "rel", "shortcut icon", "href");
 
