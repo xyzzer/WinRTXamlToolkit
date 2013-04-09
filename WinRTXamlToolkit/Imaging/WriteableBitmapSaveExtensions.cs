@@ -86,11 +86,11 @@ namespace WinRTXamlToolkit.Imaging
             }
             else if (new[] { ".gif" }.Contains(ext))
             {
-                encoderId = BitmapEncoder.TiffEncoderId;
+                encoderId = BitmapEncoder.GifEncoderId;
             }
             else if (new[] { ".jpg", ".jpeg", ".jpe", ".jfif", ".jif" }.Contains(ext))
             {
-                encoderId = BitmapEncoder.TiffEncoderId;
+                encoderId = BitmapEncoder.JpegEncoderId;
             }
             else if (new[] { ".hdp", ".jxr", ".wdp" }.Contains(ext))
             {
