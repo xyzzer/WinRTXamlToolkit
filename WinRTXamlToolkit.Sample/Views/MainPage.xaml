@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding MainPage, Source={StaticResource Locator}}">
+    DataContext="{Binding MainPage, Source={StaticResource Locator}}"
+    NavigationCacheMode="Required">
 
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">

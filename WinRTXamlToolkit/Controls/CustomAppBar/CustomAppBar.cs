@@ -363,6 +363,12 @@ namespace WinRTXamlToolkit.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             _isLoaded = true;
+
+            //if (IsOpen)
+            //{
+            //    OnOpenedInternal(true);
+            //}
+
             EdgeGesture.GetForCurrentView().Completed += OnEdgeGestureCompleted;
             Window.Current.SizeChanged += WindowSizeChanged;
             Window.Current.CoreWindow.PointerPressed += OnCoreWindowPointerPressed;
@@ -404,7 +410,12 @@ namespace WinRTXamlToolkit.Controls
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             _isLoaded = false;
-            IsOpen = false; // TODO: Find a better solution for this workaround for an issue with the light dismiss popup staying visible after the user navigates to another page by clicking a button on the app bar
+            //IsOpen = false; // TODO: Find a better solution for this workaround for an issue with the light dismiss popup staying visible after the user navigates to another page by clicking a button on the app bar
+            //if (IsOpen)
+            //{
+            //    OnClosedInternal(true);
+            //}
+
             EdgeGesture.GetForCurrentView().Completed -= OnEdgeGestureCompleted;
             Window.Current.SizeChanged -= WindowSizeChanged;
             Window.Current.CoreWindow.PointerPressed -= OnCoreWindowPointerPressed;

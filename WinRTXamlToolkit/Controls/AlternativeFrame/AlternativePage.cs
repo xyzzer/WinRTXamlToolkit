@@ -86,6 +86,29 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        #region NavigationCacheMode
+        /// <summary>
+        /// NavigationCacheMode Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty NavigationCacheModeProperty =
+            DependencyProperty.Register(
+                "NavigationCacheMode",
+                typeof(NavigationCacheMode),
+                typeof(AlternativePage),
+                new PropertyMetadata(NavigationCacheMode.Disabled));
+
+        /// <summary>
+        /// Gets or sets the NavigationCacheMode property. This dependency property 
+        /// indicates whether this Page is cached, and the period of time
+        /// that the cache entry should persist.
+        /// </summary>
+        public NavigationCacheMode NavigationCacheMode
+        {
+            get { return (NavigationCacheMode)GetValue(NavigationCacheModeProperty); }
+            set { SetValue(NavigationCacheModeProperty, value); }
+        }
+        #endregion
+
         #region NavigationState
         /// <summary>
         /// NavigationState Dependency Property

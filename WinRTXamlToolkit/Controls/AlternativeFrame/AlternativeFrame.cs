@@ -24,6 +24,18 @@ namespace WinRTXamlToolkit.Controls
     {
         private const int WaitForImagesToLoadTimeout = 1000;
 
+        #region Fields
+        private const int DefaultCacheSize = 10;
+        private const string PagePresentersPanelName = "PART_PagePresentersPanel";
+        private readonly TaskCompletionSource<bool> _waitForApplyTemplateTaskSource = new TaskCompletionSource<bool>(false);
+        private readonly Dictionary<JournalEntry, ContentPresenter> _preloadedPageCache;
+        private readonly FrameCache _frameCache = new FrameCache(DefaultCacheSize);
+        private ContentPresenter _currentPagePresenter;
+        private Panel _pagePresentersPanel;
+        private bool _isNavigating;
+        #endregion
+
+        #region Events
         /// <summary>
         /// Occurs when navigation completes.
         /// </summary>
@@ -33,41 +45,40 @@ namespace WinRTXamlToolkit.Controls
         /// Occurs when navigation starts.
         /// </summary>
         public event AlternativeNavigatingCancelEventHandler Navigating;
-
-        #region fields
-        private const string PagePresentersPanelName = "PART_PagePresentersPanel";
-        private readonly TaskCompletionSource<bool> _waitForApplyTemplateTaskSource = new TaskCompletionSource<bool>(false);
-        private readonly Dictionary<JournalEntry, ContentPresenter> _preloadedPageCache;
-        private ContentPresenter _currentPagePresenter;
-        private Panel _pagePresentersPanel;
-        private bool _isNavigating;
         #endregion
 
         #region Properties
+        #region BackStack
         /// <summary>
         /// Gets the back stack.
         /// </summary>
         /// <value>
         /// The back stack.
         /// </value>
-        public Stack<JournalEntry> BackStack { get; private set; }
+        public Stack<JournalEntry> BackStack { get; private set; } 
+        #endregion
 
+        #region CurrentJournalEntry
         /// <summary>
         /// Gets the current journal entry.
         /// </summary>
         /// <value>
         /// The current journal entry.
         /// </value>
-        public JournalEntry CurrentJournalEntry { get; private set; }
+        public JournalEntry CurrentJournalEntry { get; private set; } 
+        #endregion
 
+        #region ForwardStack
         /// <summary>
         /// Gets the forward stack.
         /// </summary>
         /// <value>
         /// The forward stack.
         /// </value>
-        public Stack<JournalEntry> ForwardStack { get; private set; }
+        public Stack<JournalEntry> ForwardStack { get; private set; } 
+        #endregion
 
+        #region CurrentSourcePageType
         /// <summary>
         /// Gets the type of the current source page.
         /// </summary>
@@ -80,7 +91,63 @@ namespace WinRTXamlToolkit.Controls
             {
                 return CurrentJournalEntry.SourcePageType;
             }
+        } 
+        #endregion
+
+        #region CacheSize
+        /// <summary>
+        /// CacheSize Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty CacheSizeProperty =
+            DependencyProperty.Register(
+                "CacheSize",
+                typeof(int),
+                typeof(AlternativeFrame),
+                new PropertyMetadata(DefaultCacheSize, OnCacheSizeChanged));
+
+        /// <summary>
+        /// Gets or sets the CacheSize property. This dependency property 
+        /// indicates the number of pages in the navigation history
+        /// that can be cached for the frame.
+        /// </summary>
+        public int CacheSize
+        {
+            get { return (int)GetValue(CacheSizeProperty); }
+            set { SetValue(CacheSizeProperty, value); }
         }
+
+        /// <summary>
+        /// Handles changes to the CacheSize property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnCacheSizeChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var target = (AlternativeFrame)d;
+            int oldCacheSize = (int)e.OldValue;
+            int newCacheSize = target.CacheSize;
+            target.OnCacheSizeChanged(oldCacheSize, newCacheSize);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes
+        /// to the CacheSize property.
+        /// </summary>
+        /// <param name="oldCacheSize">The old CacheSize value</param>
+        /// <param name="newCacheSize">The new CacheSize value</param>
+        private void OnCacheSizeChanged(
+            int oldCacheSize, int newCacheSize)
+        {
+            _frameCache.CacheSize = newCacheSize;
+        }
+        #endregion
 
         #region PagePresenterStyle
         /// <summary>
@@ -246,21 +313,25 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion 
 
+        #region BackStackDepth
         public int BackStackDepth
         {
             get
             {
                 return BackStack.Count;
             }
-        }
+        } 
+        #endregion
 
+        #region ForwardStackDepth
         public int ForwardStackDepth
         {
             get
             {
                 return ForwardStack.Count;
             }
-        }
+        } 
+        #endregion
         #endregion
 
         #region CTOR
@@ -321,7 +392,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var cp = new ContentPresenter { Style = PagePresenterStyle };
-            var newPage = Activator.CreateInstance(sourcePageType) as AlternativePage;
+            var newPage = _frameCache.Get(sourcePageType);
 
             Debug.Assert(newPage != null, "Pages used in AlternativeFrame need to be of AlternativePage type.");
 
@@ -356,6 +427,7 @@ namespace WinRTXamlToolkit.Controls
             var cp = _preloadedPageCache[je];
             var page = (AlternativePage)cp.Content;
             await page.UnloadPreloadedInternal();
+            _frameCache.Store(page);
 
             _pagePresentersPanel.Children.Remove(cp);
             _preloadedPageCache.Remove(je);
@@ -370,6 +442,7 @@ namespace WinRTXamlToolkit.Controls
                 _pagePresentersPanel.Children.Remove(kvp.Value);
                 var page = (AlternativePage)kvp.Value.Content;
                 await page.UnloadPreloadedInternal();
+                _frameCache.Store(page);
             }
 
             _preloadedPageCache.Clear();
@@ -478,6 +551,13 @@ namespace WinRTXamlToolkit.Controls
 
                 if (_currentPagePresenter != null)
                 {
+                    var currentPage = _currentPagePresenter.Content as AlternativePage;
+
+                    if (currentPage != null)
+                    {
+                        _frameCache.Store(currentPage);
+                    }
+
                     _pagePresentersPanel.Children.Remove(_currentPagePresenter);
                     _currentPagePresenter = null;
                 }
@@ -821,7 +901,7 @@ namespace WinRTXamlToolkit.Controls
                 }
                 else
                 {
-                    newPage = Activator.CreateInstance(je.SourcePageType) as AlternativePage;
+                    newPage = _frameCache.Get(je.SourcePageType);
 
                     if (newPage == null)
                     {
@@ -926,6 +1006,7 @@ namespace WinRTXamlToolkit.Controls
                 if (_currentPagePresenter != null)
                 {
                     _pagePresentersPanel.Children.Remove(_currentPagePresenter);
+                    _frameCache.Store(currentPage);
                 }
 
                 _currentPagePresenter = newPagePresenter;

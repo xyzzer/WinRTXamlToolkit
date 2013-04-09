@@ -143,7 +143,9 @@
     <Compile Include="Controls\AlternativeFrame\FadeAnimation.cs" />
     <Compile Include="Controls\AlternativeFrame\FlipAnimation.cs" />
     <Compile Include="Controls\AlternativeFrame\FlipTransition.cs" />
+    <Compile Include="Controls\AlternativeFrame\FrameCache.cs" />
     <Compile Include="Controls\AlternativeFrame\JournalEntry.cs" />
+    <Compile Include="Controls\AlternativeFrame\NavigationCacheMode.cs" />
     <Compile Include="Controls\AlternativeFrame\PageTransitionAnimation.cs" />
     <Compile Include="Controls\AlternativeFrame\PushTransition.cs" />
     <Compile Include="Controls\AlternativeFrame\SlideAnimation.cs" />
