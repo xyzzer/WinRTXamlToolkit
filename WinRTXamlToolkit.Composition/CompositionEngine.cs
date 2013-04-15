@@ -35,11 +35,11 @@ namespace WinRTXamlToolkit.Composition
 
             var d3DDevice = new SharpDX.Direct3D11.Device(
                 DriverType.Hardware,
-                DeviceCreationFlags.BgraSupport |
+                DeviceCreationFlags.BgraSupport
 #if DEBUG
-                DeviceCreationFlags.Debug
+                | DeviceCreationFlags.Debug
 #endif
-                ,
+,
                 FeatureLevel.Level_11_1,
                 FeatureLevel.Level_11_0,
                 FeatureLevel.Level_10_1,
@@ -47,7 +47,6 @@ namespace WinRTXamlToolkit.Composition
                 FeatureLevel.Level_9_3,
                 FeatureLevel.Level_9_2,
                 FeatureLevel.Level_9_1
-                
                 );
 
             var dxgiDevice = ComObject.As<SharpDX.DXGI.Device>(d3DDevice.NativePointer);
@@ -304,7 +303,9 @@ namespace WinRTXamlToolkit.Composition
 
             if (ellipse != null)
             {
+#pragma warning disable 4014
                 EllipseRenderer.Render(this, renderTarget, rootElement, ellipse);
+#pragma warning restore 4014
                 return;
             }
 

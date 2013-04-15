@@ -16,7 +16,9 @@ namespace WinRTXamlToolkit.Sample.Views
         protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
         {
             GC.Collect();
+#pragma warning disable 4014
             base.OnNavigatedTo(e);
+#pragma warning restore 4014
         }
 #pragma warning restore 1998
 

@@ -15,16 +15,19 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var rect = border.GetBoundingRect(rootElement).ToSharpDX();
             var brush = await border.Background.ToSharpDX(renderTarget, rect);
 
-            var geometry = GetBorderFillGeometry(compositionEngine, border, rect);
+            if (brush != null)
+            {
+                var geometry = GetBorderFillGeometry(compositionEngine, border, rect);
 
-            //var layer = new Layer(renderTarget);
-            //var layerParameters = new LayerParameters();
-            //layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
+                //var layer = new Layer(renderTarget);
+                //var layerParameters = new LayerParameters();
+                //layerParameters.ContentBounds = rect;
+                //renderTarget.PushLayer(ref layerParameters, layer);
 
-            renderTarget.FillGeometry(geometry, brush);
+                renderTarget.FillGeometry(geometry, brush);
 
-            //renderTarget.PopLayer();
+                //renderTarget.PopLayer();
+            }
 
             await compositionEngine.RenderChildren(renderTarget, rootElement, border);
         }
@@ -176,6 +179,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             geometrySink.EndFigure(D2D.FigureEnd.Closed);
             geometrySink.Close();
+
             return geometry;
         }
     }

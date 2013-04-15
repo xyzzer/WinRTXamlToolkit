@@ -570,7 +570,6 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                                 group
                                     .Select(child => PriorityOffsets[group.Key] + offsetSelector(child))
                                     .Max()))
-                    .Where(num => num != null)
                     .Select(num => num)
                     .Max();
             }

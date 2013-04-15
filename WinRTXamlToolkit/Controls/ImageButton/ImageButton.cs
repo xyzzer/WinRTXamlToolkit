@@ -799,7 +799,7 @@ namespace WinRTXamlToolkit.Controls
 
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
-            await wb.WaitForLoaded();
+            await wb.WaitForLoadedAsync();
             wb.Lighten(GeneratedHoverStateLightenAmount);
             _hoverStateImage.Source = wb;
         } 
@@ -815,7 +815,7 @@ namespace WinRTXamlToolkit.Controls
 
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
-            await wb.WaitForLoaded();
+            await wb.WaitForLoadedAsync();
             wb.Lighten(GeneratedPressedStateLightenAmount);
             _pressedStateImage.Source = wb;
         } 
@@ -831,7 +831,7 @@ namespace WinRTXamlToolkit.Controls
 
             var wb = new WriteableBitmap(1, 1);
             await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
-            await wb.WaitForLoaded();
+            await wb.WaitForLoadedAsync();
             wb.Grayscale(GeneratedDisabledStateGrayscaleAmount);
             _disabledStateImage.Source = wb;
         } 

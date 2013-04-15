@@ -20,10 +20,10 @@ namespace WinRTXamlToolkit.Tools
     /// It is a bit strange that the two timers we get have different APIs though,
     /// so perhaps that is one case where using the BackgroundTimer makes a little bit of sense.
     /// </remarks>
-    public class BackgroundTimer
+    public class BackgroundTimer : IDisposable
     {
-        private readonly ManualResetEvent _stopRequestEvent;
-        private readonly ManualResetEvent _stoppedEvent;
+        private ManualResetEvent _stopRequestEvent;
+        private ManualResetEvent _stoppedEvent;
 
         /// <summary>
         /// Occurs when the timer interval has elapsed.
@@ -219,6 +219,26 @@ namespace WinRTXamlToolkit.Tools
             }
 
             _stoppedEvent.Set();
+        }
+
+        public void Dispose()
+        {
+            if (_stopRequestEvent != null)
+            {
+                _stopRequestEvent.Dispose();
+                _stopRequestEvent = null;
+            }
+
+            if (_stoppedEvent != null)
+            {
+                _stoppedEvent.Dispose();
+                _stoppedEvent = null;
+            }
+        }
+
+        ~BackgroundTimer()
+        {
+            Dispose();
         }
     }
 }

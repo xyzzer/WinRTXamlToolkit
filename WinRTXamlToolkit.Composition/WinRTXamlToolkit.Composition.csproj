@@ -139,8 +139,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Renderers\Note.txt" />
-    <Content Include="TODO.txt" />
+    <None Include="Renderers\Note.txt" />
+    <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.csproj">

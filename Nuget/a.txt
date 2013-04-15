@@ -1,0 +1,246 @@
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>set PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Git\cmd;C:\Program Files\TortoiseSVN\bin;c:\Program Files (x86)\Notepad++;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v4.0.30319 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>set VisualStudioVersion=11.0 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>if "nobuild" == "nobuild" (goto CREATE_FOLDER_STRUCTURE ) 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir tools 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir content 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir content\controllers 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\ImageButton 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\InputDialog 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\TreeView 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit\Themes 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Composition 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\Properties 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Legend 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Properties 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Themes 
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\netcore45 
+..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.dll
+..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.pdb
+..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.pri
+..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.XML
+        4 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.* lib\netcore45 
+..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.dll
+..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.pdb
+..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.pri
+        3 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.* lib\netcore45 
+..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.dll
+..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.pdb
+..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.pri
+        3 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45 
+..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.dll
+..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.pdb
+..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.pri
+        3 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls 
+..\WinRTXamlToolkit\bin\Release\Controls\AnimatingContainer.xaml
+..\WinRTXamlToolkit\bin\Release\Controls\CascadingTextBlock.xaml
+..\WinRTXamlToolkit\bin\Release\Controls\CountdownControl.xaml
+        3 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\CameraCaptureControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl 
+..\WinRTXamlToolkit\bin\Release\Controls\CameraCaptureControl\CameraCaptureControl.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl 
+..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\CascadingImageControl.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker 
+..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\ColorPicker.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar 
+..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\CustomAppBar.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl 
+..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\DelayedLoadControl.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\ImageButton\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ImageButton 
+..\WinRTXamlToolkit\bin\Release\Controls\ImageButton\ImageButton.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\ImageToggleButton\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton 
+..\WinRTXamlToolkit\bin\Release\Controls\ImageToggleButton\ImageToggleButton.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\InputDialog 
+..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\InputDialog.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\NumericUpDown\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown 
+..\WinRTXamlToolkit\bin\Release\Controls\NumericUpDown\NumericUpDown.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\TreeView\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\TreeView 
+..\WinRTXamlToolkit\bin\Release\Controls\TreeView\TreeView.xaml
+..\WinRTXamlToolkit\bin\Release\Controls\TreeView\TreeViewItem.xaml
+..\WinRTXamlToolkit\bin\Release\Controls\TreeView\TreeViewMouse.xaml
+..\WinRTXamlToolkit\bin\Release\Controls\TreeView\TreeViewTouch.xaml
+        4 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox 
+..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\WatermarkTextBox.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser 
+..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\WebBrowser.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes 
+..\WinRTXamlToolkit\bin\Release\Themes\Generic.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DateTimeAxisLabel.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DisplayAxis.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\NumericAxisLabel.xaml			lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\RangeAxis.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Chart\Chart.xaml					lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\AreaDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\BarDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\BubbleDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\ColumnDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\LineDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\PieDataPoint.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\ScatterDataPoint.xaml	lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Primitives\DelegatingListBox.xaml	lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\AreaSeries.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\DataPointSeries.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\DefinitionSeries.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\LegendItem.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\LineSeries.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\PieSeries.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Legend 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title 
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Themes 
+..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\Generic.xaml
+        1 file(s) copied.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>nuget pack WinRTXamlToolkit.nuspec 
+Attempting to build package from 'WinRTXamlToolkit.nuspec'.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>nuget pack WinRTXamlToolkit.Composition.nuspec 
+Attempting to build package from 'WinRTXamlToolkit.Composition.nuspec'.
+Successfully created package 'C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget\WinRTXamlToolkit.Composition.1.3.5.4.nupkg'.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>nuget pack WinRTXamlToolkit.Controls.DataVisualization.nuspec 
+Attempting to build package from 'WinRTXamlToolkit.Controls.DataVisualization.nuspec'.
+Successfully created package 'C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget\WinRTXamlToolkit.Controls.DataVisualization.1.3.5.4.nupkg'.
+
+C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget>nuget pack WinRTXamlToolkit.Debugging.nuspec 
+Attempting to build package from 'WinRTXamlToolkit.Debugging.nuspec'.
+Successfully created package 'C:\Projects\CodePlex\WinRTXamlToolkit\WinRTXamlToolkit\Nuget\WinRTXamlToolkit.Debugging.1.3.5.4.nupkg'.

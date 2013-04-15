@@ -456,7 +456,7 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private async void OnLoadCompleted(object sender, NavigationEventArgs e)
+        private void OnLoadCompleted(object sender, NavigationEventArgs e)
         {
             VisualStateManager.GoToState(this, LoadedStateName, true);
             //await Task.Delay(100);
@@ -471,7 +471,7 @@ namespace WinRTXamlToolkit.Controls
 
             if (_addressBar != null)
             {
-                _addressBar.Text = address;
+                _addressBar.Text = address ?? string.Empty;
             }
 
             if (_titleBar != null)
@@ -483,6 +483,7 @@ namespace WinRTXamlToolkit.Controls
                 address != null)
             {
                 var favIconUri = _webView.GetFavIconLink();
+
                 if (favIconUri == null)
                     _favIconImage.Source = null;
                 else

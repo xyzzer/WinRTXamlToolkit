@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Threading.Tasks;
 #elif NETFX_CORE
-using System.Diagnostics;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
@@ -114,7 +113,7 @@ namespace WinRTXamlToolkit.AwaitableUI
 
                         if (wb != null)
                         {
-                            await wb.WaitForLoaded(millisecondsTimeout);
+                            await wb.WaitForLoadedAsync(millisecondsTimeout);
                         }
                     }
                 }

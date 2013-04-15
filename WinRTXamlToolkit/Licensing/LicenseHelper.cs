@@ -65,7 +65,9 @@ namespace WinRTXamlToolkit.Licensing
         #region TestTrialPurchase()
         public static void TestTrialPurchase()
         {
+#pragma warning disable 4014
             CurrentAppSimulator.RequestAppPurchaseAsync(false);
+#pragma warning restore 4014
         } 
         #endregion
 

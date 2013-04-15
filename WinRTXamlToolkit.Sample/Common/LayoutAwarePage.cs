@@ -334,7 +334,9 @@ namespace WinRTXamlToolkit.Sample.Common
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property provides the group to be displayed.</param>
+#pragma warning disable 1998
         protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
+#pragma warning restore 1998
         {
             // Returning to a cached page through navigation shouldn't trigger state loading
             if (_pageKey != null) return;
@@ -348,6 +350,7 @@ namespace WinRTXamlToolkit.Sample.Common
                 // navigation stack
                 var nextPageKey = _pageKey;
                 int nextPageIndex = this.Frame.BackStackDepth;
+
                 while (frameState.Remove(nextPageKey))
                 {
                     nextPageIndex++;

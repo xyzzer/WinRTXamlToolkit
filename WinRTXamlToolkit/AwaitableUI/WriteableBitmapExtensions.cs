@@ -14,7 +14,7 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// <param name="wb">The WriteableBitmap to wait for.</param>
         /// <param name="timeoutInMs">The timeout in ms after which the wait will be cancelled. Use 0 to wait without a timeout.</param>
         /// <returns></returns>
-        public async static Task WaitForLoaded(this WriteableBitmap wb, int timeoutInMs = 0)
+        public async static Task WaitForLoadedAsync(this WriteableBitmap wb, int timeoutInMs = 0)
         {
             int totalWait = 0;
 

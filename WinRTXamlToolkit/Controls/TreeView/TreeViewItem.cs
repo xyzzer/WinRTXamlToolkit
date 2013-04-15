@@ -696,11 +696,13 @@ namespace WinRTXamlToolkit.Controls
                 UserInitiatedExpansion = false;
 
                 TreeView parent = ParentTreeView;
+
                 if (parent != null)
                 {
                     // The child items aren't necessarily in the visual tree yet
                     // so we wait for two ticks to pass before trying to scroll
                     // so there size will be respected.
+#pragma warning disable 4014
                     Dispatcher.RunAsync(
                         CoreDispatcherPriority.Normal,
                         () =>
@@ -714,6 +716,7 @@ namespace WinRTXamlToolkit.Controls
                                     parent.ItemsControlHelper.ScrollIntoView(this);
                                 });
                         });
+#pragma warning restore 4014
                 }
             }
         }

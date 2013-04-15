@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56
 		Nuget\NuGet.exe = Nuget\NuGet.exe
 		Nuget\NugetPackWinRTXAMLToolkit.cmd = Nuget\NugetPackWinRTXAMLToolkit.cmd
 		Nuget\NugetPushWinRTXAMLToolkit.cmd = Nuget\NugetPushWinRTXAMLToolkit.cmd
+		Nuget\WinRTXamlToolkit.Composition.nuspec = Nuget\WinRTXamlToolkit.Composition.nuspec
 		Nuget\WinRTXamlToolkit.Controls.DataVisualization.nuspec = Nuget\WinRTXamlToolkit.Controls.DataVisualization.nuspec
 		Nuget\WinRTXamlToolkit.Debugging.nuspec = Nuget\WinRTXamlToolkit.Debugging.nuspec
 		Nuget\WinRTXamlToolkit.nuspec = Nuget\WinRTXamlToolkit.nuspec

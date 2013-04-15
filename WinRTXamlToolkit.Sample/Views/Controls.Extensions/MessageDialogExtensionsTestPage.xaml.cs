@@ -52,6 +52,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
             // This will show because there is no dialog shown at this time
             dialog = new MessageDialog("ShowAsyncIfPossible", "Dialog 3");
+#pragma warning disable 4014
             dialog.ShowAsyncIfPossible();
 
             // This will not show because there is a dialog shown at this time
@@ -73,6 +74,7 @@ namespace WinRTXamlToolkit.Sample.Views
             // This will show after Dialog 7 is dismissed
             dialog = new MessageDialog("ShowAsyncQueue", "Dialog 8");
             dialog.ShowAsyncQueue();
+#pragma warning restore 4014
         }
     }
 }

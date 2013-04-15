@@ -17,7 +17,7 @@ namespace WinRTXamlToolkit.Controls
     /// <summary>
     /// Provides data for navigation methods and event handlers that cannot cancel the navigation request.
     /// </summary>
-    public class AlternativeNavigationEventArgs
+    public class AlternativeNavigationEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the root node of the target page's content.

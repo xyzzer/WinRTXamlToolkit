@@ -30,7 +30,7 @@ namespace WinRTXamlToolkit.Interactivity
         /// <summary>
         /// Gets the object to which this <see cref="Behavior&lt;T&gt;" /> is attached.
         /// </summary>
-        public T AssociatedObject
+        public new T AssociatedObject
         {
             get
             {

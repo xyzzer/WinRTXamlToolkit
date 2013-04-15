@@ -490,27 +490,31 @@ namespace WinRTXamlToolkit.Controls
         {
             this.Minimum = 0.0;
             this.Maximum = 360.0;
-            var minimumChangedEventSource = new PropertyChangeEventSource<double>(
-                this, "Minimum");
-            minimumChangedEventSource.ValueChanged += OnMinimumChanged;
-            var maximumChangedEventSource = new PropertyChangeEventSource<double>(
-                this, "Maximum");
-            maximumChangedEventSource.ValueChanged += OnMaximumChanged;
+            //var minimumChangedEventSource = new PropertyChangeEventSource<double>(
+            //    this, "Minimum");
+            //minimumChangedEventSource.ValueChanged += OnMinimumChanged;
+            //var maximumChangedEventSource = new PropertyChangeEventSource<double>(
+            //    this, "Maximum");
+            //maximumChangedEventSource.ValueChanged += OnMaximumChanged;
         }
 
-        private void OnMinimumChanged(object sender, double minimum)
+        protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
         {
-            if (minimum < 0)
+            base.OnMinimumChanged(oldMinimum, newMinimum);
+
+            if (newMinimum < 0)
             {
                 this.Minimum = 0;
             }
         }
 
-        private void OnMaximumChanged(object sender, double maximum)
+        protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
         {
-            if (maximum > 360)
+            base.OnMaximumChanged(oldMaximum, newMaximum);
+
+            if (newMaximum > 360)
             {
-                this.Minimum = 360;
+                this.Maximum = 360;
             }
         } 
         #endregion

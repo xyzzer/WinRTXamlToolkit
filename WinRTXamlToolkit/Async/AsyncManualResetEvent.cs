@@ -39,8 +39,11 @@ namespace WinRTXamlToolkit.Async
             while (true)
             {
                 var tcs = _tcs;
+
                 if (!tcs.Task.IsCompleted ||
+#pragma warning disable 420
                     Interlocked.CompareExchange(ref _tcs, new TaskCompletionSource<bool>(), tcs) == tcs)
+#pragma warning restore 420
                     return;
             }
         } 

@@ -127,7 +127,7 @@ namespace WinRTXamlToolkit.Controls
         /// The <see cref="T:System.Windows.Style" /> that is applied to the
         /// container element generated for each item. The default is null.
         /// </value>
-        public Style ItemContainerStyle
+        public new Style ItemContainerStyle
         {
             get { return GetValue(ItemContainerStyleProperty) as Style; }
             set { SetValue(ItemContainerStyleProperty, value); }
@@ -143,7 +143,7 @@ namespace WinRTXamlToolkit.Controls
         /// <see cref="P:System.Windows.Controls.HeaderedItemsControl.ItemContainerStyle" />
         /// dependency property.
         /// </value>
-        public static readonly DependencyProperty ItemContainerStyleProperty =
+        public new static readonly DependencyProperty ItemContainerStyleProperty =
             DependencyProperty.Register(
                 "ItemContainerStyle",
                 typeof(Style),

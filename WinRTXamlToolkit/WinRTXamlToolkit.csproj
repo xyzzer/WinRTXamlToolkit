@@ -179,7 +179,7 @@
     <Compile Include="Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="Controls\Extensions\AnimationHelper.cs" />
     <Compile Include="Controls\Extensions\AppBarExtensions.cs" />
-    <Compile Include="Controls\CameraCaptureControl.cs" />
+    <Compile Include="Controls\CameraCaptureControl\CameraCaptureControl.cs" />
     <Compile Include="Controls\CascadingTextBlock.xaml.cs">
       <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
     </Compile>
@@ -205,7 +205,7 @@
     <Compile Include="Controls\ListItemButton.cs" />
     <Compile Include="Controls\Extensions\ListViewExtensions.cs" />
     <Compile Include="Controls\Extensions\ListViewItemExtensions.cs" />
-    <Compile Include="Controls\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
     <Compile Include="Controls\AlternativeFrame\PageTransition.cs" />
     <Compile Include="Controls\PieSlice.cs" />
     <Compile Include="Controls\PropertyChangeEventSource.cs" />
@@ -278,6 +278,11 @@
     <Compile Include="Tools\TryCatchRetry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CameraCaptureControl\CameraCaptureControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Controls\CascadingImageControl\CascadingImageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -313,6 +318,11 @@
     <Page Include="Controls\InputDialog\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NumericUpDown\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\TreeView\TreeViewTouch.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -353,7 +363,7 @@
     <None Include="Async\Credits.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controls\Extensions\Forms\ReadMe.txt" />
+    <None Include="Controls\Extensions\Forms\ReadMe.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

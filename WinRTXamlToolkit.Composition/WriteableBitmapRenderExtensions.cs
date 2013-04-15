@@ -13,15 +13,16 @@ namespace WinRTXamlToolkit.Composition
 
     public static class WriteableBitmapRenderExtensions
     {
-        public static async Task Render(this WriteableBitmap wb, FrameworkElement fe)
-        {
-            var ms = await RenderToPngStream(fe);
+        //Do not use the below extension as it is slower than the one that follows
+        //public static async Task Render(this WriteableBitmap wb, FrameworkElement fe)
+        //{
+        //    var ms = await RenderToPngStream(fe);
 
-            using (var msrandom = new MemoryRandomAccessStream(ms))
-            {
-                await wb.SetSourceAsync(msrandom);
-            }
-        }
+        //    using (var msrandom = new MemoryRandomAccessStream(ms))
+        //    {
+        //        await wb.SetSourceAsync(msrandom);
+        //    }
+        //}
 
         public static async Task<WriteableBitmap> Render(FrameworkElement fe)
         {

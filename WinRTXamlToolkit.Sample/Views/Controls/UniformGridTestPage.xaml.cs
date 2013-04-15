@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,13 +14,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
     public sealed partial class UniformGridTestPage : WinRTXamlToolkit.Controls.AlternativePage
     {
-        private int _maxZIndex;
+        //private int _maxZIndex;
 
         public UniformGridTestPage()
         {
@@ -59,7 +57,9 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
+#pragma warning disable 4014
             this.Frame.GoBack();
+#pragma warning restore 4014
         }
 
         private void UIElement_OnPointerEntered(object sender, PointerRoutedEventArgs e)
@@ -345,7 +345,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
                 foreach (var child in grid.Children)
                 {
-                    var nc = (NamedColor)((FrameworkElement)child).DataContext;
+                    //var nc = (NamedColor)((FrameworkElement)child).DataContext;
 
                     var xa = new DoubleAnimation();
                     xa.BeginTime = beginTime;

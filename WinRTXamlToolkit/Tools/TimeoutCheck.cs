@@ -154,7 +154,9 @@ namespace WinRTXamlToolkit.Tools
             }
             else
             {
+#pragma warning disable 4014
                 _dispatcher.RunAsync(CoreDispatcherPriority.High, Stop);
+#pragma warning restore 4014
             }
         }
 

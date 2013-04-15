@@ -381,7 +381,16 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Preload()
-        // Allows to preload a page before user navigates to it, so if it does get navigated to - it is quick.
+        /// <summary>
+        /// Preloads a page of the specified source page type.
+        /// </summary>
+        /// <remarks>
+        /// Allows to preload a page before user navigates to it, so if it does get navigated to - shows up quickly.
+        /// If another page gets navigated to - the preloaded page will be released or cached depending on its NavigationCacheMode property.
+        /// </remarks>
+        /// <param name="sourcePageType">Type of the source page.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         public async Task<bool> Preload(Type sourcePageType, object parameter)
         {
             var je = new JournalEntry { SourcePageType = sourcePageType, Parameter = parameter };
@@ -415,6 +424,18 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region UnloadPreloaded()
+        /// <summary>
+        /// Unloads the preloaded page of a given type and parameter.
+        /// </summary>
+        /// <remarks>
+        /// A page might have been preloaded in the anticipation of the user navigating to it,
+        /// then a state change might invalidate or reduce the possibility of a navigation request and
+        /// it might be worth unloading the preloaded page to release resources that it consumed.
+        /// The preloaded page will be released or cached depending on its NavigationCacheMode property.
+        /// </remarks>
+        /// <param name="sourcePageType">Type of the source page.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         public async Task UnloadPreloaded(Type sourcePageType, object parameter)
         {
             var je = new JournalEntry { SourcePageType = sourcePageType, Parameter = parameter };
@@ -435,6 +456,16 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region UnloadAllPreloaded()
+        /// <summary>
+        /// Unloads all preloaded pages.
+        /// </summary>
+        /// <remarks>
+        /// Pages might have been preloaded in the anticipation of the user navigating to them,
+        /// then a state change might invalidate or reduce the possibility of a navigation request and
+        /// it might be worth unloading the preloaded pages to release resources that they consumed.
+        /// The preloaded page will be released or cached depending on its NavigationCacheMode property.
+        /// </remarks>
+        /// <returns></returns>
         public async Task UnloadAllPreloaded()
         {
             foreach (var kvp in _preloadedPageCache)

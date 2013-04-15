@@ -59,7 +59,9 @@ namespace WinRTXamlToolkit.Sample.Views
             catch (Exception ex)
             {
                 // Seems like a bug with WinRT not closing the file sometimes that writes the photo to.
+#pragma warning disable 4014
                 new MessageDialog(ex.Message, "Error").ShowAsync();
+#pragma warning restore 4014
 
                 return;
             }
@@ -94,8 +96,10 @@ namespace WinRTXamlToolkit.Sample.Views
                 }
                 catch (Exception ex)
                 {
+#pragma warning disable 4014
                     // Seems like a bug with WinRT not closing the file sometimes that it writes the video to.
                     new MessageDialog(ex.Message, "Error").ShowAsync();
+#pragma warning restore 4014
 
                     return;
                 }
@@ -106,7 +110,9 @@ namespace WinRTXamlToolkit.Sample.Views
             {
                 CaptureVideoButton.Content = "Record";
                 _capturingVideo = false;
+#pragma warning disable 4014
                 TestedControl.StopCapture();
+#pragma warning restore 4014
             }
         }
 
