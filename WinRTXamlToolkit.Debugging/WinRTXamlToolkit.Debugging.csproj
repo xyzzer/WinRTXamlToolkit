@@ -104,13 +104,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\DebugConsoleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VisualTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BindingDebugConverter.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="DebugConsole.cs" />
     <Compile Include="DebugConsoleOverlay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\VisualTreeViewModel.cs" />
+    <Compile Include="Views\DebugConsoleView.xaml.cs">
+      <DependentUpon>DebugConsoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisualTreeView.xaml.cs">
+      <DependentUpon>VisualTreeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualTreeDebugger.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +133,9 @@
       <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
       <Name>WinRTXamlToolkit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

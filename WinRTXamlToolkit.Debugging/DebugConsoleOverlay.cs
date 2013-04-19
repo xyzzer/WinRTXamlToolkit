@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using WinRTXamlToolkit.Controls.Extensions;
+using WinRTXamlToolkit.Debugging.Views;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using WinRTXamlToolkit.IO.Extensions;
 
@@ -19,7 +22,7 @@ namespace WinRTXamlToolkit.Debugging
                 if (_instance == null)
                 {
                     _instance = new DebugConsoleOverlay();
-                    _instance.Show();
+                    _instance.Initialize();
                 }
 
                 return _instance;
@@ -27,13 +30,13 @@ namespace WinRTXamlToolkit.Debugging
         }
         #endregion
 
-        private DebugConsole _debugConsole;
+        private DebugConsoleView _debugConsoleView;
         private Popup _popup;
 
         [Conditional("DEBUG")]
-        private void Show()
+        private void Initialize()
         {
-            _debugConsole = new DebugConsole
+            _debugConsoleView = new DebugConsoleView
             {
                 Width = Window.Current.Bounds.Width,
                 Height = Window.Current.Bounds.Height,
@@ -41,17 +44,38 @@ namespace WinRTXamlToolkit.Debugging
 
             _popup = new Popup
             {
-                Child = _debugConsole,
-                IsOpen = true
+                Child = _debugConsoleView,
+
             };
+
+            var panel = Window.Current.Content.GetFirstAncestorOfType<Panel>();
+            panel.Children.Add(_popup);
+            _popup.IsOpen = true;
 
             Window.Current.SizeChanged += OnWindowSizeChanged;
         }
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="DebugConsoleOverlay"/> class from being created.
+        /// </summary>
+        private DebugConsoleOverlay()
+        {
+        }
+
+        public static void Show()
+        {
+            Instance._popup.IsOpen = true;
+        }
+
+        public static void Hide()
+        {
+            Instance._popup.IsOpen = false;
+        }
+
         private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
         {
-            _debugConsole.Width = Window.Current.Bounds.Width;
-            _debugConsole.Height = Window.Current.Bounds.Height;
+            _debugConsoleView.Width = Window.Current.Bounds.Width;
+            _debugConsoleView.Height = Window.Current.Bounds.Height;
         }
 
         [Conditional("DEBUG")]
@@ -84,7 +108,7 @@ namespace WinRTXamlToolkit.Debugging
                         string.Format(
                             format,
                             args));
-                _debugConsole.Append(line);
+                _debugConsoleView.Append(line);
             }
             catch(FormatException)
             {
@@ -95,7 +119,7 @@ namespace WinRTXamlToolkit.Debugging
                         string.Format(
                             format.Replace("{", "{{").Replace("}", "}}"),
                             args));
-                _debugConsole.Append(line);
+                _debugConsoleView.Append(line);
             }
         }
 
@@ -107,13 +131,13 @@ namespace WinRTXamlToolkit.Debugging
                     "{0} - {1}\n",
                     DateTime.Now.ToString("HH:mm:ss"),
                     message);
-            _debugConsole.Append(line);
+            _debugConsoleView.Append(line);
         }
 
         [Conditional("DEBUG")]
         private void ClearInternal()
         {
-            _debugConsole.Clear();
+            _debugConsoleView.Clear();
         }
     }
 
@@ -225,6 +249,16 @@ namespace WinRTXamlToolkit.Debugging
         public static void Clear()
         {
             DebugConsoleOverlay.Clear();
+        }
+
+        public static void Hide()
+        {
+            DebugConsoleOverlay.Hide();
+        }
+
+        public static void Show()
+        {
+            DebugConsoleOverlay.Show();
         }
     }
 }

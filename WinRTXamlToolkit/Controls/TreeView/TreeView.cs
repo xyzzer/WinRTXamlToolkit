@@ -254,6 +254,106 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion public string SelectedValuePath
 
+        #region IsExpandedBindingPath
+        /// <summary>
+        /// IsExpandedBindingPath Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IsExpandedBindingPathProperty =
+            DependencyProperty.RegisterAttached(
+                "IsExpandedBindingPath",
+                typeof(string),
+                typeof(TreeView),
+                new PropertyMetadata(null, OnIsExpandedBindingPathChanged));
+
+        /// <summary>
+        /// Gets the IsExpandedBindingPath property. This dependency property 
+        /// indicates the binding path to use to bind the IsExpanded property
+        /// of the TreeViewItems to their view models.
+        /// </summary>
+        public static string GetIsExpandedBindingPath(DependencyObject d)
+        {
+            return (string)d.GetValue(IsExpandedBindingPathProperty);
+        }
+
+        /// <summary>
+        /// Sets the IsExpandedBindingPath property. This dependency property 
+        /// indicates the binding path to use to bind the IsExpanded property
+        /// of the TreeViewItems to their view models.
+        /// </summary>
+        public static void SetIsExpandedBindingPath(DependencyObject d, string value)
+        {
+            d.SetValue(IsExpandedBindingPathProperty, value);
+        }
+
+        /// <summary>
+        /// Handles changes to the IsExpandedBindingPath property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnIsExpandedBindingPathChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            string oldIsExpandedBindingPath = (string)e.OldValue;
+            string newIsExpandedBindingPath = (string)d.GetValue(IsExpandedBindingPathProperty);
+        }
+        #endregion
+
+        #region IsSelectedBindingPath
+        /// <summary>
+        /// IsSelectedBindingPath Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IsSelectedBindingPathProperty =
+            DependencyProperty.RegisterAttached(
+                "IsSelectedBindingPath",
+                typeof(string),
+                typeof(TreeView),
+                new PropertyMetadata(null, OnIsSelectedBindingPathChanged));
+
+        /// <summary>
+        /// Gets the IsSelectedBindingPath property. This dependency property 
+        /// indicates the binding path to use to bind the IsSelected property
+        /// of the TreeViewItems to their view models.
+        /// </summary>
+        public static string GetIsSelectedBindingPath(DependencyObject d)
+        {
+            return (string)d.GetValue(IsSelectedBindingPathProperty);
+        }
+
+        /// <summary>
+        /// Sets the IsSelectedBindingPath property. This dependency property 
+        /// indicates the binding path to use to bind the IsSelected property
+        /// of the TreeViewItems to their view models.
+        /// </summary>
+        public static void SetIsSelectedBindingPath(DependencyObject d, string value)
+        {
+            d.SetValue(IsSelectedBindingPathProperty, value);
+        }
+
+        /// <summary>
+        /// Handles changes to the IsSelectedBindingPath property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnIsSelectedBindingPathChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            string oldIsSelectedBindingPath = (string)e.OldValue;
+            string newIsSelectedBindingPath = (string)d.GetValue(IsSelectedBindingPathProperty);
+        }
+        #endregion
+
         //#region public Style ItemContainerStyle
         ///// <summary>
         ///// Gets or sets the <see cref="T:System.Windows.Style" /> that is
@@ -451,10 +551,34 @@ namespace WinRTXamlToolkit.Controls
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             TreeViewItem node = element as TreeViewItem;
+
             if (node != null)
             {
                 // Associate the Parent ItemsControl
                 node.ParentItemsControl = this;
+
+                var isSelectedBindingPath = TreeView.GetIsSelectedBindingPath(this) ?? TreeView.GetIsSelectedBindingPath(node);
+                var isExpandedBindingPath = TreeView.GetIsExpandedBindingPath(this) ?? TreeView.GetIsExpandedBindingPath(node);
+
+                if (isSelectedBindingPath != null)
+                {
+                    if (node.ReadLocalValue(TreeView.IsSelectedBindingPathProperty) == DependencyProperty.UnsetValue)
+                    {
+                        TreeView.SetIsSelectedBindingPath(node, isSelectedBindingPath);
+                    }
+
+                    node.SetBinding(TreeViewItem.IsSelectedProperty, new Binding { Path = new PropertyPath(isSelectedBindingPath), Mode = BindingMode.TwoWay });
+                }
+
+                if (isExpandedBindingPath != null)
+                {
+                    if (node.ReadLocalValue(TreeView.IsExpandedBindingPathProperty) == DependencyProperty.UnsetValue)
+                    {
+                        TreeView.SetIsExpandedBindingPath(node, isExpandedBindingPath);
+                    }
+
+                    node.SetBinding(TreeViewItem.IsExpandedProperty, new Binding { Path = new PropertyPath(isExpandedBindingPath), Mode = BindingMode.TwoWay });
+                }
             }
 
             ItemsControlHelper.PrepareContainerForItemOverride(element, ItemContainerStyle);

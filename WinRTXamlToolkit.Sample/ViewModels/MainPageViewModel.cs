@@ -106,7 +106,7 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
-                    Caption = "DebugConsole",
+                    Caption = "DebugConsoleView",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(DebugConsoleTestPage)))
                 },
                 new ButtonViewModel

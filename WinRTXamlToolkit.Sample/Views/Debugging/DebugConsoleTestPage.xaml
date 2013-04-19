@@ -26,7 +26,7 @@
             Style="{StaticResource BackButtonStyle}"
             Click="GoBack" />
         <TextBlock
-            Text="DebugConsole Test"
+            Text="DebugConsoleView Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
         

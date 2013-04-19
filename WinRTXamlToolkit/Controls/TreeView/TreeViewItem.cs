@@ -15,6 +15,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 
 namespace WinRTXamlToolkit.Controls
@@ -828,6 +829,29 @@ namespace WinRTXamlToolkit.Controls
             {
                 // Associate the Parent ItemsControl
                 node.ParentItemsControl = this;
+
+                var isSelectedBindingPath = TreeView.GetIsSelectedBindingPath(this) ?? TreeView.GetIsSelectedBindingPath(node);
+                var isExpandedBindingPath = TreeView.GetIsExpandedBindingPath(this) ?? TreeView.GetIsExpandedBindingPath(node);
+
+                if (isSelectedBindingPath != null)
+                {
+                    if (node.ReadLocalValue(TreeView.IsSelectedBindingPathProperty) == DependencyProperty.UnsetValue)
+                    {
+                        TreeView.SetIsSelectedBindingPath(node, isSelectedBindingPath);
+                    }
+
+                    node.SetBinding(TreeViewItem.IsSelectedProperty, new Binding { Path = new PropertyPath(isSelectedBindingPath), Mode = BindingMode.TwoWay });
+                }
+
+                if (isExpandedBindingPath != null)
+                {
+                    if (node.ReadLocalValue(TreeView.IsExpandedBindingPathProperty) == DependencyProperty.UnsetValue)
+                    {
+                        TreeView.SetIsExpandedBindingPath(node, isExpandedBindingPath);
+                    }
+
+                    node.SetBinding(TreeViewItem.IsExpandedProperty, new Binding { Path = new PropertyPath(isExpandedBindingPath), Mode = BindingMode.TwoWay });
+                }
             }
 
             base.PrepareContainerForItemOverride(element, item);
