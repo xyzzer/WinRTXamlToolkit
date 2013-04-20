@@ -16,6 +16,43 @@
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate
+                x:Key="DependencyPropertyDetailsTemplate">
+                <Grid>
+                    <ScrollViewer
+                        HorizontalAlignment="Stretch">
+                        <ItemsControl
+                            ItemsSource="{Binding Properties}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Text="{Binding Name}"
+                                            FontWeight="Bold"
+                                            Margin="0,0,10,0"/>
+                                        <TextBlock
+                                            Text="{Binding ValueString}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate
+                x:Key="DefaultDetailsTemplate">
+                <Grid>
+                    <TextBlock
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top"
+                        Text="{Binding Description}" />
+                </Grid>
+            </DataTemplate>
+            <local:VisualTreeViewItemDetailsTemplateSelector
+                x:Key="VisualTreeViewItemDetailsTemplateSelector"
+                DependencyPropertyDetailsTemplate="{StaticResource DependencyPropertyDetailsTemplate}"
+                DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -59,5 +96,9 @@
         <controls:CustomGridSplitter
             IsTabStop="False"
             Grid.Column="1" />
+        <ContentControl
+            Grid.Column="2"
+            Content="{Binding SelectedItem}"
+            ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}"/>
     </Grid>
 </UserControl>
