@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Debugging.Views
@@ -46,15 +45,14 @@ namespace WinRTXamlToolkit.Debugging.Views
             }
         }
 
-        private void OnTabButtonChecked(object sender, RoutedEventArgs e)
+        internal void ShowLog()
         {
-            if (DebugTextBox == null)
-            {
-                return;
-            }
+            LogTabButton.IsChecked = true;
+        }
 
-            DebugTextBox.Visibility = sender == LogTabButton ? Visibility.Visible : Visibility.Collapsed;
-            VisualTreeViewControl.Visibility = sender == VisualTreeButton ? Visibility.Visible : Visibility.Collapsed;
+        internal void ShowVisualTree()
+        {
+            VisualTreeButton.IsChecked = true;
         }
     }
 }

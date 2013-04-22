@@ -108,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DependencyObjectDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VisualTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DependencyPropertyCache.cs" />
+    <Compile Include="Common\DependencyPropertyInfo.cs" />
     <Compile Include="Converters\BindingDebugConverter.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DebugConsoleOverlay.cs" />
@@ -130,6 +135,9 @@
     <Compile Include="ViewModels\VisualTreeViewModelBuilder.cs" />
     <Compile Include="Views\DebugConsoleView.xaml.cs">
       <DependentUpon>DebugConsoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DependencyObjectDetailsView.xaml.cs">
+      <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VisualTreeView.xaml.cs">
       <DependentUpon>VisualTreeView.xaml</DependentUpon>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Text;
@@ -12,8 +14,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class DependencyObjectViewModel : TreeItemViewModel
     {
-        private static DependencyPropertyCache PropertyCache;
         internal DependencyObject Model { get; private set; }
+        private readonly string _description;
+
+        public string Description { get { return _description; } }
 
         #region Properties
         private ObservableCollection<BasePropertyViewModel> _properties;
@@ -67,12 +71,26 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             DependencyObject model)
             : base (treeModel, parent)
         {
-            Model = model;
+            this.Model = model;
 
-            if (Model.GetType().GetTypeInfo().Assembly ==
-                VisualTreeViewModelBuilder.UserAssembly)
+            var sb = new StringBuilder();
+            sb.AppendLine("Type");
+            var type = model.GetType();
+            sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
+
+            sb.AppendLine("\r\nBased on");
+
+            do
             {
-                FontWeight = FontWeights.Bold;
+                type = type.GetTypeInfo().BaseType;
+                sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
+            } while (type != typeof (object));
+
+            _description = sb.ToString();
+
+            if (Model.GetType().GetTypeInfo().Assembly != typeof(FrameworkElement).GetTypeInfo().Assembly)
+            {
+                this.FontWeight = FontWeights.Bold;
             }
 
             this.Children.Add(new StubTreeItemViewModel(this.TreeModel, this));
@@ -122,20 +140,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _descendantCount != 0 ? string.Format(" [{0}]", _descendantCount) : string.Empty);
         }
 
-        protected override void LoadProperties()
+        public override async Task LoadProperties()
         {
             var type = this.Model.GetType();
 
-
-            var cache = PropertyCache ??
-            (PropertyCache = new DependencyPropertyCache(
-                Window.Current.Content.GetType().GetTypeInfo().Assembly));
-
             var dependencyProperties =
-                cache.GetDependencyProperties(type)
-                .Select(dpi => new DependencyPropertyViewModel(this, dpi.Property, dpi.DisplayName)).ToList();
+                (await DependencyPropertyCache.GetDependencyProperties(type))
+                    .Select(dpi => new DependencyPropertyViewModel(this, dpi.Property, dpi.DisplayName)).ToList();
 
-            IEnumerable<BasePropertyViewModel> plainProperties =
+            var plainProperties =
                 type.GetRuntimeProperties()
                     .Where(pi => !pi.GetMethod.IsStatic)
                     .OrderBy(pi => pi.Name)
@@ -143,24 +156,30 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     .Except(
                         dependencyProperties,
                         new DelegateEqualityComparer<BasePropertyViewModel, string>(p => p.Name));
-            IEnumerable<BasePropertyViewModel> properties = 
-                dependencyProperties
-                    .Concat(plainProperties);
+
+            var properties = dependencyProperties.Concat(plainProperties);
 
             this.Properties = new ObservableCollection<BasePropertyViewModel>(properties.OrderBy(p => p.Name));
         }
 
-        protected override void LoadChildren()
+        public override async Task LoadChildren()
         {
             this.Children.Clear();
 
             foreach (var childElement in Model.GetChildren())
             {
-                var childVM = VisualTreeViewModelBuilder.Build(this.TreeModel, this, (UIElement)childElement);
+                var childVM = await VisualTreeViewModelBuilder.Build(this.TreeModel, this, (UIElement)childElement);
                 this.Children.Add(childVM);
             }
 
             UpdateAscendantChildCounts();
+        }
+
+        internal override async Task Refresh()
+        {
+            await base.Refresh();
+            await LoadChildren();
+            await LoadProperties();
         }
     }
 

@@ -12,6 +12,8 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter
+            x:Key="BooleanToVisibilityConverter" />
         <Style
             x:Key="TabButtonStyle"
             TargetType="RadioButton"
@@ -490,8 +492,19 @@
                 <RowDefinition
                     x:Name="TransparentRow" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    x:Name="TransparentColumn"
+                    Width="0" />
+                <ColumnDefinition
+                    x:Name="SplitterColumn"
+                    Width="Auto" />
+                <ColumnDefinition
+                    x:Name="InfoColumn" />
+            </Grid.ColumnDefinitions>
             <Rectangle
                 x:Name="BackgroundRectangle"
+                Grid.Column="2"
                 Grid.RowSpan="2"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
@@ -499,28 +512,32 @@
                 IsHitTestVisible="False"
                 Opacity="0.4" />
             <StackPanel
+                x:Name="TabButtonsPanel"
+                Grid.Column="2"
                 Orientation="Horizontal"
                 VerticalAlignment="Bottom"
                 Visibility="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
-                Margin="120,20,0,0">
+                Margin="10,20,0,0"
+                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}">
                 <RadioButton
                     x:Name="LogTabButton"
                     Content="Log"
                     Style="{StaticResource TabButtonStyle}"
-                    Checked="OnTabButtonChecked"
                     IsChecked="True" />
                 <RadioButton
                     x:Name="VisualTreeButton"
                     Content="Visual Tree"
                     Style="{StaticResource TabButtonStyle}"
-                    Checked="OnTabButtonChecked" />
+                    IsChecked="{Binding DataContext.IsShown, ElementName=VisualTreeViewControl, Mode=TwoWay}" />
             </StackPanel>
             <TextBox
                 x:Name="DebugTextBox"
+                Visibility="{Binding IsChecked, ElementName=LogTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Foreground="White"
                 Background="Transparent"
                 BorderThickness="0"
                 Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
+                Grid.Column="2"
                 Grid.Row="1"
                 TextWrapping="Wrap"
                 HorizontalAlignment="Stretch"
@@ -531,18 +548,28 @@
                 IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}" />
             <local:VisualTreeView
                 x:Name="VisualTreeViewControl"
-                Visibility="Collapsed"
+                Visibility="{Binding IsChecked, ElementName=VisualTreeButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
                 IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"
-                Margin="120,0,0,0"
-                Grid.Row="1" />
+                Margin="0"
+                Grid.Row="1"
+                Grid.Column="2" />
             <controls:CustomGridSplitter
                 IsTabStop="False"
                 Visibility="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
                 IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"
                 Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
                 Grid.Row="2"
+                Grid.Column="2"
                 Height="16" />
+            <controls:CustomGridSplitter
+                IsTabStop="False"
+                Visibility="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
+                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"
+                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Width="16" />
         </Grid>
         <Grid
             x:Name="CollapsedGrid"
@@ -587,6 +614,18 @@
                     ToolTipService.ToolTip="Show/hide information panel"
                     Style="{StaticResource CollapseButtonStyle}" />
             </StackPanel>
+        </Grid>
+        <Grid
+            x:Name="HighlightGrid"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+            <Rectangle
+                StrokeThickness="2"
+                Stroke="Red"
+                Stretch="Fill"
+                IsHitTestVisible="False"
+                Visibility="{Binding DataContext.HighlightVisibility, ElementName=VisualTreeViewControl}"
+                Margin="{Binding DataContext.HighlightMargin, ElementName=VisualTreeViewControl}" />
         </Grid>
     </Grid>
 </UserControl>

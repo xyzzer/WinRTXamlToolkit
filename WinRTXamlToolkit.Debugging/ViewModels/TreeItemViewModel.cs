@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Text;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
@@ -90,11 +91,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.Parent = parent;
         }
 
-        protected virtual void LoadProperties()
+        public virtual async Task LoadProperties()
         {
         }
 
-        protected virtual void LoadChildren()
+        public virtual async Task LoadChildren()
+        {
+        }
+
+        internal virtual async Task Refresh()
         {
         }
     }

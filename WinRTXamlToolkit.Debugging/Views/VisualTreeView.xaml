@@ -18,27 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate
                 x:Key="DependencyPropertyDetailsTemplate">
-                <Grid>
-                    <ScrollViewer
-                        HorizontalAlignment="Stretch">
-                        <ItemsControl
-                            ItemsSource="{Binding Properties}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel
-                                        Orientation="Horizontal">
-                                        <TextBlock
-                                            Text="{Binding Name}"
-                                            FontWeight="Bold"
-                                            Margin="0,0,10,0"/>
-                                        <TextBlock
-                                            Text="{Binding ValueString}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Grid>
+                <local:DependencyObjectDetailsView/>
             </DataTemplate>
             <DataTemplate
                 x:Key="DefaultDetailsTemplate">
@@ -56,6 +36,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition
@@ -63,10 +48,12 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <controls:TreeView
+            x:Name="treeView"
             ItemsSource="{Binding RootElements}"
             Style="{StaticResource MouseTreeViewStyle}"
             IsSelectedBindingPath="IsSelected"
-            IsExpandedBindingPath="IsExpanded">
+            IsExpandedBindingPath="IsExpanded"
+            SelectedItemChanged="OnSelectedItemChanged">
             <controls:TreeView.ItemTemplate>
                 <DataTemplate>
                     <data:DataTemplateExtensions.Hierarchy>
@@ -94,11 +81,25 @@
             </controls:TreeView.ItemTemplate>
         </controls:TreeView>
         <controls:CustomGridSplitter
-            IsTabStop="False"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            IsTabStop="False" />
         <ContentControl
             Grid.Column="2"
+            Grid.RowSpan="2"
             Content="{Binding SelectedItem}"
             ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}"/>
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="1">
+            <Button
+                Content="Refresh"
+                Click="OnRefreshButtonClick"
+                Style="{StaticResource TextButtonStyle}"
+                Margin="0,0,20,0"/>
+            <TextBlock
+                Text="Hover with Ctrl+Shift to select element."
+                VerticalAlignment="Bottom" />
+        </StackPanel>
     </Grid>
 </UserControl>
