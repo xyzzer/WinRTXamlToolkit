@@ -28,6 +28,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
                 using (
                     var textBrush = await textBlock.Foreground.ToSharpDX(renderTarget, rect))
                 {
+                    if (textBrush == null)
+                    {
+                        return;
+                    }
+
                     //using(var layer = new Layer(renderTarget))
                     //{
                     //var layerParameters = new LayerParameters();

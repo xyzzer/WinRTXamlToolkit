@@ -5,10 +5,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WinRTXamlToolkit.Composition;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
@@ -65,6 +67,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        #region Details
+        private ObservableCollection<DetailViewModel> _details = new ObservableCollection<DetailViewModel>();
+        public ObservableCollection<DetailViewModel> Details
+        {
+            get { return _details; }
+            set { this.SetProperty(ref _details, value); }
+        }
+        #endregion
+
+        #region PreviewImageSource
+        private ImageSource _previewImageSource;
+        public ImageSource PreviewImageSource
+        {
+            get { return _previewImageSource; }
+            set { this.SetProperty(ref _previewImageSource, value); }
+        }
+        #endregion
+
         public DependencyObjectViewModel(
             VisualTreeViewModel treeModel,
             TreeItemViewModel parent,
@@ -72,21 +92,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             : base (treeModel, parent)
         {
             this.Model = model;
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Type");
-            var type = model.GetType();
-            sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
-
-            sb.AppendLine("\r\nBased on");
-
-            do
-            {
-                type = type.GetTypeInfo().BaseType;
-                sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
-            } while (type != typeof (object));
-
-            _description = sb.ToString();
 
             if (Model.GetType().GetTypeInfo().Assembly != typeof(FrameworkElement).GetTypeInfo().Assembly)
             {
@@ -160,6 +165,31 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             var properties = dependencyProperties.Concat(plainProperties);
 
             this.Properties = new ObservableCollection<BasePropertyViewModel>(properties.OrderBy(p => p.Name));
+            this.Details.Clear();
+            this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
+            this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
+
+            if (TreeModel.IsPreviewShown)
+            {
+                await this.LoadPreview();
+            }
+        }
+
+        private string GetTypeInheritanceInfo()
+        {
+            var sb = new StringBuilder();
+            var type = this.Model.GetType();
+            sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
+
+            sb.AppendLine("\r\nBased on");
+
+            do
+            {
+                type = type.GetTypeInfo().BaseType;
+                sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
+            } while (type != typeof(object));
+
+            return sb.ToString();            
         }
 
 #pragma warning disable 1998
@@ -179,6 +209,39 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             await base.Refresh();
             await LoadChildren();
             await LoadProperties();
+        }
+
+        public async Task LoadPreview()
+        {
+            var fe = this.Model as FrameworkElement;
+            if (fe == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var wb = await WriteableBitmapRenderExtensions.Render(fe);
+
+                PreviewImageSource = wb;
+            }
+// ReSharper disable EmptyGeneralCatchClause
+            catch
+// ReSharper restore EmptyGeneralCatchClause
+            {
+            }
+        }
+    }
+
+    public class DetailViewModel
+    {
+        public string Label { get; private set; }
+        public string Detail { get; private set; }
+
+        public DetailViewModel(string label, string detail)
+        {
+            Label = label;
+            Detail = detail;
         }
     }
 

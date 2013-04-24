@@ -147,6 +147,10 @@
     <Compile Include="VisualTreeDebugger.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj">
+      <Project>{aefca5b7-b382-41a4-af43-14441ae610c0}</Project>
+      <Name>WinRTXamlToolkit.Composition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.csproj">
       <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
       <Name>WinRTXamlToolkit</Name>
@@ -154,6 +158,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\packages\SharpDX.2.4.2\lib\win8\SharpDX.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

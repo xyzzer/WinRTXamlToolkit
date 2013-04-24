@@ -13,9 +13,174 @@
         <converters:BooleanToVisibilityConverter
             x:Key="BooleanToVisibilityConverter" />
         <Style
+            x:Key="HorizontalScrollViewerStyle"
+            TargetType="ScrollViewer">
+            <Setter
+                Property="HorizontalScrollBarVisibility"
+                Value="Auto" />
+            <Setter
+                Property="VerticalScrollBarVisibility"
+                Value="Disabled" />
+            <Setter
+                Property="ScrollViewer.HorizontalScrollMode"
+                Value="Enabled" />
+            <Setter
+                Property="ScrollViewer.VerticalScrollMode"
+                Value="Disabled" />
+            <Setter
+                Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+        </Style>
+
+        <Style
+            x:Key="VerticalScrollViewerStyle"
+            TargetType="ScrollViewer">
+            <Setter
+                Property="HorizontalScrollBarVisibility"
+                Value="Disabled" />
+            <Setter
+                Property="VerticalScrollBarVisibility"
+                Value="Auto" />
+            <Setter
+                Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+            <Setter
+                Property="ScrollViewer.VerticalScrollMode"
+                Value="Enabled" />
+            <Setter
+                Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+        </Style>
+
+        <Style
             x:Key="TabButtonStyle"
-            TargetType="RadioButton"
-            BasedOn="{StaticResource TextRadioButtonStyle}" />
+            TargetType="RadioButton">
+            <Setter
+                Property="MinWidth"
+                Value="0" />
+            <Setter
+                Property="MinHeight"
+                Value="0" />
+            <Setter
+                Property="Margin"
+                Value="0,0,30,0" />
+            <Setter
+                Property="Template">
+                <Setter.Value>
+                    <ControlTemplate
+                        TargetType="RadioButton">
+                        <Grid
+                            Background="Transparent">
+                            <TextBlock
+                                x:Name="Text"
+                                Text="{TemplateBinding Content}"
+                                Margin="3,-7,3,10"
+                                TextWrapping="NoWrap"
+                                Style="{StaticResource SubheaderTextStyle}" />
+                            <Rectangle
+                                x:Name="FocusVisualWhite"
+                                IsHitTestVisible="False"
+                                Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                StrokeEndLineCap="Square"
+                                StrokeDashArray="1,1"
+                                Opacity="0"
+                                StrokeDashOffset="1.5" />
+                            <Rectangle
+                                x:Name="FocusVisualBlack"
+                                IsHitTestVisible="False"
+                                Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                StrokeEndLineCap="Square"
+                                StrokeDashArray="1,1"
+                                Opacity="0"
+                                StrokeDashOffset="0.5" />
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup
+                                    x:Name="CommonStates">
+                                    <VisualState
+                                        x:Name="Normal" />
+                                    <VisualState
+                                        x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Text"
+                                                Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0"
+                                                    Value="{StaticResource ApplicationPointerOverForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState
+                                        x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Text"
+                                                Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0"
+                                                    Value="{StaticResource ApplicationPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState
+                                        x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Text"
+                                                Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0"
+                                                    Value="{StaticResource ButtonDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup
+                                    x:Name="FocusStates">
+                                    <VisualState
+                                        x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Duration="0"
+                                                To="1"
+                                                Storyboard.TargetName="FocusVisualWhite"
+                                                Storyboard.TargetProperty="Opacity" />
+                                            <DoubleAnimation
+                                                Duration="0"
+                                                To="1"
+                                                Storyboard.TargetName="FocusVisualBlack"
+                                                Storyboard.TargetProperty="Opacity" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState
+                                        x:Name="Unfocused" />
+                                </VisualStateGroup>
+                                <VisualStateGroup
+                                    x:Name="CheckStates">
+                                    <VisualState
+                                        x:Name="Checked" />
+                                    <VisualState
+                                        x:Name="Unchecked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetName="Text"
+                                                Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0"
+                                                    Value="{StaticResource ApplicationSecondaryForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState
+                                        x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -23,20 +188,29 @@
                 Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel
-            Orientation="Horizontal"
-            VerticalAlignment="Bottom"
-            Margin="0,0,0,0">
-            <RadioButton
-                x:Name="PropertiesTabButton"
-                Content="Properties"
-                Style="{StaticResource TabButtonStyle}"
-                IsChecked="True" />
-            <RadioButton
-                x:Name="DetailsTabButton"
-                Content="Details"
-                Style="{StaticResource TabButtonStyle}" />
-        </StackPanel>
+        <ScrollViewer
+            Style="{StaticResource HorizontalScrollViewerStyle}">
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,0">
+                <RadioButton
+                    x:Name="PropertiesTabButton"
+                    Content="Properties"
+                    Style="{StaticResource TabButtonStyle}"
+                    IsChecked="True" />
+                <RadioButton
+                    x:Name="DetailsTabButton"
+                    Content="Details"
+                    Style="{StaticResource TabButtonStyle}" />
+                <RadioButton
+                    x:Name="PreviewTabButton"
+                    Content="Preview"
+                    Checked="PreviewTabButton_OnChecked"
+                    IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
+                    Style="{StaticResource TabButtonStyle}" />
+            </StackPanel>
+        </ScrollViewer>
         <ScrollViewer
             x:Name="PropertiesView"
             Visibility="{Binding IsChecked, ElementName=PropertiesTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -59,18 +233,43 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Grid
+        <ScrollViewer
             x:Name="DetailsView"
             Visibility="{Binding IsChecked, ElementName=DetailsTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock
-                Text="{Binding Description}"
-                TextWrapping="Wrap" />
-        </Grid>
+            Grid.Row="1"
+            Style="{StaticResource VerticalScrollViewerStyle}">
+            <ItemsControl
+                ItemsSource="{Binding Details}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock
+                                Text="{Binding Label}"
+                                FontSize="12"
+                                FontWeight="Bold"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="{Binding Detail}"
+                                TextWrapping="Wrap" 
+                                Margin="0,0,0,10" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <ScrollViewer
+            x:Name="PreviewView"
+            Visibility="{Binding IsChecked, ElementName=PreviewTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Grid.Row="1"
+            ZoomMode="Enabled"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollMode="Auto"
+            HorizontalScrollMode="Auto"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+            <Image
+                Source="{Binding PreviewImageSource}"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>
