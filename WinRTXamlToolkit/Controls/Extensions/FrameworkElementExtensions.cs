@@ -278,10 +278,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Handles the ClipToBounds attached behavior defined by the attached property
+    /// of the <see cref="FrameworkElementExtensions"/> class.
+    /// </summary>
     public class ClipToBoundsHandler
     {
         private FrameworkElement _fe;
 
+        /// <summary>
+        /// Attaches to the specified framework element.
+        /// </summary>
+        /// <param name="fe">The fe.</param>
         public void Attach(FrameworkElement fe)
         {
             _fe = fe;
@@ -306,6 +314,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 };
         }
 
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
         public void Detach()
         {
             if (_fe == null)
@@ -316,6 +327,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
     }
 
+    /// <summary>
+    /// Handles the Cursor attached behavior defined by the attached property
+    /// of the <see cref="FrameworkElementExtensions"/> class.
+    /// </summary>
     public class CursorDisplayHandler
     {
         private FrameworkElement _control;
@@ -332,9 +347,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        public void Attach(FrameworkElement c)
+        /// <summary>
+        /// Attaches to the specified framework element.
+        /// </summary>
+        /// <param name="frameworkElement">The frameworkElement.</param>
+        public void Attach(FrameworkElement frameworkElement)
         {
-            _control = c;
+            _control = frameworkElement;
             _control.PointerEntered += OnPointerEntered;
             _control.PointerExited += OnPointerExited;
             _control.Unloaded += OnControlUnloaded;
@@ -345,6 +364,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
             Detach();
         }
 
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
         public void Detach()
         {
             _control.PointerEntered -= OnPointerEntered;

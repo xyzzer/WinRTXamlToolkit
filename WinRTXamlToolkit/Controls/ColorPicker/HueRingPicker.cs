@@ -310,6 +310,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HueRingPicker"/> class.
+        /// </summary>
         public HueRingPicker()
         {
             this.DefaultStyleKey = typeof (HueRingPicker);
@@ -377,12 +380,20 @@ namespace WinRTXamlToolkit.Controls
             UpdateVisuals();
         }
 
+        /// <summary>
+        /// Fires the ValueChanged routed event.
+        /// </summary>
+        /// <param name="oldValue">Old value of the Value property.</param>
+        /// <param name="newValue">New value of the Value property.</param>
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
             UpdateRingThumb();
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override async void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -498,6 +509,11 @@ namespace WinRTXamlToolkit.Controls
             //maximumChangedEventSource.ValueChanged += OnMaximumChanged;
         }
 
+        /// <summary>
+        /// Called when the Minimum property changes.
+        /// </summary>
+        /// <param name="oldMinimum">Old value of the Minimum property.</param>
+        /// <param name="newMinimum">New value of the Minimum property.</param>
         protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
         {
             base.OnMinimumChanged(oldMinimum, newMinimum);
@@ -508,6 +524,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Called when the Maximum property changes.
+        /// </summary>
+        /// <param name="oldMaximum">Old value of the Maximum property.</param>
+        /// <param name="newMaximum">New value of the Maximum property.</param>
         protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
         {
             base.OnMaximumChanged(oldMaximum, newMaximum);

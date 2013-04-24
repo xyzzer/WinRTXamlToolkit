@@ -33,7 +33,6 @@ namespace WinRTXamlToolkit.Debugging
         private DebugConsoleView _debugConsoleView;
         private Popup _popup;
 
-        [Conditional("DEBUG")]
         private void Initialize()
         {
             _debugConsoleView = new DebugConsoleView
@@ -45,7 +44,6 @@ namespace WinRTXamlToolkit.Debugging
             _popup = new Popup
             {
                 Child = _debugConsoleView,
-
             };
 
             var panel = Window.Current.Content.GetFirstAncestorOfType<Panel>();
@@ -62,11 +60,27 @@ namespace WinRTXamlToolkit.Debugging
         {
         }
 
+        [Conditional("DEBUG")]
         public static void Show()
         {
             Instance._popup.IsOpen = true;
         }
 
+        [Conditional("DEBUG")]
+        public static void ShowLog()
+        {
+            Show();
+            _instance._debugConsoleView.ShowLog();
+        }
+
+        [Conditional("DEBUG")]
+        public static void ShowVisualTree(UIElement element = null)
+        {
+            Show();
+            _instance._debugConsoleView.ShowVisualTree(element);
+        }
+
+        [Conditional("DEBUG")]
         public static void Hide()
         {
             Instance._popup.IsOpen = false;
@@ -96,7 +110,6 @@ namespace WinRTXamlToolkit.Debugging
             Instance.ClearInternal();
         }
 
-        [Conditional("DEBUG")]
         private void TraceInternal(string format, object[] args)
         {
             try
@@ -123,7 +136,6 @@ namespace WinRTXamlToolkit.Debugging
             }
         }
 
-        [Conditional("DEBUG")]
         private void TraceInternal(string message)
         {
             var line =
@@ -134,7 +146,6 @@ namespace WinRTXamlToolkit.Debugging
             _debugConsoleView.Append(line);
         }
 
-        [Conditional("DEBUG")]
         private void ClearInternal()
         {
             _debugConsoleView.Clear();
@@ -143,6 +154,8 @@ namespace WinRTXamlToolkit.Debugging
 
     public static class DC
     {
+        private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
+
         [Conditional("DEBUG")]
         public static void TraceLocalized(
             string message = "Checkpoint", 
@@ -212,8 +225,6 @@ namespace WinRTXamlToolkit.Debugging
             DebugConsoleOverlay.Trace((value ?? "<null>").ToString());
         }
 
-        private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
-
         [Conditional("DEBUG")]
         public static void TraceInterval(string message = null)
         {
@@ -251,14 +262,28 @@ namespace WinRTXamlToolkit.Debugging
             DebugConsoleOverlay.Clear();
         }
 
+        [Conditional("DEBUG")]
         public static void Hide()
         {
             DebugConsoleOverlay.Hide();
         }
 
+        [Conditional("DEBUG")]
         public static void Show()
         {
             DebugConsoleOverlay.Show();
+        }
+
+        [Conditional("DEBUG")]
+        public static void ShowLog()
+        {
+            DebugConsoleOverlay.ShowLog();
+        }
+
+        [Conditional("DEBUG")]
+        public static void ShowVisualTree()
+        {
+            DebugConsoleOverlay.ShowVisualTree();
         }
     }
 }

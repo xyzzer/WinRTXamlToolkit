@@ -179,12 +179,20 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
     }
 
+    /// <summary>
+    /// Handles synchronization of GridViewExtensions.BindableSelection to a GridView.
+    /// </summary>
     public class GridViewBindableSelectionHandler
     {
         private GridView _gridView;
         private dynamic _boundSelection;
         private readonly NotifyCollectionChangedEventHandler _handler;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GridViewBindableSelectionHandler"/> class.
+        /// </summary>
+        /// <param name="GridView">The GridView.</param>
+        /// <param name="boundSelection">The bound selection.</param>
         public GridViewBindableSelectionHandler(
             GridView GridView, dynamic boundSelection)
         {

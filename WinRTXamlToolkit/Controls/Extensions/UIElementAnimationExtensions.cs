@@ -120,10 +120,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <summary>
         /// Fades the element in using a custom DoubleAnimation of the Opacity property.
         /// </summary>
-        /// <param name="element"></param>
-        /// <param name="duration"></param>
-        /// <param name="easingFunction"> </param>
-        /// <returns></returns>
+        /// <param name="element">The element to fade in.</param>
+        /// <param name="duration">The duration of the animation.</param>
+        /// <param name="easingFunction">The easing function.</param>
+        /// <param name="targetOpacity">The target opacity.</param>
+        /// <returns>Task that completes after the animation is complete.</returns>
         public static async Task FadeInCustom(this UIElement element, TimeSpan? duration = null, EasingFunctionBase easingFunction = null, double targetOpacity = 1.0)
         {
             CleanUpPreviousFadeStoryboard(element);
@@ -181,6 +182,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
 
         #region CleanUpPreviousFadeStoryboard()
+        /// <summary>
+        /// Cleans up previous fade storyboard.
+        /// </summary>
+        /// <param name="element">The element.</param>
         public static void CleanUpPreviousFadeStoryboard(this UIElement element)
         {
             var attachedFadeStoryboard = GetAttachedFadeStoryboard(element);

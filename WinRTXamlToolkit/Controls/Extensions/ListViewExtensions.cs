@@ -178,12 +178,20 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
     }
 
+    /// <summary>
+    /// Handles synchronization of ListViewExtensions.BindableSelection to a ListView.
+    /// </summary>
     public class ListViewBindableSelectionHandler
     {
         private ListViewBase _listView;
         private dynamic _boundSelection;
         private readonly NotifyCollectionChangedEventHandler _handler;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListViewBindableSelectionHandler"/> class.
+        /// </summary>
+        /// <param name="listView">The ListView.</param>
+        /// <param name="boundSelection">The bound selection.</param>
         public ListViewBindableSelectionHandler(
             ListViewBase listView, dynamic boundSelection)
         {

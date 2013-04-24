@@ -53,6 +53,7 @@ mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
 
 @rem WinRTXamlToolkit.Debugging folders
 mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Themes
+mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Views
 
 :COPY_FILES
 @rem copy ..\src\SomeController.cs content
@@ -60,6 +61,7 @@ copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\netcore45
 copy ..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.* lib\netcore45
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.* lib\netcore45
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45
+
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CameraCaptureControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl
@@ -74,6 +76,7 @@ copy ..\WinRTXamlToolkit\bin\Release\Controls\TreeView\*.xaml lib\netcore45\WinR
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes
+
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DateTimeAxisLabel.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DisplayAxis.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
@@ -97,7 +100,10 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Legend
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
+
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Themes
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Views\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Views
+
 @rem copy ..\src\SomePowershellScript.ps1 tools
 
 nuget pack WinRTXamlToolkit.nuspec

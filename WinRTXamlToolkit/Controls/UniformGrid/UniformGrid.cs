@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Provides a way to arrange content in a grid where all the cells in the grid have the same size. 
+    /// </summary>
     public class UniformGrid : Panel
     {
         /// <summary>
@@ -67,6 +70,15 @@ namespace WinRTXamlToolkit.Controls
             set { SetValue(RowsProperty, value); }
         }
 
+        /// <summary>
+        /// Provides the behavior for the Arrange pass of layout. Classes can override
+        /// this method to define their own Arrange pass behavior.
+        /// </summary>
+        /// <param name="arrangeSize">
+        /// The final area within the parent that this object should use to arrange itself
+        /// and its children.
+        /// </param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             var finalRect = new Rect(
@@ -97,6 +109,19 @@ namespace WinRTXamlToolkit.Controls
             return arrangeSize;
         }
 
+        /// <summary>
+        /// Provides the behavior for the Measure pass of the layout cycle. Classes can
+        /// override this method to define their own Measure pass behavior.
+        /// </summary>
+        /// <param name="constraint">
+        /// The available size that this object can give to child objects. Infinity can
+        /// be specified as a value to indicate that the object will size to whatever
+        /// content is available.</param>
+        /// <returns>
+        /// The size that this object determines it needs during layout, based on its
+        /// calculations of the allocated sizes for child objects or based on other considerations
+        /// such as a fixed container size.
+        /// </returns>
         protected override Size MeasureOverride(Size constraint)
         {
             UpdateComputedValues();

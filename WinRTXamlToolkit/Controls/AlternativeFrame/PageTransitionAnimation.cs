@@ -91,22 +91,43 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Applies the target properties.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="animation">The animation.</param>
         protected virtual void ApplyTargetProperties(DependencyObject target, Storyboard animation)
         {
         }
 
+        /// <summary>
+        /// Cleans up the animation.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="animation">The animation.</param>
         internal virtual void CleanupAnimation(DependencyObject target, Storyboard animation)
         {
         }
 
+        /// <summary>
+        /// Gets the animation for use in the transition.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <returns></returns>
         internal Storyboard GetAnimation(DependencyObject target)
         {
             var anim = this.Animation;
             Storyboard.SetTarget(anim, target);
             this.ApplyTargetProperties(target, anim);
+
             return anim;
         }
 
+        /// <summary>
+        /// Runs the transition animation.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <returns></returns>
         internal async Task Animate(DependencyObject target)
         {
             var anim = this.Animation;

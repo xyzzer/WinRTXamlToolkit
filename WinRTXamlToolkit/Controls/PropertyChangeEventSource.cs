@@ -77,6 +77,12 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PropertyChangeEventSource{TPropertyType}"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="bindingMode">The binding mode.</param>
         public PropertyChangeEventSource(
             DependencyObject source,
             string propertyName,

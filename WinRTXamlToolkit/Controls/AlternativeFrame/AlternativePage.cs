@@ -153,46 +153,46 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        // Summary:
-        //     Invoked immediately after the Page is unloaded and is no longer the current
-        //     source of a parent Frame.
-        //
-        // Parameters:
-        //   e:
-        //     Event data that can be examined by overriding code. The event data is representative
-        //     of the navigation that has unloaded the current Page.
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current
+        /// source of a parent AlternativeFrame.
+        /// </summary>
+        /// <param name="e">
+        /// Event data that can be examined by overriding code. The event data is representative
+        /// of the navigation that has unloaded the current Page.
+        /// </param>
+        /// <returns></returns>
 #pragma warning disable 1998
         protected virtual async Task OnNavigatedFrom(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
         {
         }
 
-        //
-        // Summary:
-        //     Invoked when the Page is loaded and becomes the current source of a parent
-        //     Frame.
-        //
-        // Parameters:
-        //   e:
-        //     Event data that can be examined by overriding code. The event data is representative
-        //     of the pending navigation that will load the current Page. Usually the most
-        //     relevant property to examine is Parameter.
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent AlternativeFrame.
+        /// </summary>
+        /// <param name="e">
+        /// Event data that can be examined by overriding code. The event data is representativeThe <see cref="WinRTXamlToolkit.Controls.AlternativeNavigationEventArgs"/> instance containing the event data.
+        /// of the pending navigation that will load the current Page. Usually the most
+        /// relevant property to examine is Parameter.
+        /// </param>
+        /// <returns></returns>
 #pragma warning disable 1998
         protected virtual async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
         {
         }
 
-        //
-        // Summary:
-        //     Invoked immediately before the Page is unloaded and is no longer the current
-        //     source of a parent Frame.
-        //
-        // Parameters:
-        //   e:
-        //     Event data that can be examined by overriding code. The event data is representative
-        //     of the navigation that will unload the current Page unless canceled. The
-        //     navigation can potentially be canceled by setting Cancel.
+        /// <summary>
+        /// Invoked immediately before the Page is unloaded and is no longer the current
+        /// source of a parent AlternativeFrame.
+        /// </summary>
+        /// <param name="e">
+        /// Event data that can be examined by overriding code. The event data is representative
+        /// of the navigation that will unload the current Page unless canceled. The
+        /// navigation can potentially be canceled by setting Cancel.
+        /// </param>
+        /// <returns></returns>
 #pragma warning disable 1998
         protected virtual async Task OnNavigatingFrom(AlternativeNavigatingCancelEventArgs e)
 #pragma warning restore 1998
@@ -200,6 +200,11 @@ namespace WinRTXamlToolkit.Controls
             this.NavigationState = NavigationState.NavigatingFrom;
         }
 
+        /// <summary>
+        /// When overriden in child classes - enables to perform limited processing before a navigation progresses.
+        /// </summary>
+        /// <param name="e">The <see cref="AlternativeNavigationEventArgs"/> instance containing the event data.</param>
+        /// <returns></returns>
 #pragma warning disable 1998
         protected virtual async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
@@ -207,6 +212,10 @@ namespace WinRTXamlToolkit.Controls
             this.NavigationState = NavigationState.NavigatingTo;
         }
 
+        /// <summary>
+        /// When overriden in child classes - enables to perform limited processing before a transition starts.
+        /// </summary>
+        /// <returns></returns>
 #pragma warning disable 1998
         protected virtual async Task OnTransitioningTo()
 #pragma warning restore 1998
@@ -214,18 +223,30 @@ namespace WinRTXamlToolkit.Controls
         }
 
 #pragma warning disable 1998
+        /// <summary>
+        /// Called when the page is being transitioned to.
+        /// </summary>
+        /// <returns></returns>
         protected virtual async Task OnTransitionedTo()
 #pragma warning restore 1998
         {
         }
 
 #pragma warning disable 1998
+        /// <summary>
+        /// Called when the page is being transitioning from.
+        /// </summary>
+        /// <returns></returns>
         protected virtual async Task OnTransitioningFrom()
 #pragma warning restore 1998
         {
         }
 
 #pragma warning disable 1998
+        /// <summary>
+        /// Called when the page has transitioned from.
+        /// </summary>
+        /// <returns></returns>
         protected virtual async Task OnTransitionedFrom()
 #pragma warning restore 1998
         {
@@ -301,6 +322,10 @@ namespace WinRTXamlToolkit.Controls
         }
 
 #pragma warning disable 1998
+        /// <summary>
+        /// When overriden in a derived class - unloads the preloaded page data.
+        /// </summary>
+        /// <returns></returns>
         protected virtual async Task UnloadPreloaded()
 #pragma warning restore 1998
         {

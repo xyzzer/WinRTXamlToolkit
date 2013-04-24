@@ -121,6 +121,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
     {
         private AppBar _appBar;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HideWhenSnappedHandler"/> class.
+        /// </summary>
+        /// <param name="appBar">The app bar.</param>
         public HideWhenSnappedHandler(AppBar appBar)
         {
             Attach(appBar);

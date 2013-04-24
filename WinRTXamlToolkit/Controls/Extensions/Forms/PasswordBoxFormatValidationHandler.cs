@@ -37,11 +37,17 @@ namespace WinRTXamlToolkit.Controls.Extensions
             this.Validate();
         }
 
+        /// <summary>
+        /// Gets the field value.
+        /// </summary>
         protected override string GetFieldValue()
         {
             return Field.Password;
         }
 
+        /// <summary>
+        /// Gets the max length of the field value.
+        /// </summary>
         protected override int GetMaxLength()
         {
             return Field.MaxLength;

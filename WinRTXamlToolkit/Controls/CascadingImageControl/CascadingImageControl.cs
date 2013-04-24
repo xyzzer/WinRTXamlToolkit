@@ -10,6 +10,9 @@ using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// Defines options for the direction of the cascade animation.
+    /// </summary>
     public enum CascadeDirection
     {
         TopLeft = 0,
@@ -24,6 +27,9 @@ namespace WinRTXamlToolkit.Controls
         Shuffle
     }
 
+    /// <summary>
+    /// Defines if the tile animations should all last for the same duration or if they should end at the single point in time.
+    /// </summary>
     public enum CascadeSequence
     {
         /// <summary>
@@ -36,6 +42,9 @@ namespace WinRTXamlToolkit.Controls
         EqualDuration
     }
 
+    /// <summary>
+    /// Displays an image with a cascading animation of tiles that make up the image.
+    /// </summary>
     [TemplatePart(Name = LayoutGridName, Type = typeof(Grid))]
     public sealed class CascadingImageControl : Control
     {
@@ -436,12 +445,18 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CascadingImageControl"/> class.
+        /// </summary>
         public CascadingImageControl()
         {
             this.DefaultStyleKey = typeof(CascadingImageControl);
             this.Loaded += OnLoaded;
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -462,6 +477,10 @@ namespace WinRTXamlToolkit.Controls
             Cascade();
         }
 
+        /// <summary>
+        /// Runs the cascades animation.
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException"></exception>
         public void Cascade()
         {
             if (!_isLoaded ||

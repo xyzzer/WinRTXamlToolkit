@@ -136,6 +136,9 @@ namespace WinRTXamlToolkit.Async
                 _writer = writer;
             }
 
+            /// <summary>
+            /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            /// </summary>
             public void Dispose()
             {
                 if (_toRelease != null)

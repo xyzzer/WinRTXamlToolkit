@@ -221,6 +221,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlipTransition"/> class.
+        /// </summary>
         public FlipTransition()
         {
             this.ForwardOutAnimation =
@@ -253,6 +256,11 @@ namespace WinRTXamlToolkit.Controls
                 };
         }
 
+        /// <summary>
+        /// Prepares the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareForwardAnimations(previousPage, newPage);
@@ -290,12 +298,22 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Cleans up the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void CleanupForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.CleanupForwardAnimations(previousPage, newPage);
             newPage.ClearValue(Canvas.ZIndexProperty);
         }
 
+        /// <summary>
+        /// Prepares the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareBackwardAnimations(previousPage, newPage);

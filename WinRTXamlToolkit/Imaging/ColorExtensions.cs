@@ -522,6 +522,10 @@ namespace WinRTXamlToolkit.Imaging
         }
         #endregion
 
+        /// <summary>
+        /// Gets all the named colors in the <see cref="Colors"/> type.
+        /// </summary>
+        /// <returns></returns>
         public static List<Color> GetNamedColors()
         {
             var colorsProperties = typeof(Colors).GetTypeInfo().DeclaredProperties;
@@ -530,6 +534,10 @@ namespace WinRTXamlToolkit.Imaging
             return colorsProperties.Select(pi => (Color)pi.GetValue(null)).ToList();
         }
 
+        /// <summary>
+        /// Gets the names of all the colors defined in the <see cref="Colors"/> type.
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetColorNames()
         {
             var colorsProperties = typeof(Colors).GetTypeInfo().DeclaredProperties;

@@ -190,9 +190,10 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="sender">The control.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private void OnIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            bool enabled = (bool)dependencyPropertyChangedEventArgs.NewValue;
+            bool enabled = (bool)e.NewValue;
+
             if (!enabled)
             {
                 IsPressed = false;

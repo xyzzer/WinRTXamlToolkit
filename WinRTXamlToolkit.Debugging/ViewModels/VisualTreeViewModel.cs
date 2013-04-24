@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.Extensions;
+using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -13,6 +13,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class VisualTreeViewModel : BindableBase
     {
+        private Point _pointerPosition;
         private bool _isShiftPressed;
         private bool _isCtrlPressed;
 
@@ -46,6 +47,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public ObservableCollection<TreeItemViewModel> RootElements
         {
             get { return _rootElements; }
+            //set { this.SetProperty(ref _rootElements, value); }
         }
         #endregion
 
@@ -94,19 +96,28 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         private void OnPointerMoved(CoreWindow sender, PointerEventArgs args)
         {
+            _pointerPosition = args.CurrentPoint.Position;
+
             if (!_isShiftPressed ||
                 !_isCtrlPressed)
             {
                 return;
             }
 
-            FrameworkElement fe;
-            var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
-                args.CurrentPoint.Position, Window.Current.Content).First();
-            SelectItem(hoveredElement);
+            SelectElementUnderPointer();
         }
 
-        private async Task SelectItem(UIElement element)
+        private void SelectElementUnderPointer()
+        {
+            var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
+                _pointerPosition,
+                Window.Current.Content).First();
+#pragma warning disable 4014
+            SelectItem(hoveredElement);
+#pragma warning restore 4014
+        }
+
+        internal async void SelectItem(UIElement element)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
             var vm = this.RootElements[0] as DependencyObjectViewModel;
@@ -168,18 +179,34 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             if (args.VirtualKey == VirtualKey.Shift)
             {
                 _isShiftPressed = true;
+
+                if (_isCtrlPressed)
+                {
+                    SelectElementUnderPointer();
+                }
             }
             else if (args.VirtualKey == VirtualKey.Control)
             {
                 _isCtrlPressed = true;
+
+                if (_isShiftPressed)
+                {
+                    SelectElementUnderPointer();
+                }
             }
         }
 
+#pragma warning disable 1998
         private async Task Build()
+#pragma warning restore 1998
         {
             this.RootElements.Clear();
-            this.RootElements.Add(
-                await VisualTreeViewModelBuilder.Build(this, null, Window.Current.Content));
+            var rootElement = Window.Current.Content as UIElement;
+
+            if (rootElement != null)
+            {
+                this.RootElements.Add(new DependencyObjectViewModel(this, null, rootElement));
+            }
         }
 
         internal async Task Refresh()
@@ -240,7 +267,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     windowBounds.Width - elementBounds.Right,
                     windowBounds.Height - elementBounds.Bottom);
             }
+#pragma warning disable 168
             catch (Exception ex)
+#pragma warning restore 168
             {
                 HighlightVisibility = Visibility.Collapsed;
             }

@@ -148,6 +148,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PushTransition"/> class.
+        /// </summary>
         public PushTransition()
         {
             this.ForwardOutAnimation =
@@ -176,6 +179,11 @@ namespace WinRTXamlToolkit.Controls
                 };
         }
 
+        /// <summary>
+        /// Prepares the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareForwardAnimations(previousPage, newPage);
@@ -201,6 +209,11 @@ namespace WinRTXamlToolkit.Controls
             //    FrameworkElementExtensions.SetClipToBounds(newPage, true);
         }
 
+        /// <summary>
+        /// Prepares the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareBackwardAnimations(previousPage, newPage);
@@ -226,6 +239,11 @@ namespace WinRTXamlToolkit.Controls
             //    FrameworkElementExtensions.SetClipToBounds(newPage, true);
         }
 
+        /// <summary>
+        /// Cleans up the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void CleanupBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.CleanupBackwardAnimations(previousPage, newPage);
@@ -236,6 +254,11 @@ namespace WinRTXamlToolkit.Controls
             //    FrameworkElementExtensions.SetClipToBounds(newPage, false);
         }
 
+        /// <summary>
+        /// Cleans up the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void CleanupForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.CleanupForwardAnimations(previousPage, newPage);

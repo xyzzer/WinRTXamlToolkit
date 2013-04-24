@@ -251,11 +251,17 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebBrowser"/> class.
+        /// </summary>
         public WebBrowser()
         {
             DefaultStyleKey = typeof (WebBrowser);
         }
-        
+
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -506,6 +512,10 @@ namespace WinRTXamlToolkit.Controls
             UpdateBackStackKeys();
         }
 
+        /// <summary>
+        /// Navigates to the specified source uri.
+        /// </summary>
+        /// <param name="source">The source.</param>
         public void Navigate(Uri source)
         {
 #pragma warning disable 4014
@@ -513,6 +523,11 @@ namespace WinRTXamlToolkit.Controls
 #pragma warning restore 4014
         }
 
+        /// <summary>
+        /// Navigates to the specified source uri asynchronously.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public async Task NavigateAsync(Uri source)
         {
             _settingSourceWithCode = true;

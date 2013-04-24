@@ -389,10 +389,10 @@ namespace WinRTXamlToolkit.Controls
         /// <summary>
         /// ItemContainerStyleProperty property changed handler.
         /// </summary>
-        /// <param name="d">
+        /// <param name="sender">
         /// TreeView that changed its ItemContainerStyle.
         /// </param>
-        /// <param name="e">Event arguments.</param>
+        /// <param name="style">The new Style.</param>
         private void OnItemContainerStylePropertyChanged(object sender, Style style)
         {
             this.ItemsControlHelper.UpdateItemContainerStyle(style);
@@ -402,7 +402,7 @@ namespace WinRTXamlToolkit.Controls
         /// <summary>
         /// Gets the currently selected TreeViewItem container.
         /// </summary>
-        internal TreeViewItem SelectedContainer { get; private set; }
+        public TreeViewItem SelectedContainer { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the currently selected TreeViewItem

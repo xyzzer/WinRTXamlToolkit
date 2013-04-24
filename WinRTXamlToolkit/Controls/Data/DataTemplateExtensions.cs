@@ -2,6 +2,11 @@
 
 namespace WinRTXamlToolkit.Controls.Data
 {
+    /// <summary>
+    /// Implements the Hierarchy attached property of type <see cref="HierarchicalDataTemplate"/>
+    /// that is used in hierarchical controls such as <see cref="TreeView"/>
+    /// to define the bindings and templates used to visualize the hierarchy.
+    /// </summary>
     public static class DataTemplateExtensions
     {
         #region Hierarchy

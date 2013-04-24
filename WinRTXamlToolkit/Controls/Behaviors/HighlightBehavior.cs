@@ -235,6 +235,12 @@ namespace WinRTXamlToolkit.Controls.Behaviors
 
         private PropertyChangeEventSource<string> _textChangeEventSource;
 
+        /// <summary>
+        /// Called after the behavior is attached to an AssociatedObject.
+        /// </summary>
+        /// <remarks>
+        /// Override this to hook up functionality to the AssociatedObject.
+        /// </remarks>
         protected override void OnAttached()
         {
             UpdateHighlight();
@@ -243,6 +249,13 @@ namespace WinRTXamlToolkit.Controls.Behaviors
             base.OnAttached();
         }
 
+        /// <summary>
+        /// Called when the behavior is being detached from its AssociatedObject, but
+        /// before it has actually occurred.
+        /// </summary>
+        /// <remarks>
+        /// Override this to unhook functionality from the AssociatedObject.
+        /// </remarks>
         protected override void OnDetaching()
         {
             ClearHighlight();
@@ -256,6 +269,9 @@ namespace WinRTXamlToolkit.Controls.Behaviors
             UpdateHighlight();
         }
 
+        /// <summary>
+        /// Updates the highlight.
+        /// </summary>
         public void UpdateHighlight()
         {
             if (this.AssociatedObject == null ||
@@ -325,6 +341,9 @@ namespace WinRTXamlToolkit.Controls.Behaviors
             }
         }
 
+        /// <summary>
+        /// Clears the highlight.
+        /// </summary>
         public void ClearHighlight()
         {
             if (this.AssociatedObject == null)

@@ -160,6 +160,9 @@ namespace WinRTXamlToolkit.Tools
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the <see cref="TimeoutCheck"/> class.
+        /// </summary>
         ~TimeoutCheck()
         {
             Dispose(false);
@@ -174,6 +177,10 @@ namespace WinRTXamlToolkit.Tools
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes this instance.
+        /// </summary>
+        /// <param name="disposing">The disposing.</param>
         protected void Dispose(Boolean disposing)
         {
             Stop();

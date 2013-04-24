@@ -105,8 +105,14 @@ namespace WinRTXamlToolkit.Controls
                 typeof(PieSlice),
                 new PropertyMetadata(
                     0d,
-                    new PropertyChangedCallback(OnRadiusChanged)));
+                    OnRadiusChanged));
 
+        /// <summary>
+        /// Gets or sets the radius of the pie slice.
+        /// </summary>
+        /// <value>
+        /// The radius.
+        /// </value>
         public double Radius
         {
             get { return (double)GetValue(RadiusProperty); }

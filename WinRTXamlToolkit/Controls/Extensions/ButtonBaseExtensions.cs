@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Data;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Implements ButtonStateEventBehavior.
+    /// </summary>
     public static class ButtonBaseExtensions
     {
         #region ButtonStateEventBehavior
@@ -66,11 +69,21 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Handles ButtonStateEventBehavior.
+    /// </summary>
     public class ButtonStateEventBehavior : FrameworkElement
     {
         private ButtonBase _button;
 
+        /// <summary>
+        /// Occurs when the button is released.
+        /// </summary>
         public event EventHandler Up;
+
+        /// <summary>
+        /// Occurs when the button is pressed.
+        /// </summary>
         public event EventHandler Down;
 
         #region IsPressed
@@ -222,6 +235,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
+        /// <summary>
+        /// Attaches to the specified button.
+        /// </summary>
+        /// <param name="button">The button.</param>
         public void Attach(ButtonBase button)
         {
             Detach();
@@ -241,6 +258,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 });
         }
 
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
         public void Detach()
         {
             if (_button == null)
@@ -253,10 +273,16 @@ namespace WinRTXamlToolkit.Controls.Extensions
             ClearValue(IsPressedProperty);
         }
 
+        /// <summary>
+        /// Called when the button is released.
+        /// </summary>
         protected virtual void OnUp()
         {
         }
 
+        /// <summary>
+        /// Called when the button is pressed.
+        /// </summary>
         protected virtual void OnDown()
         {
         }

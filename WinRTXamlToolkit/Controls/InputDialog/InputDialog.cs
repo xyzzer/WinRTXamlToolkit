@@ -395,6 +395,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InputDialog"/> class.
+        /// </summary>
         public InputDialog()
         {
             this.DefaultStyleKey = typeof(InputDialog);
@@ -403,6 +406,9 @@ namespace WinRTXamlToolkit.Controls
             this.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -480,6 +486,17 @@ namespace WinRTXamlToolkit.Controls
             this.InputText = _inputTextBox.Text;
         }
 
+        /// <summary>
+        /// Shows the dialog asynchronously.
+        /// </summary>
+        /// <param name="title">The title string.</param>
+        /// <param name="text">The prompt text.</param>
+        /// <param name="buttonTexts">The button texts.</param>
+        /// <returns>
+        /// The task that completes when the dialog is closed.
+        /// The result is the text from the clicked button or null if the dialog is dismissed.
+        /// </returns>
+        /// <exception cref="System.InvalidOperationException">The dialog is already shown.</exception>
         public async Task<string> ShowAsync(string title, string text, params string[] buttonTexts)
         {
             if (_shown)

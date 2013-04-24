@@ -95,6 +95,9 @@ namespace WinRTXamlToolkit.Controls
             this.TextChanged += OnTextChanged;
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -122,12 +125,20 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Called before the GotFocus event occurs.
+        /// </summary>
+        /// <param name="e">The data for the event.</param>
         protected override void OnGotFocus(Windows.UI.Xaml.RoutedEventArgs e)
         {
             base.OnGotFocus(e);
             UpdateWatermarkVisualState(true);
         }
 
+        /// <summary>
+        /// Called before the LostFocus event occurs.
+        /// </summary>
+        /// <param name="e">The data for the event.</param>
         protected override void OnLostFocus(Windows.UI.Xaml.RoutedEventArgs e)
         {
             base.OnLostFocus(e);

@@ -152,11 +152,18 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region TransitionForward()
+        /// <summary>
+        /// Runs forward transition.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
+        /// <returns>The task that completes when the transition is complete.</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public async Task TransitionForward(DependencyObject previousPage, DependencyObject newPage)
         {
             if (previousPage == null && newPage == null)
             {
-                throw new InvalidOperationException();
+                throw new ArgumentNullException("newPage");
             }
 
             PrepareForwardAnimations(previousPage, newPage);
@@ -231,11 +238,18 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region TransitionBackward()
+        /// <summary>
+        /// Runs backward transition.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
+        /// <returns>The task that completes when the transition is complete.</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public async Task TransitionBackward(DependencyObject previousPage, DependencyObject newPage)
         {
             if (previousPage == null && newPage == null)
             {
-                throw new InvalidOperationException();
+                throw new ArgumentNullException("newPage");
             }
 
             PrepareBackwardAnimations(previousPage, newPage);
@@ -303,6 +317,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Updates the timeline attributes before the transition starts.
+        /// </summary>
         protected virtual void UpdateTimelineAttributes()
         {
             if (this.Mode == PageTransitionMode.Parallel)
@@ -359,18 +376,38 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Prepares the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected virtual void PrepareForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
         }
 
+        /// <summary>
+        /// Prepares the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected virtual void PrepareBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
         }
 
+        /// <summary>
+        /// Cleans up the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected virtual void CleanupForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
         }
 
+        /// <summary>
+        /// Cleans up the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected virtual void CleanupBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
         }

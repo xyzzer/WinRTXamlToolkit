@@ -361,6 +361,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AnimatingContainer"/> class.
+        /// </summary>
         public AnimatingContainer()
         {
             InitializeComponent();
@@ -368,6 +371,9 @@ namespace WinRTXamlToolkit.Controls
             this.Unloaded += OnUnloaded;
         }
 
+        /// <summary>
+        /// Animates this instance.
+        /// </summary>
         public void Animate()
         {
             IsAnimating = true;

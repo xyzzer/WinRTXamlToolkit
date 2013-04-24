@@ -445,6 +445,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Handles behaviors specified by ScrollViewerExtensions extension methods.
+    /// </summary>
     public class ScrollViewerAnimatedScrollHandler : FrameworkElement
     {
         private ScrollViewer _scrollViewer;
@@ -455,12 +458,19 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private Slider _sliderZoom;
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScrollViewerAnimatedScrollHandler"/> class.
+        /// </summary>
         public ScrollViewerAnimatedScrollHandler()
         {
         }
         #endregion
 
         #region Attach()
+        /// <summary>
+        /// Attaches to the specified scroll viewer.
+        /// </summary>
+        /// <param name="scrollViewer">The scroll viewer.</param>
         public void Attach(ScrollViewer scrollViewer)
         {
             _scrollViewer = scrollViewer;
@@ -486,6 +496,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
         #endregion Attach()
 
         #region Detach()
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
         public void Detach()
         {
             _scrollViewer = null;

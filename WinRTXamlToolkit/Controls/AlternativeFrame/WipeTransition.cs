@@ -180,6 +180,11 @@ namespace WinRTXamlToolkit.Controls
                 };
         }
 
+        /// <summary>
+        /// Prepares the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareForwardAnimations(previousPage, newPage);
@@ -202,6 +207,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Prepares the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void PrepareBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             base.PrepareBackwardAnimations(previousPage, newPage);
@@ -224,6 +234,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Cleans up the backward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void CleanupBackwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             newPage.ClearValue(Canvas.ZIndexProperty);
@@ -231,6 +246,11 @@ namespace WinRTXamlToolkit.Controls
             ((FrameworkElement)newPage).Clip = null;
         }
 
+        /// <summary>
+        /// Cleans up the forward animations.
+        /// </summary>
+        /// <param name="previousPage">The previous page.</param>
+        /// <param name="newPage">The new page.</param>
         protected override void CleanupForwardAnimations(DependencyObject previousPage, DependencyObject newPage)
         {
             newPage.ClearValue(Canvas.ZIndexProperty);

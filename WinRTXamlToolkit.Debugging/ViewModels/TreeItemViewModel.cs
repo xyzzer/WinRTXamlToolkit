@@ -20,11 +20,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region Children
-        private readonly ObservableCollection<TreeItemViewModel> _children = new ObservableCollection<TreeItemViewModel>();
+        private ObservableCollection<TreeItemViewModel> _children = new ObservableCollection<TreeItemViewModel>();
         public ObservableCollection<TreeItemViewModel> Children
         {
             get { return _children; }
-            //set { this.SetProperty(ref _children, value); }
+            set { this.SetProperty(ref _children, value); }
         }
         #endregion
 
@@ -47,7 +47,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     if (!_everSelected)
                     {
                         _everSelected = true;
+#pragma warning disable 4014
                         LoadProperties();
+#pragma warning restore 4014
                     }
 
                     this.TreeModel.SelectedItem = this;
@@ -68,7 +70,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     !_everExpanded)
                 {
                     _everExpanded = true;
+#pragma warning disable 4014
                     LoadChildren();
+#pragma warning restore 4014
                 }
             }
         }
@@ -91,16 +95,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.Parent = parent;
         }
 
-        public virtual async Task LoadProperties()
+#pragma warning disable 1998
+        internal virtual async Task LoadProperties()
         {
         }
 
-        public virtual async Task LoadChildren()
+        internal virtual async Task LoadChildren()
         {
         }
 
         internal virtual async Task Refresh()
         {
         }
+#pragma warning restore 1998
     }
 }

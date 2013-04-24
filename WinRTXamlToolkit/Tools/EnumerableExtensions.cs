@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace WinRTXamlToolkit.Tools
 {
+    /// <summary>
+    /// Provides extensions to IEnumerable types.
+    /// </summary>
     public static class EnumerableExtensions
     {
         private static readonly Random _random = new Random();

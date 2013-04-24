@@ -443,16 +443,29 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Called before the GotFocus event occurs.
+        /// </summary>
+        /// <param name="e">The data for the event.</param>
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             UpdateVisualState();
         }
 
+        /// <summary>
+        /// Called before the LostFocus event occurs.
+        /// </summary>
+        /// <param name="e">The data for the event.</param>
         protected override void OnLostFocus(RoutedEventArgs e)
         {
             UpdateVisualState();
         }
 
+        /// <summary>
+        /// Called when the LayoutUpdated event occurs.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void OnLayoutUpdated(object sender, object e)
         {
             UpdateVisualState();
@@ -484,6 +497,10 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Pointer event handlers
+        /// <summary>
+        /// Called before the PointerEntered event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             this.DetermineResizeCursor();
@@ -491,6 +508,10 @@ namespace WinRTXamlToolkit.Controls
 
         private uint? _dragPointer;
 
+        /// <summary>
+        /// Called before the PointerPressed event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             if (_dragPointer != null)

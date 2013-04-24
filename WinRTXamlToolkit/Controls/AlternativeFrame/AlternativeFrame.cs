@@ -314,6 +314,12 @@ namespace WinRTXamlToolkit.Controls
         #endregion 
 
         #region BackStackDepth
+        /// <summary>
+        /// Gets the back stack depth of the history back stack used for retrieving previously viewed pages.
+        /// </summary>
+        /// <value>
+        /// The back stack depth.
+        /// </value>
         public int BackStackDepth
         {
             get
@@ -324,6 +330,12 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region ForwardStackDepth
+        /// <summary>
+        /// Gets the forward stack depth of the history forward stack used for retrieving previously viewed pages.
+        /// </summary>
+        /// <value>
+        /// The forward stack depth.
+        /// </value>
         public int ForwardStackDepth
         {
             get
@@ -335,6 +347,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlternativeFrame"/> class.
+        /// </summary>
         public AlternativeFrame()
         {
             this.BackStack = new Stack<JournalEntry>();
@@ -481,11 +496,27 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Navigate()
+        /// <summary>
+        /// Navigates to source page of the specified type.
+        /// </summary>
+        /// <param name="sourcePageType">Type of the source page.</param>
+        /// <returns></returns>
         public async Task<bool> Navigate(Type sourcePageType)
         {
             return await Navigate(sourcePageType, null);
-        } 
+        }
 
+        /// <summary>
+        /// Navigates to source page of the specified type.
+        /// </summary>
+        /// <param name="sourcePageType">Type of the source page.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">
+        /// Navigation already in progress.
+        /// or
+        /// Navigate() call failed. CanNavigate is false.
+        /// </exception>
         public async Task<bool> Navigate(Type sourcePageType, object parameter)
         {
             if (_isNavigating)
@@ -506,6 +537,17 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region GoBack()
+        /// <summary>
+        /// Goes back in history back stack.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">
+        /// Navigation already in progress.
+        /// or
+        /// GoBack() call failed. CanGoBack is false.
+        /// or
+        /// GoBack() call failed. CanNavigate is false.
+        /// </exception>
         public async Task<bool> GoBack()
         {
             if (_isNavigating)
@@ -533,6 +575,17 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region GoForward()
+        /// <summary>
+        /// Runs the forward transiiton.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">
+        /// Navigation already in progress.
+        /// or
+        /// GoForward() call failed. CanGoForward is false.
+        /// or
+        /// GoForward() call failed. CanNavigate is false.
+        /// </exception>
         public async Task<bool> GoForward()
         {
             if (_isNavigating)

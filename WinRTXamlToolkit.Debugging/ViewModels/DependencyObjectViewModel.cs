@@ -140,7 +140,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _descendantCount != 0 ? string.Format(" [{0}]", _descendantCount) : string.Empty);
         }
 
-        public override async Task LoadProperties()
+        internal override async Task LoadProperties()
         {
             var type = this.Model.GetType();
 
@@ -162,15 +162,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.Properties = new ObservableCollection<BasePropertyViewModel>(properties.OrderBy(p => p.Name));
         }
 
-        public override async Task LoadChildren()
+#pragma warning disable 1998
+        internal override async Task LoadChildren()
+#pragma warning restore 1998
         {
-            this.Children.Clear();
-
-            foreach (var childElement in Model.GetChildren())
-            {
-                var childVM = await VisualTreeViewModelBuilder.Build(this.TreeModel, this, (UIElement)childElement);
-                this.Children.Add(childVM);
-            }
+            this.Children =
+                new ObservableCollection<TreeItemViewModel>(
+                    from childElement in Model.GetChildren().Cast<UIElement>()
+                    select new DependencyObjectViewModel(this.TreeModel, this, childElement));
 
             UpdateAscendantChildCounts();
         }

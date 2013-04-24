@@ -221,6 +221,9 @@ namespace WinRTXamlToolkit.Tools
             _stoppedEvent.Set();
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             if (_stopRequestEvent != null)
@@ -236,6 +239,9 @@ namespace WinRTXamlToolkit.Tools
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the <see cref="BackgroundTimer"/> class.
+        /// </summary>
         ~BackgroundTimer()
         {
             Dispose();

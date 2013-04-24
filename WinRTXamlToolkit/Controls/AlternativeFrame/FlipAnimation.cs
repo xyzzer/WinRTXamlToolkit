@@ -56,6 +56,12 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Gets the generated animation.
+        /// </summary>
+        /// <value>
+        /// The animation.
+        /// </value>
         protected override Storyboard Animation
         {
             get
@@ -105,6 +111,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Applies the target properties.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="animation">The animation.</param>
         protected override void ApplyTargetProperties(DependencyObject target, Storyboard animation)
         {
             var fe = (FrameworkElement)target;

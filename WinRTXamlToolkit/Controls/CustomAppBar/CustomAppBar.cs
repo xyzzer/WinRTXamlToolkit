@@ -54,7 +54,14 @@ namespace WinRTXamlToolkit.Controls
         private CompositeTransform _transitionTransform;
         private FrameworkElement _layoutRoot;
 
+        /// <summary>
+        /// Occurs when the app bar opens.
+        /// </summary>
         public event EventHandler<object> Opened;
+
+        /// <summary>
+        /// Occurs when the app bar closes.
+        /// </summary>
         public event EventHandler<object> Closed;
 
         #region IsOpen
@@ -351,6 +358,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomAppBar"/> class.
+        /// </summary>
         public CustomAppBar()
         {
             this.DefaultStyleKey = typeof(CustomAppBar);
@@ -450,12 +460,20 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region OnClosed()
+        /// <summary>
+        /// Called when the app bar closes.
+        /// </summary>
+        /// <param name="e">The e.</param>
         protected virtual void OnClosed(object e)
         {
         } 
         #endregion
 
         #region OnOpened()
+        /// <summary>
+        /// Called when app bar opens.
+        /// </summary>
+        /// <param name="e">The e.</param>
         protected virtual void OnOpened(object e)
         {
         } 

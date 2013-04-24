@@ -115,13 +115,23 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Occurs when the button is clicked.
+        /// </summary>
         public event RoutedEventHandler Click;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListItemButton"/> class.
+        /// </summary>
         public ListItemButton()
         {
             this.DefaultStyleKey = typeof(ListItemButton);
         }
 
+        /// <summary>
+        /// Called before the Tapped event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             base.OnTapped(e);
@@ -136,11 +146,19 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Called before the ManipulationStarting event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnManipulationStarting(Windows.UI.Xaml.Input.ManipulationStartingRoutedEventArgs e)
         {
             //base.OnManipulationStarting(e);
         }
 
+        /// <summary>
+        /// Called before the ManipulationStarted event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs e)
         {
             //base.OnManipulationStarted(e);

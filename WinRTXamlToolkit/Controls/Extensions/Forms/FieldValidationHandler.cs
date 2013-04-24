@@ -5,18 +5,39 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Handles validation of a form field value.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class FieldValidationHandler<T>
         where T : Control
     {
+        /// <summary>
+        /// The associated field.
+        /// </summary>
         protected T Field;
+
+        /// <summary>
+        /// Gets the field value.
+        /// </summary>
         protected abstract string GetFieldValue();
+
+        /// <summary>
+        /// Gets the max length of the field value.
+        /// </summary>
         protected abstract int GetMaxLength();
 
+        /// <summary>
+        /// Gets the min length of the field value.
+        /// </summary>
         protected virtual int GetMinLength()
         {
             return FieldValidationExtensions.GetMinLength(Field);
         }
 
+        /// <summary>
+        /// Validates the field value.
+        /// </summary>
         internal void Validate()
         {
             var format = FieldValidationExtensions.GetFormat(Field);
@@ -295,6 +316,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
             return double.TryParse(GetFieldValue(), out number);
         }
 
+        /// <summary>
+        /// Marks the field as valid.
+        /// </summary>
         protected virtual void MarkValid()
         {
             var brush = FieldValidationExtensions.GetValidBrush(Field);
@@ -304,6 +328,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             FieldValidationExtensions.SetValidationMessageVisibility(Field, Visibility.Collapsed);
         }
 
+        /// <summary>
+        /// Marks the field as invalid.
+        /// </summary>
+        /// <param name="errorMessage">The error message.</param>
         protected virtual void MarkInvalid(string errorMessage)
         {
             var brush = FieldValidationExtensions.GetInvalidBrush(Field);

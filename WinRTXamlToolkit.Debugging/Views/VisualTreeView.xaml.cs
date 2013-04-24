@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.ViewModels;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -21,7 +20,9 @@ namespace WinRTXamlToolkit.Debugging.Views
         private void OnRefreshButtonClick(object sender, RoutedEventArgs e)
         {
             var vm = (VisualTreeViewModel)this.DataContext;
+#pragma warning disable 4014
             vm.Refresh();
+#pragma warning restore 4014
         }
 
         private async void OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -94,7 +95,9 @@ namespace WinRTXamlToolkit.Debugging.Views
                     }
                 } while (needsScrolling);
             }
+#pragma warning disable 168
             catch (Exception ex)
+#pragma warning restore 168
             {
                 Debugger.Break();
             }

@@ -226,6 +226,9 @@ namespace WinRTXamlToolkit.Controls
         }
 
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -431,6 +434,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Fires the ValueChanged routed event.
+        /// </summary>
+        /// <param name="oldValue">Old value of the Value property.</param>
+        /// <param name="newValue">New value of the Value property.</param>
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);

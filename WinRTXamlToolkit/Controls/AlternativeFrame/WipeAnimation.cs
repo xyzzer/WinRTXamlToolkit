@@ -12,6 +12,9 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     public class WipeAnimation : PageTransitionAnimation
     {
+        private Slider _slider;
+        private FrameworkElement _fe;
+
         #region Direction
         /// <summary>
         /// Direction Dependency Property
@@ -55,9 +58,11 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private Slider _slider;
-        private FrameworkElement _fe;
-
+        /// <summary>
+        /// Applies the target properties.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="animation">The animation.</param>
         protected override void ApplyTargetProperties(DependencyObject target, Storyboard animation)
         {
             _fe = (FrameworkElement)target;

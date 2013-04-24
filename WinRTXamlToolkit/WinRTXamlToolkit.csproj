@@ -274,7 +274,6 @@
     <Compile Include="Tools\BackgroundTimer.cs" />
     <Compile Include="Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="Tools\EnumerableExtensions.cs" />
-    <Compile Include="Tools\PackageHelper.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />
   </ItemGroup>
