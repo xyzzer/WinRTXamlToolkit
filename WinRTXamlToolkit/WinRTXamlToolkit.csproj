@@ -129,6 +129,7 @@
     <Compile Include="AwaitableUI\EventAsync.cs" />
     <Compile Include="AwaitableUI\FrameworkElementExtensions.cs" />
     <Compile Include="AwaitableUI\MediaElementExtensions.cs" />
+    <Compile Include="AwaitableUI\ScrollViewerExtensions.cs" />
     <Compile Include="AwaitableUI\SelectorExtensions.cs" />
     <Compile Include="AwaitableUI\StoryboardExtensions.cs" />
     <Compile Include="AwaitableUI\WebViewExtensions.cs" />

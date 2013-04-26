@@ -116,17 +116,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             SelectElementUnderPointer();
         }
 
-        private void SelectElementUnderPointer()
+        private async void SelectElementUnderPointer()
         {
             var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
                 _pointerPosition,
                 Window.Current.Content).First();
+            if (!await SelectItem(hoveredElement))
+            {
+                await Refresh();
+            }
+
 #pragma warning disable 4014
             SelectItem(hoveredElement);
 #pragma warning restore 4014
         }
 
-        internal async void SelectItem(UIElement element)
+        internal async Task<bool> SelectItem(UIElement element)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
             var vm = this.RootElements[0] as DependencyObjectViewModel;
@@ -143,7 +148,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
                 //Debugger.Break();
-                return;
+                return false;
             }
 
             //Debug.Assert(vm.Model == ancestors[0]);
@@ -162,13 +167,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
                     Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
                     //Debugger.Break();
-                    break;
+                    return false;
                 }
 
                 vm = child;
             }
 
+            await Task.Delay(100);
             vm.IsSelected = true;
+            return true;
         }
 
         private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
