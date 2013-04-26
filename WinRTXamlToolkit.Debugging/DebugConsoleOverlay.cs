@@ -281,9 +281,9 @@ namespace WinRTXamlToolkit.Debugging
         }
 
         [Conditional("DEBUG")]
-        public static void ShowVisualTree()
+        public static void ShowVisualTree(UIElement element = null)
         {
-            DebugConsoleOverlay.ShowVisualTree();
+            DebugConsoleOverlay.ShowVisualTree(element);
         }
     }
 }

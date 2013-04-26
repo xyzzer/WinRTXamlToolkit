@@ -165,6 +165,9 @@
     <Compile Include="Views\Controls\TreeViewTestPage.xaml.cs">
       <DependentUpon>TreeViewTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Debugging\DebugTreeViewTestPage.xaml.cs">
+      <DependentUpon>DebugTreeViewTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\BackgroundTimerTestPage.xaml.cs">
       <DependentUpon>BackgroundTimerTestPage.xaml</DependentUpon>
     </Compile>
@@ -369,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\TreeViewTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Debugging\DebugTreeViewTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

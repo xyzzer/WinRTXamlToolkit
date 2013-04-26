@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using WinRTXamlToolkit.Composition;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Text;
@@ -169,10 +168,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
             this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
 
-            if (TreeModel.IsPreviewShown)
-            {
-                await this.LoadPreview();
-            }
+            //if (TreeModel.IsPreviewShown)
+            //{
+            //    await this.LoadPreview();
+            //}
         }
 
         private string GetTypeInheritanceInfo()
@@ -211,26 +210,26 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             await LoadProperties();
         }
 
-        public async Task LoadPreview()
-        {
-            var fe = this.Model as FrameworkElement;
-            if (fe == null)
-            {
-                return;
-            }
+//        public async Task LoadPreview()
+//        {
+//            var fe = this.Model as FrameworkElement;
+//            if (fe == null)
+//            {
+//                return;
+//            }
 
-            try
-            {
-                var wb = await WriteableBitmapRenderExtensions.Render(fe);
+//            try
+//            {
+//                var wb = await WriteableBitmapRenderExtensions.Render(fe);
 
-                PreviewImageSource = wb;
-            }
-// ReSharper disable EmptyGeneralCatchClause
-            catch
-// ReSharper restore EmptyGeneralCatchClause
-            {
-            }
-        }
+//                PreviewImageSource = wb;
+//            }
+//// ReSharper disable EmptyGeneralCatchClause
+//            catch
+//// ReSharper restore EmptyGeneralCatchClause
+//            {
+//            }
+//        }
     }
 
     public class DetailViewModel

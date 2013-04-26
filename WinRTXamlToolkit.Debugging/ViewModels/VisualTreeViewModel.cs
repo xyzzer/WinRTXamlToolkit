@@ -85,12 +85,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region IsPreviewShown
-        private bool _isPreviewShown;
-        public bool IsPreviewShown
-        {
-            get { return _isPreviewShown; }
-            set { this.SetProperty(ref _isPreviewShown, value); }
-        }
+        //private bool _isPreviewShown;
+        //public bool IsPreviewShown
+        //{
+        //    get { return _isPreviewShown; }
+        //    set { this.SetProperty(ref _isPreviewShown, value); }
+        //}
         #endregion
         
         public VisualTreeViewModel()

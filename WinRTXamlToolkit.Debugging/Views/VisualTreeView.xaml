@@ -52,8 +52,7 @@
             ItemsSource="{Binding RootElements}"
             Style="{StaticResource MouseTreeViewStyle}"
             IsSelectedBindingPath="IsSelected"
-            IsExpandedBindingPath="IsExpanded"
-            SelectedItemChanged="OnSelectedItemChanged">
+            IsExpandedBindingPath="IsExpanded">
             <controls:TreeView.ItemTemplate>
                 <DataTemplate>
                     <data:DataTemplateExtensions.Hierarchy>

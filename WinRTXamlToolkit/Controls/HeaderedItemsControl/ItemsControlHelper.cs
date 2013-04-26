@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using WinRTXamlToolkit.AwaitableUI;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -211,7 +212,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 verticalOffset -= verticalDelta - itemTop;
             }
-            scrollHost.ScrollToVerticalOffset(verticalOffset);
+            scrollHost.ScrollToVerticalOffsetWithAnimationAsync(verticalOffset);
 
             // Scroll horizontally
             double horizontalOffset = scrollHost.HorizontalOffset;
@@ -228,7 +229,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 horizontalOffset -= horizontalDelta - itemLeft;
             }
-            scrollHost.ScrollToHorizontalOffset(horizontalOffset);
+            scrollHost.ScrollToHorizontalOffsetWithAnimationAsync(horizontalOffset);
         }
     }
 }

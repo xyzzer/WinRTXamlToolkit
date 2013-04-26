@@ -713,7 +713,8 @@
                 Orientation="Horizontal"
                 VerticalAlignment="Bottom"
                 Margin="10,20,0,0"
-                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}">
+                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
+                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}">
                 <RadioButton
                     x:Name="LogTabButton"
                     Content="Log"

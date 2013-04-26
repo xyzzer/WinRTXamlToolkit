@@ -203,12 +203,12 @@
                     x:Name="DetailsTabButton"
                     Content="Details"
                     Style="{StaticResource TabButtonStyle}" />
-                <RadioButton
+                <!--<RadioButton
                     x:Name="PreviewTabButton"
                     Content="Preview"
                     Checked="PreviewTabButton_OnChecked"
                     IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
-                    Style="{StaticResource TabButtonStyle}" />
+                    Style="{StaticResource TabButtonStyle}" />-->
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer
@@ -257,7 +257,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <ScrollViewer
+        <!--<ScrollViewer
             x:Name="PreviewView"
             Visibility="{Binding IsChecked, ElementName=PreviewTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
             Grid.Row="1"
@@ -270,6 +270,6 @@
             HorizontalAlignment="Stretch">
             <Image
                 Source="{Binding PreviewImageSource}"/>
-        </ScrollViewer>
+        </ScrollViewer>-->
     </Grid>
 </UserControl>

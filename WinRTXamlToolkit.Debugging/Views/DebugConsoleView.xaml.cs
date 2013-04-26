@@ -60,6 +60,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         internal void ShowVisualTree(UIElement element = null)
         {
             VisualTreeButton.IsChecked = true;
+            EditButton.IsChecked = true;
 
             if (element != null)
             {
