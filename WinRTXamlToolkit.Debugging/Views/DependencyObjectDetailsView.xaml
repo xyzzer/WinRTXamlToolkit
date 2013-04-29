@@ -211,28 +211,47 @@
                     Style="{StaticResource TabButtonStyle}" />-->
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer
+        <Grid
             x:Name="PropertiesView"
-            Visibility="{Binding IsChecked, ElementName=PropertiesTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
             Grid.Row="1"
-            HorizontalAlignment="Stretch">
-            <ItemsControl
-                ItemsSource="{Binding Properties}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <TextBlock
-                                Text="{Binding Name}"
-                                FontWeight="Bold"
-                                Margin="0,0,10,0" />
-                            <TextBlock
-                                Text="{Binding ValueString}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+            HorizontalAlignment="Stretch"
+            Visibility="{Binding IsChecked, ElementName=PropertiesTabButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollViewer
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding Properties}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    FontWeight="Bold"
+                                    Margin="0,0,10,0" />
+                                <TextBlock
+                                    Text="{Binding ValueString}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel
+                Grid.Row="1"
+                Orientation="Horizontal">
+                <CheckBox
+                    Content="Show Unchanged"
+                    IsChecked="{Binding ShowDefaultedProperties, Mode=TwoWay}"
+                    FontSize="11" />
+            </StackPanel>
+        </Grid>
         <ScrollViewer
             x:Name="DetailsView"
             Visibility="{Binding IsChecked, ElementName=DetailsTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"

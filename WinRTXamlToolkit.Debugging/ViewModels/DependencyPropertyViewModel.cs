@@ -4,20 +4,43 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class DependencyPropertyViewModel : BasePropertyViewModel
     {
+        private readonly DependencyObjectViewModel _elementModel;
         private readonly DependencyProperty _dependencyProperty;
-        public bool IsDefault { get; private set; }
 
+        #region CTOR
         public DependencyPropertyViewModel(
             DependencyObjectViewModel elementModel,
             DependencyProperty dependencyProperty,
             string name)
         {
+            _elementModel = elementModel;
             _dependencyProperty = dependencyProperty;
             this.Name = name;
-            this.ValueString = (elementModel.Model.GetValue(dependencyProperty) ?? "<null>").ToString();
-            var localValue = elementModel.Model.ReadLocalValue(dependencyProperty);
-            this.IsDefault = localValue == DependencyProperty.UnsetValue;
             //elementModel.Model.GetAnimationBaseValue()
+        } 
+        #endregion
+
+        #region Value
+        public override object Value
+        {
+            get { return _elementModel.Model.GetValue(_dependencyProperty); }
+        } 
+        #endregion
+
+        #region IsDefault
+        public override bool IsDefault
+        {
+            get
+            {
+                if (_isDefault == null)
+                {
+                    var localValue = _elementModel.Model.ReadLocalValue(_dependencyProperty);
+                    _isDefault = localValue == DependencyProperty.UnsetValue;
+                }
+
+                return _isDefault.Value;
+            }
         }
+        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿//#define USE_XAML_SPY
+﻿#define USE_XAML_SPY
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;

@@ -1,7 +1,9 @@
 ﻿namespace WinRTXamlToolkit.Debugging.ViewModels
 {
-    public class BasePropertyViewModel : BindableBase
+    public abstract class BasePropertyViewModel : BindableBase
     {
+        protected bool? _isDefault;
+
         #region Name
         private string _name;
         public string Name
@@ -11,13 +13,22 @@
         }
         #endregion
 
-        #region ValueString
-        private string _valueString;
         public virtual string ValueString
         {
-            get { return _valueString; }
-            set { this.SetProperty(ref _valueString, value); }
+            get { return (this.Value ?? "<null>").ToString(); }
         }
-        #endregion
+
+        public abstract object Value { get; }
+
+        public abstract bool IsDefault { get; }
+
+        public void Refresh()
+        {
+            // ReSharper disable ExplicitCallerInfoArgument
+            OnPropertyChanged("Value");
+            OnPropertyChanged("ValueString");
+            OnPropertyChanged("IsDefault");
+            // ReSharper restore ExplicitCallerInfoArgument
+        }
     }
 }

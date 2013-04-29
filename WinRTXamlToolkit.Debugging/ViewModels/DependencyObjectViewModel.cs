@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -21,11 +22,32 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public string Description { get { return _description; } }
 
         #region Properties
-        private ObservableCollection<BasePropertyViewModel> _properties;
-        public ObservableCollection<BasePropertyViewModel> Properties
+        private List<BasePropertyViewModel> _allProperties;
+        public List<BasePropertyViewModel> Properties
         {
-            get { return _properties; }
-            set { this.SetProperty(ref _properties, value); }
+            get
+            {
+                return ShowDefaultedProperties
+                           ? _allProperties
+                           : _allProperties.Where(p => !p.IsDefault).ToList();
+            }
+        }
+        #endregion
+
+        #region ShowDefaultedProperties
+        private bool _showDefaultedProperties;
+        public bool ShowDefaultedProperties
+        {
+            get { return _showDefaultedProperties; }
+            set
+            {
+                if (this.SetProperty(ref _showDefaultedProperties, value))
+                {
+                    // ReSharper disable ExplicitCallerInfoArgument
+                    OnPropertyChanged("Properties");
+                    // ReSharper restore ExplicitCallerInfoArgument
+                }
+            }
         }
         #endregion
 
@@ -163,7 +185,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             var properties = dependencyProperties.Concat(plainProperties);
 
-            this.Properties = new ObservableCollection<BasePropertyViewModel>(properties.OrderBy(p => p.Name));
+            _allProperties = properties.OrderBy(p => p.Name).ToList();
+// ReSharper disable ExplicitCallerInfoArgument
+            OnPropertyChanged("Properties");
+// ReSharper restore ExplicitCallerInfoArgument
             this.Details.Clear();
             this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
             this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
