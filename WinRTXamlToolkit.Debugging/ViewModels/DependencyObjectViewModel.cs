@@ -27,30 +27,43 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return ShowDefaultedProperties
+                return ShowDefaultedProperties && ShowReadOnlyProperties
                            ? _allProperties
-                           : _allProperties.Where(p => !p.IsDefault).ToList();
+                           : _allProperties.Where(p => (ShowDefaultedProperties || !p.IsDefault) && (ShowReadOnlyProperties || !p.IsReadOnly)).ToList();
             }
         }
         #endregion
 
         #region ShowDefaultedProperties
-        private bool _showDefaultedProperties;
         public bool ShowDefaultedProperties
         {
-            get { return _showDefaultedProperties; }
+            get { return TreeModel.ShowDefaultedProperties; }
             set
             {
-                if (this.SetProperty(ref _showDefaultedProperties, value))
-                {
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    OnPropertyChanged("Properties");
-                    // ReSharper restore ExplicitCallerInfoArgument
-                }
+                TreeModel.ShowDefaultedProperties = value;
+                // ReSharper disable ExplicitCallerInfoArgument
+                OnPropertyChanged();
+                OnPropertyChanged("Properties");
+                // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
 
+        #region ShowReadOnlyProperties
+        public bool ShowReadOnlyProperties
+        {
+            get { return TreeModel.ShowReadOnlyProperties; }
+            set
+            {
+                TreeModel.ShowReadOnlyProperties = value;
+                // ReSharper disable ExplicitCallerInfoArgument
+                OnPropertyChanged();
+                OnPropertyChanged("Properties");
+                // ReSharper restore ExplicitCallerInfoArgument
+            }
+        }
+        #endregion
+        
         #region Name
         private string _name;
         public string Name
@@ -172,7 +185,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             var dependencyProperties =
                 (await DependencyPropertyCache.GetDependencyProperties(type))
-                    .Select(dpi => new DependencyPropertyViewModel(this, dpi.Property, dpi.DisplayName)).ToList();
+                    .Select(dpi => new DependencyPropertyViewModel(this, dpi)).ToList();
 
             var plainProperties =
                 type.GetRuntimeProperties()

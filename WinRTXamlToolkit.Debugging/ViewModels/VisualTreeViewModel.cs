@@ -92,6 +92,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         //    set { this.SetProperty(ref _isPreviewShown, value); }
         //}
         #endregion
+
+        #region ShowDefaultedProperties
+        private bool _showDefaultedProperties;
+        public bool ShowDefaultedProperties
+        {
+            get { return _showDefaultedProperties; }
+            set { this.SetProperty(ref _showDefaultedProperties, value); }
+        }
+        #endregion
+
+        #region ShowReadOnlyProperties
+        private bool _showReadOnlyProperties;
+        public bool ShowReadOnlyProperties
+        {
+            get { return _showReadOnlyProperties; }
+            set { this.SetProperty(ref _showReadOnlyProperties, value); }
+        }
+        #endregion
         
         public VisualTreeViewModel()
         {

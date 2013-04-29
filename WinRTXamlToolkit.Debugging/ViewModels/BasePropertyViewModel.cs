@@ -22,6 +22,8 @@
 
         public abstract bool IsDefault { get; }
 
+        public abstract bool IsReadOnly { get; }
+
         public void Refresh()
         {
             // ReSharper disable ExplicitCallerInfoArgument

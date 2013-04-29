@@ -182,39 +182,39 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ScrollViewer
-            Style="{StaticResource HorizontalScrollViewerStyle}">
-            <StackPanel
-                Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                Margin="0,0,0,0">
-                <RadioButton
-                    x:Name="PropertiesTabButton"
-                    Content="Properties"
-                    Style="{StaticResource TabButtonStyle}"
-                    IsChecked="True" />
-                <RadioButton
-                    x:Name="DetailsTabButton"
-                    Content="Details"
-                    Style="{StaticResource TabButtonStyle}" />
-                <!--<RadioButton
-                    x:Name="PreviewTabButton"
-                    Content="Preview"
-                    Checked="PreviewTabButton_OnChecked"
-                    IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
-                    Style="{StaticResource TabButtonStyle}" />-->
-            </StackPanel>
-        </ScrollViewer>
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,0">
+            <RadioButton
+                x:Name="PropertiesTabButton"
+                Content="Properties"
+                Style="{StaticResource TabButtonStyle}"
+                IsChecked="True" />
+            <RadioButton
+                x:Name="DetailsTabButton"
+                Content="Details"
+                Style="{StaticResource TabButtonStyle}" />
+            <!--<RadioButton
+                x:Name="PreviewTabButton"
+                Content="Preview"
+                Checked="PreviewTabButton_OnChecked"
+                IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
+                Style="{StaticResource TabButtonStyle}" />-->
+        </StackPanel>
         <Grid
             x:Name="PropertiesView"
             Grid.Row="1"
             HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Visibility="{Binding IsChecked, ElementName=PropertiesTabButton, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -228,6 +228,12 @@
                 HorizontalScrollBarVisibility="Auto">
                 <ItemsControl
                     ItemsSource="{Binding Properties}">
+                    <ItemsControl.Resources>
+                        <converters:BooleanToDoubleConverter
+                            x:Key="BooleanToDoubleConverter"
+                            FalseValue="1"
+                            TrueValue="0.5" />
+                    </ItemsControl.Resources>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel
@@ -237,7 +243,8 @@
                                     FontWeight="Bold"
                                     Margin="0,0,10,0" />
                                 <TextBlock
-                                    Text="{Binding ValueString}" />
+                                    Text="{Binding ValueString}"
+                                    Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -249,6 +256,10 @@
                 <CheckBox
                     Content="Show Unchanged"
                     IsChecked="{Binding ShowDefaultedProperties, Mode=TwoWay}"
+                    FontSize="11" />
+                <CheckBox
+                    Content="Show Read-Only"
+                    IsChecked="{Binding ShowReadOnlyProperties, Mode=TwoWay}"
                     FontSize="11" />
             </StackPanel>
         </Grid>

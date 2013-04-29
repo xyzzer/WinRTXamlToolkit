@@ -45,5 +45,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 return _isDefault.Value;
             }
         }
+
+        public override bool IsReadOnly
+        {
+            get
+            {
+                var sm = _propertyInfo.SetMethod;
+
+                return sm == null;
+            }
+        }
     }
 }

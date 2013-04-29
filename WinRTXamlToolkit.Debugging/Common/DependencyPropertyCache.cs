@@ -16,7 +16,7 @@ namespace WinRTXamlToolkit.Debugging.Common
     {
         private static Task _initializationTask;
 
-        public static List<DependencyPropertyInfo> AttachedProperties { get; private set; }
+        public static HashSet<DependencyPropertyInfo> AttachedProperties { get; private set; }
         public static Dictionary<Type, List<DependencyPropertyInfo>> DependencyProperties { get; private set; }
 
         static DependencyPropertyCache()
@@ -29,7 +29,7 @@ namespace WinRTXamlToolkit.Debugging.Common
             var tcs = new TaskCompletionSource<bool>(false);
             _initializationTask = tcs.Task;
 
-            AttachedProperties = new List<DependencyPropertyInfo>();
+            AttachedProperties = new HashSet<DependencyPropertyInfo>();
             DependencyProperties = new Dictionary<Type, List<DependencyPropertyInfo>>();
 
             var platformTypes = typeof(FrameworkElement).GetTypeInfo().Assembly.ExportedTypes;
@@ -79,9 +79,10 @@ namespace WinRTXamlToolkit.Debugging.Common
                     var name = dpPropertyInfo.Name.Substring(
                         0, dpPropertyInfo.Name.Length - "Property".Length);
                     var displayName = string.Format("{0}.{1}", type.Name, name);
+                    var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
                     AttachedProperties.Add(
                         new DependencyPropertyInfo(
-                            (DependencyProperty)dpPropertyInfo.GetValue(type),
+                            dependencyProperty,
                             name,
                             type,
                             displayName));

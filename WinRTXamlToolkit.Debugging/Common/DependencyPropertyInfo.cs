@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Debugging.Common
 {
-    internal class DependencyPropertyInfo
+    public class DependencyPropertyInfo
     {
         public DependencyProperty Property { get; private set; }
         public string Name { get; private set; }

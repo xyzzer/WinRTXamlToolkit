@@ -231,6 +231,7 @@
     <Compile Include="Controls\WrapPanel\OrientedSize.cs" />
     <Compile Include="Controls\WrapPanel\WrapPanel.cs" />
     <Compile Include="Converters\BooleanToDataTemplateConverter.cs" />
+    <Compile Include="Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\MultiplyConverter.cs" />

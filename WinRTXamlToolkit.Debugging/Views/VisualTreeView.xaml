@@ -87,6 +87,8 @@
             Grid.Column="2"
             Grid.RowSpan="2"
             Content="{Binding SelectedItem}"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
             ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}"/>
         <StackPanel
             Orientation="Horizontal"
