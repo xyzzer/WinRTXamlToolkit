@@ -225,6 +225,7 @@
     <Compile Include="Controls\TreeView\TreeViewItemAutomationPeer.cs" />
     <Compile Include="Controls\Common\VisualStates.cs" />
     <Compile Include="Controls\UniformGrid\UniformGrid.cs" />
+    <Compile Include="Controls\WatermarkPasswordBox\WatermarkPasswordBox.cs" />
     <Compile Include="Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
     <Compile Include="Controls\Extensions\WebViewExtensions.cs" />
@@ -341,6 +342,10 @@
     <Page Include="Controls\TreeView\TreeViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\WatermarkTextBox\WatermarkTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>

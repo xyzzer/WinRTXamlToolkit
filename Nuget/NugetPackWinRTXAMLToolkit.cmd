@@ -30,6 +30,7 @@ mkdir lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\TreeView
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\WatermarkPasswordBox
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 mkdir lib\netcore45\WinRTXamlToolkit\Themes
@@ -73,6 +74,7 @@ copy ..\WinRTXamlToolkit\bin\Release\Controls\ImageToggleButton\*.xaml lib\netco
 copy ..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
 copy ..\WinRTXamlToolkit\bin\Release\Controls\NumericUpDown\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown
 copy ..\WinRTXamlToolkit\bin\Release\Controls\TreeView\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\TreeView
+copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkPasswordBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkPasswordBox
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes

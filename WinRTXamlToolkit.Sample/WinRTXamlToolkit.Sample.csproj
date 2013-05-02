@@ -162,6 +162,9 @@
     <Compile Include="Views\Controls\AnimatingContainerTestPage.xaml.cs">
       <DependentUpon>AnimatingContainerTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs">
+      <DependentUpon>WatermarkPasswordBoxTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\TreeViewTestPage.xaml.cs">
       <DependentUpon>TreeViewTestPage.xaml</DependentUpon>
     </Compile>
@@ -370,6 +373,10 @@
     <Page Include="Views\Controls\AnimatingContainerTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\TreeViewTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>

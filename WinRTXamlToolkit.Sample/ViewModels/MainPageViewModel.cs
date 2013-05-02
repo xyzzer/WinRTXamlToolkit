@@ -221,6 +221,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new ButtonViewModel
                 {
+                    Caption = "WatermarkPasswordBox",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WatermarkPasswordBoxTestPage)))
+                },
+                new ButtonViewModel
+                {
                     Caption = "WatermarkTextBox",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WatermarkTextBoxTestPage)))
                 },

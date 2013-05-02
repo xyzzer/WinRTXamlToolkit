@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Input;
 namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
-    /// A TextBox with watermark text
+    /// TextBox with a watermark
     /// </summary>
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkVisibleStateName)]
     [TemplateVisualState(GroupName = WatermarkStatesGroupName, Name = WatermarkHiddenStateName)]
