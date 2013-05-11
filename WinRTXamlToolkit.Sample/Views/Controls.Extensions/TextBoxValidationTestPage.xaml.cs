@@ -1,5 +1,6 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using System.Threading.Tasks;
+using WinRTXamlToolkit.Sample.ViewModels.Controls.Extensions;
+using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -8,6 +9,7 @@ namespace WinRTXamlToolkit.Sample.Views
         public TextBoxValidationTestPage()
         {
             this.InitializeComponent();
+            this.DataContext = new TextBoxValidationTestPageViewModel();
         }
 
         private void GoBack(object sender, RoutedEventArgs e)

@@ -200,6 +200,24 @@
                 extensions:FieldValidationExtensions.Format="NonEmptyNumeric"
                 extensions:FieldValidationExtensions.InvalidBrush="Red"
                 extensions:FieldValidationExtensions.ValidBrush="Green" />
+
+            <TextBlock
+                Style="{StaticResource BasicTextStyle}"
+                Margin="0,20,0,0"
+                Text="Numeric, Data-bound" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="NumericTextBoxDataBound"
+                    Text="{Binding NumericText, Mode=TwoWay}"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.Format="Numeric" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=NumericTextBoxDataBound}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=NumericTextBoxDataBound}" />
+            </StackPanel>
         </controls:WrapPanel>
     </Grid>
 </controls:AlternativePage>

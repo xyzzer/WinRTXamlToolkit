@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
@@ -10,6 +11,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         internal void Detach()
         {
             Field.TextChanged -= OnTextBoxTextChanged;
+            Field.Loaded -= OnTextBoxLoaded;
             Field = null;
         }
 
@@ -27,8 +29,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             Field = textBox;
             Field.TextChanged += OnTextBoxTextChanged;
+            Field.Loaded += OnTextBoxLoaded;
 
-            this. Validate();
+            this.Validate();
+        }
+
+        private void OnTextBoxLoaded(object sender, RoutedEventArgs e)
+        {
+            this.Validate();
         }
 
         private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)

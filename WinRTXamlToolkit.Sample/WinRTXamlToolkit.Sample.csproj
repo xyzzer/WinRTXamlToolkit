@@ -143,6 +143,7 @@
     <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
+    <Compile Include="ViewModels\Controls.Extensions\TextBoxValidationTestPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />

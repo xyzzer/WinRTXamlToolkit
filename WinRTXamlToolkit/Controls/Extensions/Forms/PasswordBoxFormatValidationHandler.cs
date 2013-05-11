@@ -11,6 +11,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         internal void Detach()
         {
             Field.PasswordChanged -= OnPasswordChanged;
+            Field.Loaded -= OnPasswordBoxLoaded;
             Field = null;
         }
 
@@ -28,8 +29,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             Field = passwordBox;
             Field.PasswordChanged += OnPasswordChanged;
+            Field.Loaded += OnPasswordBoxLoaded;
 
-            this. Validate();
+            this.Validate();
+        }
+
+        private void OnPasswordBoxLoaded(object sender, RoutedEventArgs e)
+        {
+            this.Validate();
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs routedEventArgs)
