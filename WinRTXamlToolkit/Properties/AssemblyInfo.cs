@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
 
@@ -11,6 +10,6 @@ using System.Resources;
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.3.8.0")]
+[assembly: AssemblyVersion("1.3.8.1")]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguageAttribute("en")]
