@@ -71,39 +71,46 @@ namespace WinRTXamlToolkit.Debugging.Common
                         pi.GetMethod.IsStatic &&
                         pi.PropertyType == typeof (DependencyProperty)))
             {
-                var propertyName = dpPropertyInfo.Name.Substring(
-                    0, dpPropertyInfo.Name.Length - "Property".Length);
-
-                if (typeInfo.GetDeclaredProperty(propertyName) == null)
+                try
                 {
-                    var name = dpPropertyInfo.Name.Substring(
+                    var propertyName = dpPropertyInfo.Name.Substring(
                         0, dpPropertyInfo.Name.Length - "Property".Length);
-                    var displayName = string.Format("{0}.{1}", type.Name, name);
-                    var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
-                    AttachedProperties.Add(
-                        new DependencyPropertyInfo(
-                            dependencyProperty,
-                            name,
-                            type,
-                            displayName));
-                }
-                else
-                {
-                    if (propertyList == null)
+
+                    if (typeInfo.GetDeclaredProperty(propertyName) == null)
                     {
-                        propertyList = new List<DependencyPropertyInfo>();
-                        DependencyProperties.Add(type, propertyList);
+                        var name = dpPropertyInfo.Name.Substring(
+                            0, dpPropertyInfo.Name.Length - "Property".Length);
+                        var displayName = string.Format("{0}.{1}", type.Name, name);
+                        var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
+                        AttachedProperties.Add(
+                            new DependencyPropertyInfo(
+                                dependencyProperty,
+                                name,
+                                type,
+                                displayName));
                     }
+                    else
+                    {
+                        if (propertyList == null)
+                        {
+                            propertyList = new List<DependencyPropertyInfo>();
+                            DependencyProperties.Add(type, propertyList);
+                        }
 
-                    var name = dpPropertyInfo.Name.Substring(
-                        0, dpPropertyInfo.Name.Length - "Property".Length);
+                        var name = dpPropertyInfo.Name.Substring(
+                            0, dpPropertyInfo.Name.Length - "Property".Length);
 
-                    propertyList.Add(
-                        new DependencyPropertyInfo(
-                            (DependencyProperty)dpPropertyInfo.GetValue(type),
-                            name,
-                            type,
-                            name));
+                        propertyList.Add(
+                            new DependencyPropertyInfo(
+                                (DependencyProperty)dpPropertyInfo.GetValue(type),
+                                name,
+                                type,
+                                name));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
                 }
             }
         }

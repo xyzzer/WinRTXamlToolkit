@@ -46,8 +46,13 @@ namespace WinRTXamlToolkit.Debugging
                 Child = _debugConsoleView,
             };
 
-            var panel = Window.Current.Content.GetFirstAncestorOfType<Panel>();
-            panel.Children.Add(_popup);
+            var panel = Window.Current.Content.GetFirstDescendantOfType<Panel>();
+
+            if (panel != null)
+            {
+                panel.Children.Add(_popup);
+            }
+
             _popup.IsOpen = true;
 
             Window.Current.SizeChanged += OnWindowSizeChanged;
