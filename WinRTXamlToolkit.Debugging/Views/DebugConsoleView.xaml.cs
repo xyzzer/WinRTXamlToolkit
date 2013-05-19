@@ -62,9 +62,12 @@ namespace WinRTXamlToolkit.Debugging.Views
             VisualTreeButton.IsChecked = true;
             EditButton.IsChecked = true;
 
-            if (element != null)
+            if (element != null &&
+                _viewModel.VisualTreeView != null)
             {
+#pragma warning disable 4014
                 _viewModel.VisualTreeView.SelectItem(element);
+#pragma warning restore 4014
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.IO.Extensions;
 using WinRTXamlToolkit.Net;
+using WinRTXamlToolkit.Sample.Commands;
 using WinRTXamlToolkit.Sample.Views;
 using Windows.Media.Capture;
 using Windows.Storage;

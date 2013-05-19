@@ -276,8 +276,27 @@ namespace WinRTXamlToolkit.Controls.Extensions
             d.SetValue(CursorDisplayHandlerProperty, value);
         }
         #endregion
+
+        #region HasNonDefaultValue()
+        /// <summary>
+        /// Determines whether the element has a non default value of the specified dependency property.
+        /// </summary>
+        /// <param name="this">The this.</param>
+        /// <param name="dp">The dp.</param>
+        /// <returns>
+        ///   <c>true</c> if the element has a non default value of the specified dependency property; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasNonDefaultValue(
+            this DependencyObject @this,
+            DependencyProperty dp)
+        {
+            var localValue = @this.ReadLocalValue(dp);
+            return localValue != DependencyProperty.UnsetValue;
+        } 
+        #endregion
     }
 
+    #region ClipToBoundsHandler
     /// <summary>
     /// Handles the ClipToBounds attached behavior defined by the attached property
     /// of the <see cref="FrameworkElementExtensions"/> class.
@@ -325,8 +344,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             _fe.SizeChanged -= OnSizeChanged;
             _fe = null;
         }
-    }
+    } 
+    #endregion
 
+    #region CursorDisplayHandler
     /// <summary>
     /// Handles the Cursor attached behavior defined by the attached property
     /// of the <see cref="FrameworkElementExtensions"/> class.
@@ -418,5 +439,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 }
             }
         }
-    }
+    } 
+    #endregion
 }

@@ -217,6 +217,30 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        #region DragSpeed
+        /// <summary>
+        /// DragSpeed Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty DragSpeedProperty =
+            DependencyProperty.Register(
+                "DragSpeed",
+                typeof(double),
+                typeof(NumericUpDown),
+                new PropertyMetadata(double.NaN));
+
+        /// <summary>
+        /// Gets or sets the DragSpeed property. This dependency property 
+        /// indicates the speed with which the value changes when manipulated with dragging.
+        /// The default value of double.NaN indicates that the value will change by (Maximum - Minimum),
+        /// when the control is dragged a full screen length.
+        /// </summary>
+        public double DragSpeed
+        {
+            get { return (double)GetValue(DragSpeedProperty); }
+            set { SetValue(DragSpeedProperty, value); }
+        }
+        #endregion
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NumericUpDown" /> class.
         /// </summary>
@@ -232,7 +256,9 @@ namespace WinRTXamlToolkit.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
+            this.GotFocus += OnGotFocus;
+            this.LostFocus += OnLostFocus;
+            this.PointerWheelChanged += OnPointerWheelChanged;
             _valueTextBox = GetTemplateChild(ValueTextBoxName) as TextBox;
             _dragOverlay = GetTemplateChild(DragOverlayName) as UIElement;
             _decrementButton = GetTemplateChild(DecrementButtonName) as RepeatButton;
@@ -284,6 +310,39 @@ namespace WinRTXamlToolkit.Controls
             SetValidIncrementDirection();
         }
 
+        private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+            if (!_hasFocus)
+            {
+                return;
+            }
+
+            var delta = pointerRoutedEventArgs.GetCurrentPoint(this).Properties.MouseWheelDelta;
+
+            if (delta < 0)
+            {
+                this.Decrement();
+            }
+            else
+            {
+                this.Increment();
+            }
+
+            pointerRoutedEventArgs.Handled = true;
+        }
+
+        private bool _hasFocus;
+
+        private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            _hasFocus = false;
+        }
+
+        private void OnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            _hasFocus = true;
+        }
+
         private void OnValueTextBoxTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
             if (_isChangingTextWithCode)
@@ -305,31 +364,33 @@ namespace WinRTXamlToolkit.Controls
         #region Button event handlers
         private void OnDecrementButtonIsPressedChanged(object decrementButton, bool isPressed)
         {
-        }
-
-        private void OnDecrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Decrement();
+            // TODO: The thinking was to handle speed and acceleration of value changes manually on a regular Button when it is pressed.
+            // Currently just using RepeatButtons
         }
 
         private void OnIncrementButtonIsPressedChanged(object incrementButton, bool isPressed)
         {
         }
 
+        private void OnDecrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            this.Decrement();
+        }
+
         private void OnIncrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            Increment();
+            this.Increment();
         }
         #endregion
 
-        private void Decrement()
+        private bool Decrement()
         {
-            SetValueAndUpdateValidDirections(this.Value - this.SmallChange);
+            return SetValueAndUpdateValidDirections(this.Value - this.SmallChange);
         }
 
-        private void Increment()
+        private bool Increment()
         {
-            SetValueAndUpdateValidDirections(this.Value + this.SmallChange);
+            return SetValueAndUpdateValidDirections(this.Value + this.SmallChange);
         }
 
         private void OnValueTextBoxGotFocus(object sender, RoutedEventArgs routedEventArgs)
@@ -419,7 +480,20 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
-            var speed = Maximum - Minimum;
+            var speed = this.DragSpeed;
+
+            if (double.IsNaN(speed) ||
+                double.IsInfinity(speed))
+            {
+                speed = this.Maximum - this.Minimum;
+            }
+
+            if (double.IsNaN(speed) ||
+                double.IsInfinity(speed))
+            {
+                speed = double.MaxValue;
+            }
+
             var screenAdjustedDelta = speed * _unusedManipulationDelta / smallerScreenDimension;
             SetValueAndUpdateValidDirections(this.Value + screenAdjustedDelta);
             _unusedManipulationDelta = 0;
@@ -509,11 +583,14 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private void SetValueAndUpdateValidDirections(double value)
+        private bool SetValueAndUpdateValidDirections(double value)
         {
             // Range coercion is handled by base class.
+            var oldValue = this.Value;
             this.Value = value;
             this.SetValidIncrementDirection();
+
+            return this.Value != oldValue;
         }
 
         private void SetValidIncrementDirection()

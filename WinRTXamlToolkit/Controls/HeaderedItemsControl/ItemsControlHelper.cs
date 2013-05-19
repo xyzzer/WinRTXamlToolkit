@@ -177,6 +177,7 @@ namespace WinRTXamlToolkit.Controls
         {
             // Get the ScrollHost
             ScrollViewer scrollHost = ScrollHost;
+
             if (scrollHost == null)
             {
                 return;
@@ -184,6 +185,7 @@ namespace WinRTXamlToolkit.Controls
 
             // Get the position of the element relative to the ScrollHost
             GeneralTransform transform = null;
+
             try
             {
                 transform = element.TransformToVisual(scrollHost);
@@ -193,6 +195,7 @@ namespace WinRTXamlToolkit.Controls
                 // Ignore failures when not in the visual tree
                 return;
             }
+
             Rect itemRect = new Rect(
                 transform.TransformPoint(new Point()),
                 transform.TransformPoint(new Point(element.ActualWidth, element.ActualHeight)));
@@ -202,34 +205,46 @@ namespace WinRTXamlToolkit.Controls
             double verticalDelta = 0;
             double hostBottom = scrollHost.ViewportHeight;
             double itemBottom = itemRect.Bottom;
+
             if (hostBottom < itemBottom)
             {
                 verticalDelta = itemBottom - hostBottom;
                 verticalOffset += verticalDelta;
             }
+
             double itemTop = itemRect.Top;
+
             if (itemTop - verticalDelta < 0)
             {
                 verticalOffset -= verticalDelta - itemTop;
             }
+
+#pragma warning disable 4014
             scrollHost.ScrollToVerticalOffsetWithAnimationAsync(verticalOffset);
+#pragma warning restore 4014
 
             // Scroll horizontally
             double horizontalOffset = scrollHost.HorizontalOffset;
             double horizontalDelta = 0;
             double hostRight = scrollHost.ViewportWidth;
             double itemRight = itemRect.Right;
+
             if (hostRight < itemRight)
             {
                 horizontalDelta = itemRight - hostRight;
                 horizontalOffset += horizontalDelta;
             }
+
             double itemLeft = itemRect.Left;
+
             if (itemLeft - horizontalDelta < 0)
             {
                 horizontalOffset -= horizontalDelta - itemLeft;
             }
+
+#pragma warning disable 4014
             scrollHost.ScrollToHorizontalOffsetWithAnimationAsync(horizontalOffset);
+#pragma warning restore 4014
         }
     }
 }

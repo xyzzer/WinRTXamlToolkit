@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
@@ -20,6 +21,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get
             {
                 return _propertyInfo.GetValue(_elementModel.Model, new object[] { });
+            }
+            set
+            {
+                _propertyInfo.SetValue(_elementModel.Model, value);
+                _isDefault = null;
+                OnPropertyChanged();
+                // ReSharper disable ExplicitCallerInfoArgument
+                OnPropertyChanged("CanResetValue");
+                OnPropertyChanged("IsDefault");
+                // ReSharper restore ExplicitCallerInfoArgument
+            }
+        }
+
+        public override Type PropertyType
+        {
+            get
+            {
+                return _propertyInfo.PropertyType;
             }
         }
 
@@ -54,6 +73,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 return sm == null;
             }
+        }
+
+        public override bool CanResetValue
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void ResetValue()
+        {
+            _isDefault = null;
+            OnPropertyChanged();
+            // ReSharper disable ExplicitCallerInfoArgument
+            OnPropertyChanged("CanResetValue");
+            OnPropertyChanged("IsDefault");
+            // ReSharper restore ExplicitCallerInfoArgument
         }
     }
 }

@@ -15,10 +15,12 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml" />
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate
                 x:Key="DependencyPropertyDetailsTemplate">
-                <local:DependencyObjectDetailsView/>
+                <local:DependencyObjectDetailsView />
             </DataTemplate>
             <DataTemplate
                 x:Key="DefaultDetailsTemplate">
@@ -89,15 +91,24 @@
             Content="{Binding SelectedItem}"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
-            ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}"/>
+            ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
         <StackPanel
-            Orientation="Horizontal"
             Grid.Row="1">
-            <Button
-                Content="Refresh"
-                Click="OnRefreshButtonClick"
-                Style="{StaticResource TextButtonStyle}"
-                Margin="0,0,20,0"/>
+            <StackPanel
+                Orientation="Horizontal">
+                <Button
+                    x:Name="RefreshButton"
+                    Content="Refresh"
+                    Click="OnRefreshButtonClick"
+                    Style="{StaticResource WrtxtdTextButtonStyle}"
+                    Margin="0,0,20,0" />
+                <Button
+                    x:Name="SelectFocusedButton"
+                    Content="Select Focused"
+                    Click="OnSelectFocusedClick"
+                    IsTabStop="False"
+                    Style="{StaticResource WrtxtdTextButtonStyle}" />
+            </StackPanel>
             <TextBlock
                 Text="Hover with Ctrl+Shift to select element."
                 VerticalAlignment="Bottom" />

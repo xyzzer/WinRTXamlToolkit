@@ -17,9 +17,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
     public class DependencyObjectViewModel : TreeItemViewModel
     {
         internal DependencyObject Model { get; private set; }
-        private readonly string _description;
 
-        public string Description { get { return _description; } }
+        public event EventHandler ModelPropertyChanged;
+
+        public string Description { get { return null; } }
 
         #region Properties
         private List<BasePropertyViewModel> _allProperties;
@@ -27,7 +28,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return ShowDefaultedProperties && ShowReadOnlyProperties
+                return ShowDefaultedProperties && ShowReadOnlyProperties || _allProperties == null
                            ? _allProperties
                            : _allProperties.Where(p => (ShowDefaultedProperties || !p.IsDefault) && (ShowReadOnlyProperties || !p.IsReadOnly)).ToList();
             }
@@ -199,6 +200,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             var properties = dependencyProperties.Concat(plainProperties);
 
             _allProperties = properties.OrderBy(p => p.Name).ToList();
+
+            foreach (var propertyViewModel in _allProperties)
+            {
+                propertyViewModel.PropertyChanged += OnPropertyPropertyChanged;
+            }
+
 // ReSharper disable ExplicitCallerInfoArgument
             OnPropertyChanged("Properties");
 // ReSharper restore ExplicitCallerInfoArgument
@@ -210,6 +217,16 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             //{
             //    await this.LoadPreview();
             //}
+        }
+
+        private void OnPropertyPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var handler = this.ModelPropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
         }
 
         private string GetTypeInheritanceInfo()
@@ -235,7 +252,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             this.Children =
                 new ObservableCollection<TreeItemViewModel>(
-                    from childElement in Model.GetChildren().Cast<UIElement>()
+                    from childElement in this.Model.GetChildren().Cast<UIElement>()
                     select new DependencyObjectViewModel(this.TreeModel, this, childElement));
 
             UpdateAscendantChildCounts();

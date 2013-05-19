@@ -1,4 +1,8 @@
-﻿namespace WinRTXamlToolkit.Debugging.ViewModels
+﻿using System;
+using System.ComponentModel;
+using WinRTXamlToolkit.Debugging.Commands;
+
+namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public abstract class BasePropertyViewModel : BindableBase
     {
@@ -18,11 +22,35 @@
             get { return (this.Value ?? "<null>").ToString(); }
         }
 
-        public abstract object Value { get; }
+        public abstract object Value { get; set; }
+
+        public abstract Type PropertyType { get; }
 
         public abstract bool IsDefault { get; }
 
         public abstract bool IsReadOnly { get; }
+
+        public abstract bool CanResetValue { get; }
+
+        public abstract void ResetValue();
+
+        public RelayCommand ResetValueCommand { get; private set; }
+
+        public BasePropertyViewModel()
+        {
+            this.ResetValueCommand = new RelayCommand(
+                this.ResetValue,
+                () => this.CanResetValue);
+            this.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "CanResetValue")
+            {
+                this.ResetValueCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public void Refresh()
         {

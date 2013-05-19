@@ -112,5 +112,55 @@ namespace WinRTXamlToolkit.Controls.Extensions
             await control.FadeIn();
         }
         #endregion
+
+        #region PrepareContentControl()
+        /// <summary>
+        /// Prepares the content control for use in an ItemsControl.
+        /// </summary>
+        /// <param name="this">The this.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="itemTemplate">The item template.</param>
+        /// <param name="itemTemplateSelector">The item template selector.</param>
+        public static void PrepareContentControl(
+            this ContentControl @this,
+            object item,
+            DataTemplate itemTemplate,
+            DataTemplateSelector itemTemplateSelector)
+        {
+            if (item != @this)
+            {
+                if (!@this.HasNonDefaultValue(ContentControl.ContentProperty))
+                {
+                    @this.Content = item;
+                }
+
+                if (itemTemplate != null)
+                {
+                    @this.SetValue(ContentControl.ContentTemplateProperty, itemTemplate);
+                }
+                if (itemTemplateSelector != null)
+                {
+                    @this.SetValue(ContentControl.ContentTemplateSelectorProperty, itemTemplateSelector);
+                }
+            }
+        } 
+        #endregion
+
+        #region ClearContentControl()
+        /// <summary>
+        /// Clears the content control after using in an ItemsControl.
+        /// </summary>
+        /// <param name="this">The this.</param>
+        /// <param name="item">The item.</param>
+        public static void ClearContentControl(
+            this ContentControl @this,
+            object item)
+        {
+            if (item != @this)
+            {
+                @this.ClearValue(ContentControl.ContentProperty);
+            }
+        } 
+        #endregion
     }
 }

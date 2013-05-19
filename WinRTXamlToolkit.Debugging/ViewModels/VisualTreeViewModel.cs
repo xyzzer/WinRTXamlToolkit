@@ -7,6 +7,7 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
@@ -58,11 +59,42 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get { return _selectedItem; }
             set
             {
+                var oldSelectedItem = _selectedItem as DependencyObjectViewModel;
+
                 if (this.SetProperty(ref _selectedItem, value))
                 {
-                    UpdateHighlight();
+                    var newSelectedItem = _selectedItem as DependencyObjectViewModel;
+
+                    OnSelectedItemChanged(oldSelectedItem, newSelectedItem);
                 }
             }
+        }
+
+        private void OnSelectedItemChanged(
+            DependencyObjectViewModel oldSelectedItem,
+            DependencyObjectViewModel newSelectedItem)
+        {
+            if (oldSelectedItem != null)
+            {
+                oldSelectedItem.ModelPropertyChanged -= OnModelPropertyChanged;
+            }
+
+            if (newSelectedItem != null)
+            {
+                newSelectedItem.ModelPropertyChanged += OnModelPropertyChanged;
+            }
+
+            UpdateHighlight();
+        }
+
+        private async void OnModelPropertyChanged(object sender, EventArgs eventArgs)
+        {
+            UpdateHighlight();
+
+            // Wait for pending layout updates
+            await Task.Delay(100);
+
+            UpdateHighlight();
         }
         #endregion
 
@@ -131,25 +163,31 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 return;
             }
 
+#pragma warning disable 4014
             SelectElementUnderPointer();
+#pragma warning restore 4014
         }
 
-        private async void SelectElementUnderPointer()
+        internal async Task SelectElementUnderPointer()
         {
             var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
                 _pointerPosition,
                 Window.Current.Content).First();
-            if (!await SelectItem(hoveredElement))
-            {
-                await Refresh();
-            }
 
-#pragma warning disable 4014
-            SelectItem(hoveredElement);
-#pragma warning restore 4014
+            await SelectItem(hoveredElement, true);
         }
 
-        internal async Task<bool> SelectItem(UIElement element)
+        internal async Task SelectFocused()
+        {
+            var focusedElement = FocusManager.GetFocusedElement() as UIElement;
+
+            if (focusedElement != null)
+            {
+                await SelectItem(focusedElement, true);
+            }
+        }
+
+        internal async Task<bool> SelectItem(UIElement element, bool refreshOnFail = false)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
             var vm = this.RootElements[0] as DependencyObjectViewModel;
@@ -164,8 +202,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (ancestorIndex < 0)
             {
-                Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
+                System.Diagnostics.Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
+
                 //Debugger.Break();
+                if (refreshOnFail)
+                {
+                    await Refresh();
+                    return await SelectItem(element, false);
+                }
+
                 return false;
             }
 
@@ -183,8 +228,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         .FirstOrDefault(dovm => dovm.Model == ancestors[ancestorIndex]);
                 if (child == null)
                 {
-                    Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
+                    System.Diagnostics.Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
+
                     //Debugger.Break();
+                    if (refreshOnFail)
+                    {
+                        await Refresh();
+                        return await SelectItem(element, false);
+                    }
+
                     return false;
                 }
 
@@ -193,6 +245,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             await Task.Delay(100);
             vm.IsSelected = true;
+
             return true;
         }
 
@@ -216,7 +269,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 if (_isCtrlPressed)
                 {
+#pragma warning disable 4014
                     SelectElementUnderPointer();
+#pragma warning restore 4014
                 }
             }
             else if (args.VirtualKey == VirtualKey.Control)
@@ -225,7 +280,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 if (_isShiftPressed)
                 {
+#pragma warning disable 4014
                     SelectElementUnderPointer();
+#pragma warning restore 4014
                 }
             }
         }

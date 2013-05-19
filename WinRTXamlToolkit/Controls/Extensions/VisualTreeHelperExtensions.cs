@@ -5,6 +5,7 @@ using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls.Extensions
@@ -50,25 +51,53 @@ namespace WinRTXamlToolkit.Controls.Extensions
         public static IEnumerable<DependencyObject> GetDescendants(this DependencyObject start)
         {
             var queue = new Queue<DependencyObject>();
-            var count = VisualTreeHelper.GetChildrenCount(start);
+            
+            var popup = start as Popup;
 
-            for (int i = 0; i < count; i++)
+            if (popup != null)
             {
-                var child = VisualTreeHelper.GetChild(start, i);
-                yield return child;
-                queue.Enqueue(child);
+                if (popup.Child != null)
+                {
+                    queue.Enqueue(popup.Child);
+                    yield return popup.Child;
+                }
+            }
+            else
+            {
+                var count = VisualTreeHelper.GetChildrenCount(start);
+
+                for (int i = 0; i < count; i++)
+                {
+                    var child = VisualTreeHelper.GetChild(start, i);
+                    queue.Enqueue(child);
+                    yield return child;
+                }
             }
 
             while (queue.Count > 0)
             {
                 var parent = queue.Dequeue();
-                var count2 = VisualTreeHelper.GetChildrenCount(parent);
 
-                for (int i = 0; i < count2; i++)
+                popup = parent as Popup;
+
+                if (popup != null)
                 {
-                    var child = VisualTreeHelper.GetChild(parent, i);
-                    yield return child;
-                    queue.Enqueue(child);
+                    if (popup.Child != null)
+                    {
+                        queue.Enqueue(popup.Child);
+                        yield return popup.Child;
+                    }
+                }
+                else
+                {
+                    var count = VisualTreeHelper.GetChildrenCount(parent);
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        var child = VisualTreeHelper.GetChild(parent, i);
+                        yield return child;
+                        queue.Enqueue(child);
+                    }
                 }
             }
         }
@@ -80,6 +109,17 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns></returns>
         public static IEnumerable<DependencyObject> GetChildren(this DependencyObject parent)
         {
+            var popup = parent as Popup;
+
+            if (popup != null)
+            {
+                if (popup.Child != null)
+                {
+                    yield return popup.Child;
+                    yield break;
+                }
+            }
+
             var count = VisualTreeHelper.GetChildrenCount(parent);
 
             for (int i = 0; i < count; i++)

@@ -31,6 +31,8 @@
     <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -100,9 +102,22 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Page Include="Controls\EditableListBox\EditableListBoxItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EditableListBox\EditableListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SharedResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\DebugConsoleView.xaml">
       <SubType>Designer</SubType>
@@ -112,15 +127,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PropertyEditors\BooleanPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\EnumPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\NumericPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\StringPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\ThicknessPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VisualTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="Common\DependencyPropertyCache.cs" />
     <Compile Include="Common\DependencyPropertyInfo.cs" />
     <Compile Include="Common\PackageHelper.cs" />
+    <Compile Include="Controls\EditableListBox\EditableListBox.cs" />
+    <Compile Include="Controls\EditableListBox\EditableListBoxItem.cs" />
     <Compile Include="Converters\BindingDebugConverter.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DebugConsoleOverlay.cs" />
@@ -139,6 +182,26 @@
     </Compile>
     <Compile Include="Views\DependencyObjectDetailsView.xaml.cs">
       <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditablePropertyTemplateSelector.cs" />
+    <Compile Include="Views\PropertyEditors\BooleanPropertyEditor.xaml.cs">
+      <DependentUpon>BooleanPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml.cs">
+      <DependentUpon>CornerRadiusPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\EnumPropertyEditor.xaml.cs">
+      <DependentUpon>EnumPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\NumericPropertyEditor.xaml.cs">
+      <DependentUpon>NumericPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DependencyPropertyViewModelValueCoercion.cs" />
+    <Compile Include="Views\PropertyEditors\StringPropertyEditor.xaml.cs">
+      <DependentUpon>StringPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\ThicknessPropertyEditor.xaml.cs">
+      <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VisualTreeView.xaml.cs">
       <DependentUpon>VisualTreeView.xaml</DependentUpon>

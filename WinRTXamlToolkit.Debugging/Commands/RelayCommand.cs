@@ -29,7 +29,7 @@ using System.Windows.Input;
 
 ////using GalaSoft.Utilities.Attributes;
 
-namespace WinRTXamlToolkit.Sample.Commands
+namespace WinRTXamlToolkit.Debugging.Commands
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality to other

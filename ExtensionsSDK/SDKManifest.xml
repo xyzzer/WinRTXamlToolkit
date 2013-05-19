@@ -8,6 +8,6 @@
   AppliesTo="WindowsAppContainer+Managed"
   MoreInfo="http://winrtxamltoolkit.codeplex.com/">
   <File Reference="WinRTXamlToolkit.dll">
-    <ToolboxItems VSCategory="WinRTXamlToolkit" BlendCategory="WinRTXamlToolkit" />
+    <ToolboxItems VSCategory="WinRT XAML Toolkit" BlendCategory="WinRT XAML Toolkit" />
   </File>
 </FileList>

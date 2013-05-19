@@ -6,6 +6,15 @@
     <Style
         TargetType="controls:NumericUpDown">
         <Setter
+            Property="Foreground"
+            Value="{StaticResource TextBoxForegroundThemeBrush}" />
+        <Setter
+            Property="FontFamily"
+            Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource ControlContentThemeFontSize}" />
+        <Setter
             Property="Template">
             <Setter.Value>
                 <ControlTemplate
@@ -58,10 +67,10 @@
                                     Value="18.667" />
                                 <Setter
                                     Property="MinWidth"
-                                    Value="32" />
+                                    Value="24" />
                                 <Setter
                                     Property="MinHeight"
-                                    Value="32" />
+                                    Value="24" />
                                 <Setter
                                     Property="Template">
                                     <Setter.Value>
@@ -290,6 +299,9 @@
                                     Fill="#FFFFFFFF" />
                                 <TextBox
                                     x:Name="PART_ValueTextBox"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
                                     InputScope="Number"
                                     HorizontalAlignment="Stretch"
                                     IsReadOnly="{TemplateBinding IsReadOnly}"

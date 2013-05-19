@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
+    xmlns:controls="using:WinRTXamlToolkit.Debugging.Controls"
+    xmlns:propertyEditors="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -181,6 +183,47 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <local:EditablePropertyTemplateSelector
+            x:Key="EditablePropertyTemplateSelector">
+            <local:EditablePropertyTemplateSelector.Resources>
+                <ResourceDictionary>
+                    <DataTemplate
+                        x:Key="EnumPropertyEditor">
+                        <propertyEditors:EnumPropertyEditor
+                            EnumType="{Binding PropertyType}"
+                            Model="{Binding}"
+                            Value="{Binding Value}" />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="StringPropertyEditor">
+                        <propertyEditors:StringPropertyEditor />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="NumericPropertyEditor">
+                        <propertyEditors:NumericPropertyEditor
+                            NumericType="{Binding PropertyType}"
+                            Model="{Binding}" />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="BooleanPropertyEditor">
+                        <propertyEditors:BooleanPropertyEditor/>
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="ThicknessPropertyEditor">
+                        <propertyEditors:ThicknessPropertyEditor
+                            Model="{Binding}"
+                            Value="{Binding Value}" />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="CornerRadiusPropertyEditor">
+                        <propertyEditors:CornerRadiusPropertyEditor
+                            Model="{Binding}"
+                            Value="{Binding Value}" />
+                    </DataTemplate>
+                </ResourceDictionary>
+            </local:EditablePropertyTemplateSelector.Resources>
+        </local:EditablePropertyTemplateSelector>
     </UserControl.Resources>
     <Grid
         HorizontalAlignment="Stretch"
@@ -221,35 +264,30 @@
                 <RowDefinition
                     Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollViewer
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto">
-                <ItemsControl
-                    ItemsSource="{Binding Properties}">
-                    <ItemsControl.Resources>
-                        <converters:BooleanToDoubleConverter
-                            x:Key="BooleanToDoubleConverter"
-                            FalseValue="1"
-                            TrueValue="0.5" />
-                    </ItemsControl.Resources>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    Text="{Binding Name}"
-                                    FontWeight="Bold"
-                                    Margin="0,0,10,0" />
-                                <TextBlock
-                                    Text="{Binding ValueString}"
-                                    Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <controls:EditableListBox
+                ItemsSource="{Binding Properties}"
+                EditableItemTemplateSelector="{StaticResource EditablePropertyTemplateSelector}">
+                <controls:EditableListBox.Resources>
+                    <converters:BooleanToDoubleConverter
+                        x:Key="BooleanToDoubleConverter"
+                        FalseValue="1"
+                        TrueValue="0.5" />
+                    </controls:EditableListBox.Resources>
+                <controls:EditableListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Text="{Binding Name}"
+                                FontWeight="Bold"
+                                Margin="0,0,10,0" />
+                            <TextBlock
+                                Text="{Binding ValueString}"
+                                Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </controls:EditableListBox.ItemTemplate>
+            </controls:EditableListBox>
             <StackPanel
                 Grid.Row="1"
                 Orientation="Horizontal">

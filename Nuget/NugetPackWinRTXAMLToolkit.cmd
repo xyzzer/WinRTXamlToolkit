@@ -53,8 +53,9 @@ mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
 
 @rem WinRTXamlToolkit.Debugging folders
+mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Controls\EditableListBox
 mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Themes
-mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Views
+mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Views\PropertyEditors
 
 :COPY_FILES
 @rem copy ..\src\SomeController.cs content
@@ -103,8 +104,10 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xa
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
 
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Controls\EditableListBox\*.xaml								lib\netcore45\WinRTXamlToolkit.Debugging\Controls\EditableListBox
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Themes
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Views\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Views
+copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Views\PropertyEditors\*.xaml									lib\netcore45\WinRTXamlToolkit.Debugging\Views\PropertyEditors
 
 @rem copy ..\src\SomePowershellScript.ps1 tools
 

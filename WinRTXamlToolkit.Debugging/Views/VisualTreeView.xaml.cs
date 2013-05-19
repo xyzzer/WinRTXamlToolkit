@@ -19,5 +19,13 @@ namespace WinRTXamlToolkit.Debugging.Views
             vm.Refresh();
 #pragma warning restore 4014
         }
+
+        private void OnSelectFocusedClick(object sender, RoutedEventArgs e)
+        {
+            var vm = (VisualTreeViewModel)this.DataContext;
+#pragma warning disable 4014
+            vm.SelectFocused();
+#pragma warning restore 4014
+        }
     }
 }

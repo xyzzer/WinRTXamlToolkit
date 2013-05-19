@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.Foundation;
 using Windows.System;

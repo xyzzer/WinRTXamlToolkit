@@ -11,6 +11,9 @@ using WinRTXamlToolkit.IO.Extensions;
 
 namespace WinRTXamlToolkit.Debugging
 {
+    /// <summary>
+    /// Provides helpers for debugging WinRT XAML applications - for tracing and visual tree debugging.
+    /// </summary>
     public class DebugConsoleOverlay
     {
         #region Instance
@@ -157,6 +160,9 @@ namespace WinRTXamlToolkit.Debugging
         }
     }
 
+    /// <summary>
+    /// Essentially an alias for DebugConsoleOverlay
+    /// </summary>
     public static class DC
     {
         private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
