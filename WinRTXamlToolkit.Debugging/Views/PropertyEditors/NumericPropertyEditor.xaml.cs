@@ -1,4 +1,5 @@
 ﻿using System;
+using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -141,6 +142,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             double minimum = double.MinValue;
             double maximum = double.MaxValue;
             double dragSpeed = double.NaN;
+            var valueBarVisibility = NumericUpDownValueBarVisibility.Collapsed;
             var valueFormat = "F0";
 
             if (this.NumericType == typeof(byte))
@@ -243,6 +245,20 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                     dragSpeed = 500;
                 }
 
+                if (dp == TextBlock.LineHeightProperty ||
+                    dp == RichTextBlock.LineHeightProperty)
+                {
+                    minimum = 0;
+                    dragSpeed = 50;
+                }
+
+                if (dp == TextBlock.CharacterSpacingProperty ||
+                    dp == Control.CharacterSpacingProperty ||
+                    dp == RichTextBlock.CharacterSpacingProperty)
+                {
+                    dragSpeed = 100;
+                }
+
                 if (dp == Shape.StrokeThicknessProperty)
                 {
                     minimum = 0;
@@ -256,6 +272,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                     valueFormat = "F3";
                     minimum = 0;
                     maximum = 1;
+                    valueBarVisibility = NumericUpDownValueBarVisibility.Visible;
                 }
 
                 if (dp == Canvas.ZIndexProperty)
@@ -291,6 +308,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.NumericUpDown.Maximum = maximum;
             this.NumericUpDown.DragSpeed = dragSpeed;
             this.NumericUpDown.ValueFormat = valueFormat;
+            this.NumericUpDown.ValueBarVisibility = valueBarVisibility;
         }
 
         private void OnNumericUpDownValueChanged(object sender, RangeBaseValueChangedEventArgs e)

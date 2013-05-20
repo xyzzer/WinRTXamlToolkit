@@ -681,22 +681,24 @@
                     Height="76" />
                 <RowDefinition
                     x:Name="InfoRow"
-                    Height="200" />
+                    Height="1*" />
                 <RowDefinition
                     x:Name="SplitterRow"
                     Height="Auto" />
                 <RowDefinition
-                    x:Name="TransparentRow" />
+                    x:Name="TransparentRow"
+                    Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                     x:Name="TransparentColumn"
-                    Width="0" />
+                    Width="1*" />
                 <ColumnDefinition
                     x:Name="SplitterColumn"
                     Width="Auto" />
                 <ColumnDefinition
-                    x:Name="InfoColumn" />
+                    x:Name="InfoColumn"
+                    Width="2*"/>
             </Grid.ColumnDefinitions>
             <Rectangle
                 x:Name="BackgroundRectangle"

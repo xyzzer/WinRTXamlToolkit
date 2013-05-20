@@ -27,7 +27,9 @@
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
             <TextBox
-                Text="{Binding Value, Mode=TwoWay}" />
+                Text="{Binding Value, Mode=TwoWay}"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"/>
             <Button
                 x:Name="ResetValueButton"
                 Content="Reset"

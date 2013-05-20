@@ -133,6 +133,18 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.NumericUpDownTop.Value = thickness.Top;
             this.NumericUpDownRight.Value = thickness.Right;
             this.NumericUpDownBottom.Value = thickness.Bottom;
+
+            var dpvm = model as DependencyPropertyViewModel;
+
+            if (dpvm != null &&
+                dpvm.DependencyProperty == FrameworkElement.MarginProperty)
+            {
+                this.NumericUpDownLeft.Minimum = -1000000;
+                this.NumericUpDownTop.Minimum = -1000000;
+                this.NumericUpDownRight.Minimum = -1000000;
+                this.NumericUpDownBottom.Minimum = -1000000;
+            }
+
             _readingValue = false;
         }
 

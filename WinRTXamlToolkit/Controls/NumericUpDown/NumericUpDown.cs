@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
+using Windows.Devices.Input;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -278,7 +281,9 @@ namespace WinRTXamlToolkit.Controls
                 _dragOverlay.Tapped += OnDragOverlayTapped;
                 _dragOverlay.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
                 _dragOverlay.PointerPressed += OnDragOverlayPointerPressed;
-                _dragOverlay.ManipulationDelta += OnDragOverlayManipulationDelta;
+                Window.Current.CoreWindow.PointerReleased += CoreWindowOnPointerReleased;
+                Window.Current.CoreWindow.VisibilityChanged += OnCoreWindowVisibilityChanged;
+                _dragOverlay.PointerReleased += OnDragOverlayPointerReleased;
             }
 
             if (_decrementButton != null)
@@ -410,32 +415,123 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        private bool _isDraggingWithMouse;
+        private MouseDevice _mouseDevice;
+
         private void OnDragOverlayPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             _dragOverlay.CapturePointer(e.Pointer);
+
+            if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+            {
+                _isDraggingWithMouse = true;
+                _mouseDevice = MouseDevice.GetForCurrentView();
+                _mouseDevice.MouseMoved += OnMouseDragged;
+                Window.Current.CoreWindow.PointerCursor = null;
+            }
+            else
+            {
+                _dragOverlay.ManipulationDelta += OnDragOverlayManipulationDelta;
+            }
+        }
+
+        private async void CoreWindowOnPointerReleased(CoreWindow sender, PointerEventArgs args)
+        {
+            if (!_valueTextBox.IsTabStop)
+            {
+                args.Handled = true;
+                await Task.Delay(100);
+                _valueTextBox.IsTabStop = true;
+            }
+        }
+
+        private async void OnDragOverlayPointerReleased(object sender, PointerRoutedEventArgs args)
+        {
+            await EndDragging(args);
+        }
+
+        private async Task EndDragging(PointerRoutedEventArgs args)
+        {
+            if (_isDraggingWithMouse)
+            {
+                _isDraggingWithMouse = false;
+                _mouseDevice.MouseMoved -= OnMouseDragged;
+                Window.Current.CoreWindow.PointerCursor = new CoreCursor(
+                    CoreCursorType.Arrow, 1);
+                _mouseDevice = null;
+            }
+            else
+            {
+                _dragOverlay.ManipulationDelta -= OnDragOverlayManipulationDelta;
+            }
+
+            if (!_valueTextBox.IsTabStop)
+            {
+                if (args != null)
+                {
+                    args.Handled = true;
+                }
+
+                await Task.Delay(100);
+                _valueTextBox.IsTabStop = true;
+            }
+        }
+
+        private void OnCoreWindowVisibilityChanged(CoreWindow sender, VisibilityChangedEventArgs args)
+        {
+            // There are cases where pointer isn't getting released - this should hopefully end dragging too.
+            if (!args.Visible)
+            {
+                this.EndDragging(null);
+            }
+        }
+
+        private void OnMouseDragged(MouseDevice sender, MouseEventArgs args)
+        {
+            var dx = args.MouseDelta.X;
+            var dy = args.MouseDelta.Y;
+
+            UpdateByDragging(dx, dy);
         }
 
         private void OnDragOverlayManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs manipulationDeltaRoutedEventArgs)
         {
-            if (!this.IsEnabled ||
-                this.IsReadOnly)
+            var dx = manipulationDeltaRoutedEventArgs.Delta.Translation.X;
+            var dy = manipulationDeltaRoutedEventArgs.Delta.Translation.Y;
+
+            if (UpdateByDragging(dx, dy))
                 return;
+
+            manipulationDeltaRoutedEventArgs.Handled = true;
+        }
+
+        private bool UpdateByDragging(double dx, double dy)
+        {
+            if (!this.IsEnabled ||
+                this.IsReadOnly ||
+// ReSharper disable CompareOfFloatsByEqualityOperator
+                dx == 0 && dy == 0)
+// ReSharper restore CompareOfFloatsByEqualityOperator
+            {
+                return false;
+            }
 
             double delta;
 
-            if (Math.Abs(manipulationDeltaRoutedEventArgs.Delta.Translation.X) >
-                Math.Abs(manipulationDeltaRoutedEventArgs.Delta.Translation.Y))
+            if (Math.Abs(dx) > Math.Abs(dy))
             {
-                delta = manipulationDeltaRoutedEventArgs.Delta.Translation.X;
+                delta = dx;
             }
             else
             {
-                delta = -manipulationDeltaRoutedEventArgs.Delta.Translation.Y;
+                delta = -dy;
             }
 
             ApplyManipulationDelta(delta);
 
-            manipulationDeltaRoutedEventArgs.Handled = true;
+            _valueTextBox.IsTabStop = false;
+
+            return true;
         }
 
         private void ApplyManipulationDelta(double delta)

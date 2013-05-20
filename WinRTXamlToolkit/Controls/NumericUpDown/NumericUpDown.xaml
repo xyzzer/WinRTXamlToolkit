@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    xmlns:controls="using:WinRTXamlToolkit.Controls" xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
     <!-- NumericUpDown default style -->
     <Style
         TargetType="controls:NumericUpDown">
@@ -308,6 +308,7 @@
                                     IsEnabled="{TemplateBinding IsEnabled}" />
                                 <Rectangle
                                     x:Name="PART_DragOverlay"
+                                    extensions:FrameworkElementExtensions.SystemCursor="SizeAll"
                                     Fill="Transparent" />
                             </Grid>
                             <RepeatButton

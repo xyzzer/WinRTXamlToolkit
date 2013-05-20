@@ -16,6 +16,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
             var propertyViewModel = item as BasePropertyViewModel;
+            var dpvm = item as DependencyPropertyViewModel;
 
             if (propertyViewModel != null)
             {
@@ -24,7 +25,9 @@ namespace WinRTXamlToolkit.Debugging.Views
                     var type = propertyViewModel.PropertyType;
                     var typeInfo = type.GetTypeInfo();
 
-                    if (type == typeof(string))
+                    if (type == typeof(string) ||
+                        type == typeof(object) && (propertyViewModel.Value == null || propertyViewModel.GetType() == typeof(string)) ||
+                        dpvm.DependencyProperty == ToolTipService.ToolTipProperty)
                     {
                         return (DataTemplate)this.Resources["StringPropertyEditor"];
                     }
