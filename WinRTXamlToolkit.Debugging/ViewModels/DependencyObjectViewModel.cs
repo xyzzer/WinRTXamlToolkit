@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.Extensions;
+using WinRTXamlToolkit.Debugging.Commands;
 using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -22,7 +23,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public string Description { get { return null; } }
 
-        #region Properties
+        #region Properties property
         private List<BasePropertyViewModel> _allProperties;
         public List<BasePropertyViewModel> Properties
         {
@@ -120,11 +121,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        public RelayCommand RefreshCommand { get; private set; }
+
+        #region CTOR
         public DependencyObjectViewModel(
             VisualTreeViewModel treeModel,
             TreeItemViewModel parent,
             DependencyObject model)
-            : base (treeModel, parent)
+            : base(treeModel, parent)
         {
             this.Model = model;
 
@@ -148,8 +152,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 this.Children.Clear();
             }
-        }
 
+#pragma warning disable 4014
+            this.RefreshCommand = new RelayCommand(() => Refresh());
+#pragma warning restore 4014
+        } 
+        #endregion
+
+        #region UpdateAscendantChildCounts()
         private void UpdateAscendantChildCounts()
         {
             var parent = this;
@@ -161,8 +171,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     parent.Children.OfType<DependencyObjectViewModel>().Sum(dovm => dovm.DescendantCount);
                 parent = parent.Parent as DependencyObjectViewModel;
             }
-        }
+        } 
+        #endregion
 
+        #region ToString()
         public override string ToString()
         {
             var typeName = Model.GetType().Name;
@@ -178,8 +190,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     typeName,
                     !string.IsNullOrEmpty(_name) ? string.Format(" ({0})", _name) : string.Empty,
                     _descendantCount != 0 ? string.Format(" [{0}]", _descendantCount) : string.Empty);
-        }
+        } 
+        #endregion
 
+        #region LoadProperties()
         internal override async Task LoadProperties()
         {
             var type = this.Model.GetType();
@@ -206,9 +220,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 propertyViewModel.PropertyChanged += OnPropertyPropertyChanged;
             }
 
-// ReSharper disable ExplicitCallerInfoArgument
+            // ReSharper disable ExplicitCallerInfoArgument
             OnPropertyChanged("Properties");
-// ReSharper restore ExplicitCallerInfoArgument
+            // ReSharper restore ExplicitCallerInfoArgument
             this.Details.Clear();
             this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
             this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
@@ -217,8 +231,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             //{
             //    await this.LoadPreview();
             //}
-        }
+        } 
+        #endregion
 
+        #region OnPropertyPropertyChanged()
         private void OnPropertyPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var handler = this.ModelPropertyChanged;
@@ -227,8 +243,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 handler(this, EventArgs.Empty);
             }
-        }
+        } 
+        #endregion
 
+        #region GetTypeInheritanceInfo()
         private string GetTypeInheritanceInfo()
         {
             var sb = new StringBuilder();
@@ -243,10 +261,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 sb.AppendFormat("    {0}\r\n", type.AssemblyQualifiedName);
             } while (type != typeof(object));
 
-            return sb.ToString();            
-        }
+            return sb.ToString();
+        } 
+        #endregion
 
 #pragma warning disable 1998
+        #region LoadChildren()
         internal override async Task LoadChildren()
 #pragma warning restore 1998
         {
@@ -256,35 +276,40 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     select new DependencyObjectViewModel(this.TreeModel, this, childElement));
 
             UpdateAscendantChildCounts();
-        }
+        } 
+        #endregion
 
+        #region Refresh()
         internal override async Task Refresh()
         {
             await base.Refresh();
             await LoadChildren();
             await LoadProperties();
-        }
+        } 
+        #endregion
 
-//        public async Task LoadPreview()
-//        {
-//            var fe = this.Model as FrameworkElement;
-//            if (fe == null)
-//            {
-//                return;
-//            }
+        #region LoadPreview()
+        //        public async Task LoadPreview()
+        //        {
+        //            var fe = this.Model as FrameworkElement;
+        //            if (fe == null)
+        //            {
+        //                return;
+        //            }
 
-//            try
-//            {
-//                var wb = await WriteableBitmapRenderExtensions.Render(fe);
+        //            try
+        //            {
+        //                var wb = await WriteableBitmapRenderExtensions.Render(fe);
 
-//                PreviewImageSource = wb;
-//            }
-//// ReSharper disable EmptyGeneralCatchClause
-//            catch
-//// ReSharper restore EmptyGeneralCatchClause
-//            {
-//            }
-//        }
+        //                PreviewImageSource = wb;
+        //            }
+        //// ReSharper disable EmptyGeneralCatchClause
+        //            catch
+        //// ReSharper restore EmptyGeneralCatchClause
+        //            {
+        //            }
+        //        } 
+        #endregion
     }
 
     public class DetailViewModel

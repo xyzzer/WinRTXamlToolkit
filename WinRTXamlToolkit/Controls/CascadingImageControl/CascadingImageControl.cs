@@ -15,15 +15,33 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     public enum CascadeDirection
     {
+        /// <summary>
+        /// The top left direction
+        /// </summary>
         TopLeft = 0,
         //Top,
+        /// <summary>
+        /// The top right direction
+        /// </summary>
         TopRight,
         //Right,
+        /// <summary>
+        /// The bottom right direction
+        /// </summary>
         BottomRight,
         //Bottom,
+        /// <summary>
+        /// The bottom left direction
+        /// </summary>
         BottomLeft,
         //Left,
+        /// <summary>
+        /// The random direction
+        /// </summary>
         Random,
+        /// <summary>
+        /// The shuffled direction
+        /// </summary>
         Shuffle
     }
 

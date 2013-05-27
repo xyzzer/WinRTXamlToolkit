@@ -19,13 +19,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-
-#if NETFX_CORE
-using Windows.UI.Xaml.Input;
 using System.Windows.Input;
-#else
-using System.Windows.Input;
-#endif
 
 ////using GalaSoft.Utilities.Attributes;
 

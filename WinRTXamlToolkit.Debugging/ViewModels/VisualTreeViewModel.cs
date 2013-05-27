@@ -142,7 +142,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             set { this.SetProperty(ref _showReadOnlyProperties, value); }
         }
         #endregion
-        
+
+        #region CTOR
         public VisualTreeViewModel()
         {
 #pragma warning disable 4014
@@ -151,8 +152,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             Window.Current.CoreWindow.KeyDown += OnKeyDown;
             Window.Current.CoreWindow.KeyUp += OnKeyUp;
             Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
-        }
+        } 
+        #endregion
 
+        #region OnPointerMoved()
         private void OnPointerMoved(CoreWindow sender, PointerEventArgs args)
         {
             _pointerPosition = args.CurrentPoint.Position;
@@ -166,8 +169,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning disable 4014
             SelectElementUnderPointer();
 #pragma warning restore 4014
-        }
+        } 
+        #endregion
 
+        #region SelectElementUnderPointer()
         internal async Task SelectElementUnderPointer()
         {
             var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
@@ -175,8 +180,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 Window.Current.Content).First();
 
             await SelectItem(hoveredElement, true);
-        }
+        } 
+        #endregion
 
+        #region SelectFocused()
         internal async Task SelectFocused()
         {
             var focusedElement = FocusManager.GetFocusedElement() as UIElement;
@@ -185,8 +192,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 await SelectItem(focusedElement, true);
             }
-        }
+        } 
+        #endregion
 
+        #region SelectItem()
         internal async Task<bool> SelectItem(UIElement element, bool refreshOnFail = false)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
@@ -247,8 +256,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             vm.IsSelected = true;
 
             return true;
-        }
+        } 
+        #endregion
 
+        #region OnKeyUp()
         private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
         {
             if (args.VirtualKey == VirtualKey.Shift)
@@ -259,8 +270,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 _isCtrlPressed = false;
             }
-        }
+        } 
+        #endregion
 
+        #region OnKeyDown()
         private void OnKeyDown(CoreWindow sender, KeyEventArgs args)
         {
             if (args.VirtualKey == VirtualKey.Shift)
@@ -285,8 +298,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning restore 4014
                 }
             }
-        }
+        } 
+        #endregion
 
+        #region Build()
 #pragma warning disable 1998
         private async Task Build()
 #pragma warning restore 1998
@@ -319,8 +334,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.RootElements.Clear();
                 await this.Build();
             }
-        }
+        } 
+        #endregion
 
+        #region UpdateHighlight()
         private void UpdateHighlight()
         {
             var dovm = this.SelectedItem as DependencyObjectViewModel;
@@ -366,6 +383,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
 
             HighlightVisibility = Visibility.Visible;
-        }
+        } 
+        #endregion
     }
 }
