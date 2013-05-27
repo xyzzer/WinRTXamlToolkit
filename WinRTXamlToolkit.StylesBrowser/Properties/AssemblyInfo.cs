@@ -10,5 +10,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.4.1.0")]
+[assembly: AssemblyVersion("1.4.2.0")]
 [assembly: ComVisible(false)]

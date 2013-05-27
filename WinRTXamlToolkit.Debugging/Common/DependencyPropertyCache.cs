@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Tools;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace WinRTXamlToolkit.Debugging.Common
@@ -71,47 +73,103 @@ namespace WinRTXamlToolkit.Debugging.Common
                         pi.GetMethod.IsStatic &&
                         pi.PropertyType == typeof (DependencyProperty)))
             {
-                try
-                {
-                    var propertyName = dpPropertyInfo.Name.Substring(
-                        0, dpPropertyInfo.Name.Length - "Property".Length);
+                var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
+                var propertyName =
+                    dpPropertyInfo.Name.Substring(
+                        0,
+                        dpPropertyInfo.Name.Length - "Property".Length);
+                AddDependencyPropertyInfo(type, typeInfo, dependencyProperty, propertyName, ref propertyList);
+            }
 
-                    if (typeInfo.GetDeclaredProperty(propertyName) == null)
+            if (!typeInfo.ContainsGenericParameters)
+                foreach (var dpFieldInfo in
+                    typeInfo
+                        .DeclaredFields
+                        .Where(df => df.IsStatic && df.FieldType == typeof(DependencyProperty)))
+                {
+                    var dependencyProperty = (DependencyProperty)dpFieldInfo.GetValue(type);
+                    var propertyName =
+                        dpFieldInfo.Name.Substring(
+                            0,
+                            dpFieldInfo.Name.Length - "Property".Length);
+                    AddDependencyPropertyInfo(type, typeInfo, dependencyProperty, propertyName, ref propertyList);
+                }
+        }
+
+        /// <summary>
+        /// Adds the DependencyPropertyInfo object for the given.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="typeInfo">The type info.</param>
+        /// <param name="dependencyProperty">The dependency property.</param>
+        /// <param name="propertyName">Name of the dependency property.</param>
+        /// <param name="propertyList">The non-attached dependency property list for the given type.</param>
+        private static void AddDependencyPropertyInfo(
+            Type type,
+            TypeInfo typeInfo,
+            DependencyProperty dependencyProperty,
+            string propertyName,
+            ref List<DependencyPropertyInfo> propertyList)
+        {
+            try
+            {
+
+                bool? isAttached = null;
+
+                // Check for plain property matching the dependency property.
+                if (typeInfo.GetDeclaredProperty(propertyName) == null)
+                {
+                    isAttached = true;
+                }
+
+                // Check for the Get method typically only specified for attached properties
+                if (isAttached != true)
+                {
+                    var getMethodName = string.Format("Get{0}", propertyName);
+                    var getMethod = typeInfo.GetDeclaredMethod(getMethodName);
+
+                    if (getMethod != null)
                     {
-                        var name = dpPropertyInfo.Name.Substring(
-                            0, dpPropertyInfo.Name.Length - "Property".Length);
-                        var displayName = string.Format("{0}.{1}", type.Name, name);
-                        var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
-                        AttachedProperties.Add(
-                            new DependencyPropertyInfo(
-                                dependencyProperty,
-                                name,
-                                type,
-                                displayName));
+                        isAttached = true;
                     }
                     else
                     {
-                        if (propertyList == null)
-                        {
-                            propertyList = new List<DependencyPropertyInfo>();
-                            DependencyProperties.Add(type, propertyList);
-                        }
-
-                        var name = dpPropertyInfo.Name.Substring(
-                            0, dpPropertyInfo.Name.Length - "Property".Length);
-
-                        propertyList.Add(
-                            new DependencyPropertyInfo(
-                                (DependencyProperty)dpPropertyInfo.GetValue(type),
-                                name,
-                                type,
-                                name));
+                        isAttached = false;
                     }
                 }
-                catch (Exception ex)
+
+                if (isAttached.Value)
                 {
-                    Debug.WriteLine(ex);
+                    // Attached property
+                    var displayName = string.Format("{0}.{1}", type.Name, propertyName);
+
+                    AttachedProperties.Add(
+                        new DependencyPropertyInfo(
+                            dependencyProperty,
+                            propertyName,
+                            type,
+                            displayName));
                 }
+                else
+                {
+                    // non-attached property
+                    if (propertyList == null)
+                    {
+                        propertyList = new List<DependencyPropertyInfo>();
+                        DependencyProperties.Add(type, propertyList);
+                    }
+
+                    propertyList.Add(
+                        new DependencyPropertyInfo(
+                            dependencyProperty,
+                            propertyName,
+                            type,
+                            propertyName));
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
         }
 

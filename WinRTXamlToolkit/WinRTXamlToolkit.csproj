@@ -197,13 +197,13 @@
       <DependentUpon>CountdownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
-    <Compile Include="Controls\CustomGridSplitter.cs" />
+    <Compile Include="Controls\CustomGridSplitter\CustomGridSplitter.cs" />
     <Compile Include="Controls\Extensions\GridViewItemExtensions.cs" />
     <Compile Include="Controls\ImageButton\ImageButton.cs" />
     <Compile Include="Controls\Extensions\ImageExtensions.cs" />
     <Compile Include="Controls\InputDialog\InputDialog.cs" />
     <Compile Include="Controls\Extensions\ListBoxExtensions.cs" />
-    <Compile Include="Controls\ListItemButton.cs" />
+    <Compile Include="Controls\ListItemButton\ListItemButton.cs" />
     <Compile Include="Controls\Extensions\ListViewExtensions.cs" />
     <Compile Include="Controls\Extensions\ListViewItemExtensions.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
@@ -279,8 +279,14 @@
     <Compile Include="Tools\EnumerableExtensions.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />
+    <Compile Include="Tools\TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\AlternativeFrame\AlternativeFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Controls\CameraCaptureControl\CameraCaptureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +312,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\CustomGridSplitter\CustomGridSplitter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -321,6 +332,11 @@
     <Page Include="Controls\InputDialog\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ListItemButton\ListItemButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\NumericUpDown\NumericUpDown.xaml">
       <SubType>Designer</SubType>

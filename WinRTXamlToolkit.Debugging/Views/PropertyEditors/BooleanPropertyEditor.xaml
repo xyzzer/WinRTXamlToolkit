@@ -29,7 +29,9 @@
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
             <CheckBox
+                x:Name="cb"
                 Content=""
+                IsThreeState="True"
                 IsChecked="{Binding Value, Converter={StaticResource BoolToNullableBoolConverter}, Mode=TwoWay}" />
             <Button
                 x:Name="ResetValueButton"

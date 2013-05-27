@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
 {
@@ -21,6 +10,17 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         public BooleanPropertyEditor()
         {
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var vm = (BasePropertyViewModel)this.DataContext;
+
+            if (vm.PropertyType != typeof(bool?))
+            {
+                cb.IsThreeState = false;
+            }
         }
     }
 }

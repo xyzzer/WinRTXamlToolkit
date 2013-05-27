@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -54,6 +55,7 @@ namespace WinRTXamlToolkit.Controls
         private RepeatButton _decrementButton;
         private RepeatButton _incrementButton;
         private FrameworkElement _valueBar;
+        private bool _isDragUpdated;
         private bool _isChangingTextWithCode;
         private bool _isChangingValueWithCode;
         private double _unusedManipulationDelta;
@@ -259,6 +261,12 @@ namespace WinRTXamlToolkit.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             this.GotFocus += OnGotFocus;
             this.LostFocus += OnLostFocus;
             this.PointerWheelChanged += OnPointerWheelChanged;
@@ -437,11 +445,15 @@ namespace WinRTXamlToolkit.Controls
 
         private async void CoreWindowOnPointerReleased(CoreWindow sender, PointerEventArgs args)
         {
-            if (!_valueTextBox.IsTabStop)
+            if (_isDragUpdated)
             {
                 args.Handled = true;
                 await Task.Delay(100);
-                _valueTextBox.IsTabStop = true;
+
+                if (_valueTextBox != null)
+                {
+                    _valueTextBox.IsTabStop = true;
+                }
             }
         }
 
@@ -460,12 +472,12 @@ namespace WinRTXamlToolkit.Controls
                     CoreCursorType.Arrow, 1);
                 _mouseDevice = null;
             }
-            else
+            else if (_dragOverlay != null)
             {
                 _dragOverlay.ManipulationDelta -= OnDragOverlayManipulationDelta;
             }
 
-            if (!_valueTextBox.IsTabStop)
+            if (_isDragUpdated)
             {
                 if (args != null)
                 {
@@ -473,7 +485,11 @@ namespace WinRTXamlToolkit.Controls
                 }
 
                 await Task.Delay(100);
-                _valueTextBox.IsTabStop = true;
+
+                if (_valueTextBox != null)
+                {
+                    _valueTextBox.IsTabStop = true;
+                }
             }
         }
 
@@ -482,7 +498,9 @@ namespace WinRTXamlToolkit.Controls
             // There are cases where pointer isn't getting released - this should hopefully end dragging too.
             if (!args.Visible)
             {
+#pragma warning disable 4014
                 this.EndDragging(null);
+#pragma warning restore 4014
             }
         }
 
@@ -529,7 +547,12 @@ namespace WinRTXamlToolkit.Controls
 
             ApplyManipulationDelta(delta);
 
-            _valueTextBox.IsTabStop = false;
+            if (_valueTextBox != null)
+            {
+                _valueTextBox.IsTabStop = false;
+            }
+
+            _isDragUpdated = true;
 
             return true;
         }

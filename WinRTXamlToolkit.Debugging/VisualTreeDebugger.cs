@@ -1,18 +1,40 @@
-﻿#if DEBUG
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+﻿//-----------------------------------------------------------------------
+// <copyright file="VisualTreeDebugger.cs" company="One Dev Job">
+// Filip Skakun, 2013.
+// </copyright>
+// <summary>
+// Implements class VisualTreeDebugger.
+// </summary>
+//-----------------------------------------------------------------------
 
+#if DEBUG
 namespace WinRTXamlToolkit.Debugging
 {
+#if NETFX_CORE
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+    using Windows.ApplicationModel;
+    using Windows.Foundation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+    using Windows.UI.Xaml.Media.Imaging;
+#elif WINDOWS_PHONE
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+#endif
+
     /// <summary>
     /// The class contains an BreakOnLoaded property that
     /// allows to debug a visual tree from the control
@@ -160,6 +182,18 @@ namespace WinRTXamlToolkit.Debugging
                 frameworkElement != null,
                 "BreakOnTapProperty should only be set on FrameworkElements.");
 
+#if WINDOWS_PHONE
+            if ((bool)e.NewValue)
+            {
+                ((FrameworkElement)d).Tap += BreakOnControlTapped;
+            }
+            else
+            {
+                ((FrameworkElement)d).Tap -= BreakOnControlTapped;
+            }
+#endif
+
+#if NETFX_CORE
             if ((bool)e.NewValue)
             {
                 ((FrameworkElement)d).Tapped += BreakOnControlTapped;
@@ -168,6 +202,7 @@ namespace WinRTXamlToolkit.Debugging
             {
                 ((FrameworkElement)d).Tapped -= BreakOnControlTapped;
             }
+#endif
         }
         #endregion
 
@@ -232,10 +267,7 @@ namespace WinRTXamlToolkit.Debugging
                 frameworkElement != null,
                 "BreakOnLayoutUpdatedProperty should only be set on FrameworkElements.");
 
-            frameworkElement.LayoutUpdated += (s, o) =>
-            {
-                DebugVisualTree(frameworkElement);
-            };
+            frameworkElement.LayoutUpdated += (s, o) => DebugVisualTree(frameworkElement);
         }
         #endregion
 
@@ -251,18 +283,22 @@ namespace WinRTXamlToolkit.Debugging
                 new PropertyMetadata(0d));
 
         /// <summary>
-        /// Gets the BreakDelay property. This dependency property 
+        /// Gets the BreakDelay property. This dependency property
         /// indicates the delay in seconds to wait after the trigger is fired before breaking in debugger.
         /// </summary>
+        /// <param name="d">The dependency object.</param>
+        /// <returns>The BreakDelay value.</returns>
         public static double GetBreakDelay(DependencyObject d)
         {
             return (double)d.GetValue(BreakDelayProperty);
         }
 
         /// <summary>
-        /// Sets the BreakDelay property. This dependency property 
+        /// Sets the BreakDelay property. This dependency property
         /// indicates the delay in seconds to wait after the trigger is fired before breaking in debugger.
         /// </summary>
+        /// <param name="d">The dependency object.</param>
+        /// <param name="value">The value.</param>
         public static void SetBreakDelay(DependencyObject d, double value)
         {
             d.SetValue(BreakDelayProperty, value);
@@ -283,10 +319,12 @@ namespace WinRTXamlToolkit.Debugging
         {
             var startElement = (DependencyObject)sender;
             var delay = GetBreakDelay(startElement);
+
             if (delay > 0)
             {
                 await Task.Delay((int)(delay * 1000));
             }
+
             DebugVisualTree(startElement);
         }
         #endregion
@@ -295,20 +333,22 @@ namespace WinRTXamlToolkit.Debugging
         /// <summary>
         /// Called when the control gets tapped or clicked.
         /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
-        /// containing the event data.</param>
-        private static async void BreakOnControlTapped(object sender, TappedRoutedEventArgs e)
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The object containing the event data.</param>
+#if NETFX_CORE
+        private static async void BreakOnControlTapped(object sender, TappedRoutedEventArgs args)
+#elif WINDOWS_PHONE
+        private static async void BreakOnControlTapped(object sender, GestureEventArgs args)
+#endif
         {
             var startElement = (DependencyObject)sender;
             var delay = GetBreakDelay(startElement);
+
             if (delay > 0)
             {
                 await Task.Delay((int)(delay * 1000));
             }
+
             DebugVisualTree(startElement);
         }
         #endregion
@@ -327,10 +367,12 @@ namespace WinRTXamlToolkit.Debugging
         {
             var startElement = (DependencyObject)sender;
             var delay = GetBreakDelay(startElement);
+
             if (delay > 0)
             {
                 await Task.Delay((int)(delay * 1000));
             }
+
             DebugVisualTree(startElement);
         }
         #endregion
@@ -461,6 +503,7 @@ namespace WinRTXamlToolkit.Debugging
                 frameworkElement != null,
                 "TraceOnTapProperty should only be set on FrameworkElements.");
 
+#if NETFX_CORE
             if ((bool)e.NewValue)
             {
                 ((FrameworkElement)d).Tapped += TraceOnControlTapped;
@@ -469,6 +512,17 @@ namespace WinRTXamlToolkit.Debugging
             {
                 ((FrameworkElement)d).Tapped -= TraceOnControlTapped;
             }
+#endif
+#if WINDOWS_PHONE
+            if ((bool)e.NewValue)
+            {
+                ((FrameworkElement)d).Tap += TraceOnControlTapped;
+            }
+            else
+            {
+                ((FrameworkElement)d).Tap -= TraceOnControlTapped;
+            }
+#endif
         }
         #endregion
 
@@ -567,7 +621,12 @@ namespace WinRTXamlToolkit.Debugging
         /// <param name="e">
         /// The <see cref="System.Windows.Input.GestureEventArgs"/> instance
         /// containing the event data.</param>
+#if WINDOWS_PHONE
+        private static void TraceOnControlTapped(object sender, GestureEventArgs e)
+#endif
+#if NETFX_CORE
         private static void TraceOnControlTapped(object sender, TappedRoutedEventArgs e)
+#endif
         {
             var startElement = (DependencyObject)sender;
             DebugVisualTree(startElement, false);
@@ -595,13 +654,22 @@ namespace WinRTXamlToolkit.Debugging
         /// <summary>
         /// Debugs the visual tree.
         /// </summary>
-        /// <param name="startElement">
-        /// The start element.
-        /// </param>
+        /// <param name="startElement">The start element.</param>
+        /// <param name="breakInDebugger">if set to <c>true</c> the debugger will break execution.</param>
         public static void DebugVisualTree(DependencyObject startElement, bool breakInDebugger = true)
         {
+#if NETFX_CORE
             if (DesignMode.DesignModeEnabled)
+            {
                 return;
+            }
+#endif
+#if WINDOWS_PHONE
+            if (DesignerProperties.IsInDesignTool)
+            {
+                return;
+            }
+#endif
 
             var path = new List<DependencyObject>();
             var dob = startElement;
@@ -635,7 +703,7 @@ namespace WinRTXamlToolkit.Debugging
         /// Traces the dependency object.
         /// </summary>
         /// <param name="dob">
-        /// The dependancy object.
+        /// The dependency object.
         /// </param>
         /// <param name="i">
         /// The object index.
@@ -671,17 +739,35 @@ namespace WinRTXamlToolkit.Debugging
                     "\tActualWidth={0}\r\n\tActualHeight={1}",
                     frameworkElement.ActualWidth,
                     frameworkElement.ActualHeight);
+
+#if NETFX_CORE
+                var rootVisual = Window.Current.Content;
                 var pos =
                     frameworkElement
-                        .TransformToVisual(Window.Current.Content)
+                        .TransformToVisual(rootVisual)
                         .TransformPoint(new Point());
                 var pos2 =
                     frameworkElement
-                        .TransformToVisual(Window.Current.Content)
+                        .TransformToVisual(rootVisual)
                         .TransformPoint(
                             new Point(
                                 frameworkElement.ActualWidth,
                                 frameworkElement.ActualHeight));
+#endif
+#if WINDOWS_PHONE
+                var rootVisual = Application.Current.RootVisual;
+                var pos =
+                    frameworkElement
+                        .TransformToVisual(rootVisual)
+                        .Transform(new Point());
+                var pos2 =
+                    frameworkElement
+                        .TransformToVisual(rootVisual)
+                        .Transform(
+                            new Point(
+                                frameworkElement.ActualWidth,
+                                frameworkElement.ActualHeight));
+#endif
 
                 Debug.WriteLine(
                     "\tPosition – X={0}, Y={1}, Right={2}, Bottom={3}",
@@ -702,16 +788,23 @@ namespace WinRTXamlToolkit.Debugging
 
                 if (frameworkElement.Clip != null)
                 {
+#if NETFX_CORE
                     Debug.WriteLine("\tClip={0}", frameworkElement.Clip.Rect);
+#endif
+#if WINDOWS_PHONE
+                    Debug.WriteLine("\tClip={0}", frameworkElement.Clip.Bounds);
+#endif
                 }
+
+                var hashCode = frameworkElement.DataContext != null
+                                   ? "HashCode: " + frameworkElement.DataContext.GetHashCode()
+                                   : string.Empty;
 
                 // DataContext often turns out to be a surprise
                 Debug.WriteLine(
                     "\tDataContext: {0} {1}",
                     frameworkElement.DataContext,
-                    frameworkElement.DataContext != null
-                        ? "HashCode: " + frameworkElement.DataContext.GetHashCode()
-                        : "");
+                    hashCode);
 
                 // List common layout properties
                 if (!double.IsNaN(frameworkElement.Width) ||
@@ -732,8 +825,7 @@ namespace WinRTXamlToolkit.Debugging
                         scrollViewer.ExtentWidth,
                         scrollViewer.VerticalOffset,
                         scrollViewer.ViewportHeight,
-                        scrollViewer.ExtentHeight
-                        );
+                        scrollViewer.ExtentHeight);
                 }
 
                 if (frameworkElement.MinWidth > 0 ||
@@ -792,10 +884,11 @@ namespace WinRTXamlToolkit.Debugging
 
                     if (parentGrid.ColumnDefinitions.Count != 0 || col != 0)
                     {
+                        string warningString = string.Format(
+                                "Column {0} not defined on the parent Grid!", col);
                         Debug.Assert(
                             col < parentGrid.ColumnDefinitions.Count,
-                            string.Format(
-                                "Column {0} not defined on the parent Grid!", col));
+                            warningString);
                         col = Math.Min(col, parentGrid.ColumnDefinitions.Count - 1);
                         Debug.WriteLine(
                             "\tColumn: {0} ({1})",
@@ -805,10 +898,10 @@ namespace WinRTXamlToolkit.Debugging
 
                     if (parentGrid.RowDefinitions.Count != 0 || row != 0)
                     {
+                        var warningString = string.Format("Row {0} not defined on the parent Grid!", row);
                         Debug.Assert(
                             row < parentGrid.RowDefinitions.Count,
-                            string.Format(
-                                "Row {0} not defined on the parent Grid!", row));
+                            warningString);
                         row = Math.Min(row, parentGrid.RowDefinitions.Count - 1);
                         Debug.WriteLine(
                             "\tRow: {0} ({1})",
@@ -868,7 +961,7 @@ namespace WinRTXamlToolkit.Debugging
         {
             if (brush == null)
             {
-                return "";
+                return string.Empty;
             }
 
             var solidColorBrush = brush as SolidColorBrush;
@@ -900,5 +993,4 @@ namespace WinRTXamlToolkit.Debugging
         #endregion
     }
 }
-
 #endif

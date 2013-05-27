@@ -20,14 +20,17 @@ mkdir content\controllers
 
 @rem WinRTXamlToolkit folders
 mkdir lib\netcore45\WinRTXamlToolkit\Controls
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\AlternativeFrame
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\CustomGridSplitter
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\ImageButton
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
+mkdir lib\netcore45\WinRTXamlToolkit\Controls\ListItemButton
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\TreeView
 mkdir lib\netcore45\WinRTXamlToolkit\Controls\WatermarkPasswordBox
@@ -65,14 +68,17 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45
 
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
+copy ..\WinRTXamlToolkit\bin\Release\Controls\AlternativeFrame\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\AlternativeFrame
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CameraCaptureControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker
 copy ..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar
+copy ..\WinRTXamlToolkit\bin\Release\Controls\CustomGridSplitter\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\CustomGridSplitter
 copy ..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ImageButton\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ImageButton
 copy ..\WinRTXamlToolkit\bin\Release\Controls\ImageToggleButton\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton
 copy ..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\InputDialog
+copy ..\WinRTXamlToolkit\bin\Release\Controls\ListItemButton\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\ListItemButton
 copy ..\WinRTXamlToolkit\bin\Release\Controls\NumericUpDown\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown
 copy ..\WinRTXamlToolkit\bin\Release\Controls\TreeView\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\TreeView
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkPasswordBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkPasswordBox

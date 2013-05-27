@@ -5,6 +5,8 @@
     xmlns:converters="using:WinRTXamlToolkit.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml" />
@@ -12,6 +14,8 @@
             Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
         <ResourceDictionary
@@ -31,172 +35,6 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <!-- GridSplitterPreviewControl default style -->
-    <Style
-        TargetType="controls:GridSplitterPreviewControl">
-        <Setter
-            Property="Background"
-            Value="DarkGray" />
-        <Setter
-            Property="HorizontalAlignment"
-            Value="Stretch" />
-        <Setter
-            Property="VerticalAlignment"
-            Value="Stretch" />
-        <Setter
-            Property="Template">
-            <Setter.Value>
-                <ControlTemplate
-                    TargetType="controls:GridSplitterPreviewControl">
-                    <Rectangle
-                        Margin="{TemplateBinding Padding}"
-                        Fill="{TemplateBinding Background}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- CustomGridSplitter default style -->
-    <Style
-        TargetType="controls:CustomGridSplitter">
-        <Setter
-            Property="Background"
-            Value="#E5000000" />
-        <Setter
-            Property="Foreground"
-            Value="{StaticResource AppBarItemDisabledForegroundThemeBrush}" />
-        <!--<Setter
-            Property="VerticalAlignment"
-            Value="Stretch" />
-        <Setter
-            Property="HorizontalAlignment"
-            Value="Stretch" />-->
-        <Setter
-            Property="Template">
-            <Setter.Value>
-                <ControlTemplate
-                    TargetType="controls:CustomGridSplitter">
-                    <Grid
-                        Background="{TemplateBinding Background}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup
-                                x:Name="OrientationStates">
-                                <VisualState
-                                    x:Name="VerticalOrientation">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames
-                                            Storyboard.TargetName="GripDotsPanel"
-                                            Storyboard.TargetProperty="Orientation">
-                                            <DiscreteObjectKeyFrame
-                                                KeyTime="0"
-                                                Value="Vertical" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState
-                                    x:Name="HorizontalOrientation">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames
-                                            Storyboard.TargetName="GripDotsPanel"
-                                            Storyboard.TargetProperty="Orientation">
-                                            <DiscreteObjectKeyFrame
-                                                KeyTime="0"
-                                                Value="Horizontal" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup
-                                x:Name="FocusStates">
-                                <VisualState
-                                    x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualWhite"
-                                            Storyboard.TargetProperty="Opacity" />
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualBlack"
-                                            Storyboard.TargetProperty="Opacity" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState
-                                    x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <StackPanel
-                            x:Name="GripDotsPanel"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center">
-                            <Ellipse
-                                Width="6"
-                                Height="6"
-                                Margin="2"
-                                Fill="{TemplateBinding Foreground}" />
-                            <Ellipse
-                                Width="6"
-                                Height="6"
-                                Margin="2"
-                                Fill="{TemplateBinding Foreground}" />
-                            <Ellipse
-                                Width="6"
-                                Height="6"
-                                Margin="2"
-                                Fill="{TemplateBinding Foreground}" />
-                        </StackPanel>
-                        <Rectangle
-                            x:Name="FocusVisualWhite"
-                            IsHitTestVisible="False"
-                            Opacity="0"
-                            StrokeDashOffset="1.5"
-                            StrokeEndLineCap="Square"
-                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                            StrokeDashArray="1,1" />
-                        <Rectangle
-                            x:Name="FocusVisualBlack"
-                            IsHitTestVisible="False"
-                            Opacity="0"
-                            StrokeDashOffset="0.5"
-                            StrokeEndLineCap="Square"
-                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                            StrokeDashArray="1,1" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- ListItemButton default style -->
-    <Style
-        TargetType="controls:ListItemButton">
-        <Setter
-            Property="HorizontalContentAlignment"
-            Value="Left" />
-        <Setter
-            Property="VerticalContentAlignment"
-            Value="Top" />
-        <Setter
-            Property="Padding"
-            Value="12,4,12,5" />
-        <Setter
-            Property="Template">
-            <Setter.Value>
-                <ControlTemplate
-                    TargetType="controls:ListItemButton">
-                    <ContentPresenter
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        ContentTransitions="{TemplateBinding ContentTransitions}"
-                        Content="{TemplateBinding Content}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        Margin="{TemplateBinding Padding}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <converters:NullableBoolToVisibilityConverter
         x:Key="NullableBoolToVisibleConverter" />
@@ -207,45 +45,5 @@
 
     <converters:NullableBoolToBoolConverter
         x:Key="NullableBoolToBoolConverter" />
-
-    <!-- AlternativeFrame default style -->
-    <Style
-        TargetType="controls:AlternativeFrame">
-        <Setter
-            Property="HorizontalContentAlignment"
-            Value="Stretch" />
-        <Setter
-            Property="IsTabStop"
-            Value="False" />
-        <Setter
-            Property="VerticalContentAlignment"
-            Value="Stretch" />
-        <Setter
-            Property="PagePresenterStyle">
-            <Setter.Value>
-                <Style
-                    TargetType="ContentPresenter" />
-            </Setter.Value>
-        </Setter>
-        <Setter
-            Property="Template">
-            <Setter.Value>
-                <ControlTemplate
-                    TargetType="controls:AlternativeFrame">
-                    <Border
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}">
-                        <Grid
-                            x:Name="PART_PagePresentersPanel"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 </ResourceDictionary>
     

@@ -27,12 +27,12 @@ namespace WinRTXamlToolkit.Debugging.Views
 
                     if (type == typeof(string) ||
                         type == typeof(object) && (propertyViewModel.Value == null || propertyViewModel.GetType() == typeof(string)) ||
-                        dpvm.DependencyProperty == ToolTipService.ToolTipProperty)
+                        dpvm != null && dpvm.DependencyProperty == ToolTipService.ToolTipProperty)
                     {
                         return (DataTemplate)this.Resources["StringPropertyEditor"];
                     }
 
-                    if (type == typeof (bool))
+                    if (type == typeof(bool) || type == typeof(bool?))
                     {
                         return (DataTemplate)this.Resources["BooleanPropertyEditor"];
                     }
@@ -63,7 +63,8 @@ namespace WinRTXamlToolkit.Debugging.Views
 
                     if (typeInfo.IsEnum ||
                         typeInfo.IsGenericType &&
-                        propertyViewModel.PropertyType.GetGenericTypeDefinition() == typeof (Nullable<>))
+                        type.GetGenericTypeDefinition() == typeof (Nullable<>) &&
+                        type.GenericTypeArguments[0].GetTypeInfo().IsEnum)
                     {
                         return (DataTemplate)this.Resources["EnumPropertyEditor"];
                     }
