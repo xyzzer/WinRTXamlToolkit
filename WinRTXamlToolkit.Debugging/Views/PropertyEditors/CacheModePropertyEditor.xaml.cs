@@ -1,5 +1,4 @@
-﻿using System;
-using WinRTXamlToolkit.Debugging.ViewModels;
+﻿using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;

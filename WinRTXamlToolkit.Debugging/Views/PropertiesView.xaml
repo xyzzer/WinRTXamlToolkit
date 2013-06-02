@@ -24,6 +24,10 @@
                 <local:EditablePropertyTemplateSelector.Resources>
                     <ResourceDictionary>
                         <DataTemplate
+                            x:Key="DefaultPropertyEditor">
+                            <propertyEditors:DefaultPropertyEditor />
+                        </DataTemplate>
+                        <DataTemplate
                             x:Key="EnumPropertyEditor">
                             <propertyEditors:EnumPropertyEditor
                                 EnumType="{Binding PropertyType}"
@@ -42,10 +46,8 @@
                         </DataTemplate>
                         <DataTemplate
                             x:Key="BrushPropertyEditor">
-                            <Rectangle
-                                Width="200"
-                                Height="150"
-                                Fill="{Binding Value}" />
+                            <propertyEditors:BrushPropertyEditor
+                                Model="{Binding}" />
                         </DataTemplate>
                         <DataTemplate
                             x:Key="BooleanPropertyEditor">
