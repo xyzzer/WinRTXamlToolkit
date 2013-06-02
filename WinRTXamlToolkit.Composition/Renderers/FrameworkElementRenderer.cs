@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SharpDX.Direct2D1;
-using WinRTXamlToolkit.Controls.Extensions;
 using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Composition.Renderers

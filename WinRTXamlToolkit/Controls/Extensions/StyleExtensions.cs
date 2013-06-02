@@ -19,15 +19,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
             var setter =
                 style.Setters.Cast<Setter>().FirstOrDefault(
                     s => s.Property == property);
-            var value = setter != null ? setter.Value : null;
 
-            if (setter == null &&
-                style.BasedOn != null)
+            if (setter != null)
             {
-                value = style.BasedOn.GetPropertyValue(property);
+                return setter.Value;
             }
 
-            return value;
+            if (style.BasedOn != null)
+            {
+                return style.BasedOn.GetPropertyValue(property);
+            }
+
+            return DependencyProperty.UnsetValue;
         }
     }
 }

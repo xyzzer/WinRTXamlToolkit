@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using SharpDX;
+using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Imaging;
 using Windows.Foundation;
 using Windows.UI.Xaml.Media;
@@ -12,6 +13,31 @@ namespace WinRTXamlToolkit.Composition
 {
     public static class Conversion
     {
+        /// <summary>
+        /// Creates and pushes a D2D layer if necessary. Returns the layer or null if not required.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <param name="renderTarget">The render target.</param>
+        /// <param name="rootElement"></param>
+        /// <returns></returns>
+        public static D2D.Layer CreateAndPushLayerIfNecessary(this Jupiter.FrameworkElement element, D2D.RenderTarget renderTarget, Jupiter.FrameworkElement rootElement)
+        {
+            if (element.Opacity >= 1)
+                //element.Clip == null &&
+                //element.RenderTransform == null)
+            {
+                return null;
+            }
+
+            var layer = new D2D.Layer(renderTarget);
+            var layerParameters = new D2D.LayerParameters();
+            layerParameters.Opacity = (float)element.Opacity;
+            layerParameters.ContentBounds = element.GetBoundingRect(rootElement).ToSharpDX();
+            renderTarget.PushLayer(ref layerParameters, layer);
+
+            return layer;
+        }
+
         public static SharpDX.DirectWrite.TextAlignment ToSharpDX(
             this Jupiter.TextAlignment alignment)
         {

@@ -80,5 +80,15 @@ namespace WinRTXamlToolkit.Debugging.Views
         {
             VisualStateManager.GoToState(this, "Expanded", true);
         }
+
+        internal void Collapse()
+        {
+            CollapseButton.IsChecked = true;
+        }
+
+        internal void Expand()
+        {
+            CollapseButton.IsChecked = false;
+        }
     }
 }

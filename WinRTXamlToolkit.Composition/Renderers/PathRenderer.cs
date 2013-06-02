@@ -17,9 +17,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var fill = await path.Fill.ToSharpDX(renderTarget, rect);
             var stroke = await path.Stroke.ToSharpDX(renderTarget, rect);
 
-            //var layer = new D2D.Layer(renderTarget);
-            //var layerParameters = new D2D.LayerParameters();
-            //layerParameters.ContentBounds = rect;
+            var layer = path.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
             var oldTransform = renderTarget.Transform;
             renderTarget.Transform = new Matrix3x2(
                 1, 0, 0, 1, rect.Left, rect.Top);
@@ -63,7 +61,12 @@ namespace WinRTXamlToolkit.Composition.Renderers
             //    renderTarget.FillRoundedRectangle(roundedRect, fill);
             //}
 
-            //renderTarget.PopLayer();
+            if (layer != null)
+            {
+                renderTarget.PopLayer();
+                layer.Dispose();
+            }
+
             renderTarget.Transform = oldTransform;
         }
 

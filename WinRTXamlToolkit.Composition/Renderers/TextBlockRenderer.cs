@@ -33,11 +33,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
                         return;
                     }
 
-                    //using(var layer = new Layer(renderTarget))
-                    //{
-                    //var layerParameters = new LayerParameters();
-                    //layerParameters.ContentBounds = rect;
-                    //renderTarget.PushLayer(ref layerParameters, layer);
+                    var layer = textBlock.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
                     // You can render the bounding rectangle to debug composition
                     //renderTarget.DrawRectangle(
@@ -49,7 +45,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
                         rect,
                         textBrush);
 
-                    //renderTarget.PopLayer();
+                    if (layer != null)
+                    {
+                        renderTarget.PopLayer();
+                        layer.Dispose();
+                    }
                     //}
                 }
             }

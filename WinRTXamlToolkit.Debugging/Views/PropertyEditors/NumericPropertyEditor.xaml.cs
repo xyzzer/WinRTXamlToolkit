@@ -141,7 +141,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             double smallChange = 1d;
             double minimum = double.MinValue;
             double maximum = double.MaxValue;
-            double dragSpeed = double.NaN;
+            double dragSpeed = 100;
             var valueBarVisibility = NumericUpDownValueBarVisibility.Collapsed;
             var valueFormat = "F0";
 

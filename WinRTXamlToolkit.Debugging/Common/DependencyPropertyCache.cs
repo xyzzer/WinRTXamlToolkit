@@ -8,6 +8,7 @@ using WinRTXamlToolkit.Tools;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Automation;
 
 namespace WinRTXamlToolkit.Debugging.Common
 {
@@ -73,12 +74,22 @@ namespace WinRTXamlToolkit.Debugging.Common
                         pi.GetMethod.IsStatic &&
                         pi.PropertyType == typeof (DependencyProperty)))
             {
-                var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
-                var propertyName =
-                    dpPropertyInfo.Name.Substring(
-                        0,
-                        dpPropertyInfo.Name.Length - "Property".Length);
-                AddDependencyPropertyInfo(type, typeInfo, dependencyProperty, propertyName, ref propertyList);
+                try
+                {
+                    if (type == typeof(AutomationProperties) &&
+                        dpPropertyInfo.Name == "AccessibilityViewProperty")
+                    {
+                        continue;
+                    }
+
+                    var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
+                    var propertyName =
+                        dpPropertyInfo.Name.Substring(
+                            0,
+                            dpPropertyInfo.Name.Length - "Property".Length);
+                    AddDependencyPropertyInfo(type, typeInfo, dependencyProperty, propertyName, ref propertyList);
+                }
+                catch { }
             }
 
             if (!typeInfo.ContainsGenericParameters)

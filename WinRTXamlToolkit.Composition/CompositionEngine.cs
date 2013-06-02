@@ -338,7 +338,9 @@ namespace WinRTXamlToolkit.Composition
 
                 Debug.Assert(child != null);
 
-                if (child != null)
+                if (child != null &&
+                    child.Opacity > 0 &&
+                    child.Visibility == Visibility.Visible)
                 {
                     await this.Render(renderTarget, rootElement, child);
                 }

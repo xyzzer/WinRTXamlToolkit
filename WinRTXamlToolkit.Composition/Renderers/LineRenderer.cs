@@ -11,7 +11,6 @@ namespace WinRTXamlToolkit.Composition.Renderers
         internal static async Task Render(CompositionEngine compositionEngine, SharpDX.Direct2D1.RenderTarget renderTarget, FrameworkElement rootElement, Line line)
         {
             var rect = line.GetBoundingRect(rootElement).ToSharpDX();
-            //var fill = line.Fill.ToSharpDX(renderTarget, rect);
             var stroke = await line.Stroke.ToSharpDX(renderTarget, rect);
 
             if (stroke == null ||
@@ -20,10 +19,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
                 return;
             }
 
-            //var layer = new Layer(renderTarget);
-            //var layerParameters = new LayerParameters();
-            //layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
+            var layer = line.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
             renderTarget.DrawLine(
                 new DrawingPointF(
@@ -36,7 +32,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
                     (float)line.StrokeThickness,
                     line.GetStrokeStyle(compositionEngine.D2DFactory));
 
-            //renderTarget.PopLayer();
+            if (layer != null)
+            {
+                renderTarget.PopLayer();
+                layer.Dispose();
+            }
         }
     }
 }

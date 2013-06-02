@@ -36,11 +36,20 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public RelayCommand ResetValueCommand { get; private set; }
 
+        public abstract bool CanAnalyze { get; }
+
+        public abstract void Analyze();
+
+        public RelayCommand AnalyzeCommand { get; private set; }
+
         public BasePropertyViewModel()
         {
             this.ResetValueCommand = new RelayCommand(
                 this.ResetValue,
                 () => this.CanResetValue);
+            this.AnalyzeCommand = new RelayCommand(
+                this.Analyze,
+                () => this.CanAnalyze);
             this.PropertyChanged += OnPropertyChanged;
         }
 

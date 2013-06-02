@@ -127,13 +127,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PropertyEditors\BooleanPropertyEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PropertyEditors\BrushPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\CacheModePropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\DefaultPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropertyEditors\DependencyObjectPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PropertyEditors\EnumPropertyEditor.xaml">
       <SubType>Designer</SubType>
@@ -184,11 +204,26 @@
       <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditablePropertyTemplateSelector.cs" />
+    <Compile Include="Views\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PropertyEditors\BooleanPropertyEditor.xaml.cs">
       <DependentUpon>BooleanPropertyEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PropertyEditors\BrushPropertyEditor.xaml.cs">
+      <DependentUpon>BrushPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\CacheModePropertyEditor.xaml.cs">
+      <DependentUpon>CacheModePropertyEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml.cs">
       <DependentUpon>CornerRadiusPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\DefaultPropertyEditor.xaml.cs">
+      <DependentUpon>DefaultPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\DependencyObjectPropertyEditor.xaml.cs">
+      <DependentUpon>DependencyObjectPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyEditors\EnumPropertyEditor.xaml.cs">
       <DependentUpon>EnumPropertyEditor.xaml</DependentUpon>

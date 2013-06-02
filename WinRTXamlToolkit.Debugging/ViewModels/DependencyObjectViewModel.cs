@@ -146,9 +146,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 _name = fe.Name;
             }
 
-            this.DescendantCount = model.GetDescendants().Count();
-
-            if (this.DescendantCount == 0)
+            if (!(model is UIElement) ||
+                !model.GetDescendants().Any())
             {
                 this.Children.Clear();
             }
@@ -225,7 +224,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             // ReSharper restore ExplicitCallerInfoArgument
             this.Details.Clear();
             this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
-            this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
+
+            if (this.Model is UIElement)
+            {
+                this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
+            }
 
             //if (TreeModel.IsPreviewShown)
             //{
@@ -270,12 +273,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         internal override async Task LoadChildren()
 #pragma warning restore 1998
         {
-            this.Children =
-                new ObservableCollection<TreeItemViewModel>(
-                    from childElement in this.Model.GetChildren().Cast<UIElement>()
-                    select new DependencyObjectViewModel(this.TreeModel, this, childElement));
-
-            UpdateAscendantChildCounts();
+            if (this.Model is UIElement)
+            {
+                this.Children =
+                    new ObservableCollection<TreeItemViewModel>(
+                        from childElement in this.Model.GetChildren().Cast<UIElement>()
+                        select new DependencyObjectViewModel(this.TreeModel, this, childElement));
+                UpdateAscendantChildCounts();
+            }
+            else
+            {
+                this.Children = new ObservableCollection<TreeItemViewModel>();
+            }
         } 
         #endregion
 

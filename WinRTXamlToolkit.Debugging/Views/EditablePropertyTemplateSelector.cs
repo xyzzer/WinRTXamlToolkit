@@ -5,6 +5,7 @@ using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {
@@ -35,6 +36,11 @@ namespace WinRTXamlToolkit.Debugging.Views
                     if (type == typeof(bool) || type == typeof(bool?))
                     {
                         return (DataTemplate)this.Resources["BooleanPropertyEditor"];
+                    }
+
+                    if (typeof(CacheMode).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                    {
+                        return (DataTemplate)this.Resources["CacheModePropertyEditor"];
                     }
 
                     if (type == typeof(Thickness))
@@ -68,6 +74,19 @@ namespace WinRTXamlToolkit.Debugging.Views
                     {
                         return (DataTemplate)this.Resources["EnumPropertyEditor"];
                     }
+
+                    if (typeof(Brush).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                    {
+                        return (DataTemplate)this.Resources["BrushPropertyEditor"];
+                    }
+
+                    if (typeof(DependencyObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) &&
+                        propertyViewModel.Value != null)
+                    {
+                        return (DataTemplate)this.Resources["DependencyObjectPropertyEditor"];
+                    }
+
+                    return (DataTemplate)this.Resources["DefaultPropertyEditor"];
                 }
 
                 //return base.SelectTemplateCore(item, container);

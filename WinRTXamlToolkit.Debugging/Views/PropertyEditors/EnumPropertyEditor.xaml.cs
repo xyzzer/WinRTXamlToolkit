@@ -90,8 +90,10 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             }
             else if (
                 typeInfo.IsGenericType &&
-                newEnumType.GetGenericTypeDefinition() == typeof (Nullable<>))
+                newEnumType.GetGenericTypeDefinition() == typeof (Nullable<>) &&
+                newEnumType.GetTypeInfo().GenericTypeArguments[0].GetTypeInfo().IsEnum)
             {
+                newEnumType = newEnumType.GetGenericTypeDefinition().GenericTypeArguments[0];
                 combo.ItemsSource =
                     new [] {new EnumValueInfo { DisplayName = string.Empty, Value = null}}
                         .Concat(

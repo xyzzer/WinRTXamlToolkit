@@ -94,6 +94,18 @@ namespace WinRTXamlToolkit.Debugging
             Instance._popup.IsOpen = false;
         }
 
+        [Conditional("DEBUG")]
+        public static void Expand()
+        {
+            Instance._debugConsoleView.Expand();
+        }
+
+        [Conditional("DEBUG")]
+        public static void Collapse()
+        {
+            Instance._debugConsoleView.Collapse();
+        }
+
         private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
         {
             _debugConsoleView.Width = Window.Current.Bounds.Width;
@@ -295,6 +307,18 @@ namespace WinRTXamlToolkit.Debugging
         public static void ShowVisualTree(UIElement element = null)
         {
             DebugConsoleOverlay.ShowVisualTree(element);
+        }
+
+        [Conditional("DEBUG")]
+        public static void Expand()
+        {
+            DebugConsoleOverlay.Expand();
+        }
+
+        [Conditional("DEBUG")]
+        public static void Collapse()
+        {
+            DebugConsoleOverlay.Collapse();
         }
     }
 }

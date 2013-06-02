@@ -6,7 +6,8 @@
     xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions" mc:Ignorable="d">
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d">
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -32,26 +33,98 @@
             Grid.Column="1"
             SelectionMode="Extended"
             ItemsPanel="{StaticResource GridViewItemsPanelTemplate}">
-<GridViewItem Width="400" Height="150"><Border Width="400"><StackPanel Margin="10" HorizontalAlignment="Stretch">
-<RichTextBlock Extensions:RichTextBlockExtensions.PlainText="BasicRichTextStyle" Style="{StaticResource BasicRichTextStyle}" />
-<Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20"/>
-<TextBox IsReadOnly="True" Text="BasicRichTextStyle" />
-</StackPanel></Border></GridViewItem>
-<GridViewItem Width="400" Height="150"><Border Width="400"><StackPanel Margin="10" HorizontalAlignment="Stretch">
-<RichTextBlock Extensions:RichTextBlockExtensions.PlainText="BaselineRichTextStyle" Style="{StaticResource BaselineRichTextStyle}" />
-<Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20"/>
-<TextBox IsReadOnly="True" Text="BaselineRichTextStyle" />
-</StackPanel></Border></GridViewItem>
-<GridViewItem Width="400" Height="150"><Border Width="400"><StackPanel Margin="10" HorizontalAlignment="Stretch">
-<RichTextBlock Extensions:RichTextBlockExtensions.PlainText="ItemRichTextStyle" Style="{StaticResource ItemRichTextStyle}" />
-<Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20"/>
-<TextBox IsReadOnly="True" Text="ItemRichTextStyle" />
-</StackPanel></Border></GridViewItem>
-<GridViewItem Width="400" Height="150"><Border Width="400"><StackPanel Margin="10" HorizontalAlignment="Stretch">
-<RichTextBlock Extensions:RichTextBlockExtensions.PlainText="BodyRichTextStyle" Style="{StaticResource BodyRichTextStyle}" />
-<Line X1="0" X2="400" Stroke="Green" StrokeThickness="1" Margin="0,0,0,20"/>
-<TextBox IsReadOnly="True" Text="BodyRichTextStyle" />
-</StackPanel></Border></GridViewItem>
+            <GridViewItem
+                Width="400"
+                Height="150">
+                <Border
+                    Width="400">
+                    <StackPanel
+                        Margin="10"
+                        HorizontalAlignment="Stretch">
+                        <!--<RichTextBlock
+                            Extensions:RichTextBlockExtensions.PlainText="BasicRichTextStyle"
+                            Style="{StaticResource BasicRichTextStyle}" />-->
+                        <Line
+                            X1="0"
+                            X2="400"
+                            Stroke="Green"
+                            StrokeThickness="1"
+                            Margin="0,0,0,20" />
+                        <TextBox
+                            IsReadOnly="True"
+                            Text="BasicRichTextStyle" />
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+            <GridViewItem
+                Width="400"
+                Height="150">
+                <Border
+                    Width="400">
+                    <StackPanel
+                        Margin="10"
+                        HorizontalAlignment="Stretch">
+                        <!--<RichTextBlock
+                            Extensions:RichTextBlockExtensions.PlainText="BaselineRichTextStyle"
+                            Style="{StaticResource BaselineRichTextStyle}" />-->
+                        <Line
+                            X1="0"
+                            X2="400"
+                            Stroke="Green"
+                            StrokeThickness="1"
+                            Margin="0,0,0,20" />
+                        <TextBox
+                            IsReadOnly="True"
+                            Text="BaselineRichTextStyle" />
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+            <GridViewItem
+                Width="400"
+                Height="150">
+                <Border
+                    Width="400">
+                    <StackPanel
+                        Margin="10"
+                        HorizontalAlignment="Stretch">
+                        <!--<RichTextBlock
+                            Extensions:RichTextBlockExtensions.PlainText="ItemRichTextStyle"
+                            Style="{StaticResource ItemRichTextStyle}" />-->
+                        <Line
+                            X1="0"
+                            X2="400"
+                            Stroke="Green"
+                            StrokeThickness="1"
+                            Margin="0,0,0,20" />
+                        <TextBox
+                            IsReadOnly="True"
+                            Text="ItemRichTextStyle" />
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
+            <GridViewItem
+                Width="400"
+                Height="150">
+                <Border
+                    Width="400">
+                    <StackPanel
+                        Margin="10"
+                        HorizontalAlignment="Stretch">
+                        <!--<RichTextBlock
+                            Extensions:RichTextBlockExtensions.PlainText="BodyRichTextStyle"
+                            Style="{StaticResource BodyRichTextStyle}" />-->
+                        <Line
+                            X1="0"
+                            X2="400"
+                            Stroke="Green"
+                            StrokeThickness="1"
+                            Margin="0,0,0,20" />
+                        <TextBox
+                            IsReadOnly="True"
+                            Text="BodyRichTextStyle" />
+                    </StackPanel>
+                </Border>
+            </GridViewItem>
         </GridView>
     </Grid>
 </Page>

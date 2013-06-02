@@ -117,7 +117,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
             string oldLinkedHtmlFragment = (string)e.OldValue;
             string newLinkedHtmlFragment = (string)d.GetValue(LinkedHtmlFragmentProperty);
 
-            ((RichTextBlock)d).SetLinkedHtmlFragment(newLinkedHtmlFragment);
+            ((RichTextBlock)d).SetLinkedHtmlFragmentString(newLinkedHtmlFragment);
         }
         #endregion
 
@@ -130,7 +130,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// </remarks>
         /// <param name="richTextBlock">The rich text block.</param>
         /// <param name="htmlFragment">The HTML fragment.</param>
-        public static void SetLinkedHtmlFragment(this RichTextBlock richTextBlock, string htmlFragment)
+        public static void SetLinkedHtmlFragmentString(this RichTextBlock richTextBlock, string htmlFragment)
         {
             richTextBlock.Blocks.Clear();
 
@@ -207,7 +207,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                     NavigateUri = uri
                 };
 
-            paragraph.Inlines.Add(new InlineUIContainer {Child = link});
+            paragraph.Inlines.Add(new InlineUIContainer { Child = link });
         }
     }
 }

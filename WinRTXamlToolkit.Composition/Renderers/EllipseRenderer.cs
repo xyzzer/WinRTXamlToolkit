@@ -22,10 +22,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
                 (float)(0.5 * rect.Height));
             var fill = await ellipse.Fill.ToSharpDX(renderTarget, rect);
 
-            //var layer = new Layer(renderTarget);
-            //var layerParameters = new LayerParameters();
-            //layerParameters.ContentBounds = rect;
-            //renderTarget.PushLayer(ref layerParameters, layer);
+            var layer = ellipse.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
             var stroke = await ellipse.Stroke.ToSharpDX(renderTarget, rect);
 
@@ -52,7 +49,11 @@ namespace WinRTXamlToolkit.Composition.Renderers
                 renderTarget.FillEllipse(d2dEllipse, fill);
             }
 
-            //renderTarget.PopLayer();
+            if (layer != null)
+            {
+                renderTarget.PopLayer();
+                layer.Dispose();
+            }
         }
     }
 }

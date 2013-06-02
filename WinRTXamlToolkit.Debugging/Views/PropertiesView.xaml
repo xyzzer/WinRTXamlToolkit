@@ -1,0 +1,133 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Debugging.Views.PropertiesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Debugging.Views"
+    xmlns:controls="using:WinRTXamlToolkit.Debugging.Controls"
+    xmlns:converters="using:WinRTXamlToolkit.Converters"
+    xmlns:propertyEditors="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- EditablePropertyTemplateSelector -->
+            <local:EditablePropertyTemplateSelector
+                x:Key="EditablePropertyTemplateSelector">
+                <local:EditablePropertyTemplateSelector.Resources>
+                    <ResourceDictionary>
+                        <DataTemplate
+                            x:Key="EnumPropertyEditor">
+                            <propertyEditors:EnumPropertyEditor
+                                EnumType="{Binding PropertyType}"
+                                Model="{Binding}"
+                                Value="{Binding Value}" />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="StringPropertyEditor">
+                            <propertyEditors:StringPropertyEditor />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="NumericPropertyEditor">
+                            <propertyEditors:NumericPropertyEditor
+                                NumericType="{Binding PropertyType}"
+                                Model="{Binding}" />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="BrushPropertyEditor">
+                            <Rectangle
+                                Width="200"
+                                Height="150"
+                                Fill="{Binding Value}" />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="BooleanPropertyEditor">
+                            <propertyEditors:BooleanPropertyEditor />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="CacheModePropertyEditor">
+                            <propertyEditors:CacheModePropertyEditor />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="ThicknessPropertyEditor">
+                            <propertyEditors:ThicknessPropertyEditor
+                                Model="{Binding}"
+                                Value="{Binding Value}" />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="CornerRadiusPropertyEditor">
+                            <propertyEditors:CornerRadiusPropertyEditor
+                                Model="{Binding}"
+                                Value="{Binding Value}" />
+                        </DataTemplate>
+                        <DataTemplate
+                            x:Key="DependencyObjectPropertyEditor">
+                            <propertyEditors:DependencyObjectPropertyEditor />
+                            <!--Model="{Binding}"-->
+                        </DataTemplate>
+                    </ResourceDictionary>
+                </local:EditablePropertyTemplateSelector.Resources>
+            </local:EditablePropertyTemplateSelector>
+        </ResourceDictionary>
+    </UserControl.Resources>    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+        <controls:EditableListBox
+            ItemsSource="{Binding Properties}"
+            EditableItemTemplateSelector="{StaticResource EditablePropertyTemplateSelector}">
+            <controls:EditableListBox.Resources>
+                <converters:BooleanToDoubleConverter
+                    x:Key="BooleanToDoubleConverter"
+                    FalseValue="1"
+                    TrueValue="0.5" />
+            </controls:EditableListBox.Resources>
+            <controls:EditableListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Name}"
+                            FontWeight="Bold"
+                            Margin="0,0,10,0" />
+                        <TextBlock
+                            Text="{Binding ValueString}"
+                            Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </controls:EditableListBox.ItemTemplate>
+        </controls:EditableListBox>
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal">
+            <Button
+                x:Name="RefreshButton"
+                Content="Refresh"
+                Style="{StaticResource WrtxtdTextButtonStyleSmall}"
+                Command="{Binding RefreshCommand}"
+                FontSize="11"
+                VerticalAlignment="Top"
+                Margin="1,3,10,0"
+                FontWeight="Normal" />
+            <CheckBox
+                Content="Show Unchanged"
+                IsChecked="{Binding ShowDefaultedProperties, Mode=TwoWay}"
+                FontSize="11" />
+            <CheckBox
+                Content="Show Read-Only"
+                IsChecked="{Binding ShowReadOnlyProperties, Mode=TwoWay}"
+                FontSize="11"
+                Margin="10,0,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

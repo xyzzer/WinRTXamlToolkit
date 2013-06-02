@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WinRTXamlToolkit.Debugging.Views.PropertyEditors.StringPropertyEditor"
+    x:Class="WinRTXamlToolkit.Debugging.Views.PropertyEditors.CacheModePropertyEditor"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
@@ -26,10 +26,11 @@
                 Foreground="White"
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
-            <TextBox
-                Text="{Binding Value, Mode=TwoWay}"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"/>
+            <CheckBox
+                x:Name="cb"
+                Content="BitmapCache"
+                Checked="CheckboxChecked"
+                Unchecked="CheckboxUnchecked"/>
             <StackPanel
                 Orientation="Horizontal">
                 <Button

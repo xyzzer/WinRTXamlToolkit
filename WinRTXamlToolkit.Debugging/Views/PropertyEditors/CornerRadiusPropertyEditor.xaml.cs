@@ -8,6 +8,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
     public sealed partial class CornerRadiusPropertyEditor : UserControl
     {
         private bool _readingValue;
+
         #region Model
         /// <summary>
         /// Model Dependency Property

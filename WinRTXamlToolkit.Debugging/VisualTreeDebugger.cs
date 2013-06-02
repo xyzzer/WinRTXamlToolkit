@@ -334,10 +334,11 @@ namespace WinRTXamlToolkit.Debugging
         /// Called when the control gets tapped or clicked.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="args">The object containing the event data.</param>
 #if NETFX_CORE
+        /// <param name="args">The object containing the event data.</param>
         private static async void BreakOnControlTapped(object sender, TappedRoutedEventArgs args)
 #elif WINDOWS_PHONE
+        /// <param name="gestureEventArgs">The <see cref="GestureEventArgs"/> instance containing the event data.</param>
         private static async void BreakOnControlTapped(object sender, GestureEventArgs args)
 #endif
         {

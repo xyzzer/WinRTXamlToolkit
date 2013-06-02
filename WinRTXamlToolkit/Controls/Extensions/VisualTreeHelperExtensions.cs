@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WinRTXamlToolkit.Tools;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -51,7 +52,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         public static IEnumerable<DependencyObject> GetDescendants(this DependencyObject start)
         {
             var queue = new Queue<DependencyObject>();
-            
+
             var popup = start as Popup;
 
             if (popup != null)
@@ -140,7 +141,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
             int i = 0;
             var indexedChildren =
                 parent.GetChildren().Cast<FrameworkElement>().Select(
-                child => new {Index = i++, ZIndex = Canvas.GetZIndex(child), Child = child});
+                child => new { Index = i++, ZIndex = Canvas.GetZIndex(child), Child = child });
 
             return
                 from indexedChild in indexedChildren
@@ -221,6 +222,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// relative to a given other element or visual root
         /// if relativeTo is null or not specified.
         /// </summary>
+        /// <remarks>
+        /// Note that the bounding box is calculated based on the corners of the element relative to itself,
+        /// so e.g. a bounding box of a rotated ellipse will be larger than necessary and in general
+        /// bounding boxes of elements with transforms applied to them will often be calculated incorrectly.
+        /// </remarks>
         /// <param name="dob">The starting element.</param>
         /// <param name="relativeTo">The relative to element.</param>
         /// <returns></returns>
@@ -254,11 +260,25 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 throw new InvalidOperationException("Element not in visual tree.");
             }
 
-            var pos =
+            var topLeft =
                 dob
                     .TransformToVisual(relativeTo)
                     .TransformPoint(new Point());
-            var pos2 =
+            var topRight =
+                dob
+                    .TransformToVisual(relativeTo)
+                    .TransformPoint(
+                        new Point(
+                            dob.ActualWidth,
+                            0));
+            var bottomLeft =
+                dob
+                    .TransformToVisual(relativeTo)
+                    .TransformPoint(
+                        new Point(
+                            0,
+                            dob.ActualHeight));
+            var bottomRight =
                 dob
                     .TransformToVisual(relativeTo)
                     .TransformPoint(
@@ -266,7 +286,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
                             dob.ActualWidth,
                             dob.ActualHeight));
 
-            return new Rect(pos, pos2);
+            var minX = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Min();
+            var maxX = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Max();
+            var minY = new[] { topLeft.Y, topRight.Y, bottomLeft.Y, bottomRight.Y }.Min();
+            var maxY = new[] { topLeft.Y, topRight.Y, bottomLeft.Y, bottomRight.Y }.Max();
+
+            return new Rect(minX, minY, maxX - minX, maxY - minY);
         }
     }
 }

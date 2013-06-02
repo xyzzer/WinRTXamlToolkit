@@ -33,12 +33,21 @@
                 Content=""
                 IsThreeState="True"
                 IsChecked="{Binding Value, Converter={StaticResource BoolToNullableBoolConverter}, Mode=TwoWay}" />
-            <Button
-                x:Name="ResetValueButton"
-                Content="Reset"
-                Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                Visibility="{Binding CanResetValue, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Command="{Binding ResetValueCommand}" />
+            <StackPanel
+                Orientation="Horizontal">
+                <Button
+                    x:Name="ResetValueButton"
+                    Content="Reset"
+                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
+                    Visibility="{Binding CanResetValue, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding ResetValueCommand}" />
+                <Button
+                    x:Name="AnalyzeButton"
+                    Content="Analyze"
+                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
+                    Visibility="{Binding CanAnalyze, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding AnalyzeCommand}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

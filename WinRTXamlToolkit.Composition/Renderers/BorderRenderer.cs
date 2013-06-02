@@ -19,14 +19,15 @@ namespace WinRTXamlToolkit.Composition.Renderers
             {
                 var geometry = GetBorderFillGeometry(compositionEngine, border, rect);
 
-                //var layer = new Layer(renderTarget);
-                //var layerParameters = new LayerParameters();
-                //layerParameters.ContentBounds = rect;
-                //renderTarget.PushLayer(ref layerParameters, layer);
+                var layer = border.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
                 renderTarget.FillGeometry(geometry, brush);
 
-                //renderTarget.PopLayer();
+                if (layer != null)
+                {
+                    renderTarget.PopLayer();
+                    layer.Dispose();
+                }
             }
 
             await compositionEngine.RenderChildren(renderTarget, rootElement, border);

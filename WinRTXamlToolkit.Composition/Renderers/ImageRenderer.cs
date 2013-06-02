@@ -26,17 +26,19 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             try
             {
-                //var layer = new Layer(renderTarget);
-                //var layerParameters = new LayerParameters();
-                //layerParameters.ContentBounds = rect;
-                //renderTarget.PushLayer(ref layerParameters, layer);
+                var layer = image.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
+
                 renderTarget.DrawBitmap(
                     bitmap,
                     rect,
                     (float)image.Opacity,
                     D2D.BitmapInterpolationMode.Linear);
 
-                //renderTarget.PopLayer();
+                if (layer != null)
+                {
+                    renderTarget.PopLayer();
+                    layer.Dispose();
+                }
             }
             finally
             {

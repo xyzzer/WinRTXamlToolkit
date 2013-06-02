@@ -292,6 +292,7 @@ namespace WinRTXamlToolkit.Controls
                 Window.Current.CoreWindow.PointerReleased += CoreWindowOnPointerReleased;
                 Window.Current.CoreWindow.VisibilityChanged += OnCoreWindowVisibilityChanged;
                 _dragOverlay.PointerReleased += OnDragOverlayPointerReleased;
+                _dragOverlay.PointerCaptureLost += OnDragOverlayPointerCaptureLost;
             }
 
             if (_decrementButton != null)
@@ -458,6 +459,11 @@ namespace WinRTXamlToolkit.Controls
         }
 
         private async void OnDragOverlayPointerReleased(object sender, PointerRoutedEventArgs args)
+        {
+            await EndDragging(args);
+        }
+
+        private async void OnDragOverlayPointerCaptureLost(object sender, PointerRoutedEventArgs args)
         {
             await EndDragging(args);
         }

@@ -92,5 +92,17 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             OnPropertyChanged("IsDefault");
             // ReSharper restore ExplicitCallerInfoArgument
         }
+
+        public override bool CanAnalyze
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void Analyze()
+        {
+        }
     }
 }

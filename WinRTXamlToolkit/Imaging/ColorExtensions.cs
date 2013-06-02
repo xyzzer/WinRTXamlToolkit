@@ -40,8 +40,42 @@ namespace WinRTXamlToolkit.Imaging
         /// <returns></returns>
         public static Color FromString(string c)
         {
+            Color color;
+
+            FromString(c, true, out color);
+
+            return color;
+        }
+
+        /// <summary>
+        /// Returns a Color based on XAML color string.
+        /// </summary>
+        /// <param name="c">The color string. Any format used in XAML should work.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
+        public static bool TryFromString(string c, out Color color)
+        {
+            return FromString(c, false, out color);
+        }
+
+        /// <summary>
+        /// Returns a Color based on XAML color string.
+        /// </summary>
+        /// <param name="c">The color string. Any format used in XAML should work.</param>
+        /// <param name="throwOnFail">if set to <c>true</c> the method will throw on failulre to convert.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Invalid color string.;c</exception>
+        /// <exception cref="System.FormatException"></exception>
+        private static bool FromString(string c, bool throwOnFail, out Color color)
+        {
             if (string.IsNullOrEmpty(c))
-                throw new ArgumentException("Invalid color string.", "c");
+            {
+                if (throwOnFail)
+                    throw new ArgumentException("Invalid color string.", "c");
+                else
+                    return false;
+            }
 
             if (c[0] == '#')
             {
@@ -56,7 +90,8 @@ namespace WinRTXamlToolkit.Imaging
                         var g = (byte)((cuint >> 8) & 0xff);
                         var b = (byte)(cuint & 0xff);
 
-                        return Color.FromArgb(a, r, g, b);
+                        color = Color.FromArgb(a, r, g, b);
+                        return true;
                     }
                     case 7:
                     {
@@ -65,7 +100,8 @@ namespace WinRTXamlToolkit.Imaging
                         var g = (byte)((cuint >> 8) & 0xff);
                         var b = (byte)(cuint & 0xff);
 
-                        return Color.FromArgb(255, r, g, b);
+                        color = Color.FromArgb(255, r, g, b);
+                        return true;
                     }
                     case 5:
                     {
@@ -79,7 +115,8 @@ namespace WinRTXamlToolkit.Imaging
                         g = (byte)(g << 4 | g);
                         b = (byte)(b << 4 | b);
 
-                        return Color.FromArgb(a, r, g, b);
+                        color = Color.FromArgb(a, r, g, b);
+                        return true;
                     }
                     case 4:
                     {
@@ -91,10 +128,14 @@ namespace WinRTXamlToolkit.Imaging
                         g = (byte)(g << 4 | g);
                         b = (byte)(b << 4 | b);
 
-                        return Color.FromArgb(255, r, g, b);
+                        color = Color.FromArgb(255, r, g, b);
+                        return true;
                     }
                     default:
-                        throw new FormatException(string.Format("The {0} string passed in the c argument is not a recognized Color format.", c));
+                        if (throwOnFail)
+                            throw new FormatException(string.Format("The {0} string passed in the c argument is not a recognized Color format.", c));
+                        else
+                            return false;
                 }
             }
             else if (
@@ -112,11 +153,12 @@ namespace WinRTXamlToolkit.Imaging
                     var scG = double.Parse(values[2]);
                     var scB = double.Parse(values[3]);
 
-                    return Color.FromArgb(
+                    color = Color.FromArgb(
                         (byte)(scA * 255),
                         (byte)(scR * 255),
                         (byte)(scG * 255),
                         (byte)(scB * 255));
+                    return true;
                 }
                 else if (values.Length == 3)
                 {
@@ -124,21 +166,35 @@ namespace WinRTXamlToolkit.Imaging
                     var scG = double.Parse(values[1]);
                     var scB = double.Parse(values[2]);
 
-                    return Color.FromArgb(
+                    color = Color.FromArgb(
                         255,
                         (byte)(scR * 255),
                         (byte)(scG * 255),
                         (byte)(scB * 255));
+                    return true;
                 }
                 else
                 {
-                    throw new FormatException(string.Format("The {0} string passed in the c argument is not a recognized Color format (sc#[scA,]scR,scG,scB).", c));
+                    if (throwOnFail)
+                        throw new FormatException(string.Format("The {0} string passed in the c argument is not a recognized Color format (sc#[scA,]scR,scG,scB).", c));
+                    else
+                        return false;
                 }
             }
             else
             {
                 var prop = typeof(Colors).GetTypeInfo().GetDeclaredProperty(c);
-                return (Color)prop.GetValue(null);
+
+                if (prop != null)
+                {
+                    color = (Color)prop.GetValue(null);
+                    return true;
+                }
+
+                if (throwOnFail)
+                    throw new FormatException(string.Format("The {0} string passed in the c argument is not a recognized Color.", c));
+                else
+                    return false;
             }
         } 
         #endregion

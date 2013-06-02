@@ -15,10 +15,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             try
             {
-                //var layer = new Layer(renderTarget);
-                //var layerParameters = new LayerParameters();
-                //layerParameters.ContentBounds = rect;
-                //renderTarget.PushLayer(ref layerParameters, layer);
+                var layer = rectangle.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
                 if (rectangle.RadiusX > 0 &&
                     rectangle.RadiusY > 0)
@@ -74,7 +71,12 @@ namespace WinRTXamlToolkit.Composition.Renderers
                         renderTarget.FillRectangle(rect, fill);
                     }
                 }
-                //renderTarget.PopLayer();
+
+                if (layer != null)
+                {
+                    renderTarget.PopLayer();
+                    layer.Dispose();
+                }
             }
             finally
             {

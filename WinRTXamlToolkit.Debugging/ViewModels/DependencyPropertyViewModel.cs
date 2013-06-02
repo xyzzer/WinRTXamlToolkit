@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
@@ -34,6 +38,25 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
         }
 
+        public object DefaultValue { get; private set; }
+
+        private DependencyObjectViewModel _asObjectViewModel;
+        public DependencyObjectViewModel AsObjectViewModel
+        {
+            get
+            {
+                if (_asObjectViewModel == null)
+                {
+                    _asObjectViewModel = new DependencyObjectViewModel(_elementModel.TreeModel, null, (DependencyObject)this.Value);
+#pragma warning disable 4014
+                    _asObjectViewModel.LoadProperties();
+#pragma warning restore 4014
+                }
+
+                return _asObjectViewModel;
+            }
+        }
+
         #region CTOR
         public DependencyPropertyViewModel(
             DependencyObjectViewModel elementModel,
@@ -54,13 +77,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (_propertyType == null)
             {
-                var defaultValue =
+                this.DefaultValue =
                     _dpi.Property.GetMetadata(_elementModel.Model.GetType())
                         .DefaultValue;
 
-                if (defaultValue != null)
+                if (this.DefaultValue != null)
                 {
-                    _propertyType = defaultValue.GetType();
+                    _propertyType = this.DefaultValue.GetType();
                 }
                 else
                 {
@@ -78,7 +101,19 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return _elementModel.Model.GetValue(DependencyProperty);
+                if (!(_elementModel.Model is UIElement) &&
+                    (this.DependencyProperty == Grid.RowProperty
+                    || this.DependencyProperty == Grid.ColumnProperty
+                    || this.DependencyProperty == Grid.RowSpanProperty
+                    || this.DependencyProperty == Grid.ColumnSpanProperty
+                    || this.DependencyProperty == Canvas.LeftProperty
+                    || this.DependencyProperty == Canvas.TopProperty
+                    || this.DependencyProperty == Canvas.ZIndexProperty))
+                {
+                    return 0;
+                }
+
+                return _elementModel.Model.GetValue(this.DependencyProperty);
             }
             set
             {
@@ -117,13 +152,34 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                if (_isDefault == null)
+                try
                 {
-                    var localValue = _elementModel.Model.ReadLocalValue(DependencyProperty);
-                    _isDefault = localValue == DependencyProperty.UnsetValue;
-                }
+                    if (!(this._elementModel.Model is UIElement) &&
+                        (this.DependencyProperty == Grid.RowProperty
+                        || this.DependencyProperty == Grid.ColumnProperty
+                        || this.DependencyProperty == Grid.RowSpanProperty
+                        || this.DependencyProperty == Grid.ColumnSpanProperty
+                        || this.DependencyProperty == Canvas.LeftProperty
+                        || this.DependencyProperty == Canvas.TopProperty
+                        || this.DependencyProperty == Canvas.ZIndexProperty))
+                    {
+                        return true;
+                    }
 
-                return _isDefault.Value;
+                    if (_isDefault == null)
+                    {
+                        var localValue = _elementModel.Model.ReadLocalValue(this.DependencyProperty);
+                        _isDefault = localValue == DependencyProperty.UnsetValue;
+                    }
+
+                    return _isDefault.Value;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+
+                    return true;
+                }
             }
         }
         #endregion
@@ -165,9 +221,62 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
  // ReSharper disable ExplicitCallerInfoArgument
             OnPropertyChanged("Value");
+            OnPropertyChanged("ValueString");
             OnPropertyChanged("CanResetValue");
             OnPropertyChanged("IsDefault");
 // ReSharper restore ExplicitCallerInfoArgument
        }
+
+        public override bool CanAnalyze
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Analyzes the property value source and displays the report in a dialog.
+        /// </summary>
+        public override void Analyze()
+        {
+            var sb = new StringBuilder();
+            var dependencyObject = _elementModel.Model;
+            var dp = _dependencyProperty;
+
+            // Value
+            sb.AppendFormat("Value: {0}\r\n", dependencyObject.GetValue(dp) ?? "<null>");
+
+            // Animation base value
+            sb.AppendFormat("Animation base value: {0}\r\n", dependencyObject.GetAnimationBaseValue(dp) ?? "<null>");
+            var localValue = dependencyObject.ReadLocalValue(dp);
+
+            // Local value
+            if (localValue != DependencyProperty.UnsetValue)
+            {
+                sb.AppendFormat(
+                    "Local Value: {0}\r\n", dependencyObject.ReadLocalValue(dp) ?? "<null>");
+            }
+
+            // Style value
+            var fe = dependencyObject as FrameworkElement;
+            if (fe != null &&
+                fe.Style != null)
+            {
+                var styleValue = fe.Style.GetPropertyValue(dp);
+
+                if (styleValue != DependencyProperty.UnsetValue)
+                {
+                    sb.AppendFormat("Style Value: {0}\r\n", styleValue ?? "<null>");
+                }
+            }
+
+            // Default value
+            sb.AppendFormat("Default Value: {0}\r\n", this.DefaultValue ?? "<null>");
+
+#pragma warning disable 4014
+            new MessageDialog(sb.ToString()).ShowAsync();
+#pragma warning restore 4014
+        }
     }
 }

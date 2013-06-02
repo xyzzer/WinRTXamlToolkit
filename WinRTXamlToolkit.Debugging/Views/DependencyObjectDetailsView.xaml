@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
     xmlns:controls="using:WinRTXamlToolkit.Debugging.Controls"
-    xmlns:propertyEditors="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -17,9 +16,7 @@
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
-            <converters:BooleanToVisibilityConverter
-                x:Key="BooleanToVisibilityConverter" />
+
             <Style
                 x:Key="HorizontalScrollViewerStyle"
                 TargetType="ScrollViewer">
@@ -59,177 +56,6 @@
                     Property="ScrollViewer.ZoomMode"
                     Value="Disabled" />
             </Style>
-
-            <Style
-                x:Key="TabButtonStyle"
-                TargetType="RadioButton">
-                <Setter
-                    Property="MinWidth"
-                    Value="0" />
-                <Setter
-                    Property="MinHeight"
-                    Value="0" />
-                <Setter
-                    Property="Margin"
-                    Value="0,0,30,0" />
-                <Setter
-                    Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate
-                            TargetType="RadioButton">
-                            <Grid
-                                Background="Transparent">
-                                <TextBlock
-                                    x:Name="Text"
-                                    Text="{TemplateBinding Content}"
-                                    Margin="3,-7,3,10"
-                                    TextWrapping="NoWrap"
-                                    Style="{StaticResource SubheaderTextStyle}" />
-                                <Rectangle
-                                    x:Name="FocusVisualWhite"
-                                    IsHitTestVisible="False"
-                                    Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                                    StrokeEndLineCap="Square"
-                                    StrokeDashArray="1,1"
-                                    Opacity="0"
-                                    StrokeDashOffset="1.5" />
-                                <Rectangle
-                                    x:Name="FocusVisualBlack"
-                                    IsHitTestVisible="False"
-                                    Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                                    StrokeEndLineCap="Square"
-                                    StrokeDashArray="1,1"
-                                    Opacity="0"
-                                    StrokeDashOffset="0.5" />
-
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup
-                                        x:Name="CommonStates">
-                                        <VisualState
-                                            x:Name="Normal" />
-                                        <VisualState
-                                            x:Name="PointerOver">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetName="Text"
-                                                    Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ApplicationPointerOverForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Pressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetName="Text"
-                                                    Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ApplicationPressedForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Disabled">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetName="Text"
-                                                    Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ButtonDisabledForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                    <VisualStateGroup
-                                        x:Name="FocusStates">
-                                        <VisualState
-                                            x:Name="Focused">
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetName="FocusVisualWhite"
-                                                    Storyboard.TargetProperty="Opacity" />
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetName="FocusVisualBlack"
-                                                    Storyboard.TargetProperty="Opacity" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Unfocused" />
-                                    </VisualStateGroup>
-                                    <VisualStateGroup
-                                        x:Name="CheckStates">
-                                        <VisualState
-                                            x:Name="Checked" />
-                                        <VisualState
-                                            x:Name="Unchecked">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetName="Text"
-                                                    Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ApplicationSecondaryForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Indeterminate" />
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <local:EditablePropertyTemplateSelector
-                x:Key="EditablePropertyTemplateSelector">
-                <local:EditablePropertyTemplateSelector.Resources>
-                    <ResourceDictionary>
-                        <DataTemplate
-                            x:Key="EnumPropertyEditor">
-                            <propertyEditors:EnumPropertyEditor
-                                EnumType="{Binding PropertyType}"
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="StringPropertyEditor">
-                            <propertyEditors:StringPropertyEditor />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="NumericPropertyEditor">
-                            <propertyEditors:NumericPropertyEditor
-                                NumericType="{Binding PropertyType}"
-                                Model="{Binding}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="BooleanPropertyEditor">
-                            <propertyEditors:BooleanPropertyEditor/>
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="ThicknessPropertyEditor">
-                            <propertyEditors:ThicknessPropertyEditor
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="CornerRadiusPropertyEditor">
-                            <propertyEditors:CornerRadiusPropertyEditor
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                    </ResourceDictionary>
-                </local:EditablePropertyTemplateSelector.Resources>
-            </local:EditablePropertyTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid
@@ -260,64 +86,13 @@
                 IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
                 Style="{StaticResource TabButtonStyle}" />-->
         </StackPanel>
-        <Grid
+        <local:PropertiesView
             x:Name="PropertiesView"
             Grid.Row="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Visibility="{Binding IsChecked, ElementName=PropertiesTabButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition
-                    Height="Auto" />
-            </Grid.RowDefinitions>
-            <controls:EditableListBox
-                ItemsSource="{Binding Properties}"
-                EditableItemTemplateSelector="{StaticResource EditablePropertyTemplateSelector}">
-                <controls:EditableListBox.Resources>
-                    <converters:BooleanToDoubleConverter
-                        x:Key="BooleanToDoubleConverter"
-                        FalseValue="1"
-                        TrueValue="0.5" />
-                    </controls:EditableListBox.Resources>
-                <controls:EditableListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <TextBlock
-                                Text="{Binding Name}"
-                                FontWeight="Bold"
-                                Margin="0,0,10,0" />
-                            <TextBlock
-                                Text="{Binding ValueString}"
-                                Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </controls:EditableListBox.ItemTemplate>
-            </controls:EditableListBox>
-            <StackPanel
-                Grid.Row="1"
-                Orientation="Horizontal">
-                <Button
-                    x:Name="RefreshButton"
-                    Content="Refresh"
-                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                    Command="{Binding RefreshCommand}"
-                    FontSize="11"
-                    VerticalAlignment="Top"
-                    Margin="1,3,10,0"
-                    FontWeight="Normal" />
-                <CheckBox
-                    Content="Show Unchanged"
-                    IsChecked="{Binding ShowDefaultedProperties, Mode=TwoWay}"
-                    FontSize="11" />
-                <CheckBox
-                    Content="Show Read-Only"
-                    IsChecked="{Binding ShowReadOnlyProperties, Mode=TwoWay}"
-                    FontSize="11"
-                    Margin="10,0,0,0" />
-            </StackPanel>
-        </Grid>
+        </local:PropertiesView>
         <ScrollViewer
             x:Name="DetailsView"
             Visibility="{Binding IsChecked, ElementName=DetailsTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -335,7 +110,7 @@
                                 TextWrapping="Wrap" />
                             <TextBlock
                                 Text="{Binding Detail}"
-                                TextWrapping="Wrap" 
+                                TextWrapping="Wrap"
                                 Margin="0,0,0,10" />
                         </StackPanel>
                     </DataTemplate>
