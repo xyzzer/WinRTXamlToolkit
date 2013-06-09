@@ -34,5 +34,10 @@ namespace WinRTXamlToolkit.StylesBrowser
         {
             this.Frame.Navigate(typeof(ButtonStylesPage));
         }
+
+        private void OnBrushesButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BrushesPage));
+        }
     }
 }

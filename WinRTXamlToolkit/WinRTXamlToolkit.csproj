@@ -134,6 +134,8 @@
     <Compile Include="AwaitableUI\StoryboardExtensions.cs" />
     <Compile Include="AwaitableUI\WebViewExtensions.cs" />
     <Compile Include="AwaitableUI\WriteableBitmapExtensions.cs" />
+    <Compile Include="Common\ImplicitDataTemplateSelector.cs" />
+    <Compile Include="Common\ImplicitStyleSelector.cs" />
     <Compile Include="Common\WeakEventListener.cs" />
     <Compile Include="Controls\AlternativeFrame\AlternativeFrame.cs" />
     <Compile Include="Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs" />

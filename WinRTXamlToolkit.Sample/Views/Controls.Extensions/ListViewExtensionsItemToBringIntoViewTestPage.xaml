@@ -29,7 +29,7 @@
             Style="{StaticResource BackButtonStyle}"
             Click="GoBack" />
         <TextBlock
-            Text="ListViewExtensionsItem.ToBringIntoView Tests"
+            Text="ListViewItemExtensions.ToBringIntoView Tests"
             Grid.Column="1"
             Grid.ColumnSpan="2"
             Style="{StaticResource PageHeaderTextStyle}" />

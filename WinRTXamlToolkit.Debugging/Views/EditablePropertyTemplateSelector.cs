@@ -9,10 +9,15 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {
-    [ContentProperty]
+    [ContentProperty(Name = "Resources")]
     public class EditablePropertyTemplateSelector : DataTemplateSelector
     {
         public ResourceDictionary Resources { get; set; }
+
+        public EditablePropertyTemplateSelector()
+        {
+            this.Resources = new ResourceDictionary();
+        }
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {

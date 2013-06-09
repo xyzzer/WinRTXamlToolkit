@@ -581,7 +581,7 @@
                 Grid.RowSpan="2"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                Fill="Black"
+                Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 IsHitTestVisible="False"
                 Opacity="{Binding Opacity}" />
             <StackPanel
@@ -654,7 +654,7 @@
                 x:Name="BackgroundRectangle2"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                Fill="Black"
+                Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 IsHitTestVisible="False"
                 Visibility="{Binding IsChecked, ElementName=CollapseButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
                 Opacity="{Binding Opacity, ElementName=BackgroundRectangle}" />

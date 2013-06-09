@@ -345,7 +345,7 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private void OnAppBarOpenedOrClosed(object sender, object e)
+        private async void OnAppBarOpenedOrClosed(object sender, object e)
         {
             if (_addressAppBar != null && _addressAppBar.IsOpen ||
                 _titleAppBar != null && _titleAppBar.IsOpen)
@@ -355,6 +355,7 @@ namespace WinRTXamlToolkit.Controls
             }
             else
             {
+                await Task.Delay(200);
                 _webView.Visibility = Visibility.Visible;
             }
         }

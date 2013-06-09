@@ -7,7 +7,13 @@
         TargetType="controls:CustomAppBar">
         <Setter
             Property="Background"
-            Value="#E5000000" />
+            Value="{StaticResource AppBarBackgroundThemeBrush}" />
+        <Setter
+            Property="BorderBrush"
+            Value="{StaticResource AppBarBorderThemeBrush}" />
+        <Setter
+            Property="BorderThickness"
+            Value="{StaticResource AppBarBottomBorderThemeThickness}" />
         <Setter
             Property="VerticalAlignment"
             Value="Bottom" />

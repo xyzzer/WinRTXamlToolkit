@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.Foundation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
@@ -241,6 +242,14 @@ namespace WinRTXamlToolkit.Controls
         public RingSlice()
         {
             this.SizeChanged += OnSizeChanged;
+            new PropertyChangeEventSource<double>(
+                this, "StrokeThickness", BindingMode.OneWay).ValueChanged +=
+                OnStrokeThicknessChanged;
+        }
+
+        private void OnStrokeThicknessChanged(object sender, double e)
+        {
+            UpdatePath();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -267,7 +276,13 @@ namespace WinRTXamlToolkit.Controls
 
         private void UpdatePath()
         {
-            if (_isUpdating)
+            var innerRadius = this.InnerRadius + this.StrokeThickness / 2;
+            var outerRadius = this.Radius - this.StrokeThickness / 2;
+
+            if (_isUpdating ||
+                this.ActualWidth == 0 ||
+                innerRadius <= 0 ||
+                outerRadius < innerRadius)
             {
                 return;
             }
@@ -279,31 +294,31 @@ namespace WinRTXamlToolkit.Controls
             var center = 
                 this.Center ??
                 new Point(
-                    Radius + this.StrokeThickness / 2,
-                    Radius + this.StrokeThickness / 2);
+                    outerRadius + this.StrokeThickness / 2,
+                    outerRadius + this.StrokeThickness / 2);
 
             // Starting Point
             pathFigure.StartPoint =
                 new Point(
-                    center.X + Math.Sin(StartAngle * Math.PI / 180) * InnerRadius,
-                    center.Y - Math.Cos(StartAngle * Math.PI / 180) * InnerRadius);
+                    center.X + Math.Sin(StartAngle * Math.PI / 180) * innerRadius,
+                    center.Y - Math.Cos(StartAngle * Math.PI / 180) * innerRadius);
 
             // Inner Arc
             var innerArcSegment = new ArcSegment();
             innerArcSegment.IsLargeArc = (EndAngle - StartAngle) >= 180.0;
             innerArcSegment.Point =
                 new Point(
-                    center.X + Math.Sin(EndAngle * Math.PI / 180) * InnerRadius,
-                    center.Y - Math.Cos(EndAngle * Math.PI / 180) * InnerRadius);
-            innerArcSegment.Size = new Size(InnerRadius, InnerRadius);
+                    center.X + Math.Sin(EndAngle * Math.PI / 180) * innerRadius,
+                    center.Y - Math.Cos(EndAngle * Math.PI / 180) * innerRadius);
+            innerArcSegment.Size = new Size(innerRadius, innerRadius);
             innerArcSegment.SweepDirection = SweepDirection.Clockwise;
 
             var lineSegment =
                 new LineSegment
                 {
                     Point = new Point(
-                        center.X + Math.Sin(EndAngle * Math.PI / 180) * Radius,
-                        center.Y - Math.Cos(EndAngle * Math.PI / 180) * Radius)
+                        center.X + Math.Sin(EndAngle * Math.PI / 180) * outerRadius,
+                        center.Y - Math.Cos(EndAngle * Math.PI / 180) * outerRadius)
                 };
 
             // Outer Arc
@@ -311,9 +326,9 @@ namespace WinRTXamlToolkit.Controls
             outerArcSegment.IsLargeArc = (EndAngle - StartAngle) >= 180.0;
             outerArcSegment.Point =
                 new Point(
-                        center.X + Math.Sin(StartAngle * Math.PI / 180) * Radius,
-                        center.Y - Math.Cos(StartAngle * Math.PI / 180) * Radius);
-            outerArcSegment.Size = new Size(Radius, Radius);
+                        center.X + Math.Sin(StartAngle * Math.PI / 180) * outerRadius,
+                        center.Y - Math.Cos(StartAngle * Math.PI / 180) * outerRadius);
+            outerArcSegment.Size = new Size(outerRadius, outerRadius);
             outerArcSegment.SweepDirection = SweepDirection.Counterclockwise;
 
             pathFigure.Segments.Add(innerArcSegment);

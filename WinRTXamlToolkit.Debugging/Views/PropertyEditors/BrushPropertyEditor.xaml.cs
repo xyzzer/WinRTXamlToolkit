@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WinRTXamlToolkit.Debugging.ViewModels;
 using WinRTXamlToolkit.Imaging;
 using Windows.Storage.Pickers;
@@ -99,8 +100,13 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.InitializeComponent();
         }
 
-        private void ValueTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        private const int TextChangedUpdateDelay = 1000;
+        private int _textChangedHandler;
+
+        private async void ValueTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            var textChangedHandler = ++_textChangedHandler;
+
             if (_ignoreTextChange)
             {
                 _ignoreTextChange = false;
@@ -120,6 +126,15 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                 }
 
                 this.Model.Value = new SolidColorBrush(color);
+
+                return;
+            }
+
+            await Task.Delay(TextChangedUpdateDelay);
+
+            if (textChangedHandler != _textChangedHandler)
+            {
+                return;
             }
 
             Uri uri;
@@ -144,7 +159,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                 try
                 {
                     var bi = new BitmapImage(uri);
-                    this.Model.Value = new ImageBrush {ImageSource = bi};
+                    this.Model.Value = new ImageBrush { ImageSource = bi };
                 }
                 catch
                 {

@@ -29,7 +29,8 @@
         <controls:CustomAppBar
             Grid.Row="1"
             Grid.ColumnSpan="3"
-            VerticalAlignment="Bottom">
+            VerticalAlignment="Bottom"
+            IsOpen="True">
             <StackPanel
                 Orientation="Horizontal">
                 <Button

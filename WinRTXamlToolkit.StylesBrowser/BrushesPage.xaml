@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="WinRTXamlToolkit.StylesBrowser.BrushesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="ms-appx:///generic.xaml" />
+                <ResourceDictionary
+                    Source="ms-appx:///themeresources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="AppBar Button Styles"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <ListView
+            x:Name="BrushesListView"
+            Grid.Row="1"
+            Grid.Column="1"
+            SelectionMode="Extended">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Width="580">
+                        <StackPanel
+                            Margin="0,0,0,5"
+                            Orientation="Horizontal">
+                            <Border
+                                Width="100"
+                                Margin="0,0,5,0"
+                                Background="{Binding Brush}"
+                                BorderThickness="2"
+                                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
+                            <TextBox
+                                Width="350"
+                                Margin="0,0,5,0"
+                                IsReadOnly="True"
+                                Text="{Binding Key}" />
+                            <TextBox
+                                Width="120"
+                                IsReadOnly="True"
+                                Text="{Binding Source}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

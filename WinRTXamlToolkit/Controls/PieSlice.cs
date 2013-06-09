@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.Foundation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
@@ -140,6 +141,14 @@ namespace WinRTXamlToolkit.Controls
         public PieSlice()
         {
             this.SizeChanged += OnSizeChanged;
+            new PropertyChangeEventSource<double>(
+                 this, "StrokeThickness", BindingMode.OneWay).ValueChanged +=
+                 OnStrokeThicknessChanged;
+        }
+
+        private void OnStrokeThicknessChanged(object sender, double e)
+        {
+            UpdatePath();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -166,14 +175,18 @@ namespace WinRTXamlToolkit.Controls
 
         private void UpdatePath()
         {
-            if (_isUpdating)
+            var radius = this.Radius - this.StrokeThickness / 2;
+
+            if (_isUpdating ||
+                this.ActualWidth == 0 ||
+                radius <= 0)
             {
                 return;
             }
 
             var pathGeometry = new PathGeometry();
             var pathFigure = new PathFigure();
-            pathFigure.StartPoint = new Point(Radius, Radius);
+            pathFigure.StartPoint = new Point(radius, radius);
             pathFigure.IsClosed = true;
 
             // Starting Point
@@ -181,8 +194,8 @@ namespace WinRTXamlToolkit.Controls
                 new LineSegment 
                 {
                     Point = new Point(
-                        Radius + Math.Sin(StartAngle * Math.PI / 180) * Radius,
-                        Radius - Math.Cos(StartAngle * Math.PI / 180) * Radius)
+                        radius + Math.Sin(StartAngle * Math.PI / 180) * radius,
+                        radius - Math.Cos(StartAngle * Math.PI / 180) * radius)
                 };
 
             // Arc
@@ -190,9 +203,9 @@ namespace WinRTXamlToolkit.Controls
             arcSegment.IsLargeArc = (EndAngle - StartAngle) >= 180.0;
             arcSegment.Point =
                 new Point(
-                        Radius + Math.Sin(EndAngle * Math.PI / 180) * Radius,
-                        Radius - Math.Cos(EndAngle * Math.PI / 180) * Radius);
-            arcSegment.Size = new Size(Radius, Radius);
+                        radius + Math.Sin(EndAngle * Math.PI / 180) * radius,
+                        radius - Math.Cos(EndAngle * Math.PI / 180) * radius);
+            arcSegment.Size = new Size(radius, radius);
             arcSegment.SweepDirection = SweepDirection.Clockwise;
             pathFigure.Segments.Add(lineSegment);
             pathFigure.Segments.Add(arcSegment);

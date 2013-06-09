@@ -86,7 +86,8 @@
                     <StackPanel
                         Orientation="Horizontal">
                         <TextBlock
-                            Text="{Binding Text}" />
+                            Text="{Binding Text}"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
                         <Ellipse
                             VerticalAlignment="Center"
                             Margin="5"

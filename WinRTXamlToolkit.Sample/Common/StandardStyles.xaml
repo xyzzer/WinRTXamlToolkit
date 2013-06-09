@@ -127,6 +127,27 @@
     <Style x:Key="TextButtonStyle" TargetType="Button">
         <Setter Property="MinWidth" Value="0"/>
         <Setter Property="MinHeight" Value="0"/>
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Left" />
+        <Setter
+            Property="FontSize"
+            Value="26.667" />
+        <Setter
+            Property="FontWeight"
+            Value="Light" />
+        <Setter
+            Property="Padding"
+            Value="3,-7,3,10" />
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource ApplicationForegroundThemeBrush}" />
+        <Setter
+            Property="FontFamily"
+            Value="{StaticResource ContentControlThemeFontFamily}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -134,9 +155,18 @@
                         <TextBlock
                             x:Name="Text"
                             Text="{TemplateBinding Content}"
-                            Margin="3,-7,3,10"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontStyle="{TemplateBinding FontStyle}"
+                            FontStretch="{TemplateBinding FontStretch}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
                             TextWrapping="NoWrap"
-                            Style="{StaticResource SubheaderTextStyle}"/>
+                            Style="{StaticResource SubheaderTextStyle}"
+                            LineHeight="30" />
                         <Rectangle
                             x:Name="FocusVisualWhite"
                             IsHitTestVisible="False"

@@ -5,10 +5,85 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:common="using:WinRTXamlToolkit.Common"
     mc:Ignorable="d"
     DataContext="{Binding MainPage, Source={StaticResource Locator}}"
     NavigationCacheMode="Required">
-
+    <controls:AlternativePage.Resources>
+        <common:ImplicitStyleSelector
+            x:Key="SampleLinkContainerStyleSelector">
+            <Style
+                x:Key="SampleButtonViewModel"
+                TargetType="GridViewItem">
+                <Setter
+                    Property="HorizontalAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="VerticalContentAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="Width"
+                    Value="400" />
+                <Setter
+                    Property="Height"
+                    Value="65" />
+            </Style>
+            <Style
+                x:Key="SampleGroupViewModel"
+                TargetType="GridViewItem">
+                <Setter
+                    Property="HorizontalAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="VerticalContentAlignment"
+                    Value="Stretch" />
+                <Setter
+                    Property="Width"
+                    Value="400" />
+                <Setter
+                    Property="Height"
+                    Value="65" />
+                <Setter
+                    Property="Background"
+                    Value="#FF00A000" />
+            </Style>
+        </common:ImplicitStyleSelector>
+        <common:ImplicitDataTemplateSelector
+            x:Key="SampleLinkDataTemplateSelector">
+            <DataTemplate
+                x:Key="SampleButtonViewModel">
+                <Button
+                    Content="{Binding Caption}"
+                    Command="{Binding Command}"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource TextButtonStyle}"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Padding="16,-3,3,10"/>
+            </DataTemplate>
+            <DataTemplate
+                x:Key="SampleGroupViewModel">
+                <Button
+                    Content="{Binding Caption}"
+                    Command="{Binding Command}"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Stretch"
+                    Style="{StaticResource TextButtonStyle}"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Padding="16,-3,3,10"/>
+            </DataTemplate>
+        </common:ImplicitDataTemplateSelector>
+    </controls:AlternativePage.Resources>
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -39,33 +114,14 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             SelectionMode="None"
-            ItemsSource="{Binding Samples}">
-            <GridView.ItemContainerStyle>
-                <Style
-                    TargetType="GridViewItem">
-                    <Setter
-                        Property="HorizontalAlignment"
-                        Value="Stretch" />
-                    <Setter
-                        Property="HorizontalContentAlignment"
-                        Value="Stretch" />
-                    <Setter
-                        Property="Width"
-                        Value="600" />
-                    <Setter
-                        Property="Height"
-                        Value="45" />
-                </Style>
-            </GridView.ItemContainerStyle>
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Button
-                        Content="{Binding Caption}"
-                        HorizontalAlignment="Stretch"
-                        Style="{StaticResource TextButtonStyle}"
-                        Command="{Binding Command}" />
-                </DataTemplate>
-            </GridView.ItemTemplate>
+            ItemsSource="{Binding Samples}"
+            ItemContainerStyleSelector="{StaticResource SampleLinkContainerStyleSelector}"
+            ItemTemplateSelector="{StaticResource SampleLinkDataTemplateSelector}">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
         </GridView>
     </Grid>
 </controls:AlternativePage>

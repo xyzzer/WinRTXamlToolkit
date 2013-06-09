@@ -71,6 +71,15 @@
                     Text="Other Button Styles"
                     Style="{StaticResource SubheaderTextStyle}" />
             </controls:ListItemButton>
+            <controls:ListItemButton
+                x:Name="BrushesButton"
+                Click="OnBrushesButtonClick"
+                Width="400"
+                Height="100">
+                <TextBlock
+                    Text="Brushes"
+                    Style="{StaticResource SubheaderTextStyle}" />
+            </controls:ListItemButton>
         </GridView>
         <TextBlock
             Grid.ColumnSpan="2"

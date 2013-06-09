@@ -21,61 +21,56 @@
             <!-- EditablePropertyTemplateSelector -->
             <local:EditablePropertyTemplateSelector
                 x:Key="EditablePropertyTemplateSelector">
-                <local:EditablePropertyTemplateSelector.Resources>
-                    <ResourceDictionary>
-                        <DataTemplate
-                            x:Key="DefaultPropertyEditor">
-                            <propertyEditors:DefaultPropertyEditor />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="EnumPropertyEditor">
-                            <propertyEditors:EnumPropertyEditor
-                                EnumType="{Binding PropertyType}"
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="StringPropertyEditor">
-                            <propertyEditors:StringPropertyEditor />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="NumericPropertyEditor">
-                            <propertyEditors:NumericPropertyEditor
-                                NumericType="{Binding PropertyType}"
-                                Model="{Binding}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="BrushPropertyEditor">
-                            <propertyEditors:BrushPropertyEditor
-                                Model="{Binding}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="BooleanPropertyEditor">
-                            <propertyEditors:BooleanPropertyEditor />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="CacheModePropertyEditor">
-                            <propertyEditors:CacheModePropertyEditor />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="ThicknessPropertyEditor">
-                            <propertyEditors:ThicknessPropertyEditor
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="CornerRadiusPropertyEditor">
-                            <propertyEditors:CornerRadiusPropertyEditor
-                                Model="{Binding}"
-                                Value="{Binding Value}" />
-                        </DataTemplate>
-                        <DataTemplate
-                            x:Key="DependencyObjectPropertyEditor">
-                            <propertyEditors:DependencyObjectPropertyEditor />
-                            <!--Model="{Binding}"-->
-                        </DataTemplate>
-                    </ResourceDictionary>
-                </local:EditablePropertyTemplateSelector.Resources>
+                <DataTemplate
+                    x:Key="DefaultPropertyEditor">
+                    <propertyEditors:DefaultPropertyEditor />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="EnumPropertyEditor">
+                    <propertyEditors:EnumPropertyEditor
+                        EnumType="{Binding PropertyType}"
+                        Model="{Binding}"
+                        Value="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="StringPropertyEditor">
+                    <propertyEditors:StringPropertyEditor />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="NumericPropertyEditor">
+                    <propertyEditors:NumericPropertyEditor
+                        NumericType="{Binding PropertyType}"
+                        Model="{Binding}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="BrushPropertyEditor">
+                    <propertyEditors:BrushPropertyEditor
+                        Model="{Binding}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="BooleanPropertyEditor">
+                    <propertyEditors:BooleanPropertyEditor />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="CacheModePropertyEditor">
+                    <propertyEditors:CacheModePropertyEditor />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="ThicknessPropertyEditor">
+                    <propertyEditors:ThicknessPropertyEditor
+                        Model="{Binding}"
+                        Value="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="CornerRadiusPropertyEditor">
+                    <propertyEditors:CornerRadiusPropertyEditor
+                        Model="{Binding}"
+                        Value="{Binding Value}" />
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="DependencyObjectPropertyEditor">
+                    <propertyEditors:DependencyObjectPropertyEditor />
+                </DataTemplate>
             </local:EditablePropertyTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>    

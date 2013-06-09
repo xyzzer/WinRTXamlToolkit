@@ -2,6 +2,27 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary
+            x:Key="Dark">
+            <SolidColorBrush
+                x:Key="GridSplitterBackgroundThemeBrush"
+                Color="#E5222222" />
+            <SolidColorBrush
+                x:Key="GridSplitterThumbThemeBrush"
+                Color="#66FFFFFF" />
+        </ResourceDictionary>
+        <ResourceDictionary
+            x:Key="Light">
+            <SolidColorBrush
+                x:Key="GridSplitterBackgroundThemeBrush"
+                Color="#E5DDDDDD" />
+            <SolidColorBrush
+                x:Key="GridSplitterThumbThemeBrush"
+                Color="#66000000" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <!-- GridSplitterPreviewControl default style -->
     <Style
         TargetType="controls:GridSplitterPreviewControl">
@@ -32,10 +53,10 @@
         TargetType="controls:CustomGridSplitter">
         <Setter
             Property="Background"
-            Value="#E5000000" />
+            Value="{StaticResource GridSplitterBackgroundThemeBrush}" />
         <Setter
             Property="Foreground"
-            Value="{StaticResource AppBarItemDisabledForegroundThemeBrush}" />
+            Value="{StaticResource GridSplitterThumbThemeBrush}" />
         <!--<Setter
             Property="VerticalAlignment"
             Value="Stretch" />

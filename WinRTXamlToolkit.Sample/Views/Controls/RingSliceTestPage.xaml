@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="140" />
@@ -16,7 +16,7 @@
                 Height="Auto" />
             <RowDefinition />
             <RowDefinition
-                Height="Auto"/>
+                Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -39,17 +39,19 @@
             Text="RingSlice"
             Grid.Column="1"
             Grid.Row="1"
-            Style="{StaticResource SubheaderTextStyle}"/>
+            Style="{StaticResource SubheaderTextStyle}" />
 
         <controls:RingSlice
-            Fill="White"
+            Fill="{StaticResource AccentBrush}"
+            Stroke="{StaticResource ShapeForeground}"
+            StrokeThickness="2"
             Grid.Column="1"
             Grid.Row="2"
             InnerRadius="{Binding Value, ElementName=InnerRadiusSlider}"
             Radius="{Binding Value, ElementName=RadiusSlider}"
             StartAngle="{Binding Value, ElementName=StartAngleSlider}"
             EndAngle="{Binding Value, ElementName=EndAngleSlider}" />
-        
+
         <StackPanel
             Grid.Column="1"
             Grid.ColumnSpan="2"
@@ -96,7 +98,9 @@
             Style="{StaticResource SubheaderTextStyle}" />
 
         <controls:PieSlice
-            Fill="White"
+            Fill="{StaticResource AccentBrush}"
+            Stroke="{StaticResource ShapeForeground}"
+            StrokeThickness="2"
             Grid.Column="2"
             Grid.Row="2"
             Radius="{Binding Value, ElementName=RadiusSlider}"
