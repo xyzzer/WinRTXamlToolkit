@@ -24,7 +24,7 @@
             Margin="5">
             <TextBlock
                 Text="{Binding Name}"
-                Foreground="White"
+                Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
             <controls:WrapPanel
@@ -42,7 +42,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="14"
-                            Foreground="White"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                             Text="&#x21A4;" />
                     </Border>
                     <controls:NumericUpDown
@@ -51,7 +51,7 @@
                         ValueChanged="OnNumericUpDownValueChanged"
                         Minimum="0"
                         Maximum="1000000"
-                        DragSpeed="500"
+                        DragSpeed="100"
                         SmallChange="1"
                         ValueBarVisibility="Collapsed"
                         Height="25"
@@ -72,7 +72,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="14"
-                            Foreground="White"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                             Text="&#x21A5;" />
                     </Border>
                     <controls:NumericUpDown
@@ -80,7 +80,7 @@
                         ValueChanged="OnNumericUpDownValueChanged"
                         Minimum="0"
                         Maximum="1000000"
-                        DragSpeed="500"
+                        DragSpeed="100"
                         SmallChange="1"
                         ValueBarVisibility="Collapsed"
                         Height="25"
@@ -101,7 +101,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="14"
-                            Foreground="White"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                             Text="↦" />
                     </Border>
                     <controls:NumericUpDown
@@ -109,7 +109,7 @@
                         ValueChanged="OnNumericUpDownValueChanged"
                         Minimum="0"
                         Maximum="1000000"
-                        DragSpeed="500"
+                        DragSpeed="100"
                         SmallChange="1"
                         ValueBarVisibility="Collapsed"
                         Height="25"
@@ -130,7 +130,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             FontSize="14"
-                            Foreground="White"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                             Text="&#x21A7;" />
                     </Border>
                     <controls:NumericUpDown
@@ -138,7 +138,7 @@
                         ValueChanged="OnNumericUpDownValueChanged"
                         Minimum="0"
                         Maximum="1000000"
-                        DragSpeed="500"
+                        DragSpeed="100"
                         SmallChange="1"
                         ValueBarVisibility="Collapsed"
                         Height="25"

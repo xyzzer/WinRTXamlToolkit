@@ -7,11 +7,47 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
+    public class PropertyList : BindableBase
+    {
+        #region Name
+        private string _name;
+        /// <summary>
+        /// Gets or sets the name of the property list.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+            set { this.SetProperty(ref _name, value); }
+        }
+        #endregion
+
+        #region CommaSeparatedPropertyNames
+        private string _commaSeparatedPropertyNames;
+        /// <summary>
+        /// Gets or sets the comma separated property names.
+        /// </summary>
+        public string CommaSeparatedPropertyNames
+        {
+            get { return _commaSeparatedPropertyNames; }
+            set
+            {
+                if (this.SetProperty(ref _commaSeparatedPropertyNames, value))
+                {
+                    this.PropertyNames = new ObservableCollection<string>(_commaSeparatedPropertyNames.Split(',').Select(pn => pn.Trim()).Where(pn => !string.IsNullOrEmpty(pn)));
+                }
+            }
+        }
+        #endregion
+
+        public ObservableCollection<string> PropertyNames { get; private set; }
+    }
+
     public class VisualTreeViewModel : BindableBase
     {
         private Point _pointerPosition;
@@ -143,16 +179,41 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        #region CurrentPropertyList
+        private PropertyList _currentPropertyList;
+        /// <summary>
+        /// Gets or sets the currently active property list.
+        /// </summary>
+        public PropertyList CurrentPropertyList
+        {
+            get { return _currentPropertyList; }
+            set { this.SetProperty(ref _currentPropertyList, value); }
+        }
+        #endregion
+
+        #region PropertyLists
+        private ObservableCollection<PropertyList> _propertyLists = new ObservableCollection<PropertyList>();
+        /// <summary>
+        /// Gets or sets the list of property name filters.
+        /// </summary>
+        public ObservableCollection<PropertyList> PropertyLists
+        {
+            get { return _propertyLists; }
+            private set { this.SetProperty(ref _propertyLists, value); }
+        }
+        #endregion
+
         #region CTOR
         public VisualTreeViewModel()
         {
 #pragma warning disable 4014
-            Build();
+            this.GetPropertyLists();
+            this.Build();
 #pragma warning restore 4014
             Window.Current.CoreWindow.KeyDown += OnKeyDown;
             Window.Current.CoreWindow.KeyUp += OnKeyUp;
             Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
-        } 
+        }
         #endregion
 
         #region OnPointerMoved()
@@ -298,6 +359,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning restore 4014
                 }
             }
+        } 
+        #endregion
+
+        #region GetPropertyLists()
+        private async Task GetPropertyLists()
+        {
+            this.PropertyLists = new ObservableCollection<PropertyList>();
+            this.PropertyLists.Add(new PropertyList() { Name = "All", CommaSeparatedPropertyNames = string.Empty});
+            this.PropertyLists.Add(
+new PropertyList
+{
+    Name = "Layout",
+    CommaSeparatedPropertyNames =
+        "Width,Height,MinWidth,MinHeight,MaxWidth,MaxHeight,Orientation,Clip,ActualWidth,ActualHeight,Margin,Padding,Canvas.Left,Canvas.Top,Canvas.Zindex,ItemHeight,ItemWidth,LineStackingStrategy,LineHeight,Visibility,Opacity,RenderTransform,Projection,StrokeThickness,BorderThickness,Grid.Row,Grid.Column,Grid.RowSpan,Grid.ColumnSpan,VariableSizedWrapGrid.ColumnSpan,VariableSizedWrapGrid.RowSpan"
+});
+            this.CurrentPropertyList = this.PropertyLists[0];
         } 
         #endregion
 

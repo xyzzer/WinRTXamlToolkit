@@ -456,7 +456,7 @@
                                     AutomationProperties.Name="" />
                                 <Border
                                     x:Name="FavIconBackground"
-                                    Background="White"
+                                    Background="{StaticResource ApplicationForegroundThemeBrush}"
                                     VerticalAlignment="Center"
                                     BorderThickness="0"
                                     Width="41"

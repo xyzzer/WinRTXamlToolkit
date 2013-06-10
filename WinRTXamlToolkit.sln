@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\CodePlexLogo.png = Documents\CodePlexLogo.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Calendar", "WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj", "{D0B66203-5B50-4942-A864-C7550C6F23F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,22 @@ Global
 		{AEFCA5B7-B382-41A4-AF43-14441AE610C0}.Release|x64.Build.0 = Release|x64
 		{AEFCA5B7-B382-41A4-AF43-14441AE610C0}.Release|x86.ActiveCfg = Release|x86
 		{AEFCA5B7-B382-41A4-AF43-14441AE610C0}.Release|x86.Build.0 = Release|x86
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|ARM.Build.0 = Debug|ARM
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|x64.ActiveCfg = Debug|x64
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|x64.Build.0 = Debug|x64
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|x86.ActiveCfg = Debug|x86
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Debug|x86.Build.0 = Debug|x86
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|ARM.ActiveCfg = Release|ARM
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|ARM.Build.0 = Release|ARM
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|x64.ActiveCfg = Release|x64
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|x64.Build.0 = Release|x64
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|x86.ActiveCfg = Release|x86
+		{D0B66203-5B50-4942-A864-C7550C6F23F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

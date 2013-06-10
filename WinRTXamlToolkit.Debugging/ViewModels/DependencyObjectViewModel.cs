@@ -29,9 +29,31 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return ShowDefaultedProperties && ShowReadOnlyProperties || _allProperties == null
-                           ? _allProperties
-                           : _allProperties.Where(p => (ShowDefaultedProperties || !p.IsDefault) && (ShowReadOnlyProperties || !p.IsReadOnly)).ToList();
+                // If there is an active name filter - display filtered properties
+                if (this.CurrentPropertyList != null &&
+                    this.CurrentPropertyList.PropertyNames.Count > 0)
+                {
+                    return
+                        _allProperties.Where(
+                            p =>
+                                (ShowDefaultedProperties || !p.IsDefault) &&
+                                (ShowReadOnlyProperties || !p.IsReadOnly) &&
+                                this.CurrentPropertyList.PropertyNames.Contains(p.Name)).ToList();
+                }
+
+                // If no checkbox filters are set - simply return all properties
+                if (ShowDefaultedProperties && ShowReadOnlyProperties ||
+                    _allProperties == null)
+                {
+                    return _allProperties;
+                }
+
+                // If default/readonly filters are set - return flag-filtered properties
+                return
+                    _allProperties.Where(
+                        p =>
+                        (ShowDefaultedProperties || !p.IsDefault) &&
+                        (ShowReadOnlyProperties || !p.IsReadOnly)).ToList();
             }
         }
         #endregion
@@ -42,14 +64,25 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get { return TreeModel.ShowDefaultedProperties; }
             set
             {
-                TreeModel.ShowDefaultedProperties = value;
+                if (this.TreeModel.ShowDefaultedProperties == value)
+                {
+                    return;
+                }
+
+                this.TreeModel.ShowDefaultedProperties = value;
                 // ReSharper disable ExplicitCallerInfoArgument
-                OnPropertyChanged();
-                OnPropertyChanged("Properties");
+                this.OnPropertyChanged();
+
+                if (!_skipUpdatingProperties)
+                {
+                    this.OnPropertyChanged("Properties");
+                }
                 // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
+
+        private bool _skipUpdatingProperties;
 
         #region ShowReadOnlyProperties
         public bool ShowReadOnlyProperties
@@ -57,15 +90,75 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get { return TreeModel.ShowReadOnlyProperties; }
             set
             {
-                TreeModel.ShowReadOnlyProperties = value;
+                if (this.TreeModel.ShowReadOnlyProperties == value)
+                {
+                    return;
+                }
+
+                this.TreeModel.ShowReadOnlyProperties = value;
                 // ReSharper disable ExplicitCallerInfoArgument
-                OnPropertyChanged();
-                OnPropertyChanged("Properties");
+                this.OnPropertyChanged();
+
+                if (!_skipUpdatingProperties)
+                {
+                    this.OnPropertyChanged("Properties");
+                }
                 // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
-        
+
+        #region CurrentPropertyList
+        /// <summary>
+        /// Gets or sets the currently active property list.
+        /// The list is a comma-separated list of properties to display.
+        /// </summary>
+        public PropertyList CurrentPropertyList
+        {
+            get { return this.TreeModel.CurrentPropertyList; }
+            set
+            {
+                if (this.TreeModel.CurrentPropertyList == value)
+                {
+                    return;
+                }
+
+                var isOldPropertyListFiltered = this.TreeModel.CurrentPropertyList != null &&
+                                                this.TreeModel.CurrentPropertyList
+                                                    .PropertyNames.Count > 0;
+                var isNewPropertyListFiltered = value != null &&
+                                                value.PropertyNames.Count > 0;
+
+                this.TreeModel.CurrentPropertyList = value;
+                // ReSharper disable ExplicitCallerInfoArgument
+                this.OnPropertyChanged();
+
+                if (!isOldPropertyListFiltered &&
+                    isNewPropertyListFiltered)
+                {
+                    _skipUpdatingProperties = true;
+                    this.ShowDefaultedProperties = true;
+                    this.ShowReadOnlyProperties = true;
+                    _skipUpdatingProperties = false;
+                }
+
+                this.OnPropertyChanged("Properties");
+                // ReSharper restore ExplicitCallerInfoArgument
+            }
+        }
+        #endregion
+
+        #region PropertyLists
+        /// <summary>
+        /// Gets the list of property name filters.
+        /// The strings contain comma-separated lists of properties to display.
+        /// </summary>
+        public ObservableCollection<PropertyList> PropertyLists
+        {
+            get { return this.TreeModel.PropertyLists; }
+        }
+        #endregion
+
         #region Name
         private string _name;
         public string Name

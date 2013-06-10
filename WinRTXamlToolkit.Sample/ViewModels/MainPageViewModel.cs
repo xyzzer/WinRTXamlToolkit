@@ -155,6 +155,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "Calendar",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CalendarTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "CameraCaptureControl",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CameraCaptureControlPage))),
                     SampleType = SampleTypes.Controls

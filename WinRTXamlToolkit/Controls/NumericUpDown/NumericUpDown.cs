@@ -426,11 +426,17 @@ namespace WinRTXamlToolkit.Controls
 
         private bool _isDraggingWithMouse;
         private MouseDevice _mouseDevice;
+        private const double MinMouseDragDelta = 2;
+        private double _totalDeltaX;
+        private double _totalDeltaY;
 
         private void OnDragOverlayPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             _dragOverlay.CapturePointer(e.Pointer);
 
+            _totalDeltaX = 0;
+            _totalDeltaY = 0;
+            
             if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
             {
                 _isDraggingWithMouse = true;
@@ -475,7 +481,7 @@ namespace WinRTXamlToolkit.Controls
                 _isDraggingWithMouse = false;
                 _mouseDevice.MouseMoved -= OnMouseDragged;
                 Window.Current.CoreWindow.PointerCursor = new CoreCursor(
-                    CoreCursorType.Arrow, 1);
+                    CoreCursorType.SizeAll, 1);
                 _mouseDevice = null;
             }
             else if (_dragOverlay != null)
@@ -514,8 +520,18 @@ namespace WinRTXamlToolkit.Controls
         {
             var dx = args.MouseDelta.X;
             var dy = args.MouseDelta.Y;
+            _totalDeltaX += dx;
+            _totalDeltaY += dy;
 
-            UpdateByDragging(dx, dy);
+            if (_totalDeltaX > MinMouseDragDelta ||
+                _totalDeltaX < -MinMouseDragDelta ||
+                _totalDeltaY > MinMouseDragDelta ||
+                _totalDeltaY < -MinMouseDragDelta)
+            {
+                UpdateByDragging(_totalDeltaX, _totalDeltaY);
+                _totalDeltaX = 0;
+                _totalDeltaY = 0;
+            }
         }
 
         private void OnDragOverlayManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs manipulationDeltaRoutedEventArgs)

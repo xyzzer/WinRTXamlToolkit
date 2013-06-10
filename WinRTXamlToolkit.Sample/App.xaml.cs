@@ -1,4 +1,6 @@
 ﻿//#define USE_XAML_SPY
+
+using WinRTXamlToolkit.Debugging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -63,6 +65,8 @@ namespace WinRTXamlToolkit.Sample
 
             Window.Current.Content = new AppShell();
             Window.Current.Activate();
+            DC.ShowVisualTree();
+            DC.Collapse();
         }
 
         /// <summary>

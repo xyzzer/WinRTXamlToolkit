@@ -36,7 +36,7 @@
                                     Width="20"
                                     Height="20"
                                     Fill="Transparent"
-                                    Stroke="White"
+                                    Stroke="{StaticResource ApplicationForegroundThemeBrush}"
                                     StrokeThickness="3"
                                     IsHitTestVisible="False" />
                             </Canvas>
@@ -51,7 +51,7 @@
         TargetType="controls:HueRingPicker">
         <Setter
             Property="ThumbBorderBrush"
-            Value="White" />
+            Value="{StaticResource ApplicationForegroundThemeBrush}" />
         <Setter
             Property="ThumbBorderThickness"
             Value="8" />

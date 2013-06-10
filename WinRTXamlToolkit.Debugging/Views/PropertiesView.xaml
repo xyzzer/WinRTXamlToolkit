@@ -125,6 +125,10 @@
                 IsChecked="{Binding ShowReadOnlyProperties, Mode=TwoWay}"
                 FontSize="11"
                 Margin="10,0,0,0" />
+            <ComboBox
+                ItemsSource="{Binding PropertyLists}"
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding CurrentPropertyList, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </UserControl>

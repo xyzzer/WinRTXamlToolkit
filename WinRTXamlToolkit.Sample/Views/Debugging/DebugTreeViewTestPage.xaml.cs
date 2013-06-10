@@ -75,6 +75,7 @@ namespace WinRTXamlToolkit.Sample.Views
             }
 
             DC.ShowVisualTree(_grids[random.Next(_grids.Count)]);
+            DC.Expand();
         }
 
         private void GoBack(object sender, RoutedEventArgs e)

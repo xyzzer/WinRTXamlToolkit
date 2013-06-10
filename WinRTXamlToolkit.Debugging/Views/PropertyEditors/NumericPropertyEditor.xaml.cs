@@ -242,14 +242,14 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                     dp == FrameworkElement.MaxHeightProperty)
                 {
                     minimum = 0;
-                    dragSpeed = 500;
+                    dragSpeed = 100;
                 }
 
                 if (dp == TextBlock.LineHeightProperty ||
                     dp == RichTextBlock.LineHeightProperty)
                 {
                     minimum = 0;
-                    dragSpeed = 50;
+                    dragSpeed = 30;
                 }
 
                 if (dp == TextBlock.CharacterSpacingProperty ||
@@ -263,7 +263,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                 {
                     minimum = 0;
                     maximum = 1000000;
-                    dragSpeed = 20;
+                    dragSpeed = 10;
                 }
 
                 if (dp == FrameworkElement.OpacityProperty)
