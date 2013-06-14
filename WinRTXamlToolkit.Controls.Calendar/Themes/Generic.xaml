@@ -91,10 +91,10 @@
                 x:Key="CalendarItemDisabledStroke"
                 Color="#00FFFFFF" />
             <SolidColorBrush
-                x:Key="CalendarItemBackground"
+                x:Key="CalendarBackground"
                 Color="#00FFFFFF" />
             <SolidColorBrush
-                x:Key="CalendarItemStroke"
+                x:Key="CalendarBorderBrush"
                 Color="#80FFFFFF" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
