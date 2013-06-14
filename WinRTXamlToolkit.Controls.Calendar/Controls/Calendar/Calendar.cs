@@ -5,11 +5,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows.Automation.Peers;
-using System.Windows.Controls.Primitives;
+using WinRTXamlToolkit.Automation.Peers;
+using WinRTXamlToolkit.Controls.Primitives;
 using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -18,7 +16,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Represents a control that enables a user to select a date by using a
@@ -164,14 +162,14 @@ namespace System.Windows.Controls
 
         #region CalendarButtonStyle
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Style" /> associated
+        /// Gets or sets the <see cref="T:WinRTXamlToolkit.Style" /> associated
         /// with the control's internal
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" />
         /// object.
         /// </summary>
         /// <value>
         /// The current style of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" />
         /// object.
         /// </value>
         public Style CalendarButtonStyle
@@ -182,12 +180,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarButtonStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarButtonStyle" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarButtonStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarButtonStyle" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty CalendarButtonStyleProperty =
@@ -252,14 +250,14 @@ namespace System.Windows.Controls
 
         #region CalendarDayButtonStyle
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Style" /> associated
+        /// Gets or sets the <see cref="T:WinRTXamlToolkit.Style" /> associated
         /// with the control's internal
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarDayButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarDayButton" />
         /// object.
         /// </summary>
         /// <value>
         /// The current style of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarDayButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarDayButton" />
         /// object.
         /// </value>
         public Style CalendarDayButtonStyle
@@ -270,12 +268,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarDayButtonStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarDayButtonStyle" />
         /// dependency property.
         /// </summary>
         /// <remarks>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarDayButtonStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarDayButtonStyle" />
         /// dependency property.
         /// </remarks>
         public static readonly DependencyProperty CalendarDayButtonStyleProperty =
@@ -340,14 +338,14 @@ namespace System.Windows.Controls
 
         #region CalendarItemStyle
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Style" /> associated
+        /// Gets or sets the <see cref="T:WinRTXamlToolkit.Style" /> associated
         /// with the control's internal
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarItem" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarItem" />
         /// object.
         /// </summary>
         /// <value>
         /// The current style of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarItem" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarItem" />
         /// object.
         /// </value>
         public Style CalendarItemStyle
@@ -358,12 +356,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarItemStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarItemStyle" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.CalendarItemStyle" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.CalendarItemStyle" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty CalendarItemStyleProperty =
@@ -435,12 +433,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.IsTodayHighlighted" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.IsTodayHighlighted" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.IsTodayHighlighted" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.IsTodayHighlighted" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty IsTodayHighlightedProperty =
@@ -481,7 +479,7 @@ namespace System.Windows.Controls
         /// </summary>
         /// <value>
         /// A value indicating what length of time the
-        /// <see cref="T:System.Windows.Controls.Calendar" /> should display.
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> should display.
         /// </value>
         public CalendarMode DisplayMode
         {
@@ -491,12 +489,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayMode" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayMode" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayMode" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayMode" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty DisplayModeProperty =
@@ -567,7 +565,7 @@ namespace System.Windows.Controls
                 else
                 {
                     c.SetValueNoCallback(Calendar.DisplayModeProperty, e.OldValue);
-                    throw new ArgumentOutOfRangeException("d", System.Windows.Controls.Properties.Resources.Calendar_OnDisplayModePropertyChanged_InvalidValue);
+                    throw new ArgumentOutOfRangeException("d", WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnDisplayModePropertyChanged_InvalidValue);
                 }
             }
         }
@@ -615,12 +613,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.FirstDayOfWeek" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.FirstDayOfWeek" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.FirstDayOfWeek" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.FirstDayOfWeek" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty FirstDayOfWeekProperty =
@@ -646,7 +644,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentOutOfRangeException("d", System.Windows.Controls.Properties.Resources.Calendar_OnFirstDayOfWeekChanged_InvalidValue);
+                throw new ArgumentOutOfRangeException("d", WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnFirstDayOfWeekChanged_InvalidValue);
             }
         }
 
@@ -676,7 +674,7 @@ namespace System.Windows.Controls
         /// </summary>
         /// <value>
         /// A value that indicates the current selection mode. The default is
-        /// <see cref="F:System.Windows.Controls.CalendarSelectionMode.SingleDate" />.
+        /// <see cref="F:WinRTXamlToolkit.Controls.CalendarSelectionMode.SingleDate" />.
         /// </value>
         /// <remarks>
         /// <para>
@@ -697,12 +695,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectionMode" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectionMode" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectionMode" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectionMode" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty SelectionModeProperty =
@@ -729,7 +727,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentOutOfRangeException("d", System.Windows.Controls.Properties.Resources.Calendar_OnSelectionModeChanged_InvalidValue);
+                throw new ArgumentOutOfRangeException("d", WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnSelectionModeChanged_InvalidValue);
             }
         }
 
@@ -756,18 +754,18 @@ namespace System.Windows.Controls
         /// <value>The date currently selected. The default is null.</value>
         /// <exception cref="T:System.ArgumentOutOfRangeException">
         /// The given date is outside the range specified by
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateStart" />
-        /// and <see cref="P:System.Windows.Controls.Calendar.DisplayDateEnd" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateStart" />
+        /// and <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateEnd" />
         /// -or-
         /// The given date is in the
-        /// <see cref="P:System.Windows.Controls.Calendar.BlackoutDates" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.BlackoutDates" />
         /// collection.
         /// </exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// If set to anything other than null when
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectionMode" /> is
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectionMode" /> is
         /// set to
-        /// <see cref="F:System.Windows.Controls.CalendarSelectionMode.None" />.
+        /// <see cref="F:WinRTXamlToolkit.Controls.CalendarSelectionMode.None" />.
         /// </exception>
         /// <remarks>
         /// Use this property when SelectionMode is set to SingleDate.  In other
@@ -783,12 +781,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectedDate" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectedDate" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectedDate" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectedDate" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty SelectedDateProperty =
@@ -848,12 +846,12 @@ namespace System.Windows.Controls
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException("d", System.Windows.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidValue);
+                        throw new ArgumentOutOfRangeException("d", WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidValue);
                     }
                 }
                 else
                 {
-                    throw new InvalidOperationException(System.Windows.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidOperation);
+                    throw new InvalidOperationException(WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidOperation);
                 }
             }
         }
@@ -864,7 +862,7 @@ namespace System.Windows.Controls
         /// Gets a collection of selected dates.
         /// </summary>
         /// <value>
-        /// A <see cref="T:System.Windows.Controls.SelectedDatesCollection" />
+        /// A <see cref="T:WinRTXamlToolkit.Controls.SelectedDatesCollection" />
         /// object that contains the currently selected dates. The default is an
         /// empty collection.
         /// </value>
@@ -1093,9 +1091,9 @@ namespace System.Windows.Controls
         /// <value>The date to display.</value>
         /// <exception cref="T:System.ArgumentOutOfRangeException">
         /// The given date is not in the range specified by
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateStart" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateStart" />
         /// and
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateEnd" />.
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateEnd" />.
         /// </exception>
         /// <remarks>
         /// <para>
@@ -1122,12 +1120,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDate" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDate" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDate" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDate" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty DisplayDateProperty =
@@ -1216,12 +1214,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateStart" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateStart" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateStart" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateStart" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty DisplayDateStartProperty =
@@ -1334,12 +1332,12 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Identifies the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateEnd" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateEnd" />
         /// dependency property.
         /// </summary>
         /// <value>
         /// The identifier for the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDateEnd" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDateEnd" />
         /// dependency property.
         /// </value>
         public static readonly DependencyProperty DisplayDateEndProperty =
@@ -1490,14 +1488,14 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Occurs when the collection returned by the
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectedDates" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectedDates" />
         /// property is changed.
         /// </summary>
         public event EventHandler<SelectionChangedEventArgs> SelectedDatesChanged;
 
         /// <summary>
         /// Occurs when the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayDate" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayDate" />
         /// property is changed.
         /// </summary>
         /// <remarks>
@@ -1507,7 +1505,7 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Occurs when the
-        /// <see cref="P:System.Windows.Controls.Calendar.DisplayMode" />
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.DisplayMode" />
         /// property is changed.
         /// </summary>
         public event EventHandler<CalendarModeChangedEventArgs> DisplayModeChanged;
@@ -1519,7 +1517,7 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.Calendar" /> class.
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> class.
         /// </summary>
         public Calendar()
         {
@@ -1536,7 +1534,7 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Builds the visual tree for the
-        /// <see cref="T:System.Windows.Controls.Calendar" /> when a new
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> when a new
         /// template is applied.
         /// </summary>
         protected override void OnApplyTemplate()
@@ -1613,7 +1611,7 @@ namespace System.Windows.Controls
         /// </summary>
         /// <returns>
         /// A text representation of the selected date, or an empty string if
-        /// <see cref="P:System.Windows.Controls.Calendar.SelectedDate" /> is
+        /// <see cref="P:WinRTXamlToolkit.Controls.Calendar.SelectedDate" /> is
         /// null.
         /// </returns>
         public override string ToString()
@@ -1630,13 +1628,13 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Returns a
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarAutomationPeer" />
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer" />
         /// for use by the Silverlight automation infrastructure.
         /// </summary>
         /// <returns>
         /// A
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarAutomationPeer" />
-        /// for the <see cref="T:System.Windows.Controls.Calendar" /> object.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer" />
+        /// for the <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> object.
         /// </returns>
         /// <remarks>
         /// <para>

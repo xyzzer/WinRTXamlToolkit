@@ -4,18 +4,17 @@
 // All other rights reserved.
 
 using System;
-using System.Windows.Automation.Peers;
-using System.Windows.Input;
+using WinRTXamlToolkit.Automation.Peers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace System.Windows.Controls.Primitives
+namespace WinRTXamlToolkit.Controls.Primitives
 {
     /// <summary>
     /// Represents a button on a
-    /// <see cref="T:System.Windows.Controls.Calendar" />.
+    /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     [TemplateVisualState(Name = VisualStates.StateNormal, GroupName = VisualStates.GroupCommon)]
@@ -112,7 +111,7 @@ namespace System.Windows.Controls.Primitives
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" />
         /// class.
         /// </summary>
         public CalendarButton()
@@ -137,7 +136,7 @@ namespace System.Windows.Controls.Primitives
 
         /// <summary>
         /// Builds the visual tree for the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" />
         /// when a new template is applied.
         /// </summary>
         protected override void OnApplyTemplate()

@@ -7,7 +7,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Inherited code: Requires comment.
@@ -153,7 +153,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                foreach (Globalization.Calendar cal in CultureInfo.CurrentCulture.OptionalCalendars)
+                foreach (System.Globalization.Calendar cal in CultureInfo.CurrentCulture.OptionalCalendars)
                 {
                     if (cal == new CultureInfo("en-US").Calendar)
                     {

@@ -272,6 +272,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                     valueFormat = "F3";
                     minimum = 0;
                     maximum = 1;
+                    dragSpeed = 0.99;
                     valueBarVisibility = NumericUpDownValueBarVisibility.Visible;
                 }
 

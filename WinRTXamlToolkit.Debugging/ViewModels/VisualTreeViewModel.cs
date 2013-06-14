@@ -366,14 +366,19 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         private async Task GetPropertyLists()
         {
             this.PropertyLists = new ObservableCollection<PropertyList>();
-            this.PropertyLists.Add(new PropertyList() { Name = "All", CommaSeparatedPropertyNames = string.Empty});
             this.PropertyLists.Add(
-new PropertyList
-{
-    Name = "Layout",
-    CommaSeparatedPropertyNames =
-        "Width,Height,MinWidth,MinHeight,MaxWidth,MaxHeight,Orientation,Clip,ActualWidth,ActualHeight,Margin,Padding,Canvas.Left,Canvas.Top,Canvas.Zindex,ItemHeight,ItemWidth,LineStackingStrategy,LineHeight,Visibility,Opacity,RenderTransform,Projection,StrokeThickness,BorderThickness,Grid.Row,Grid.Column,Grid.RowSpan,Grid.ColumnSpan,VariableSizedWrapGrid.ColumnSpan,VariableSizedWrapGrid.RowSpan"
-});
+                new PropertyList
+                {
+                    Name = "All",
+                    CommaSeparatedPropertyNames = string.Empty
+                });
+            this.PropertyLists.Add(
+                new PropertyList
+                {
+                    Name = "Layout",
+                    CommaSeparatedPropertyNames =
+                        "Width,Height,MinWidth,MinHeight,MaxWidth,MaxHeight,Orientation,Clip,ActualWidth,ActualHeight,Margin,Padding,Canvas.Left,Canvas.Top,Canvas.Zindex,ItemHeight,ItemWidth,LineStackingStrategy,LineHeight,Visibility,Opacity,RenderTransform,Projection,StrokeThickness,BorderThickness,Grid.Row,Grid.Column,Grid.RowSpan,Grid.ColumnSpan,VariableSizedWrapGrid.ColumnSpan,VariableSizedWrapGrid.RowSpan,VerticalAlignment,HorizontalAlignment,VerticalContentAlignment,HorizontalContentAlignment"
+                });
             this.CurrentPropertyList = this.PropertyLists[0];
         } 
         #endregion

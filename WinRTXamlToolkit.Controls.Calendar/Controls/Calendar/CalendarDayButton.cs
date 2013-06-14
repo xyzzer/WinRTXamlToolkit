@@ -3,17 +3,18 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+using System;
 using System.Globalization;
-using System.Windows.Automation.Peers;
+using WinRTXamlToolkit.Automation.Peers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace System.Windows.Controls.Primitives
+namespace WinRTXamlToolkit.Controls.Primitives
 {
     /// <summary>
-    /// Represents a day on a <see cref="T:System.Windows.Controls.Calendar" />.
+    /// Represents a day on a <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     [TemplateVisualState(Name = VisualStates.StateNormal, GroupName = VisualStates.GroupCommon)]
@@ -206,7 +207,7 @@ namespace System.Windows.Controls.Primitives
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarDayButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarDayButton" />
         /// class.
         /// </summary>
         public CalendarDayButton()
@@ -231,7 +232,7 @@ namespace System.Windows.Controls.Primitives
 
         /// <summary>
         /// Builds the visual tree for the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarDayButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarDayButton" />
         /// when a new template is applied.
         /// </summary>
         protected override void OnApplyTemplate()

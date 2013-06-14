@@ -1,4 +1,4 @@
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     internal class Properties
     {

@@ -3,16 +3,14 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Inherited code: Requires comment.

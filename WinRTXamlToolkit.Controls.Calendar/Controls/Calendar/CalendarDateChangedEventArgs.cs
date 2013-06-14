@@ -6,11 +6,11 @@
 using System;
 using Windows.UI.Xaml;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Provides data for the
-    /// <see cref="E:System.Windows.Controls.Calendar.DisplayDateChanged" />
+    /// <see cref="E:WinRTXamlToolkit.Controls.Calendar.DisplayDateChanged" />
     /// event.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>

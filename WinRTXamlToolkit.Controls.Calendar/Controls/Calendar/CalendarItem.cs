@@ -3,18 +3,18 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+using System;
 using System.Diagnostics;
 using System.Globalization;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace System.Windows.Controls.Primitives
+namespace WinRTXamlToolkit.Controls.Primitives
 {
     /// <summary>
     /// Represents the currently displayed month or year on a
-    /// <see cref="T:System.Windows.Controls.Calendar" />.
+    /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     [TemplatePart(Name = CalendarItem.ElementRoot, Type = typeof (FrameworkElement))]
@@ -310,11 +310,11 @@ namespace System.Windows.Controls.Primitives
         /// <summary>
         /// Inherited code: Requires comment.
         /// </summary>
-        private Globalization.Calendar _calendar = new CultureInfo("en-US").Calendar;
+        private System.Globalization.Calendar _calendar = new CultureInfo("en-US").Calendar;
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarItem" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarItem" />
         /// class.
         /// </summary>
         public CalendarItem()
@@ -326,7 +326,7 @@ namespace System.Windows.Controls.Primitives
 
         /// <summary>
         /// Builds the visual tree for the
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarItem" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarItem" />
         /// when a new template is applied.
         /// </summary>
         protected override void OnApplyTemplate()
@@ -532,7 +532,7 @@ namespace System.Windows.Controls.Primitives
                     if (Owner != null)
                     {
                         daytitle.DataContext =
-                            new CultureInfo("pl-PL").DateTimeFormat.ShortestDayNames[
+                            CultureInfo.CurrentUICulture.DateTimeFormat.ShortestDayNames[
                                 (childIndex + (int) Owner.FirstDayOfWeek)%NumberOfDaysPerWeek];
                     }
                     else

@@ -5,6 +5,7 @@ if "%1"=="nobuild" (goto CREATE_FOLDER_STRUCTURE)
 
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit\WinRTXamlToolkit.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug ..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj
@@ -41,6 +42,13 @@ mkdir lib\netcore45\WinRTXamlToolkit\Themes
 @rem WinRTXamlToolkit.Composition folders
 mkdir lib\netcore45\WinRTXamlToolkit.Composition
 
+@rem WinRTXamlToolkit.Controls.Calendar folders
+mkdir lib\netcore45\Properties
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Controls
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Themes
+
 @rem WinRTXamlToolkit.Controls.DataVisualization folders
 mkdir lib\netcore45\Properties
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
@@ -64,6 +72,7 @@ mkdir lib\netcore45\WinRTXamlToolkit.Debugging\Views\PropertyEditors
 @rem copy ..\src\SomeController.cs content
 copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\netcore45
 copy ..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.* lib\netcore45
+copy ..\WinRTXamlToolkit.Controls.Calendar\bin\Release\WinRTXamlToolkit.Controls.Calendar.* lib\netcore45
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.* lib\netcore45
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45
 
@@ -85,6 +94,9 @@ copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkPasswordBox\*.xaml lib\ne
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox
 copy ..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xaml lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser
 copy ..\WinRTXamlToolkit\bin\Release\Themes\*.xaml lib\netcore45\WinRTXamlToolkit\Themes
+
+copy ..\WinRTXamlToolkit.Controls.Calendar\bin\Release\Controls\Calendar\*.xaml								lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar
+copy ..\WinRTXamlToolkit.Controls.Calendar\bin\Release\Themes\*.xaml										lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Themes
 
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xaml				lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DateTimeAxisLabel.xaml		lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis
@@ -120,4 +132,5 @@ copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Views\PropertyEditors\*.xaml							
 nuget pack WinRTXamlToolkit.nuspec
 nuget pack WinRTXamlToolkit.Composition.nuspec
 nuget pack WinRTXamlToolkit.Controls.DataVisualization.nuspec
+nuget pack WinRTXamlToolkit.Controls.Calendar.nuspec
 nuget pack WinRTXamlToolkit.Debugging.nuspec

@@ -520,6 +520,12 @@ namespace WinRTXamlToolkit.Controls
         {
             var dx = args.MouseDelta.X;
             var dy = args.MouseDelta.Y;
+
+            if (dx > 200 || dx < -200 || dy > 200 || dy < -200)
+            {
+                return;
+            }
+
             _totalDeltaX += dx;
             _totalDeltaY += dy;
 

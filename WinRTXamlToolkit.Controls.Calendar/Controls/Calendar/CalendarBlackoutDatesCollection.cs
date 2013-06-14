@@ -7,14 +7,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using Windows.UI.Xaml;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Represents a collection of non-selectable dates in a
-    /// <see cref="T:System.Windows.Controls.Calendar" />.
+    /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     public sealed class CalendarBlackoutDatesCollection : ObservableCollection<CalendarDateRange>
@@ -32,11 +31,11 @@ namespace System.Windows.Controls
         
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.CalendarBlackoutDatesCollection" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.CalendarBlackoutDatesCollection" />
         /// class.
         /// </summary>
         /// <param name="owner">
-        /// The <see cref="T:System.Windows.Controls.Calendar" /> whose dates
+        /// The <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> whose dates
         /// this object represents.
         /// </param>
         public CalendarBlackoutDatesCollection(Calendar owner)

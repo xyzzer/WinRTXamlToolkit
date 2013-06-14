@@ -8,8 +8,8 @@
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:controls="using:System.Windows.Controls"
-  xmlns:controlsPrimitives="using:System.Windows.Controls.Primitives"
+  xmlns:controls="using:WinRTXamlToolkit.Controls"
+  xmlns:controlsPrimitives="using:WinRTXamlToolkit.Controls.Primitives"
   >
 
     <Style TargetType="controls:Calendar">

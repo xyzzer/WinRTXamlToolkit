@@ -6,32 +6,32 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+using WinRTXamlToolkit.Controls;
+using WinRTXamlToolkit.Controls.Primitives;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Automation.Provider;
 using Windows.UI.Xaml.Controls;
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IGridProvider.ColumnCount", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IGridProvider.RowCount", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ISelectionProvider.GetSelection()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ITableProvider.GetRowHeaders()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarAutomationPeer.#System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridProvider.ColumnCount", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridProvider.RowCount", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IMultipleViewProvider.CurrentView", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IMultipleViewProvider.GetSupportedViews()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionProvider.CanSelectMultiple", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionProvider.GetSelection()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionProvider.IsSelectionRequired", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ITableProvider.GetColumnHeaders()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ITableProvider.GetRowHeaders()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ITableProvider.RowOrColumnMajor", Justification = "WPF Compatibility")]
 
-namespace System.Windows.Automation.Peers
+namespace WinRTXamlToolkit.Automation.Peers
 {
     /// <summary>
-    /// Exposes <see cref="T:System.Windows.Controls.Calendar" /> types to UI automation.
+    /// Exposes <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> types to UI automation.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     public partial class CalendarAutomationPeer :
@@ -174,13 +174,13 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarAutomationPeer" />
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer" />
         /// class.
         /// </summary>
         /// <param name="owner">
-        /// The <see cref="T:System.Windows.Controls.Calendar" /> instance to
+        /// The <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> instance to
         /// associate with the
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarAutomationPeer" />.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer" />.
         /// </param>
         public CalendarAutomationPeer(Calendar owner)
             : base(owner)
@@ -189,7 +189,7 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Gets the control pattern for this
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarAutomationPeer" />.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarAutomationPeer" />.
         /// </summary>
         /// <param name="patternInterface">
         /// One of the enumeration values.
@@ -361,15 +361,15 @@ namespace System.Windows.Automation.Peers
             switch (viewId)
             {
                 case 0:
-                    return System.Windows.Controls.Properties.Resources.CalendarAutomationPeer_MonthMode;
+                    return WinRTXamlToolkit.Controls.Properties.Resources.CalendarAutomationPeer_MonthMode;
                 case 1:
-                    return System.Windows.Controls.Properties.Resources.CalendarAutomationPeer_YearMode;    
+                    return WinRTXamlToolkit.Controls.Properties.Resources.CalendarAutomationPeer_YearMode;    
                 case 2:
-                    return System.Windows.Controls.Properties.Resources.CalendarAutomationPeer_DecadeMode;
+                    return WinRTXamlToolkit.Controls.Properties.Resources.CalendarAutomationPeer_DecadeMode;
             }
 
             // REMOVE_RTM: update when Jolt 23302 is fixed
-            // throw new ArgumentOutOfRangeException("viewId", System.Windows.Controls.Properties.Resources.Calendar_OnDisplayModePropertyChanged_InvalidValue);
+            // throw new ArgumentOutOfRangeException("viewId", WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnDisplayModePropertyChanged_InvalidValue);
             return String.Empty;
         }
 

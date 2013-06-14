@@ -3,32 +3,33 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
+using WinRTXamlToolkit.Controls;
+using WinRTXamlToolkit.Controls.Primitives;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Automation.Provider;
 using Windows.UI.Xaml.Controls;
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IGridItemProvider.Column", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IGridItemProvider.Row", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IGridItemProvider.RowSpan", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.IInvokeProvider.Invoke()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.ISelectionItemProvider.Select()", Justification = "WPF Compatibility")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "System.Windows.Automation.Peers.CalendarButtonAutomationPeer.#System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridItemProvider.Column", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridItemProvider.ColumnSpan", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridItemProvider.ContainingGrid", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridItemProvider.Row", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IGridItemProvider.RowSpan", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.IInvokeProvider.Invoke()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionItemProvider.AddToSelection()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionItemProvider.IsSelected", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionItemProvider.RemoveFromSelection()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionItemProvider.Select()", Justification = "WPF Compatibility")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Scope = "member", Target = "WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer.#WinRTXamlToolkit.Automation.Provider.ISelectionItemProvider.SelectionContainer", Justification = "WPF Compatibility")]
 
-namespace System.Windows.Automation.Peers
+namespace WinRTXamlToolkit.Automation.Peers
 {
     /// <summary>
     /// Exposes
-    /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" /> types
+    /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" /> types
     /// to UI automation.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
@@ -101,7 +102,7 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Gets a UI Automation provider that implements
-        /// <see cref="T:System.Windows.Automation.Provider.IGridProvider" />
+        /// <see cref="T:WinRTXamlToolkit.Automation.Provider.IGridProvider" />
         /// and that represents the container of the cell or item.
         /// </summary>
         IRawElementProviderSimple IGridItemProvider.ContainingGrid
@@ -145,12 +146,12 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Gets the UI Automation provider that implements
-        /// <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" />
+        /// <see cref="T:WinRTXamlToolkit.Automation.Provider.ISelectionProvider" />
         /// and that acts as the container for the calling object.
         /// </summary>
         /// <value>
         /// The provider that supports
-        /// <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" />.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Provider.ISelectionProvider" />.
         /// </value>
         IRawElementProviderSimple ISelectionItemProvider.SelectionContainer
         {
@@ -159,14 +160,14 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarButtonAutomationPeer" />
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer" />
         /// class.
         /// </summary>
         /// <param name="owner">
         /// The
-        /// <see cref="T:System.Windows.Controls.Primitives.CalendarButton" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.Primitives.CalendarButton" />
         /// to associate with this
-        /// <see cref="T:System.Windows.Automation.Peers.AutomationPeer" />.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.AutomationPeer" />.
         /// </param>
         public CalendarButtonAutomationPeer(CalendarButton owner)
             : base(owner)
@@ -175,7 +176,7 @@ namespace System.Windows.Automation.Peers
 
         /// <summary>
         /// Gets the control pattern for this
-        /// <see cref="T:System.Windows.Automation.Peers.CalendarButtonAutomationPeer" />.
+        /// <see cref="T:WinRTXamlToolkit.Automation.Peers.CalendarButtonAutomationPeer" />.
         /// </summary>
         /// <param name="patternInterface">
         /// One of the enumeration values.
@@ -218,7 +219,7 @@ namespace System.Windows.Automation.Peers
         /// <returns>The string that contains the type of control.</returns>
         protected override string GetLocalizedControlTypeCore()
         {
-            return System.Windows.Controls.Properties.Resources.CalendarAutomationPeer_CalendarButtonLocalizedControlType;
+            return WinRTXamlToolkit.Controls.Properties.Resources.CalendarAutomationPeer_CalendarButtonLocalizedControlType;
         }
 
         /// <summary>

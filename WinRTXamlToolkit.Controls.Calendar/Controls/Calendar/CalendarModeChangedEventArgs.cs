@@ -3,14 +3,13 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-using System;
 using Windows.UI.Xaml;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Provides data for the
-    /// <see cref="E:System.Windows.Controls.Calendar.DisplayModeChanged" />
+    /// <see cref="E:WinRTXamlToolkit.Controls.Calendar.DisplayModeChanged" />
     /// event.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
@@ -18,27 +17,27 @@ namespace System.Windows.Controls
     {
         /// <summary>
         /// Gets the previous mode of the
-        /// <see cref="T:System.Windows.Controls.Calendar" />.
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
         /// </summary>
         /// <value>
-        /// A <see cref="T:System.Windows.Controls.CalendarMode" /> representing
+        /// A <see cref="T:WinRTXamlToolkit.Controls.CalendarMode" /> representing
         /// the previous mode.
         /// </value>
         public CalendarMode OldMode { get; private set; }
 
         /// <summary>
         /// Gets the new mode of the
-        /// <see cref="T:System.Windows.Controls.Calendar" />.
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
         /// </summary>
         /// <value>
-        /// A <see cref="T:System.Windows.Controls.CalendarMode" /> 
+        /// A <see cref="T:WinRTXamlToolkit.Controls.CalendarMode" /> 
         /// the new mode.
         /// </value>
         public CalendarMode NewMode { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.CalendarModeChangedEventArgs" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.CalendarModeChangedEventArgs" />
         /// class.
         /// </summary>
         /// <param name="oldMode">The previous mode.</param>

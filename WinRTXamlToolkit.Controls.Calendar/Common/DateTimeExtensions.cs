@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace WinRTCalendar.Common
+namespace WinRTXamlToolkit.Common
 {
     public static class DateTimeExtensions
     {

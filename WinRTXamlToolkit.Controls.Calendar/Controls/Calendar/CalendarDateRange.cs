@@ -6,11 +6,11 @@
 using System;
 using System.Diagnostics;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Represents a range of dates in a
-    /// <see cref="T:System.Windows.Controls.Calendar" />.
+    /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     public sealed class CalendarDateRange
@@ -29,7 +29,7 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.CalendarDateRange" /> class
+        /// <see cref="T:WinRTXamlToolkit.Controls.CalendarDateRange" /> class
         /// with a single date.
         /// </summary>
         /// <param name="day">The date to be represented by the range.</param>
@@ -41,7 +41,7 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.CalendarDateRange" /> class
+        /// <see cref="T:WinRTXamlToolkit.Controls.CalendarDateRange" /> class
         /// with a range of dates.
         /// </summary>
         /// <param name="start">

@@ -7,7 +7,6 @@
     xmlns:local="using:WinRTXamlToolkit.Sample.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Controls="using:System.Windows.Controls"
     mc:Ignorable="d">
 
     <Grid
@@ -30,7 +29,7 @@
             Text="Calendar Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
-        <Controls:Calendar
+        <controls:Calendar
             Grid.Column="1"
             Grid.Row="1"
             VerticalAlignment="Center"

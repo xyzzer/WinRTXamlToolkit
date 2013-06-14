@@ -6,15 +6,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace System.Windows.Controls
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Represents a set of selected dates in a
-    /// <see cref="T:System.Windows.Controls.Calendar" />.
+    /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" />.
     /// </summary>
     /// <QualityBand>Mature</QualityBand>
     public sealed class SelectedDatesCollection : ObservableCollection<DateTime>
@@ -47,11 +46,11 @@ namespace System.Windows.Controls
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="T:System.Windows.Controls.SelectedDatesCollection" />
+        /// <see cref="T:WinRTXamlToolkit.Controls.SelectedDatesCollection" />
         /// class.
         /// </summary>
         /// <param name="owner">
-        /// The <see cref="T:System.Windows.Controls.Calendar" /> associated
+        /// The <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> associated
         /// with this object.
         /// </param>
         public SelectedDatesCollection(Calendar owner)
@@ -145,7 +144,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(System.Windows.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
+                throw new NotSupportedException(WinRTXamlToolkit.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
             }
             List<object> addedItems = new List<object>();
             List<object> removedItems = new List<object>();
@@ -184,7 +183,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(System.Windows.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
+                throw new NotSupportedException(WinRTXamlToolkit.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
             }
 
             if (!Contains(item))
@@ -231,7 +230,7 @@ namespace System.Windows.Controls
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(System.Windows.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidValue);
+                        throw new ArgumentOutOfRangeException(WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidValue);
                     }
                 }
             }
@@ -250,7 +249,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(System.Windows.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
+                throw new NotSupportedException(WinRTXamlToolkit.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
             }
 
             if (index >= Count)
@@ -304,7 +303,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(System.Windows.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
+                throw new NotSupportedException(WinRTXamlToolkit.Controls.Properties.Resources.CalendarCollection_MultiThreadedCollectionChangeNotSupported);
             }
 
             if (!Contains(item))
@@ -358,11 +357,11 @@ namespace System.Windows.Controls
         {
             if (_owner.SelectionMode == CalendarSelectionMode.None)
             {
-                throw new InvalidOperationException(System.Windows.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidOperation);
+                throw new InvalidOperationException(WinRTXamlToolkit.Controls.Properties.Resources.Calendar_OnSelectedDateChanged_InvalidOperation);
             }
             if (_owner.SelectionMode == CalendarSelectionMode.SingleDate && Count > 0)
             {
-                throw new InvalidOperationException(System.Windows.Controls.Properties.Resources.Calendar_CheckSelectionMode_InvalidOperation);
+                throw new InvalidOperationException(WinRTXamlToolkit.Controls.Properties.Resources.Calendar_CheckSelectionMode_InvalidOperation);
             }
 
             // if user tries to add an item into the SelectedDates in

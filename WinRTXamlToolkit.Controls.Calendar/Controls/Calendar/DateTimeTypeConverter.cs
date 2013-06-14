@@ -8,7 +8,7 @@
 //using System.ComponentModel;
 //using System.Globalization;
 
-//namespace System.Windows.Controls
+//namespace WinRTXamlToolkit.Controls
 //{
 //    /// <summary>
 //    /// Provides a converter to convert <see cref="T:System.DateTime" /> objects
@@ -19,7 +19,7 @@
 //    {
 //        /// <summary>
 //        /// Initializes a new instance of the
-//        /// <see cref="T:System.Windows.Controls.DateTimeTypeConverter" />
+//        /// <see cref="T:WinRTXamlToolkit.Controls.DateTimeTypeConverter" />
 //        /// class.
 //        /// </summary>
 //        public DateTimeTypeConverter()
