@@ -25,35 +25,103 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         #region Properties property
         private List<BasePropertyViewModel> _allProperties;
-        public List<BasePropertyViewModel> Properties
+        public ObservableCollection<BindableBase> Properties
         {
             get
             {
+                if (this.ShowPropertiesGrouped)
+                {
+                    return this.GroupedProperties;
+                }
+
                 // If there is an active name filter - display filtered properties
                 if (this.CurrentPropertyList != null &&
                     this.CurrentPropertyList.PropertyNames.Count > 0)
                 {
                     return
-                        _allProperties.Where(
+                        new ObservableCollection<BindableBase>(_allProperties.Where(
                             p =>
                                 (ShowDefaultedProperties || !p.IsDefault) &&
                                 (ShowReadOnlyProperties || !p.IsReadOnly) &&
-                                this.CurrentPropertyList.PropertyNames.Contains(p.Name)).ToList();
+                                this.CurrentPropertyList.PropertyNames.Contains(p.Name)));
                 }
 
                 // If no checkbox filters are set - simply return all properties
                 if (ShowDefaultedProperties && ShowReadOnlyProperties ||
                     _allProperties == null)
                 {
-                    return _allProperties;
+                    return new ObservableCollection<BindableBase>(_allProperties);
                 }
 
                 // If default/readonly filters are set - return flag-filtered properties
                 return
-                    _allProperties.Where(
+                    new ObservableCollection<BindableBase>(_allProperties.Where(
                         p =>
                         (ShowDefaultedProperties || !p.IsDefault) &&
-                        (ShowReadOnlyProperties || !p.IsReadOnly)).ToList();
+                        (ShowReadOnlyProperties || !p.IsReadOnly)));
+            }
+        }
+        #endregion
+
+        #region GroupedProperties
+        private ObservableCollection<BindableBase> _groupedProperties;
+        private ObservableCollection<BindableBase> GroupedProperties
+        {
+            get
+            {
+                if (_groupedProperties == null)
+                {
+                    if (_allProperties == null)
+                    {
+                        return new ObservableCollection<BindableBase>();
+                    }
+
+                    _groupedProperties = new ObservableCollection<BindableBase>(
+                        _allProperties
+                            .OrderBy(p => p.Name)
+                            .GroupBy(p => p.Category)
+                            .Select(g => new PropertyGroupViewModel(
+                                g.Key,
+                                g))
+                            .OrderBy(g => g.Category));
+
+                    _groupedProperties.Cast<PropertyGroupViewModel>().First().IsExpanded
+                        = true;
+                    foreach (var sampleButtonViewModel in _groupedProperties.Cast<PropertyGroupViewModel>().ToList())
+                    {
+                        sampleButtonViewModel.ParentList = _groupedProperties;
+                    }
+
+                }
+
+                return _groupedProperties;
+            }
+        } 
+        #endregion
+
+        #region ShowPropertiesGrouped
+        /// <summary>
+        /// Gets or sets the property that indicates whether the properties should be shown grouped.
+        /// </summary>
+        public bool ShowPropertiesGrouped
+        {
+            get { return this.TreeModel.ShowPropertiesGrouped; }
+            set
+            {
+                if (this.TreeModel.ShowPropertiesGrouped == value)
+                {
+                    return;
+                }
+
+                this.TreeModel.ShowPropertiesGrouped = value;
+                // ReSharper disable ExplicitCallerInfoArgument
+                this.OnPropertyChanged();
+
+                if (!_skipUpdatingProperties)
+                {
+                    this.OnPropertyChanged("Properties");
+                }
+                // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
@@ -225,7 +293,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             this.Model = model;
 
-            if (Model.GetType().GetTypeInfo().Assembly != typeof(FrameworkElement).GetTypeInfo().Assembly)
+            if (!Equals(
+                    Model.GetType().GetTypeInfo().Assembly,
+                    typeof (FrameworkElement).GetTypeInfo().Assembly))
             {
                 this.FontWeight = FontWeights.Bold;
             }
@@ -311,6 +381,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 propertyViewModel.PropertyChanged += OnPropertyPropertyChanged;
             }
+
+            _groupedProperties = null;
 
             // ReSharper disable ExplicitCallerInfoArgument
             OnPropertyChanged("Properties");

@@ -7,7 +7,6 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
@@ -159,6 +158,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         //    get { return _isPreviewShown; }
         //    set { this.SetProperty(ref _isPreviewShown, value); }
         //}
+        #endregion
+
+        #region ShowPropertiesGrouped
+        private bool _showPropertiesGrouped = true;
+        /// <summary>
+        /// Gets or sets the property that indicates whether the properties should be shown grouped.
+        /// </summary>
+        public bool ShowPropertiesGrouped
+        {
+            get { return _showPropertiesGrouped; }
+            set { this.SetProperty(ref _showPropertiesGrouped, value); }
+        }
         #endregion
 
         #region ShowDefaultedProperties

@@ -193,6 +193,7 @@
     <Compile Include="ViewModels\DebugConsoleViewModel.cs" />
     <Compile Include="ViewModels\DependencyObjectViewModel.cs" />
     <Compile Include="ViewModels\DependencyPropertyViewModel.cs" />
+    <Compile Include="ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
     <Compile Include="ViewModels\StubTreeItemViewModel.cs" />
     <Compile Include="ViewModels\TreeItemViewModel.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Views\PropertyEditors\ThicknessPropertyEditor.xaml.cs">
       <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PropertyTemplateSelector.cs" />
     <Compile Include="Views\VisualTreeView.xaml.cs">
       <DependentUpon>VisualTreeView.xaml</DependentUpon>
     </Compile>

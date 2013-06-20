@@ -152,6 +152,8 @@ namespace WinRTXamlToolkit.Debugging.Controls
                 !editableListBoxItem.HasNonDefaultValue(
                     EditableListBoxItem.EditableContentTemplateSelectorProperty))
             {
+                //editableListBoxItem.EditableContentTemplateSelector =
+                //    this.EditableItemTemplateSelector;
                 editableListBoxItem.SetBinding(
                     EditableListBoxItem.EditableContentTemplateSelectorProperty,
                     new Binding
@@ -165,6 +167,7 @@ namespace WinRTXamlToolkit.Debugging.Controls
                 !editableListBoxItem.HasNonDefaultValue(
                     EditableListBoxItem.SlimContentTemplateProperty))
             {
+                //editableListBoxItem.SlimContentTemplate = this.ItemTemplate;
                 editableListBoxItem.SetBinding(
                     EditableListBoxItem.SlimContentTemplateProperty,
                     new Binding
@@ -178,6 +181,8 @@ namespace WinRTXamlToolkit.Debugging.Controls
                 !editableListBoxItem.HasNonDefaultValue(
                     EditableListBoxItem.SlimContentTemplateSelectorProperty))
             {
+                //editableListBoxItem.SlimContentTemplateSelector =
+                //    this.ItemTemplateSelector;
                 editableListBoxItem.SetBinding(
                     EditableListBoxItem.SlimContentTemplateSelectorProperty,
                     new Binding

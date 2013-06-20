@@ -18,6 +18,36 @@
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <converters:BooleanToDoubleConverter
+                x:Key="BooleanToDoubleConverter"
+                FalseValue="1"
+                TrueValue="0.5" />
+
+            <local:PropertyTemplateSelector
+                x:Key="PropertyTemplateSelector">
+                <DataTemplate
+                    x:Key="Property">
+                    <DataTemplate>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <!--<TextBlock
+                                Text="{Binding Name}"
+                                FontWeight="Bold"
+                                Margin="0,0,10,0" />
+                            <TextBlock
+                                Text="{Binding ValueString}"
+                                Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />-->
+                        </StackPanel>
+                    </DataTemplate>
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="Group">
+                    <CheckBox
+                        Content="{Binding Category}"
+                        IsChecked="{Binding IsExpanded, Mode=TwoWay}" />
+                </DataTemplate>
+            </local:PropertyTemplateSelector>
+            
             <!-- EditablePropertyTemplateSelector -->
             <local:EditablePropertyTemplateSelector
                 x:Key="EditablePropertyTemplateSelector">
@@ -82,28 +112,8 @@
         </Grid.RowDefinitions>
         <controls:EditableListBox
             ItemsSource="{Binding Properties}"
-            EditableItemTemplateSelector="{StaticResource EditablePropertyTemplateSelector}">
-            <controls:EditableListBox.Resources>
-                <converters:BooleanToDoubleConverter
-                    x:Key="BooleanToDoubleConverter"
-                    FalseValue="1"
-                    TrueValue="0.5" />
-            </controls:EditableListBox.Resources>
-            <controls:EditableListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="{Binding Name}"
-                            FontWeight="Bold"
-                            Margin="0,0,10,0" />
-                        <TextBlock
-                            Text="{Binding ValueString}"
-                            Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
-                    </StackPanel>
-                </DataTemplate>
-            </controls:EditableListBox.ItemTemplate>
-        </controls:EditableListBox>
+            ItemTemplateSelector="{StaticResource PropertyTemplateSelector}"/>
+            <!--EditableItemTemplateSelector="{StaticResource EditablePropertyTemplateSelector}" />-->
         <StackPanel
             Grid.Row="1"
             Orientation="Horizontal">

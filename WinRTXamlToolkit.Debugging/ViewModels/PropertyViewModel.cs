@@ -42,6 +42,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
         }
 
+        public override string Category
+        {
+            get
+            {
+                return MiscCategoryName;
+            }
+        }
+
         public override bool IsDefault
         {
             get

@@ -6,6 +6,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public abstract class BasePropertyViewModel : BindableBase
     {
+        public const string LayoutCategoryName = "Layout";
+        public const string AppearanceCategoryName = "Appearance";
+        public const string MiscCategoryName = "Misc POCP";
+
         protected bool? _isDefault;
 
         #region Name
@@ -25,6 +29,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public abstract object Value { get; set; }
 
         public abstract Type PropertyType { get; }
+
+        public abstract string Category { get; }
 
         public abstract bool IsDefault { get; }
 

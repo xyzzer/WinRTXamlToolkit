@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
+using WinRTXamlToolkit.Controls;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
+using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
@@ -16,6 +18,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         private readonly PropertyInfo _propertyInfo;
         private readonly Type _propertyType;
 
+        #region CoercionHelper
         private IValueCoercionHelper _coercionHelper;
         internal IValueCoercionHelper CoercionHelper
         {
@@ -27,8 +30,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 _coercionHelper = value;
             }
-        }
+        } 
+        #endregion
 
+        #region DependencyProperty
         private readonly DependencyProperty _dependencyProperty;
         public DependencyProperty DependencyProperty
         {
@@ -36,10 +41,75 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 return _dependencyProperty;
             }
+        } 
+        #endregion
+
+        public override string Category
+        {
+            get
+            {
+                if (_dependencyProperty == FrameworkElement.WidthProperty ||
+                    _dependencyProperty == FrameworkElement.HeightProperty ||
+                    _dependencyProperty == FrameworkElement.MaxWidthProperty ||
+                    _dependencyProperty == FrameworkElement.MinWidthProperty ||
+                    _dependencyProperty == FrameworkElement.MaxHeightProperty ||
+                    _dependencyProperty == FrameworkElement.MinHeightProperty ||
+                    _dependencyProperty == FrameworkElement.ActualWidthProperty ||
+                    _dependencyProperty == FrameworkElement.ActualHeightProperty ||
+                    _dependencyProperty == FrameworkElement.MarginProperty ||
+                    _dependencyProperty == FrameworkElement.HorizontalAlignmentProperty ||
+                    _dependencyProperty == FrameworkElement.VerticalAlignmentProperty ||
+                    _dependencyProperty == Control.PaddingProperty ||
+                    _dependencyProperty == Control.HorizontalContentAlignmentProperty ||
+                    _dependencyProperty == Control.VerticalContentAlignmentProperty ||
+                    _dependencyProperty == UIElement.ClipProperty ||
+                    _dependencyProperty == UIElement.VisibilityProperty ||
+                    _dependencyProperty == UIElement.OpacityProperty ||
+                    _dependencyProperty == UIElement.RenderTransformProperty ||
+                    _dependencyProperty == UIElement.RenderTransformOriginProperty ||
+                    _dependencyProperty == UIElement.ProjectionProperty ||
+                    _dependencyProperty == StackPanel.OrientationProperty ||
+                    _dependencyProperty == Grid.ColumnProperty ||
+                    _dependencyProperty == Grid.RowProperty ||
+                    _dependencyProperty == Grid.ColumnSpanProperty ||
+                    _dependencyProperty == Grid.RowSpanProperty ||
+                    _dependencyProperty == Canvas.LeftProperty ||
+                    _dependencyProperty == Canvas.TopProperty ||
+                    _dependencyProperty == Canvas.ZIndexProperty ||
+                    _dependencyProperty == WrapGrid.ItemWidthProperty ||
+                    _dependencyProperty == WrapGrid.ItemHeightProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.ItemWidthProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.ItemHeightProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.ColumnSpanProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.RowSpanProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.MaximumRowsOrColumnsProperty ||
+                    _dependencyProperty == WrapPanel.ItemWidthProperty ||
+                    _dependencyProperty == WrapPanel.ItemHeightProperty ||
+                    _dependencyProperty == TextBlock.LineHeightProperty ||
+                    _dependencyProperty == TextBlock.LineStackingStrategyProperty ||
+                    _dependencyProperty == Shape.StrokeThicknessProperty ||
+                    _dependencyProperty == Control.BorderThicknessProperty)
+                {
+                    return LayoutCategoryName;
+                }
+
+                if (_dependencyProperty == TextBlock.ForegroundProperty ||
+                    _dependencyProperty == Control.ForegroundProperty ||
+                    _dependencyProperty == Control.BackgroundProperty ||
+                    _dependencyProperty == Shape.FillProperty ||
+                    _dependencyProperty == Shape.StrokeProperty ||
+                    _dependencyProperty == Image.SourceProperty)
+                {
+                    return AppearanceCategoryName;
+                }
+
+                return MiscCategoryName;
+            }
         }
 
         public object DefaultValue { get; private set; }
 
+        #region AsObjectViewModel
         private DependencyObjectViewModel _asObjectViewModel;
         public DependencyObjectViewModel AsObjectViewModel
         {
@@ -55,7 +125,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 return _asObjectViewModel;
             }
-        }
+        } 
+        #endregion
 
         #region CTOR
         public DependencyPropertyViewModel(
@@ -206,35 +277,42 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        #region CanResetValue
         public override bool CanResetValue
         {
             get
             {
                 return !this.IsReadOnly && !this.IsDefault;
             }
-        }
+        } 
+        #endregion
 
+        #region ResetValue()
         public override void ResetValue()
         {
             _elementModel.Model.ClearValue(_dependencyProperty);
             _isDefault = null;
 
- // ReSharper disable ExplicitCallerInfoArgument
+            // ReSharper disable ExplicitCallerInfoArgument
             OnPropertyChanged("Value");
             OnPropertyChanged("ValueString");
             OnPropertyChanged("CanResetValue");
             OnPropertyChanged("IsDefault");
-// ReSharper restore ExplicitCallerInfoArgument
-       }
+            // ReSharper restore ExplicitCallerInfoArgument
+        } 
+        #endregion
 
+        #region CanAnalyze
         public override bool CanAnalyze
         {
             get
             {
                 return true;
             }
-        }
+        } 
+        #endregion
 
+        #region Analyze()
         /// <summary>
         /// Analyzes the property value source and displays the report in a dialog.
         /// </summary>
@@ -277,6 +355,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning disable 4014
             new MessageDialog(sb.ToString()).ShowAsync();
 #pragma warning restore 4014
-        }
+        } 
+        #endregion
     }
 }
