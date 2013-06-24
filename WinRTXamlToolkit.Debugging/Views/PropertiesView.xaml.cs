@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using WinRTXamlToolkit.Debugging.ViewModels;
+using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {
@@ -10,6 +11,12 @@ namespace WinRTXamlToolkit.Debugging.Views
         public PropertiesView()
         {
             this.InitializeComponent();
+        }
+
+        private void OnSearchBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var vm = (DependencyObjectViewModel)this.DataContext;
+            vm.PropertyNameFilter = this.SearchBox.Text;
         }
     }
 }

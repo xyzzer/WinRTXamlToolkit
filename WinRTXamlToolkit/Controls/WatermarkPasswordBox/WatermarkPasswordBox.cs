@@ -127,8 +127,6 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        
-
         #region WatermarkTextStyleRelay
         /// <summary>
         /// WatermarkTextStyleRelay Attached Dependency Property

@@ -190,6 +190,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        #region PropertyNameFilter
+        private string _propertyNameFilter;
+        /// <summary>
+        /// Gets or sets the string that filters the property list.
+        /// </summary>
+        public string PropertyNameFilter
+        {
+            get { return _propertyNameFilter; }
+            set { this.SetProperty(ref _propertyNameFilter, value); }
+        }
+        #endregion
+
         #region CurrentPropertyList
         private PropertyList _currentPropertyList;
         /// <summary>
