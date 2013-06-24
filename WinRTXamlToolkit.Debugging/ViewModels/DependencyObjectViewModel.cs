@@ -17,6 +17,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class DependencyObjectViewModel : TreeItemViewModel
     {
+        private bool _skipUpdatingProperties;
+
         internal DependencyObject Model { get; private set; }
 
         public event EventHandler ModelPropertyChanged;
@@ -29,11 +31,60 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                if (this.ShowPropertiesGrouped)
+                if (!string.IsNullOrEmpty(this.PropertyNameFilter))
                 {
-                    return this.GroupedProperties;
+                    return new ObservableCollection<BindableBase>(
+                        _allProperties
+                            .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
                 }
 
+                return
+                    this.ShowPropertiesGrouped
+                        ? this.GroupedProperties
+                        : this.UngroupedProperties;
+            }
+        }
+        #endregion
+
+        #region GroupedProperties
+        private ObservableCollection<BindableBase> _groupedProperties;
+        private ObservableCollection<BindableBase> GroupedProperties
+        {
+            get
+            {
+                if (_groupedProperties == null)
+                {
+                    if (this.UngroupedProperties == null)
+                    {
+                        return new ObservableCollection<BindableBase>();
+                    }
+
+                    _groupedProperties = new ObservableCollection<BindableBase>(
+                        this.UngroupedProperties
+                            .Cast<BasePropertyViewModel>()
+                            .OrderBy(p => p.Name)
+                            .GroupBy(p => p.Category)
+                            .Select(g => new PropertyGroupViewModel(
+                                g.Key,
+                                g))
+                            .OrderBy(g => g.Category));
+
+                    foreach (var sampleButtonViewModel in _groupedProperties.Cast<PropertyGroupViewModel>().ToList())
+                    {
+                        sampleButtonViewModel.ParentList = _groupedProperties;
+                    }
+                }
+
+                return _groupedProperties;
+            }
+        } 
+        #endregion
+
+        #region UngroupedProperties
+        public ObservableCollection<BindableBase> UngroupedProperties
+        {
+            get
+            {
                 // If there is an active name filter - display filtered properties
                 if (this.CurrentPropertyList != null &&
                     this.CurrentPropertyList.PropertyNames.Count > 0)
@@ -60,42 +111,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         (ShowDefaultedProperties || !p.IsDefault) &&
                         (ShowReadOnlyProperties || !p.IsReadOnly)));
             }
-        }
-        #endregion
-
-        #region GroupedProperties
-        private ObservableCollection<BindableBase> _groupedProperties;
-        private ObservableCollection<BindableBase> GroupedProperties
-        {
-            get
-            {
-                if (_groupedProperties == null)
-                {
-                    if (_allProperties == null)
-                    {
-                        return new ObservableCollection<BindableBase>();
-                    }
-
-                    _groupedProperties = new ObservableCollection<BindableBase>(
-                        _allProperties
-                            .OrderBy(p => p.Name)
-                            .GroupBy(p => p.Category)
-                            .Select(g => new PropertyGroupViewModel(
-                                g.Key,
-                                g))
-                            .OrderBy(g => g.Category));
-
-                    _groupedProperties.Cast<PropertyGroupViewModel>().First().IsExpanded
-                        = true;
-                    foreach (var sampleButtonViewModel in _groupedProperties.Cast<PropertyGroupViewModel>().ToList())
-                    {
-                        sampleButtonViewModel.ParentList = _groupedProperties;
-                    }
-
-                }
-
-                return _groupedProperties;
-            }
         } 
         #endregion
 
@@ -114,14 +129,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 this.TreeModel.ShowPropertiesGrouped = value;
-                // ReSharper disable ExplicitCallerInfoArgument
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
+                    // ReSharper disable ExplicitCallerInfoArgument
                     this.OnPropertyChanged("Properties");
+                    // ReSharper restore ExplicitCallerInfoArgument
                 }
-                // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
@@ -138,19 +153,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 this.TreeModel.ShowDefaultedProperties = value;
-                // ReSharper disable ExplicitCallerInfoArgument
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
+                    _groupedProperties = null;
+                    // ReSharper disable ExplicitCallerInfoArgument
                     this.OnPropertyChanged("Properties");
+                    // ReSharper restore ExplicitCallerInfoArgument
                 }
-                // ReSharper restore ExplicitCallerInfoArgument
             }
         }
         #endregion
-
-        private bool _skipUpdatingProperties;
 
         #region ShowReadOnlyProperties
         public bool ShowReadOnlyProperties
@@ -164,14 +178,44 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 this.TreeModel.ShowReadOnlyProperties = value;
-                // ReSharper disable ExplicitCallerInfoArgument
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
+                    _groupedProperties = null;
+                    // ReSharper disable ExplicitCallerInfoArgument
                     this.OnPropertyChanged("Properties");
+                    // ReSharper restore ExplicitCallerInfoArgument
                 }
-                // ReSharper restore ExplicitCallerInfoArgument
+            }
+        }
+        #endregion
+
+        #region PropertyNameFilter
+        /// <summary>
+        /// Gets or sets the string that filters the property list.
+        /// </summary>
+        public string PropertyNameFilter
+        {
+            get { return this.TreeModel.PropertyNameFilter; }
+            set
+            {
+                if (this.TreeModel.PropertyNameFilter == value)
+                {
+                    return;
+                }
+
+                this.TreeModel.PropertyNameFilter = value;
+
+                this.OnPropertyChanged();
+
+                if (!_skipUpdatingProperties)
+                {
+                    _groupedProperties = null;
+                    // ReSharper disable ExplicitCallerInfoArgument
+                    this.OnPropertyChanged("Properties");
+                    // ReSharper restore ExplicitCallerInfoArgument
+                }
             }
         }
         #endregion
@@ -198,7 +242,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                                                 value.PropertyNames.Count > 0;
 
                 this.TreeModel.CurrentPropertyList = value;
-                // ReSharper disable ExplicitCallerInfoArgument
                 this.OnPropertyChanged();
 
                 if (!isOldPropertyListFiltered &&
@@ -210,6 +253,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _skipUpdatingProperties = false;
                 }
 
+                _groupedProperties = null;
+                // ReSharper disable ExplicitCallerInfoArgument
                 this.OnPropertyChanged("Properties");
                 // ReSharper restore ExplicitCallerInfoArgument
             }

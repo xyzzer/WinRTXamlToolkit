@@ -8,7 +8,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
     {
         public const string LayoutCategoryName = "Layout";
         public const string AppearanceCategoryName = "Appearance";
-        public const string MiscCategoryName = "Misc POCP";
+        public const string MiscCategoryName = "Miscellaneous";
+        public const string WinRTXamlToolkitExtensionsCategoryName = "Toolkit Extensions";
+        public const string WinRTXamlToolkitControlCategoryName = "Toolkit Control";
+        public const string WinRTXamlToolkitDebuggingCategoryName = "Debugging";
 
         protected bool? _isDefault;
 

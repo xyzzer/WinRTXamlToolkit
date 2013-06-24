@@ -103,6 +103,25 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return AppearanceCategoryName;
                 }
 
+                var propertyOwnerAssembly = _dpi.OwnerType.GetTypeInfo().Assembly;
+                var propertyOwnerNamespace = _dpi.OwnerType.Namespace;
+
+                if (propertyOwnerNamespace.StartsWith(typeof(ListBoxExtensions).Namespace))
+                {
+                    return WinRTXamlToolkitExtensionsCategoryName;
+                }
+
+                if (propertyOwnerNamespace.StartsWith(typeof(WrapPanel).Namespace))
+                {
+                    return WinRTXamlToolkitControlCategoryName;
+                }
+
+                if (propertyOwnerAssembly.Equals(
+                    typeof (DependencyPropertyViewModel).GetTypeInfo().Assembly))
+                {
+                    return WinRTXamlToolkitDebuggingCategoryName;
+                }
+
                 return MiscCategoryName;
             }
         }
@@ -283,6 +302,16 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get
             {
                 return !this.IsReadOnly && !this.IsDefault;
+            }
+        } 
+        #endregion
+
+        #region IsAttached
+        public bool IsAttached
+        {
+            get
+            {
+                return _dpi.IsAttached;
             }
         } 
         #endregion

@@ -124,7 +124,6 @@ namespace WinRTXamlToolkit.Debugging.Common
         {
             try
             {
-
                 bool? isAttached = null;
 
                 // Check for plain property matching the dependency property.
@@ -132,10 +131,9 @@ namespace WinRTXamlToolkit.Debugging.Common
                 {
                     isAttached = true;
                 }
-
-                // Check for the Get method typically only specified for attached properties
-                if (isAttached != true)
+                else
                 {
+                    // Check for the Get method typically only specified for attached properties
                     var getMethodName = string.Format("Get{0}", propertyName);
                     var getMethod = typeInfo.GetDeclaredMethod(getMethodName);
 
@@ -149,7 +147,7 @@ namespace WinRTXamlToolkit.Debugging.Common
                     }
                 }
 
-                if (isAttached.Value)
+                if (isAttached == true)
                 {
                     // Attached property
                     var displayName = string.Format("{0}.{1}", type.Name, propertyName);
@@ -159,7 +157,8 @@ namespace WinRTXamlToolkit.Debugging.Common
                             dependencyProperty,
                             propertyName,
                             type,
-                            displayName));
+                            displayName,
+                            true));
                 }
                 else
                 {
@@ -175,7 +174,8 @@ namespace WinRTXamlToolkit.Debugging.Common
                             dependencyProperty,
                             propertyName,
                             type,
-                            propertyName));
+                            propertyName,
+                            false));
                 }
             }
             catch (Exception ex)

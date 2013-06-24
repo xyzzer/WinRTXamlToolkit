@@ -1,4 +1,5 @@
-﻿//#define USE_XAML_SPY
+﻿// Uncomment below to enable XAML Spy. XAML Spy needs to be installed before running the app to use it.
+//#define USE_XAML_SPY
 
 using WinRTXamlToolkit.Debugging;
 using Windows.ApplicationModel;
