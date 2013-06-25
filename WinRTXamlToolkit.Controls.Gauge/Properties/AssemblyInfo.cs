@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WinRTXamlToolkit.Controls.DataVisualization")]
+[assembly: AssemblyTitle("WinRTXamlToolkit.Controls.Gauge")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Filip Skakun")]
-[assembly: AssemblyProduct("WinRTXamlToolkit.Controls.DataVisualization")]
+[assembly: AssemblyProduct("WinRTXamlToolkit.Controls.Gauge")]
 [assembly: AssemblyCopyright("Copyright © Filip Skakun 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

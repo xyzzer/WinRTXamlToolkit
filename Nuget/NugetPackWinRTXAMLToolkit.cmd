@@ -6,6 +6,7 @@ if "%1"=="nobuild" (goto CREATE_FOLDER_STRUCTURE)
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit\WinRTXamlToolkit.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release ..\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug ..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj
@@ -49,6 +50,11 @@ mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Controls
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.Calendar\Themes
 
+@rem WinRTXamlToolkit.Controls.Gauge folders
+mkdir lib\netcore45\Properties
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Gauge
+mkdir lib\netcore45\WinRTXamlToolkit.Controls.Gauge\Themes
+
 @rem WinRTXamlToolkit.Controls.DataVisualization folders
 mkdir lib\netcore45\Properties
 mkdir lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization
@@ -74,6 +80,7 @@ copy ..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.* lib\netcore45
 copy ..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.* lib\netcore45
 copy ..\WinRTXamlToolkit.Controls.Calendar\bin\Release\WinRTXamlToolkit.Controls.Calendar.* lib\netcore45
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.* lib\netcore45
+copy ..\WinRTXamlToolkit.Controls.Gauge\bin\Release\WinRTXamlToolkit.Controls.Gauge.* lib\netcore45
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.* lib\netcore45
 
 copy ..\WinRTXamlToolkit\bin\Release\Controls\*.xaml lib\netcore45\WinRTXamlToolkit\Controls
@@ -122,6 +129,8 @@ copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xa
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Themes
 copy ..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xaml							lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization\Title
 
+copy ..\WinRTXamlToolkit.Controls.Gauge\bin\Release\Themes\*.xaml										lib\netcore45\WinRTXamlToolkit.Controls.Gauge\Themes
+
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Controls\EditableListBox\*.xaml								lib\netcore45\WinRTXamlToolkit.Debugging\Controls\EditableListBox
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Themes
 copy ..\WinRTXamlToolkit.Debugging\bin\Debug\Views\*.xaml													lib\netcore45\WinRTXamlToolkit.Debugging\Views
@@ -133,4 +142,5 @@ nuget pack WinRTXamlToolkit.nuspec
 nuget pack WinRTXamlToolkit.Composition.nuspec
 nuget pack WinRTXamlToolkit.Controls.DataVisualization.nuspec
 nuget pack WinRTXamlToolkit.Controls.Calendar.nuspec
+nuget pack WinRTXamlToolkit.Controls.Gauge.nuspec
 nuget pack WinRTXamlToolkit.Debugging.nuspec

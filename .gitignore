@@ -13,6 +13,9 @@ WinRTXamlToolkit.Controls.Calendar/bin/
 WinRTXamlToolkit.Controls.Calendar/obj/
 WinRTXamlToolkit.Controls.DataVisualization/obj/
 WinRTXamlToolkit.Debugging/bin/
+
+WinRTXamlToolkit.Controls.Gauge/obj/
+WinRTXamlToolkit.Controls.Gauge/bin/
 WinRTXamlToolkit.Debugging/obj/
 WinRTXamlToolkit.Sample/AppPackages/
 WinRTXamlToolkit.Sample/bin/

@@ -130,6 +130,10 @@
       <Project>{141f0d30-7788-4a47-a32c-d432b42b5ccb}</Project>
       <Name>WinRTXamlToolkit.Controls.DataVisualization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj">
+      <Project>{cb70bdaf-7310-4af4-9468-47eaafc36919}</Project>
+      <Name>WinRTXamlToolkit.Controls.Gauge</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj">
       <Project>{b5ea4b9d-3300-4023-8110-e085854398a7}</Project>
       <Name>WinRTXamlToolkit.Debugging</Name>
@@ -169,6 +173,9 @@
     </Compile>
     <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
       <DependentUpon>CalendarTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\GaugeTestPage.xaml.cs">
+      <DependentUpon>GaugeTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs">
       <DependentUpon>WatermarkPasswordBoxTestPage.xaml</DependentUpon>
@@ -383,6 +390,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\CalendarTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\GaugeTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

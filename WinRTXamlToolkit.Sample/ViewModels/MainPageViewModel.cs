@@ -245,6 +245,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "Gauge",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(GaugeTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "HighlightBehavior",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(HighlightBehaviorTestPage))),
                     SampleType = SampleTypes.Extensions

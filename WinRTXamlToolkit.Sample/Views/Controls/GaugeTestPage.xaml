@@ -1,0 +1,263 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.GaugeTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <controls:AlternativePage.DataContext>
+        <local:GaugePageViewModel />
+    </controls:AlternativePage.DataContext>
+
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="Gauge Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <Grid
+            Grid.Column="1"
+            Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="auto" />
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="Windows Store app Modern UI gauge"
+                    FontSize="32"
+                    Margin="20"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center"
+                    Foreground="OrangeRed" />
+                <StackPanel
+                    Grid.Column="1">
+                    <TextBlock
+                        Text="Size"
+                        Foreground="DimGray"
+                        FontSize="24"
+                        Margin="20 20 20 0" />
+                    <Slider
+                        Minimum="0"
+                        Maximum="800"
+                        Value="{Binding Size, Mode=TwoWay}"
+                        Margin="20 0 20 20" />
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="2">
+                    <TextBlock
+                        Text="Value"
+                        Foreground="DimGray"
+                        FontSize="24"
+                        Margin="20 20 20 0" />
+                    <Slider
+                        Minimum="-20"
+                        StepFrequency=".5"
+                        Maximum="120"
+                        Value="{Binding Value, Mode=TwoWay}"
+                        Margin="20 0 20 20" />
+                </StackPanel>
+            </Grid>
+
+            <Grid
+                Grid.Row="1"
+                Margin="0 0 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.Column="1"
+                    Background="White"
+                    Margin="0">
+                    <controls:Gauge
+                        Minimum="0"
+                        Maximum="100"
+                        Height="{Binding Size}"
+                        Value="{Binding Value}"
+                        Unit="retweets" />
+                </Border>
+                <Border
+                    Grid.Column="5"
+                    Background="White"
+                    Margin="0">
+                    <Grid>
+                        <Image
+                            Source="ms-appx:///Assets/bottles.jpg"
+                            Opacity=".15"
+                            Stretch="UniformToFill" />
+                        <controls:Gauge
+                            Minimum="0"
+                            Maximum="100"
+                            Height="{Binding Size}"
+                            Value="{Binding Value}"
+                            TickBrush="Transparent"
+                            ScaleTickBrush="Transparent"
+                            NeedleBrush="SaddleBrown"
+                            TrailBrush="SaddleBrown"
+                            ValueBrush="SaddleBrown"
+                            Unit="bottles of beer on the wall"
+                            UnitBrush="SaddleBrown">
+                            <controls:Gauge.ScaleBrush>
+                                <SolidColorBrush
+                                    Color="SaddleBrown"
+                                    Opacity=".2" />
+                            </controls:Gauge.ScaleBrush>
+                        </controls:Gauge>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Column="3"
+                    Background="Black"
+                    Margin="0">
+                    <controls:Gauge
+                        Minimum="0"
+                        Maximum="100"
+                        Height="{Binding Size}"
+                        Value="{Binding Value}"
+                        NeedleBrush="Transparent"
+                        ScaleTickBrush="Black"
+                        ScaleBrush="DarkSlateGray"
+                        TickBrush="Transparent"
+                        TrailBrush="DarkSeaGreen"
+                        ValueBrush="DarkSeaGreen"
+                        ValueStringFormat="N1"
+                        Unit="° Fahrenheit"
+                        UnitBrush="DarkGray" />
+                </Border>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.Column="3"
+                    Background="Gainsboro"
+                    Margin="0">
+                    <controls:Gauge
+                        Minimum="0"
+                        Maximum="100"
+                        Height="{Binding Size}"
+                        Value="{Binding Value}"
+                        ValueStringFormat="N1"
+                        Unit="man days"
+                        ScaleWidth="50"
+                        NeedleBrush="SteelBlue"
+                        TrailBrush="LightSteelBlue"
+                        ScaleBrush="Gainsboro"
+                        ScaleTickBrush="Gainsboro"
+                        TickBrush="Transparent" />
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Background="DarkRed"
+                    Margin="0">
+                    <controls:Gauge
+                        Minimum="0"
+                        Maximum="100"
+                        Height="{Binding Size}"
+                        Value="{Binding Value}"
+                        TickBrush="LightSalmon"
+                        ScaleTickBrush="Transparent"
+                        NeedleBrush="LightSalmon"
+                        ScaleBrush="Transparent"
+                        TrailBrush="IndianRed"
+                        ValueBrush="IndianRed"
+                        Unit="likes"
+                        UnitBrush="LightSalmon"
+                        ScaleWidth="5" />
+                </Border>
+                <Border
+                    Grid.Column="5"
+                    Background="#FF0F0F3C"
+                    Margin="0"
+                    AllowDrop="True">
+                    <controls:Gauge
+                        Minimum="0"
+                        Maximum="100"
+                        Height="{Binding Size}"
+                        Value="{Binding Value}"
+                        NeedleBrush="OrangeRed"
+                        ScaleTickBrush="#FF0F0F3C"
+                        ScaleBrush="DimGray"
+                        TickBrush="DimGray"
+                        TrailBrush="Orange"
+                        ValueBrush="OrangeRed"
+                        Unit="miles"
+                        UnitBrush="DimGray"
+                        ScaleWidth="12" />
+                </Border>
+            </Grid>
+
+            <Image
+                Source="ms-appx:///Assets/U2UC.jpg"
+                Grid.Row="3"
+                Width="180"
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" />
+
+        </Grid>
+    </Grid>
+</controls:AlternativePage>
