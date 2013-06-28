@@ -30,7 +30,7 @@
                 Color="#00000000" />
         </ResourceDictionary>
         <ResourceDictionary
-            x:Key="Dark">
+            x:Key="Default">
             <SolidColorBrush
                 x:Key="CalendarItemHeaderForeground"
                 Color="White" />
