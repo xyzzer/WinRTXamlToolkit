@@ -85,6 +85,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
+                if (_allProperties == null)
+                {
+                    return new ObservableCollection<BindableBase>();
+                }
+
                 // If there is an active name filter - display filtered properties
                 if (this.CurrentPropertyList != null &&
                     this.CurrentPropertyList.PropertyNames.Count > 0)
@@ -98,8 +103,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 // If no checkbox filters are set - simply return all properties
-                if (ShowDefaultedProperties && ShowReadOnlyProperties ||
-                    _allProperties == null)
+                if (ShowDefaultedProperties && ShowReadOnlyProperties)
                 {
                     return new ObservableCollection<BindableBase>(_allProperties);
                 }

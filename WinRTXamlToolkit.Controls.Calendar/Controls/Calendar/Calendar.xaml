@@ -21,7 +21,7 @@
                 Color="#80000000" />
         </ResourceDictionary>
         <ResourceDictionary
-            x:Key="Dark">
+            x:Key="Default">
             <SolidColorBrush
                 x:Key="CalendarBackground"
                 Color="#00FFFFFF" />

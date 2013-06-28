@@ -33,7 +33,8 @@
                     Value="Transparent" />
                 <Setter
                     Property="Foreground"
-                    Value="{StaticResource CheckBoxContentForegroundThemeBrush}" />
+                    Value="Black" />
+                <!--{StaticResource CheckBoxContentForegroundThemeBrush}-->
                 <Setter
                     Property="Padding"
                     Value="0,0,0,0" />

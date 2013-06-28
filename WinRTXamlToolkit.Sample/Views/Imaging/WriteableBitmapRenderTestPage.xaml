@@ -16,8 +16,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition
                     Height="140" />
-                <RowDefinition 
-                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
             <TextBlock
                 Grid.Column="1"
                 Grid.Row="1"
-                Text="Source XAML Tree"/>
+                Text="Source XAML Tree" />
             <Border
                 BorderThickness="1"
                 BorderBrush="WhiteSmoke"
@@ -310,8 +310,8 @@
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Grid
@@ -374,7 +374,7 @@
                                         VerticalAlignment="Top"
                                         Width="50"
                                         RenderTransformOrigin="0.5,0.8"
-                                        Opacity="0.45"/>
+                                        Opacity="0.45" />
                                     <Ellipse
                                         Fill="Yellow"
                                         HorizontalAlignment="Left"
@@ -833,7 +833,7 @@
                         d:IsHidden="True">
                         <Image.RenderTransform>
                             <TranslateTransform
-                                x:Name="overlaidPreviewTransform"/>
+                                x:Name="overlaidPreviewTransform" />
                         </Image.RenderTransform>
                     </Image>
                 </Grid>
@@ -850,17 +850,37 @@
                 Grid.Row="2"
                 Margin="0,5,5,5">
                 <Image
-                    x:Name="target"
-                    Grid.Column="2"
-                    Grid.Row="2" />
+                    x:Name="target" />
             </Border>
+            <StackPanel
+                Grid.Column="2"
+                Grid.Row="2"
+                x:Name="RenderProgressPanel"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <ProgressRing
+                    x:Name="RenderProgressRing"
+                    IsActive="True"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="100"
+                    Height="100"
+                    Margin="20" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap"
+                    FontSize="18"
+                    MaxWidth="400"
+                    Text="Rendering the UI tree with SharpDX/Direct2D. This might take a while since the images need to be downloaded and decoded." />
+            </StackPanel>
             <!--<Button
                 Content="Test"
                 Grid.Column="1"
                 Grid.Row="2" />-->
         </Grid>
         <controls:CustomAppBar
-            Background="Black"
+            Background="{StaticResource AppBarBackgroundThemeBrush}"
             VerticalAlignment="Bottom"
             IsOpen="True">
             <StackPanel

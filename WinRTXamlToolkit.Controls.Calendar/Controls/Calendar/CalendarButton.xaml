@@ -27,7 +27,7 @@
                 Color="#FF000000" />
         </ResourceDictionary>
         <ResourceDictionary
-            x:Key="Dark">
+            x:Key="Default">
             <SolidColorBrush
                 x:Key="CalendarButtonSelectedBackgroundFillBrush"
                 Color="#40FFFFFF" />

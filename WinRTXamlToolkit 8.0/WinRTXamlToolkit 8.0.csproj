@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinRTXamlToolkit</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\WinRTXamlToolkit.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ExpressRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncAutoResetEvent.cs">
+      <Link>Async\AsyncAutoResetEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncBarrier.cs">
+      <Link>Async\AsyncBarrier.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncCountdownEvent.cs">
+      <Link>Async\AsyncCountdownEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncLock.cs">
+      <Link>Async\AsyncLock.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncManualResetEvent.cs">
+      <Link>Async\AsyncManualResetEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncReaderWriterLock.cs">
+      <Link>Async\AsyncReaderWriterLock.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Async\AsyncSemaphore.cs">
+      <Link>Async\AsyncSemaphore.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\BitmapImageExtensions.cs">
+      <Link>AwaitableUI\BitmapImageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\ButtonExtensions.cs">
+      <Link>AwaitableUI\ButtonExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\ControlExtensions.cs">
+      <Link>AwaitableUI\ControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\EventAsync.cs">
+      <Link>AwaitableUI\EventAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\FrameworkElementExtensions.cs">
+      <Link>AwaitableUI\FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\MediaElementExtensions.cs">
+      <Link>AwaitableUI\MediaElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\ScrollViewerExtensions.cs">
+      <Link>AwaitableUI\ScrollViewerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\SelectorExtensions.cs">
+      <Link>AwaitableUI\SelectorExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\StoryboardExtensions.cs">
+      <Link>AwaitableUI\StoryboardExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\WebViewExtensions.cs">
+      <Link>AwaitableUI\WebViewExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\WriteableBitmapExtensions.cs">
+      <Link>AwaitableUI\WriteableBitmapExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Common\ImplicitDataTemplateSelector.cs">
+      <Link>Common\ImplicitDataTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Common\ImplicitStyleSelector.cs">
+      <Link>Common\ImplicitStyleSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Common\WeakEventListener.cs">
+      <Link>Common\WeakEventListener.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.cs">
+      <Link>Controls\AlternativeFrame\AlternativeFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs">
+      <Link>Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeNavigationEventArgs.cs">
+      <Link>Controls\AlternativeFrame\AlternativeNavigationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativePage.cs">
+      <Link>Controls\AlternativeFrame\AlternativePage.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\CutTransition.cs">
+      <Link>Controls\AlternativeFrame\CutTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\DissolveTransition.cs">
+      <Link>Controls\AlternativeFrame\DissolveTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\FadeAnimation.cs">
+      <Link>Controls\AlternativeFrame\FadeAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\FlipAnimation.cs">
+      <Link>Controls\AlternativeFrame\FlipAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\FlipTransition.cs">
+      <Link>Controls\AlternativeFrame\FlipTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\FrameCache.cs">
+      <Link>Controls\AlternativeFrame\FrameCache.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\JournalEntry.cs">
+      <Link>Controls\AlternativeFrame\JournalEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\NavigationCacheMode.cs">
+      <Link>Controls\AlternativeFrame\NavigationCacheMode.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\PageTransitionAnimation.cs">
+      <Link>Controls\AlternativeFrame\PageTransitionAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\PushTransition.cs">
+      <Link>Controls\AlternativeFrame\PushTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\SlideAnimation.cs">
+      <Link>Controls\AlternativeFrame\SlideAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\Enums.cs">
+      <Link>Controls\AlternativeFrame\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\WipeAnimation.cs">
+      <Link>Controls\AlternativeFrame\WipeAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\WipeTransition.cs">
+      <Link>Controls\AlternativeFrame\WipeTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AnimatingContainer.xaml.cs">
+      <Link>Controls\AnimatingContainer.xaml.cs</Link>
+      <DependentUpon>AnimatingContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Behaviors\ParallaxBackgroundBehavior.cs">
+      <Link>Controls\Behaviors\ParallaxBackgroundBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Behaviors\FlickBehavior.cs">
+      <Link>Controls\Behaviors\FlickBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Behaviors\HighlightBehavior.cs">
+      <Link>Controls\Behaviors\HighlightBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.cs">
+      <Link>Controls\CascadingImageControl\CascadingImageControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.cs">
+      <Link>Controls\ColorPicker\ColorPicker.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ColorPicker\HueRingPicker.cs">
+      <Link>Controls\ColorPicker\HueRingPicker.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ColorPicker\TrianglePicker.cs">
+      <Link>Controls\ColorPicker\TrianglePicker.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\PropertyChangedEventHandler.cs">
+      <Link>Controls\Common\PropertyChangedEventHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Data\DataTemplateExtensions.cs">
+      <Link>Controls\Data\DataTemplateExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.cs">
+      <Link>Controls\DelayedLoadControl\DelayedLoadControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ButtonBaseExtensions.cs">
+      <Link>Controls\Extensions\ButtonBaseExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\FieldValidationHandler.cs">
+      <Link>Controls\Extensions\Forms\FieldValidationHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs">
+      <Link>Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\ValidationChecks.cs">
+      <Link>Controls\Extensions\Forms\ValidationChecks.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ListBoxItemExtensions.cs">
+      <Link>Controls\Extensions\ListBoxItemExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\MessageDialogExtensions.cs">
+      <Link>Controls\Extensions\MessageDialogExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs">
+      <Link>Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\StyleExtensions.cs">
+      <Link>Controls\Extensions\StyleExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\TextBoxFocusExtensions.cs">
+      <Link>Controls\Extensions\Forms\TextBoxFocusExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\VisualStateExtensions.cs">
+      <Link>Controls\Extensions\VisualStateExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\LayoutTransformControl.cs">
+      <Link>Controls\LayoutTransformControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Data\HierarchicalDataTemplate.cs">
+      <Link>Controls\Data\HierarchicalDataTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\AnimationHelper.cs">
+      <Link>Controls\Extensions\AnimationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\AppBarExtensions.cs">
+      <Link>Controls\Extensions\AppBarExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.cs">
+      <Link>Controls\CameraCaptureControl\CameraCaptureControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock.xaml.cs">
+      <Link>Controls\CascadingTextBlock.xaml.cs</Link>
+      <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ContentControlExtensions.cs">
+      <Link>Controls\Extensions\ContentControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\ControlExtensions.cs">
+      <Link>Controls\Extensions\Forms\ControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\GridViewExtensions.cs">
+      <Link>Controls\Extensions\GridViewExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\FrameworkElementExtensions.cs">
+      <Link>Controls\Extensions\FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ScrollViewerExtensions.cs">
+      <Link>Controls\Extensions\ScrollViewerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\UIElementAnimationExtensions.cs">
+      <Link>Controls\Extensions\UIElementAnimationExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\HeaderedItemsControl\HeaderedItemsControl.cs">
+      <Link>Controls\HeaderedItemsControl\HeaderedItemsControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\HeaderedItemsControl\ItemsControlHelper.cs">
+      <Link>Controls\HeaderedItemsControl\ItemsControlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.cs">
+      <Link>Controls\ImageToggleButton\ImageToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CountdownControl.xaml.cs">
+      <Link>Controls\CountdownControl.xaml.cs</Link>
+      <DependentUpon>CountdownControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CustomAppBar\CustomAppBar.cs">
+      <Link>Controls\CustomAppBar\CustomAppBar.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.cs">
+      <Link>Controls\CustomGridSplitter\CustomGridSplitter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\GridViewItemExtensions.cs">
+      <Link>Controls\Extensions\GridViewItemExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ImageButton\ImageButton.cs">
+      <Link>Controls\ImageButton\ImageButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ImageExtensions.cs">
+      <Link>Controls\Extensions\ImageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\InputDialog\InputDialog.cs">
+      <Link>Controls\InputDialog\InputDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ListBoxExtensions.cs">
+      <Link>Controls\Extensions\ListBoxExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.cs">
+      <Link>Controls\ListItemButton\ListItemButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ListViewExtensions.cs">
+      <Link>Controls\Extensions\ListViewExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ListViewItemExtensions.cs">
+      <Link>Controls\Extensions\ListViewItemExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.cs">
+      <Link>Controls\NumericUpDown\NumericUpDown.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\PageTransition.cs">
+      <Link>Controls\AlternativeFrame\PageTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\PieSlice.cs">
+      <Link>Controls\PieSlice.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\PropertyChangeEventSource.cs">
+      <Link>Controls\PropertyChangeEventSource.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\RichTextBlockExtensions.cs">
+      <Link>Controls\Extensions\RichTextBlockExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\RingSlice.cs">
+      <Link>Controls\RingSlice.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\TextBlockExtensions.cs">
+      <Link>Controls\Extensions\TextBlockExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs">
+      <Link>Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\FieldValidationExtensions.cs">
+      <Link>Controls\Extensions\Forms\FieldValidationExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ViewboxExtensions.cs">
+      <Link>Controls\Extensions\ViewboxExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\InteractionHelper.cs">
+      <Link>Controls\Common\InteractionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\IUpdateVisualState.cs">
+      <Link>Controls\Common\IUpdateVisualState.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\ScrollExtensions.cs">
+      <Link>Controls\Common\ScrollExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\TreeView\TreeView.cs">
+      <Link>Controls\TreeView\TreeView.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewAutomationPeer.cs">
+      <Link>Controls\TreeView\TreeViewAutomationPeer.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewItem.cs">
+      <Link>Controls\TreeView\TreeViewItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewItemAutomationPeer.cs">
+      <Link>Controls\TreeView\TreeViewItemAutomationPeer.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\VisualStates.cs">
+      <Link>Controls\Common\VisualStates.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\UniformGrid\UniformGrid.cs">
+      <Link>Controls\UniformGrid\UniformGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.cs">
+      <Link>Controls\WatermarkPasswordBox\WatermarkPasswordBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.cs">
+      <Link>Controls\WatermarkTextBox\WatermarkTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\WebBrowser\WebBrowser.cs">
+      <Link>Controls\WebBrowser\WebBrowser.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\WebViewExtensions.cs">
+      <Link>Controls\Extensions\WebViewExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\WrapPanel\OrientedSize.cs">
+      <Link>Controls\WrapPanel\OrientedSize.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\WrapPanel\WrapPanel.cs">
+      <Link>Controls\WrapPanel\WrapPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\BooleanToDataTemplateConverter.cs">
+      <Link>Converters\BooleanToDataTemplateConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\BooleanToDoubleConverter.cs">
+      <Link>Converters\BooleanToDoubleConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\ColorToBrushConverter.cs">
+      <Link>Converters\ColorToBrushConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\MultiplyConverter.cs">
+      <Link>Converters\MultiplyConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\NullableBoolToVisibilityConverter.cs">
+      <Link>Converters\NullableBoolToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\DoubleToIntConverter.cs">
+      <Link>Converters\DoubleToIntConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\NullableBoolToBoolConverter.cs">
+      <Link>Converters\NullableBoolToBoolConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\PolynomialConverter.cs">
+      <Link>Converters\PolynomialConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Converters\SecondsToTimeSpanStringConverter.cs">
+      <Link>Converters\SecondsToTimeSpanStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Diagnostics\LittleWatson.cs">
+      <Link>Diagnostics\LittleWatson.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Device\DeviceHelper.cs">
+      <Link>Device\DeviceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\BitmapImageLoadExtensions.cs">
+      <Link>Imaging\BitmapImageLoadExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\ColorExtensions.cs">
+      <Link>Imaging\ColorExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\PixelMath.cs">
+      <Link>Imaging\PixelMath.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapColorPickerExtensions.cs">
+      <Link>Imaging\WriteableBitmapColorPickerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Interactivity\Behavior.cs">
+      <Link>Interactivity\Behavior.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Interactivity\BehaviorCollection.cs">
+      <Link>Interactivity\BehaviorCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Interactivity\BehaviorOfT.cs">
+      <Link>Interactivity\BehaviorOfT.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Interactivity\Interaction.cs">
+      <Link>Interactivity\Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Licensing\LicenseHelper.cs">
+      <Link>Licensing\LicenseHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Net\WebHelper.cs">
+      <Link>Net\WebHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\EnumExtensions.cs">
+      <Link>Tools\EnumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapDarkenExtension.cs">
+      <Link>Imaging\WriteableBitmapDarkenExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapGrayscaleExtension.cs">
+      <Link>Imaging\WriteableBitmapGrayscaleExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\IBufferExtensions.cs">
+      <Link>Imaging\IBufferExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Serialization\JsonSerialization.cs">
+      <Link>IO\Serialization\JsonSerialization.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapFromBitmapImageExtension.cs">
+      <Link>Imaging\WriteableBitmapFromBitmapImageExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapLightenExtension.cs">
+      <Link>Imaging\WriteableBitmapLightenExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapLoadExtensions.cs">
+      <Link>Imaging\WriteableBitmapLoadExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\ScaledImageFile.cs">
+      <Link>IO\ScaledImageFile.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StorageFileExtensions.cs">
+      <Link>IO\Extensions\StorageFileExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StorageFolderExtensions.cs">
+      <Link>IO\Extensions\StorageFolderExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StringIOExtensions.cs">
+      <Link>IO\Extensions\StringIOExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\FileNameMimeContentConversion.cs">
+      <Link>IO\Extensions\FileNameMimeContentConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapBlitBlockExtensions.cs">
+      <Link>Imaging\WriteableBitmapBlitBlockExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapCopyExtensions.cs">
+      <Link>Imaging\WriteableBitmapCopyExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapCropExtensions.cs">
+      <Link>Imaging\WriteableBitmapCropExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapFloodFillExtensions.cs">
+      <Link>Imaging\WriteableBitmapFloodFillExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Imaging\WriteableBitmapSaveExtensions.cs">
+      <Link>Imaging\WriteableBitmapSaveExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Serialization\XmlSerialization.cs">
+      <Link>IO\Serialization\XmlSerialization.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Net\WebFile.cs">
+      <Link>Net\WebFile.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\BackgroundTimer.cs">
+      <Link>Tools\BackgroundTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\VisualTreeHelperExtensions.cs">
+      <Link>Controls\Extensions\VisualTreeHelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\EnumerableExtensions.cs">
+      <Link>Tools\EnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\TimeoutCheck.cs">
+      <Link>Tools\TimeoutCheck.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\TryCatchRetry.cs">
+      <Link>Tools\TryCatchRetry.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\TypeExtensions.cs">
+      <Link>Tools\TypeExtensions.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xaml">
+      <Link>Controls\AlternativeFrame\AlternativeFrame.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.xaml">
+      <Link>Controls\CameraCaptureControl\CameraCaptureControl.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.xaml">
+      <Link>Controls\CascadingImageControl\CascadingImageControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock.xaml">
+      <Link>Controls\CascadingTextBlock.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xaml">
+      <Link>Controls\ColorPicker\ColorPicker.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CountdownControl.xaml">
+      <Link>Controls\CountdownControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CustomAppBar\CustomAppBar.xaml">
+      <Link>Controls\CustomAppBar\CustomAppBar.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.xaml">
+      <Link>Controls\CustomGridSplitter\CustomGridSplitter.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <Link>Controls\DelayedLoadControl\DelayedLoadControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\ImageButton\ImageButton.xaml">
+      <Link>Controls\ImageButton\ImageButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.xaml">
+      <Link>Controls\ImageToggleButton\ImageToggleButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\InputDialog\InputDialog.xaml">
+      <Link>Controls\InputDialog\InputDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.xaml">
+      <Link>Controls\ListItemButton\ListItemButton.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xaml">
+      <Link>Controls\NumericUpDown\NumericUpDown.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewTouch.xaml">
+      <Link>Controls\TreeView\TreeViewTouch.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewMouse.xaml">
+      <Link>Controls\TreeView\TreeViewMouse.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\TreeView\TreeView.xaml">
+      <Link>Controls\TreeView\TreeView.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\TreeView\TreeViewItem.xaml">
+      <Link>Controls\TreeView\TreeViewItem.xaml</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml">
+      <Link>Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.xaml">
+      <Link>Controls\WatermarkTextBox\WatermarkTextBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Controls\WebBrowser\WebBrowser.xaml">
+      <Link>Controls\WebBrowser\WebBrowser.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\WinRTXamlToolkit\Controls\AnimatingContainer.xaml">
+      <Link>Controls\AnimatingContainer.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WinRTXamlToolkit\Async\Credits.txt">
+      <Link>Async\Credits.txt</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WinRTXamlToolkit\Controls\Extensions\Forms\ReadMe.txt">
+      <Link>Controls\Extensions\Forms\ReadMe.txt</Link>
+    </None>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

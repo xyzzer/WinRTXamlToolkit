@@ -36,6 +36,8 @@ namespace WinRTXamlToolkit.Sample.Views
                 wb = await WriteableBitmapRenderExtensions.Render(this.source);
                 //if (i == 100)
                 //    Debugger.Break();
+                RenderProgressPanel.Visibility = Visibility.Collapsed;
+                RenderProgressRing.IsActive = false;
             }
 
             var end = DateTime.Now;

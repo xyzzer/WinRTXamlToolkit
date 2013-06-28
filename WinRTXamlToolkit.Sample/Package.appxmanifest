@@ -1,25 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="af69f4a6-7206-4558-bed7-70320ca7dea3" Publisher="CN=Filip Skakun" Version="1.0.0.0" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="WinRTXamlToolkit.Sample-for-Windows-8.1" Publisher="CN=Filip Skakun" Version="1.1.0.0" />
   <Properties>
-    <DisplayName>WinRTXamlToolkit.Sample</DisplayName>
+    <DisplayName>WinRTXamlToolkit.Sample-for-Windows-8.1</DisplayName>
     <PublisherDisplayName>Filip Skakun</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>WinRTXamlToolkit.Sample</Description>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2</OSMinVersion>
-    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WinRTXamlToolkit.Sample.App">
-      <VisualElements DisplayName="XAML Toolkit" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="WinRTXamlToolkit.Sample" ForegroundText="light" BackgroundColor="#00A000">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
-      </VisualElements>
       <Extensions>
         <Extension Category="windows.fileTypeAssociation">
           <FileTypeAssociation Name="txt">
@@ -31,6 +27,14 @@
           </FileTypeAssociation>
         </Extension>
       </Extensions>
+      <m2:VisualElements DisplayName="XAML Toolkit" Description="WinRTXamlToolkit.Sample" BackgroundColor="#00A000" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile>
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>

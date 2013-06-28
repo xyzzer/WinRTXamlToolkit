@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{428B82D1-217F-4868-BB63-10D7419EB138}</ProjectGuid>
+    <ProjectGuid>{35FA4E66-0906-4A2F-BB91-CBD9C52D0C04}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WinRTXamlToolkit.StylesBrowser</RootNamespace>
@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>WinRTXamlToolkit.StylesBrowser 8.0_TemporaryKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>EF5982174DD1025FADFB0822B05BEEA3D236E708</PackageCertificateThumbprint>
     <SccProjectName>
     </SccProjectName>
@@ -22,8 +22,6 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <TargetPlatformVersion>8.1</TargetPlatformVersion>
-    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,108 +115,149 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.csproj">
-      <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
-      <Name>WinRTXamlToolkit</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppBarButtonStylesPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\AppBarButtonStylesPage.xaml.cs">
+      <Link>AppBarButtonStylesPage.xaml.cs</Link>
       <DependentUpon>AppBarButtonStylesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BrushesPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\BrushesPage.xaml.cs">
+      <Link>BrushesPage.xaml.cs</Link>
       <DependentUpon>BrushesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\BindableBase.cs" />
-    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\BooleanNegationConverter.cs" />
-    <Compile Include="Common\LayoutAwarePage.cs" />
-    <Compile Include="Common\RichTextColumns.cs" />
-    <Compile Include="App.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\BindableBase.cs">
+      <Link>Common\BindableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\BooleanToVisibilityConverter.cs">
+      <Link>Common\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\BooleanNegationConverter.cs">
+      <Link>Common\BooleanNegationConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\LayoutAwarePage.cs">
+      <Link>Common\LayoutAwarePage.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\RichTextColumns.cs">
+      <Link>Common\RichTextColumns.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\App.xaml.cs">
+      <Link>App.xaml.cs</Link>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ButtonStylesPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\ButtonStylesPage.xaml.cs">
+      <Link>ButtonStylesPage.xaml.cs</Link>
       <DependentUpon>ButtonStylesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="RichTextBlockStylesPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\SuspensionManager.cs">
+      <Link>Common\SuspensionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\RichTextBlockStylesPage.xaml.cs">
+      <Link>RichTextBlockStylesPage.xaml.cs</Link>
       <DependentUpon>RichTextBlockStylesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\MainPage.xaml.cs">
+      <Link>MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextBlockStylesPage.xaml.cs">
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\TextBlockStylesPage.xaml.cs">
+      <Link>TextBlockStylesPage.xaml.cs</Link>
       <DependentUpon>TextBlockStylesPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="..\WinRTXamlToolkit.StylesBrowser\Package.appxmanifest">
+      <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Common\ReadMe.txt" />
-    <None Include="WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx" />
+    <None Include="..\WinRTXamlToolkit.StylesBrowser\Common\ReadMe.txt">
+      <Link>Common\ReadMe.txt</Link>
+    </None>
+    <None Include="..\WinRTXamlToolkit.StylesBrowser\WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx">
+      <Link>WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Logo.png">
+    <Content Include="..\WinRTXamlToolkit.StylesBrowser\Assets\Logo.png">
+      <Link>Assets\Logo.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\SmallLogo.png">
+    <Content Include="..\WinRTXamlToolkit.StylesBrowser\Assets\SmallLogo.png">
+      <Link>Assets\SmallLogo.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\SplashScreen.png">
+    <Content Include="..\WinRTXamlToolkit.StylesBrowser\Assets\SplashScreen.png">
+      <Link>Assets\SplashScreen.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\StoreLogo.png">
+    <Content Include="..\WinRTXamlToolkit.StylesBrowser\Assets\StoreLogo.png">
+      <Link>Assets\StoreLogo.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ReadMe.txt" />
+    <Content Include="..\WinRTXamlToolkit.StylesBrowser\ReadMe.txt">
+      <Link>ReadMe.txt</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="..\WinRTXamlToolkit.StylesBrowser\App.xaml">
+      <Link>App.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AppBarButtonStylesPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\AppBarButtonStylesPage.xaml">
+      <Link>AppBarButtonStylesPage.xaml</Link>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BrushesPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\BrushesPage.xaml">
+      <Link>BrushesPage.xaml</Link>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Common\StandardStyles.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\Common\StandardStyles.xaml">
+      <Link>Common\StandardStyles.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ButtonStylesPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\ButtonStylesPage.xaml">
+      <Link>ButtonStylesPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="generic.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\generic.xaml">
+      <Link>generic.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RichTextBlockStylesPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\RichTextBlockStylesPage.xaml">
+      <Link>RichTextBlockStylesPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\MainPage.xaml">
+      <Link>MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TextBlockStylesPage.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\TextBlockStylesPage.xaml">
+      <Link>TextBlockStylesPage.xaml</Link>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="themeresources.xaml">
+    <Page Include="..\WinRTXamlToolkit.StylesBrowser\themeresources.xaml">
+      <Link>themeresources.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
-    <VisualStudioVersion>12.0</VisualStudioVersion>
+  <ItemGroup>
+    <ProjectReference Include="..\WinRTXamlToolkit 8.0\WinRTXamlToolkit 8.0.csproj">
+      <Project>{fcd0fa8f-acb5-4c55-b3d5-6ff982f44ac9}</Project>
+      <Name>WinRTXamlToolkit 8.0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

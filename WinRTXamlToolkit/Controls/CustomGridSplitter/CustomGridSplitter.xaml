@@ -4,7 +4,7 @@
     xmlns:controls="using:WinRTXamlToolkit.Controls">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary
-            x:Key="Dark">
+            x:Key="Default">
             <SolidColorBrush
                 x:Key="GridSplitterBackgroundThemeBrush"
                 Color="#E5222222" />
