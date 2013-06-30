@@ -257,13 +257,19 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region SelectElementUnderPointer()
-        internal async Task SelectElementUnderPointer()
+        internal async Task SelectElementUnderPointer(bool showDebugger = true)
         {
             var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
                 _pointerPosition,
                 Window.Current.Content).First();
 
             await SelectItem(hoveredElement, true);
+
+            if (showDebugger)
+            {
+                DC.Show();
+                DC.Expand();
+            }
         } 
         #endregion
 
