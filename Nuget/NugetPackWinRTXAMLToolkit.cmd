@@ -1,8 +1,19 @@
 set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
-set VisualStudioVersion=11.0
 
 if "%1"=="nobuild" (goto CREATE_FOLDER_STRUCTURE)
 
+@echo Building Windows 8.0 projects
+set VisualStudioVersion=11.0
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit 8.0\WinRTXamlToolkit 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Composition 8.0\WinRTXamlToolkit.Composition 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar 8.0\WinRTXamlToolkit.Controls.Calendar 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge 8.0\WinRTXamlToolkit.Controls.Gauge 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization 8.0\WinRTXamlToolkit.Controls.DataVisualization 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample 8.0\WinRTXamlToolkit.Sample 8.0.csproj"
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug "..\WinRTXamlToolkit.Debugging 8.0\WinRTXamlToolkit.Debugging 8.0.csproj"
+
+@echo Building Windows 8.1 projects
+set VisualStudioVersion=12.0
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.csproj"
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj"
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj"
@@ -14,125 +25,141 @@ msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug "..\WinRTXamlTool
 :CREATE_FOLDER_STRUCTURE
 @rem Base folder structure
 mkdir lib
-mkdir lib\netcore451
 mkdir tools
 mkdir content
 mkdir content\controllers
 
+@echo Copying Windows 8.0 build
+set NUGET_PLATFORM=netcore45
+set FOLDER_SUFFIX= 8.0\
+set XAML_EXT=.xaml
+@CALL :COPY_FILES
+
+@echo Copying Windows 8.1 build
+set NUGET_PLATFORM=netcore451
+set FOLDER_SUFFIX=\
+set XAML_EXT=.xbf
+@CALL :COPY_FILES
+
+@GOTO :PACK_FILES
+
+:COPY_FILES
 @rem WinRTXamlToolkit folders
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\AlternativeFrame"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\CameraCaptureControl"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\CascadingImageControl"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\ColorPicker"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\CustomAppBar"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\CustomGridSplitter"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\DelayedLoadControl"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\ImageButton"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\ImageToggleButton"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\InputDialog"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\ListItemButt"on
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\NumericUpDown"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\TreeView"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\WatermarkTextBox"
-mkdir "lib\netcore451\WinRTXamlToolkit\Controls\WebBrowser"
-mkdir "lib\netcore451\WinRTXamlToolkit\Themes"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CameraCaptureControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingImageControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButt"on
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkTextBox"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WebBrowser"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Themes"
 
 @rem WinRTXamlToolkit.Composition folders
-mkdir "lib\netcore451\WinRTXamlToolkit.Composition"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Composition"
 
 @rem WinRTXamlToolkit.Controls.Calendar folders
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Calendar"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Calendar\Controls"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Calendar\Themes"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Controls"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Themes"
 
 @rem WinRTXamlToolkit.Controls.Gauge folders
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Gauge"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.Gauge\Themes"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\Themes"
 
 @rem WinRTXamlToolkit.Controls.DataVisualization folders
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Legend"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Themes"
-mkdir "lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Title"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Legend"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Themes"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Title"
 
 @rem WinRTXamlToolkit.Debugging folders
-mkdir "lib\netcore451\WinRTXamlToolkit.Debugging\Controls\EditableListBox"
-mkdir "lib\netcore451\WinRTXamlToolkit.Debugging\Themes"
-mkdir "lib\netcore451\WinRTXamlToolkit.Debugging\Views\PropertyEditors"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls\EditableListBox"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Themes"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views\PropertyEditors"
 
 :COPY_FILES
 @rem copy "..\src\SomeController.cs" content
-copy "..\WinRTXamlToolkit\bin\Release\WinRTXamlToolkit.*" "lib\netcore451"
-copy "..\WinRTXamlToolkit.Composition\bin\Release\WinRTXamlToolkit.Composition.*" "lib\netcore451"
-copy "..\WinRTXamlToolkit.Controls.Calendar\bin\Release\WinRTXamlToolkit.Controls.Calendar.*" "lib\netcore451"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\netcore451"
-copy "..\WinRTXamlToolkit.Controls.Gauge\bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\netcore451"
-copy "..\WinRTXamlToolkit.Debugging\bin\Debug\WinRTXamlToolkit.Debugging.*" "lib\netcore451"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.*" "lib\%NUGET_PLATFORM%"
+copy "..\WinRTXamlToolkit.Composition%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Composition.*" "lib\%NUGET_PLATFORM%"
+copy "..\WinRTXamlToolkit.Controls.Calendar%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.Calendar.*" "lib\%NUGET_PLATFORM%"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\%NUGET_PLATFORM%"
+copy "..\WinRTXamlToolkit.Controls.Gauge%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%"
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%"
 
-copy "..\WinRTXamlToolkit\bin\Release\Controls\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\AlternativeFrame\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\AlternativeFrame"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\CameraCaptureControl\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\CameraCaptureControl"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\CascadingImageControl\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\CascadingImageControl"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\ColorPicker\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\ColorPicker"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\CustomAppBar\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\CustomAppBar"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\CustomGridSplitter\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\CustomGridSplitter"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\DelayedLoadControl\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\DelayedLoadControl"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\ImageButton\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\ImageButton"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\ImageToggleButton\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\ImageToggleButton"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\InputDialog\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\InputDialog"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\ListItemButton\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\ListItemButton"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\NumericUpDown\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\NumericUpDown"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\TreeView\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\TreeView"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\WatermarkPasswordBox\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\WatermarkTextBox\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\WatermarkTextBox"
-copy "..\WinRTXamlToolkit\bin\Release\Controls\WebBrowser\*.xbf" "lib\netcore451\WinRTXamlToolkit\Controls\WebBrowser"
-copy "..\WinRTXamlToolkit\bin\Release\Themes\*.xbf" "lib\netcore451\WinRTXamlToolkit\Themes"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\AlternativeFrame\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CameraCaptureControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CameraCaptureControl"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CascadingImageControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingImageControl"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ColorPicker\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomAppBar\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomGridSplitter\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\DelayedLoadControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageToggleButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\InputDialog\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ListItemButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButton"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\NumericUpDown\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\TreeView\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\WatermarkPasswordBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\WatermarkTextBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkTextBox"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\WebBrowser\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WebBrowser"
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Themes"
 
-copy "..\WinRTXamlToolkit.Controls.Calendar\bin\Release\Controls\Calendar\*.xbf"								"lib\netcore451\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar"
-copy "..\WinRTXamlToolkit.Controls.Calendar\bin\Release\Themes\*.xbf"										"lib\netcore451\WinRTXamlToolkit.Controls.Calendar\Themes"
+copy "..\WinRTXamlToolkit.Controls.Calendar%FOLDER_SUFFIX%bin\Release\Controls\Calendar\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar"
+copy "..\WinRTXamlToolkit.Controls.Calendar%FOLDER_SUFFIX%bin\Release\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Themes"
 
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\AxisLabel.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DateTimeAxisLabel.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\DisplayAxis.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\NumericAxisLabel.xbf"			"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Axis\RangeAxis.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Chart\Chart.xbf"					"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\AreaDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\BarDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\BubbleDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\ColumnDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\LineDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\PieDataPoint.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\DataPoint\ScatterDataPoint.xbf"	"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Primitives\DelegatingListBox.xbf"	"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\AreaSeries.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\DataPointSeries.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\DefinitionSeries.xbf"		"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\LegendItem.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\LineSeries.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Charting\Series\PieSeries.xbf"				"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Legend\Legend.xbf"							"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Legend"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Themes\Generic.xbf"							"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Themes"
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\bin\Release\Title\Title.xbf"							"lib\netcore451\WinRTXamlToolkit.Controls.DataVisualization\Title"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Axis\AxisLabel%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Axis\DateTimeAxisLabel%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Axis\DisplayAxis%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Axis\NumericAxisLabel%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Axis\RangeAxis%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Chart\Chart%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\AreaDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\BarDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\BubbleDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\ColumnDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\LineDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\PieDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\DataPoint\ScatterDataPoint%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Primitives\DelegatingListBox%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\AreaSeries%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\DataPointSeries%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\DefinitionSeries%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\LegendItem%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\LineSeries%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Charting\Series\PieSeries%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Legend\Legend%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Legend"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Themes\Generic%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Themes"
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\Title\Title%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Title"
 
-copy "..\WinRTXamlToolkit.Controls.Gauge\bin\Release\Themes\*.xbf"										"lib\netcore451\WinRTXamlToolkit.Controls.Gauge\Themes"
+copy "..\WinRTXamlToolkit.Controls.Gauge%FOLDER_SUFFIX%bin\Release\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\Themes"
 
-copy "..\WinRTXamlToolkit.Debugging\bin\Debug\Controls\EditableListBox\*.xbf"								"lib\netcore451\WinRTXamlToolkit.Debugging\Controls\EditableListBox"
-copy "..\WinRTXamlToolkit.Debugging\bin\Debug\Themes\*.xbf"													"lib\netcore451\WinRTXamlToolkit.Debugging\Themes"
-copy "..\WinRTXamlToolkit.Debugging\bin\Debug\Views\*.xbf"													"lib\netcore451\WinRTXamlToolkit.Debugging\Views"
-copy "..\WinRTXamlToolkit.Debugging\bin\Debug\Views\PropertyEditors\*.xbf"									"lib\netcore451\WinRTXamlToolkit.Debugging\Views\PropertyEditors"
-
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Controls\EditableListBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls\EditableListBox"
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Themes"
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Views\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views"
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Views\PropertyEditors\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views\PropertyEditors"
 @rem copy "..\src\SomePowershellScript.ps1 tools
+@GOTO :EOF
 
+:PACK_FILES
+@echo Packing NuGets
 nuget pack "WinRTXamlToolkit.nuspec"
 nuget pack "WinRTXamlToolkit.Composition.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.DataVisualization.nuspec"
