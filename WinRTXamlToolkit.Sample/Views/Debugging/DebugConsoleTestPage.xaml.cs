@@ -13,6 +13,8 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             this.InitializeComponent();
             this.CollapseReleaseBuildWarning();
+            DC.ShowLog();
+            DC.Expand();
         }
 
         [Conditional("DEBUG")]
@@ -45,6 +47,12 @@ namespace WinRTXamlToolkit.Sample.Views
             DC.Trace(line.Text);
             line.Focus(FocusState.Programmatic);
             line.SelectAll();
+        }
+
+        private void Border_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            var point = e.GetCurrentPoint(FlickBorder);
+            DC.Trace(point.Position);
         }
     }
 }

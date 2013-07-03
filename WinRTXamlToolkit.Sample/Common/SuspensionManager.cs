@@ -62,6 +62,7 @@ namespace WinRTXamlToolkit.Sample.Common
             foreach (var weakFrameReference in _registeredFrames)
             {
                 AlternativeFrame frame;
+
                 if (weakFrameReference.TryGetTarget(out frame))
                 {
                     SaveFrameNavigationState(frame);
@@ -76,6 +77,7 @@ namespace WinRTXamlToolkit.Sample.Common
 
             // Get an output stream for the SessionState file and write the state asynchronously
             StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(sessionStateFilename, CreationCollisionOption.ReplaceExisting);
+
             using (Stream fileStream = await file.OpenStreamForWriteAsync())
             {
                 sessionData.Seek(0, SeekOrigin.Begin);
@@ -99,6 +101,7 @@ namespace WinRTXamlToolkit.Sample.Common
 
             // Get the input stream for the SessionState file
             StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(sessionStateFilename);
+
             using (IInputStream inStream = await file.OpenSequentialReadAsync())
             {
                 // Deserialize the Session State
@@ -169,6 +172,7 @@ namespace WinRTXamlToolkit.Sample.Common
             // Remove session state and remove the frame from the list of frames whose navigation
             // state will be saved (along with any weak references that are no longer reachable)
             SessionState.Remove((String)frame.GetValue(FrameSessionStateKeyProperty));
+
             _registeredFrames.RemoveAll((weakFrameReference) =>
             {
                 AlternativeFrame testFrame;
@@ -196,6 +200,7 @@ namespace WinRTXamlToolkit.Sample.Common
             if (frameState == null)
             {
                 var frameSessionKey = (String)frame.GetValue(FrameSessionStateKeyProperty);
+
                 if (frameSessionKey != null)
                 {
                     // Registered frames reflect the corresponding session state
@@ -203,6 +208,7 @@ namespace WinRTXamlToolkit.Sample.Common
                     {
                         _sessionState[frameSessionKey] = new Dictionary<String, Object>();
                     }
+
                     frameState = (Dictionary<String, Object>)_sessionState[frameSessionKey];
                 }
                 else
@@ -210,6 +216,7 @@ namespace WinRTXamlToolkit.Sample.Common
                     // Frames that aren't registered have transient state
                     frameState = new Dictionary<String, Object>();
                 }
+
                 frame.SetValue(FrameSessionStateProperty, frameState);
             }
             return frameState;
@@ -218,6 +225,7 @@ namespace WinRTXamlToolkit.Sample.Common
         private static void RestoreFrameNavigationState(AlternativeFrame frame)
         {
             var frameState = SessionStateForFrame(frame);
+
             if (frameState.ContainsKey("Navigation"))
             {
                 frame.SetNavigationState((String)frameState["Navigation"]);

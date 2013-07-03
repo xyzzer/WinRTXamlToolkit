@@ -23,7 +23,7 @@
             Margin="5">
             <TextBlock
                 Text="{Binding Name}"
-                Foreground="White"
+                Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
             <TextBox

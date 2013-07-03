@@ -85,6 +85,11 @@ namespace WinRTXamlToolkit.Debugging.Views
                         return (DataTemplate)this.Resources["BrushPropertyEditor"];
                     }
 
+                    if (typeof(ImageSource).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                    {
+                        return (DataTemplate)this.Resources["ImageSourcePropertyEditor"];
+                    }
+
                     if (typeof(DependencyObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) &&
                         propertyViewModel.Value != null)
                     {
@@ -98,6 +103,13 @@ namespace WinRTXamlToolkit.Debugging.Views
                 var editableListBoxItem = (EditableListBoxItem)container;
 
                 return editableListBoxItem.SlimContentTemplate;
+            }
+
+            var propertyGroupViewModel = item as PropertyGroupViewModel;
+
+            if (propertyGroupViewModel != null)
+            {
+                return (DataTemplate)this.Resources["Group"];
             }
 
             return base.SelectTemplateCore(item, container);

@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wrtxtc="using:WinRTXamlToolkit.Controls"
+    xmlns:wrtxtce="using:WinRTXamlToolkit.Controls.Extensions"
     xmlns:wrtxtd="using:WinRTXamlToolkit.Debugging.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -268,7 +269,16 @@
                         <TextBlock
                             Text="{Binding Name}"
                             FontWeight="Bold"
-                            Margin="0,0,10,0" />
+                            Margin="0,0,10,0"
+                            xmlns:Interactivity="using:WinRTXamlToolkit.Interactivity"
+                            xmlns:Behaviors="using:WinRTXamlToolkit.Controls.Behaviors">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:HighlightBehavior
+                                    x:Name="highlightBehavior"
+                                    SearchString="{Binding ElementModel.TreeModel.PropertyNameFilter}" />
+                                    <!--HighlightBrush="Aqua" />-->
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBlock>
                         <TextBlock
                             Text="{Binding ValueString}"
                             Opacity="{Binding IsReadOnly, Converter={StaticResource BooleanToDoubleConverter}}" />
@@ -276,16 +286,38 @@
                 </DataTemplate>
                 <DataTemplate
                     x:Key="Group">
-                    <CheckBox
-                        Style="{StaticResource ExpanderCheckBoxStyle}"
-                        Content="{Binding Category}"
-                        IsChecked="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Border
+                        Background="Transparent"
+                        PointerPressed="Border_PointerPressed"
+                        HorizontalAlignment="Stretch">
+                        <CheckBox
+                            Style="{StaticResource ExpanderCheckBoxStyle}"
+                            Content="{Binding Category}"
+                            IsChecked="{Binding IsExpanded, Mode=TwoWay}" />
+                    </Border>
                 </DataTemplate>
             </local:PropertyTemplateSelector>
             
             <!-- EditablePropertyTemplateSelector -->
             <local:EditablePropertyTemplateSelector
                 x:Key="EditablePropertyTemplateSelector">
+                <DataTemplate
+                    x:Key="Group">
+                    <Border
+                        Background="Transparent"
+                        PointerPressed="Border_PointerPressed"
+                        HorizontalAlignment="Stretch">
+                        <CheckBox
+                            Style="{StaticResource ExpanderCheckBoxStyle}"
+                            Content="{Binding Category}"
+                            IsChecked="{Binding IsExpanded, Mode=TwoWay}" />
+                    </Border>
+                </DataTemplate>
+                <DataTemplate
+                    x:Key="ImageSourcePropertyEditor">
+                    <propertyEditors:ImageSourcePropertyEditor
+                        Model="{Binding}" />
+                </DataTemplate>
                 <DataTemplate
                     x:Key="DefaultPropertyEditor">
                     <propertyEditors:DefaultPropertyEditor />
@@ -350,6 +382,8 @@
         <wrtxtc:WatermarkTextBox
             x:Name="SearchBox"
             WatermarkText="Search..."
+            wrtxtce:TextBoxFocusExtensions.DisableSearchPaneOnFocus="true"
+            wrtxtce:TextBoxFocusExtensions.AutoSelectOnFocus="true"
             TextChanged="OnSearchBoxTextChanged"/>
         <wrtxtd:EditableListBox
             Grid.Row="1"

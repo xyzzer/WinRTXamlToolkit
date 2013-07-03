@@ -27,21 +27,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         #region Properties property
         private List<BasePropertyViewModel> _allProperties;
-        public ObservableCollection<BindableBase> Properties
+        public IEnumerable<BindableBase> Properties
         {
             get
             {
-                if (!string.IsNullOrEmpty(this.PropertyNameFilter))
-                {
-                    return new ObservableCollection<BindableBase>(
-                        _allProperties
-                            .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
-                }
+                //if (!string.IsNullOrEmpty(this.PropertyNameFilter))
+                //{
+                //    return new ObservableCollection<BindableBase>(
+                //        _allProperties
+                //            .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
+                //}
 
                 return
                     this.ShowPropertiesGrouped
-                        ? this.GroupedProperties
-                        : this.UngroupedProperties;
+                        ? (IEnumerable<BindableBase>)this.GroupedProperties
+                        : (IEnumerable<BindableBase>)this.FilteredProperties; // UngroupedProperties;
             }
         }
         #endregion
@@ -54,13 +54,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (_groupedProperties == null)
                 {
-                    if (this.UngroupedProperties == null)
+                    if (this.FilteredProperties == null)
                     {
                         return new ObservableCollection<BindableBase>();
                     }
 
                     _groupedProperties = new ObservableCollection<BindableBase>(
-                        this.UngroupedProperties
+                        this.FilteredProperties
                             .Cast<BasePropertyViewModel>()
                             .OrderBy(p => p.Name)
                             .GroupBy(p => p.Category)
@@ -72,6 +72,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     foreach (var sampleButtonViewModel in _groupedProperties.Cast<PropertyGroupViewModel>().ToList())
                     {
                         sampleButtonViewModel.ParentList = _groupedProperties;
+
+                        if (!string.IsNullOrEmpty(this.PropertyNameFilter))
+                        {
+                            sampleButtonViewModel.IsExpanded = true;
+                        }
                     }
                 }
 
@@ -80,14 +85,31 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         } 
         #endregion
 
+        #region FilteredProperties
+        private ObservableCollection<BasePropertyViewModel> FilteredProperties
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.PropertyNameFilter))
+                {
+                    return new ObservableCollection<BasePropertyViewModel>(
+                        UngroupedProperties
+                            .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
+                }
+
+                return this.UngroupedProperties;
+            }
+        } 
+        #endregion
+
         #region UngroupedProperties
-        public ObservableCollection<BindableBase> UngroupedProperties
+        private ObservableCollection<BasePropertyViewModel> UngroupedProperties
         {
             get
             {
                 if (_allProperties == null)
                 {
-                    return new ObservableCollection<BindableBase>();
+                    return new ObservableCollection<BasePropertyViewModel>();
                 }
 
                 // If there is an active name filter - display filtered properties
@@ -95,7 +117,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     this.CurrentPropertyList.PropertyNames.Count > 0)
                 {
                     return
-                        new ObservableCollection<BindableBase>(_allProperties.Where(
+                        new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                             p =>
                                 (ShowDefaultedProperties || !p.IsDefault) &&
                                 (ShowReadOnlyProperties || !p.IsReadOnly) &&
@@ -105,12 +127,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 // If no checkbox filters are set - simply return all properties
                 if (ShowDefaultedProperties && ShowReadOnlyProperties)
                 {
-                    return new ObservableCollection<BindableBase>(_allProperties);
+                    return new ObservableCollection<BasePropertyViewModel>(_allProperties);
                 }
 
                 // If default/readonly filters are set - return flag-filtered properties
                 return
-                    new ObservableCollection<BindableBase>(_allProperties.Where(
+                    new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                         p =>
                         (ShowDefaultedProperties || !p.IsDefault) &&
                         (ShowReadOnlyProperties || !p.IsReadOnly)));

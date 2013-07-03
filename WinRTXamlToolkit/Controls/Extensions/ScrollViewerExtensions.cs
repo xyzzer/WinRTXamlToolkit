@@ -90,12 +90,24 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="scrollViewer"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
+////// The below doesn't work well, so leaving it commented out for now.
+////#if WIN81
+////#pragma warning disable 1998
+////        public static async Task ScrollToHorizontalOffsetWithAnimation(
+////            this ScrollViewer scrollViewer,
+////            double offset)
+////        {
+////            scrollViewer.ChangeView(offset, null, null);
+////        }
+////#pragma warning restore 1998
+////#else
         public static async Task ScrollToHorizontalOffsetWithAnimation(
             this ScrollViewer scrollViewer,
             double offset)
         {
             await scrollViewer.ScrollToHorizontalOffsetWithAnimation(offset, DefaultAnimatedScrollDuration);
         }
+////#endif
 
         /// <summary>
         /// Scrolls to the specified offset using an animation instead of
@@ -212,12 +224,24 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="scrollViewer"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
+////// The below doesn't work well, so leaving it commented out for now.
+////#if WIN81
+////#pragma warning disable 1998
+////        public static async Task ScrollToVerticalOffsetWithAnimation(
+////            this ScrollViewer scrollViewer,
+////            double offset)
+////        {
+////            scrollViewer.ChangeView(null, offset, null);
+////        }
+////#pragma warning restore 1998
+////#else
         public static async Task ScrollToVerticalOffsetWithAnimation(
             this ScrollViewer scrollViewer,
             double offset)
         {
             await scrollViewer.ScrollToVerticalOffsetWithAnimation(offset, DefaultAnimatedScrollDuration);
         }
+//#endif
 
         /// <summary>
         /// Scrolls to the specified offset using an animation instead of

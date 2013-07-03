@@ -205,9 +205,6 @@
     <Compile Include="..\WinRTXamlToolkit.Sample\Common\BooleanNegationConverter.cs">
       <Link>Common\BooleanNegationConverter.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit.Sample\Common\LayoutAwarePage.cs">
-      <Link>Common\LayoutAwarePage.cs</Link>
-    </Compile>
     <Compile Include="..\WinRTXamlToolkit.Sample\Common\RichTextColumns.cs">
       <Link>Common\RichTextColumns.cs</Link>
     </Compile>

@@ -6,12 +6,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class PropertyViewModel : BasePropertyViewModel
     {
-        private readonly DependencyObjectViewModel _elementModel;
         private readonly PropertyInfo _propertyInfo;
 
         public PropertyViewModel(DependencyObjectViewModel elementModel, PropertyInfo propertyInfo)
+            : base(elementModel)
         {
-            _elementModel = elementModel;
             _propertyInfo = propertyInfo;
             this.Name = propertyInfo.Name;
         }
@@ -20,11 +19,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return _propertyInfo.GetValue(_elementModel.Model, new object[] { });
+                return _propertyInfo.GetValue(this.ElementModel.Model, new object[] { });
             }
             set
             {
-                _propertyInfo.SetValue(_elementModel.Model, value);
+                _propertyInfo.SetValue(this.ElementModel.Model, value);
                 _isDefault = null;
                 OnPropertyChanged();
                 // ReSharper disable ExplicitCallerInfoArgument

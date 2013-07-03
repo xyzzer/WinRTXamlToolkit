@@ -8,9 +8,22 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 using Debug = System.Diagnostics.Debug;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media;
+using Windows.Foundation;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    public enum ImageLoadedTransitionTypes
+    {
+        FadeIn,
+        SlideUp,
+        SlideLeft,
+        SlideDown,
+        SlideRight,
+        Random
+    }
+
     /// <summary>
     /// Attached properties that extend the Image control class.
     /// </summary>
@@ -125,6 +138,36 @@ namespace WinRTXamlToolkit.Controls.Extensions
         public static void SetFadeInOnLoadedHandler(DependencyObject d, FadeInOnLoadedHandler value)
         {
             d.SetValue(FadeInOnLoadedHandlerProperty, value);
+        }
+        #endregion
+
+        #region ImageLoadedTransitionType
+        /// <summary>
+        /// ImageLoadedTransitionType Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ImageLoadedTransitionTypeProperty =
+            DependencyProperty.RegisterAttached(
+                "ImageLoadedTransitionType",
+                typeof(ImageLoadedTransitionTypes),
+                typeof(ImageExtensions),
+                new PropertyMetadata(ImageLoadedTransitionTypes.FadeIn));
+
+        /// <summary>
+        /// Gets the ImageLoadedTransitionType property. This dependency property 
+        /// indicates the type of transition to use when the image loads.
+        /// </summary>
+        public static ImageLoadedTransitionTypes GetImageLoadedTransitionType(DependencyObject d)
+        {
+            return (ImageLoadedTransitionTypes)d.GetValue(ImageLoadedTransitionTypeProperty);
+        }
+
+        /// <summary>
+        /// Sets the ImageLoadedTransitionType property. This dependency property 
+        /// indicates the type of transition to use when the image loads.
+        /// </summary>
+        public static void SetImageLoadedTransitionType(DependencyObject d, ImageLoadedTransitionTypes value)
+        {
+            d.SetValue(ImageLoadedTransitionTypeProperty, value);
         }
         #endregion
 
@@ -262,6 +305,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
     /// </summary>
     public class FadeInOnLoadedHandler
     {
+        private static Random _random;
+        private static Random Random { get { return _random ?? (_random = new Random()); } }
         private Image _image;
         private BitmapImage _source;
         private double _targetOpacity;
@@ -312,16 +357,136 @@ namespace WinRTXamlToolkit.Controls.Extensions
             source.ImageFailed -= OnSourceImageFailed;
         }
 
-        private void OnSourceImageOpened(object sender, RoutedEventArgs e)
+        private async void OnSourceImageOpened(object sender, RoutedEventArgs e)
         {
             var source = (BitmapImage)sender;
 
             source.ImageOpened -= OnSourceImageOpened;
             source.ImageFailed -= OnSourceImageFailed;
 
-#pragma warning disable 4014
-            _image.FadeInCustom(TimeSpan.FromSeconds(1), null, _targetOpacity);
-#pragma warning restore 4014
+            var transitionType = ImageExtensions.GetImageLoadedTransitionType(_image);
+
+            if (transitionType == ImageLoadedTransitionTypes.Random)
+            {
+                transitionType = (ImageLoadedTransitionTypes)FadeInOnLoadedHandler.Random.Next(0, (int)ImageLoadedTransitionTypes.Random);
+            }
+
+            switch (transitionType)
+            {
+                case ImageLoadedTransitionTypes.FadeIn:
+                    await _image.FadeInCustom(TimeSpan.FromSeconds(1), null, _targetOpacity);
+                    break;
+                case ImageLoadedTransitionTypes.SlideUp:
+                default:
+                    SlideIn(transitionType);
+                    break;
+            }
+        }
+
+        private async void SlideIn(ImageLoadedTransitionTypes transitionType)
+        {
+            _image.Opacity = _targetOpacity;
+
+            // Built-in animations are nice, but not very customizable. Leaving this for posterity.
+            ////var animation = new RepositionThemeAnimation
+            ////{
+            ////    FromVerticalOffset = _image.ActualHeight,
+            ////    Duration = TimeSpan.FromSeconds(2)
+            ////};
+
+            ////Storyboard.SetTarget(animation, _image);
+
+            var oldTransform = _image.RenderTransform;
+            var tempTransform = new TranslateTransform();
+            _image.RenderTransform = tempTransform;
+            DoubleAnimation animation = null;
+
+            switch (transitionType)
+            {
+                case ImageLoadedTransitionTypes.SlideUp:
+                    animation = new DoubleAnimation
+                    {
+                        From = _image.ActualHeight,
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(1),
+                        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                    };
+
+                    Storyboard.SetTargetProperty(animation, "Y");
+                    break;
+                case ImageLoadedTransitionTypes.SlideDown:
+                    animation = new DoubleAnimation
+                    {
+                        From = -_image.ActualHeight,
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(1),
+                        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                    };
+
+                    Storyboard.SetTargetProperty(animation, "Y");
+                    break;
+                case ImageLoadedTransitionTypes.SlideRight:
+                    animation = new DoubleAnimation
+                    {
+                        From = -_image.ActualWidth,
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(1),
+                        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                    };
+
+                    Storyboard.SetTargetProperty(animation, "X");
+                    break;
+                case ImageLoadedTransitionTypes.SlideLeft:
+                    animation = new DoubleAnimation
+                    {
+                        From = _image.ActualWidth,
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(1),
+                        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+                    };
+
+                    Storyboard.SetTargetProperty(animation, "X");
+                    break;
+            }
+
+            Storyboard.SetTarget(animation, tempTransform);
+            var sb = new Storyboard();
+            sb.Duration = animation.Duration;
+            sb.Children.Add(animation);
+            var clippingParent = _image.Parent as FrameworkElement;
+
+            RectangleGeometry clip = null;
+
+            if (clippingParent != null)
+            {
+                clip = clippingParent.Clip;
+                var transformToParent = _image.TransformToVisual(clippingParent);
+                var topLeft = transformToParent.TransformPoint(new Point(0, 0));
+                topLeft = new Point(Math.Max(0, topLeft.X), Math.Max(0, topLeft.Y));
+                var bottomRight = transformToParent.TransformPoint(new Point(_image.ActualWidth, _image.ActualHeight));
+                bottomRight = new Point(Math.Min(clippingParent.ActualWidth, bottomRight.X), Math.Min(clippingParent.ActualHeight, bottomRight.Y));
+                clippingParent.Clip =
+                    new RectangleGeometry
+                    {
+                        Rect = new Rect(
+                            topLeft,
+                            bottomRight)
+                    };
+            }
+
+            await sb.BeginAsync();
+
+            if (_image == null)
+            {
+                return;
+            }
+
+            if (clippingParent != null)
+            {
+                _image.Clip = clip;
+            }
+
+            _image.RenderTransform = oldTransform;
         }
 
         private void OnImageUnloaded(object sender, RoutedEventArgs e)

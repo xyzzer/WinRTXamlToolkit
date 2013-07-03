@@ -8,12 +8,12 @@ using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Xaml.Shapes;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public partial class DependencyPropertyViewModel : BasePropertyViewModel
     {
-        private readonly DependencyObjectViewModel _elementModel;
         private readonly DependencyPropertyInfo _dpi;
         private readonly PropertyInfo _propertyInfo;
         private readonly Type _propertyType;
@@ -44,10 +44,146 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         } 
         #endregion
 
+        #region Category
         public override string Category
         {
             get
             {
+                #region Appearance
+                if (_dependencyProperty == UIElement.VisibilityProperty ||
+                    _dependencyProperty == UIElement.OpacityProperty ||
+                    _dependencyProperty == Control.BorderThicknessProperty ||
+                    _dependencyProperty == Border.CornerRadiusProperty ||
+                    _dependencyProperty == Rectangle.RadiusXProperty ||
+                    _dependencyProperty == Rectangle.RadiusYProperty ||
+                    _dependencyProperty == Viewbox.StretchProperty ||
+                    _dependencyProperty == Viewbox.StretchDirectionProperty ||
+                    _dependencyProperty == Shape.StretchProperty ||
+                    _dependencyProperty == Shape.StrokeDashArrayProperty ||
+                    _dependencyProperty == Shape.StrokeDashCapProperty ||
+                    _dependencyProperty == Shape.StrokeDashOffsetProperty ||
+                    _dependencyProperty == Shape.StrokeEndLineCapProperty ||
+                    _dependencyProperty == Shape.StrokeLineJoinProperty ||
+                    _dependencyProperty == Shape.StrokeMiterLimitProperty ||
+                    _dependencyProperty == Shape.StrokeStartLineCapProperty ||
+                    _dependencyProperty == Shape.StrokeThicknessProperty
+#if WIN81
+                    ||
+                    _dependencyProperty == FrameworkElement.RequestedThemeProperty
+#endif
+                    )
+                {
+                    return AppearanceCategoryName;
+                }
+                #endregion
+
+                #region Brush
+                if (_dependencyProperty == TextBlock.ForegroundProperty ||
+                    _dependencyProperty == Control.ForegroundProperty ||
+                    _dependencyProperty == RichTextBlock.ForegroundProperty ||
+                    _dependencyProperty == ContentPresenter.ForegroundProperty ||
+                    _dependencyProperty == Control.BackgroundProperty ||
+                    _dependencyProperty == Control.BorderBrushProperty ||
+                    _dependencyProperty == Shape.FillProperty ||
+                    _dependencyProperty == Shape.StrokeProperty
+#if WIN81
+||
+                    _dependencyProperty == IconElement.ForegroundProperty ||
+                    _dependencyProperty == TextBlock.SelectionHighlightColorProperty ||
+                    _dependencyProperty == TextBox.SelectionHighlightColorProperty ||
+                    _dependencyProperty == RichTextBlock.SelectionHighlightColorProperty ||
+                    _dependencyProperty == RichEditBox.SelectionHighlightColorProperty ||
+                    _dependencyProperty == PasswordBox.SelectionHighlightColorProperty
+#endif
+)
+                {
+                    return BrushCategoryName;
+                } 
+                #endregion
+
+                #region Common
+                if (_dependencyProperty == Control.IsEnabledProperty ||
+                    _dependencyProperty == FrameworkElement.AllowDropProperty ||
+                    _dependencyProperty == FrameworkElement.DataContextProperty ||
+                    _dependencyProperty == FrameworkElement.TagProperty ||
+                    _dependencyProperty == UIElement.IsHitTestVisibleProperty ||
+                    _dependencyProperty == Path.DataProperty ||
+                    _dependencyProperty == ToolTipService.ToolTipProperty ||
+                    _dependencyProperty == TextBlock.TextProperty ||
+                    _dependencyProperty == TextBlock.IsTextSelectionEnabledProperty ||
+                    _dependencyProperty == TextBox.TextProperty ||
+                    _dependencyProperty == RichTextBlock.SelectedTextProperty ||
+                    _dependencyProperty == RichTextBlock.IsTextSelectionEnabledProperty ||
+                    _dependencyProperty == PasswordBox.PasswordProperty ||
+                    _dependencyProperty == PasswordBox.PasswordCharProperty ||
+                    _dependencyProperty == Image.SourceProperty ||
+                    _dependencyProperty == Panel.ChildrenTransitionsProperty ||
+                    _dependencyProperty == ItemsControl.ItemContainerTransitionsProperty ||
+                    _dependencyProperty == UIElement.TransitionsProperty ||
+                    _dependencyProperty == ContentControl.ContentProperty ||
+                    _dependencyProperty == ContentPresenter.ContentProperty ||
+                    _dependencyProperty == ContentControl.ContentTransitionsProperty ||
+                    _dependencyProperty == ContentPresenter.ContentTransitionsProperty ||
+                    _dependencyProperty == ScrollViewer.HorizontalScrollModeProperty ||
+                    _dependencyProperty == ScrollViewer.VerticalScrollModeProperty ||
+                    _dependencyProperty == ScrollViewer.MinZoomFactorProperty ||
+                    _dependencyProperty == ScrollViewer.MaxZoomFactorProperty ||
+                    _dependencyProperty == ScrollViewer.ZoomModeProperty ||
+                    _dependencyProperty == Control.IsTabStopProperty ||
+                    _dependencyProperty == Control.TabIndexProperty ||
+                    _dependencyProperty == Control.TabNavigationProperty ||
+                    _dependencyProperty == ScrollViewer.VerticalSnapPointsAlignmentProperty ||
+                    _dependencyProperty == ScrollViewer.VerticalSnapPointsTypeProperty ||
+                    _dependencyProperty == ScrollViewer.HorizontalSnapPointsAlignmentProperty ||
+                    _dependencyProperty == ScrollViewer.HorizontalSnapPointsTypeProperty ||
+                    _dependencyProperty == ScrollViewer.ZoomSnapPointsProperty ||
+                    _dependencyProperty == ScrollViewer.ZoomSnapPointsTypeProperty ||
+                    (_dpi.OwnerType == typeof(ItemsControl) && Name == "Items") ||
+                    _dependencyProperty == ItemsControl.ItemsSourceProperty ||
+                    _dependencyProperty == ItemsControl.DisplayMemberPathProperty ||
+                    _dependencyProperty == Selector.IsSynchronizedWithCurrentItemProperty ||
+                    _dependencyProperty == Selector.SelectedIndexProperty ||
+                    _dependencyProperty == Selector.SelectedItemProperty ||
+                    _dependencyProperty == Selector.SelectedValueProperty ||
+                    _dependencyProperty == Selector.SelectedValuePathProperty ||
+                    _dependencyProperty == ListBox.SelectionModeProperty ||
+                    _dependencyProperty == ListViewBase.CanDragItemsProperty ||
+                    _dependencyProperty == ListViewBase.CanReorderItemsProperty ||
+                    _dependencyProperty == ListViewBase.IsItemClickEnabledProperty ||
+                    _dependencyProperty == ListViewBase.IsSwipeEnabledProperty ||
+                    _dependencyProperty == RichEditBox.AcceptsReturnProperty
+
+#if WIN81
+ ||
+                    _dependencyProperty == SymbolIcon.SymbolProperty ||
+                    _dependencyProperty == Flyout.PlacementProperty ||
+                    _dependencyProperty == TextBox.PlaceholderTextProperty ||
+                    _dependencyProperty == RichEditBox.PlaceholderTextProperty ||
+                    _dependencyProperty == ComboBox.PlaceholderTextProperty ||
+                    _dependencyProperty == ComboBox.HeaderProperty ||
+                    _dependencyProperty == ListViewBase.HeaderProperty ||
+                    _dependencyProperty == TextBox.HeaderProperty ||
+                    _dependencyProperty == RichEditBox.HeaderProperty
+#endif
+)
+                {
+                    return CommonCategoryName;
+                }
+                #endregion
+
+                #region Interactions
+                if (_dependencyProperty == UIElement.IsDoubleTapEnabledProperty ||
+                    _dependencyProperty == UIElement.IsHoldingEnabledProperty ||
+                    _dependencyProperty == UIElement.IsTapEnabledProperty ||
+                    _dependencyProperty == UIElement.IsRightTapEnabledProperty ||
+                    _dependencyProperty == UIElement.ManipulationModeProperty
+                    )
+                {
+                    return InteractionsCategoryName;
+                }
+                #endregion
+
+                #region Layout
                 if (_dependencyProperty == FrameworkElement.WidthProperty ||
                     _dependencyProperty == FrameworkElement.HeightProperty ||
                     _dependencyProperty == FrameworkElement.MaxWidthProperty ||
@@ -60,14 +196,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == FrameworkElement.HorizontalAlignmentProperty ||
                     _dependencyProperty == FrameworkElement.VerticalAlignmentProperty ||
                     _dependencyProperty == Control.PaddingProperty ||
+                    _dependencyProperty == FrameworkElement.FlowDirectionProperty ||
                     _dependencyProperty == Control.HorizontalContentAlignmentProperty ||
                     _dependencyProperty == Control.VerticalContentAlignmentProperty ||
                     _dependencyProperty == UIElement.ClipProperty ||
-                    _dependencyProperty == UIElement.VisibilityProperty ||
-                    _dependencyProperty == UIElement.OpacityProperty ||
-                    _dependencyProperty == UIElement.RenderTransformProperty ||
-                    _dependencyProperty == UIElement.RenderTransformOriginProperty ||
-                    _dependencyProperty == UIElement.ProjectionProperty ||
+                    _dependencyProperty == UIElement.UseLayoutRoundingProperty ||
                     _dependencyProperty == StackPanel.OrientationProperty ||
                     _dependencyProperty == Grid.ColumnProperty ||
                     _dependencyProperty == Grid.RowProperty ||
@@ -78,53 +211,124 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == Canvas.ZIndexProperty ||
                     _dependencyProperty == WrapGrid.ItemWidthProperty ||
                     _dependencyProperty == WrapGrid.ItemHeightProperty ||
+                    _dependencyProperty == WrapGrid.OrientationProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.ItemWidthProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.ItemHeightProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.ColumnSpanProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.RowSpanProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.MaximumRowsOrColumnsProperty ||
+                    _dependencyProperty == VariableSizedWrapGrid.OrientationProperty ||
+                    _dependencyProperty == ScrollViewer.HorizontalScrollBarVisibilityProperty ||
+                    _dependencyProperty == ScrollViewer.VerticalScrollBarVisibilityProperty||
                     _dependencyProperty == WrapPanel.ItemWidthProperty ||
-                    _dependencyProperty == WrapPanel.ItemHeightProperty ||
-                    _dependencyProperty == TextBlock.LineHeightProperty ||
-                    _dependencyProperty == TextBlock.LineStackingStrategyProperty ||
-                    _dependencyProperty == Shape.StrokeThicknessProperty ||
-                    _dependencyProperty == Control.BorderThicknessProperty)
+                    _dependencyProperty == WrapPanel.ItemHeightProperty)
                 {
                     return LayoutCategoryName;
-                }
+                } 
+                #endregion
 
-                if (_dependencyProperty == TextBlock.ForegroundProperty ||
-                    _dependencyProperty == Control.ForegroundProperty ||
-                    _dependencyProperty == Control.BackgroundProperty ||
-                    _dependencyProperty == Shape.FillProperty ||
-                    _dependencyProperty == Shape.StrokeProperty ||
-                    _dependencyProperty == Image.SourceProperty)
+                #region Text
+                if (_dependencyProperty == TextBlock.FontFamilyProperty ||
+                    _dependencyProperty == TextBlock.FontSizeProperty ||
+                    _dependencyProperty == TextBlock.FontStretchProperty ||
+                    _dependencyProperty == TextBlock.FontStyleProperty ||
+                    _dependencyProperty == TextBlock.FontWeightProperty ||
+                    _dependencyProperty == TextBlock.LineHeightProperty ||
+                    _dependencyProperty == TextBlock.LineStackingStrategyProperty ||
+                    _dependencyProperty == TextBlock.TextAlignmentProperty ||
+                    _dependencyProperty == TextBlock.TextTrimmingProperty ||
+                    _dependencyProperty == TextBlock.TextWrappingProperty ||
+                    _dependencyProperty == TextBox.FontFamilyProperty ||
+                    _dependencyProperty == TextBox.FontSizeProperty ||
+                    _dependencyProperty == TextBox.FontStretchProperty ||
+                    _dependencyProperty == TextBox.FontStyleProperty ||
+                    _dependencyProperty == TextBox.FontWeightProperty ||
+                    _dependencyProperty == TextBox.TextAlignmentProperty ||
+                    _dependencyProperty == TextBox.TextWrappingProperty ||
+                    _dependencyProperty == TextBox.IsSpellCheckEnabledProperty ||
+                    _dependencyProperty == RichTextBlock.FontFamilyProperty ||
+                    _dependencyProperty == RichTextBlock.FontSizeProperty ||
+                    _dependencyProperty == RichTextBlock.FontStretchProperty ||
+                    _dependencyProperty == RichTextBlock.FontStyleProperty ||
+                    _dependencyProperty == RichTextBlock.FontWeightProperty ||
+                    _dependencyProperty == RichTextBlock.LineHeightProperty ||
+                    _dependencyProperty == RichTextBlock.LineStackingStrategyProperty ||
+                    _dependencyProperty == RichTextBlock.TextAlignmentProperty ||
+                    _dependencyProperty == RichTextBlock.TextTrimmingProperty ||
+                    _dependencyProperty == RichTextBlock.TextWrappingProperty ||
+                    _dependencyProperty == RichTextBlock.TextIndentProperty ||
+                    _dependencyProperty == RichEditBox.FontFamilyProperty ||
+                    _dependencyProperty == RichEditBox.FontSizeProperty ||
+                    _dependencyProperty == RichEditBox.FontStretchProperty ||
+                    _dependencyProperty == RichEditBox.FontStyleProperty ||
+                    _dependencyProperty == RichEditBox.FontWeightProperty ||
+                    _dependencyProperty == RichEditBox.TextAlignmentProperty ||
+                    _dependencyProperty == RichEditBox.TextWrappingProperty ||
+                    _dependencyProperty == TextBlock.CharacterSpacingProperty ||
+                    _dependencyProperty == PasswordBox.CharacterSpacingProperty ||
+                    _dependencyProperty == RichTextBlock.CharacterSpacingProperty ||
+                    _dependencyProperty == Control.FontFamilyProperty ||
+                    _dependencyProperty == Control.FontSizeProperty ||
+                    _dependencyProperty == Control.FontStretchProperty ||
+                    _dependencyProperty == Control.FontStyleProperty ||
+                    _dependencyProperty == Control.FontWeightProperty ||
+                    _dependencyProperty == ContentPresenter.FontFamilyProperty ||
+                    _dependencyProperty == ContentPresenter.FontSizeProperty ||
+                    _dependencyProperty == ContentPresenter.FontStretchProperty ||
+                    _dependencyProperty == ContentPresenter.FontStyleProperty ||
+                    _dependencyProperty == ContentPresenter.FontWeightProperty
+#if WIN81
+                    ||
+                    _dependencyProperty == TextBlock.TextLineBoundsProperty ||
+                    _dependencyProperty == RichTextBlock.TextLineBoundsProperty ||
+                    _dependencyProperty == RichTextBlock.TextReadingOrderProperty ||
+                    _dependencyProperty == TextBlock.TextReadingOrderProperty
+#endif
+                    )
                 {
-                    return AppearanceCategoryName;
+                    return TextCategoryName;
                 }
+                #endregion
 
+                #region Transform
+                if (_dependencyProperty == UIElement.RenderTransformProperty ||
+                    _dependencyProperty == UIElement.RenderTransformOriginProperty ||
+                    _dependencyProperty == UIElement.ProjectionProperty
+                    )
+                {
+                    return TransformCategoryName;
+                }
+                #endregion
+
+                #region WinRTXamlToolkitExtensions
                 var propertyOwnerAssembly = _dpi.OwnerType.GetTypeInfo().Assembly;
                 var propertyOwnerNamespace = _dpi.OwnerType.Namespace;
 
                 if (propertyOwnerNamespace.StartsWith(typeof(ListBoxExtensions).Namespace))
                 {
                     return WinRTXamlToolkitExtensionsCategoryName;
-                }
+                } 
+                #endregion
 
+                #region WinRTXamlToolkitControl
                 if (propertyOwnerNamespace.StartsWith(typeof(WrapPanel).Namespace))
                 {
                     return WinRTXamlToolkitControlCategoryName;
-                }
+                } 
+                #endregion
 
+                #region WinRTXamlToolkitDebugging
                 if (propertyOwnerAssembly.Equals(
-                    typeof (DependencyPropertyViewModel).GetTypeInfo().Assembly))
+                            typeof(DependencyPropertyViewModel).GetTypeInfo().Assembly))
                 {
                     return WinRTXamlToolkitDebuggingCategoryName;
-                }
+                } 
+                #endregion
 
                 return MiscCategoryName;
             }
-        }
+        } 
+        #endregion
 
         public object DefaultValue { get; private set; }
 
@@ -136,7 +340,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (_asObjectViewModel == null)
                 {
-                    _asObjectViewModel = new DependencyObjectViewModel(_elementModel.TreeModel, null, (DependencyObject)this.Value);
+                    _asObjectViewModel = new DependencyObjectViewModel(this.ElementModel.TreeModel, null, (DependencyObject)this.Value);
 #pragma warning disable 4014
                     _asObjectViewModel.LoadProperties();
 #pragma warning restore 4014
@@ -151,8 +355,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public DependencyPropertyViewModel(
             DependencyObjectViewModel elementModel,
             DependencyPropertyInfo dpi)
+            : base(elementModel)
         {
-            _elementModel = elementModel;
             _dpi = dpi;
             _dependencyProperty = dpi.Property;
             this.Name = dpi.DisplayName;
@@ -168,7 +372,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             if (_propertyType == null)
             {
                 this.DefaultValue =
-                    _dpi.Property.GetMetadata(_elementModel.Model.GetType())
+                    _dpi.Property.GetMetadata(this.ElementModel.Model.GetType())
                         .DefaultValue;
 
                 if (this.DefaultValue != null)
@@ -191,7 +395,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                if (!(_elementModel.Model is UIElement) &&
+                if (!(this.ElementModel.Model is UIElement) &&
                     (this.DependencyProperty == Grid.RowProperty
                     || this.DependencyProperty == Grid.ColumnProperty
                     || this.DependencyProperty == Grid.RowSpanProperty
@@ -203,7 +407,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return 0;
                 }
 
-                return _elementModel.Model.GetValue(this.DependencyProperty);
+                return this.ElementModel.Model.GetValue(this.DependencyProperty);
             }
             set
             {
@@ -214,7 +418,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         CoercionHelper.CoerceValue(ref value);
                     }
 
-                    _elementModel.Model.SetValue(DependencyProperty, value);
+                    this.ElementModel.Model.SetValue(DependencyProperty, value);
                     _isDefault = null;
                     OnPropertyChanged();
 // ReSharper disable ExplicitCallerInfoArgument
@@ -244,7 +448,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 try
                 {
-                    if (!(this._elementModel.Model is UIElement) &&
+                    if (!(this.ElementModel.Model is UIElement) &&
                         (this.DependencyProperty == Grid.RowProperty
                         || this.DependencyProperty == Grid.ColumnProperty
                         || this.DependencyProperty == Grid.RowSpanProperty
@@ -258,7 +462,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                     if (_isDefault == null)
                     {
-                        var localValue = _elementModel.Model.ReadLocalValue(this.DependencyProperty);
+                        var localValue = this.ElementModel.Model.ReadLocalValue(this.DependencyProperty);
                         _isDefault = localValue == DependencyProperty.UnsetValue;
                     }
 
@@ -319,7 +523,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region ResetValue()
         public override void ResetValue()
         {
-            _elementModel.Model.ClearValue(_dependencyProperty);
+            this.ElementModel.Model.ClearValue(_dependencyProperty);
             _isDefault = null;
 
             // ReSharper disable ExplicitCallerInfoArgument
@@ -348,7 +552,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public override void Analyze()
         {
             var sb = new StringBuilder();
-            var dependencyObject = _elementModel.Model;
+            var dependencyObject = this.ElementModel.Model;
             var dp = _dependencyProperty;
 
             // Value

@@ -29,24 +29,53 @@
             Text="DebugConsoleView Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
-        
+
+
         <StackPanel
             x:Name="testPanel"
             Visibility="Collapsed"
             Grid.Column="1"
             Grid.Row="1"
-            Orientation="Horizontal"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
-            <TextBox
-                x:Name="line"
+            <Canvas
                 Width="800"
-                Text="Traced information"
-                KeyUp="OnTraceLineKeyUp"/>
-            <Button
-                x:Name="traceButton"
-                Content="Trace"
-                Click="OnTraceButtonClicked"/>
+                Height="400">
+                <Border
+                    x:Name="FlickBorder"
+                    xmlns:i="using:WinRTXamlToolkit.Interactivity"
+                    xmlns:behaviors="using:WinRTXamlToolkit.Controls.Behaviors"
+                    Width="100"
+                    Height="100"
+                    CornerRadius="50"
+                    Background="Yellow"
+                    PointerMoved="Border_PointerMoved">
+                    <i:Interaction.Behaviors>
+                        <behaviors:FlickBehavior />
+                    </i:Interaction.Behaviors>
+                    <TextBlock
+                        FontSize="16"
+                        Text="Flick It"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="Black" />
+                </Border>
+
+            </Canvas>
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <TextBox
+                    x:Name="line"
+                    Width="800"
+                    Text="Traced information"
+                    KeyUp="OnTraceLineKeyUp" />
+                <Button
+                    x:Name="traceButton"
+                    Content="Trace"
+                    Click="OnTraceButtonClicked" />
+            </StackPanel>
         </StackPanel>
 
         <TextBlock

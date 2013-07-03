@@ -132,9 +132,6 @@
     <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\BooleanNegationConverter.cs">
       <Link>Common\BooleanNegationConverter.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\LayoutAwarePage.cs">
-      <Link>Common\LayoutAwarePage.cs</Link>
-    </Compile>
     <Compile Include="..\WinRTXamlToolkit.StylesBrowser\Common\RichTextColumns.cs">
       <Link>Common\RichTextColumns.cs</Link>
     </Compile>
@@ -166,16 +163,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="..\WinRTXamlToolkit.StylesBrowser\Package.appxmanifest">
-      <Link>Package.appxmanifest</Link>
-      <SubType>Designer</SubType>
-    </AppxManifest>
     <None Include="..\WinRTXamlToolkit.StylesBrowser\Common\ReadMe.txt">
       <Link>Common\ReadMe.txt</Link>
     </None>
-    <None Include="..\WinRTXamlToolkit.StylesBrowser\WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx">
-      <Link>WinRTXamlToolkit.StylesBrowser_TemporaryKey.pfx</Link>
-    </None>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="WinRTXamlToolkit.StylesBrowser 8.0_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\WinRTXamlToolkit.StylesBrowser\Assets\Logo.png">

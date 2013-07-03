@@ -48,7 +48,11 @@ namespace WinRTXamlToolkit.Debugging.Views
             if (sv != null &&
                 sv.VerticalOffset + sv.ViewportHeight >= sv.ScrollableHeight - 1)
             {
+#if WIN81
+                sv.ChangeView(0, 10000000, 1);
+#else
                 sv.ScrollToVerticalOffset(10000000);
+#endif
             }
         }
 

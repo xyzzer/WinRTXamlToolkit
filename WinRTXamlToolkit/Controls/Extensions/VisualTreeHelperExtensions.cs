@@ -51,6 +51,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns></returns>
         public static IEnumerable<DependencyObject> GetDescendants(this DependencyObject start)
         {
+            if (start == null)
+            {
+                yield break;
+            }
+
             var queue = new Queue<DependencyObject>();
 
             var popup = start as Popup;

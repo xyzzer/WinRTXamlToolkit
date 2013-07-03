@@ -29,7 +29,14 @@ namespace WinRTXamlToolkit.AwaitableUI
             if (offset == currentOffset)
                 return;
 
+#if WIN81
+            if (!scrollViewer.ChangeView(null, offset, null, true))
+            {
+                return;
+            }
+#else
             scrollViewer.ScrollToVerticalOffset(offset);
+#endif
 
             if (scrollViewer.VerticalOffset == offset)
                 return;
@@ -64,7 +71,14 @@ namespace WinRTXamlToolkit.AwaitableUI
             if (offset == currentOffset)
                 return;
 
+#if WIN81
+            if (!scrollViewer.ChangeView(offset, null, null, true))
+            {
+                return;
+            }
+#else
             scrollViewer.ScrollToHorizontalOffset(offset);
+#endif
 
             if (scrollViewer.HorizontalOffset == offset)
                 return;
@@ -121,7 +135,9 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// <param name="scrollViewer">The scroll viewer.</param>
         /// <param name="offset">The offset.</param>
         /// <returns>The task that completes when scrolling is complete.</returns>
-        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(this ScrollViewer scrollViewer, double offset)
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
+            this ScrollViewer scrollViewer,
+            double offset)
         {
             if (offset < 0)
                 offset = 0;

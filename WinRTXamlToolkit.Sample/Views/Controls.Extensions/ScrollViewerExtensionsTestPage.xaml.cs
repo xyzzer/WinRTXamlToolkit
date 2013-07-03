@@ -49,8 +49,8 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void OnAnimatedScrollTestButtonClick(object sender, RoutedEventArgs e)
         {
-            scrollViewer.ScrollToHorizontalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
             scrollViewer.ScrollToVerticalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight));
+            scrollViewer.ScrollToHorizontalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
             //scrollViewer.ScrollToHorizontalOffsetWithAnimation(500 - scrollViewer.HorizontalOffset);
             //scrollViewer.ScrollToVerticalOffsetWithAnimation(500 - scrollViewer.VerticalOffset);
         }

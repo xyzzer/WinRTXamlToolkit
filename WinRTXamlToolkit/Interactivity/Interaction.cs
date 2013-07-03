@@ -28,6 +28,14 @@ namespace WinRTXamlToolkit.Interactivity
                         new BehaviorCollection() :
                         null,
                     BehaviorsChanged));
+        ////        PropertyMetadata.Create(
+        ////            OnGetDefaultBehaviors,
+        ////            BehaviorsChanged));
+
+        ////private static object OnGetDefaultBehaviors()
+        ////{
+        ////    return new BehaviorCollection();
+        ////}
 
         /// <summary>
         /// Gets the <see cref="BehaviorCollection"/> associated with

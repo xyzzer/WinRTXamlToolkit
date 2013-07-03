@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Controls.Extensions
@@ -15,10 +17,19 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// </summary>
         /// <param name="webView">The web view.</param>
         /// <returns></returns>
-        public static string GetTitle(this WebView webView)
+#if WIN81
+        public static async Task<string> GetTitle(this WebView webView)
+        {
+            return await webView.InvokeScriptAsync("eval", new[] {"document.title"});
+        }
+#else
+#pragma warning disable 1998
+        public static async Task<string> GetTitle(this WebView webView)
         {
             return webView.InvokeScript("eval", new[] {"document.title"});
         }
+#pragma warning restore 1998
+#endif
 
         /// <summary>
         /// Gets the address of the current page.

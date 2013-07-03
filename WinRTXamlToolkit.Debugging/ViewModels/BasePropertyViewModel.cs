@@ -6,9 +6,16 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public abstract class BasePropertyViewModel : BindableBase
     {
-        public const string LayoutCategoryName = "Layout";
+        public DependencyObjectViewModel ElementModel { get; private set; }
+
         public const string AppearanceCategoryName = "Appearance";
+        public const string BrushCategoryName = "Brush";
+        public const string CommonCategoryName = "Common";
+        public const string InteractionsCategoryName = "Interactions";
+        public const string LayoutCategoryName = "Layout";
         public const string MiscCategoryName = "Miscellaneous";
+        public const string TextCategoryName = "Text";
+        public const string TransformCategoryName = "Transform";
         public const string WinRTXamlToolkitExtensionsCategoryName = "Toolkit Extensions";
         public const string WinRTXamlToolkitControlCategoryName = "Toolkit Control";
         public const string WinRTXamlToolkitDebuggingCategoryName = "Debugging";
@@ -51,8 +58,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public RelayCommand AnalyzeCommand { get; private set; }
 
-        public BasePropertyViewModel()
+        public BasePropertyViewModel(DependencyObjectViewModel elementModel)
         {
+            this.ElementModel = elementModel;
             this.ResetValueCommand = new RelayCommand(
                 this.ResetValue,
                 () => this.CanResetValue);

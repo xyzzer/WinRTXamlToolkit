@@ -612,7 +612,7 @@
                 <TextBox
                     x:Name="DebugTextBox"
                     Visibility="{Binding IsChecked, ElementName=LogTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Foreground="White"
+                    Foreground="{StaticResource ApplicationForegroundThemeBrush}"
                     Background="Transparent"
                     BorderThickness="0"
                     TextWrapping="Wrap"

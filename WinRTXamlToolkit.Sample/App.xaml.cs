@@ -1,10 +1,14 @@
 ﻿// Uncomment below to enable XAML Spy. XAML Spy needs to be installed before running the app to use it.
 //#define USE_XAML_SPY
 
-using WinRTXamlToolkit.Debugging;
+using System;
+using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
+using WinRTXamlToolkit.Controls.Extensions;
+using WinRTXamlToolkit.Debugging;
 
 namespace WinRTXamlToolkit.Sample
 {
@@ -46,10 +50,24 @@ namespace WinRTXamlToolkit.Sample
 #endif
         }
 
-        //protected override void OnFileActivated(FileActivatedEventArgs args)
-        //{
-        //    base.OnFileActivated(args);
-        //}
+        protected override async void OnFileActivated(FileActivatedEventArgs args)
+        {
+            if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            {
+                //TODO: Load state from previously suspended application
+            }
+
+            Window.Current.Content = new AppShell();
+            Window.Current.Activate();
+            DisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
+
+            foreach (StorageFile file in args.Files.OfType<StorageFile>())
+            {
+                DC.Trace(await FileIO.ReadTextAsync(file));
+            }
+
+            base.OnFileActivated(args);
+        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -66,6 +84,9 @@ namespace WinRTXamlToolkit.Sample
 
             Window.Current.Content = new AppShell();
             Window.Current.Activate();
+            DisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
+            //DisableSearchPaneOnFocusHandler.IsSearchEnabled = true;
+            //SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
             DC.ShowVisualTree();
             DC.Collapse();
         }

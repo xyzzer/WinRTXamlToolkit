@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WIN81</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -145,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\PropertyEditors\ImageSourcePropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,6 +222,9 @@
     </Compile>
     <Compile Include="Views\PropertyEditors\CacheModePropertyEditor.xaml.cs">
       <DependentUpon>CacheModePropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\ImageSourcePropertyEditor.xaml.cs">
+      <DependentUpon>ImageSourcePropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml.cs">
       <DependentUpon>CornerRadiusPropertyEditor.xaml</DependentUpon>
