@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Search;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.Controls;
 
@@ -19,6 +20,14 @@ namespace WinRTXamlToolkit.Sample.Views
 #pragma warning disable 4014
             base.OnNavigatedTo(e);
 #pragma warning restore 4014
+
+            //SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+        }
+
+        protected override async Task OnNavigatedFrom(AlternativeNavigationEventArgs e)
+        {
+            await base.OnNavigatedFrom(e);
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
         }
 #pragma warning restore 1998
 

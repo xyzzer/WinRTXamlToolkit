@@ -388,6 +388,47 @@ namespace WinRTXamlToolkit.Controls.Extensions
     }
 
     /// <summary>
+    /// Handler object type for the AutoSelectOnFocus property.
+    /// </summary>
+    public class AutoSelectOnFocusHandler
+    {
+        private TextBox _associatedObject;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoSelectOnFocusHandler"/> class.
+        /// </summary>
+        /// <param name="associatedObject">The associated object.</param>
+        public AutoSelectOnFocusHandler(TextBox associatedObject)
+        {
+            Attach(associatedObject);
+        }
+
+        private void Attach(TextBox associatedObject)
+        {
+            Detach();
+            _associatedObject = associatedObject;
+            _associatedObject.GotFocus += AssociatedObjectOnGotFocus;
+        }
+
+        private void AssociatedObjectOnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            _associatedObject.SelectAll();
+        }
+
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
+        public void Detach()
+        {
+            if (_associatedObject == null)
+                return;
+
+            _associatedObject.KeyUp -= AssociatedObjectOnGotFocus;
+            _associatedObject = null;
+        }
+    }
+
+    /// <summary>
     /// Handler object type for the DisableSearchPaneOnFocus property.
     /// </summary>
     public class DisableSearchPaneOnFocusHandler
@@ -406,7 +447,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                     {
                         _isSearchEnabled = SearchPane.GetForCurrentView() != null;
                     }
-                    catch (UnauthorizedAccessException ex)
+                    catch (UnauthorizedAccessException)
                     {
                         Debug.WriteLine("Checking for Search capability throws exceptions when the capability is missing. To avoid it set WinRTXamlToolkit.Controls.Extensions.DisableSearchPaneOnFocusHandler.IsSearchEnabled explicitly before WinRTXamlToolkit.Controls.Extensions.TextBoxFocusExtensions.DisableSearchPaneOnFocus behavior is applied.");
                         _isSearchEnabled = false;
@@ -465,46 +506,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             _associatedObject.GotFocus -= AssociatedObjectOnGotFocus;
             _associatedObject.LostFocus -= AssociatedObjectOnLostFocus;
-            _associatedObject = null;
-        }
-    }
-
-    /// <summary>
-    /// Handler object type for the AutoSelectOnFocus property.
-    /// </summary>
-    public class AutoSelectOnFocusHandler
-    {
-        private TextBox _associatedObject;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AutoSelectOnFocusHandler"/> class.
-        /// </summary>
-        /// <param name="associatedObject">The associated object.</param>
-        public AutoSelectOnFocusHandler(TextBox associatedObject)
-        {
-            Attach(associatedObject);
-        }
-
-        private void Attach(TextBox associatedObject)
-        {
-            Detach();
-            _associatedObject = associatedObject;
-            _associatedObject.GotFocus += AssociatedObjectOnGotFocus;
-        }
-
-        private void AssociatedObjectOnGotFocus(object sender, RoutedEventArgs routedEventArgs)
-        {
-            _associatedObject.SelectAll();
-        }
-        /// <summary>
-        /// Detaches this instance.
-        /// </summary>
-        public void Detach()
-        {
-            if (_associatedObject == null)
-                return;
-
-            _associatedObject.KeyUp -= AssociatedObjectOnGotFocus;
             _associatedObject = null;
         }
     }

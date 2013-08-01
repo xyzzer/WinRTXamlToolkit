@@ -47,7 +47,7 @@
             Grid.Column="2"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Foreground="Red"
+            Foreground="{StaticResource SliderTrackDecreaseBackgroundThemeBrush}"
             StartDelay="{Binding Value, ElementName=StartDelaySlider, Converter={StaticResource DoubleToIntConverter}}"
             CascadeIn="{Binding IsChecked, ElementName=CascadeInCheckBox, Converter={StaticResource NullableBoolToBoolConverter}}"
             CascadeInDurationString="{Binding Value, ElementName=CascadeInDurationSlider, Converter={StaticResource SecondsToTimeSpanStringConverter}}"
@@ -66,8 +66,7 @@
             <controls:CascadingTextBlock.TextBlockTemplate>
                 <DataTemplate>
                     <TextBlock
-                        FontWeight="ExtraBold"
-                        Foreground="Red"
+                        Foreground="#7794B3"
                         Style="{StaticResource HeaderTextStyle}" />
                 </DataTemplate>
             </controls:CascadingTextBlock.TextBlockTemplate>
@@ -180,7 +179,7 @@
                 <Slider
                     x:Name="FromRotationSlider"
                     Minimum="-720"
-                    Value="-90"
+                    Value="-120"
                     Maximum="720" />
 
                 <TextBlock

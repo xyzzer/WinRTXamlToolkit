@@ -134,8 +134,9 @@
     <Compile Include="AwaitableUI\ScrollViewerExtensions.cs" />
     <Compile Include="AwaitableUI\SelectorExtensions.cs" />
     <Compile Include="AwaitableUI\StoryboardExtensions.cs" />
-    <Compile Include="AwaitableUI\WebViewExtensions.cs" />
+    <Compile Include="AwaitableUI\WebViewExtensions 8.1.cs" />
     <Compile Include="AwaitableUI\WriteableBitmapExtensions.cs" />
+    <Compile Include="Common\AlternativeApplicationView.cs" />
     <Compile Include="Common\ImplicitDataTemplateSelector.cs" />
     <Compile Include="Common\ImplicitStyleSelector.cs" />
     <Compile Include="Common\WeakEventListener.cs" />
@@ -232,7 +233,7 @@
     <Compile Include="Controls\WatermarkPasswordBox\WatermarkPasswordBox.cs" />
     <Compile Include="Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
-    <Compile Include="Controls\Extensions\WebViewExtensions.cs" />
+    <Compile Include="Controls\Extensions\WebViewExtensions 8.1.cs" />
     <Compile Include="Controls\WrapPanel\OrientedSize.cs" />
     <Compile Include="Controls\WrapPanel\WrapPanel.cs" />
     <Compile Include="Converters\BooleanToDataTemplateConverter.cs" />

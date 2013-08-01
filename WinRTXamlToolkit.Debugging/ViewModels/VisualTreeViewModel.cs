@@ -117,6 +117,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             if (newSelectedItem != null)
             {
                 newSelectedItem.ModelPropertyChanged += OnModelPropertyChanged;
+#pragma warning disable 4014
+                newSelectedItem.LoadProperties();
+#pragma warning restore 4014
             }
 
             UpdateHighlight();

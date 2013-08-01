@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Web;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -327,8 +328,12 @@ namespace WinRTXamlToolkit.Controls
                 _titleAppBar.Closed += OnAppBarOpenedOrClosed;
             }
 
+#if WIN81
+            _webView.NavigationCompleted += OnNavigationCompleted;
+#else
             _webView.LoadCompleted += OnLoadCompleted;
             _webView.NavigationFailed += OnNavigationFailed;
+#endif
 
             if (this.Source != null)
             {
@@ -453,17 +458,31 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+#if WIN81
+        private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
-            VisualStateManager.GoToState(this, LoadedStateName, true);
-
-            if (_titleBar != null)
+            if (e.IsSuccess)
             {
-                _titleBar.Text = e.WebErrorStatus.ToString();
+                OnNavigationSucceeded();
+            }
+            else
+            {
+                OnNavigationFailed(e.WebErrorStatus);
             }
         }
+#else
+        private void OnLoadCompleted(object sender, NavigationEventArgs e)
+        {
+            OnNavigationSucceeded();
+        }
 
-        private async void OnLoadCompleted(object sender, NavigationEventArgs e)
+        private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+        {
+            OnNavigationFailed(e.WebErrorStatus);
+        }
+#endif
+
+        private async void OnNavigationSucceeded()
         {
             VisualStateManager.GoToState(this, LoadedStateName, true);
             //await Task.Delay(100);
@@ -472,7 +491,7 @@ namespace WinRTXamlToolkit.Controls
             // Need to close the app bars instead to force the WebView to show up
             _addressAppBar.IsOpen = false;
             _titleAppBar.IsOpen = false;
-            var address = _webView.GetAddress();
+            var address = await _webView.GetAddress();
 
             this.Source = address == null ? null : new Uri(address);
 
@@ -489,7 +508,7 @@ namespace WinRTXamlToolkit.Controls
             if (_favIconImage != null &&
                 address != null)
             {
-                var favIconUri = _webView.GetFavIconLink();
+                var favIconUri = await _webView.GetFavIconLink();
 
                 if (favIconUri == null)
                     _favIconImage.Source = null;
@@ -511,6 +530,16 @@ namespace WinRTXamlToolkit.Controls
             }
 
             UpdateBackStackKeys();
+        }
+
+        private void OnNavigationFailed(WebErrorStatus webErrorStatus)
+        {
+            VisualStateManager.GoToState(this, LoadedStateName, true);
+
+            if (_titleBar != null)
+            {
+                _titleBar.Text = webErrorStatus.ToString();
+            }
         }
 
         /// <summary>

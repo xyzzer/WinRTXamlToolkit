@@ -1488,7 +1488,12 @@ namespace WinRTXamlToolkit.Controls
                 bool skip = up && ContainsSelection;
                 for (int index = (up ? count - 1 : 0); 0 <= index && index < count; index += (up ? -1 : 1))
                 {
-                    TreeViewItem item = ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#if WIN81
+                    TreeViewItem item = this.ContainerFromIndex(index) as TreeViewItem;
+#else
+                    TreeViewItem item = this.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
+
                     if (item != null && item.IsEnabled)
                     {
                         if (skip)
@@ -1600,9 +1605,15 @@ namespace WinRTXamlToolkit.Controls
             {
                 // Change the selection in the TreeView
                 TreeViewItem parent = ParentTreeViewItem;
+#if WIN81
+                object item = (parent != null) ?
+                    parent.ItemFromContainer(this) :
+                    view.ItemFromContainer(this);
+#else
                 object item = (parent != null) ?
                     parent.ItemContainerGenerator.ItemFromContainer(this) :
                     view.ItemContainerGenerator.ItemFromContainer(this);
+#endif
                 view.ChangeSelection(item, this, selected);
             }
         }
@@ -1679,7 +1690,12 @@ namespace WinRTXamlToolkit.Controls
             // Look for the next item in the children of this item (if allowed)
             if (recurse && IsExpanded && HasItems)
             {
-                TreeViewItem item = ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#if WIN81
+                TreeViewItem item = this.ContainerFromIndex(0) as TreeViewItem;
+#else
+                TreeViewItem item = this.ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#endif
+
                 if (item != null)
                 {
                     return item.IsEnabled ?
@@ -1694,13 +1710,23 @@ namespace WinRTXamlToolkit.Controls
             {
                 // Get the index of this item relative to its siblings
                 TreeViewItem item = null;
+#if WIN81
+                int index = parent.IndexFromContainer(this);
+#else
                 int index = parent.ItemContainerGenerator.IndexFromContainer(this);
+#endif
+
                 int count = parent.Items.Count;
 
                 // Check for any siblings below this item
                 while (index++ < count)
                 {
+#if WIN81
+                    item = parent.ContainerFromIndex(index) as TreeViewItem;
+#else
                     item = parent.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
+
                     if (item != null && item.IsEnabled)
                     {
                         return item;
@@ -1761,7 +1787,11 @@ namespace WinRTXamlToolkit.Controls
                 }
 
                 // Move to the item's previous sibling
+#if WIN81
+                item = lastItem.ContainerFromIndex(index) as TreeViewItem;
+#else
                 item = lastItem.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
             }
 
             return lastItem;
@@ -1782,13 +1812,22 @@ namespace WinRTXamlToolkit.Controls
             }
 
             // Get the index of the current item relative to its siblings
+#if WIN81
+            int index = parent.IndexFromContainer(this);
+#else
             int index = parent.ItemContainerGenerator.IndexFromContainer(this);
+#endif
 
             // Walk the previous siblings of the item to find a focusable item
             while (index-- > 0)
             {
                 // Get the sibling
+#if WIN81
+                TreeViewItem item = parent.ContainerFromIndex(index) as TreeViewItem;
+#else
                 TreeViewItem item = parent.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
+
                 if (item != null && item.IsEnabled)
                 {
                     // Get the last focusable descendent of the sibling

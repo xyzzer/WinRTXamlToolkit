@@ -1,0 +1,69 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.TextBoxFocusExtensionsTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d">
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="TextBoxFocusExtensions Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1">
+            <TextBlock
+                Style="{StaticResource BasicTextStyle}"
+                Margin="0,20,0,0"
+                Text="AutoSelectOnFocus" />
+            <TextBox
+                HorizontalAlignment="Left"
+                extensions:TextBoxFocusExtensions.AutoSelectOnFocus="True"
+                Text="AutoSelectOnFocus makes the TextBox select all text when it gets keyboard focus."/>
+            <TextBlock
+                Style="{StaticResource BasicTextStyle}"
+                Margin="0,20,0,0"
+                Text="AutoTabOnMaxLength=5" />
+            <TextBox
+                HorizontalAlignment="Left"
+                MaxLength="5"
+                Text="123"
+                extensions:TextBoxFocusExtensions.AutoTabOnMaxLength="True"
+                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="True" />
+            <TextBlock
+                Style="{StaticResource BasicTextStyle}"
+                Margin="0,20,0,0"
+                Text="extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus=False" />
+            <TextBox
+                HorizontalAlignment="Left"
+                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="False" />
+            <TextBlock
+                Style="{StaticResource BasicTextStyle}"
+                Margin="0,20,0,0"
+                Text="extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus=True" />
+            <TextBox
+                HorizontalAlignment="Left"
+                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="True" />
+        </StackPanel>
+    </Grid>
+</controls:AlternativePage>

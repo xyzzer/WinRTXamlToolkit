@@ -174,7 +174,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         public static void ScrollToBottom(this ListView listView)
         {
             var scrollViewer = listView.GetFirstDescendantOfType<ScrollViewer>();
+#if WIN81
+            scrollViewer.ChangeView(null, scrollViewer.ScrollableHeight, null);
+#else
             scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
+#endif
         }
     }
 

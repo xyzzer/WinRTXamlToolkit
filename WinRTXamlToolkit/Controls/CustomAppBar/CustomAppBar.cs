@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using WinRTXamlToolkit.Common;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.Devices.Input;
 using Windows.UI.Core;
@@ -328,7 +329,7 @@ namespace WinRTXamlToolkit.Controls
             bool oldCanOpenInSnappedView, bool newCanOpenInSnappedView)
         {
             if (!newCanOpenInSnappedView &&
-                ApplicationView.Value == ApplicationViewState.Snapped)
+                AlternativeApplicationView.IsSnapped)
             {
                 IsOpen = false;
             }
@@ -489,7 +490,7 @@ namespace WinRTXamlToolkit.Controls
         #region WindowSizeChanged()
         private void WindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
-            if (ApplicationView.Value == ApplicationViewState.Snapped &&
+            if (AlternativeApplicationView.IsSnapped &&
                 !CanOpenInSnappedView)
             {
                 this.IsOpen = false;
@@ -639,7 +640,7 @@ namespace WinRTXamlToolkit.Controls
             else
             {
                 if (CanOpen &&
-                    (CanOpenInSnappedView || ApplicationView.Value != ApplicationViewState.Snapped))
+                    (CanOpenInSnappedView || !AlternativeApplicationView.IsSnapped))
                 {
                     IsOpen = true;
                 }

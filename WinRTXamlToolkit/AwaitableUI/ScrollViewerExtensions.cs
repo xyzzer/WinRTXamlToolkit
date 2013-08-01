@@ -30,7 +30,7 @@ namespace WinRTXamlToolkit.AwaitableUI
                 return;
 
 #if WIN81
-            if (!scrollViewer.ChangeView(null, offset, null, true))
+            if (!scrollViewer.ChangeView(null, offset, null))
             {
                 return;
             }

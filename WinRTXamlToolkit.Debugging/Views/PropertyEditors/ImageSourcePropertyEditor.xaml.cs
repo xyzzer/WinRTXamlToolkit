@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Threading.Tasks;
 using WinRTXamlToolkit.Debugging.ViewModels;
-using WinRTXamlToolkit.Imaging;
 using Windows.Storage.Pickers;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
 {
     public sealed partial class ImageSourcePropertyEditor : UserControl
     {
-        private bool _ignoreTextChange;
-
         #region Model
         /// <summary>
         /// Model Dependency Property
@@ -75,7 +69,6 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             if (bi != null &&
                 !string.IsNullOrEmpty(bi.UriSource.ToString()))
             {
-                _ignoreTextChange = true;
                 this.ValueTextBox.Text = bi.UriSource.ToString();
             }
         }
@@ -105,7 +98,6 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                     {
                         await bi.SetSourceAsync(stream);
                         this.Model.Value = bi;
-                        _ignoreTextChange = true;
                         this.ValueTextBox.Text = file.Path;
                     }
                 }

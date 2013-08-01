@@ -164,6 +164,9 @@
     <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml.cs">
       <DependentUpon>ButtonBaseExtensionsTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml.cs">
+      <DependentUpon>TextBoxFocusExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls.Extensions\MessageDialogExtensionsTestPage.xaml.cs">
       <DependentUpon>MessageDialogExtensionsTestPage.xaml</DependentUpon>
     </Compile>
@@ -375,6 +378,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

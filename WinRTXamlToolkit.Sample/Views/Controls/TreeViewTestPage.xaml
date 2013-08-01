@@ -42,6 +42,7 @@
             Text="TreeView Test"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
+        <!-- Below is what the control would look like without data binding -->
         <!--<xc:TreeView
             Grid.Row="1"
             Grid.Column="1"
@@ -87,7 +88,7 @@
                         Orientation="Horizontal">
                         <TextBlock
                             Text="{Binding Text}"
-                            Foreground="{StaticResource ApplicationForegroundThemeBrush}" />
+                            Foreground="Aquamarine" />
                         <Ellipse
                             VerticalAlignment="Center"
                             Margin="5"
@@ -96,12 +97,14 @@
                             Fill="{Binding Brush}" />
                     </StackPanel>
                 </DataTemplate>
+                
+                <!-- Below is what the template would look like in Silverlight Toolkit -->
                 <!--<data:HierarchicalDataTemplate
                     ItemsSource="{Binding Children}">
                     <StackPanel
                         Orientation="Horizontal">
-                        <TextBlock
-                            Text="{Binding Text}" />
+                            Text="{Binding Text}"
+                            Foreground="Aquamarine" />
                         <Ellipse
                             VerticalAlignment="Center"
                             Margin="5"

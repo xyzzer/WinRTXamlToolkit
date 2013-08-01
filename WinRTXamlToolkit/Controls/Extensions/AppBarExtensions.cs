@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿#if !WIN81
+using System.ComponentModel;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -168,3 +169,4 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
     }
 }
+#endif

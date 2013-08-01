@@ -54,9 +54,19 @@ namespace WinRTXamlToolkit.Composition
             var d2DDevice = new SharpDX.Direct2D1.Device(dxgiDevice);
             _d2DFactory = d2DDevice.Factory;
             _d2DDeviceContext = new SharpDX.Direct2D1.DeviceContext(d2DDevice, D2D.DeviceContextOptions.None);
-            _d2DDeviceContext.DotsPerInch = new DrawingSizeF(
-                Windows.Graphics.Display.DisplayProperties.LogicalDpi,
-                Windows.Graphics.Display.DisplayProperties.LogicalDpi);
+            _d2DDeviceContext.DotsPerInch = new DrawingSizeF(LogicalDpi, LogicalDpi);
+        }
+
+        public static float LogicalDpi
+        {
+            get
+            {
+#if WIN81
+                return Windows.Graphics.Display.DisplayInformation.GetForCurrentView().LogicalDpi;
+#else
+                return Windows.Graphics.Display.DisplayProperties.LogicalDpi;
+#endif
+            }
         }
 
         public WIC.ImagingFactory WicFactory
@@ -153,8 +163,8 @@ namespace WinRTXamlToolkit.Composition
                 new D2D.BitmapProperties1(
                     new D2D.PixelFormat(
                         Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),
-                        Windows.Graphics.Display.DisplayProperties.LogicalDpi,
-                        Windows.Graphics.Display.DisplayProperties.LogicalDpi,
+                        LogicalDpi,
+                        LogicalDpi,
                         D2D.BitmapOptions.Target));
 
             return renderTargetBitmap;
@@ -168,8 +178,8 @@ namespace WinRTXamlToolkit.Composition
                 new D2D.BitmapProperties1(
                     new D2D.PixelFormat(
                         SharpDX.DXGI.Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),
-                        Windows.Graphics.Display.DisplayProperties.LogicalDpi,
-                        Windows.Graphics.Display.DisplayProperties.LogicalDpi,
+                        LogicalDpi,
+                        LogicalDpi,
                         D2D.BitmapOptions.CpuRead | D2D.BitmapOptions.CannotDraw));
 
             return cpuReadBitmap;

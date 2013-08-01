@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using Windows.ApplicationModel.Search;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -205,6 +208,103 @@ namespace WinRTXamlToolkit.Controls.Extensions
             d.SetValue(PasswordAutoSelectOnFocusHandlerProperty, value);
         }
         #endregion
+
+        #region DisableSearchPaneOnFocus
+        /// <summary>
+        /// DisableSearchPaneOnFocus Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty DisableSearchPaneOnFocusProperty =
+            DependencyProperty.RegisterAttached(
+                "DisableSearchPaneOnFocus",
+                typeof(bool),
+                typeof(PasswordBoxFocusExtensions),
+                new PropertyMetadata(false, OnDisableSearchPaneOnFocusChanged));
+
+        /// <summary>
+        /// Gets the DisableSearchPaneOnFocus property. This dependency property 
+        /// indicates whether SearchPane.ShowOnKeyboardInput should be disabled when the control is focused.
+        /// </summary>
+        public static bool GetDisableSearchPaneOnFocus(DependencyObject d)
+        {
+            return (bool)d.GetValue(DisableSearchPaneOnFocusProperty);
+        }
+
+        /// <summary>
+        /// Sets the DisableSearchPaneOnFocus property. This dependency property 
+        /// indicates whether SearchPane.ShowOnKeyboardInput should be disabled when the control is focused.
+        /// </summary>
+        public static void SetDisableSearchPaneOnFocus(DependencyObject d, bool value)
+        {
+            d.SetValue(DisableSearchPaneOnFocusProperty, value);
+        }
+
+        /// <summary>
+        /// Handles changes to the DisableSearchPaneOnFocus property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnDisableSearchPaneOnFocusChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            bool newDisableSearchPaneOnFocus = (bool)d.GetValue(DisableSearchPaneOnFocusProperty);
+
+            var handler = GetPasswordDisableSearchPaneOnFocusHandler(d);
+
+            if (handler != null)
+            {
+                handler.Detach();
+                SetPasswordDisableSearchPaneOnFocusHandler(d, null);
+            }
+
+            if (newDisableSearchPaneOnFocus)
+            {
+                handler = new PasswordDisableSearchPaneOnFocusHandler((PasswordBox)d);
+                SetPasswordDisableSearchPaneOnFocusHandler(d, handler);
+            }
+        }
+        #endregion
+
+        #region PasswordDisableSearchPaneOnFocusHandler
+        /// <summary>
+        /// PasswordDisableSearchPaneOnFocusHandler Attached Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty PasswordDisableSearchPaneOnFocusHandlerProperty =
+            DependencyProperty.RegisterAttached(
+                "PasswordDisableSearchPaneOnFocusHandler",
+                typeof(PasswordDisableSearchPaneOnFocusHandler),
+                typeof(PasswordBoxFocusExtensions),
+                new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets the PasswordDisableSearchPaneOnFocusHandler property. This dependency property 
+        /// indicates the handler for the DisableSearchPaneOnFocus property.
+        /// There needs to be a separate attached object to avoid memory leaks.
+        /// This property should not be set manually - only in the OnDisableSearchPaneOnFocusChanged method..
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PasswordDisableSearchPaneOnFocusHandler GetPasswordDisableSearchPaneOnFocusHandler(DependencyObject d)
+        {
+            return (PasswordDisableSearchPaneOnFocusHandler)d.GetValue(PasswordDisableSearchPaneOnFocusHandlerProperty);
+        }
+
+        /// <summary>
+        /// Sets the PasswordDisableSearchPaneOnFocusHandler property. This dependency property 
+        /// indicates the handler for the DisableSearchPaneOnFocus property.
+        /// There needs to be a separate attached object to avoid memory leaks.
+        /// This property should not be set manually - only in the OnDisableSearchPaneOnFocusChanged method..
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetPasswordDisableSearchPaneOnFocusHandler(DependencyObject d, PasswordDisableSearchPaneOnFocusHandler value)
+        {
+            d.SetValue(PasswordDisableSearchPaneOnFocusHandlerProperty, value);
+        }
+        #endregion
     }
 
     /// <summary>
@@ -332,6 +432,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             _associatedObject.SelectAll();
         }
+
         /// <summary>
         /// Detaches this instance.
         /// </summary>
@@ -341,6 +442,88 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 return;
 
             _associatedObject.KeyUp -= AssociatedObjectOnGotFocus;
+            _associatedObject = null;
+        }
+    }
+
+    /// <summary>
+    /// Handler object type for the DisableSearchPaneOnFocus property.
+    /// </summary>
+    public class PasswordDisableSearchPaneOnFocusHandler
+    {
+        private PasswordBox _associatedObject;
+        private bool _searchPaneShowOnKeyboardInput;
+
+        private static bool? _isSearchEnabled;
+        public static bool IsSearchEnabled
+        {
+            get
+            {
+                if (_isSearchEnabled == null)
+                {
+                    try
+                    {
+                        _isSearchEnabled = SearchPane.GetForCurrentView() != null;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        Debug.WriteLine("Checking for Search capability throws exceptions when the capability is missing. To avoid it set WinRTXamlToolkit.Controls.Extensions.PasswordDisableSearchPaneOnFocusHandler.IsSearchEnabled explicitly before WinRTXamlToolkit.Controls.Extensions.PasswordBoxFocusExtensions.DisableSearchPaneOnFocus behavior is applied.");
+                        _isSearchEnabled = false;
+                    }
+                }
+
+                return _isSearchEnabled.Value;
+            }
+            set
+            {
+                _isSearchEnabled = value;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordDisableSearchPaneOnFocusHandler"/> class.
+        /// </summary>
+        /// <param name="associatedObject">The associated object.</param>
+        public PasswordDisableSearchPaneOnFocusHandler(PasswordBox associatedObject)
+        {
+            Attach(associatedObject);
+        }
+
+        private void Attach(PasswordBox associatedObject)
+        {
+            Detach();
+
+            if (!IsSearchEnabled)
+            {
+                return;
+            }
+
+            _associatedObject = associatedObject;
+            _associatedObject.GotFocus += AssociatedObjectOnGotFocus;
+            _associatedObject.LostFocus += AssociatedObjectOnLostFocus;
+        }
+
+        private void AssociatedObjectOnGotFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            _searchPaneShowOnKeyboardInput = SearchPane.GetForCurrentView().ShowOnKeyboardInput;
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+        }
+
+        private void AssociatedObjectOnLostFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = _searchPaneShowOnKeyboardInput;
+        }
+
+        /// <summary>
+        /// Detaches this instance.
+        /// </summary>
+        public void Detach()
+        {
+            if (_associatedObject == null)
+                return;
+
+            _associatedObject.GotFocus -= AssociatedObjectOnGotFocus;
+            _associatedObject.LostFocus -= AssociatedObjectOnLostFocus;
             _associatedObject = null;
         }
     }

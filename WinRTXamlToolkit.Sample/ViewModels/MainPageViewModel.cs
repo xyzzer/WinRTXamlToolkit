@@ -353,6 +353,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "TextBoxFocusExtensions",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TextBoxFocusExtensionsTestPage))),
+                    SampleType = SampleTypes.Extensions
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "TreeView",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TreeViewTestPage))),
                     SampleType = SampleTypes.Controls

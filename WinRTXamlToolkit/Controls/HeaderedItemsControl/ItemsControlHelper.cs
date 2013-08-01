@@ -41,7 +41,12 @@ namespace WinRTXamlToolkit.Controls
                 if (_itemsHost == null && ItemsControl != null && ItemsControl.ItemContainerGenerator != null)
                 {
                     // Get any live container
+#if WIN81
+                    DependencyObject container = ItemsControl.ContainerFromIndex(0);
+#else
                     DependencyObject container = ItemsControl.ItemContainerGenerator.ContainerFromIndex(0);
+#endif
+
                     if (container != null)
                     {
                         // Get the parent of the container

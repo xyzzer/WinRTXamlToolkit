@@ -949,7 +949,12 @@ namespace WinRTXamlToolkit.Controls
                         }
                     }
 
+#if WIN81
+                    int index = parent.IndexFromContainer(next);
+#else
                     int index = parent.ItemContainerGenerator.IndexFromContainer(next);
+#endif
+
                     int count = parent.Items.Count;
                     while (parent != null && next != null)
                     {
@@ -984,7 +989,11 @@ namespace WinRTXamlToolkit.Controls
                         index += up ? -1 : 1;
                         if (0 <= index && index < count)
                         {
+#if WIN81
+                            next = parent.ContainerFromIndex(index) as TreeViewItem;
+#else
                             next = parent.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
                         }
                         else if (parent == this)
                         {
@@ -1002,10 +1011,19 @@ namespace WinRTXamlToolkit.Controls
                                 if (parent != null)
                                 {
                                     count = parent.Items.Count;
+#if WIN81
+                                    index = parent.IndexFromContainer(oldParent) + (up ? -1 : 1);
+#else
                                     index = parent.ItemContainerGenerator.IndexFromContainer(oldParent) + (up ? -1 : 1);
+#endif
+
                                     if (0 <= index && index < count)
                                     {
+#if WIN81
+                                        next = parent.ContainerFromIndex(index) as TreeViewItem;
+#else
                                         next = parent.ItemContainerGenerator.ContainerFromIndex(index) as TreeViewItem;
+#endif
                                         break;
                                     }
                                     else if (parent == this)
@@ -1336,16 +1354,27 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         private void SelectFirstItem()
         {
-            TreeViewItem container = ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#if WIN81
+            TreeViewItem container = this.ContainerFromIndex(0) as TreeViewItem;
+#else
+            TreeViewItem container = this.ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#endif
+
             bool found = container != null;
             if (!found)
             {
                 container = SelectedContainer;
             }
 
+#if WIN81
             object item = found ?
-                ItemContainerGenerator.ItemFromContainer(container) :
+                this.ItemFromContainer(container) :
                 SelectedItem;
+#else
+            object item = found ?
+                this.ItemContainerGenerator.ItemFromContainer(container) :
+                SelectedItem;
+#endif
 
             ChangeSelection(item, container, found);
         }
@@ -1359,7 +1388,11 @@ namespace WinRTXamlToolkit.Controls
         private bool FocusFirstItem()
         {
             // Get the first item in the TreeView.
-            TreeViewItem item = ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#if WIN81
+            TreeViewItem item = this.ContainerFromIndex(0) as TreeViewItem;
+#else
+            TreeViewItem item = this.ItemContainerGenerator.ContainerFromIndex(0) as TreeViewItem;
+#endif
             return (item != null) ?
                 (item.IsEnabled && item.Focus(FocusState.Programmatic)) || item.FocusDown() :
                 false;
@@ -1373,7 +1406,12 @@ namespace WinRTXamlToolkit.Controls
         {
             for (int i = Items.Count - 1; i >= 0; i--)
             {
-                TreeViewItem item = ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem;
+#if WIN81
+                TreeViewItem item = this.ContainerFromIndex(i) as TreeViewItem;
+#else
+                TreeViewItem item = this.ItemContainerGenerator.ContainerFromIndex(i) as TreeViewItem;
+#endif
+
                 if (item != null && item.IsEnabled)
                 {
                     return item.FocusInto();

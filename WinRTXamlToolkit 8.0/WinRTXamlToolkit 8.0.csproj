@@ -164,11 +164,11 @@
     <Compile Include="..\WinRTXamlToolkit\AwaitableUI\StoryboardExtensions.cs">
       <Link>AwaitableUI\StoryboardExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\AwaitableUI\WebViewExtensions.cs">
-      <Link>AwaitableUI\WebViewExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\WinRTXamlToolkit\AwaitableUI\WriteableBitmapExtensions.cs">
       <Link>AwaitableUI\WriteableBitmapExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Common\AlternativeApplicationView.cs">
+      <Link>Common\AlternativeApplicationView.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Common\ImplicitDataTemplateSelector.cs">
       <Link>Common\ImplicitDataTemplateSelector.cs</Link>
@@ -443,9 +443,6 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\WebBrowser\WebBrowser.cs">
       <Link>Controls\WebBrowser\WebBrowser.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\WebViewExtensions.cs">
-      <Link>Controls\Extensions\WebViewExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\WrapPanel\OrientedSize.cs">
       <Link>Controls\WrapPanel\OrientedSize.cs</Link>
     </Compile>
@@ -599,6 +596,8 @@
     <Compile Include="..\WinRTXamlToolkit\Tools\TypeExtensions.cs">
       <Link>Tools\TypeExtensions.cs</Link>
     </Compile>
+    <Compile Include="AwaitableUI\WebViewExtensions 8.0.cs" />
+    <Compile Include="Controls\Extensions\WebViewExtensions 8.0.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xaml">

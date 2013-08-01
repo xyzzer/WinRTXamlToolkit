@@ -339,7 +339,7 @@
                                             Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame
                                                 KeyTime="0"
-                                                Value="{StaticResource ApplicationForegroundThemeBrush}" />
+                                                Value="{StaticResource TextBoxForegroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames
                                             Storyboard.TargetName="PART_AddressBar"
