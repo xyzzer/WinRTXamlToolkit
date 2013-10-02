@@ -55,14 +55,14 @@
         <Setter
             Property="FontSize"
             Value="12" />
-        <Setter
+        <!--<Setter
             Property="ItemContainerTransitions">
             <Setter.Value>
                 <TransitionCollection>
                     <RepositionThemeTransition />
                 </TransitionCollection>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
         <Setter
             Property="ItemsPanel">
             <Setter.Value>

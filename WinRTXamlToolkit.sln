@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
+VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit", "WinRTXamlToolkit\WinRTXamlToolkit.csproj", "{7B7966BE-213F-4B84-867D-2A0CCF61245F}"
 EndProject
@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56
 	ProjectSection(SolutionItems) = preProject
 		Nuget\NuGet.exe = Nuget\NuGet.exe
 		Nuget\NugetPackWinRTXAMLToolkit.cmd = Nuget\NugetPackWinRTXAMLToolkit.cmd
+		Nuget\pack.cmd = Nuget\pack.cmd
 		Nuget\push.cmd = Nuget\push.cmd
 		Nuget\WinRTXamlToolkit.Composition.nuspec = Nuget\WinRTXamlToolkit.Composition.nuspec
 		Nuget\WinRTXamlToolkit.Controls.Calendar.nuspec = Nuget\WinRTXamlToolkit.Controls.Calendar.nuspec
@@ -378,7 +379,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 		{D099828C-C0D9-4E63-B6C6-279841CFD19C} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 		{742397B6-DDD3-4620-88B6-339F41D9BD41} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 		{E82616CD-B1C8-4138-840E-10BB8DB6B24D} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
@@ -386,5 +386,6 @@ Global
 		{53ECEC80-C5EE-4412-B1A0-45C73FE702B3} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 		{74F2DF9F-B3A0-405B-961A-627EDF110B31} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 		{35FA4E66-0906-4A2F-BB91-CBD9C52D0C04} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9} = {1DDEF5D0-D126-4477-AAE6-9643E6787E14}
 	EndGlobalSection
 EndGlobal
