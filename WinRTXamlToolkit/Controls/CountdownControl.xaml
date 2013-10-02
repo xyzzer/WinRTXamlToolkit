@@ -27,12 +27,12 @@
                 InnerRadius="75"
                 Radius="100" />
         </Canvas>
-        
+
         <TextBlock
             x:Name="PART_Label"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Foreground="{StaticResource ApplicationForegroundThemeBrush}"
-            FontSize="48"/>
+            FontSize="48" />
     </Grid>
 </UserControl>

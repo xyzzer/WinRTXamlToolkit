@@ -46,5 +46,14 @@
                 Canvas.Left="-50"
                 Canvas.Top="-50"/>
         </Canvas>
+        <!-- TODO: This ProgressRing is a temporary workaround for a Windows bug that prevents Storyboard.Completed events from firing. Remove when not necessary. -->
+        <ProgressRing
+            IsActive="True"
+            VerticalAlignment="Bottom"
+            Opacity="0"
+            Width="100"
+            Height="100"
+            Grid.Column="1"
+            Grid.Row="1" />
     </Grid>
 </controls:AlternativePage>

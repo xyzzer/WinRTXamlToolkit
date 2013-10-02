@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.IO.Extensions;
 using Windows.Devices.Enumeration;
@@ -858,6 +859,20 @@ namespace WinRTXamlToolkit.Controls
                 OnCameraFailed(null, null);
                 return null;
             }
+
+            //using (var stream = await photoFile.OpenStreamForWriteAsync())
+            //using (var yas = stream.AsRandomAccessStream())
+            //{
+            //    try
+            //    {
+            //        await MediaCapture.CapturePhotoToStreamAsync(imageEncodingProperties, yas);
+            //    }
+            //    catch
+            //    {
+            //        OnCameraFailed(null, null);
+            //        return null;
+            //    }
+            //}
 
             return photoFile;
         }

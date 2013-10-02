@@ -22,9 +22,23 @@ namespace WinRTXamlToolkit.Sample.Views
             var toggleButton = (ToggleButton)sender;
             var styleName = (string)toggleButton.Content;
             var style = this.Resources[styleName] as Style;
+
             if (style != null &&
                 tvDataBound != null)
+            {
                 tvDataBound.Style = style;
+
+#if WIN81
+                if (toggleButton == MouseThemeRadioButton)
+                {
+                    tvDataBound.RequestedTheme = ElementTheme.Light;
+                }
+                else
+                {
+                    tvDataBound.RequestedTheme = ElementTheme.Default;
+                }
+#endif
+            }
         }
     }
 }

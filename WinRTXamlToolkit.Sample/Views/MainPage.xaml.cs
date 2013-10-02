@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Search;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.Controls;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -27,7 +28,11 @@ namespace WinRTXamlToolkit.Sample.Views
         protected override async Task OnNavigatedFrom(AlternativeNavigationEventArgs e)
         {
             await base.OnNavigatedFrom(e);
-            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+
+            if (DisableSearchPaneOnFocusHandler.IsSearchEnabled)
+            {
+                SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+            }
         }
 #pragma warning restore 1998
 

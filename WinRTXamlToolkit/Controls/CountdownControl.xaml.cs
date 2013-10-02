@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
@@ -90,6 +91,8 @@ namespace WinRTXamlToolkit.Controls
 
                 if (grow)
                 {
+                    ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "grow");
+
                     var da = new DoubleAnimation
                     {
                         From = 0d,
@@ -99,6 +102,7 @@ namespace WinRTXamlToolkit.Controls
                     };
 
                     sb.Children.Add(da);
+                    sb.RepeatBehavior = new RepeatBehavior(1);
 
                     // Workaround for a problem animating custom dependency properties
                     //PART_RingSlice.SetBinding(
@@ -111,6 +115,8 @@ namespace WinRTXamlToolkit.Controls
                 }
                 else
                 {
+                    ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "shrink");
+
                     var da = new DoubleAnimation
                     {
                         From = 0d,
@@ -120,6 +126,7 @@ namespace WinRTXamlToolkit.Controls
                     };
 
                     sb.Children.Add(da);
+                    sb.RepeatBehavior = new RepeatBehavior(1);
 
                     //PART_RingSlice.SetBinding(
                     //   RingSlice.StartAngleProperty,
@@ -131,7 +138,10 @@ namespace WinRTXamlToolkit.Controls
                 }
 
                 PART_Label.Text = this.Seconds.ToString();
+                
+                ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "before animation");
                 await sb.BeginAsync();
+                ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "after animation");
 
                 if (grow)
                 {
@@ -152,7 +162,9 @@ namespace WinRTXamlToolkit.Controls
 
             if (this.CountdownComplete != null)
             {
+                ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "before countdowncomplete");
                 CountdownComplete(this, new RoutedEventArgs());
+                ////Debug.WriteLine(DateTime.Now.ToString("mm:ss.ffff") + "after countdowncomplete");
             }
 
             _countingDown = false;

@@ -46,7 +46,7 @@ namespace WinRTXamlToolkit.Sample.Views
             var file = await TestedControl.CapturePhotoToStorageFileAsync(ApplicationData.Current.TemporaryFolder);
             var bi = new BitmapImage();
 
-            IRandomAccessStreamWithContentType stream;
+            IRandomAccessStreamWithContentType stream = null;
 
             try
             {
@@ -55,6 +55,7 @@ namespace WinRTXamlToolkit.Sample.Views
                     TimeSpan.FromSeconds(0.5),
                     10,
                     true);
+                await bi.SetSourceAsync(stream);
             }
             catch (Exception ex)
             {
@@ -65,8 +66,14 @@ namespace WinRTXamlToolkit.Sample.Views
 
                 return;
             }
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
 
-            bi.SetSource(stream);
             PhotoImage.Source = bi;
             CapturedVideoElement.Visibility = Visibility.Collapsed;
             PhotoImage.Visibility = Visibility.Visible;

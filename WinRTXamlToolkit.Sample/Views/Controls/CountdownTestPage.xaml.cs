@@ -1,20 +1,24 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
     public sealed partial class CountdownTestPage : WinRTXamlToolkit.Controls.AlternativePage
     {
+        private bool _isLoaded;
+
         public CountdownTestPage()
         {
             this.InitializeComponent();
             this.Loaded += CountdownTestPage_Loaded;
+            this.Unloaded += (s, e) => _isLoaded = false;
         }
 
         private async void CountdownTestPage_Loaded(object sender, RoutedEventArgs e)
         {
-            while (true)
+            _isLoaded = true;
+
+            while (_isLoaded)
             {
                 myCountdownControl.Visibility = Visibility.Visible;
                 await myCountdownControl.StartCountdownAsync(3);

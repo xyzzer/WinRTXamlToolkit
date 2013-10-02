@@ -11,6 +11,20 @@
     mc:Ignorable="d">
     <xc:AlternativePage.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary
+                    x:Key="Light">
+                    <SolidColorBrush
+                        x:Key="TextBrush"
+                        Color="MediumAquamarine" />
+                </ResourceDictionary>
+                <ResourceDictionary
+                    x:Key="Dark">
+                    <SolidColorBrush
+                        x:Key="TextBrush"
+                        Color="Aquamarine" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xaml" />
@@ -88,7 +102,7 @@
                         Orientation="Horizontal">
                         <TextBlock
                             Text="{Binding Text}"
-                            Foreground="Aquamarine" />
+                            Foreground="{StaticResource TextBrush}" />
                         <Ellipse
                             VerticalAlignment="Center"
                             Margin="5"
@@ -122,6 +136,7 @@
             Grid.Row="1"
             Orientation="Horizontal">
             <RadioButton
+                x:Name="TouchThemeRadioButton"
                 Content="TouchTreeViewStyle"
                 Checked="ToggleButton_OnChecked"
                 HorizontalAlignment="Left"
@@ -129,6 +144,7 @@
                 Style="{StaticResource TextRadioButtonStyle}"
                 IsChecked="True" />
             <RadioButton
+                x:Name="MouseThemeRadioButton"
                 Content="MouseTreeViewStyle"
                 Checked="ToggleButton_OnChecked"
                 HorizontalAlignment="Left"
