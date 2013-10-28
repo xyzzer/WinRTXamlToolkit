@@ -147,6 +147,12 @@
                         Style="{StaticResource SmallNumericUpDownStyle}" />
                 </StackPanel>
             </controls:WrapPanel>
+            <TextBox
+                x:Name="TextInput"
+                FontSize="12"
+                GotFocus="TextInput_OnGotFocus"
+                LostFocus="TextInput_OnLostFocus"
+                KeyDown="TextInput_OnKeyDown"/>
             <StackPanel
                 Orientation="Horizontal">
                 <Button

@@ -1,6 +1,7 @@
 ﻿//#define CascadingTextBlock_REPEATFOREVER
 using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.Foundation;
 using Windows.UI;
@@ -664,6 +665,12 @@ namespace WinRTXamlToolkit.Controls
         public CascadingTextBlock()
         {
             InitializeComponent();
+
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
+
             this.Loaded += this.OnCascadingTextBlockLoaded;
         }
 

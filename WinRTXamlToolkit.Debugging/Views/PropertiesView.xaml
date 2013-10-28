@@ -330,6 +330,10 @@
                         Value="{Binding Value}" />
                 </DataTemplate>
                 <DataTemplate
+                    x:Key="FontWeightPropertyEditor">
+                    <propertyEditors:FontWeightPropertyEditor />
+                </DataTemplate>
+                <DataTemplate
                     x:Key="StringPropertyEditor">
                     <propertyEditors:StringPropertyEditor />
                 </DataTemplate>

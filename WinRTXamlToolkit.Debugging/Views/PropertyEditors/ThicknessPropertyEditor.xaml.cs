@@ -1,4 +1,6 @@
-﻿using WinRTXamlToolkit.Debugging.ViewModels;
+﻿using Windows.System;
+using Windows.UI.Xaml.Input;
+using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -133,7 +135,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.NumericUpDownTop.Value = thickness.Top;
             this.NumericUpDownRight.Value = thickness.Right;
             this.NumericUpDownBottom.Value = thickness.Bottom;
-
+            this.UpdateTextInput(thickness);
             var dpvm = model as DependencyPropertyViewModel;
 
             if (dpvm != null &&
@@ -146,6 +148,20 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             }
 
             _readingValue = false;
+        }
+
+        private void UpdateTextInput(Thickness thickness)
+        {
+            this.TextInput.Text =
+                thickness.Left == thickness.Right &&
+                thickness.Left == thickness.Top &&
+                thickness.Left == thickness.Bottom
+                    ? thickness.Left.ToString("F3")
+                    : thickness.Left == thickness.Right &&
+                      thickness.Top == thickness.Bottom
+                        ? string.Format("{0:F3},{1:F3}", thickness.Left, thickness.Top)
+                        : string.Format("{0:F3},{1:F3},{2:F3},{3:F3}", thickness.Left, thickness.Top, thickness.Right,
+                            thickness.Bottom);
         }
 
         private void OnNumericUpDownValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -161,7 +177,96 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             var bottom = this.NumericUpDownBottom.Value;
 
             var model = (BasePropertyViewModel)this.Model;
-            model.Value = new Thickness(left, top, right, bottom);
+            var thickness = new Thickness(left, top, right, bottom);
+            this.UpdateTextInput(thickness);
+            model.Value = thickness;
+        }
+
+        private void TextInput_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!this.TryUpdateModelFromTextInput())
+            {
+                this.CancelTextInput();
+            }
+        }
+
+        private bool TryUpdateModelFromTextInput()
+        {
+            var text = this.TextInput.Text;
+            var values = text.Split(',');
+
+            if (values.Length == 1)
+            {
+                double v;
+
+                if (double.TryParse(values[0], out v))
+                {
+                    var model = (BasePropertyViewModel)this.Model;
+                    var thickness = new Thickness(v);
+                    model.Value = thickness;
+
+                    return true;
+                }
+            }
+            else if (values.Length == 2)
+            {
+                double left, top;
+
+                if (double.TryParse(values[0], out left) &&
+                    double.TryParse(values[1], out top))
+                {
+                    var model = (BasePropertyViewModel)this.Model;
+                    var thickness = new Thickness(left, top, left, top);
+                    model.Value = thickness;
+
+                    return true;
+                }
+            }
+            else if (values.Length == 4)
+            {
+                double left, top, right, bottom;
+
+                if (double.TryParse(values[0], out left) &&
+                    double.TryParse(values[1], out top) &&
+                    double.TryParse(values[2], out right) &&
+                    double.TryParse(values[3], out bottom))
+                {
+                    var model = (BasePropertyViewModel)this.Model;
+                    var thickness = new Thickness(left, top, right, bottom);
+                    model.Value = thickness;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void TextInput_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            this.TextInput.SelectAll();
+        }
+
+        private void TextInput_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                this.TryUpdateModelFromTextInput();
+                this.TextInput.SelectAll();
+            }
+            else if (e.Key == VirtualKey.Escape)
+            {
+                this.CancelTextInput();
+            }
+        }
+
+        private void CancelTextInput()
+        {
+            var model = (BasePropertyViewModel)this.Model;
+            var thickness = (Thickness)model.Value;
+            this.UpdateTextInput(thickness);
+            this.TextInput.SelectionStart = 0;
+            this.TextInput.SelectionLength = 0;
         }
     }
 }
