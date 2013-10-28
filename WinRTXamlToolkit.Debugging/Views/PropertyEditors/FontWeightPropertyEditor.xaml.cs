@@ -29,6 +29,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.InitializeComponent();
             this.fontWeights = PopulateFontWeights();
             this.Loaded += OnLoaded;
+#if WIN81
             this.DataContextChanged += FontWeightPropertyEditor_DataContextChanged;
         }
 
@@ -36,10 +37,15 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         {
             var vm = (BasePropertyViewModel)this.DataContext;
             this.combo.SelectedItem = this.fontWeights.First(fw => fw.FontWeight.Weight == ((FontWeight)vm.Value).Weight);
+#endif
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+#if !WIN81
+            var vm = (BasePropertyViewModel)this.DataContext;
+            this.combo.SelectedItem = this.fontWeights.First(fw => fw.FontWeight.Weight == ((FontWeight)vm.Value).Weight);
+#endif
         }
 
         private List<NamedFontWeight> PopulateFontWeights()

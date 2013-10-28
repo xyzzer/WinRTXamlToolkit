@@ -509,6 +509,9 @@
     <Compile Include="..\WinRTXamlToolkit\Interactivity\Interaction.cs">
       <Link>Interactivity\Interaction.cs</Link>
     </Compile>
+    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StorageItemExtensions.cs">
+      <Link>IO\Extensions\StorageItemExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\WinRTXamlToolkit\Licensing\LicenseHelper.cs">
       <Link>Licensing\LicenseHelper.cs</Link>
     </Compile>
@@ -541,9 +544,6 @@
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\IO\ScaledImageFile.cs">
       <Link>IO\ScaledImageFile.cs</Link>
-    </Compile>
-    <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StorageFileExtensions.cs">
-      <Link>IO\Extensions\StorageFileExtensions.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\IO\Extensions\StorageFolderExtensions.cs">
       <Link>IO\Extensions\StorageFolderExtensions.cs</Link>
@@ -710,10 +710,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\WinRTXamlToolkit\Themes\Generic.xaml">
-      <Link>Themes\Generic.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
   <ItemGroup>

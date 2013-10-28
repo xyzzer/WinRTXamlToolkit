@@ -12,6 +12,7 @@ namespace WinRTXamlToolkit.Controls
         private Image _backgroundFxImage;
         private Image _foregroundFxImage;
         private ContentPresenter _contentPresenter;
+        private Grid _renderedGrid;
 
         public FxContentControl()
         {
@@ -24,13 +25,14 @@ namespace WinRTXamlToolkit.Controls
             _backgroundFxImage = this.GetTemplateChild("BackgroundFxImage") as Image;
             _foregroundFxImage = this.GetTemplateChild("ForegroundFxImage") as Image;
             _contentPresenter = this.GetTemplateChild("ContentPresenter") as ContentPresenter;
+            _renderedGrid = this.GetTemplateChild("RenderedGrid") as Grid;
 
-            if (_contentPresenter != null)
+            if (_renderedGrid != null)
             {
-                _contentPresenter.SizeChanged += this.OnContentPresenterSizeChanged;
+                _renderedGrid.SizeChanged += this.OnContentPresenterSizeChanged;
             }
 
-            if (_contentPresenter.ActualHeight > 0)
+            if (_renderedGrid.ActualHeight > 0)
             {
                 await this.UpdateFx();
             }
@@ -49,14 +51,14 @@ namespace WinRTXamlToolkit.Controls
         private async Task UpdateBackgroundFx()
         {
             ////await Task.Delay(1000);
-            if (_contentPresenter.ActualHeight < 1 ||
+            if (_renderedGrid.ActualHeight < 1 ||
                 _backgroundFxImage == null)
             {
                 return;
             }
 
             var rtb = new RenderTargetBitmap();
-            await rtb.RenderAsync(_contentPresenter);
+            await rtb.RenderAsync(_renderedGrid);
 
             var pw = rtb.PixelWidth;
             var ph = rtb.PixelHeight;

@@ -173,6 +173,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="..\WinRTXamlToolkit.Debugging\Views\PropertyEditors\FontWeightPropertyEditor.xaml">
+      <Link>Views\PropertyEditors\FontWeightPropertyEditor.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\WinRTXamlToolkit.Debugging\Views\PropertyEditors\ImageSourcePropertyEditor.xaml">
       <Link>Views\PropertyEditors\ImageSourcePropertyEditor.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -305,6 +310,10 @@
     <Compile Include="..\WinRTXamlToolkit.Debugging\Views\PropertyEditors\EnumPropertyEditor.xaml.cs">
       <Link>Views\PropertyEditors\EnumPropertyEditor.xaml.cs</Link>
       <DependentUpon>EnumPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Debugging\Views\PropertyEditors\FontWeightPropertyEditor.xaml.cs">
+      <Link>Views\PropertyEditors\FontWeightPropertyEditor.xaml.cs</Link>
+      <DependentUpon>FontWeightPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit.Debugging\Views\PropertyEditors\ImageSourcePropertyEditor.xaml.cs">
       <Link>Views\PropertyEditors\ImageSourcePropertyEditor.xaml.cs</Link>

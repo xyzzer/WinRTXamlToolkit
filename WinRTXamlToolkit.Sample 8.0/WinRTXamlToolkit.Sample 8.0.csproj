@@ -337,10 +337,6 @@
       <Link>Views\Controls.Extensions\ListViewExtensionsTestPage.xaml.cs</Link>
       <DependentUpon>ListViewExtensionsTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit.Sample\Views\MainPage.xaml.cs">
-      <Link>Views\MainPage.xaml.cs</Link>
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="..\WinRTXamlToolkit.Sample\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -377,6 +373,9 @@
     </Compile>
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -674,11 +673,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="..\WinRTXamlToolkit.Sample\Views\MainPage.xaml">
-      <Link>Views\MainPage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="..\WinRTXamlToolkit.Sample\Views\Controls\RingSliceTestPage.xaml">
       <Link>Views\Controls\RingSliceTestPage.xaml</Link>
       <SubType>Designer</SubType>
@@ -721,6 +715,10 @@
     <Page Include="AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

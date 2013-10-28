@@ -22,14 +22,29 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <ContentPresenter
-                            x:Name="ContentPresenter"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            ContentTransitions="{TemplateBinding ContentTransitions}"
-                            Content="{TemplateBinding Content}"
+                        <Grid
+                            x:Name="RenderedGrid"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <!--<TextBlock
+                                Text="WinRT XAML Toolkit Tests"
+                                VerticalAlignment="Top"
+                                LineHeight="120"
+                                FontSize="60"
+                                FontWeight="Thin">
+                                <TextBlock.RenderTransform>
+                                    <TranslateTransform
+                                        X="20"
+                                        Y="10" />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>-->
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
                         <Image
                             x:Name="ForegroundFxImage"
                             Stretch="None"
