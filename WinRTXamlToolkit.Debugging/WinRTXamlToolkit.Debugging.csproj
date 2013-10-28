@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PropertyEditors\FontWeightPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PropertyEditors\BooleanPropertyEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +217,9 @@
     <Compile Include="Views\EditablePropertyTemplateSelector.cs" />
     <Compile Include="Views\PropertiesView.xaml.cs">
       <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\FontWeightPropertyEditor.xaml.cs">
+      <DependentUpon>FontWeightPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyEditors\BooleanPropertyEditor.xaml.cs">
       <DependentUpon>BooleanPropertyEditor.xaml</DependentUpon>

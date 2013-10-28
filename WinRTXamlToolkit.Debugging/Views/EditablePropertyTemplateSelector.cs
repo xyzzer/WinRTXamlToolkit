@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Windows.UI.Text;
 using WinRTXamlToolkit.Debugging.Controls;
 using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
@@ -94,6 +95,11 @@ namespace WinRTXamlToolkit.Debugging.Views
                         propertyViewModel.Value != null)
                     {
                         return (DataTemplate)this.Resources["DependencyObjectPropertyEditor"];
+                    }
+
+                    if (type == typeof (FontWeight))
+                    {
+                        return (DataTemplate)this.Resources["FontWeightPropertyEditor"];
                     }
 
                     return (DataTemplate)this.Resources["DefaultPropertyEditor"];

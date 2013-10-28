@@ -181,6 +181,7 @@
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
     <Compile Include="Controls\Extensions\Forms\TextBoxFocusExtensions.cs" />
     <Compile Include="Controls\Extensions\VisualStateExtensions.cs" />
+    <Compile Include="Controls\FxContentControl\FxContentControl.cs" />
     <Compile Include="Controls\LayoutTransformControl.cs" />
     <Compile Include="Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="Controls\Extensions\AnimationHelper.cs" />
@@ -252,6 +253,10 @@
     <Compile Include="Imaging\ColorExtensions.cs" />
     <Compile Include="Imaging\PixelMath.cs" />
     <Compile Include="Imaging\WriteableBitmapColorPickerExtensions.cs" />
+    <Compile Include="Input\Key.cs" />
+    <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\KeyCommand.cs" />
+    <Compile Include="Input\KeyCommandCollection.cs" />
     <Compile Include="Interactivity\Behavior.cs" />
     <Compile Include="Interactivity\BehaviorCollection.cs" />
     <Compile Include="Interactivity\BehaviorOfT.cs" />
@@ -325,6 +330,11 @@
     <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FxContentControl\FxContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\ImageButton\ImageButton.xaml">
       <Generator>MSBuild:Compile</Generator>
