@@ -261,6 +261,7 @@
     <Compile Include="Interactivity\BehaviorCollection.cs" />
     <Compile Include="Interactivity\BehaviorOfT.cs" />
     <Compile Include="Interactivity\Interaction.cs" />
+    <Compile Include="IO\Extensions\StorageItemExtensions.cs" />
     <Compile Include="Licensing\LicenseHelper.cs" />
     <Compile Include="Net\WebHelper.cs" />
     <Compile Include="Tools\EnumExtensions.cs" />
@@ -272,7 +273,6 @@
     <Compile Include="Imaging\WriteableBitmapLightenExtension.cs" />
     <Compile Include="Imaging\WriteableBitmapLoadExtensions.cs" />
     <Compile Include="IO\ScaledImageFile.cs" />
-    <Compile Include="IO\Extensions\StorageFileExtensions.cs" />
     <Compile Include="IO\Extensions\StorageFolderExtensions.cs" />
     <Compile Include="IO\Extensions\StringIOExtensions.cs" />
     <Compile Include="IO\Extensions\FileNameMimeContentConversion.cs" />

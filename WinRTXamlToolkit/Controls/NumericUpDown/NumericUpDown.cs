@@ -592,13 +592,13 @@ namespace WinRTXamlToolkit.Controls
             else
                 _unusedManipulationDelta = delta;
 
-            if (this.Value == this.Maximum && _unusedManipulationDelta > 0)
+            if (_unusedManipulationDelta <= 0 && this.Value == this.Minimum)
             {
                 _unusedManipulationDelta = 0;
                 return;
             }
 
-            if (this.Value == this.Minimum && _unusedManipulationDelta < 0)
+            if (_unusedManipulationDelta >= 0 && this.Value == this.Maximum)
             {
                 _unusedManipulationDelta = 0;
                 return;
@@ -613,18 +613,6 @@ namespace WinRTXamlToolkit.Controls
             else
             {
                 smallerScreenDimension = 768;
-            }
-
-            if (_unusedManipulationDelta <= 0 && this.Value == this.Minimum)
-            {
-                _unusedManipulationDelta = 0;
-                return;
-            }
-
-            if (_unusedManipulationDelta >= 0 && this.Value == this.Maximum)
-            {
-                _unusedManipulationDelta = 0;
-                return;
             }
 
             var speed = this.DragSpeed;
