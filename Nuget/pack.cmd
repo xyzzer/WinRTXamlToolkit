@@ -37,13 +37,13 @@ mkdir content\controllers
 set NUGET_PLATFORM=netcore45
 set FOLDER_SUFFIX= 8.0\
 set XAML_EXT=.xaml
-@CALL :COPY_FILES
+@CALL :COPY_FILES || GOTO :REPORT_ERROR
 
 @echo Copying Windows 8.1 build
 set NUGET_PLATFORM=netcore451
 set FOLDER_SUFFIX=\
 set XAML_EXT=.xbf
-@CALL :COPY_FILES
+@CALL :COPY_FILES || GOTO :REPORT_ERROR
 
 @GOTO :PACK_FILES
 
@@ -57,11 +57,11 @@ mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl"
-mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl""
+if "%NUGET_PLATFORM%" NEQ "netcore45" (mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl")
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog"
-mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButt"on
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
@@ -116,7 +116,7 @@ copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ColorPicker\*%XAML_
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomAppBar\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomGridSplitter\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\DelayedLoadControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\FxContentControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl" || GOTO :REPORT_ERROR
+if "%NUGET_PLATFORM%" NEQ "netcore45" (copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\FxContentControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl" || GOTO :REPORT_ERROR)
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageToggleButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\InputDialog\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog" || GOTO :REPORT_ERROR
@@ -176,3 +176,4 @@ nuget pack "WinRTXamlToolkit.Debugging.nuspec"
 
 :REPORT_ERROR
 @ECHO Error, see the last command executed.
+pause
