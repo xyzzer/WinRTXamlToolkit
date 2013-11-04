@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:common="using:WinRTXamlToolkit.Common"
+    xmlns:views="using:WinRTXamlToolkit.Sample.Views"
     mc:Ignorable="d"
     DataContext="{Binding MainPage, Source={StaticResource Locator}}"
     NavigationCacheMode="Required">

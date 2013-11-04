@@ -45,10 +45,21 @@ namespace WinRTXamlToolkit.Controls
 
         private async Task UpdateFx()
         {
-            await this.UpdateBackgroundFx();
+            if (_renderedGrid.ActualHeight < 1 ||
+                _backgroundFxImage == null ||
+                _foregroundFxImage == null)
+            {
+                return;
+            }
+
+            var rtb = new RenderTargetBitmap();
+            await rtb.RenderAsync(_renderedGrid);
+
+            await this.UpdateBackgroundFx(rtb);
+            await this.UpdateForegroundFx(rtb);
         }
 
-        private async Task UpdateBackgroundFx()
+        private async Task UpdateBackgroundFx(RenderTargetBitmap rtb)
         {
             ////await Task.Delay(1000);
             if (_renderedGrid.ActualHeight < 1 ||
@@ -56,9 +67,6 @@ namespace WinRTXamlToolkit.Controls
             {
                 return;
             }
-
-            var rtb = new RenderTargetBitmap();
-            await rtb.RenderAsync(_renderedGrid);
 
             var pw = rtb.PixelWidth;
             var ph = rtb.PixelHeight;
@@ -72,12 +80,38 @@ namespace WinRTXamlToolkit.Controls
                 wb = new WriteableBitmap(pw, ph);
             }
 
-            await ProcessContentImage(rtb, wb, pw, ph);
+            await ProcessBackgroundImage(rtb, wb, pw, ph);
 
             _backgroundFxImage.Source = wb;
         }
 
-        protected virtual async Task ProcessContentImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        private async Task UpdateForegroundFx(RenderTargetBitmap rtb)
+        {
+            ////await Task.Delay(1000);
+            if (_renderedGrid.ActualHeight < 1 ||
+                _foregroundFxImage == null)
+            {
+                return;
+            }
+
+            var pw = rtb.PixelWidth;
+            var ph = rtb.PixelHeight;
+
+            var wb = _foregroundFxImage.Source as WriteableBitmap;
+
+            if (wb == null ||
+                wb.PixelWidth != pw ||
+                wb.PixelHeight != ph)
+            {
+                wb = new WriteableBitmap(pw, ph);
+            }
+
+            await ProcessForegroundImage(rtb, wb, pw, ph);
+
+            _foregroundFxImage.Source = wb;
+        }
+
+        protected virtual async Task ProcessBackgroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
             var rtbBuffer = await rtb.GetPixelsAsync();
             var rtbPixels = rtbBuffer.GetPixels();
@@ -94,7 +128,6 @@ namespace WinRTXamlToolkit.Controls
                     int x1max = Math.Min(x + expansion, pw - 1);
                     int y1min = Math.Max(0, y - expansion);
                     int y1max = Math.Min(y + expansion, ph - 1);
-                    //bool found = false;
                     byte maxa = 0;
 
                     for (int x1 = x1min; x1 <= x1max; x1++)
@@ -111,6 +144,10 @@ namespace WinRTXamlToolkit.Controls
                 }
 
             wbPixels.UpdateFromBytes();
+        }
+
+        protected virtual async Task ProcessForegroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        {
         }
     }
 }

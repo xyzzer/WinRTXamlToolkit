@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20807.1
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit", "WinRTXamlToolkit\WinRTXamlToolkit.csproj", "{7B7966BE-213F-4B84-867D-2A0CCF61245F}"
 EndProject
@@ -12,7 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56-4BA6-472F-A56E-DEF2DBB2D62E}"
 	ProjectSection(SolutionItems) = preProject
 		Nuget\NuGet.exe = Nuget\NuGet.exe
-		Nuget\NugetPackWinRTXAMLToolkit.cmd = Nuget\NugetPackWinRTXAMLToolkit.cmd
 		Nuget\pack.cmd = Nuget\pack.cmd
 		Nuget\push.cmd = Nuget\push.cmd
 		Nuget\WinRTXamlToolkit.Composition.nuspec = Nuget\WinRTXamlToolkit.Composition.nuspec

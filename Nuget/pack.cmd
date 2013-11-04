@@ -57,6 +57,7 @@ mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl""
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog"
@@ -115,6 +116,7 @@ copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ColorPicker\*%XAML_
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomAppBar\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomGridSplitter\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\DelayedLoadControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\FxContentControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageToggleButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\InputDialog\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog" || GOTO :REPORT_ERROR

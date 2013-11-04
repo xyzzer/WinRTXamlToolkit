@@ -19,6 +19,7 @@
                         <Image
                             x:Name="BackgroundFxImage"
                             Stretch="None"
+                            IsHitTestVisible="False"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -27,18 +28,6 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <!--<TextBlock
-                                Text="WinRT XAML Toolkit Tests"
-                                VerticalAlignment="Top"
-                                LineHeight="120"
-                                FontSize="60"
-                                FontWeight="Thin">
-                                <TextBlock.RenderTransform>
-                                    <TranslateTransform
-                                        X="20"
-                                        Y="10" />
-                                </TextBlock.RenderTransform>
-                            </TextBlock>-->
                             <ContentPresenter
                                 x:Name="ContentPresenter"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -48,6 +37,7 @@
                         <Image
                             x:Name="ForegroundFxImage"
                             Stretch="None"
+                            IsHitTestVisible="False"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />

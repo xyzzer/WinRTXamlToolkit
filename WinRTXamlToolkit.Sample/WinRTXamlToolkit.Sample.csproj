@@ -163,6 +163,7 @@
     <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml.cs">
       <DependentUpon>ParallaxBackgroundBehaviorTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BlurFxContentControl.cs" />
     <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml.cs">
       <DependentUpon>ButtonBaseExtensionsTestPage.xaml</DependentUpon>
     </Compile>
