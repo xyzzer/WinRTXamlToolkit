@@ -68,39 +68,33 @@ namespace WinRTXamlToolkit.Debugging
         {
         }
 
-        [Conditional("DEBUG")]
         public static void Show()
         {
             Instance._popup.IsOpen = true;
         }
 
-        [Conditional("DEBUG")]
         public static void ShowLog()
         {
             Show();
             _instance._debugConsoleView.ShowLog();
         }
 
-        [Conditional("DEBUG")]
         public static void ShowVisualTree(UIElement element = null)
         {
             Show();
             _instance._debugConsoleView.ShowVisualTree(element);
         }
 
-        [Conditional("DEBUG")]
         public static void Hide()
         {
             Instance._popup.IsOpen = false;
         }
 
-        [Conditional("DEBUG")]
         public static void Expand()
         {
             Instance._debugConsoleView.Expand();
         }
 
-        [Conditional("DEBUG")]
         public static void Collapse()
         {
             Instance._debugConsoleView.Collapse();
@@ -112,19 +106,16 @@ namespace WinRTXamlToolkit.Debugging
             _debugConsoleView.Height = Window.Current.Bounds.Height;
         }
 
-        [Conditional("DEBUG")]
         public static void Trace(string format, params object[] args)
         {
             Instance.TraceInternal(format, args);
         }
 
-        [Conditional("DEBUG")]
         public static void Trace(string message)
         {
             Instance.TraceInternal(message);
         }
 
-        [Conditional("DEBUG")]
         public static void Clear()
         {
             Instance.ClearInternal();
@@ -143,7 +134,7 @@ namespace WinRTXamlToolkit.Debugging
                             args));
                 _debugConsoleView.Append(line);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 var line =
                     string.Format(
@@ -179,11 +170,10 @@ namespace WinRTXamlToolkit.Debugging
     {
         private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
 
-        [Conditional("DEBUG")]
         public static void TraceLocalized(
-            string message = "Checkpoint", 
-            [CallerMemberName] string methodName = "", 
-            [CallerFilePath] string filePath = "", 
+            string message = "Checkpoint",
+            [CallerMemberName] string methodName = "",
+            [CallerFilePath] string filePath = "",
             [CallerLineNumber] int lineNumber = -1)
         {
             DebugConsoleOverlay.Trace(
@@ -195,7 +185,6 @@ namespace WinRTXamlToolkit.Debugging
                     message));
         }
 
-        [Conditional("DEBUG")]
         public static void TraceLocalized(
             object value,
             [CallerMemberName] string methodName = "",
@@ -211,7 +200,6 @@ namespace WinRTXamlToolkit.Debugging
                     (value ?? "<null>").ToString()));
         }
 
-        [Conditional("DEBUG")]
         public static void TraceMemoryCheckPoint(
             string message,
             [CallerMemberName] string methodName = "",
@@ -230,25 +218,21 @@ namespace WinRTXamlToolkit.Debugging
                     message));
         }
 
-        [Conditional("DEBUG")]
         public static void Trace(string format, params object[] args)
         {
             DebugConsoleOverlay.Trace(format, args);
         }
 
-        [Conditional("DEBUG")]
         public static void Trace(string message)
         {
             DebugConsoleOverlay.Trace(message);
         }
 
-        [Conditional("DEBUG")]
         public static void Trace(object value)
         {
             DebugConsoleOverlay.Trace((value ?? "<null>").ToString());
         }
 
-        [Conditional("DEBUG")]
         public static void TraceInterval(string message = null)
         {
             var now = DateTime.Now;
@@ -279,43 +263,36 @@ namespace WinRTXamlToolkit.Debugging
             }
         }
 
-        [Conditional("DEBUG")]
         public static void Clear()
         {
             DebugConsoleOverlay.Clear();
         }
 
-        [Conditional("DEBUG")]
         public static void Hide()
         {
             DebugConsoleOverlay.Hide();
         }
 
-        [Conditional("DEBUG")]
         public static void Show()
         {
             DebugConsoleOverlay.Show();
         }
 
-        [Conditional("DEBUG")]
         public static void ShowLog()
         {
             DebugConsoleOverlay.ShowLog();
         }
 
-        [Conditional("DEBUG")]
         public static void ShowVisualTree(UIElement element = null)
         {
             DebugConsoleOverlay.ShowVisualTree(element);
         }
 
-        [Conditional("DEBUG")]
         public static void Expand()
         {
             DebugConsoleOverlay.Expand();
         }
 
-        [Conditional("DEBUG")]
         public static void Collapse()
         {
             DebugConsoleOverlay.Collapse();

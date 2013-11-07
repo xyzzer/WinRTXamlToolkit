@@ -10,7 +10,7 @@ msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlTo
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge 8.0\WinRTXamlToolkit.Controls.Gauge 8.0.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization 8.0\WinRTXamlToolkit.Controls.DataVisualization 8.0.csproj" || GOTO :REPORT_ERROR
 @rem msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample 8.0\WinRTXamlToolkit.Sample 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug "..\WinRTXamlToolkit.Debugging 8.0\WinRTXamlToolkit.Debugging 8.0.csproj" || GOTO :REPORT_ERROR
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging 8.0\WinRTXamlToolkit.Debugging 8.0.csproj" || GOTO :REPORT_ERROR
 
 @echo Building Windows 8.1 projects
 set VisualStudioVersion=12.0
@@ -20,7 +20,7 @@ msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlTo
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj" || GOTO :REPORT_ERROR
 @rem msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Debug "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj" || GOTO :REPORT_ERROR
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj" || GOTO :REPORT_ERROR
 
 :CREATE_FOLDER_STRUCTURE
 @rem Base folder structure
@@ -106,7 +106,7 @@ copy "..\WinRTXamlToolkit.Composition%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit
 copy "..\WinRTXamlToolkit.Controls.Calendar%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.Calendar.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Controls.Gauge%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\AlternativeFrame\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame" || GOTO :REPORT_ERROR
@@ -157,10 +157,10 @@ copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\T
 
 copy "..\WinRTXamlToolkit.Controls.Gauge%FOLDER_SUFFIX%bin\Release\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\Themes" || GOTO :REPORT_ERROR
 
-copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Controls\EditableListBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls\EditableListBox" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Themes" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Views\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Debug\Views\PropertyEditors\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views\PropertyEditors" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\Controls\EditableListBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls\EditableListBox" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\Themes\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Themes" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\Views\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\Views\PropertyEditors\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views\PropertyEditors" || GOTO :REPORT_ERROR
 @rem copy "..\src\SomePowershellScript.ps1 tools || GOTO :REPORT_ERROR
 @GOTO :EOF
 

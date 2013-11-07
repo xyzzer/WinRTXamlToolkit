@@ -7,7 +7,6 @@
 // </summary>
 //-----------------------------------------------------------------------
 
-#if DEBUG
 namespace WinRTXamlToolkit.Debugging
 {
 #if NETFX_CORE
@@ -994,4 +993,3 @@ namespace WinRTXamlToolkit.Debugging
         #endregion
     }
 }
-#endif
