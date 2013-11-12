@@ -44,6 +44,14 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         private Calendar _owner;
 
+        public SelectedDatesCollection(Calendar owner, IEnumerable<DateTime> collection) : base(collection)
+        {
+            _owner = owner;
+            _addedItems = new List<object>();
+            //TODO: See if it is needed
+            //_dispatcherThread = Thread.CurrentThread;
+        }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:WinRTXamlToolkit.Controls.SelectedDatesCollection" />
@@ -55,6 +63,7 @@ namespace WinRTXamlToolkit.Controls
         /// </param>
         public SelectedDatesCollection(Calendar owner)
         {
+            
             _owner = owner;
             _addedItems = new List<object>();
             //TODO: See if it is needed

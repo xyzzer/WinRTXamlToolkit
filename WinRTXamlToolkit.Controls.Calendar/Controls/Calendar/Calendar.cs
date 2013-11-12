@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using System.Collections.ObjectModel;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -1530,6 +1531,29 @@ namespace WinRTXamlToolkit.Controls
             BlackoutDates = new CalendarBlackoutDatesCollection(this);
             SelectedDates = new SelectedDatesCollection(this);
             RemovedItems = new List<object>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> class.
+        /// </summary>
+        public Calendar(ObservableCollection<DateTime> selectedDates)
+        {
+            DefaultStyleKey = typeof(Calendar);
+            UpdateDisplayDate(this, this.DisplayDate, DateTime.MinValue);
+            GotFocus += new RoutedEventHandler(Calendar_GotFocus);
+            LostFocus += new RoutedEventHandler(Calendar_LostFocus);
+            IsEnabledChanged += new DependencyPropertyChangedEventHandler(OnIsEnabledChanged);
+            PointerReleased += new PointerEventHandler(Calendar_PointerReleased);
+            BlackoutDates = new CalendarBlackoutDatesCollection(this);
+            SelectedDates = new SelectedDatesCollection(this, selectedDates);
+            RemovedItems = new List<object>();
+        }
+
+        public void SetSelectedDatesCollection(ObservableCollection<DateTime> selectedDates)
+        {
+            var sdc = new SelectedDatesCollection(this, selectedDates);
+            this.SelectedDates = sdc;
         }
 
         /// <summary>
