@@ -264,6 +264,7 @@
     <Compile Include="IO\Extensions\StorageItemExtensions.cs" />
     <Compile Include="Licensing\LicenseHelper.cs" />
     <Compile Include="Net\WebHelper.cs" />
+    <Compile Include="Tools\Calculator.cs" />
     <Compile Include="Tools\EnumExtensions.cs" />
     <Compile Include="Imaging\WriteableBitmapDarkenExtension.cs" />
     <Compile Include="Imaging\WriteableBitmapGrayscaleExtension.cs" />
