@@ -13,5 +13,30 @@ namespace WinRTXamlToolkit.UnitTests
             Assert.AreEqual(Key.Parse(" "), VirtualKey.Space);
             Assert.AreEqual(Key.Parse("Control"), VirtualKey.Control);
         }
+
+        [TestMethod]
+        public void KeyGesture_Parse()
+        {
+            var cordGesture = KeyGesture.Parse("Ctrl+D");
+            Assert.AreEqual(cordGesture.Count, 1);
+            Assert.AreEqual(cordGesture[0].Count, 2);
+            Assert.AreEqual(cordGesture[0][0], VirtualKey.Control);
+            Assert.AreEqual(cordGesture[0][1], VirtualKey.D);
+
+            var threeKeyCordGesture = KeyGesture.Parse("Ctrl+Shift+D");
+            Assert.AreEqual(threeKeyCordGesture.Count, 1);
+            Assert.AreEqual(threeKeyCordGesture[0].Count, 3);
+            Assert.AreEqual(threeKeyCordGesture[0][0], VirtualKey.Control);
+            Assert.AreEqual(threeKeyCordGesture[0][1], VirtualKey.Shift);
+            Assert.AreEqual(threeKeyCordGesture[0][2], VirtualKey.D);
+
+            var doubleCordGesture = KeyGesture.Parse("Ctrl+S,D");
+            Assert.AreEqual(doubleCordGesture.Count, 2);
+            Assert.AreEqual(doubleCordGesture[0].Count, 2);
+            Assert.AreEqual(doubleCordGesture[0][0], VirtualKey.Control);
+            Assert.AreEqual(doubleCordGesture[0][1], VirtualKey.S);
+            Assert.AreEqual(doubleCordGesture[1].Count, 1);
+            Assert.AreEqual(doubleCordGesture[1][0], VirtualKey.D);
+        }
     }
 }

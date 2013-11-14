@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Windows.System;
 
@@ -43,6 +44,10 @@ namespace WinRTXamlToolkit.Input
 
     public class KeyCombination : List<VirtualKey>
     {
+        public override string ToString()
+        {
+            return string.Join("+", this.Select(vk => vk.ToString()));
+        }
     }
 
     public class KeyGesture : List<KeyCombination>
@@ -52,6 +57,11 @@ namespace WinRTXamlToolkit.Input
             Key,
             Combine,
             Separator
+        }
+
+        public override string ToString()
+        {
+            return string.Join(",", this.Select(c => c.ToString()));
         }
 
         public static KeyGesture Parse(string keyGestureString)
@@ -80,38 +90,34 @@ namespace WinRTXamlToolkit.Input
                 {
                     var c = keyGestureString[i];
 
-                    switch (state)
+                    if (c == '+')
                     {
-                        case ParserStates.Key:
-                            if (c == '+')
-                            {
-                                if (combination == null)
-                                {
-                                    combination = new KeyCombination();
-                                }
+                        if (combination == null)
+                        {
+                            combination = new KeyCombination();
+                        }
 
-                                combination.Add(Key.Parse(keyGestureString.Substring(start, i - start)));
+                        combination.Add(Key.Parse(keyGestureString.Substring(start, i - start)));
 
-                                start = i + 1;
-                                state = ParserStates.Combine;
-                            }
-                            else if (c == ',')
-                            {
-                                gesture.Add(combination);
-                                combination = null;
-                                state = ParserStates.Separator;
-                            }
-                            break;
-                        case ParserStates.Combine:
-                            state = ParserStates.Key;
-                            break;
-                        case ParserStates.Separator:
-                            state = ParserStates.Key;
-                            break;
+                        start = i + 1;
+                    }
+                    else if (c == ',')
+                    {
+                        if (combination == null)
+                        {
+                            combination = new KeyCombination();
+                        }
+
+                        combination.Add(Key.Parse(keyGestureString.Substring(start, i - start)));
+
+                        start = i + 1;
+
+                        gesture.Add(combination);
+                        combination = null;
                     }
                 }
 
-                if (state == ParserStates.Key)
+                if (start < keyGestureString.Length)
                 {
                     if (combination == null)
                     {
