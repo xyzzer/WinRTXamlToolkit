@@ -285,6 +285,7 @@ namespace WinRTXamlToolkit.Controls
                 _valueTextBox.Text = Value.ToString();
                 _valueTextBox.TextChanged += OnValueTextBoxTextChanged;
                 _valueTextBox.KeyDown += OnValueTextBoxKeyDown;
+                _valueTextBox.PointerExited += OnValueTextBoxPointerExited;
             }
 
             if (_dragOverlay != null)
@@ -665,9 +666,18 @@ namespace WinRTXamlToolkit.Controls
         private void OnDragOverlayTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             if (this.IsEnabled &&
-                _valueTextBox != null)
+                _valueTextBox != null &&
+                _valueTextBox.IsTabStop)
             {
                 _valueTextBox.Focus(FocusState.Programmatic);
+                Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.IBeam, 0);
+            }
+        }
+        private void OnValueTextBoxPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (Window.Current.CoreWindow.PointerCursor.Type == CoreCursorType.IBeam)
+            {
+                Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, 0);
             }
         }
 
