@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Devices.Input;
 using Windows.Foundation;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using WinRTXamlToolkit.Tools;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -282,6 +284,7 @@ namespace WinRTXamlToolkit.Controls
                 _valueTextBox.GotFocus += OnValueTextBoxGotFocus;
                 _valueTextBox.Text = Value.ToString();
                 _valueTextBox.TextChanged += OnValueTextBoxTextChanged;
+                _valueTextBox.KeyDown += OnValueTextBoxKeyDown;
             }
 
             if (_dragOverlay != null)
@@ -359,20 +362,43 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnValueTextBoxTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
+            UpdateValueFromText();
+        }
+
+        private void OnValueTextBoxKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                if (UpdateValueFromText())
+                {
+                    UpdateValueText();
+                    _valueTextBox.SelectAll();
+                }
+            }
+        }
+
+        private bool UpdateValueFromText()
+        {
             if (_isChangingTextWithCode)
             {
-                return;
+                return false;
             }
 
             double val;
 
-            if (double.TryParse(_valueTextBox.Text, NumberStyles.Any, CultureInfo.CurrentUICulture, out val))
+            if (double.TryParse(_valueTextBox.Text, NumberStyles.Any, CultureInfo.CurrentUICulture, out val) ||
+                Calculator.TryCalculate(_valueTextBox.Text, out val))
             {
                 _isChangingValueWithCode = true;
                 SetValueAndUpdateValidDirections(val);
                 _isChangingValueWithCode = false;
+
+                return true;
             }
+
+            return false;
         }
+
         #endregion
 
         #region Button event handlers
@@ -413,6 +439,8 @@ namespace WinRTXamlToolkit.Controls
             {
                 _dragOverlay.IsHitTestVisible = false;
             }
+
+            _valueTextBox.SelectAll();
         }
 
         private void OnValueTextBoxLostFocus(object sender, RoutedEventArgs routedEventArgs)

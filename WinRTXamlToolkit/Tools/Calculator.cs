@@ -54,15 +54,15 @@ namespace WinRTXamlToolkit.Tools
         /// Supported symbols are +-*/%^().
         /// No error checking currently other than what double.Parse() used internally does.
         /// </remarks>
-        /// <param name="formula">The string that specifies the formula.</param>
+        /// <param name="expression">The string that specifies the expression.</param>
         /// <returns>Result of the calculation.</returns>
-        public static double Calculate(string formula)
+        public static double Calculate(string expression)
         {
-            formula = formula.Replace(" ", "");
+            expression = expression.Replace(" ", "");
             var stack = new Stack<Operation>();
 
             int start = 0;
-            int length = formula.Length;
+            int length = expression.Length;
             int parentheses = 0;
             bool valueStarted = false;
 
@@ -73,13 +73,13 @@ namespace WinRTXamlToolkit.Tools
 
             for (int i = 0; i < length; i++)
             {
-                var c = formula[i];
+                var c = expression[i];
 
                 if (c >= '0' && c <= '9' || // digit
                     c == decimalSeparator ||
                     c == groupSeparator ||
                     c == currencySymbol ||
-                    c == '-' && i == start && (i + 1 < length && formula[i + 1] >= '0' && formula[i + 1] <= '9') // leading negation
+                    c == '-' && i == start && (i + 1 < length && expression[i + 1] >= '0' && expression[i + 1] <= '9') // leading negation
                     )
                 {
                     if (c != '-')
@@ -97,7 +97,7 @@ namespace WinRTXamlToolkit.Tools
                 // value complete
                 if (i + 1 == length)
                 {
-                    var value = valueStarted ? double.Parse(formula.Substring(start)) : 0;
+                    var value = valueStarted ? double.Parse(expression.Substring(start)) : 0;
 
                     while (stack.Count > 0)
                     {
@@ -108,8 +108,7 @@ namespace WinRTXamlToolkit.Tools
                 }
                 else
                 {
-                    var value = valueStarted ? double.Parse(formula.Substring(start, i - start)) : 0;
-                    valueStarted = false;
+                    var value = valueStarted ? double.Parse(expression.Substring(start, i - start)) : 0;
                     start = i + 1;
                     Func<double, double, double> func = null;
 
@@ -146,17 +145,29 @@ namespace WinRTXamlToolkit.Tools
 
                             if (parentheses < 0)
                             {
-                                throw new FormatException(string.Format("Closing unopened parenthesis at position {0} in {1}.", i, formula));
+                                throw new FormatException(string.Format("Closing unopened parenthesis at position {0} in {1}.", i, expression));
                             }
 
                             stack.Push(new Operation(value, NumberFunc, parentheses));
                             break;
                         default:
-                            throw new FormatException(string.Format("{0} at position {1} is not an expected character in {2}", c, i, formula));
+                            throw new FormatException(string.Format("{0} at position {1} is not an expected character in {2}", c, i, expression));
                     }
 
                     if (func != null)
                     {
+                        if (i == length - 1 ||
+                            expression[i+1] == '+' ||
+                            expression[i+1] == '-' ||
+                            expression[i+1] == '*' ||
+                            expression[i+1] == '/' ||
+                            expression[i+1] == '%' ||
+                            expression[i+1] == '^' ||
+                            !valueStarted && stack.Count == 0)
+                        {
+                            throw new FormatException(string.Format("{0} at position {1} is not an expected character in {2}", expression[i+1], i+1, expression));
+                        }
+
                         while (
                             stack.Count > 0 &&
                             stack.Peek().Parentheses == parentheses &&
@@ -167,6 +178,8 @@ namespace WinRTXamlToolkit.Tools
 
                         stack.Push(new Operation(value, func, parentheses));
                     }
+
+                    valueStarted = false;
                 }
             }
 
@@ -180,16 +193,16 @@ namespace WinRTXamlToolkit.Tools
         /// Supported symbols are +-*/%^().
         /// No error checking currently other than what double.TryParse() used internally does.
         /// </remarks>
-        /// <param name="formula">The string that specifies the formula.</param>
+        /// <param name="expression">The string that specifies the expression.</param>
         /// <param name="result">The result.</param>
         /// <returns>True if calculation/parsing succeeded.</returns>
-        public static bool TryCalculate(string formula, out double result)
+        public static bool TryCalculate(string expression, out double result)
         {
-            formula = formula.Replace(" ", "");
+            expression = expression.Replace(" ", "");
             var stack = new Stack<Operation>();
 
             int start = 0;
-            int length = formula.Length;
+            int length = expression.Length;
             int parentheses = 0;
             bool valueStarted = false;
 
@@ -200,13 +213,13 @@ namespace WinRTXamlToolkit.Tools
 
             for (int i = 0; i < length; i++)
             {
-                var c = formula[i];
+                var c = expression[i];
 
                 if (c >= '0' && c <= '9' || // digit
                     c == decimalSeparator ||
                     c == groupSeparator ||
                     c == currencySymbol ||
-                    c == '-' && i == start && (i + 1 < length && formula[i + 1] >= '0' && formula[i + 1] <= '9') // leading negation
+                    c == '-' && i == start && (i + 1 < length && expression[i + 1] >= '0' && expression[i + 1] <= '9') // leading negation
                     )
                 {
                     if (c != '-')
@@ -228,7 +241,7 @@ namespace WinRTXamlToolkit.Tools
 
                     if (valueStarted)
                     {
-                        if (!double.TryParse(formula.Substring(start), out value))
+                        if (!double.TryParse(expression.Substring(start), out value))
                         {
                             result = double.NaN;
                             return false;
@@ -253,7 +266,7 @@ namespace WinRTXamlToolkit.Tools
 
                     if (valueStarted)
                     {
-                        if (!double.TryParse(formula.Substring(start, i - start), out value))
+                        if (!double.TryParse(expression.Substring(start, i - start), out value))
                         {
                             result = double.NaN;
                             return false;
@@ -264,7 +277,6 @@ namespace WinRTXamlToolkit.Tools
                         value = 0;
                     }
 
-                    valueStarted = false;
                     start = i + 1;
                     Func<double, double, double> func = null;
 
@@ -314,6 +326,19 @@ namespace WinRTXamlToolkit.Tools
 
                     if (func != null)
                     {
+                        if (i == length - 1 ||
+                            expression[i+1] == '+' ||
+                            expression[i+1] == '-' ||
+                            expression[i+1] == '*' ||
+                            expression[i+1] == '/' ||
+                            expression[i+1] == '%' ||
+                            expression[i+1] == '^' ||
+                            !valueStarted && stack.Count == 0)
+                        {
+                            result = double.NaN;
+                            return false;
+                        }
+
                         while (
                             stack.Count > 0 &&
                             stack.Peek().Parentheses == parentheses &&
@@ -324,6 +349,8 @@ namespace WinRTXamlToolkit.Tools
 
                         stack.Push(new Operation(value, func, parentheses));
                     }
+
+                    valueStarted = false;
                 }
             }
 

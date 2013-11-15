@@ -518,6 +518,9 @@
     <Compile Include="..\WinRTXamlToolkit\Net\WebHelper.cs">
       <Link>Net\WebHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\Calculator.cs">
+      <Link>Tools\Calculator.cs</Link>
+    </Compile>
     <Compile Include="..\WinRTXamlToolkit\Tools\EnumExtensions.cs">
       <Link>Tools\EnumExtensions.cs</Link>
     </Compile>
