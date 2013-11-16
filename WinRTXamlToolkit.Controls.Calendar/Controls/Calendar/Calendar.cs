@@ -1552,8 +1552,11 @@ namespace WinRTXamlToolkit.Controls
 
         public void SetSelectedDatesCollection(ObservableCollection<DateTime> selectedDates)
         {
+            //Replace the existing selected dates collection with a new user provided collection
             var sdc = new SelectedDatesCollection(this, selectedDates);
             this.SelectedDates = sdc;
+            //Update the control to display changes
+            this.UpdateMonths();
         }
 
         /// <summary>
