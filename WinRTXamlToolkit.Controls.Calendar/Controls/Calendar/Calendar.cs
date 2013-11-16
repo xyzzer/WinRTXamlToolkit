@@ -1533,24 +1533,8 @@ namespace WinRTXamlToolkit.Controls
             RemovedItems = new List<object>();
         }
 
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="T:WinRTXamlToolkit.Controls.Calendar" /> class.
-        /// </summary>
-        public Calendar(ObservableCollection<DateTime> selectedDates)
-        {
-            DefaultStyleKey = typeof(Calendar);
-            UpdateDisplayDate(this, this.DisplayDate, DateTime.MinValue);
-            GotFocus += new RoutedEventHandler(Calendar_GotFocus);
-            LostFocus += new RoutedEventHandler(Calendar_LostFocus);
-            IsEnabledChanged += new DependencyPropertyChangedEventHandler(OnIsEnabledChanged);
-            PointerReleased += new PointerEventHandler(Calendar_PointerReleased);
-            BlackoutDates = new CalendarBlackoutDatesCollection(this);
-            SelectedDates = new SelectedDatesCollection(this, selectedDates);
-            RemovedItems = new List<object>();
-        }
 
-        public void SetSelectedDatesCollection(ObservableCollection<DateTime> selectedDates)
+        public void ReplaceSelectedDatesCollection(ObservableCollection<DateTime> selectedDates)
         {
             //Replace the existing selected dates collection with a new user provided collection
             var sdc = new SelectedDatesCollection(this, selectedDates);

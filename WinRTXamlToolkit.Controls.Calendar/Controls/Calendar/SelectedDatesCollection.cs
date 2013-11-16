@@ -70,6 +70,7 @@ namespace WinRTXamlToolkit.Controls
             //_dispatcherThread = Thread.CurrentThread;
         }
 
+
         /// <summary>
         /// Adds all the dates in the specified range, which includes the first
         /// and last dates, to the collection.
