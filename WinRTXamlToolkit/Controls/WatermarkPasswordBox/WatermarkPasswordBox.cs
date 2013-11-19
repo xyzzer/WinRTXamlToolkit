@@ -368,13 +368,16 @@ namespace WinRTXamlToolkit.Controls
 
         private void UpdateWatermarkVisualState(bool isFocused, bool useTransitions = true)
         {
-            if (!isFocused && string.IsNullOrEmpty(_innerPasswordBox.Password))
+            if (_innerPasswordBox != null)
             {
-                VisualStateManager.GoToState(_innerPasswordBox, WatermarkVisibleStateName, useTransitions);
-            }
-            else
-            {
-                VisualStateManager.GoToState(_innerPasswordBox, WatermarkHiddenStateName, useTransitions);
+                if (!isFocused && string.IsNullOrEmpty(_innerPasswordBox.Password))
+                {
+                    VisualStateManager.GoToState(_innerPasswordBox, WatermarkVisibleStateName, useTransitions);
+                }
+                else
+                {
+                    VisualStateManager.GoToState(_innerPasswordBox, WatermarkHiddenStateName, useTransitions);
+                }
             }
         }
 
