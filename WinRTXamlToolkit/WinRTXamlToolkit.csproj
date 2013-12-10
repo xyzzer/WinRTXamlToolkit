@@ -288,6 +288,8 @@
     <Compile Include="Tools\BackgroundTimer.cs" />
     <Compile Include="Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="Tools\EnumerableExtensions.cs" />
+    <Compile Include="Tools\EventThrottler.cs" />
+    <Compile Include="Tools\EventThrottlerMultiThreaded.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />
     <Compile Include="Tools\TypeExtensions.cs" />
