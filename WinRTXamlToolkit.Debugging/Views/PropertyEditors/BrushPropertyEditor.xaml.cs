@@ -86,6 +86,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                 var bi = ib.ImageSource as BitmapImage;
 
                 if (bi != null &&
+                    bi.UriSource != null &&
                     !string.IsNullOrEmpty(bi.UriSource.ToString()))
                 {
                     _ignoreTextChange = true;

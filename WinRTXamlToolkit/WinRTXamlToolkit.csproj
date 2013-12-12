@@ -253,6 +253,7 @@
     <Compile Include="Imaging\ColorExtensions.cs" />
     <Compile Include="Imaging\PixelMath.cs" />
     <Compile Include="Imaging\WriteableBitmapColorPickerExtensions.cs" />
+    <Compile Include="Imaging\RenderTargetBitmapSaveExtensions.cs" />
     <Compile Include="Input\Key.cs" />
     <Compile Include="Input\Keyboard.cs" />
     <Compile Include="Input\KeyCommand.cs" />

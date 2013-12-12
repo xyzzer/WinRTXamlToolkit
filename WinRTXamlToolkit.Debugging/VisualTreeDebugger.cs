@@ -922,7 +922,8 @@ namespace WinRTXamlToolkit.Debugging
                     var bs = image.Source as BitmapSource;
                     var bi = image.Source as BitmapImage;
 
-                    if (bi != null)
+                    if (bi != null &&
+                        bi.UriSource != null)
                     {
                         Debug.WriteLine("\t\tSource.UriSource: {0}", bi.UriSource.OriginalString);
                     }

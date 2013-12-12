@@ -67,6 +67,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             var bi = newModel.Value as BitmapImage;
 
             if (bi != null &&
+                bi.UriSource != null &&
                 !string.IsNullOrEmpty(bi.UriSource.ToString()))
             {
                 this.ValueTextBox.Text = bi.UriSource.ToString();
