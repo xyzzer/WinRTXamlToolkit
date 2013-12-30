@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using System.Collections.ObjectModel;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -1530,6 +1531,16 @@ namespace WinRTXamlToolkit.Controls
             BlackoutDates = new CalendarBlackoutDatesCollection(this);
             SelectedDates = new SelectedDatesCollection(this);
             RemovedItems = new List<object>();
+        }
+
+
+        public void ReplaceSelectedDatesCollection(ObservableCollection<DateTime> selectedDates)
+        {
+            //Replace the existing selected dates collection with a new user provided collection
+            var sdc = new SelectedDatesCollection(this, selectedDates);
+            this.SelectedDates = sdc;
+            //Update the control to display changes
+            this.UpdateMonths();
         }
 
         /// <summary>
