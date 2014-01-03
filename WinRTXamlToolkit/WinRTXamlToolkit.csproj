@@ -161,6 +161,14 @@
     <Compile Include="Controls\AnimatingContainer.xaml.cs">
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AutoCompleteTextBoxControl\Algorithm\CommonSubstringSuggestion.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\Algorithm\IAutoCompletable.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\Algorithm\LevenshteinDistance.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\Algorithm\PrefixSuggestion.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\Algorithm\ScoredString.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\AutoCompleteTextBox.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\CustomListBox.cs" />
+    <Compile Include="Controls\AutoCompleteTextBoxControl\CustomListBoxItem.cs" />
     <Compile Include="Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
@@ -300,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Controls\AutoCompleteTextBoxControl\AutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\CameraCaptureControl\CameraCaptureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -406,6 +418,7 @@
   <ItemGroup>
     <None Include="Controls\Extensions\Forms\ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

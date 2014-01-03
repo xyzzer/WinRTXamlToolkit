@@ -35,6 +35,8 @@
             Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/AutoCompleteTextBoxControl/AutoCompleteTextBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <converters:NullableBoolToVisibilityConverter
@@ -46,5 +48,6 @@
 
     <converters:NullableBoolToBoolConverter
         x:Key="NullableBoolToBoolConverter" />
+
 </ResourceDictionary>
     
