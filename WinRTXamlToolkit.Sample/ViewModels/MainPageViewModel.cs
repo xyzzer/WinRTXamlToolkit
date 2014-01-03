@@ -295,6 +295,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "AutoCompleteTextBox",
+                    Command = new RelayCommand( () => AppShell.Frame.Navigate(typeof(AutoCompleteTextBoxTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "I/O",
                     Command = new RelayCommand(InputDialogAndStringIOTest),
                     SampleType = SampleTypes.Miscellaneous

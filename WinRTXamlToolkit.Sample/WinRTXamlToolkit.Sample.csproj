@@ -156,6 +156,8 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="ViewModels\ButtonViewModel.cs" />
     <Compile Include="ViewModels\Controls.Extensions\TextBoxValidationTestPageViewModel.cs" />
+    <Compile Include="ViewModels\Controls\AutoCompleteTextBoxTestsViewModel.cs" />
+    <Compile Include="ViewModels\Controls\FakeWordDictionary.cs" />
     <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -178,6 +180,9 @@
     </Compile>
     <Compile Include="Views\Controls\AnimatingContainerTestPage.xaml.cs">
       <DependentUpon>AnimatingContainerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AutoCompleteTextBoxTestPage.xaml.cs">
+      <DependentUpon>AutoCompleteTextBoxTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
       <DependentUpon>CalendarTestPage.xaml</DependentUpon>
@@ -400,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\AnimatingContainerTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AutoCompleteTextBoxTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
