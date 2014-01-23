@@ -14,13 +14,34 @@ using Windows.Foundation;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Defines types of transitions to use on a loaded image.
+    /// </summary>
     public enum ImageLoadedTransitionTypes
     {
+        /// <summary>
+        /// Image fades in when it loads.
+        /// </summary>
         FadeIn,
+        /// <summary>
+        /// Image slides up when it loads.
+        /// </summary>
         SlideUp,
+        /// <summary>
+        /// Image slides left when it loads.
+        /// </summary>
         SlideLeft,
+        /// <summary>
+        /// Image slides down when it loads.
+        /// </summary>
         SlideDown,
+        /// <summary>
+        /// Image slides right when it loads.
+        /// </summary>
         SlideRight,
+        /// <summary>
+        /// Image uses a random transition from all available ones when it loads.
+        /// </summary>
         Random
     }
 

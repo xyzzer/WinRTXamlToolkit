@@ -233,8 +233,8 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\WipeTransition.cs">
       <Link>Controls\AlternativeFrame\WipeTransition.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\AnimatingContainer.xaml.cs">
-      <Link>Controls\AnimatingContainer.xaml.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\AnimatingContainer\AnimatingContainer.xaml.cs">
+      <Link>Controls\AnimatingContainer\AnimatingContainer.xaml.cs</Link>
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Behaviors\ParallaxBackgroundBehavior.cs">
@@ -297,8 +297,8 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\VisualStateExtensions.cs">
       <Link>Controls\Extensions\VisualStateExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\LayoutTransformControl.cs">
-      <Link>Controls\LayoutTransformControl.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\LayoutTransformControl\LayoutTransformControl.cs">
+      <Link>Controls\LayoutTransformControl\LayoutTransformControl.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Data\HierarchicalDataTemplate.cs">
       <Link>Controls\Data\HierarchicalDataTemplate.cs</Link>
@@ -312,8 +312,8 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.cs">
       <Link>Controls\CameraCaptureControl\CameraCaptureControl.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock.xaml.cs">
-      <Link>Controls\CascadingTextBlock.xaml.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock\CascadingTextBlock.xaml.cs">
+      <Link>Controls\CascadingTextBlock\CascadingTextBlock.xaml.cs</Link>
       <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ContentControlExtensions.cs">
@@ -343,8 +343,8 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.cs">
       <Link>Controls\ImageToggleButton\ImageToggleButton.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\CountdownControl.xaml.cs">
-      <Link>Controls\CountdownControl.xaml.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\CountdownControl\CountdownControl.xaml.cs">
+      <Link>Controls\CountdownControl\CountdownControl.xaml.cs</Link>
       <DependentUpon>CountdownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\CustomAppBar\CustomAppBar.cs">
@@ -383,17 +383,17 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\AlternativeFrame\PageTransition.cs">
       <Link>Controls\AlternativeFrame\PageTransition.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\PieSlice.cs">
-      <Link>Controls\PieSlice.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\PieSlice\PieSlice.cs">
+      <Link>Controls\PieSlice\PieSlice.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\PropertyChangeEventSource.cs">
-      <Link>Controls\PropertyChangeEventSource.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Common\PropertyChangeEventSource.cs">
+      <Link>Controls\Common\PropertyChangeEventSource.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\RichTextBlockExtensions.cs">
       <Link>Controls\Extensions\RichTextBlockExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\WinRTXamlToolkit\Controls\RingSlice.cs">
-      <Link>Controls\RingSlice.cs</Link>
+    <Compile Include="..\WinRTXamlToolkit\Controls\RingSlice\RingSlice.cs">
+      <Link>Controls\RingSlice\RingSlice.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\TextBlockExtensions.cs">
       <Link>Controls\Extensions\TextBlockExtensions.cs</Link>
@@ -620,8 +620,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock.xaml">
-      <Link>Controls\CascadingTextBlock.xaml</Link>
+    <Page Include="..\WinRTXamlToolkit\Controls\CascadingTextBlock\CascadingTextBlock.xaml">
+      <Link>Controls\CascadingTextBlock\CascadingTextBlock.xaml</Link>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -630,8 +630,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\WinRTXamlToolkit\Controls\CountdownControl.xaml">
-      <Link>Controls\CountdownControl.xaml</Link>
+    <Page Include="..\WinRTXamlToolkit\Controls\CountdownControl\CountdownControl.xaml">
+      <Link>Controls\CountdownControl\CountdownControl.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -720,8 +720,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\WinRTXamlToolkit\Controls\AnimatingContainer.xaml">
-      <Link>Controls\AnimatingContainer.xaml</Link>
+    <Page Include="..\WinRTXamlToolkit\Controls\AnimatingContainer\AnimatingContainer.xaml">
+      <Link>Controls\AnimatingContainer\AnimatingContainer.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

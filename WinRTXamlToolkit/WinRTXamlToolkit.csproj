@@ -158,7 +158,7 @@
     <Compile Include="Controls\AlternativeFrame\Enums.cs" />
     <Compile Include="Controls\AlternativeFrame\WipeAnimation.cs" />
     <Compile Include="Controls\AlternativeFrame\WipeTransition.cs" />
-    <Compile Include="Controls\AnimatingContainer.xaml.cs">
+    <Compile Include="Controls\AnimatingContainer\AnimatingContainer.xaml.cs">
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
@@ -182,12 +182,12 @@
     <Compile Include="Controls\Extensions\Forms\TextBoxFocusExtensions.cs" />
     <Compile Include="Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="Controls\FxContentControl\FxContentControl.cs" />
-    <Compile Include="Controls\LayoutTransformControl.cs" />
+    <Compile Include="Controls\LayoutTransformControl\LayoutTransformControl.cs" />
     <Compile Include="Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="Controls\Extensions\AnimationHelper.cs" />
     <Compile Include="Controls\Extensions\AppBarExtensions.cs" />
     <Compile Include="Controls\CameraCaptureControl\CameraCaptureControl.cs" />
-    <Compile Include="Controls\CascadingTextBlock.xaml.cs">
+    <Compile Include="Controls\CascadingTextBlock\CascadingTextBlock.xaml.cs">
       <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Extensions\ContentControlExtensions.cs" />
@@ -199,7 +199,7 @@
     <Compile Include="Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
     <Compile Include="Controls\HeaderedItemsControl\ItemsControlHelper.cs" />
     <Compile Include="Controls\ImageToggleButton\ImageToggleButton.cs" />
-    <Compile Include="Controls\CountdownControl.xaml.cs">
+    <Compile Include="Controls\CountdownControl\CountdownControl.xaml.cs">
       <DependentUpon>CountdownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
@@ -214,10 +214,10 @@
     <Compile Include="Controls\Extensions\ListViewItemExtensions.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
     <Compile Include="Controls\AlternativeFrame\PageTransition.cs" />
-    <Compile Include="Controls\PieSlice.cs" />
-    <Compile Include="Controls\PropertyChangeEventSource.cs" />
+    <Compile Include="Controls\PieSlice\PieSlice.cs" />
+    <Compile Include="Controls\Common\PropertyChangeEventSource.cs" />
     <Compile Include="Controls\Extensions\RichTextBlockExtensions.cs" />
-    <Compile Include="Controls\RingSlice.cs" />
+    <Compile Include="Controls\RingSlice\RingSlice.cs" />
     <Compile Include="Controls\Extensions\TextBlockExtensions.cs" />
     <Compile Include="Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs" />
     <Compile Include="Controls\Extensions\Forms\FieldValidationExtensions.cs" />
@@ -256,8 +256,10 @@
     <Compile Include="Imaging\RenderTargetBitmapSaveExtensions.cs" />
     <Compile Include="Input\Key.cs" />
     <Compile Include="Input\Keyboard.cs" />
+    <Compile Include="Input\KeyCombination.cs" />
     <Compile Include="Input\KeyCommand.cs" />
     <Compile Include="Input\KeyCommandCollection.cs" />
+    <Compile Include="Input\KeyGesture.cs" />
     <Compile Include="Interactivity\Behavior.cs" />
     <Compile Include="Interactivity\BehaviorCollection.cs" />
     <Compile Include="Interactivity\BehaviorOfT.cs" />
@@ -310,7 +312,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\CascadingTextBlock.xaml">
+    <Page Include="Controls\CascadingTextBlock\CascadingTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,7 +320,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\CountdownControl.xaml">
+    <Page Include="Controls\CountdownControl\CountdownControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -396,7 +398,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\AnimatingContainer.xaml">
+    <Page Include="Controls\AnimatingContainer\AnimatingContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

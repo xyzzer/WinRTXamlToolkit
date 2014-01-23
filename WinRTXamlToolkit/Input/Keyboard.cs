@@ -1,10 +1,12 @@
 ﻿using Windows.System;
 using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Input
 {
+    /// <summary>
+    /// TODO: Keyboard helpers.
+    /// </summary>
     public static class Keyboard
     {
         static Keyboard()

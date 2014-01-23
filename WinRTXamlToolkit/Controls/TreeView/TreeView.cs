@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using WinRTXamlToolkit.Controls.Common;
 
 namespace WinRTXamlToolkit.Controls
 {

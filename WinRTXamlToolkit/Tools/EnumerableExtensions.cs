@@ -33,6 +33,12 @@ namespace WinRTXamlToolkit.Tools
             return ret;
         }
 
+        /// <summary>
+        /// Runs a specific action for each item in an enumeration.
+        /// </summary>
+        /// <typeparam name="T">Type of objects enumerated.</typeparam>
+        /// <param name="list">The enumeration.</param>
+        /// <param name="action">Action to invoke.</param>
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
             foreach (var item in list)

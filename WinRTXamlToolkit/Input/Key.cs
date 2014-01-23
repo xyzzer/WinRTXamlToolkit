@@ -6,6 +6,9 @@ using WinRTXamlToolkit.Tools;
 
 namespace WinRTXamlToolkit.Input
 {
+    /// <summary>
+    /// Defines a keyboard key.
+    /// </summary>
     public static class Key
     {
         private static readonly Dictionary<string, VirtualKey> KeyMap;

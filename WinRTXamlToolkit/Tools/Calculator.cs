@@ -4,6 +4,9 @@ using System.Globalization;
 
 namespace WinRTXamlToolkit.Tools
 {
+    /// <summary>
+    /// Implements Calculate and TryCalculate methods to evaluate simple arithmetic expressions.
+    /// </summary>
     public static class Calculator
     {
         private static Func<double, double, double> AddFunc = (d0, d1) => d0 + d1;

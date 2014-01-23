@@ -9,6 +9,11 @@ namespace WinRTXamlToolkit.IO.Extensions
     /// </summary>
     public static class StorageItemExtensions
     {
+        /// <summary>
+        /// Returns the free space of the storage associate with the given storage item.
+        /// </summary>
+        /// <param name="sf">Storage item</param>
+        /// <returns>Free space.</returns>
         public static async Task<UInt64> GetFreeSpace(this IStorageItem sf)
         {
             var properties = await sf.GetBasicPropertiesAsync();
@@ -40,6 +45,14 @@ namespace WinRTXamlToolkit.IO.Extensions
             return GetSizeString((ulong)sizeInB);
         }
 
+        /// <summary>
+        /// Gets the file size string given size in bytes.
+        /// </summary>
+        /// <param name="sizeInB">The size in B.</param>
+        /// <param name="promoteLimit">Specifies the number of units at which to promote to the next unit. Default is 1024. E.g. if the value is 1024 - for sizeInB of 1023 the result is 1023B, while for 1024 - 1kB.</param>
+        /// <param name="decimalLimit">Defines the minimum number of units for which to produce results without decimal places. For lower values - results will include decimal places. Default is 10 which yields 9.8kB or 9.9kB, but yields "10kB" for both 10240B and 11263B.</param>
+        /// <param name="separator">Separator between the value and the unit. Space by default. Typically should be either space or empty string.</param>
+        /// <returns>The string that specifies a size in B/kB/MB/GB/TB depending on the size in B.</returns>
         public static string GetSizeString(this ulong sizeInB, double promoteLimit = 1024, double decimalLimit = 10, string separator = " ")
         {
             if (sizeInB < promoteLimit)

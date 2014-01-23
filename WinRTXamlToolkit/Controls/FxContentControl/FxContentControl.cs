@@ -7,6 +7,9 @@ using WinRTXamlToolkit.Imaging;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// TODO: Control that applies shader effects to its content.
+    /// </summary>
     public class FxContentControl : ContentControl
     {
         private Image _backgroundFxImage;

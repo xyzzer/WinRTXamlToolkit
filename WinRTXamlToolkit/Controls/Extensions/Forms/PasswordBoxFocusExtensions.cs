@@ -455,6 +455,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private bool _searchPaneShowOnKeyboardInput;
 
         private static bool? _isSearchEnabled;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether search is currently enabled in the app.
+        /// </summary>
         public static bool IsSearchEnabled
         {
             get

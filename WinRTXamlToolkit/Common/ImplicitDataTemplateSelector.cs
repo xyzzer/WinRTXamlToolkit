@@ -13,6 +13,9 @@ namespace WinRTXamlToolkit.Common
     [ContentProperty(Name = "Resources")]
     public class ImplicitDataTemplateSelector : DataTemplateSelector
     {
+        /// <summary>
+        /// A resource dictionary that defines data templates to use with keys matching type names of the data items.
+        /// </summary>
         public ResourceDictionary Resources { get; set; }
 
         /// <summary>

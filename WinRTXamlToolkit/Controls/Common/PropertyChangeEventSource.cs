@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace WinRTXamlToolkit.Controls
+namespace WinRTXamlToolkit.Controls.Common
 {
     /// <summary>
     /// Allows raise an event when the value of a dependency property changes when a view model is otherwise not necessary.

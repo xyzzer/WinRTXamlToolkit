@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
+using WinRTXamlToolkit.Controls.Common;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -358,7 +359,7 @@ namespace WinRTXamlToolkit.Controls
         } 
         #endregion
 
-        #region TransformUpdated()
+        #region ProcessTransform()
         /// <summary>
         /// Processes the current transform to determine the corresponding 
         /// matrix.

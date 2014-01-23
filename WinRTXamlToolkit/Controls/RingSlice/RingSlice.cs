@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using WinRTXamlToolkit.Controls.Common;
 
 namespace WinRTXamlToolkit.Controls
 {

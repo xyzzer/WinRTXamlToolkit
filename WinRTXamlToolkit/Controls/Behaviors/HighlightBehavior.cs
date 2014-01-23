@@ -1,4 +1,5 @@
 ﻿using System;
+using WinRTXamlToolkit.Controls.Common;
 using WinRTXamlToolkit.Interactivity;
 using Windows.UI;
 using Windows.UI.Xaml;
