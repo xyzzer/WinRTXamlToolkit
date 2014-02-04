@@ -17,6 +17,7 @@ namespace WinRTXamlToolkit.UnitTests
         [TestMethod]
         public void KeyGesture_Parse()
         {
+            // TODO: Modify the code so that the Ctrl/Shift/Alt+ modifiers apply to a gesture rather than key command.
             var cordGesture = KeyGesture.Parse("Ctrl+D");
             Assert.AreEqual(cordGesture.Count, 1);
             Assert.AreEqual(cordGesture[0].Count, 2);

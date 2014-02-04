@@ -298,7 +298,9 @@
         <controls:InputDialog
             x:Name="GridHostedDialog"/>
         
-        <ContentControl>
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1">
             <controls:InputDialog
                 x:Name="ContentControlHostedDialog" />
         </ContentControl>
