@@ -750,6 +750,9 @@ namespace WinRTXamlToolkit.Controls
                 case 12:
                     parameter = parameterString;
                     break;
+                case 16:
+                    parameter = Guid.Parse(parameterString);
+                    break;
                 default:
                     throw new ArgumentException("Parsing JournalEntry failed - unknown parameter type.");
             }
@@ -891,6 +894,11 @@ namespace WinRTXamlToolkit.Controls
             if (journalEntry.Parameter is String)
             {
                 AddParameterToNavigationStateString(sb, 12, valueString);
+                return;
+            }
+            if (journalEntry.Parameter is Guid)
+            {
+                AddParameterToNavigationStateString(sb, 16, valueString);
             }
         } 
         #endregion
@@ -908,7 +916,6 @@ namespace WinRTXamlToolkit.Controls
                 sb.AppendFormat(",{0},{1},{2}", typeCode, length, valueString);
             }
         }
-
         #endregion
 
         #region OnApplyTemplate()
