@@ -4,6 +4,7 @@
 // All other rights reserved.
 
 using System;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
@@ -78,6 +79,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
         /// <param name="item">The item to display.</param>
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
+            //Debug.WriteLine("P: {0:20}: {1}", element.GetHashCode(), item.GetHashCode());
             base.PrepareContainerForItemOverride(element, item);
             if (null != PrepareContainerForItem)
             {
@@ -92,7 +94,16 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
         /// <param name="item">The item to display.</param>
         protected override void ClearContainerForItemOverride(DependencyObject element, object item)
         {
-            base.ClearContainerForItemOverride(element, item);
+            try
+            {
+                //Debug.WriteLine("C: {0:20}: {1}", element.GetHashCode(), item.GetHashCode());
+                base.ClearContainerForItemOverride(element, item);
+            }
+            catch (Exception ex)
+            {
+                // No clue why it would throw. ClearContainerForItemOverride is supposed to undo the effects of PrepareContainerForItemOverride and both are run in the correct order.
+                //Debug.WriteLine(ex.ToString());
+            }
             if (null != ClearContainerForItem)
             {
                 ClearContainerForItem(element, item);
