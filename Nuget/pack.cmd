@@ -51,9 +51,12 @@ set XAML_EXT=.xbf
 @rem WinRTXamlToolkit folders
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AnimatingContainer"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CameraCaptureControl"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingImageControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingTextBlock"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CountdownControl"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl"
@@ -109,11 +112,15 @@ copy "..\WinRTXamlToolkit.Controls.DataVisualization%FOLDER_SUFFIX%bin\Release\W
 copy "..\WinRTXamlToolkit.Controls.Gauge%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Debugging%FOLDER_SUFFIX%bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 
-copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls" || GOTO :REPORT_ERROR
+@rem this could work for all below: xcopy /E /Y "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
+@rem copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\AlternativeFrame\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\AnimatingContainer\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AnimatingContainer" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CameraCaptureControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CameraCaptureControl" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CascadingImageControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingImageControl" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CascadingTextBlock\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingTextBlock" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ColorPicker\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CountdownControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CountdownControl" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomAppBar\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\CustomGridSplitter\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\DelayedLoadControl\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl" || GOTO :REPORT_ERROR
