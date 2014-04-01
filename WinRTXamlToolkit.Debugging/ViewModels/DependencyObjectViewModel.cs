@@ -112,6 +112,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return new ObservableCollection<BasePropertyViewModel>();
                 }
 
+                var isPropertyNameFiltered = !string.IsNullOrEmpty(this.PropertyNameFilter);
+
                 // If there is an active name filter - display filtered properties
                 if (this.CurrentPropertyList != null &&
                     this.CurrentPropertyList.PropertyNames.Count > 0)
@@ -119,8 +121,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return
                         new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                             p =>
-                                (ShowDefaultedProperties || !p.IsDefault) &&
-                                (ShowReadOnlyProperties || !p.IsReadOnly) &&
+                                (isPropertyNameFiltered || ShowDefaultedProperties || !p.IsDefault) &&
+                                (isPropertyNameFiltered || ShowReadOnlyProperties || !p.IsReadOnly) &&
                                 this.CurrentPropertyList.PropertyNames.Contains(p.Name)));
                 }
 
@@ -134,8 +136,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 return
                     new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                         p =>
-                        (ShowDefaultedProperties || !p.IsDefault) &&
-                        (ShowReadOnlyProperties || !p.IsReadOnly)));
+                        (isPropertyNameFiltered || ShowDefaultedProperties || !p.IsDefault) &&
+                        (isPropertyNameFiltered || ShowReadOnlyProperties || !p.IsReadOnly)));
             }
         } 
         #endregion

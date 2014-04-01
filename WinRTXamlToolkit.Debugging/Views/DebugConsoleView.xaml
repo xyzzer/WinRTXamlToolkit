@@ -36,10 +36,10 @@
                     Value="{StaticResource ToggleButtonBorderThemeThickness}" />
                 <Setter
                     Property="Padding"
-                    Value="12,4,12,5" />
+                    Value="4,4,4,5" />
                 <Setter
                     Property="Margin"
-                    Value="5" />
+                    Value="0" />
                 <Setter
                     Property="HorizontalAlignment"
                     Value="Left" />
@@ -201,7 +201,7 @@
                                             x:Name="ContentPresenter"
                                             Text="&#xE1C2;"
                                             FontFamily="Segoe UI Symbol"
-                                            FontSize="24"
+                                            FontSize="18"
                                             HorizontalAlignment="Center"
                                             Margin="0"
                                             VerticalAlignment="Center" />
@@ -210,233 +210,7 @@
                                             Opacity="0"
                                             Text="&#xE192;"
                                             FontFamily="Segoe UI Symbol"
-                                            FontSize="24"
-                                            HorizontalAlignment="Center"
-                                            Margin="0"
-                                            VerticalAlignment="Center" />
-                                    </Grid>
-                                </Border>
-                                <Rectangle
-                                    x:Name="FocusVisualWhite"
-                                    IsHitTestVisible="False"
-                                    Opacity="0"
-                                    StrokeDashOffset="1.5"
-                                    StrokeEndLineCap="Square"
-                                    Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                                    StrokeDashArray="1,1" />
-                                <Rectangle
-                                    x:Name="FocusVisualBlack"
-                                    IsHitTestVisible="False"
-                                    Opacity="0"
-                                    StrokeDashOffset="0.5"
-                                    StrokeEndLineCap="Square"
-                                    Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                                    StrokeDashArray="1,1"
-                                    Margin="0,0,0,1" />
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <!-- CollapseButtonStyle (for DebugConsole) -->
-            <Style
-                x:Key="CollapseButtonStyle"
-                TargetType="ToggleButton">
-                <Setter
-                    Property="Background"
-                    Value="{StaticResource ToggleButtonBackgroundThemeBrush}" />
-                <Setter
-                    Property="Foreground"
-                    Value="{StaticResource ToggleButtonForegroundThemeBrush}" />
-                <Setter
-                    Property="BorderBrush"
-                    Value="{StaticResource ToggleButtonBorderThemeBrush}" />
-                <Setter
-                    Property="BorderThickness"
-                    Value="{StaticResource ToggleButtonBorderThemeThickness}" />
-                <Setter
-                    Property="Padding"
-                    Value="12,4,12,5" />
-                <Setter
-                    Property="Margin"
-                    Value="5" />
-                <Setter
-                    Property="HorizontalAlignment"
-                    Value="Left" />
-                <Setter
-                    Property="VerticalAlignment"
-                    Value="Center" />
-                <Setter
-                    Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate
-                            TargetType="ToggleButton">
-                            <Grid>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup
-                                        x:Name="CommonStates">
-                                        <VisualState
-                                            x:Name="Normal" />
-                                        <VisualState
-                                            x:Name="PointerOver">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Background"
-                                                    Storyboard.TargetName="Border">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPointerOverBackgroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Pressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Background"
-                                                    Storyboard.TargetName="Border">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPressedBackgroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Foreground"
-                                                    Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPressedForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Disabled">
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Checked">
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="CheckedContentPresenter" />
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="0"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="ContentPresenter" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="CheckedPointerOver">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Background"
-                                                    Storyboard.TargetName="Border">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPointerOverBackgroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="CheckedContentPresenter" />
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="0"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="ContentPresenter" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="CheckedPressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Background"
-                                                    Storyboard.TargetName="Border">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPressedBackgroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames
-                                                    Storyboard.TargetProperty="Foreground"
-                                                    Storyboard.TargetName="CheckedContentPresenter">
-                                                    <DiscreteObjectKeyFrame
-                                                        KeyTime="0"
-                                                        Value="{StaticResource ToggleButtonPressedForegroundThemeBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="CheckedContentPresenter" />
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="0"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="ContentPresenter" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="CheckedDisabled">
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Indeterminate" />
-                                        <VisualState
-                                            x:Name="IndeterminatePointerOver">
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="IndeterminatePressed">
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="IndeterminateDisabled">
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                    <VisualStateGroup
-                                        x:Name="FocusStates">
-                                        <VisualState
-                                            x:Name="Focused">
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="FocusVisualWhite" />
-                                                <DoubleAnimation
-                                                    Duration="0"
-                                                    To="1"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    Storyboard.TargetName="FocusVisualBlack" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState
-                                            x:Name="Unfocused" />
-                                        <VisualState
-                                            x:Name="PointerFocused" />
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <Border
-                                    x:Name="Border"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="1"
-                                    Background="{TemplateBinding Background}"
-                                    Margin="0">
-                                    <Grid>
-                                        <TextBlock
-                                            x:Name="ContentPresenter"
-                                            Text="&#xE1D8;"
-                                            FontFamily="Segoe UI Symbol"
-                                            FontSize="24"
-                                            HorizontalAlignment="Center"
-                                            Margin="0"
-                                            VerticalAlignment="Center" />
-                                        <TextBlock
-                                            x:Name="CheckedContentPresenter"
-                                            Opacity="0"
-                                            Text="&#xE1D9;"
-                                            FontFamily="Segoe UI Symbol"
-                                            FontSize="24"
+                                            FontSize="18"
                                             HorizontalAlignment="Center"
                                             Margin="0"
                                             VerticalAlignment="Center" />
@@ -477,225 +251,84 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup
-                x:Name="ExpansionStates">
-                <VisualState
-                    x:Name="Expanded">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="VisibleGrid"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="TabButtonsPanel"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="OpacitySlider"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="EditButton"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState
-                    x:Name="Collapsed">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="VisibleGrid"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="TabButtonsPanel"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="OpacitySlider"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames
-                            Storyboard.TargetName="EditButton"
-                            Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame
-                                KeyTime="0"
-                                Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid
-            x:Name="VisibleGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    x:Name="TitleRow"
-                    Height="76" />
-                <RowDefinition
-                    x:Name="InfoRow"
-                    Height="1*" />
-                <RowDefinition
-                    x:Name="SplitterRow"
-                    Height="Auto" />
-                <RowDefinition
-                    x:Name="TransparentRow"
-                    Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    x:Name="TransparentColumn"
-                    Width="1*" />
-                <ColumnDefinition
-                    x:Name="SplitterColumn"
-                    Width="Auto" />
-                <ColumnDefinition
-                    x:Name="InfoColumn"
-                    Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Rectangle
-                x:Name="BackgroundRectangle"
-                Grid.Column="2"
-                Grid.RowSpan="2"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"
-                IsHitTestVisible="False"
-                Opacity="{Binding Opacity}" />
-            <StackPanel
-                x:Name="TabButtonsPanel"
-                Grid.Column="2"
-                Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                Margin="10,20,0,0"
-                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
-                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}">
-                <RadioButton
-                    x:Name="LogTabButton"
-                    Content="Log"
-                    Style="{StaticResource TabButtonStyle}"
-                    IsChecked="True" />
-                <RadioButton
-                    x:Name="VisualTreeButton"
-                    Content="Visual Tree"
-                    Style="{StaticResource TabButtonStyle}"
-                    IsChecked="{Binding VisualTreeView.IsShown, Mode=TwoWay}" />
-            </StackPanel>
+        <controls:ToolWindow
+            x:Name="Window"
+            Width="800"
+            Height="500"
+            MinWidth="200"
+            MinHeight="100"
+            Closing="Window_OnClosing"
+            Opacity="{Binding Opacity}">
+            <controls:ToolWindow.Title>
+                WinRT XAML Toolkit Debug Console
+            </controls:ToolWindow.Title>
             <Grid
-                x:Name="MainDebuggingGrid"
-                Opacity="{Binding Opacity}"
-                Grid.Column="2"
-                Grid.Row="1"
-                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}">
+                x:Name="MainDebuggingGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel
+                    x:Name="TabButtonsPanel"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Bottom"
+                    Margin="10,20,0,0">
+                    <RadioButton
+                        x:Name="LogTabButton"
+                        Content="Log"
+                        Style="{StaticResource TabButtonStyle}"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="VisualTreeButton"
+                        Content="Visual Tree"
+                        Style="{StaticResource TabButtonStyle}"
+                        IsChecked="{Binding VisualTreeView.IsShown, Mode=TwoWay}" />
+                    <Slider
+                        x:Name="OpacitySlider"
+                        Width="300"
+                        Minimum="0.1"
+                        Maximum="1"
+                        StepFrequency="0.001"
+                        Margin="40,16,10,0"
+                        Value="{Binding Opacity, Mode=TwoWay}" />
+                    <ToggleButton
+                        x:Name="EditButton"
+                        Content="ToggleButton"
+                        IsChecked="True"
+                        ToolTipService.ToolTip="Edit or browse information"
+                        Style="{StaticResource EditButtonStyle}" />
+                </StackPanel>
+
                 <TextBox
                     x:Name="DebugTextBox"
-                    Visibility="{Binding IsChecked, ElementName=LogTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Grid.Row="1"
+                    Visibility="{Binding VisualTreeView.IsShown, Converter={StaticResource BooleanToInvisibilityConverter}}"
                     Foreground="{StaticResource ApplicationForegroundThemeBrush}"
-                    Background="Transparent"
                     BorderThickness="0"
                     TextWrapping="Wrap"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollMode="Auto"
-                    IsReadOnly="True" />
+                    IsReadOnly="True"
+                    IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"/>
                 <local:VisualTreeView
                     x:Name="VisualTreeViewControl"
+                    Grid.Row="1"
                     DataContext="{Binding VisualTreeView}"
                     Visibility="{Binding IsShown, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Margin="0" />
+                    Margin="0"
+                    IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"/>
             </Grid>
-            <controls:CustomGridSplitter
-                IsTabStop="False"
-                Visibility="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
-                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"
-                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
-                Grid.Row="2"
-                Grid.Column="2"
-                Height="16" />
-            <controls:CustomGridSplitter
-                IsTabStop="False"
-                Visibility="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
-                IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"
-                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}"
-                Grid.RowSpan="2"
-                Grid.Column="1"
-                Width="16" />
-        </Grid>
-        <Grid
-            x:Name="CollapsedGrid"
-            Height="76"
-            MinWidth="109"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top">
-            <Rectangle
-                x:Name="BackgroundRectangle2"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"
-                IsHitTestVisible="False"
-                Visibility="{Binding IsChecked, ElementName=CollapseButton, Converter={StaticResource NullableBoolToCollapsedConverter}}"
-                Opacity="{Binding Opacity, ElementName=BackgroundRectangle}" />
-            <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Right"
-                Margin="0,0,50,0">
-                <Slider
-                    x:Name="OpacitySlider"
-                    Width="300"
-                    Minimum="0"
-                    Maximum="1"
-                    StepFrequency="0.001"
-                    Margin="10,16,10,0"
-                    Value="{Binding Opacity, Mode=TwoWay}" />
-                <ToggleButton
-                    x:Name="EditButton"
-                    Content="ToggleButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    IsChecked="False"
-                    ToolTipService.ToolTip="Edit or browse information"
-                    Style="{StaticResource EditButtonStyle}" />
-                <ToggleButton
-                    x:Name="CollapseButton"
-                    Checked="CollapseButton_OnChecked"
-                    Unchecked="CollapseButton_OnUnchecked"
-                    Content="ToggleButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    ToolTipService.ToolTip="Show/hide information panel"
-                    Style="{StaticResource CollapseButtonStyle}" />
-            </StackPanel>
-        </Grid>
+        </controls:ToolWindow>
         <Grid
             x:Name="HighlightGrid"
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch">
             <Rectangle
                 StrokeThickness="2"
-                Stroke="Red"
+                Stroke="#80FF0000"
                 Stretch="Fill"
                 IsHitTestVisible="False"
                 Visibility="{Binding VisualTreeView.HighlightVisibility}"

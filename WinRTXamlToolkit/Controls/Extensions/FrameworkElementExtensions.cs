@@ -162,8 +162,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private static void OnCursorChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            CoreCursor oldCursor = (CoreCursor)e.OldValue;
-            CoreCursor newCursor = (CoreCursor)d.GetValue(CursorProperty);
+            var oldCursor = (CoreCursor)e.OldValue;
+            var newCursor = (CoreCursor)d.GetValue(CursorProperty);
 
             if (oldCursor == null)
             {
@@ -382,7 +382,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
         private void OnControlUnloaded(object sender, RoutedEventArgs e)
         {
-            Detach();
+            //Detach();
         }
 
         /// <summary>

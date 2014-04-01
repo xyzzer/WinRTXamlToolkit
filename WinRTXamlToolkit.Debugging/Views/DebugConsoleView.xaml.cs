@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
+using WinRTXamlToolkit.AwaitableUI;
+using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Core;
@@ -61,10 +64,11 @@ namespace WinRTXamlToolkit.Debugging.Views
             LogTabButton.IsChecked = true;
         }
 
-        internal void ShowVisualTree(UIElement element = null)
+        internal async void ShowVisualTree(UIElement element = null)
         {
+            await this.WaitForLoadedAsync();
             VisualTreeButton.IsChecked = true;
-            EditButton.IsChecked = true;
+            //EditButton.IsChecked = true;
 
             if (element != null &&
                 _viewModel.VisualTreeView != null)
@@ -75,24 +79,20 @@ namespace WinRTXamlToolkit.Debugging.Views
             }
         }
 
-        private void CollapseButton_OnChecked(object sender, RoutedEventArgs e)
-        {
-            VisualStateManager.GoToState(this, "Collapsed", true);
-        }
-
-        private void CollapseButton_OnUnchecked(object sender, RoutedEventArgs e)
-        {
-            VisualStateManager.GoToState(this, "Expanded", true);
-        }
-
         internal void Collapse()
         {
-            CollapseButton.IsChecked = true;
+            this.Window.SnapToEdge();
         }
 
         internal void Expand()
         {
-            CollapseButton.IsChecked = false;
+            this.Window.Restore();
+        }
+
+        private void Window_OnClosing(object sender, CancelEventArgs e)
+        {
+            ((ToolWindow)sender).Hide();
+            e.Cancel = true;
         }
     }
 }

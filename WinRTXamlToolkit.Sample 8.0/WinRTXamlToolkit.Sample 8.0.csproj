@@ -177,6 +177,10 @@
       <Link>Views\Controls\GaugeTestPage.xaml.cs</Link>
       <DependentUpon>GaugeTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Sample\Views\Controls\ToolWindowTestPage.xaml.cs">
+      <Link>Views\Controls\ToolWindowTestPage.xaml.cs</Link>
+      <DependentUpon>ToolWindowTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\WinRTXamlToolkit.Sample\Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs">
       <Link>Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs</Link>
       <DependentUpon>WatermarkPasswordBoxTestPage.xaml</DependentUpon>
@@ -480,6 +484,11 @@
     </Page>
     <Page Include="..\WinRTXamlToolkit.Sample\Views\Controls\GaugeTestPage.xaml">
       <Link>Views\Controls\GaugeTestPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\WinRTXamlToolkit.Sample\Views\Controls\ToolWindowTestPage.xaml">
+      <Link>Views\Controls\ToolWindowTestPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

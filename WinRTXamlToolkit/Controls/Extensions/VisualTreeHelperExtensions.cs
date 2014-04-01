@@ -169,21 +169,21 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
 
         /// <summary>
-        /// Gets the the ancestors of a given type.
+        /// Gets the ancestors of a given type, starting with parent and going towards the visual tree root.
         /// </summary>
         /// <typeparam name="T">Type of ancestor to look for.</typeparam>
         /// <param name="start">The start.</param>
-        /// <returns></returns>
+        /// <returns>The ancestors of a given type, starting with parent and going towards the visual tree root.</returns>
         public static IEnumerable<T> GetAncestorsOfType<T>(this DependencyObject start) where T : DependencyObject
         {
             return start.GetAncestors().OfType<T>();
         }
 
         /// <summary>
-        /// Gets the ancestors.
+        /// Gets the ancestors, starting with parent and going towards the visual tree root.
         /// </summary>
-        /// <param name="start">The start.</param>
-        /// <returns></returns>
+        /// <param name="start">The starting element.</param>
+        /// <returns>The ancestor elements, starting with parent and going towards the visual tree root.</returns>
         public static IEnumerable<DependencyObject> GetAncestors(this DependencyObject start)
         {
             var parent = VisualTreeHelper.GetParent(start);
@@ -192,6 +192,31 @@ namespace WinRTXamlToolkit.Controls.Extensions
             {
                 yield return parent;
                 parent = VisualTreeHelper.GetParent(parent);
+            }
+        }
+
+        /// <summary>
+        /// Gets the siblings, including the start element.
+        /// </summary>
+        /// <param name="start">The start element.</param>
+        /// <returns>The siblings, including the start element.</returns>
+        public static IEnumerable<DependencyObject> GetSiblings(this DependencyObject start)
+        {
+            var parent = VisualTreeHelper.GetParent(start);
+
+            if (parent == null)
+            {
+                yield return start;
+            }
+            else
+            {
+                var count = VisualTreeHelper.GetChildrenCount(parent);
+
+                for (int i = 0; i < count; i++)
+                {
+                    var child = VisualTreeHelper.GetChild(parent, i);
+                    yield return child;
+                }
             }
         }
 
@@ -220,6 +245,50 @@ namespace WinRTXamlToolkit.Controls.Extensions
             }
 
             return Window.Current.Content != null && dob.GetAncestors().Contains(Window.Current.Content);
+        }
+
+        /// <summary>
+        /// Gets the position of the element.
+        /// </summary>
+        /// <param name="dob">The element.</param>
+        /// <param name="origin">The relative (0..1,0..1 range) position of a point within the element to evaluate. Defaults to 0,0 for top-left corner.</param>
+        /// <param name="relativeTo">The element of reference. Defaults to visual tree root.</param>
+        /// <returns>The position of origin point relative to specified element.</returns>
+        public static Point GetPosition(this FrameworkElement dob, Point origin = new Point(), FrameworkElement relativeTo = null)
+        {
+            if (DesignMode.DesignModeEnabled)
+            {
+                return new Point();
+            }
+
+            if (relativeTo == null)
+            {
+                relativeTo = Window.Current.Content as FrameworkElement;
+            }
+
+            if (relativeTo == null)
+            {
+                throw new InvalidOperationException("Element not in visual tree.");
+            }
+
+            var absoluteOrigin = new Point(relativeTo.ActualWidth * origin.X, relativeTo.ActualHeight * origin.X);
+
+            if (dob == relativeTo)
+            {
+                return absoluteOrigin;
+            }
+
+            var ancestors = dob.GetAncestors().ToArray();
+
+            if (!ancestors.Contains(relativeTo))
+            {
+                throw new InvalidOperationException("Element not in visual tree.");
+            }
+
+            return
+                dob
+                    .TransformToVisual(relativeTo)
+                    .TransformPoint(absoluteOrigin);
         }
 
         /// <summary>

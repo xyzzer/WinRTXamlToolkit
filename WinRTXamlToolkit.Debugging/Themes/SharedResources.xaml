@@ -6,6 +6,9 @@
     xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
     <converters:BooleanToVisibilityConverter
         x:Key="BooleanToVisibilityConverter" />
+    <converters:BooleanToVisibilityConverter
+        x:Key="BooleanToInvisibilityConverter"
+        IsInversed="True"/>
     <converters:NullableBoolToBoolConverter
         x:Key="NullableBoolToBoolConverter" />
 

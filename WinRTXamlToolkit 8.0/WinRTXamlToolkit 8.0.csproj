@@ -282,6 +282,9 @@
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ListBoxItemExtensions.cs">
       <Link>Controls\Extensions\ListBoxItemExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\ManipulationInertiaStartingRoutedEventArgsExtensions.cs">
+      <Link>Controls\Extensions\ManipulationInertiaStartingRoutedEventArgsExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Extensions\MessageDialogExtensions.cs">
       <Link>Controls\Extensions\MessageDialogExtensions.cs</Link>
     </Compile>
@@ -415,6 +418,9 @@
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\Common\ScrollExtensions.cs">
       <Link>Controls\Common\ScrollExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Controls\ToolWindow\ToolWindow.cs">
+      <Link>Controls\ToolWindow\ToolWindow.cs</Link>
     </Compile>
     <Compile Include="..\WinRTXamlToolkit\Controls\TreeView\TreeView.cs">
       <Link>Controls\TreeView\TreeView.cs</Link>
@@ -590,6 +596,9 @@
     <Compile Include="..\WinRTXamlToolkit\Tools\EnumerableExtensions.cs">
       <Link>Tools\EnumerableExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\WinRTXamlToolkit\Tools\MathEx.cs">
+      <Link>Tools\MathEx.cs</Link>
+    </Compile>
     <Compile Include="..\WinRTXamlToolkit\Tools\TimeoutCheck.cs">
       <Link>Tools\TimeoutCheck.cs</Link>
     </Compile>
@@ -713,6 +722,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ToolWindow\ToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -736,6 +750,7 @@
       <Link>Controls\Extensions\Forms\ReadMe.txt</Link>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

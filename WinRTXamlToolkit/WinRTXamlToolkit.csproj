@@ -176,6 +176,7 @@
     <Compile Include="Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs" />
     <Compile Include="Controls\Extensions\Forms\ValidationChecks.cs" />
     <Compile Include="Controls\Extensions\ListBoxItemExtensions.cs" />
+    <Compile Include="Controls\Extensions\ManipulationInertiaStartingRoutedEventArgsExtensions.cs" />
     <Compile Include="Controls\Extensions\MessageDialogExtensions.cs" />
     <Compile Include="Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs" />
     <Compile Include="Controls\Extensions\StyleExtensions.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Controls\Common\InteractionHelper.cs" />
     <Compile Include="Controls\Common\IUpdateVisualState.cs" />
     <Compile Include="Controls\Common\ScrollExtensions.cs" />
+    <Compile Include="Controls\ToolWindow\ToolWindow.cs" />
     <Compile Include="Controls\TreeView\TreeView.cs" />
     <Compile Include="Controls\TreeView\TreeViewAutomationPeer.cs" />
     <Compile Include="Controls\TreeView\TreeViewItem.cs" />
@@ -293,6 +295,7 @@
     <Compile Include="Tools\EnumerableExtensions.cs" />
     <Compile Include="Tools\EventThrottler.cs" />
     <Compile Include="Tools\EventThrottlerMultiThreaded.cs" />
+    <Compile Include="Tools\MathEx.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />
     <Compile Include="Tools\TypeExtensions.cs" />
@@ -364,6 +367,11 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Controls\ToolWindow\ToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Controls\TreeView\TreeViewTouch.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -408,6 +416,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Controls\Extensions\Forms\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\ToolWindow\TODO.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

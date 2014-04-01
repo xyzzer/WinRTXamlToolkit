@@ -28,7 +28,5 @@
             set { this.SetProperty(ref _visualTreeView, value); }
         }
         #endregion
-
-        
     }
 }

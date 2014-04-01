@@ -182,6 +182,9 @@
     <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
       <DependentUpon>CalendarTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ToolWindowTestPage.xaml.cs">
+      <DependentUpon>ToolWindowTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\GaugeTestPage.xaml.cs">
       <DependentUpon>GaugeTestPage.xaml</DependentUpon>
     </Compile>
@@ -404,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\CalendarTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ToolWindowTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

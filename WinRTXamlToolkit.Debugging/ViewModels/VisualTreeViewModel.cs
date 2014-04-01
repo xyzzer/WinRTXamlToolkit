@@ -164,7 +164,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region ShowPropertiesGrouped
-        private bool _showPropertiesGrouped = true;
+        private bool _showPropertiesGrouped = false;
         /// <summary>
         /// Gets or sets the property that indicates whether the properties should be shown grouped.
         /// </summary>
@@ -255,6 +255,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
 #pragma warning disable 4014
             SelectElementUnderPointer();
+            this.IsShown = true;
 #pragma warning restore 4014
         } 
         #endregion
@@ -377,6 +378,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
 #pragma warning disable 4014
                     SelectElementUnderPointer();
+                    this.IsShown = true;
 #pragma warning restore 4014
                 }
             }
@@ -388,6 +390,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
 #pragma warning disable 4014
                     SelectElementUnderPointer();
+                    this.IsShown = true;
 #pragma warning restore 4014
                 }
             }

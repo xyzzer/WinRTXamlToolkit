@@ -1,0 +1,132 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.ToolWindowTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d">
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="140" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button
+            x:Name="BackButton"
+            Style="{StaticResource BackButtonStyle}"
+            Click="GoBack" />
+        <TextBlock
+            Text="ToolWindow Test"
+            Grid.Column="1"
+            Style="{StaticResource PageHeaderTextStyle}" />
+        <Grid
+            x:Name="OuterGrid"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2">
+            <!--<Grid
+                x:Name="InnerGrid"
+                extensions:FrameworkElementExtensions.ClipToBounds="True"
+                Margin="500,300,0,0"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Background="SteelBlue">
+                <TextBlock
+                    Margin="12,7"
+                    Text="Parent element for the centered windows" />
+                <controls:ToolWindow
+                    x:Name="CenterScreenPositionedWindow"
+                    BorderBrush="RoyalBlue"
+                    TitleBackgroundBrush="RoyalBlue"
+                    Width="300"
+                    Height="200"
+                    Title="CenterScreen"
+                    WindowStartupLocation="CenterScreen">
+                    <TextBlock
+                        Margin="12,7">
+                    <Run
+                            Text="{Binding ElementName=CenterScreenPositionedWindow, Path=X}" />
+                    ,
+                    <Run
+                            Text="{Binding ElementName=CenterScreenPositionedWindow, Path=Y}" />
+                    </TextBlock>
+                </controls:ToolWindow>
+                <controls:ToolWindow
+                    x:Name="CenterOwnerPositionedWindow"
+                    BorderBrush="RoyalBlue"
+                    TitleBackgroundBrush="RoyalBlue"
+                    Width="300"
+                    Height="200"
+                    Title="CenterOwner"
+                    WindowStartupLocation="CenterOwner">
+                    <TextBlock
+                        Margin="12,7">
+                    <Run
+                            Text="{Binding ElementName=CenterOwnerPositionedWindow, Path=X}" />
+                    ,
+                    <Run
+                            Text="{Binding ElementName=CenterOwnerPositionedWindow, Path=Y}" />
+                    </TextBlock>
+                </controls:ToolWindow>
+            </Grid>
+            <Border
+                Background="DarkRed"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left">
+                <ContentControl
+                    extensions:FrameworkElementExtensions.ClipToBounds="True"
+                    Width="450"
+                    Height="450">
+                    <controls:ToolWindow
+                        Width="400"
+                        Height="150"
+                        Title="ContentControl hosted" />
+                </ContentControl>
+            </Border>-->
+            <controls:ToolWindow
+                x:Name="ManuallyPositionedWindow"
+                Width="400"
+                Height="200"
+                Title="Manually Positioned at 200,500"
+                X="200"
+                Y="500">
+                <TextBlock
+                    Margin="12,7">
+                <Run
+                        Text="{Binding ElementName=ManuallyPositionedWindow, Path=X}" />
+                ,
+                <Run
+                        Text="{Binding ElementName=ManuallyPositionedWindow, Path=Y}" />
+                </TextBlock>
+            </controls:ToolWindow>
+            <controls:ToolWindow
+                Title="Text window"
+                X="100"
+                Y="200">
+                <TextBox
+                    BorderThickness="0"
+                    AcceptsReturn="True"
+                    ManipulationMode="All"
+                    ManipulationStarted="UIElement_OnManipulationStarted"
+                    ManipulationDelta="UIElement_OnManipulationDelta"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollMode="Auto"
+                    FontSize="18"
+                    FontWeight="Light"
+                    Width="300"
+                    Height="200"
+                    Background="Transparent"
+                    Foreground="White" />
+            </controls:ToolWindow>
+        </Grid>
+    </Grid>
+</controls:AlternativePage>

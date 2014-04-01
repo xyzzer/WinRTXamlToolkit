@@ -1,0 +1,15 @@
+﻿Unsnap/undock gesture
+- even if the flick is very light - if this is a flick out of a docked position
+  - it shouldn't cause the window to snap back and rather it should animate to the nearest non-snapped position.
+
+Debug window
+- change default size, position
+- default to ungrouped
+- turn off filters when searching for property
+
+Others
+- maximize
+- filter out manipulations on client area by default
+- snap to side of screen
+- shakiness when snapping to side of screen on a slow flick
+ 
