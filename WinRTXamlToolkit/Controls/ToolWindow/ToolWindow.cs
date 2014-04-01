@@ -1552,7 +1552,7 @@ namespace WinRTXamlToolkit.Controls
                 if (x != startx || y != starty)
                 {
                     // title height
-                    var t = _titleGrid.ActualHeight + (_border == null ? 0 : _border.BorderThickness.Top);
+                    var t = _titleGrid == null ? 0 : _titleGrid.ActualHeight + (_border == null ? 0 : _border.BorderThickness.Top);
                     var h = this.ActualHeight;
                     var w = this.ActualWidth;
 
