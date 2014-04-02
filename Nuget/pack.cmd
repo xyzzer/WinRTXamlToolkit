@@ -66,7 +66,7 @@ mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown"
-if "%NUGET_PLATFORM%" NEQ "netcore45" (mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ToolWindow")
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ToolWindow"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkTextBox"
@@ -130,7 +130,7 @@ copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ImageToggleButton\*
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\InputDialog\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ListItemButton\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButton" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\NumericUpDown\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown" || GOTO :REPORT_ERROR
-if "%NUGET_PLATFORM%" NEQ "netcore45" (copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ToolWindow\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ToolWindow" || GOTO :REPORT_ERROR)
+copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\ToolWindow\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ToolWindow" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\TreeView\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\WatermarkPasswordBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit%FOLDER_SUFFIX%bin\Release\Controls\WatermarkTextBox\*%XAML_EXT%" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkTextBox" || GOTO :REPORT_ERROR
