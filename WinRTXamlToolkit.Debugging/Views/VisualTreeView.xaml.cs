@@ -27,5 +27,20 @@ namespace WinRTXamlToolkit.Debugging.Views
             vm.SelectFocused();
 #pragma warning restore 4014
         }
+
+        private void OnFocusSelectedClick(object sender, RoutedEventArgs e)
+        {
+            var dob = this.treeView.SelectedItem as DependencyObjectViewModel;
+
+            if (dob == null)
+                return;
+
+            var control = dob.Model as Control;
+
+            if (control != null)
+            {
+                control.Focus(FocusState.Programmatic);
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
     <ProjectGuid>{D0B66203-5B50-4942-A864-C7550C6F23F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinRTXamlToolkit</RootNamespace>
+    <RootNamespace>WinRTXamlToolkit.Controls</RootNamespace>
     <AssemblyName>WinRTXamlToolkit.Controls.Calendar</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

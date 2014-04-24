@@ -355,6 +355,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "SquareGrid",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(SquareGridTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "TextBox Validation",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TextBoxValidationTestPage))),
                     SampleType = SampleTypes.Extensions
