@@ -1,0 +1,109 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Sample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    mc:Ignorable="d"
+    DataContext="{Binding MainPage, Source={StaticResource Locator}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <controls:AlternativePage.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="TextButtonStyle"
+                TargetType="Button">
+                <Setter
+                    Property="MinWidth"
+                    Value="0" />
+                <Setter
+                    Property="MinHeight"
+                    Value="0" />
+                <Setter
+                    Property="VerticalContentAlignment"
+                    Value="Center" />
+                <Setter
+                    Property="HorizontalContentAlignment"
+                    Value="Left" />
+                <Setter
+                    Property="FontSize"
+                    Value="26.667" />
+                <Setter
+                    Property="FontWeight"
+                    Value="Light" />
+                <Setter
+                    Property="BorderThickness"
+                    Value="0" />
+                <Setter
+                    Property="Padding"
+                    Value="3,-7,3,10" />
+            </Style>
+        </ResourceDictionary>
+    </controls:AlternativePage.Resources>
+    <Grid
+        x:Name="LayoutRoot">
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop
+                    Offset="0"
+                    Color="Transparent"/>
+                <GradientStop
+                    Offset="1"
+                    Color="#FF808080" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Hub
+            x:Name="Hub"
+            x:Uid="Hub"
+            Header="WinRT XAML Toolkit Samples">
+            <HubSection
+                x:Uid="HubSection1"
+                Header="Samples">
+                <DataTemplate>
+                    <ListView
+                        AutomationProperties.AutomationId="ItemListViewSection5"
+                        AutomationProperties.Name="Items In Group"
+                        SelectionMode="None"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{Binding Samples}"
+                        ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                        <ListView.ItemContainerStyle>
+                            <Style
+                                TargetType="ListViewItem">
+                                <Setter
+                                    Property="HorizontalAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                                <!--<Setter
+                                    Property="Width"
+                                    Value="400" />
+                                <Setter
+                                    Property="Height"
+                                    Value="65" />-->
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Content="{Binding Caption}"
+                                    Command="{Binding Command}"
+                                    HorizontalAlignment="Stretch"
+                                    Style="{StaticResource TextButtonStyle}"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Center"
+                                    Padding="16,-3,3,10" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</controls:AlternativePage>

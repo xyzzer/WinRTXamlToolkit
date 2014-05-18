@@ -36,16 +36,16 @@ namespace WinRTXamlToolkit.Composition.Renderers
         private static D2D.PathGeometry GetBorderFillGeometry(
             CompositionEngine compositionEngine, Border border, RectangleF rect)
         {
-            var topLeftCornerSize = new DrawingSizeF(
+            var topLeftCornerSize = new Size2F(
                 (float)border.CornerRadius.TopLeft,
                 (float)border.CornerRadius.TopLeft);
-            var topRightCornerSize = new DrawingSizeF(
+            var topRightCornerSize = new Size2F(
                 (float)border.CornerRadius.TopRight,
                 (float)border.CornerRadius.TopRight);
-            var bottomLeftCornerSize = new DrawingSizeF(
+            var bottomLeftCornerSize = new Size2F(
                 (float)border.CornerRadius.BottomLeft,
                 (float)border.CornerRadius.BottomLeft);
-            var bottomRightCornerSize = new DrawingSizeF(
+            var bottomRightCornerSize = new Size2F(
                 (float)border.CornerRadius.BottomRight,
                 (float)border.CornerRadius.BottomRight);
 
@@ -92,16 +92,16 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             // Start to the right of the topleft corner.
             geometrySink.BeginFigure(
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + topLeftCornerSize.Width,
-                    rect.Top + 0),
+                    rect.Top + 0), 
                 D2D.FigureBegin.Filled);
 
             //if (topCornersWidth < rect.Width)
             {
                 // Top edge
                 geometrySink.AddLine(
-                    new DrawingPointF(
+                    new Vector2(
                         rect.Left + rect.Width - topRightCornerSize.Width,
                         rect.Top + 0));
             }
@@ -112,7 +112,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             geometrySink.AddArc(
                 new D2D.ArcSegment
                 {
-                    Point = new DrawingPointF(
+                    Point = new Vector2(
                         rect.Left + rect.Width,
                         rect.Top + topRightCornerSize.Height),
                     Size = topRightCornerSize,
@@ -123,7 +123,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             // Right edge
             geometrySink.AddLine(
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + rect.Width,
                     rect.Top + rect.Height - bottomRightCornerSize.Height));
 
@@ -131,7 +131,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             geometrySink.AddArc(
                 new D2D.ArcSegment
                 {
-                    Point = new DrawingPointF(
+                    Point = new Vector2(
                         rect.Left + rect.Width - bottomRightCornerSize.Width,
                         rect.Top + rect.Height),
                     Size = bottomRightCornerSize,
@@ -142,7 +142,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             // Bottom edge
             geometrySink.AddLine(
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + bottomLeftCornerSize.Width,
                     rect.Top + rect.Height));
 
@@ -150,7 +150,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             geometrySink.AddArc(
                 new D2D.ArcSegment
                 {
-                    Point = new DrawingPointF(
+                    Point = new Vector2(
                         rect.Left + 0,
                         rect.Top + rect.Height - bottomLeftCornerSize.Height),
                     Size = bottomLeftCornerSize,
@@ -161,7 +161,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             // Left edge
             geometrySink.AddLine(
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + 0,
                     rect.Top + topLeftCornerSize.Height));
 
@@ -169,7 +169,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             geometrySink.AddArc(
                 new D2D.ArcSegment
                 {
-                    Point = new DrawingPointF(
+                    Point = new Vector2(
                         rect.Left + topLeftCornerSize.Width,
                         rect.Top + 0),
                     Size = topLeftCornerSize,

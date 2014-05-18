@@ -145,7 +145,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
         {
             // Start the ellipse at 9 o'clock.
             sink.BeginFigure(
-                new DrawingPointF(
+                new Vector2(
                     (float)(ellipseGeometry.Center.X - ellipseGeometry.RadiusX),
                     (float)(ellipseGeometry.Center.Y)),
                     D2D.FigureBegin.Filled);
@@ -155,10 +155,10 @@ namespace WinRTXamlToolkit.Composition.Renderers
             sink.AddArc(
                 new D2D.ArcSegment
                 {
-                    Point = new DrawingPointF(
+                    Point = new Vector2(
                         (float)(ellipseGeometry.Center.X - ellipseGeometry.RadiusX),
                         (float)(ellipseGeometry.Center.Y + 0.00001)),
-                    Size = new DrawingSizeF(
+                    Size = new Size2F(
                         (float)(ellipseGeometry.RadiusX * 2),
                         (float)(ellipseGeometry.RadiusY * 2)),
                     RotationAngle = 0,
@@ -185,20 +185,20 @@ namespace WinRTXamlToolkit.Composition.Renderers
             this D2D.GeometrySink sink, Jupiter.Media.RectangleGeometry rectangleGeometry)
         {
             sink.BeginFigure(
-                new DrawingPointF(
+                new Vector2(
                     (float)(rectangleGeometry.Rect.Left),
                     (float)(rectangleGeometry.Rect.Top)),
                     D2D.FigureBegin.Filled);
             sink.AddLines(
                 new []
                 {
-                    new DrawingPointF(
+                    new Vector2(
                         (float)(rectangleGeometry.Rect.Right),
                         (float)(rectangleGeometry.Rect.Top)),
-                    new DrawingPointF(
+                    new Vector2(
                         (float)(rectangleGeometry.Rect.Right),
                         (float)(rectangleGeometry.Rect.Bottom)),
-                    new DrawingPointF(
+                    new Vector2(
                         (float)(rectangleGeometry.Rect.Left),
                         (float)(rectangleGeometry.Rect.Bottom)),
                 });
@@ -267,7 +267,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
 
             if (polyLineSegment != null)
             {
-                var lines = new SharpDX.DrawingPointF[polyLineSegment.Points.Count];
+                var lines = new SharpDX.Vector2[polyLineSegment.Points.Count];
 
                 for (int i = 0; i < lines.Length; i++)
                 {

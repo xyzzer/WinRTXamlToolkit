@@ -85,19 +85,19 @@ namespace WinRTXamlToolkit.Composition
             {
                 var properties = new D2D.LinearGradientBrushProperties();
                 //properties.StartPoint =
-                //    new DrawingPointF(
+                //    new Vector2(
                 //        (float)(linearGradientBrush.StartPoint.X * renderTarget.Size.Width),
                 //        (float)(linearGradientBrush.StartPoint.Y * renderTarget.Size.Height));
                 //properties.EndPoint =
-                //    new DrawingPointF(
+                //    new Vector2(
                 //        (float)(linearGradientBrush.EndPoint.X * renderTarget.Size.Width),
                 //        (float)(linearGradientBrush.EndPoint.Y * renderTarget.Size.Height));
                 properties.StartPoint =
-                    new DrawingPointF(
+                    new Vector2(
                         rect.Left + (float)(linearGradientBrush.StartPoint.X * rect.Width),
                         rect.Top + (float)(linearGradientBrush.StartPoint.Y * rect.Height));
                 properties.EndPoint =
-                    new DrawingPointF(
+                    new Vector2(
                         rect.Left + (float)(linearGradientBrush.EndPoint.X * rect.Width),
                         rect.Top + (float)(linearGradientBrush.EndPoint.Y * rect.Height));
 
@@ -315,18 +315,18 @@ namespace WinRTXamlToolkit.Composition
             }
         }
 
-        public static SharpDX.DrawingPointF ToSharpDX(
+        public static SharpDX.Vector2 ToSharpDX(
             this Windows.Foundation.Point point)
         {
-            return new DrawingPointF(
+            return new Vector2(
                 (float)point.X,
                 (float)point.Y);
         }
 
-        public static SharpDX.DrawingSizeF ToSharpDX(
+        public static SharpDX.Size2F ToSharpDX(
             this Windows.Foundation.Size size)
         {
-            return new DrawingSizeF(
+            return new Size2F(
                 (float)size.Width,
                 (float)size.Height);
         }

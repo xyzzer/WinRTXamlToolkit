@@ -54,7 +54,7 @@ namespace WinRTXamlToolkit.Composition
             var d2DDevice = new SharpDX.Direct2D1.Device(dxgiDevice);
             _d2DFactory = d2DDevice.Factory;
             _d2DDeviceContext = new SharpDX.Direct2D1.DeviceContext(d2DDevice, D2D.DeviceContextOptions.None);
-            _d2DDeviceContext.DotsPerInch = new DrawingSizeF(LogicalDpi, LogicalDpi);
+            _d2DDeviceContext.DotsPerInch = new Size2F(LogicalDpi, LogicalDpi);
         }
 
         public static float LogicalDpi
@@ -116,7 +116,7 @@ namespace WinRTXamlToolkit.Composition
                 {
                     cpuReadBitmap.CopyFromRenderTarget(
                         _d2DDeviceContext,
-                        new DrawingPoint(0, 0),
+                        new Point(0, 0),
                         new SharpDX.Rectangle(0, 0, width, height));
                     var mappedRect = cpuReadBitmap.Map(D2D.MapOptions.Read);
 
@@ -138,7 +138,7 @@ namespace WinRTXamlToolkit.Composition
                                 for (int i = 0; i < height; i++)
                                 {
                                     readStream.Read(buffer, 0, mappedRect.Pitch);
-                                    writeStream.Write(buffer, 0, buffer.Length);
+                                    writeStream.Write(buffer, 0, width * 4);
                                 }
                             }
 
@@ -159,7 +159,7 @@ namespace WinRTXamlToolkit.Composition
         {
             var renderTargetBitmap = new D2D.Bitmap1(
                 _d2DDeviceContext,
-                new DrawingSize(width, height),
+                new Size2(width, height),
                 new D2D.BitmapProperties1(
                     new D2D.PixelFormat(
                         Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),
@@ -174,7 +174,7 @@ namespace WinRTXamlToolkit.Composition
         {
             var cpuReadBitmap = new D2D.Bitmap1(
                 _d2DDeviceContext,
-                new DrawingSize(width, height),
+                new Size2(width, height),
                 new D2D.BitmapProperties1(
                     new D2D.PixelFormat(
                         SharpDX.DXGI.Format.B8G8R8A8_UNorm, D2D.AlphaMode.Premultiplied),

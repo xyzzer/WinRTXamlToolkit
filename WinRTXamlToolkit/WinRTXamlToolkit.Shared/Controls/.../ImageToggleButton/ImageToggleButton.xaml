@@ -1,0 +1,261 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <Style
+        TargetType="controls:ImageToggleButton">
+        <Setter
+            Property="Padding"
+            Value="0" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            Property="Stretch"
+            Value="None" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:ImageToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="CommonStates">
+                                <VisualState
+                                    x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_NormalStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="PointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_HoverStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_HoverStateRecycledPressedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="0.5" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_HoverStateRecycledNormalStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_PressedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_DisabledStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="CheckedPointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedHoverStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedHoverStateRecycledCheckedPressedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="0.5" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedHoverStateRecycledCheckedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedPressedStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="PART_CheckedDisabledStateImage">
+                                            <DiscreteDoubleKeyFrame
+                                                KeyTime="0"
+                                                Value="1.0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- Note - no indeterminate state support on the ImageToggleButton -->
+                                <VisualState
+                                    x:Name="Indeterminate" />
+                                <VisualState
+                                    x:Name="IndeterminatePointerOver" />
+                                <VisualState
+                                    x:Name="IndeterminatePressed" />
+                                <VisualState
+                                    x:Name="IndeterminateDisabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="FocusStates">
+                                <VisualState
+                                    x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            To="1"
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="FocusVisualWhite" />
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            To="1"
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="FocusVisualBlack" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Unfocused" />
+                                <VisualState
+                                    x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            x:Name="Border"
+                            Margin="{TemplateBinding Padding}">
+                            <Grid>
+                                <Image
+                                    x:Name="PART_NormalStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_HoverStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_HoverStateRecycledNormalStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_HoverStateRecycledPressedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_PressedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_DisabledStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedHoverStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedHoverStateRecycledCheckedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedHoverStateRecycledCheckedPressedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedPressedStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                                <Image
+                                    x:Name="PART_CheckedDisabledStateImage"
+                                    Stretch="{TemplateBinding Stretch}"
+                                    Opacity="0.0" />
+                            </Grid>
+                        </Border>
+                        <Rectangle
+                            x:Name="FocusVisualWhite"
+                            IsHitTestVisible="False"
+                            Opacity="0"
+                            StrokeDashOffset="1.5"
+                            StrokeEndLineCap="Square"
+                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                            StrokeDashArray="1,1" />
+                        <Rectangle
+                            x:Name="FocusVisualBlack"
+                            IsHitTestVisible="False"
+                            Opacity="0"
+                            StrokeDashOffset="0.5"
+                            StrokeEndLineCap="Square"
+                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                            StrokeDashArray="1,1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

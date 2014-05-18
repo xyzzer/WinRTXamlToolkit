@@ -1,4 +1,11 @@
-﻿* Make sure all SharpDX objects get disposed after use
+﻿Currently the layout is broken,
+but since Window 8.1 already has RenderTargetBitmap.RenderAsync() -
+this library is being deprecated and will be removed from the solution.
+It might be kept for posterity in case there is a need in the future to
+implement it for something that RenderTargetBitmap doesn't support - e.g. video.
+
+
+* Make sure all SharpDX objects get disposed after use
 * Modify the overloads to render to
 	* WriteableBitmap (using texture buffer to pixel buffer copy)
 	* PNG file (already implemented)

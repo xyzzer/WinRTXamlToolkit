@@ -1,0 +1,164 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary
+            x:Key="Default">
+            <SolidColorBrush
+                x:Key="GridSplitterBackgroundThemeBrush"
+                Color="#E5222222" />
+            <SolidColorBrush
+                x:Key="GridSplitterThumbThemeBrush"
+                Color="#66FFFFFF" />
+        </ResourceDictionary>
+        <ResourceDictionary
+            x:Key="Light">
+            <SolidColorBrush
+                x:Key="GridSplitterBackgroundThemeBrush"
+                Color="#E5DDDDDD" />
+            <SolidColorBrush
+                x:Key="GridSplitterThumbThemeBrush"
+                Color="#66000000" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <!-- GridSplitterPreviewControl default style -->
+    <Style
+        TargetType="controls:GridSplitterPreviewControl">
+        <Setter
+            Property="Background"
+            Value="DarkGray" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:GridSplitterPreviewControl">
+                    <Rectangle
+                        Margin="{TemplateBinding Padding}"
+                        Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- CustomGridSplitter default style -->
+    <Style
+        TargetType="controls:CustomGridSplitter">
+        <Setter
+            Property="Background"
+            Value="{StaticResource GridSplitterBackgroundThemeBrush}" />
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource GridSplitterThumbThemeBrush}" />
+        <!--<Setter
+            Property="VerticalAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Stretch" />-->
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:CustomGridSplitter">
+                    <Grid
+                        Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="OrientationStates">
+                                <VisualState
+                                    x:Name="VerticalOrientation">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="GripDotsPanel"
+                                            Storyboard.TargetProperty="Orientation">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Vertical" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="HorizontalOrientation">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="GripDotsPanel"
+                                            Storyboard.TargetProperty="Orientation">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Horizontal" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="FocusStates">
+                                <VisualState
+                                    x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            To="1"
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity" />
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            To="1"
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <StackPanel
+                            x:Name="GripDotsPanel"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                            <Ellipse
+                                Width="6"
+                                Height="6"
+                                Margin="2"
+                                Fill="{TemplateBinding Foreground}" />
+                            <Ellipse
+                                Width="6"
+                                Height="6"
+                                Margin="2"
+                                Fill="{TemplateBinding Foreground}" />
+                            <Ellipse
+                                Width="6"
+                                Height="6"
+                                Margin="2"
+                                Fill="{TemplateBinding Foreground}" />
+                        </StackPanel>
+                        <Rectangle
+                            x:Name="FocusVisualWhite"
+                            IsHitTestVisible="False"
+                            Opacity="0"
+                            StrokeDashOffset="1.5"
+                            StrokeEndLineCap="Square"
+                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                            StrokeDashArray="1,1" />
+                        <Rectangle
+                            x:Name="FocusVisualBlack"
+                            IsHitTestVisible="False"
+                            Opacity="0"
+                            StrokeDashOffset="0.5"
+                            StrokeEndLineCap="Square"
+                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                            StrokeDashArray="1,1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

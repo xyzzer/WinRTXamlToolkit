@@ -15,7 +15,7 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var rect = ellipse.GetBoundingRect(rootElement).ToSharpDX();
 
             var d2dEllipse = new D2D.Ellipse(
-                new DrawingPointF(
+                new Vector2(
                     (float)((rect.Left + rect.Right) * 0.5),
                     (float)((rect.Top + rect.Bottom) * 0.5)),
                 (float)(0.5 * rect.Width),

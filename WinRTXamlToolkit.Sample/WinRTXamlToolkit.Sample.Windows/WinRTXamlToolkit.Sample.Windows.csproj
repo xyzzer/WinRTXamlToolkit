@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F86D973-25D3-4104-A9E0-2B75D043A02F}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinRTXamlToolkit.Sample</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit.Sample</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>WinRTXamlToolkit.Sample.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <NuGetPackageImportStamp>849b4643</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj">
+      <Project>{aefca5b7-b382-41a4-af43-14441ae610c0}</Project>
+      <Name>WinRTXamlToolkit.Composition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj">
+      <Project>{d0b66203-5b50-4942-a864-c7550c6f23f6}</Project>
+      <Name>WinRTXamlToolkit.Controls.Calendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.Windows\WinRTXamlToolkit.Controls.DataVisualization.Windows.csproj">
+      <Project>{141f0d30-7788-4a47-a32c-d432b42b5ccb}</Project>
+      <Name>WinRTXamlToolkit.Controls.DataVisualization.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.Windows\WinRTXamlToolkit.Controls.Gauge.Windows.csproj">
+      <Project>{cb70bdaf-7310-4af4-9468-47eaafc36919}</Project>
+      <Name>WinRTXamlToolkit.Controls.Gauge.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj">
+      <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
+      <Name>WinRTXamlToolkit.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Controls.Extensions\TextBoxValidationTestPageViewModel.cs" />
+    <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\Behaviors\BehaviorsTestPage.xaml.cs">
+      <DependentUpon>BehaviorsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Behaviors\HighlightBehaviorTestPage.xaml.cs">
+      <DependentUpon>HighlightBehaviorTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml.cs">
+      <DependentUpon>ParallaxBackgroundBehaviorTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlurFxContentControl.cs" />
+    <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml.cs">
+      <DependentUpon>ButtonBaseExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ContentControlExtensionsTestPage.xaml.cs">
+      <DependentUpon>ContentControlExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ControlExtensionsCursorTestPage.xaml.cs">
+      <DependentUpon>ControlExtensionsCursorTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ImageExtensionsTestPage.xaml.cs">
+      <DependentUpon>ImageExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestPage.xaml.cs">
+      <DependentUpon>ListViewExtensionsItemToBringIntoViewTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ListViewExtensionsTestPage.xaml.cs">
+      <DependentUpon>ListViewExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ListViewItemExtensionsTestPage.xaml.cs">
+      <DependentUpon>ListViewItemExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\MessageDialogExtensionsTestPage.xaml.cs">
+      <DependentUpon>MessageDialogExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\ScrollViewerExtensionsTestPage.xaml.cs">
+      <DependentUpon>ScrollViewerExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml.cs">
+      <DependentUpon>TextBoxFocusExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\TextBoxValidationTestPage.xaml.cs">
+      <DependentUpon>TextBoxValidationTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestPage.xaml.cs">
+      <DependentUpon>UIElementAnimationExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AlternativeFrameTestPage.xaml.cs">
+      <DependentUpon>AlternativeFrameTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml.cs">
+      <DependentUpon>AlternativeFrameTestPageSubPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage2.xaml.cs">
+      <DependentUpon>AlternativeFrameTestPageSubPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage3.xaml.cs">
+      <DependentUpon>AlternativeFrameTestPageSubPage3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AnimatingContainerTestPage.xaml.cs">
+      <DependentUpon>AnimatingContainerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
+      <DependentUpon>CalendarTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CameraCaptureControlPage.xaml.cs">
+      <DependentUpon>CameraCaptureControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CascadingImageTestPage.xaml.cs">
+      <DependentUpon>CascadingImageTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CascadingTextBlockTestPage.xaml.cs">
+      <DependentUpon>CascadingTextBlockTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ChartTestPage.xaml.cs">
+      <DependentUpon>ChartTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml.cs">
+      <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ColorPickerTestPage.xaml.cs">
+      <DependentUpon>ColorPickerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CountdownTestPage.xaml.cs">
+      <DependentUpon>CountdownTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CustomAppBarTestPage.xaml.cs">
+      <DependentUpon>CustomAppBarTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CustomGridSplitterTestPage.xaml.cs">
+      <DependentUpon>CustomGridSplitterTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\GaugeTestPage.xaml.cs">
+      <DependentUpon>GaugeTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ImageButtonTestPage.xaml.cs">
+      <DependentUpon>ImageButtonTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ImageToggleButtonTestPage.xaml.cs">
+      <DependentUpon>ImageToggleButtonTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InputDialogTestPage.xaml.cs">
+      <DependentUpon>InputDialogTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\LayoutTransformControlTestPage.xaml.cs">
+      <DependentUpon>LayoutTransformControlTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\NumericUpDownTestPage.xaml.cs">
+      <DependentUpon>NumericUpDownTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\RingSliceTestPage.xaml.cs">
+      <DependentUpon>RingSliceTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SquareGridTestPage.xaml.cs">
+      <DependentUpon>SquareGridTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ToolWindowTestPage.xaml.cs">
+      <DependentUpon>ToolWindowTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\TreeViewTestPage.xaml.cs">
+      <DependentUpon>TreeViewTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\UniformGridTestPage.xaml.cs">
+      <DependentUpon>UniformGridTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs">
+      <DependentUpon>WatermarkPasswordBoxTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\WatermarkTextBoxTestPage.xaml.cs">
+      <DependentUpon>WatermarkTextBoxTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\WebBrowserTestPage.xaml.cs">
+      <DependentUpon>WebBrowserTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\WrapPanelTestPage.xaml.cs">
+      <DependentUpon>WrapPanelTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Debugging\BindingDebugConverterTestPage.xaml.cs">
+      <DependentUpon>BindingDebugConverterTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Debugging\DebugConsoleTestPage.xaml.cs">
+      <DependentUpon>DebugConsoleTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Debugging\DebugTreeViewTestPage.xaml.cs">
+      <DependentUpon>DebugTreeViewTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Imaging\ImagingTestPage.xaml.cs">
+      <DependentUpon>ImagingTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml.cs">
+      <DependentUpon>WriteableBitmapLoadExtensionsTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Imaging\WriteableBitmapRenderTestPage.xaml.cs">
+      <DependentUpon>WriteableBitmapRenderTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IO\XmlDataContractSerializerTestPage.xaml.cs">
+      <DependentUpon>XmlDataContractSerializerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IO\XmlSerializerTestPage.xaml.cs">
+      <DependentUpon>XmlSerializerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\BackgroundTimerTestPage.xaml.cs">
+      <DependentUpon>BackgroundTimerTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EventThrottlerTestPage.xaml.cs">
+      <DependentUpon>EventThrottlerTestPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="packages.config" />
+    <None Include="WinRTXamlToolkit.Sample.Windows_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\BlogFace.jpg" />
+    <Content Include="Assets\Images\GrayButton.png" />
+    <Content Include="Assets\Images\GreenButton_Disabled.png" />
+    <Content Include="Assets\Images\GreenButton_Hover.png" />
+    <Content Include="Assets\Images\GreenButton_Idle.png" />
+    <Content Include="Assets\Images\GreenButton_Pressed.png" />
+    <Content Include="Assets\Images\RedButtonMultiScale.scale-100.png" />
+    <Content Include="Assets\Images\RedButtonMultiScale.scale-140.png" />
+    <Content Include="Assets\Images\RedButtonMultiScale.scale-180.png" />
+    <Content Include="Assets\Images\RedButton_Disabled.png" />
+    <Content Include="Assets\Images\RedButton_Hover.png" />
+    <Content Include="Assets\Images\RedButton_Idle.png" />
+    <Content Include="Assets\Images\RedButton_Pressed.png" />
+    <Content Include="Assets\Images\scale-100\GreenButtonMultiScale.png" />
+    <Content Include="Assets\Images\scale-140\GreenButtonMultiScale.png" />
+    <Content Include="Assets\Images\scale-180\GreenButtonMultiScale.png" />
+    <Content Include="Assets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SmallLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\StoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Behaviors\BehaviorsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Behaviors\HighlightBehaviorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ContentControlExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ControlExtensionsCursorTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ImageExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ListViewExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ListViewItemExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\MessageDialogExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ScrollViewerExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\TextBoxValidationTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AlternativeFrameTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AlternativeFrameTestPageSubPage3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AnimatingContainerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CalendarTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CameraCaptureControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CascadingImageTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CascadingTextBlockTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ChartTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ColorPickerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CountdownTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CustomAppBarTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CustomGridSplitterTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\GaugeTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ImageButtonTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ImageToggleButtonTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\InputDialogTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\LayoutTransformControlTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\NumericUpDownTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\RingSliceTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SquareGridTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ToolWindowTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\TreeViewTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\UniformGridTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\WatermarkTextBoxTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\WebBrowserTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\WrapPanelTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Debugging\BindingDebugConverterTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Debugging\DebugConsoleTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Debugging\DebugTreeViewTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Imaging\ImagingTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Imaging\WriteableBitmapRenderTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IO\XmlDataContractSerializerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IO\XmlSerializerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\BackgroundTimerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\EventThrottlerTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>$(SharpDXPackageBinDir)\SharpDX.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="..\WinRTXamlToolkit.Sample.Shared\WinRTXamlToolkit.Sample.Shared.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\..\packages\SharpDX.2.6.0\build\SharpDX.targets" Condition="Exists('..\..\packages\SharpDX.2.6.0\build\SharpDX.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\SharpDX.2.6.0\build\SharpDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SharpDX.2.6.0\build\SharpDX.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -22,10 +22,10 @@ namespace WinRTXamlToolkit.Composition.Renderers
             var layer = line.CreateAndPushLayerIfNecessary(renderTarget, rootElement);
 
             renderTarget.DrawLine(
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + (float)line.X1,
                     rect.Top + (float)line.Y1),
-                new DrawingPointF(
+                new Vector2(
                     rect.Left + (float)line.X2,
                     rect.Top + (float)line.Y2),
                     stroke,

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>952bd2b0-e12a-4bfc-bce7-f4ee9f7461b6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WinRTXamlToolkit</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeNavigationEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\CutTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\DissolveTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\FadeAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\FlipAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\FlipTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\FrameCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\JournalEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\NavigationCacheMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\PageTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\PageTransitionAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\PushTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\SlideAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\InteractionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\IUpdateVisualState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangedEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangeEventSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\ScrollExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\VisualStates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\DataTemplateExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\HierarchicalDataTemplate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\AnimationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ButtonBaseExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ContentControlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\ControlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\FieldValidationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\FieldValidationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\TextBoxFocusExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\TextBoxFormatValidationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\ValidationChecks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\GridViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\GridViewItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ImageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListBoxExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListBoxItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListViewExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListViewItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ManipulationInertiaStartingRoutedEventArgsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\MessageDialogExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\RichTextBlockExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ScrollViewerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\StyleExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\TextBlockExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\UIElementAnimationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ViewboxExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualStateExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualTreeHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\WebViewExtensions 8.1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\ItemsControlHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\LayoutTransformControl\LayoutTransformControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SquareGrid\SquareGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\UniformGrid\UniformGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\OrientedSize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\WrapPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\FileNameMimeContentConversion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\StorageFolderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\StorageItemExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\StringIOExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ScaledImageFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Serialization\JsonSerialization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Serialization\XmlSerialization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\WebFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\WebHelper.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncAutoResetEvent.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncBarrier.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncCountdownEvent.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncLock.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncManualResetEvent.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncReaderWriterLock.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Async\AsyncSemaphore.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\BitmapImageExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\ButtonExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\ControlExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\EventAsync.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\FrameworkElementExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\MediaElementExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\ScrollViewerExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\SelectorExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\StoryboardExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\WebViewExtensions 8.1.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\AwaitableUI\WriteableBitmapExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Common\AlternativeApplicationView.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Common\ImplicitDataTemplateSelector.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Common\ImplicitStyleSelector.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Common\WeakEventListener.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\BooleanToDataTemplateConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\BooleanToDoubleConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\MultiplyConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\NullableBoolToVisibilityConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\DoubleToIntConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\NullableBoolToBoolConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\PolynomialConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Converters\SecondsToTimeSpanStringConverter.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\Calculator.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\EnumExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\BackgroundTimer.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\EnumerableExtensions.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\EventThrottler.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\EventThrottlerMultiThreaded.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\MathEx.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\TimeoutCheck.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\TryCatchRetry.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Shared\Tools\TypeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\ReadMe.txt" />
+    <None Include="..\WinRTXamlToolkit.Shared\Async\Credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeFrame.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

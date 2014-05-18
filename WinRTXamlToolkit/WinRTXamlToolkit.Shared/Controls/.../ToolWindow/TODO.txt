@@ -1,0 +1,7 @@
+﻿Unsnap/undock gesture
+- even if the flick is very light - if this is a flick out of a docked position
+  - it shouldn't cause the window to snap back and rather it should animate to the nearest non-snapped position.
+
+Others
+- snap to side of screen
+ 

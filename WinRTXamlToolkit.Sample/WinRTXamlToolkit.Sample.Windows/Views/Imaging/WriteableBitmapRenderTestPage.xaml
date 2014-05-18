@@ -1,0 +1,895 @@
+﻿<controls:AlternativePage
+    x:Class="WinRTXamlToolkit.Sample.Views.WriteableBitmapRenderTestPage"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:WinRTXamlToolkit.Interactivity"
+    xmlns:views="using:WinRTXamlToolkit.Sample.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="140" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="120" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="BackButton"
+                Style="{StaticResource BackButtonStyle}"
+                Click="GoBack" />
+            <TextBlock
+                Text="WriteableBitmap.Render() Test"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource PageHeaderTextStyle}" />
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="Source XAML Tree" />
+            <Border
+                BorderThickness="1"
+                BorderBrush="WhiteSmoke"
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="0,5,5,5">
+                <Grid>
+                    <Grid
+                        x:Name="source">
+                        <StackPanel>
+                            <Grid>
+                                <Border
+                                    Margin="20,10,20,0"
+                                    HorizontalAlignment="Left"
+                                    Width="250"
+                                    Height="100"
+                                    CornerRadius="10">
+                                    <Border.Background>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="0.5,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="#222F" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border
+                                    Margin="20,10,20,0"
+                                    HorizontalAlignment="Right"
+                                    BorderBrush="LawnGreen"
+                                    BorderThickness="15,5,20,25"
+                                    Width="250"
+                                    Height="100"
+                                    CornerRadius="10">
+                                    <Border.Background>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="0.5,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="#222F" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                            <Grid>
+                                <Border
+                                    Margin="20,10"
+                                    Background="DimGray"
+                                    Width="200"
+                                    CornerRadius="20,0,5,10">
+                                    <TextBlock
+                                        Text="&#xE125;"
+                                        FontFamily="Segoe UI Symbol"
+                                        HorizontalAlignment="Center"
+                                        FontSize="72">
+                                        <TextBlock.Foreground>
+                                            <LinearGradientBrush
+                                                StartPoint="0,0"
+                                                EndPoint="1,1">
+                                                <GradientStop
+                                                    Offset="0"
+                                                    Color="Yellow" />
+                                                <GradientStop
+                                                    Offset="0.2"
+                                                    Color="White" />
+                                                <GradientStop
+                                                    Offset="0.4"
+                                                    Color="Yellow" />
+                                                <GradientStop
+                                                    Offset="1.0"
+                                                    Color="Orange" />
+                                            </LinearGradientBrush>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </Border>
+                                <Ellipse
+                                    Margin="20,10"
+                                    HorizontalAlignment="Right"
+                                    Width="200"
+                                    Height="60">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint="0,0"
+                                            EndPoint="1,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Yellow" />
+                                            <GradientStop
+                                                Offset=".5"
+                                                Color="GreenYellow" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Image
+                                    HorizontalAlignment="Left"
+                                    Margin="15,0,0,0"
+                                    VerticalAlignment="Top"
+                                    Source="ms-appx:///Assets/Images/BlogFace.jpg"
+                                    Width="100"
+                                    Height="100" />
+                                <Rectangle
+                                    HorizontalAlignment="Left"
+                                    Margin="120,0,0,0"
+                                    VerticalAlignment="Top"
+                                    Width="90"
+                                    Height="70">
+                                    <Rectangle.Fill>
+                                        <ImageBrush
+                                            Stretch="UniformToFill"
+                                            ImageSource="ms-appx:///Assets/Images/BlogFace.jpg" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+                            <TextBlock
+                                Margin="0,15,0,0"
+                                Text="Hello WriteableBitmap.Render()! ;&gt;"
+                                TextWrapping="Wrap"
+                                FontFamily="Consolas"
+                                FontSize="32" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle
+                                    Height="100"
+                                    Margin="5"
+                                    RadiusX="25"
+                                    RadiusY="25">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle
+                                    Grid.Column="1"
+                                    Height="100"
+                                    Margin="5"
+                                    RadiusX="25"
+                                    RadiusY="25"
+                                    StrokeThickness="25">
+                                    <Rectangle.Stroke>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Black" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Gray" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Stroke>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle
+                                    Grid.Column="2"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    Fill="Yellow"
+                                    StrokeThickness="25" />
+                                <Rectangle
+                                    Grid.Column="3"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    StrokeThickness="5"
+                                    StrokeDashArray="2,2,5,2"
+                                    StrokeDashCap="Triangle" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Ellipse
+                                    Height="100"
+                                    Margin="5">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse
+                                    Grid.Column="1"
+                                    Height="100"
+                                    Margin="5"
+                                    StrokeThickness="25">
+                                    <Ellipse.Stroke>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Black" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Gray" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Stroke>
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush
+                                            StartPoint=".25,0"
+                                            EndPoint=".75,1">
+                                            <GradientStop
+                                                Offset="0"
+                                                Color="Gray" />
+                                            <GradientStop
+                                                Offset="1.0"
+                                                Color="Black" />
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse
+                                    Grid.Column="2"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    Fill="Yellow"
+                                    StrokeThickness="25" />
+                                <Ellipse
+                                    Grid.Column="3"
+                                    Height="100"
+                                    Margin="5"
+                                    Stroke="Red"
+                                    StrokeThickness="5"
+                                    StrokeDashArray="5,2,15,2"
+                                    StrokeDashCap="Triangle" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid
+                                    Height="110"
+                                    Width="120">
+                                    <Path
+                                        Data="M49.875,0.5 C65.3389,0.5 77.875,12.6745 77.875,27.6925 C77.875,30.2737 77.5047,32.7709 76.8128,35.1368 L76.6633,35.6247 L76.893,35.6675 C89.6521,38.2031 99.25,49.1668 99.25,62.3075 C99.25,77.3253 86.7139,89.5 71.25,89.5 C63.0348,89.5 55.6459,86.064 50.5239,80.5911 L49.875,79.8635 L49.2261,80.5911 C44.1041,86.064 36.7152,89.5 28.5,89.5 C13.0361,89.5 0.5,77.3253 0.5,62.3075 C0.5,49.1668 10.0979,38.2031 22.857,35.6675 L23.0867,35.6247 L22.9372,35.1368 C22.2453,32.7709 21.875,30.2737 21.875,27.6925 C21.875,12.6745 34.4111,0.5 49.875,0.5 z"
+                                        Fill="White"
+                                        HorizontalAlignment="Left"
+                                        Height="90"
+                                        Margin="10,10,0,0"
+                                        Stretch="Fill"
+                                        Stroke="White"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="100" />
+                                    <Path
+                                        Data="M40,0.5 C61.8152,0.5 79.5,18.1848 79.5,40 C79.5,61.815 61.8152,79.5 40,79.5 C18.1848,79.5 0.5,61.815 0.5,40 C0.5,18.1848 18.1848,0.5 40,0.5 z"
+                                        Fill="#AA00FF00"
+                                        HorizontalAlignment="Left"
+                                        Height="55.385"
+                                        Stretch="Fill"
+                                        Stroke="White"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="57"
+                                        Margin="53,44.615,0,0" />
+                                    <Path
+                                        Data="M40,0.5 C61.8152,0.5 79.5,18.1848 79.5,40 C79.5,61.8152 61.8152,79.5 40,79.5 C18.1848,79.5 0.5,61.8152 0.5,40 C0.5,18.1848 18.1848,0.5 40,0.5 z"
+                                        Fill="#AAFF0000"
+                                        HorizontalAlignment="Left"
+                                        Height="55.385"
+                                        Stretch="Fill"
+                                        Stroke="White"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="57"
+                                        Margin="31.625,10,0,0" />
+                                    <Path
+                                        Data="M40,0.5 C61.8152,0.5 79.5,18.1848 79.5,40 C79.5,61.815 61.8152,79.5 40,79.5 C18.1848,79.5 0.5,61.815 0.5,40 C0.5,18.1848 18.1848,0.5 40,0.5 z"
+                                        Fill="#AA0000FF"
+                                        HorizontalAlignment="Left"
+                                        Height="55.385"
+                                        Stretch="Fill"
+                                        Stroke="White"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="57"
+                                        Margin="10.25,44.615,0,0" />
+                                </Grid>
+                                <Grid
+                                    Grid.Column="1"
+                                    Height="110"
+                                    Width="120">
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45" />
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45">
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform
+                                                Rotation="60" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45">
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform
+                                                Rotation="120" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45">
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform
+                                                Rotation="180" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45">
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform
+                                                Rotation="240" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Yellow"
+                                        HorizontalAlignment="Left"
+                                        Height="50"
+                                        Margin="30,10,0,0"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        RenderTransformOrigin="0.5,0.8"
+                                        Opacity="0.45">
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform
+                                                Rotation="300" />
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Grid>
+                                <Grid
+                                    Grid.Column="2"
+                                    Height="110"
+                                    Width="120">
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="110"
+                                        Y2="10"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Triangle">
+                                        <Line.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Line.Stroke>
+                                    </Line>
+                                    <Line
+                                        X1="10"
+                                        Y1="30"
+                                        X2="110"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        Stroke="White"
+                                        StrokeEndLineCap="Square"
+                                        StrokeStartLineCap="Round" />
+                                    <Line
+                                        X1="10"
+                                        Y1="50"
+                                        X2="110"
+                                        Y2="50"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        Stroke="White"
+                                        StrokeEndLineCap="Triangle"
+                                        StrokeStartLineCap="Round"
+                                        StrokeDashArray="0 2 1 2"
+                                        StrokeDashCap="Round" />
+                                    <Path
+                                        Data="M10,70 L50,80 L10,90"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="5,65,0,0"
+                                        StrokeStartLineCap="Round"
+                                        Stretch="Fill"
+                                        StrokeEndLineCap="Triangle"
+                                        Stroke="White"
+                                        StrokeThickness="10"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="40" />
+                                    <Path
+                                        Data="M10,70 L50,80 L10,90"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="40,65,0,0"
+                                        StrokeStartLineCap="Round"
+                                        Stretch="Fill"
+                                        StrokeEndLineCap="Triangle"
+                                        Stroke="#FFB6B6B6"
+                                        StrokeThickness="10"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="40"
+                                        StrokeMiterLimit="1" />
+                                    <Path
+                                        Data="M10,70 L50,80 L50,95.1667"
+                                        HorizontalAlignment="Left"
+                                        Height="35"
+                                        Margin="75,65,0,0"
+                                        StrokeStartLineCap="Round"
+                                        Stretch="Fill"
+                                        StrokeEndLineCap="Triangle"
+                                        Stroke="#FF4F4F4F"
+                                        StrokeThickness="10"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="40"
+                                        StrokeMiterLimit="1"
+                                        StrokeLineJoin="Round" />
+                                    <Path
+                                        Data="M10,70 L16.8889,85.1 L-16.6667,85.1"
+                                        HorizontalAlignment="Left"
+                                        Height="25"
+                                        Margin="65,80,0,0"
+                                        StrokeStartLineCap="Round"
+                                        Stretch="Fill"
+                                        StrokeEndLineCap="Triangle"
+                                        Stroke="Red"
+                                        StrokeThickness="10"
+                                        UseLayoutRounding="False"
+                                        VerticalAlignment="Top"
+                                        Width="35.167"
+                                        StrokeMiterLimit="1"
+                                        StrokeLineJoin="Bevel" />
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid
+                                    Height="110"
+                                    Width="120">
+                                    <Ellipse
+                                        Fill="Black"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="10,10,0,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        Stretch="Uniform">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="10,40,0,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        Stretch="Fill">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="10,70,0,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        Stretch="UniformToFill">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        Height="30"
+                                        Margin="10,10,10,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Stretch="None"
+                                        HorizontalAlignment="Right"
+                                        Width="50">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        Height="30"
+                                        Margin="0,10,10,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Stretch="Fill"
+                                        HorizontalAlignment="Right"
+                                        Width="50">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="60,40,0,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="30"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        Stretch="Fill">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse
+                                        Fill="Black"
+                                        HorizontalAlignment="Left"
+                                        Height="30"
+                                        Margin="60,70,0,0"
+                                        StrokeStartLineCap="Triangle"
+                                        StrokeThickness="10"
+                                        VerticalAlignment="Top"
+                                        Width="50"
+                                        Stretch="UniformToFill"
+                                        UseLayoutRounding="True">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush
+                                                EndPoint="0,0"
+                                                StartPoint="1,0">
+                                                <GradientStop
+                                                    Color="Black" />
+                                                <GradientStop
+                                                    Color="White"
+                                                    Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                </Grid>
+                                <Grid
+                                    Grid.Column="1"
+                                    Height="110"
+                                    Width="120">
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Triangle"
+                                        Fill="Black"
+                                        Width="55"
+                                        Height="35"
+                                        Stroke="White" />
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Triangle"
+                                        Fill="Black"
+                                        Margin="0,35,0,0"
+                                        Stretch="Fill"
+                                        Width="55"
+                                        Height="35"
+                                        Stroke="White" />
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Triangle"
+                                        Fill="Black"
+                                        Margin="0,70,0,0"
+                                        Stretch="Uniform"
+                                        Width="55"
+                                        Height="35"
+                                        Stroke="White" />
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Triangle"
+                                        Fill="Black"
+                                        Margin="55,70,0,0"
+                                        Stretch="UniformToFill"
+                                        Width="55"
+                                        Height="35"
+                                        Stroke="White" />
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        StrokeStartLineCap="Round"
+                                        Fill="Black"
+                                        Width="55"
+                                        Height="35"
+                                        Margin="55,0,0,0"
+                                        Stretch="Fill"
+                                        StrokeEndLineCap="Round"
+                                        Stroke="White" />
+                                    <Line
+                                        X1="10"
+                                        Y1="10"
+                                        X2="50"
+                                        Y2="30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="False"
+                                        StrokeThickness="10"
+                                        Fill="Black"
+                                        Width="55"
+                                        Height="35"
+                                        Margin="55,35,0,0"
+                                        Stretch="Fill"
+                                        Stroke="White" />
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <Image
+                        x:Name="overlaidPreview"
+                        ManipulationMode="TranslateX,TranslateY"
+                        ManipulationDelta="OverlaidPreview_OnManipulationDelta"
+                        ManipulationCompleted="OverlaidPreview_OnManipulationCompleted"
+                        Opacity="0.5"
+                        d:IsHidden="True">
+                        <Image.RenderTransform>
+                            <TranslateTransform
+                                x:Name="overlaidPreviewTransform" />
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+            </Border>
+
+            <TextBlock
+                Grid.Column="2"
+                Grid.Row="1"
+                Text="Target WriteableBitmap" />
+            <Border
+                BorderThickness="1"
+                BorderBrush="WhiteSmoke"
+                Grid.Column="2"
+                Grid.Row="2"
+                Margin="0,5,5,5">
+                <Image
+                    x:Name="target" />
+            </Border>
+            <StackPanel
+                Grid.Column="2"
+                Grid.Row="2"
+                x:Name="RenderProgressPanel"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <ProgressRing
+                    x:Name="RenderProgressRing"
+                    IsActive="True"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="100"
+                    Height="100"
+                    Margin="20" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap"
+                    FontSize="18"
+                    MaxWidth="400"
+                    Text="Rendering the UI tree with SharpDX/Direct2D. This might take a while since the images need to be downloaded and decoded." />
+            </StackPanel>
+            <!--<Button
+                Content="Test"
+                Grid.Column="1"
+                Grid.Row="2" />-->
+        </Grid>
+        <controls:CustomAppBar
+            Background="{StaticResource AppBarBackgroundThemeBrush}"
+            VerticalAlignment="Bottom"
+            IsOpen="True">
+            <StackPanel
+                Orientation="Horizontal">
+                <ToggleButton
+                    x:Name="overlaidPreviewButton"
+                    Checked="OverlaidPreviewButton_OnChecked"
+                    Unchecked="OverlaidPreviewButton_OnUnchecked">OverlaidPreview</ToggleButton>
+            </StackPanel>
+        </controls:CustomAppBar>
+    </Grid>
+</controls:AlternativePage>
