@@ -1,5 +1,0 @@
-﻿Async coordination primitives in this namespace based on
-Stephen Toub's blog series "Building Async Coordination Primitives"
-
-See:
-http://blogs.msdn.com/search/searchresults.aspx?q="Building%20Async%20Coordination%20Primitives
