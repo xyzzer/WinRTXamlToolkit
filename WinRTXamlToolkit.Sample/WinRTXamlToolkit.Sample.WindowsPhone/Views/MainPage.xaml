@@ -95,5 +95,19 @@
                 </DataTemplate>
             </HubSection>
         </Hub>
+        <!--<CommandBar>
+            <AppBarButton
+                x:Name="AddAppBarButton"
+                Label="add"
+                Icon="Add" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    x:Name="SecondaryButton1"
+                    Label="secondary command 1" />
+                <AppBarButton
+                    x:Name="SecondaryButton2"
+                    Label="secondary command 2" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>-->
     </Grid>
 </controls:AlternativePage>
