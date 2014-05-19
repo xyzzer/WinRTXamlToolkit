@@ -76,11 +76,44 @@ namespace WinRTXamlToolkit.Debugging.Common
             {
                 try
                 {
-                    if (type == typeof(AutomationProperties) &&
+                    if (type == typeof (AutomationProperties) &&
                         dpPropertyInfo.Name == "AccessibilityViewProperty")
                     {
                         continue;
                     }
+
+#if WINDOWS_PHONE_APP
+                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapIcon) &&
+                        (dpPropertyInfo.Name == "LocationProperty" ||
+                        dpPropertyInfo.Name == "NormalizedAnchorPointProperty" ||
+                        dpPropertyInfo.Name == "TitleProperty"))
+                    {
+                        continue;
+                    }
+
+                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapItemsControl) &&
+                        (dpPropertyInfo.Name == "ItemTemplateProperty" ||
+                        dpPropertyInfo.Name == "ItemsProperty" ||
+                        dpPropertyInfo.Name == "ItemsSourceProperty"))
+                    {
+                        continue;
+                    }
+
+                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapPolygon) &&
+                        (dpPropertyInfo.Name == "PathProperty" ||
+                        dpPropertyInfo.Name == "StrokeDashedProperty" ||
+                        dpPropertyInfo.Name == "StrokeThicknessProperty"))
+                    {
+                        continue;
+                    }
+
+                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapPolyline) &&
+                        (dpPropertyInfo.Name == "PathProperty" ||
+                        dpPropertyInfo.Name == "StrokeDashedProperty"))
+                    {
+                        continue;
+                    }
+#endif
 
                     var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
                     var propertyName =
@@ -89,7 +122,10 @@ namespace WinRTXamlToolkit.Debugging.Common
                             dpPropertyInfo.Name.Length - "Property".Length);
                     AddDependencyPropertyInfo(type, typeInfo, dependencyProperty, propertyName, ref propertyList);
                 }
-                catch { }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(">{0}.{1}", type.ToString(), dpPropertyInfo.Name);
+                }
             }
 
             if (!typeInfo.ContainsGenericParameters)

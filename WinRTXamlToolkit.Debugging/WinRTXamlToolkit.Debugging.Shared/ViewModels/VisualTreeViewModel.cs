@@ -293,6 +293,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         internal async Task<bool> SelectItem(UIElement element, bool refreshOnFail = false)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
+
+            if (this.RootElements == null || this.RootElements.Count == 0)
+            {
+                await Refresh();
+            }
+
             var vm = this.RootElements[0] as DependencyObjectViewModel;
             var ancestorIndex = ancestors.IndexOf(vm.Model);
 
