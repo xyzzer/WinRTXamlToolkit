@@ -63,6 +63,12 @@ namespace WinRTXamlToolkit.Controls
         private bool _isChangingValueWithCode;
         private double _unusedManipulationDelta;
 
+        private bool _isDraggingWithMouse;
+        private MouseDevice _mouseDevice;
+        private const double MinMouseDragDelta = 2;
+        private double _totalDeltaX;
+        private double _totalDeltaY;
+
         #region ValueFormat
         /// <summary>
         /// ValueFormat Dependency Property
@@ -454,12 +460,6 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-        private bool _isDraggingWithMouse;
-        private MouseDevice _mouseDevice;
-        private const double MinMouseDragDelta = 2;
-        private double _totalDeltaX;
-        private double _totalDeltaY;
-
         private void OnDragOverlayPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             _dragOverlay.CapturePointer(e.Pointer);
@@ -472,7 +472,9 @@ namespace WinRTXamlToolkit.Controls
                 _isDraggingWithMouse = true;
                 _mouseDevice = MouseDevice.GetForCurrentView();
                 _mouseDevice.MouseMoved += OnMouseDragged;
+#if WINDOWS_APP
                 Window.Current.CoreWindow.PointerCursor = null;
+#endif
             }
             else
             {
@@ -510,8 +512,9 @@ namespace WinRTXamlToolkit.Controls
             {
                 _isDraggingWithMouse = false;
                 _mouseDevice.MouseMoved -= OnMouseDragged;
-                Window.Current.CoreWindow.PointerCursor = new CoreCursor(
-                    CoreCursorType.SizeAll, 1);
+#if WINDOWS_APP
+                Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeAll, 1);
+#endif
                 _mouseDevice = null;
             }
             else if (_dragOverlay != null)
@@ -671,15 +674,19 @@ namespace WinRTXamlToolkit.Controls
                 _valueTextBox.IsTabStop)
             {
                 _valueTextBox.Focus(FocusState.Programmatic);
+#if WINDOWS_APP
                 Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.IBeam, 0);
+#endif
             }
         }
         private void OnValueTextBoxPointerExited(object sender, PointerRoutedEventArgs e)
         {
+#if WINDOWS_APP
             if (Window.Current.CoreWindow.PointerCursor.Type == CoreCursorType.IBeam)
             {
                 Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, 0);
             }
+#endif
         }
 
         /// <summary>

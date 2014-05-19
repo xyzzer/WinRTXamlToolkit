@@ -28,12 +28,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\SlideAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\FlickBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\HighlightBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\InteractionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\IUpdateVisualState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangeEventSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\ScrollExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\VisualStates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomGridSplitter\CustomGridSplitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\DataTemplateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\AnimationHelper.cs" />
@@ -69,10 +73,40 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\ItemsControlHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LayoutTransformControl\LayoutTransformControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PieSlice\PieSlice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\RingSlice\RingSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquareGrid\SquareGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolWindow\ToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewAutomationPeer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewItemAutomationPeer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\UniformGrid\UniformGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\WatermarkPasswordBox\WatermarkPasswordBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\OrientedSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\WrapPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\BitmapImageLoadExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\ColorExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\IBufferExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\PixelMath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\RenderTargetBitmapSaveExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapBlitBlockExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapColorPickerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapCopyExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapCropExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapDarkenExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapFloodFillExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapFromBitmapImageExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapGrayscaleExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapLightenExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapLoadExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapSaveExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interactivity\Behavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interactivity\BehaviorCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interactivity\BehaviorOfT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interactivity\Interaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\FileNameMimeContentConversion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\StorageFolderExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Extensions\StorageItemExtensions.cs" />
@@ -127,11 +161,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\ReadMe.txt" />
+    <None Include="$(MSBuildThisFileDirectory)Controls\ToolWindow\TODO.txt" />
     <None Include="..\WinRTXamlToolkit.Shared\Async\Credits.txt" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeFrame.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CustomGridSplitter\CustomGridSplitter.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\NumericUpDown.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ToolWindow\ToolWindow.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewMouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewTouch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\WatermarkTextBox\WatermarkTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

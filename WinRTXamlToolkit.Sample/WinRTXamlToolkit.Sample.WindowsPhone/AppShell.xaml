@@ -10,7 +10,8 @@
     d:DesignWidth="400">
 
     <Grid
-        x:Name="AppLayoutGrid">
+        x:Name="AppLayoutGrid"
+        Background="White">
         <controls:AlternativeFrame
             x:Name="RootFrame"/>
         <!--<controls:AlternativeFrame

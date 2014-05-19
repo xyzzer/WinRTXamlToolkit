@@ -43,16 +43,6 @@
     </controls:AlternativePage.Resources>
     <Grid
         x:Name="LayoutRoot">
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop
-                    Offset="0"
-                    Color="Transparent"/>
-                <GradientStop
-                    Offset="1"
-                    Color="#FF808080" />
-            </LinearGradientBrush>
-        </Grid.Background>
         <Hub
             x:Name="Hub"
             x:Uid="Hub"

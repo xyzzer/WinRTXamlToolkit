@@ -63,7 +63,6 @@ namespace WinRTXamlToolkit.Sample.Views
                 })
             ;
             CoreWindow.GetForCurrentThread().KeyDown += OnKeyDown;
-            //this.Loaded += (s, e) => DC.ShowVisualTree(this);
         }
 
         private void OnKeyDown(CoreWindow sender, KeyEventArgs args)

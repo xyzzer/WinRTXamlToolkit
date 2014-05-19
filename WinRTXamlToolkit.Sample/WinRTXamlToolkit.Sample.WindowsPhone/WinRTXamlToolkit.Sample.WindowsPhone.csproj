@@ -85,6 +85,10 @@
       <Project>{77b94f47-8d24-40d7-9113-bf052a0e9def}</Project>
       <Name>WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WindowsPhone\WinRTXamlToolkit.Debugging.WindowsPhone.csproj">
+      <Project>{b7b93918-2be1-46ce-b326-119305b51634}</Project>
+      <Name>WinRTXamlToolkit.Debugging.WindowsPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WinRTXamlToolkit\WinRTXamlToolkit.WindowsPhone\WinRTXamlToolkit.WindowsPhone.csproj">
       <Project>{1af78321-7d45-487b-bcfb-ce6b92389eb2}</Project>
       <Name>WinRTXamlToolkit.WindowsPhone</Name>

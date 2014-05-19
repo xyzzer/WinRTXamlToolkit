@@ -11,11 +11,11 @@
 
     <Grid
         x:Name="AppLayoutGrid">
-        <!--<controls:AlternativeFrame
+        <controls:AlternativeFrame
             x:Name="RootFrame">
-            --><!--<controls:AlternativeFrame.PageTransition>
+            <controls:AlternativeFrame.PageTransition>
                 <controls:DissolveTransition />
-            </controls:AlternativeFrame.PageTransition>--><!--
-        </controls:AlternativeFrame>-->
+            </controls:AlternativeFrame.PageTransition>
+        </controls:AlternativeFrame>
     </Grid>
 </UserControl>

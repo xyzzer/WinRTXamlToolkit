@@ -1931,6 +1931,7 @@ namespace WinRTXamlToolkit.Controls
                     ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY
                 };
                 _sizingGrid.Children.Add(_bottomRightSizingThumb);
+# if WINDOWS_APP
                 FrameworkElementExtensions.SetSystemCursor(_topLeftSizingThumb, CoreCursorType.SizeNorthwestSoutheast);
                 FrameworkElementExtensions.SetSystemCursor(_topCenterSizingThumb, CoreCursorType.SizeNorthSouth);
                 FrameworkElementExtensions.SetSystemCursor(_topRightSizingThumb, CoreCursorType.SizeNortheastSouthwest);
@@ -1939,6 +1940,7 @@ namespace WinRTXamlToolkit.Controls
                 FrameworkElementExtensions.SetSystemCursor(_bottomLeftSizingThumb, CoreCursorType.SizeNortheastSouthwest);
                 FrameworkElementExtensions.SetSystemCursor(_bottomCenterSizingThumb, CoreCursorType.SizeNorthSouth);
                 FrameworkElementExtensions.SetSystemCursor(_bottomRightSizingThumb, CoreCursorType.SizeNorthwestSoutheast);
+#endif
                 this.UpdateSizingThumbSizes();
                 HookUpSizingThumbManipulations(_topLeftSizingThumb);
                 HookUpSizingThumbManipulations(_topCenterSizingThumb);

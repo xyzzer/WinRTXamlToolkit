@@ -209,7 +209,6 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-#if WINDOWS_APP
         #region DisableSearchPaneOnFocus
         /// <summary>
         /// DisableSearchPaneOnFocus Attached Dependency Property
@@ -253,6 +252,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private static void OnDisableSearchPaneOnFocusChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+#if WINDOWS_APP
             bool newDisableSearchPaneOnFocus = (bool)d.GetValue(DisableSearchPaneOnFocusProperty);
 
             var handler = GetDisableSearchPaneOnFocusHandler(d);
@@ -268,9 +268,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 handler = new DisableSearchPaneOnFocusHandler((TextBox)d);
                 SetDisableSearchPaneOnFocusHandler(d, handler);
             }
+#endif
         }
         #endregion
 
+#if WINDOWS_APP
         #region DisableSearchPaneOnFocusHandler
         /// <summary>
         /// DisableSearchPaneOnFocusHandler Attached Dependency Property

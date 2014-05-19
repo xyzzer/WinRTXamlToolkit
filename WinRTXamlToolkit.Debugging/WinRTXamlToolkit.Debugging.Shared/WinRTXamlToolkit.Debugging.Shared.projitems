@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -9,5 +9,164 @@
     <Import_RootNamespace>WinRTXamlToolkit.Debugging.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommandGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DependencyPropertyCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DependencyPropertyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\PackageHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBoxItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BindingDebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Debug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DebugConsoleOverlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BasePropertyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BindableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DebugConsoleViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyObjectViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyPropertyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyPropertyViewModelValueCoercion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyGroupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StubTreeItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TreeItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VisualTreeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DebugConsoleView.xaml.cs">
+      <DependentUpon>DebugConsoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DependencyObjectDetailsView.xaml.cs">
+      <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\EditablePropertyTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\BooleanPropertyEditor.xaml.cs">
+      <DependentUpon>BooleanPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\BrushPropertyEditor.xaml.cs">
+      <DependentUpon>BrushPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\CacheModePropertyEditor.xaml.cs">
+      <DependentUpon>CacheModePropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\CornerRadiusPropertyEditor.xaml.cs">
+      <DependentUpon>CornerRadiusPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\DefaultPropertyEditor.xaml.cs">
+      <DependentUpon>DefaultPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\DependencyObjectPropertyEditor.xaml.cs">
+      <DependentUpon>DependencyObjectPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\EnumPropertyEditor.xaml.cs">
+      <DependentUpon>EnumPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\FontWeightPropertyEditor.xaml.cs">
+      <DependentUpon>FontWeightPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ImageSourcePropertyEditor.xaml.cs">
+      <DependentUpon>ImageSourcePropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\NumericPropertyEditor.xaml.cs">
+      <DependentUpon>NumericPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\StringPropertyEditor.xaml.cs">
+      <DependentUpon>StringPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ThicknessPropertyEditor.xaml.cs">
+      <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml.cs">
+      <DependentUpon>VisualTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeViewItemDetailsTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualTreeDebugger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\SharedResources.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\DebugConsoleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\DependencyObjectDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\BooleanPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\BrushPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\CacheModePropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\CornerRadiusPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\DefaultPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\DependencyObjectPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\EnumPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\FontWeightPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ImageSourcePropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\NumericPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\StringPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ThicknessPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

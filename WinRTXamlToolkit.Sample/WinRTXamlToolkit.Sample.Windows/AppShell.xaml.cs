@@ -16,38 +16,22 @@ namespace WinRTXamlToolkit.Sample
     {
         public static AlternativeFrame Frame { get; private set; }
 
+        public AppShell(LaunchActivatedEventArgs e)
+        {
+            this.InitializeComponent();
+            Frame = this.RootFrame;
+            Frame.Navigate(typeof(MainPage), e);
+            //DC.ShowVisualTree();
+            DC.Hide();
+        }
+        
         public AppShell(FileActivatedEventArgs e)
         {
             this.InitializeComponent();
-            this.RootFrame = new AlternativeFrame();
-            this.AppLayoutGrid.Children.Add(this.RootFrame);
             Frame = this.RootFrame;
-            //Frame.CacheSize = 1;
-
-//            if (Frame.Content == null)
-//            {
-//#if WINDOWS_PHONE_APP
-//    // Removes the turnstile navigation for startup.
-//                if (rootFrame.ContentTransitions != null)
-//                {
-//                    this.transitions = new TransitionCollection();
-//                    foreach (var c in rootFrame.ContentTransitions)
-//                    {
-//                        this.transitions.Add(c);
-//                    }
-//                }
-
-//                rootFrame.ContentTransitions = null;
-//                rootFrame.Navigated += this.RootFrame_FirstNavigated;
-//#endif
-//            }
-
             Frame.Navigate(typeof(MainPage), e);
-
             HandleFileActivation(e);
         }
-
-        public AlternativeFrame RootFrame { get; set; }
 
         public async Task HandleFileActivation(FileActivatedEventArgs e)
         {
@@ -57,35 +41,6 @@ namespace WinRTXamlToolkit.Sample
                 DC.Trace(await FileIO.ReadTextAsync(file));
 #endif
             }
-        }
-
-        public AppShell(LaunchActivatedEventArgs e)
-        {
-            this.InitializeComponent();
-            this.RootFrame = new AlternativeFrame();
-            this.AppLayoutGrid.Children.Add(this.RootFrame);
-            Frame = this.RootFrame;
-            //Frame.CacheSize = 1;
-
-            //            if (Frame.Content == null)
-            //            {
-            //#if WINDOWS_PHONE_APP
-            //    // Removes the turnstile navigation for startup.
-            //                if (rootFrame.ContentTransitions != null)
-            //                {
-            //                    this.transitions = new TransitionCollection();
-            //                    foreach (var c in rootFrame.ContentTransitions)
-            //                    {
-            //                        this.transitions.Add(c);
-            //                    }
-            //                }
-
-            //                rootFrame.ContentTransitions = null;
-            //                rootFrame.Navigated += this.RootFrame_FirstNavigated;
-            //#endif
-            //            }
-
-            //Frame.Navigate(typeof(MainPage), e);
         }
     }
 }

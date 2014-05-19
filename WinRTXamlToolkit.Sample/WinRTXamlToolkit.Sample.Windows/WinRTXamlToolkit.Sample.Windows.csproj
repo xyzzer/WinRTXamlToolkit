@@ -121,6 +121,10 @@
       <Project>{cb70bdaf-7310-4af4-9468-47eaafc36919}</Project>
       <Name>WinRTXamlToolkit.Controls.Gauge.Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.Windows\WinRTXamlToolkit.Debugging.Windows.csproj">
+      <Project>{b5ea4b9d-3300-4023-8110-e085854398a7}</Project>
+      <Name>WinRTXamlToolkit.Debugging.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj">
       <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
       <Name>WinRTXamlToolkit.Windows</Name>

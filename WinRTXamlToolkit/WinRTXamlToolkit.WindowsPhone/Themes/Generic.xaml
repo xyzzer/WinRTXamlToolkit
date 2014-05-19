@@ -13,9 +13,9 @@
             Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />-->
         <!--<ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />-->
-        <!--<ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml" />
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml" />
+        <!--<ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xaml" />
@@ -24,7 +24,7 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml" />
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />
+            Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />-->
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml" />
         <ResourceDictionary
@@ -35,7 +35,7 @@
             Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml" />
-        <ResourceDictionary
+        <!--<ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 

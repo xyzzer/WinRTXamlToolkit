@@ -231,9 +231,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
         private static void OnSystemCursorChanged(
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            CoreCursorType oldSystemCursor = (CoreCursorType)e.OldValue;
-            CoreCursorType newSystemCursor = (CoreCursorType)d.GetValue(SystemCursorProperty);
+            var oldSystemCursor = (CoreCursorType)e.OldValue;
+            var newSystemCursor = (CoreCursorType)d.GetValue(SystemCursorProperty);
 
+#if WINDOWS_APP
             //if (newSystemCursor.HasValue)
             {
                 SetCursor(d, new CoreCursor(newSystemCursor, 1));
@@ -242,6 +243,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
             //{
             //    SetCursor(d, null);
             //}
+#endif
         }
         #endregion
 

@@ -406,6 +406,7 @@ namespace WinRTXamlToolkit.Controls
             var effectiveResizeDirection =
                 this.DetermineEffectiveResizeDirection();
 
+#if WINDOWS_APP
             if (effectiveResizeDirection == GridResizeDirection.Columns)
             {
                 FrameworkElementExtensions.SetCursor(this, new CoreCursor(CoreCursorType.SizeWestEast, 1));
@@ -414,6 +415,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 FrameworkElementExtensions.SetCursor(this, new CoreCursor(CoreCursorType.SizeNorthSouth, 1));
             }
+#endif
         }
         #endregion
 
