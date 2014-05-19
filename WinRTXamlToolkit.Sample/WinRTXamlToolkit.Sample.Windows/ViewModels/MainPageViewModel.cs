@@ -433,12 +433,6 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
-                    Caption = "WriteableBitmap.Render()",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WriteableBitmapRenderTestPage))),
-                    SampleType = SampleTypes.Imaging
-                },
-                new SampleButtonViewModel
-                {
                     Caption = "XML DataContract Serialization",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(XmlDataContractSerializerTestPage))),
                     SampleType = SampleTypes.Miscellaneous

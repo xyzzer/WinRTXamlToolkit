@@ -105,10 +105,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj">
-      <Project>{aefca5b7-b382-41a4-af43-14441ae610c0}</Project>
-      <Name>WinRTXamlToolkit.Composition</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj">
       <Project>{d0b66203-5b50-4942-a864-c7550c6f23f6}</Project>
       <Name>WinRTXamlToolkit.Controls.Calendar</Name>
@@ -291,9 +287,6 @@
     </Compile>
     <Compile Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml.cs">
       <DependentUpon>WriteableBitmapLoadExtensionsTestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Imaging\WriteableBitmapRenderTestPage.xaml.cs">
-      <DependentUpon>WriteableBitmapRenderTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IO\XmlDataContractSerializerTestPage.xaml.cs">
       <DependentUpon>XmlDataContractSerializerTestPage.xaml</DependentUpon>
@@ -557,10 +550,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Imaging\WriteableBitmapRenderTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
