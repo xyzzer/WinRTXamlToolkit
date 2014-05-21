@@ -119,28 +119,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controls\AnimatingContainer\AnimatingContainer.xaml.cs">
-      <DependentUpon>AnimatingContainer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CameraCaptureControl\CameraCaptureControl.cs" />
-    <Compile Include="Controls\CascadingImageControl\CascadingImageControl.cs" />
-    <Compile Include="Controls\CascadingTextBlock\CascadingTextBlock.xaml.cs">
-      <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ColorPicker\ColorPicker.cs" />
-    <Compile Include="Controls\ColorPicker\HueRingPicker.cs" />
-    <Compile Include="Controls\ColorPicker\TrianglePicker.cs" />
-    <Compile Include="Controls\CountdownControl\CountdownControl.xaml.cs">
-      <DependentUpon>CountdownControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
-    <Compile Include="Controls\DelayedLoadControl\DelayedLoadControl.cs" />
     <Compile Include="Controls\Extensions\AppBarExtensions.cs" />
-    <Compile Include="Controls\FxContentControl\FxContentControl.cs" />
-    <Compile Include="Controls\ImageButton\ImageButton.cs" />
-    <Compile Include="Controls\ImageToggleButton\ImageToggleButton.cs" />
-    <Compile Include="Controls\InputDialog\InputDialog.cs" />
-    <Compile Include="Controls\ListItemButton\ListItemButton.cs" />
     <Compile Include="Device\DeviceHelper.cs" />
     <Compile Include="Input\Key.cs" />
     <Compile Include="Input\Keyboard.cs" />
@@ -153,60 +133,9 @@
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\AnimatingContainer\AnimatingContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\CameraCaptureControl\CameraCaptureControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Controls\CascadingImageControl\CascadingImageControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\CascadingTextBlock\CascadingTextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ColorPicker\ColorPicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\CountdownControl\CountdownControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\CustomAppBar\CustomAppBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\DelayedLoadControl\DelayedLoadControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FxContentControl\FxContentControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Controls\ImageButton\ImageButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ImageToggleButton\ImageToggleButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\InputDialog\InputDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ListItemButton\ListItemButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\WebBrowser\WebBrowser.xaml">
       <Generator>MSBuild:Compile</Generator>

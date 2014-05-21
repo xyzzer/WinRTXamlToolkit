@@ -28,18 +28,33 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\SlideAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeAnimation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\WipeTransition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AnimatingContainer\AnimatingContainer.xaml.cs">
+      <DependentUpon>AnimatingContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CameraCaptureControl\CameraCaptureControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CascadingImageControl\CascadingImageControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CascadingTextBlock\CascadingTextBlock.xaml.cs">
+      <DependentUpon>CascadingTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPicker\ColorPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPicker\HueRingPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ColorPicker\TrianglePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\InteractionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\IUpdateVisualState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\PropertyChangeEventSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\ScrollExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\VisualStates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CountdownControl\CountdownControl.xaml.cs">
+      <DependentUpon>CountdownControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomGridSplitter\CustomGridSplitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\DataTemplateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\HierarchicalDataTemplate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DelayedLoadControl\DelayedLoadControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\AnimationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ButtonBaseExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ContentControlExtensions.cs" />
@@ -70,9 +85,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\WebViewExtensions 8.1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\FxContentControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\ItemsControlHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton\ImageButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageToggleButton\ImageToggleButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\InputDialog\InputDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LayoutTransformControl\LayoutTransformControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ListItemButton\ListItemButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\NumericUpDown.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PieSlice\PieSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RingSlice\RingSlice.cs" />
@@ -170,7 +190,58 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\AnimatingContainer\AnimatingContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CameraCaptureControl\CameraCaptureControl.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CascadingImageControl\CascadingImageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CascadingTextBlock\CascadingTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ColorPicker\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CountdownControl\CountdownControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\CustomGridSplitter\CustomGridSplitter.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\FxContentControl.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ImageButton\ImageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ImageToggleButton\ImageToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\InputDialog\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ListItemButton\ListItemButton.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

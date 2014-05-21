@@ -5,17 +5,17 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml" />
-        <!--<ResourceDictionary
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml" />
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />-->
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />
         <!--<ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />-->
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml" />
-        <!--<ResourceDictionary
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xaml" />
@@ -24,7 +24,7 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml" />
         <ResourceDictionary
-            Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />-->
+            Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml" />
         <ResourceDictionary
