@@ -13,6 +13,8 @@
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -40,15 +42,17 @@
         
         <controls:CustomGridSplitter
             Grid.Row="1"
+            Grid.RowSpan="2"
             Grid.Column="1" />
         <controls:CameraCaptureControl
             x:Name="TestedControl"
             CameraFailed="OnTestedControlCameraFailed"
             Grid.Row="1"
+            Grid.RowSpan="2"
             Grid.Column="2"
             ShowOnLoad="True" />
         <StackPanel
-            Grid.Row="0">
+            Grid.Row="1">
             <Button
                 x:Name="ShowPreviewButton"
                 Foreground="Black"
@@ -82,12 +86,12 @@
         </StackPanel>
         <MediaElement
             x:Name="CapturedVideoElement"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             IsLooping="True" />
         <Image
             x:Name="PhotoImage"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0" />
     </Grid>
 </controls:AlternativePage>
