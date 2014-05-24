@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
-    public sealed partial class ChartTestPage : AlternativePage
+    public sealed partial class ChartTestPage : Page
     {
         public ChartTestPage()
         {
@@ -39,26 +40,17 @@ namespace WinRTXamlToolkit.Sample.Views
             ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items;
             ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items;
             ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items;
-            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource =
-                items;
-            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource =
-                items;
-            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource =
-                items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource = items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource = items;
+            ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource = items;
 
-            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource =
-                items;
-            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource =
-                items;
-            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource =
-                items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource = items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource = items;
+            ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource = items;
 
-            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[0]
-                .ItemsSource = items;
-            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[1]
-                .ItemsSource = items;
-            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[2]
-                .ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[0].ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[1].ItemsSource = items;
+            ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[2].ItemsSource = items;
 
             ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
             ((PieSeries)this.PieChartWithCustomDesign.Series[0]).ItemsSource = items;
@@ -83,6 +75,22 @@ namespace WinRTXamlToolkit.Sample.Views
         private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
         {
             UpdateCharts();
+        }
+
+        private void MainScrollViewer_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.LowerHalfGrid.Width = this.UpperHalfGrid.Width = this.MainScrollViewer.ViewportWidth;
+            this.LowerHalfGrid.Height = this.UpperHalfGrid.Height = this.MainScrollViewer.ViewportHeight - 64;
+        }
+
+        private void ChartsIndex_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainScrollViewer.ChangeView(null, 0, null);
+        }
+
+        private void OnIndexLabelTapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.MainScrollViewer.ChangeView(null, this.MainScrollViewer.ScrollableHeight, null);
         }
     }
 }

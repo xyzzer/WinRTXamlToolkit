@@ -551,7 +551,6 @@ namespace WinRTXamlToolkit.Controls
             set { SetValue(PhotoCaptureCountdownSecondsProperty, value); }
         }
         #endregion
-
         #endregion
 
         #region CTOR

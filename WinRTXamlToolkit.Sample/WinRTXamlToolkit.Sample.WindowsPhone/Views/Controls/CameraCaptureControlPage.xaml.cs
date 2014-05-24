@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
-    public sealed partial class CameraCaptureControlPage : WinRTXamlToolkit.Controls.AlternativePage
+    public sealed partial class CameraCaptureControlPage : Page
     {
         public CameraCaptureControlPage()
         {
@@ -22,16 +22,6 @@ namespace WinRTXamlToolkit.Sample.Views
         private void OnCycleCamerasButtonClick(object sender, RoutedEventArgs e)
         {
             TestedControl.CycleCamerasAsync();
-        }
-
-        private async void OnShowPreviewButtonClick(object sender, RoutedEventArgs e)
-        {
-            var result = await TestedControl.ShowAsync();
-        }
-
-        private void OnHidePreviewButtonClick(object sender, RoutedEventArgs e)
-        {
-            TestedControl.HideAsync();
         }
 
         private delegate Task TaskDelegate();
@@ -126,6 +116,29 @@ namespace WinRTXamlToolkit.Sample.Views
                 new MessageDialog(e != null ? e.Message : "Camera Capture Failed", "Error").ShowAsync();
 #pragma warning restore 4014
             }
+        }
+
+        private async void OnShowHidePreviewButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.ShowHidePreviewButton.IsEnabled = false;
+
+            if (this.ShowHidePreviewButton.IsChecked == true)
+            {
+                await TestedControl.HideAsync();
+                this.ShowHidePreviewButton.Content = "Show";
+            }
+            else
+            {
+                var result = await TestedControl.ShowAsync();
+                this.ShowHidePreviewButton.Content = "Hide";
+            }
+
+            this.ShowHidePreviewButton.IsEnabled = true;
+        }
+
+        private void Sv_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            sp.Width = sv.ViewportWidth;
         }
     }
 }

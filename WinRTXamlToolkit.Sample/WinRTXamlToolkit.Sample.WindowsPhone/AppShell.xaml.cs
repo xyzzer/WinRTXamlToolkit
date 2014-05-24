@@ -13,7 +13,8 @@ namespace WinRTXamlToolkit.Sample
 {
     public sealed partial class AppShell : UserControl
     {
-        public static AlternativeFrame Frame { get; private set; }
+        public static Frame Frame { get; private set; }
+        //public static AlternativeFrame Frame { get; private set; }
 
         public AppShell(LaunchActivatedEventArgs e)
         {
@@ -41,7 +42,11 @@ namespace WinRTXamlToolkit.Sample
 
             Frame.Navigate(typeof(MainPage), e);
             InitializeNavigationHelper();
-            this.Loaded += (s, e2) => DC.ShowVisualTree();
+            //this.Loaded += (s, e2) =>
+            //{
+            //    DC.ShowVisualTree();
+            //    DC.Collapse();
+            //};
         }
         
         public AppShell(FileActivatedEventArgs e)

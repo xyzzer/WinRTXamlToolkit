@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
 using WinRTXamlToolkit.AwaitableUI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -18,7 +19,7 @@ namespace WinRTXamlToolkit.Controls
     /// Requires using AlternativePage instead of Page though.
     /// Its API surface is similar enough to the Frame control that it is pretty easy to swap it in.
     /// </summary>
-    [TemplatePart(Name = "PagePresentersPanelName", Type = typeof(Panel))]
+    [TemplatePart(Name = PagePresentersPanelName, Type = typeof(Panel))]
     [StyleTypedProperty(Property = "PagePresenterStyle", StyleTargetType = typeof(ContentPresenter))]
     public class AlternativeFrame : ContentControl
     {
@@ -55,7 +56,7 @@ namespace WinRTXamlToolkit.Controls
         /// <value>
         /// The back stack.
         /// </value>
-        public Stack<JournalEntry> BackStack { get; private set; } 
+        public Stack<JournalEntry> BackStack { get; private set; }
         #endregion
 
         #region CurrentJournalEntry
@@ -65,7 +66,7 @@ namespace WinRTXamlToolkit.Controls
         /// <value>
         /// The current journal entry.
         /// </value>
-        public JournalEntry CurrentJournalEntry { get; private set; } 
+        public JournalEntry CurrentJournalEntry { get; private set; }
         #endregion
 
         #region ForwardStack
@@ -75,7 +76,7 @@ namespace WinRTXamlToolkit.Controls
         /// <value>
         /// The forward stack.
         /// </value>
-        public Stack<JournalEntry> ForwardStack { get; private set; } 
+        public Stack<JournalEntry> ForwardStack { get; private set; }
         #endregion
 
         #region CurrentSourcePageType
@@ -91,7 +92,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 return CurrentJournalEntry.SourcePageType;
             }
-        } 
+        }
         #endregion
 
         #region CacheSize
@@ -311,7 +312,7 @@ namespace WinRTXamlToolkit.Controls
             get { return (bool?)GetValue(ShouldWaitForImagesToLoadProperty); }
             set { SetValue(ShouldWaitForImagesToLoadProperty, value); }
         }
-        #endregion 
+        #endregion
 
         #region BackStackDepth
         /// <summary>
@@ -326,7 +327,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 return BackStack.Count;
             }
-        } 
+        }
         #endregion
 
         #region ForwardStackDepth
@@ -342,7 +343,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 return ForwardStack.Count;
             }
-        } 
+        }
         #endregion
         #endregion
 
@@ -358,40 +359,40 @@ namespace WinRTXamlToolkit.Controls
             this.DefaultStyleKey = typeof(AlternativeFrame);
 
             //TODO: Complete this work in progress - support for navigation events when suspending and resuming the app or deactivating the window.
-        //    this.Loaded += OnLoaded;
-        //    this.Unloaded += OnUnloaded;
-        //}
+            //    this.Loaded += OnLoaded;
+            //    this.Unloaded += OnUnloaded;
+            //}
 
-        //private void OnLoaded(object sender, RoutedEventArgs e)
-        //{
-        //    Application.Current.Suspending += OnAppSuspending;
-        //    Application.Current.Resuming += OnAppResuming;
-        //}
+            //private void OnLoaded(object sender, RoutedEventArgs e)
+            //{
+            //    Application.Current.Suspending += OnAppSuspending;
+            //    Application.Current.Resuming += OnAppResuming;
+            //}
 
-        //private void OnAppResuming(object sender, object e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            //private void OnAppResuming(object sender, object e)
+            //{
+            //    throw new NotImplementedException();
+            //}
 
-        //private async void OnAppSuspending(object sender, SuspendingEventArgs e)
-        //{
-        //    var currentPage = (AlternativePage)_currentPagePresenter.Content;
-        //    var cancelArgs =
-        //        new AlternativeNavigatingCancelEventArgs(
-        //            NavigationMode.Forward,
-        //            null);
-        //    await this.OnNavigating(cancelArgs);
+            //private async void OnAppSuspending(object sender, SuspendingEventArgs e)
+            //{
+            //    var currentPage = (AlternativePage)_currentPagePresenter.Content;
+            //    var cancelArgs =
+            //        new AlternativeNavigatingCancelEventArgs(
+            //            NavigationMode.Forward,
+            //            null);
+            //    await this.OnNavigating(cancelArgs);
 
-        //    await currentPage.OnNavigatingFromInternal(cancelArgs);
-        //    var args = new AlternativeNavigationEventArgs(null, NavigationMode.Forward, null, null);
-        //    await currentPage.OnNavigatedFromInternal(args);
-        //}
+            //    await currentPage.OnNavigatingFromInternal(cancelArgs);
+            //    var args = new AlternativeNavigationEventArgs(null, NavigationMode.Forward, null, null);
+            //    await currentPage.OnNavigatedFromInternal(args);
+            //}
 
-        //private void OnUnloaded(object sender, RoutedEventArgs e)
-        //{
-        //    Application.Current.Suspending -= OnAppSuspending;
-        //    this.Loaded -= OnLoaded;
-        //    this.Unloaded -= OnUnloaded;
+            //private void OnUnloaded(object sender, RoutedEventArgs e)
+            //{
+            //    Application.Current.Suspending -= OnAppSuspending;
+            //    this.Loaded -= OnLoaded;
+            //    this.Unloaded -= OnUnloaded;
         }
         #endregion
 
@@ -435,7 +436,7 @@ namespace WinRTXamlToolkit.Controls
             cp.Opacity = 0;
 
             return true;
-        } 
+        }
         #endregion
 
         #region UnloadPreloaded()
@@ -467,7 +468,7 @@ namespace WinRTXamlToolkit.Controls
 
             _pagePresentersPanel.Children.Remove(cp);
             _preloadedPageCache.Remove(je);
-        } 
+        }
         #endregion
 
         #region UnloadAllPreloaded()
@@ -571,7 +572,7 @@ namespace WinRTXamlToolkit.Controls
                 backJournalEntry.SourcePageType,
                 backJournalEntry.Parameter,
                 NavigationMode.Back);
-        } 
+        }
         #endregion
 
         #region GoForward()
@@ -701,10 +702,10 @@ namespace WinRTXamlToolkit.Controls
             var sourcePageType = Type.GetType(sourcePageTypeName);
             parseIndex += sourcePageTypeLength + 1;
             var parameterTypeCode = ParseNumber(parsedString, ref parseIndex);
-            
+
             if (parameterTypeCode == 0)
             {
-                return new JournalEntry {SourcePageType = sourcePageType};
+                return new JournalEntry { SourcePageType = sourcePageType };
             }
 
             var parameterStringLength = ParseNumber(parsedString, ref parseIndex);
@@ -900,7 +901,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 AddParameterToNavigationStateString(sb, 16, valueString);
             }
-        } 
+        }
         #endregion
 
         private void AddParameterToNavigationStateString(StringBuilder sb, int typeCode, string valueString)
@@ -928,7 +929,7 @@ namespace WinRTXamlToolkit.Controls
 
             _pagePresentersPanel = (Panel)GetTemplateChild(PagePresentersPanelName);
             _waitForApplyTemplateTaskSource.SetResult(true);
-        } 
+        }
         #endregion
 
         #region NavigateCore()
@@ -1126,7 +1127,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 await handler(this, args);
             }
-        } 
+        }
         #endregion
 
         #region OnNavigated()
@@ -1138,7 +1139,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 await handler(this, args);
             }
-        } 
+        }
         #endregion
 
         #region TransitionForward()

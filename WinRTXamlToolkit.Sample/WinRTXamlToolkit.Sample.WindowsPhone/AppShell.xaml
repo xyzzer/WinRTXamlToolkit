@@ -12,13 +12,13 @@
     <Grid
         x:Name="AppLayoutGrid"
         Background="White">
-        <controls:AlternativeFrame
-            x:Name="RootFrame"/>
+        <Frame
+            x:Name="RootFrame" />
         <!--<controls:AlternativeFrame
             x:Name="RootFrame">
-            --><!--<controls:AlternativeFrame.PageTransition>
+            <controls:AlternativeFrame.PageTransition>
                 <controls:DissolveTransition />
-            </controls:AlternativeFrame.PageTransition>--><!--
+            </controls:AlternativeFrame.PageTransition>
         </controls:AlternativeFrame>-->
     </Grid>
 </UserControl>

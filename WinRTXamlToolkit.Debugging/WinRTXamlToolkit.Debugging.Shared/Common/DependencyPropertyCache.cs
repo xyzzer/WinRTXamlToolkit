@@ -83,6 +83,13 @@ namespace WinRTXamlToolkit.Debugging.Common
                     }
 
 #if WINDOWS_PHONE_APP
+
+                    if (type == typeof(Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs) &&
+                        dpPropertyInfo.Name == "ReasonProperty" )
+                    {
+                        continue;
+                    }
+
                     if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapIcon) &&
                         (dpPropertyInfo.Name == "LocationProperty" ||
                         dpPropertyInfo.Name == "NormalizedAnchorPointProperty" ||

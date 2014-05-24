@@ -75,8 +75,10 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     [TemplateVisualState(GroupName = OrientationStatesGroupName, Name = VerticalOrientationStateName)]
     [TemplateVisualState(GroupName = OrientationStatesGroupName, Name = HorizontalOrientationStateName)]
+#if WINDOWS_APP
     [TemplateVisualState(GroupName = FocusStatesGroupName, Name = FocusedStateName)]
     [TemplateVisualState(GroupName = FocusStatesGroupName, Name = UnfocusedStateName)]
+#endif
     [StyleTypedProperty(Property = "PreviewStyle", StyleTargetType = typeof(GridSplitterPreviewControl))]
     public class CustomGridSplitter : Control
     {
@@ -84,9 +86,11 @@ namespace WinRTXamlToolkit.Controls
         private const string OrientationStatesGroupName = "OrientationStates";
         private const string VerticalOrientationStateName = "VerticalOrientation";
         private const string HorizontalOrientationStateName = "HorizontalOrientation";
+#if WINDOWS_APP
         private const string FocusStatesGroupName = "FocusStates";
         private const string FocusedStateName = "Focused";
         private const string UnfocusedStateName = "Unfocused";
+#endif
         #endregion
 
         private const double DefaultKeyboardIncrement = 1d;
@@ -446,6 +450,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+#if WINDOWS_APP
         /// <summary>
         /// Called before the GotFocus event occurs.
         /// </summary>
@@ -463,6 +468,7 @@ namespace WinRTXamlToolkit.Controls
         {
             UpdateVisualState();
         }
+#endif
 
         /// <summary>
         /// Called when the LayoutUpdated event occurs.
@@ -488,6 +494,7 @@ namespace WinRTXamlToolkit.Controls
                 VisualStateManager.GoToState(this, HorizontalOrientationStateName, true);
             }
 
+#if WINDOWS_APP
             if (this.FocusState == Windows.UI.Xaml.FocusState.Unfocused)
             {
                 VisualStateManager.GoToState(this, UnfocusedStateName, true);
@@ -496,6 +503,7 @@ namespace WinRTXamlToolkit.Controls
             {
                 VisualStateManager.GoToState(this, FocusedStateName, true);
             }
+#endif
         }
         #endregion
 
@@ -694,7 +702,9 @@ namespace WinRTXamlToolkit.Controls
         {
             _isDraggingPreview = false;
             this.CapturePointer(e.Pointer);
+#if WINDOWS_APP
             this.Focus(FocusState.Pointer);
+#endif
         }
 
         /// <summary>
