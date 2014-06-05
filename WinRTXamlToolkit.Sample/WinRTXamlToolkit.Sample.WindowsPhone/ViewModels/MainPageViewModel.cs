@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using WinRTXamlToolkit.Controls;
-using WinRTXamlToolkit.IO.Extensions;
-using WinRTXamlToolkit.Net;
 using WinRTXamlToolkit.Sample.Commands;
 using WinRTXamlToolkit.Sample.Views;
-using Windows.Media.Capture;
-using Windows.Storage;
-using Windows.UI.Popups;
 
 namespace WinRTXamlToolkit.Sample.ViewModels
 {
@@ -207,12 +198,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ImagingTestPage))),
                 //    SampleType = SampleTypes.Imaging
                 //},
-                //new SampleButtonViewModel
-                //{
-                //    Caption = "InputDialog",
-                //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(InputDialogTestPage))),
-                //    SampleType = SampleTypes.Controls
-                //},
+                new SampleButtonViewModel
+                {
+                    Caption = "InputDialog",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(InputDialogTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
                 //new SampleButtonViewModel
                 //{
                 //    Caption = "I/O",

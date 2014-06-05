@@ -102,6 +102,9 @@
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\Controls\InputDialogTestPage.xaml.cs">
+      <DependentUpon>InputDialogTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\CameraCaptureControlPage.xaml.cs">
       <DependentUpon>CameraCaptureControlPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\InputDialogTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
