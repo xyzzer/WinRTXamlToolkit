@@ -118,6 +118,7 @@ namespace WinRTXamlToolkit.Controls
     [TemplateVisualState(GroupName = "CloseButtonStates", Name = "CloseButtonVisible")]
     [TemplateVisualState(GroupName = "CloseButtonStates", Name = "CloseButtonCollapsed")]
     #endregion
+
     public class ToolWindow : ContentControl
     {
         #region Fields
@@ -174,6 +175,7 @@ namespace WinRTXamlToolkit.Controls
         private double _lastWindowWidth;
         private double _lastWindowHeight;
         private Edges _lastSnapEdge;
+        private bool _restorePositionOnStateChange = true;
         #endregion
 
         #region Events
@@ -1014,27 +1016,30 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
-            if (oldWindowState == WindowStates.Snapped)
+            if (_restorePositionOnStateChange)
             {
-                this.StopCurrentSnapStoryboard();
+                if (oldWindowState == WindowStates.Snapped)
+                {
+                    this.StopCurrentSnapStoryboard();
 
-                if (!_isDraggingFromSnapped)
-                {
-                    this.AnimateStraightSnapAsync(_lastWindowPosition.X, _lastWindowPosition.Y);
+                    if (!_isDraggingFromSnapped)
+                    {
+                        this.AnimateStraightSnapAsync(_lastWindowPosition.X, _lastWindowPosition.Y);
+                    }
                 }
-            }
-            else if (oldWindowState == WindowStates.Maximized)
-            {
-                if (!_isDraggingFromSnapped)
+                else if (oldWindowState == WindowStates.Maximized)
                 {
-                    this.X = _lastWindowPosition.X;
-                    this.Y = _lastWindowPosition.Y;
-                }
+                    if (!_isDraggingFromSnapped)
+                    {
+                        this.X = _lastWindowPosition.X;
+                        this.Y = _lastWindowPosition.Y;
+                    }
 
-                if (_lastWindowWidth != 0)
-                {
-                    this.Width = _lastWindowWidth;
-                    this.Height = _lastWindowHeight;
+                    if (_lastWindowWidth != 0)
+                    {
+                        this.Width = _lastWindowWidth;
+                        this.Height = _lastWindowHeight;
+                    }
                 }
             }
 
@@ -1186,7 +1191,9 @@ namespace WinRTXamlToolkit.Controls
             x = desiredPosition.X;
             y = desiredPosition.Y;
 
+            _restorePositionOnStateChange = false;
             this.WindowState = WindowStates.Snapped;
+            _restorePositionOnStateChange = true;
 
             if (WindowEdgeSnapBehavior != WindowEdgeSnapBehavior.ToTitleBarWithRotation)
             {
@@ -1336,7 +1343,9 @@ namespace WinRTXamlToolkit.Controls
             //    this.Height = _lastWindowHeight;
             //}
 
+            _restorePositionOnStateChange = false;
             this.WindowState = WindowStates.Normal;
+            _restorePositionOnStateChange = true;
             this.Activate(); 
             
             _isAdjustedFlick = false;
@@ -1439,7 +1448,9 @@ namespace WinRTXamlToolkit.Controls
             if (e.GetExpectedDisplacementDuration() > 0.5)
             {
                 _isFlickTooLong = true;
+                _restorePositionOnStateChange = false;
                 this.WindowState = WindowStates.Snapped;
+                _restorePositionOnStateChange = true;
 
                 if (WindowEdgeSnapBehavior != WindowEdgeSnapBehavior.ToTitleBarWithRotation)
                 {
@@ -1456,15 +1467,21 @@ namespace WinRTXamlToolkit.Controls
         #region OnBorderManipulationCompleted()
         private void OnBorderManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            _isDraggingFromSnapped = false;
-
             if (_isFlickTooLong)
             {
                 _isFlickTooLong = false;
                 return;
             }
 
-            this.SnapToEdgeIfNecessary();
+            //if (!_isDraggingFromSnapped
+            //
+            //    )
+            {
+                // TODO: Snap if really necessary...
+                this.SnapToEdgeIfNecessary();
+            }
+
+            _isDraggingFromSnapped = false;
         }
         #endregion
 
@@ -1499,7 +1516,9 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
+            _restorePositionOnStateChange = false;
             this.WindowState = WindowStates.Snapped;
+            _restorePositionOnStateChange = true;
 
             if (WindowEdgeSnapBehavior == WindowEdgeSnapBehavior.Straight ||
                 WindowEdgeSnapBehavior == WindowEdgeSnapBehavior.StraightToTitleBar)

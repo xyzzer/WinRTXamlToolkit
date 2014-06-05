@@ -76,7 +76,13 @@
             ColumnDelay="0:0:0.05"
             RowDelay="0:0:0.1"
             TileDuration="0:0:4"
-            ImageSource="/Assets/SplashScreen.png"
-            Tapped="UIElement_OnTapped" />
+            Tapped="UIElement_OnTapped">
+            <controls:CascadingImageControl.ImageSource>
+                <BitmapImage
+                    UriSource="/Assets/SplashScreen.png"
+                    DecodePixelWidth="620"
+                    DecodePixelHeight="300"/>
+            </controls:CascadingImageControl.ImageSource>
+        </controls:CascadingImageControl>
     </Grid>
 </controls:AlternativePage>

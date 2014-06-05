@@ -699,6 +699,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             sb.Begin();
+            sb.Completed += (s, e) => sb.Stop();
         }
     }
 }
