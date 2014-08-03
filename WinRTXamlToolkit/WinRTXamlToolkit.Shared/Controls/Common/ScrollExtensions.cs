@@ -34,11 +34,7 @@ namespace WinRTXamlToolkit.Controls
 
             offset += viewer.VerticalOffset;
             offset = Math.Max(Math.Min(offset, viewer.ExtentHeight), 0);
-#if WIN81
             viewer.ChangeView(null, offset, null);
-#else
-            viewer.ScrollToVerticalOffset(offset);
-#endif
         }
 
         /// <summary>
@@ -52,11 +48,7 @@ namespace WinRTXamlToolkit.Controls
 
             offset += viewer.HorizontalOffset;
             offset = Math.Max(Math.Min(offset, viewer.ExtentWidth), 0);
-#if WIN81
             viewer.ChangeView(offset, null, null);
-#else
-            viewer.ScrollToHorizontalOffset(offset);
-#endif
         }
 
         /// <summary>
@@ -146,11 +138,7 @@ namespace WinRTXamlToolkit.Controls
         public static void ScrollToTop(this ScrollViewer viewer)
         {
             Debug.Assert(viewer != null, "viewer should not be null!");
-#if WIN81
             viewer.ChangeView(null, 0, null);
-#else
-            viewer.ScrollToVerticalOffset(0);
-#endif
         }
 
         /// <summary>
@@ -160,11 +148,7 @@ namespace WinRTXamlToolkit.Controls
         public static void ScrollToBottom(this ScrollViewer viewer)
         {
             Debug.Assert(viewer != null, "viewer should not be null!");
-#if WIN81
             viewer.ChangeView(null, viewer.ExtentHeight, null);
-#else
-            viewer.ScrollToVerticalOffset(viewer.ExtentHeight);
-#endif
         }
 
         /// <summary>

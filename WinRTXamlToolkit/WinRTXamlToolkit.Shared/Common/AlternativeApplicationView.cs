@@ -23,11 +23,7 @@ namespace WinRTXamlToolkit.Common
         {
             get
             {
-#if WIN81
                 return Window.Current.Bounds.Width <= SnappedViewWidth;
-#else
-                return ApplicationView.Value == ApplicationViewState.Snapped;
-#endif
             }
         }
 

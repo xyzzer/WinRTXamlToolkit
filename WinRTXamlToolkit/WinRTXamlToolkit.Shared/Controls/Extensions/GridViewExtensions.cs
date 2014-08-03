@@ -175,11 +175,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         public static void ScrollToBottom(this GridView GridView)
         {
             var scrollViewer = GridView.GetFirstDescendantOfType<ScrollViewer>();
-#if WIN81
             scrollViewer.ChangeView(null, scrollViewer.ScrollableHeight, null);
-#else
-            scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
-#endif
         }
     }
 

@@ -105,63 +105,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Common\DateTimeExtensions.cs" />
-    <Compile Include="Controls\Calendar\Calendar.cs" />
-    <Compile Include="Controls\Calendar\CalendarAutomationPeer.cs" />
-    <Compile Include="Controls\Calendar\CalendarBlackoutDatesCollection.cs" />
-    <Compile Include="Controls\Calendar\CalendarButton.cs" />
-    <Compile Include="Controls\Calendar\CalendarButtonAutomationPeer.cs" />
-    <Compile Include="Controls\Calendar\CalendarDateChangedEventArgs.cs" />
-    <Compile Include="Controls\Calendar\CalendarDateRange.cs" />
-    <Compile Include="Controls\Calendar\CalendarDayButton.cs" />
-    <Compile Include="Controls\Calendar\CalendarDayButtonAutomationPeer.cs" />
-    <Compile Include="Controls\Calendar\CalendarExtensions.cs" />
-    <Compile Include="Controls\Calendar\CalendarItem.cs" />
-    <Compile Include="Controls\Calendar\CalendarMode.cs" />
-    <Compile Include="Controls\Calendar\CalendarModeChangedEventArgs.cs" />
-    <Compile Include="Controls\Calendar\CalendarSelectionMode.cs" />
-    <Compile Include="Controls\Calendar\DateTimeHelper.cs" />
-    <Compile Include="Controls\Calendar\DateTimeTypeConverter.cs" />
-    <Compile Include="Controls\Calendar\Properties.cs" />
-    <Compile Include="Controls\Calendar\SelectedDatesCollection.cs" />
-    <Compile Include="Controls\Common\InteractionHelper.cs" />
-    <Compile Include="Controls\Common\IUpdateVisualState.cs" />
-    <Compile Include="Controls\Common\VisualStates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\Calendar\Calendar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\Calendar\CalendarButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\Calendar\CalendarDayButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\Calendar\CalendarItem.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
+  <Import Project="..\WinRTXamlToolkit.Controls.Calendar.Shared\WinRTXamlToolkit.Controls.Calendar.Shared.projitems" Label="Shared" Condition="Exists('..\WinRTXamlToolkit.Controls.Calendar.Shared\WinRTXamlToolkit.Controls.Calendar.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

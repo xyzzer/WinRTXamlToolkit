@@ -437,12 +437,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.RootElements.Add(new DependencyObjectViewModel(this, null, rootElement));
             }
 
-#if WIN81
             foreach (var popup in VisualTreeHelper.GetOpenPopups(Window.Current))
             {
                 this.RootElements.Add(new DependencyObjectViewModel(this, null, popup));
             }
-#endif
         }
 
         internal async Task Refresh()

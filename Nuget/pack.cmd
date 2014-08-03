@@ -2,25 +2,15 @@ set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
 
 if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE)
 
-@echo Building Windows 8.0 projects
-set VisualStudioVersion=12.0
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit 8.0\WinRTXamlToolkit 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Composition 8.0\WinRTXamlToolkit.Composition 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar 8.0\WinRTXamlToolkit.Controls.Calendar 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge 8.0\WinRTXamlToolkit.Controls.Gauge 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization 8.0\WinRTXamlToolkit.Controls.DataVisualization 8.0.csproj" || GOTO :REPORT_ERROR
-@rem msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample 8.0\WinRTXamlToolkit.Sample 8.0.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging 8.0\WinRTXamlToolkit.Debugging 8.0.csproj" || GOTO :REPORT_ERROR
-
 @echo Building Windows 8.1 projects
 set VisualStudioVersion=12.0
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Composition\WinRTXamlToolkit.Composition.csproj" || GOTO :REPORT_ERROR
+msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj" || GOTO :REPORT_ERROR
-@rem msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj" || GOTO :REPORT_ERROR
 msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj" || GOTO :REPORT_ERROR
+
+@echo Building Windows Phone 8.1 projects
 
 :CREATE_FOLDER_STRUCTURE
 @rem Base folder structure
@@ -33,11 +23,11 @@ mkdir tools
 mkdir content
 mkdir content\controllers
 
-@echo Copying Windows 8.0 build
-set NUGET_PLATFORM=netcore45
-set FOLDER_SUFFIX= 8.0\
-set XAML_EXT=.xaml
-@CALL :COPY_FILES || GOTO :REPORT_ERROR
+@rem @echo Copying Windows 8.0 build
+@rem set NUGET_PLATFORM=netcore45
+@rem set FOLDER_SUFFIX= 8.0\
+@rem set XAML_EXT=.xaml
+@rem @CALL :COPY_FILES || GOTO :REPORT_ERROR
 
 @echo Copying Windows 8.1 build
 set NUGET_PLATFORM=netcore451

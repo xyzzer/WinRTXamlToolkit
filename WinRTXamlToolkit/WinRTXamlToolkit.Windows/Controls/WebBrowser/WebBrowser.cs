@@ -328,12 +328,7 @@ namespace WinRTXamlToolkit.Controls
                 _titleAppBar.Closed += OnAppBarOpenedOrClosed;
             }
 
-#if WIN81
             _webView.NavigationCompleted += OnNavigationCompleted;
-#else
-            _webView.LoadCompleted += OnLoadCompleted;
-            _webView.NavigationFailed += OnNavigationFailed;
-#endif
 
             if (this.Source != null)
             {
@@ -458,7 +453,6 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
-#if WIN81
         private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
             if (e.IsSuccess)
@@ -470,17 +464,6 @@ namespace WinRTXamlToolkit.Controls
                 OnNavigationFailed(e.WebErrorStatus);
             }
         }
-#else
-        private void OnLoadCompleted(object sender, NavigationEventArgs e)
-        {
-            OnNavigationSucceeded();
-        }
-
-        private void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
-        {
-            OnNavigationFailed(e.WebErrorStatus);
-        }
-#endif
 
         private async void OnNavigationSucceeded()
         {

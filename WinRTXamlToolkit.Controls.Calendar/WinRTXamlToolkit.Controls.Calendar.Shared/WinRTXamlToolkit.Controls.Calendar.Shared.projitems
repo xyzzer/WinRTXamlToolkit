@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>4f4d9541-0951-48f6-bd39-04156ef6f9fd</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WinRTXamlToolkit.Controls.Calendar.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DateTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\Calendar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarAutomationPeer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarBlackoutDatesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarButtonAutomationPeer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarDateChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarDateRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarDayButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarDayButtonAutomationPeer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarModeChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarSelectionMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\DateTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\DateTimeTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\Properties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Calendar\SelectedDatesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\InteractionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\IUpdateVisualState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\VisualStates.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Calendar\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarDayButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Calendar\CalendarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

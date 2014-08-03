@@ -29,14 +29,10 @@ namespace WinRTXamlToolkit.AwaitableUI
             if (offset == currentOffset)
                 return;
 
-#if WIN81
             if (!scrollViewer.ChangeView(null, offset, null))
             {
                 return;
             }
-#else
-            scrollViewer.ScrollToVerticalOffset(offset);
-#endif
 
             if (scrollViewer.VerticalOffset == offset)
                 return;
@@ -71,14 +67,10 @@ namespace WinRTXamlToolkit.AwaitableUI
             if (offset == currentOffset)
                 return;
 
-#if WIN81
             if (!scrollViewer.ChangeView(offset, null, null, true))
             {
                 return;
             }
-#else
-            scrollViewer.ScrollToHorizontalOffset(offset);
-#endif
 
             if (scrollViewer.HorizontalOffset == offset)
                 return;

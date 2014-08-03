@@ -1,0 +1,4 @@
+MainPackage=C:\Projects\WinRTXamlToolkit\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.Windows\bin\Debug\WinRTXamlToolkit.Sample.Windows_1.0.0.0_Bundle\WinRTXamlToolkit.Sample.Windows_1.0.0.0_AnyCPU_Debug.appx
+SymbolPackage=C:\Projects\WinRTXamlToolkit\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.Windows\AppPackages\WinRTXamlToolkit.Sample.Windows_1.0.0.0_Debug_Test\WinRTXamlToolkit.Sample.Windows_1.0.0.0_AnyCPU_Debug.appxsym
+ResourcePack=C:\Projects\WinRTXamlToolkit\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.Windows\bin\Debug\WinRTXamlToolkit.Sample.Windows_1.0.0.0_Bundle\WinRTXamlToolkit.Sample.Windows_1.0.0.0_scale-140.appx
+ResourcePack=C:\Projects\WinRTXamlToolkit\WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.Windows\bin\Debug\WinRTXamlToolkit.Sample.Windows_1.0.0.0_Bundle\WinRTXamlToolkit.Sample.Windows_1.0.0.0_scale-180.appx

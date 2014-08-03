@@ -17,6 +17,8 @@
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>WinRTXamlToolkit.Sample.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
     <NuGetPackageImportStamp>849b4643</NuGetPackageImportStamp>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,9 +107,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj">
+    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.Windows\WinRTXamlToolkit.Controls.Calendar.Windows.csproj">
       <Project>{d0b66203-5b50-4942-a864-c7550c6f23f6}</Project>
-      <Name>WinRTXamlToolkit.Controls.Calendar</Name>
+      <Name>WinRTXamlToolkit.Controls.Calendar.Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.Windows\WinRTXamlToolkit.Controls.DataVisualization.Windows.csproj">
       <Project>{141f0d30-7788-4a47-a32c-d432b42b5ccb}</Project>

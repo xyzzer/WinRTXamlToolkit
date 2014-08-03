@@ -135,14 +135,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(BackgroundTimerTestPage))),
                     SampleType = SampleTypes.Miscellaneous
                 },
-#if WIN81
                 new SampleButtonViewModel
                 {
                     Caption = "EventThrottler",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(EventThrottlerTestPage))),
                     SampleType = SampleTypes.Miscellaneous
                 },
-#endif
                 new SampleButtonViewModel
                 {
                     Caption = "Behavior",

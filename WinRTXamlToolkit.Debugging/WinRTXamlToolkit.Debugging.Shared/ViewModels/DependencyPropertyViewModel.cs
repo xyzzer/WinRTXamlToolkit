@@ -66,11 +66,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == Shape.StrokeLineJoinProperty ||
                     _dependencyProperty == Shape.StrokeMiterLimitProperty ||
                     _dependencyProperty == Shape.StrokeStartLineCapProperty ||
-                    _dependencyProperty == Shape.StrokeThicknessProperty
-#if WIN81
-                    ||
+                    _dependencyProperty == Shape.StrokeThicknessProperty ||
                     _dependencyProperty == FrameworkElement.RequestedThemeProperty
-#endif
                     )
                 {
                     return AppearanceCategoryName;
@@ -85,16 +82,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == Control.BackgroundProperty ||
                     _dependencyProperty == Control.BorderBrushProperty ||
                     _dependencyProperty == Shape.FillProperty ||
-                    _dependencyProperty == Shape.StrokeProperty
-#if WIN81
-||
+                    _dependencyProperty == Shape.StrokeProperty ||
                     _dependencyProperty == IconElement.ForegroundProperty ||
                     _dependencyProperty == TextBlock.SelectionHighlightColorProperty ||
                     _dependencyProperty == TextBox.SelectionHighlightColorProperty ||
                     _dependencyProperty == RichTextBlock.SelectionHighlightColorProperty ||
                     _dependencyProperty == RichEditBox.SelectionHighlightColorProperty ||
                     _dependencyProperty == PasswordBox.SelectionHighlightColorProperty
-#endif
 )
                 {
                     return BrushCategoryName;
@@ -151,10 +145,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == ListViewBase.CanReorderItemsProperty ||
                     _dependencyProperty == ListViewBase.IsItemClickEnabledProperty ||
                     _dependencyProperty == ListViewBase.IsSwipeEnabledProperty ||
-                    _dependencyProperty == RichEditBox.AcceptsReturnProperty
-
-#if WIN81
- ||
+                    _dependencyProperty == RichEditBox.AcceptsReturnProperty ||
                     _dependencyProperty == SymbolIcon.SymbolProperty ||
                     _dependencyProperty == Flyout.PlacementProperty ||
                     _dependencyProperty == TextBox.PlaceholderTextProperty ||
@@ -164,7 +155,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == ListViewBase.HeaderProperty ||
                     _dependencyProperty == TextBox.HeaderProperty ||
                     _dependencyProperty == RichEditBox.HeaderProperty
-#endif
 )
                 {
                     return CommonCategoryName;
@@ -276,14 +266,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == ContentPresenter.FontSizeProperty ||
                     _dependencyProperty == ContentPresenter.FontStretchProperty ||
                     _dependencyProperty == ContentPresenter.FontStyleProperty ||
-                    _dependencyProperty == ContentPresenter.FontWeightProperty
-#if WIN81
-                    ||
+                    _dependencyProperty == ContentPresenter.FontWeightProperty ||
                     _dependencyProperty == TextBlock.TextLineBoundsProperty ||
                     _dependencyProperty == RichTextBlock.TextLineBoundsProperty ||
                     _dependencyProperty == RichTextBlock.TextReadingOrderProperty ||
                     _dependencyProperty == TextBlock.TextReadingOrderProperty
-#endif
                     )
                 {
                     return TextCategoryName;

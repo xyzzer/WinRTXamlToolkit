@@ -28,7 +28,6 @@ namespace WinRTXamlToolkit.Sample.Views
             {
                 tvDataBound.Style = style;
 
-#if WIN81
                 if (toggleButton == MouseThemeRadioButton)
                 {
                     tvDataBound.RequestedTheme = ElementTheme.Light;
@@ -37,7 +36,6 @@ namespace WinRTXamlToolkit.Sample.Views
                 {
                     tvDataBound.RequestedTheme = ElementTheme.Default;
                 }
-#endif
             }
         }
     }

@@ -552,11 +552,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             if (_scrollViewer != null)
             {
-#if WIN81
                 _scrollViewer.ChangeView(e.NewValue, null, null, true);
-#else
-                _scrollViewer.ScrollToHorizontalOffset(e.NewValue);
-#endif
             }
         }
         #endregion
@@ -566,11 +562,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             if (_scrollViewer != null)
             {
-#if WIN81
                 _scrollViewer.ChangeView(null, e.NewValue, null, true);
-#else
-                _scrollViewer.ScrollToVerticalOffset(e.NewValue);
-#endif
             }
         }
         #endregion
@@ -580,11 +572,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         {
             if (_scrollViewer != null)
             {
-#if WIN81
                 _scrollViewer.ChangeView(null, null, (float)e.NewValue, true);
-#else
-                _scrollViewer.ZoomToFactor((float)e.NewValue);
-#endif
             }
         }
         #endregion
