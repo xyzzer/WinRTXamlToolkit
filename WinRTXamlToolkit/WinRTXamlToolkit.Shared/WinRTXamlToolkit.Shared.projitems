@@ -55,6 +55,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\DataTemplateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Data\HierarchicalDataTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DelayedLoadControl\DelayedLoadControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DockPanel\Dock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DockPanel\DockPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\AnimationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ButtonBaseExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ContentControlExtensions.cs" />
