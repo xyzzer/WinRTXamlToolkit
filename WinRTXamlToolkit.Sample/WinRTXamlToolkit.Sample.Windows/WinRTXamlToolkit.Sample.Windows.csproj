@@ -230,6 +230,9 @@
     <Compile Include="Views\Controls\CustomGridSplitterTestPage.xaml.cs">
       <DependentUpon>CustomGridSplitterTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\DockPanelTestPage.xaml.cs">
+      <DependentUpon>DockPanelTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\GaugeTestPage.xaml.cs">
       <DependentUpon>GaugeTestPage.xaml</DependentUpon>
     </Compile>
@@ -474,6 +477,10 @@
     <Page Include="Views\Controls\CustomGridSplitterTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\DockPanelTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\GaugeTestPage.xaml">
       <Generator>MSBuild:Compile</Generator>

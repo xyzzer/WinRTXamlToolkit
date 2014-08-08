@@ -245,6 +245,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 },
                 new SampleButtonViewModel
                 {
+                    Caption = "DockPanel",
+                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(DockPanelTestPage))),
+                    SampleType = SampleTypes.Controls
+                },
+                new SampleButtonViewModel
+                {
                     Caption = "FrameworkElementExtensions.(System)Cursor",
                     Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(FrameworkElementExtensionsCursorTestPage))),
                     SampleType = SampleTypes.Extensions

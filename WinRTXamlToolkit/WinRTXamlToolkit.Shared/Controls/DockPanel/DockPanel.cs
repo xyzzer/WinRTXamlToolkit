@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace WinRTXamlToolkit.Controls.DockPanel
+namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
     /// Arranges child elements around the edges of the panel. Optionally, 
