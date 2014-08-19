@@ -1,16 +1,25 @@
 set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
+set MSBUILD="c:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
 
 if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE)
 
-@echo Building Windows 8.1 projects
 set VisualStudioVersion=12.0
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj" || GOTO :REPORT_ERROR
-msbuild /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj" || GOTO :REPORT_ERROR
+
+@echo Building Windows 8.1 projects
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.Windows\WinRTXamlToolkit.Controls.Calendar.Windows.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.Windows\WinRTXamlToolkit.Controls.Gauge.Windows.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.Windows\WinRTXamlToolkit.Controls.DataVisualization.Windows.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.Windows\WinRTXamlToolkit.Debugging.Windows.csproj" || GOTO :REPORT_ERROR
 
 @echo Building Windows Phone 8.1 projects
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.WindowsPhone\WinRTXamlToolkit.WindowsPhone.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.WindowsPhone\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.WindowsPhone\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WindowsPhone\WinRTXamlToolkit.Debugging.WindowsPhone.csproj" || GOTO :REPORT_ERROR
+
+if "%1"=="onlybuild" (@GOTO :EOF)
 
 :CREATE_FOLDER_STRUCTURE
 @rem Base folder structure

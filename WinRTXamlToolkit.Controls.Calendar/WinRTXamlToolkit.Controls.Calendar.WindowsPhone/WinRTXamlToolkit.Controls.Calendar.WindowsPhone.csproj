@@ -9,8 +9,8 @@
     <ProjectGuid>{4A7C8C3F-19E3-47F2-9546-B5D849E9627A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinRTXamlToolkit.Controls.Calendar.WindowsPhone</RootNamespace>
-    <AssemblyName>WinRTXamlToolkit.Controls.Calendar.WindowsPhone</AssemblyName>
+    <RootNamespace>WinRTXamlToolkit.Controls</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit.Controls.Calendar</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>

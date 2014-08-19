@@ -9,8 +9,8 @@
     <ProjectGuid>{C9ABEC71-CF10-4FFC-B9B3-835F994753E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinRTXamlToolkit.Controls.Gauge.WindowsPhone</RootNamespace>
-    <AssemblyName>WinRTXamlToolkit.Controls.Gauge.WindowsPhone</AssemblyName>
+    <RootNamespace>WinRTXamlToolkit.Controls</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit.Controls.Gauge</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
