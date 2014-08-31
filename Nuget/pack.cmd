@@ -104,69 +104,12 @@ copy "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.D
 copy "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 
-xcopy /E /Y "..\WinRTXamlToolkit\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Controls"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Controls"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\Controls"
-xcopy /E /Y "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls"
+xcopy /E /Y "..\WinRTXamlToolkit\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\"
+xcopy /E /Y "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\"
 
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls"
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\AlternativeFrame\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AlternativeFrame" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\AnimatingContainer\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\AnimatingContainer" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CameraCaptureControl\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CameraCaptureControl" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CascadingImageControl\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingImageControl" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CascadingTextBlock\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CascadingTextBlock" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\ColorPicker\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ColorPicker" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CountdownControl\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CountdownControl" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CustomAppBar\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomAppBar" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\CustomGridSplitter\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\CustomGridSplitter" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\DelayedLoadControl\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\DelayedLoadControl" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\FxContentControl\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\FxContentControl" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\ImageButton\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageButton" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\ImageToggleButton\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ImageToggleButton" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\InputDialog\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\InputDialog" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\ListItemButton\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ListItemButton" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\NumericUpDown\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\NumericUpDown" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\ToolWindow\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\ToolWindow" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\TreeView\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\TreeView" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\WatermarkPasswordBox\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkPasswordBox" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\WatermarkTextBox\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WatermarkTextBox" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Controls\WebBrowser\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Controls\WebBrowser" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\Themes\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\Themes" || GOTO :REPORT_ERROR
-
-@rem copy "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\Controls\Calendar\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\Themes\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\Themes" || GOTO :REPORT_ERROR
-@rem 
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Axis\AxisLabel.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Axis\DateTimeAxisLabel.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Axis\DisplayAxis.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Axis\NumericAxisLabel.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Axis\RangeAxis.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Chart\Chart.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\AreaDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\BarDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\BubbleDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\ColumnDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\LineDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\PieDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\DataPoint\ScatterDataPoint.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Primitives\DelegatingListBox.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\AreaSeries.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\DataPointSeries.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\DefinitionSeries.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\LegendItem.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\LineSeries.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Charting\Series\PieSeries.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Legend\Legend.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Legend" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Themes\Generic.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Themes" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\Title\Title.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\Title" || GOTO :REPORT_ERROR
-@rem 
-@rem copy "..\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\Themes\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\Themes" || GOTO :REPORT_ERROR
-@rem 
-@rem copy "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\Controls\EditableListBox\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Controls\EditableListBox" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\Themes\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Themes" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\Views\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views" || GOTO :REPORT_ERROR
-@rem copy "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\Views\PropertyEditors\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\Views\PropertyEditors" || GOTO :REPORT_ERROR
 @rem copy "..\src\SomePowershellScript.ps1 tools || GOTO :REPORT_ERROR
 @GOTO :EOF
 
