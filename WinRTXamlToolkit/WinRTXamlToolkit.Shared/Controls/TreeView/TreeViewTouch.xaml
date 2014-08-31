@@ -744,6 +744,7 @@
                             </Border>
                         </Border>
 
+                        <!-- TODO: What's up with Grid.Column="1" here in a columnless grid? -->
                         <Border
                             x:Name="Validation"
                             Grid.Column="1"

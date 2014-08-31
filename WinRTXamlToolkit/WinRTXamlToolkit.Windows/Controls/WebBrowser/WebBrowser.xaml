@@ -430,6 +430,7 @@
                                 Margin="6" />
                         </controls:CustomAppBar>
 
+                        <!-- TODO: What's up with Grid.Row="2" here in a single row grid? -->
                         <controls:CustomAppBar
                             x:Name="PART_AddressAppBar"
                             Grid.Row="2"
