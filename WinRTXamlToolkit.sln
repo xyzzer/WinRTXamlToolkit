@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56
 		Nuget\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.nuspec = Nuget\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.nuspec
 		Nuget\WinRTXamlToolkit.Debugging.Windows.nuspec = Nuget\WinRTXamlToolkit.Debugging.Windows.nuspec
 		Nuget\WinRTXamlToolkit.Debugging.WindowsPhone.nuspec = Nuget\WinRTXamlToolkit.Debugging.WindowsPhone.nuspec
+		Nuget\WinRTXamlToolkit.Debugging.WinRTProxy.Windows.nuspec = Nuget\WinRTXamlToolkit.Debugging.WinRTProxy.Windows.nuspec
 		Nuget\WinRTXamlToolkit.Windows.nuspec = Nuget\WinRTXamlToolkit.Windows.nuspec
 		Nuget\WinRTXamlToolkit.WindowsPhone.nuspec = Nuget\WinRTXamlToolkit.WindowsPhone.nuspec
 	EndProjectSection
@@ -28,6 +29,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{C9D59FB1-F56B-41A3-9719-81E207BC6A5F}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\CodePlexLogo.png = Documents\CodePlexLogo.png
+		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{244C3E83-F7A8-4ADB-86C0-8704F78BD146}"
@@ -86,6 +88,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Calendar.WindowsPhone", "WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.WindowsPhone\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.csproj", "{4A7C8C3F-19E3-47F2-9546-B5D849E9627A}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WinRTXamlToolkit.Controls.Calendar.Shared", "WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.Shared\WinRTXamlToolkit.Controls.Calendar.Shared.shproj", "{4F4D9541-0951-48F6-BD39-04156EF6F9FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Debugging.WinRTProxy.Windows", "WinRTXamlToolkit.Debugging.WinRTProxy.Windows\WinRTXamlToolkit.Debugging.WinRTProxy.Windows.csproj", "{5E7EBD80-9AE9-4847-9D84-672023289B33}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -337,6 +341,22 @@ Global
 		{4A7C8C3F-19E3-47F2-9546-B5D849E9627A}.Release|x64.ActiveCfg = Release|Any CPU
 		{4A7C8C3F-19E3-47F2-9546-B5D849E9627A}.Release|x86.ActiveCfg = Release|x86
 		{4A7C8C3F-19E3-47F2-9546-B5D849E9627A}.Release|x86.Build.0 = Release|x86
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|ARM.Build.0 = Debug|ARM
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|x64.ActiveCfg = Debug|x64
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|x64.Build.0 = Debug|x64
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|x86.ActiveCfg = Debug|x86
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Debug|x86.Build.0 = Debug|x86
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|ARM.ActiveCfg = Release|ARM
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|ARM.Build.0 = Release|ARM
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|x64.ActiveCfg = Release|x64
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|x64.Build.0 = Release|x64
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|x86.ActiveCfg = Release|x86
+		{5E7EBD80-9AE9-4847-9D84-672023289B33}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -361,5 +381,6 @@ Global
 		{D0B66203-5B50-4942-A864-C7550C6F23F6} = {14A7FAE9-3C36-4CB4-8F70-E1789B44BE9F}
 		{4A7C8C3F-19E3-47F2-9546-B5D849E9627A} = {14A7FAE9-3C36-4CB4-8F70-E1789B44BE9F}
 		{4F4D9541-0951-48F6-BD39-04156EF6F9FD} = {14A7FAE9-3C36-4CB4-8F70-E1789B44BE9F}
+		{5E7EBD80-9AE9-4847-9D84-672023289B33} = {37273C87-D07B-4959-B39B-817355264FA8}
 	EndGlobalSection
 EndGlobal

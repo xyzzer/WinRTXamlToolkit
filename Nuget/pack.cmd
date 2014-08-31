@@ -11,6 +11,7 @@ set VisualStudioVersion=12.0
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.Windows\WinRTXamlToolkit.Controls.Gauge.Windows.csproj" || GOTO :REPORT_ERROR
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.Windows\WinRTXamlToolkit.Controls.DataVisualization.Windows.csproj" || GOTO :REPORT_ERROR
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.Windows\WinRTXamlToolkit.Debugging.Windows.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WinRTProxy.Windows\WinRTXamlToolkit.Debugging.WinRTProxy.Windows.csproj" || GOTO :REPORT_ERROR
 
 @echo Building Windows Phone 8.1 projects
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.WindowsPhone\WinRTXamlToolkit.WindowsPhone.csproj" || GOTO :REPORT_ERROR
@@ -103,6 +104,8 @@ copy "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%P
 copy "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 copy "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+if [%PLATFORM_SUFFIX%]==[.Windows] (copy "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WinRTProxy%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.WinRTProxy.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR)
+
 
 xcopy /E /Y "..\WinRTXamlToolkit\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
 xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
@@ -120,6 +123,7 @@ nuget pack "WinRTXamlToolkit.Controls.DataVisualization.Windows.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.Calendar.Windows.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.Gauge.Windows.nuspec"
 nuget pack "WinRTXamlToolkit.Debugging.Windows.nuspec"
+nuget pack "WinRTXamlToolkit.Debugging.WinRTProxy.Windows.nuspec"
 
 nuget pack "WinRTXamlToolkit.WindowsPhone.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.nuspec"
