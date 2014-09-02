@@ -239,13 +239,6 @@
                 </Setter>
             </Style>
 
-            <converters:NullableBoolToVisibilityConverter
-                x:Key="NullableBoolToVisibleConverter" />
-
-            <converters:NullableBoolToVisibilityConverter
-                x:Key="NullableBoolToCollapsedConverter"
-                TrueIsVisible="True" />
-
             <converters:NullableBoolToBoolConverter
                 x:Key="NullableBoolToBoolConverter" />
         </ResourceDictionary>

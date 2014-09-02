@@ -72,7 +72,6 @@ Common::NavigationHelper^ HubPage::NavigationHelper::get()
 void HubPage::OnNavigatedTo(NavigationEventArgs^ e)
 {
 	NavigationHelper->OnNavigatedTo(e);
-    WinRTXamlToolkit::Debugging::WinRTProxy::DC::ShowVisualTree();
 }
 
 void HubPage::OnNavigatedFrom(NavigationEventArgs^ e)
@@ -126,6 +125,7 @@ void HubPage::Hub_SectionHeaderClick(Object^ sender, HubSectionHeaderClickEventA
 /// <param name="e">Event data that describes the item clicked.</param>
 void HubPage::ItemView_ItemClick(Object^ sender, ItemClickEventArgs^ e)
 {
+    WinRTXamlToolkit::Debugging::WinRTProxy::DC::ShowVisualTree();
 	(void) sender;	// Unused parameter
 
 	// Navigate to the appropriate destination page, configuring the new page

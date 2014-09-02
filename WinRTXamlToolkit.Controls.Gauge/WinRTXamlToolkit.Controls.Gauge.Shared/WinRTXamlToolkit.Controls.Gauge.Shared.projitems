@@ -9,12 +9,12 @@
     <Import_RootNamespace>WinRTXamlToolkit.Controls</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)..\WinRTXamlToolkit.Controls.Gauge.Shared\Themes\Generic.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)..\WinRTXamlToolkit.Controls.Gauge.Shared\Gauge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gauge.cs" />
   </ItemGroup>
 </Project>

@@ -10,3 +10,9 @@ Nuget/*.nupkg
 **/AppPackages/
 *.user
 *.suo
+*.sdf
+*.opensdf
+**Debug
+**Release
+**Generated Files
+**ipch
