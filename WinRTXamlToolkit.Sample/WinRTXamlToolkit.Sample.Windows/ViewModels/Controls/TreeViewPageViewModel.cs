@@ -28,7 +28,7 @@ namespace WinRTXamlToolkit.Sample.ViewModels.Controls
         public TreeViewPageViewModel()
         {
             _branchId = 1;
-            TreeItems = BuildTree(5, 5);
+            TreeItems = BuildTree(10, 10);
         }
 
         private ObservableCollection<TreeItemViewModel> BuildTree(int depth, int branches)

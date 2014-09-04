@@ -5,26 +5,19 @@ using WinRTXamlToolkit.Sample.Views;
 
 namespace WinRTXamlToolkit.Sample.ViewModels
 {
-    public enum SampleTypes
-    {
-        AwaitableUI,
-        Controls,
-        Extensions,
-        Debugging,
-        Imaging,
-        Miscellaneous
-    }
-
-    public class SampleButtonViewModel : ButtonViewModel
-    {
-        public SampleTypes SampleType { get; set; }
-    }
-
     public class MainPageViewModel : ViewModel
     {
+        #region Instance (singleton implementation)
+        private static MainPageViewModel _instance;
+        public static MainPageViewModel Instance
+        {
+            get { return _instance ?? (_instance = new MainPageViewModel()); }
+        }
+        #endregion
+        
         public ObservableCollection<ButtonViewModel> Samples { get; private set; }
 
-        public MainPageViewModel()
+        private MainPageViewModel()
         {
             var samples = new ObservableCollection<SampleButtonViewModel>
             {

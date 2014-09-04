@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Xaml.Controls;
-using WinRTXamlToolkit.Controls;
 
 namespace WinRTXamlToolkit.Sample.Views
 {

@@ -9,12 +9,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
         public static ViewModelLocator Instance { get; private set; }
 
         #region MainPage
-        private MainPageViewModel _mainPage;
         public MainPageViewModel MainPage
         {
             get
             {
-                return _mainPage ?? (_mainPage = new MainPageViewModel());
+                return MainPageViewModel.Instance;
             }
         }
         #endregion
