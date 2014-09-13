@@ -139,54 +139,57 @@
     <Compile Include="ViewModels\Controls.Extensions\TextBoxValidationTestPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\Behaviors\BehaviorsTestPage.xaml.cs">
-      <DependentUpon>BehaviorsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Behaviors\BehaviorsTestView.xaml.cs">
+      <DependentUpon>BehaviorsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Behaviors\HighlightBehaviorTestPage.xaml.cs">
-      <DependentUpon>HighlightBehaviorTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Behaviors\HighlightBehaviorTestView.xaml.cs">
+      <DependentUpon>HighlightBehaviorTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml.cs">
-      <DependentUpon>ParallaxBackgroundBehaviorTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestView.xaml.cs">
+      <DependentUpon>ParallaxBackgroundBehaviorTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BlurFxContentControl.cs" />
-    <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml.cs">
-      <DependentUpon>ButtonBaseExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ContentControlExtensionsTestPage.xaml.cs">
-      <DependentUpon>ContentControlExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestView.xaml.cs">
+      <DependentUpon>ButtonBaseExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ControlExtensionsCursorTestPage.xaml.cs">
-      <DependentUpon>ControlExtensionsCursorTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ContentControlExtensionsTestView.xaml.cs">
+      <DependentUpon>ContentControlExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ImageExtensionsTestPage.xaml.cs">
-      <DependentUpon>ImageExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ControlExtensionsCursorTestView.xaml.cs">
+      <DependentUpon>ControlExtensionsCursorTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestPage.xaml.cs">
-      <DependentUpon>ListViewExtensionsItemToBringIntoViewTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ImageExtensionsTestView.xaml.cs">
+      <DependentUpon>ImageExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ListViewExtensionsTestPage.xaml.cs">
-      <DependentUpon>ListViewExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestView.xaml.cs">
+      <DependentUpon>ListViewExtensionsItemToBringIntoViewTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ListViewItemExtensionsTestPage.xaml.cs">
-      <DependentUpon>ListViewItemExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ListViewExtensionsTestView.xaml.cs">
+      <DependentUpon>ListViewExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\MessageDialogExtensionsTestPage.xaml.cs">
-      <DependentUpon>MessageDialogExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ListViewItemExtensionsTestView.xaml.cs">
+      <DependentUpon>ListViewItemExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ScrollViewerExtensionsTestPage.xaml.cs">
-      <DependentUpon>ScrollViewerExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\MessageDialogExtensionsTestView.xaml.cs">
+      <DependentUpon>MessageDialogExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml.cs">
-      <DependentUpon>TextBoxFocusExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\ScrollViewerExtensionsTestView.xaml.cs">
+      <DependentUpon>ScrollViewerExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\TextBoxValidationTestPage.xaml.cs">
-      <DependentUpon>TextBoxValidationTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestView.xaml.cs">
+      <DependentUpon>TextBoxFocusExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestPage.xaml.cs">
-      <DependentUpon>UIElementAnimationExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\TextBoxValidationTestView.xaml.cs">
+      <DependentUpon>TextBoxValidationTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\AlternativeFrameTestPage.xaml.cs">
-      <DependentUpon>AlternativeFrameTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestView.xaml.cs">
+      <DependentUpon>UIElementAnimationExtensionsTestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AlternativeFrameTestView.xaml.cs">
+      <DependentUpon>AlternativeFrameTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage1.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage1.xaml</DependentUpon>
@@ -197,116 +200,116 @@
     <Compile Include="Views\Controls\AlternativeFrameTestPageSubPage3.xaml.cs">
       <DependentUpon>AlternativeFrameTestPageSubPage3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\AnimatingContainerTestPage.xaml.cs">
-      <DependentUpon>AnimatingContainerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\AnimatingContainerTestView.xaml.cs">
+      <DependentUpon>AnimatingContainerTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
-      <DependentUpon>CalendarTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CalendarTestView.xaml.cs">
+      <DependentUpon>CalendarTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CameraCaptureControlPage.xaml.cs">
-      <DependentUpon>CameraCaptureControlPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CameraCaptureControlTestView.xaml.cs">
+      <DependentUpon>CameraCaptureControlTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CascadingImageTestPage.xaml.cs">
-      <DependentUpon>CascadingImageTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CascadingImageTestView.xaml.cs">
+      <DependentUpon>CascadingImageTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CascadingTextBlockTestPage.xaml.cs">
-      <DependentUpon>CascadingTextBlockTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CascadingTextBlockTestView.xaml.cs">
+      <DependentUpon>CascadingTextBlockTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ChartTestPage.xaml.cs">
-      <DependentUpon>ChartTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ChartTestView.xaml.cs">
+      <DependentUpon>ChartTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml.cs">
-      <DependentUpon>ColorPickerPrimitivesTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ColorPickerPrimitivesTestView.xaml.cs">
+      <DependentUpon>ColorPickerPrimitivesTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ColorPickerTestPage.xaml.cs">
-      <DependentUpon>ColorPickerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ColorPickerTestView.xaml.cs">
+      <DependentUpon>ColorPickerTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CountdownTestPage.xaml.cs">
-      <DependentUpon>CountdownTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CountdownTestView.xaml.cs">
+      <DependentUpon>CountdownTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CustomAppBarTestPage.xaml.cs">
-      <DependentUpon>CustomAppBarTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CustomAppBarTestView.xaml.cs">
+      <DependentUpon>CustomAppBarTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CustomGridSplitterTestPage.xaml.cs">
-      <DependentUpon>CustomGridSplitterTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CustomGridSplitterTestView.xaml.cs">
+      <DependentUpon>CustomGridSplitterTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\DockPanelTestPage.xaml.cs">
-      <DependentUpon>DockPanelTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\DockPanelTestView.xaml.cs">
+      <DependentUpon>DockPanelTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\GaugeTestPage.xaml.cs">
-      <DependentUpon>GaugeTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\GaugeTestView.xaml.cs">
+      <DependentUpon>GaugeTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ImageButtonTestPage.xaml.cs">
-      <DependentUpon>ImageButtonTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ImageButtonTestView.xaml.cs">
+      <DependentUpon>ImageButtonTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ImageToggleButtonTestPage.xaml.cs">
-      <DependentUpon>ImageToggleButtonTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ImageToggleButtonTestView.xaml.cs">
+      <DependentUpon>ImageToggleButtonTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\InputDialogTestPage.xaml.cs">
-      <DependentUpon>InputDialogTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\InputDialogTestView.xaml.cs">
+      <DependentUpon>InputDialogTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\LayoutTransformControlTestPage.xaml.cs">
-      <DependentUpon>LayoutTransformControlTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\LayoutTransformControlTestView.xaml.cs">
+      <DependentUpon>LayoutTransformControlTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\NumericUpDownTestPage.xaml.cs">
-      <DependentUpon>NumericUpDownTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\NumericUpDownTestView.xaml.cs">
+      <DependentUpon>NumericUpDownTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\RingSliceTestPage.xaml.cs">
-      <DependentUpon>RingSliceTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\RingSliceTestView.xaml.cs">
+      <DependentUpon>RingSliceTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\SquareGridTestPage.xaml.cs">
-      <DependentUpon>SquareGridTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\SquareGridTestView.xaml.cs">
+      <DependentUpon>SquareGridTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ToolWindowTestPage.xaml.cs">
-      <DependentUpon>ToolWindowTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ToolWindowTestView.xaml.cs">
+      <DependentUpon>ToolWindowTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\TreeViewTestPage.xaml.cs">
-      <DependentUpon>TreeViewTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\TreeViewTestView.xaml.cs">
+      <DependentUpon>TreeViewTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\UniformGridTestPage.xaml.cs">
-      <DependentUpon>UniformGridTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\UniformGridTestView.xaml.cs">
+      <DependentUpon>UniformGridTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml.cs">
-      <DependentUpon>WatermarkPasswordBoxTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\WatermarkPasswordBoxTestView.xaml.cs">
+      <DependentUpon>WatermarkPasswordBoxTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\WatermarkTextBoxTestPage.xaml.cs">
-      <DependentUpon>WatermarkTextBoxTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\WatermarkTextBoxTestView.xaml.cs">
+      <DependentUpon>WatermarkTextBoxTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\WebBrowserTestPage.xaml.cs">
-      <DependentUpon>WebBrowserTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\WebBrowserTestView.xaml.cs">
+      <DependentUpon>WebBrowserTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\WrapPanelTestPage.xaml.cs">
-      <DependentUpon>WrapPanelTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\WrapPanelTestView.xaml.cs">
+      <DependentUpon>WrapPanelTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Debugging\BindingDebugConverterTestPage.xaml.cs">
-      <DependentUpon>BindingDebugConverterTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Debugging\BindingDebugConverterTestView.xaml.cs">
+      <DependentUpon>BindingDebugConverterTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Debugging\DebugConsoleTestPage.xaml.cs">
-      <DependentUpon>DebugConsoleTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Debugging\DebugConsoleTestView.xaml.cs">
+      <DependentUpon>DebugConsoleTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Debugging\DebugTreeViewTestPage.xaml.cs">
-      <DependentUpon>DebugTreeViewTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Debugging\DebugTreeViewTestView.xaml.cs">
+      <DependentUpon>DebugTreeViewTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Imaging\ImagingTestPage.xaml.cs">
-      <DependentUpon>ImagingTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Imaging\ImagingTestView.xaml.cs">
+      <DependentUpon>ImagingTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml.cs">
-      <DependentUpon>WriteableBitmapLoadExtensionsTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Imaging\WriteableBitmapLoadExtensionsTestView.xaml.cs">
+      <DependentUpon>WriteableBitmapLoadExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IO\XmlDataContractSerializerTestPage.xaml.cs">
-      <DependentUpon>XmlDataContractSerializerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\IO\XmlDataContractSerializerTestView.xaml.cs">
+      <DependentUpon>XmlDataContractSerializerTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IO\XmlSerializerTestPage.xaml.cs">
-      <DependentUpon>XmlSerializerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\IO\XmlSerializerTestView.xaml.cs">
+      <DependentUpon>XmlSerializerTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\BackgroundTimerTestPage.xaml.cs">
-      <DependentUpon>BackgroundTimerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Tools\BackgroundTimerTestView.xaml.cs">
+      <DependentUpon>BackgroundTimerTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\EventThrottlerTestPage.xaml.cs">
-      <DependentUpon>EventThrottlerTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Tools\EventThrottlerTestView.xaml.cs">
+      <DependentUpon>EventThrottlerTestView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -357,67 +360,71 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Behaviors\BehaviorsTestPage.xaml">
+    <Page Include="Views\Behaviors\BehaviorsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Behaviors\HighlightBehaviorTestPage.xaml">
+    <Page Include="Views\Behaviors\HighlightBehaviorTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Behaviors\ParallaxBackgroundBehaviorTestPage.xaml">
+    <Page Include="Views\Behaviors\ParallaxBackgroundBehaviorTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ButtonBaseExtensionsTestPage.xaml">
+    <Page Include="Views\TestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ContentControlExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ButtonBaseExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ControlExtensionsCursorTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ContentControlExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ImageExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ControlExtensionsCursorTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ImageExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ListViewExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ListViewExtensionsItemToBringIntoViewTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ListViewItemExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ListViewExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\MessageDialogExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ListViewItemExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ScrollViewerExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\MessageDialogExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\ScrollViewerExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\TextBoxValidationTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\TextBoxValidationTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\AlternativeFrameTestPage.xaml">
+    <Page Include="Views\Controls.Extensions\UIElementAnimationExtensionsTestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AlternativeFrameTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -433,139 +440,139 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\AnimatingContainerTestPage.xaml">
+    <Page Include="Views\Controls\AnimatingContainerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CalendarTestPage.xaml">
+    <Page Include="Views\Controls\CalendarTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CameraCaptureControlPage.xaml">
+    <Page Include="Views\Controls\CameraCaptureControlTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CascadingImageTestPage.xaml">
+    <Page Include="Views\Controls\CascadingImageTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CascadingTextBlockTestPage.xaml">
+    <Page Include="Views\Controls\CascadingTextBlockTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ChartTestPage.xaml">
+    <Page Include="Views\Controls\ChartTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ColorPickerPrimitivesTestPage.xaml">
+    <Page Include="Views\Controls\ColorPickerPrimitivesTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ColorPickerTestPage.xaml">
+    <Page Include="Views\Controls\ColorPickerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CountdownTestPage.xaml">
+    <Page Include="Views\Controls\CountdownTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CustomAppBarTestPage.xaml">
+    <Page Include="Views\Controls\CustomAppBarTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CustomGridSplitterTestPage.xaml">
+    <Page Include="Views\Controls\CustomGridSplitterTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\DockPanelTestPage.xaml">
+    <Page Include="Views\Controls\DockPanelTestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\GaugeTestPage.xaml">
+    <Page Include="Views\Controls\GaugeTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ImageButtonTestPage.xaml">
+    <Page Include="Views\Controls\ImageButtonTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ImageToggleButtonTestPage.xaml">
+    <Page Include="Views\Controls\ImageToggleButtonTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\InputDialogTestPage.xaml">
+    <Page Include="Views\Controls\InputDialogTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\LayoutTransformControlTestPage.xaml">
+    <Page Include="Views\Controls\LayoutTransformControlTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\NumericUpDownTestPage.xaml">
+    <Page Include="Views\Controls\NumericUpDownTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\RingSliceTestPage.xaml">
+    <Page Include="Views\Controls\RingSliceTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\SquareGridTestPage.xaml">
+    <Page Include="Views\Controls\SquareGridTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ToolWindowTestPage.xaml">
+    <Page Include="Views\Controls\ToolWindowTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\TreeViewTestPage.xaml">
+    <Page Include="Views\Controls\TreeViewTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\UniformGridTestPage.xaml">
+    <Page Include="Views\Controls\UniformGridTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\WatermarkPasswordBoxTestPage.xaml">
+    <Page Include="Views\Controls\WatermarkPasswordBoxTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\WatermarkTextBoxTestPage.xaml">
+    <Page Include="Views\Controls\WatermarkTextBoxTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\WebBrowserTestPage.xaml">
+    <Page Include="Views\Controls\WebBrowserTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\WrapPanelTestPage.xaml">
+    <Page Include="Views\Controls\WrapPanelTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Debugging\BindingDebugConverterTestPage.xaml">
+    <Page Include="Views\Debugging\BindingDebugConverterTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Debugging\DebugConsoleTestPage.xaml">
+    <Page Include="Views\Debugging\DebugConsoleTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Debugging\DebugTreeViewTestPage.xaml">
+    <Page Include="Views\Debugging\DebugTreeViewTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Imaging\ImagingTestPage.xaml">
+    <Page Include="Views\Imaging\ImagingTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Imaging\WriteableBitmapLoadExtensionsTestPage.xaml">
+    <Page Include="Views\Imaging\WriteableBitmapLoadExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\IO\XmlDataContractSerializerTestPage.xaml">
+    <Page Include="Views\IO\XmlDataContractSerializerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\IO\XmlSerializerTestPage.xaml">
+    <Page Include="Views\IO\XmlSerializerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -573,11 +580,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\BackgroundTimerTestPage.xaml">
+    <Page Include="Views\Tools\BackgroundTimerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\EventThrottlerTestPage.xaml">
+    <Page Include="Views\Tools\EventThrottlerTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

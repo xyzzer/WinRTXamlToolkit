@@ -7,7 +7,7 @@ using WinRTXamlToolkit.Controls.Extensions;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
-    public sealed partial class MainPage
+    public sealed partial class MainPage : AlternativePage
     {
         public MainPage()
         {

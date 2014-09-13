@@ -124,7 +124,7 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             SelectionMode="None"
-            ItemsSource="{Binding Samples}"
+            ItemsSource="{Binding SampleGroups}"
             ItemContainerStyleSelector="{StaticResource SampleLinkContainerStyleSelector}"
             ItemTemplateSelector="{StaticResource SampleLinkDataTemplateSelector}">
             <GridView.ItemContainerTransitions>

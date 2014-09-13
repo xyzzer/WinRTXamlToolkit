@@ -14,8 +14,8 @@ namespace WinRTXamlToolkit.Sample.ViewModels
             get { return _instance ?? (_instance = new MainPageViewModel()); }
         }
         #endregion
-        
-        public ObservableCollection<ButtonViewModel> Samples { get; private set; }
+
+        public ObservableCollection<SampleButtonViewModel> Samples { get; private set; }
 
         private MainPageViewModel()
         {
@@ -64,17 +64,17 @@ namespace WinRTXamlToolkit.Sample.ViewModels
 //                    SampleType = SampleTypes.Extensions
 //                },
                 new SampleButtonViewModel
-                {
-                    Caption = "Calendar",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CalendarTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "Calendar",
+                    SampleTypes.Controls,
+                    typeof(CalendarTestView)
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CameraCaptureControl",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CameraCaptureControlPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CameraCaptureControl",
+                    SampleTypes.Controls,
+                    typeof(CameraCaptureControlTestView)
+                ),
 //                new SampleButtonViewModel
 //                {
 //                    Caption = "CameraCaptureUI",
@@ -94,11 +94,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
 //                    SampleType = SampleTypes.Controls
 //                },
                 new SampleButtonViewModel
-                {
-                    Caption = "Chart",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ChartTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "Chart",
+                    SampleTypes.Controls,
+                    typeof(ChartTestView)
+                ),
                 //new SampleButtonViewModel
                 //{
                 //    Caption = "ColorPicker",
@@ -190,11 +190,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 //    SampleType = SampleTypes.Imaging
                 //},
                 new SampleButtonViewModel
-                {
-                    Caption = "InputDialog",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(InputDialogTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "InputDialog",
+                    SampleTypes.Controls,
+                    typeof(InputDialogTestView)
+                ),
                 //new SampleButtonViewModel
                 //{
                 //    Caption = "I/O",
@@ -348,7 +348,7 @@ namespace WinRTXamlToolkit.Sample.ViewModels
             };
 
             this.Samples =
-                new ObservableCollection<ButtonViewModel>(
+                new ObservableCollection<SampleButtonViewModel>(
                     samples
                         .OrderBy(s => s.Caption) // samples ordered by name
                     );

@@ -78,6 +78,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListViewItemExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ManipulationInertiaStartingRoutedEventArgsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\MessageDialogExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\PageExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\RichTextBlockExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ScrollViewerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\StyleExtensions.cs" />

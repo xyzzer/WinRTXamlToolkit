@@ -52,5 +52,16 @@ namespace WinRTXamlToolkit.Sample.ViewModels
             set { this.SetProperty(ref _image, value); }
         }
         #endregion
+
+        public ButtonViewModel()
+        {
+        }
+
+        public ButtonViewModel(ICommand command, object commandParameter, string caption)
+        {
+            _command = command;
+            _commandParameter = commandParameter;
+            _caption = caption;
+        }
     }
 }

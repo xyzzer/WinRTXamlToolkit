@@ -113,17 +113,17 @@
     <Compile Include="Views\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CalendarTestPage.xaml.cs">
-      <DependentUpon>CalendarTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CalendarTestView.xaml.cs">
+      <DependentUpon>CalendarTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\InputDialogTestPage.xaml.cs">
-      <DependentUpon>InputDialogTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\InputDialogTestView.xaml.cs">
+      <DependentUpon>InputDialogTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CameraCaptureControlPage.xaml.cs">
-      <DependentUpon>CameraCaptureControlPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CameraCaptureControlTestView.xaml.cs">
+      <DependentUpon>CameraCaptureControlTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ChartTestPage.xaml.cs">
-      <DependentUpon>ChartTestPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ChartTestView.xaml.cs">
+      <DependentUpon>ChartTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -155,19 +155,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CalendarTestPage.xaml">
+    <Page Include="Views\Controls\CalendarTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\InputDialogTestPage.xaml">
+    <Page Include="Views\Controls\InputDialogTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CameraCaptureControlPage.xaml">
+    <Page Include="Views\Controls\CameraCaptureControlTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ChartTestPage.xaml">
+    <Page Include="Views\Controls\ChartTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

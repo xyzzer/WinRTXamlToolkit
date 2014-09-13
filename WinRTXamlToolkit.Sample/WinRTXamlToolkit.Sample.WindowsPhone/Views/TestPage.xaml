@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid
+        x:Name="LayoutGrid"
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition
@@ -19,7 +20,7 @@
             Grid.Row="0"
             Margin="24,17,0,28">
             <TextBlock
-                Text="Calendar Test"
+                x:Name="TitleTextBlock"
                 Style="{ThemeResource TitleTextBlockStyle}"
                 Typography.Capitals="SmallCaps" />
             <!--<TextBlock
@@ -27,9 +28,9 @@
                 Margin="0,12,0,0"
                 Style="{ThemeResource HeaderTextBlockStyle}" />-->
         </StackPanel>
-        <controls:Calendar
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" />
+        <Grid
+            x:Name="ContentGrid"
+            Margin="24,0,24,24"
+            Grid.Row="1"/>
     </Grid>
 </Page>

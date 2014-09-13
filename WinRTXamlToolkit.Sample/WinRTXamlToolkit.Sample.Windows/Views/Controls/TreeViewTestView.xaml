@@ -1,0 +1,135 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Sample.Views.TreeViewTestView"
+    IsTabStop="false"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xc="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:WinRTXamlToolkit.Controls.Data"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary
+                    x:Key="Light">
+                    <SolidColorBrush
+                        x:Key="TextBrush"
+                        Color="MediumAquamarine" />
+                </ResourceDictionary>
+                <ResourceDictionary
+                    x:Key="Dark">
+                    <SolidColorBrush
+                        x:Key="TextBrush"
+                        Color="Aquamarine" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xaml" />
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!-- Below is what the control would look like without data binding -->
+        <!--<xc:TreeView
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource TouchTreeViewStyle}">
+            <xc:TreeViewItem
+                Header="Hello 1"
+                Style="{StaticResource TouchTreeViewItemStyle}" />
+            <xc:TreeViewItem
+                Header="Hello 2"
+                Style="{StaticResource TouchTreeViewItemStyle}"
+                IsExpanded="True">
+                <xc:TreeViewItem
+                    Header="Hello A"
+                    Style="{StaticResource TouchTreeViewItemStyle}" />
+                <xc:TreeViewItem
+                    Header="Hello B"
+                    Style="{StaticResource TouchTreeViewItemStyle}" />
+                <xc:TreeViewItem
+                    Header="Hello C"
+                    Style="{StaticResource TouchTreeViewItemStyle}" />
+            </xc:TreeViewItem>
+            <xc:TreeViewItem
+                Header="Hello 3"
+                Style="{StaticResource TouchTreeViewItemStyle}" />
+            <xc:TreeViewItem
+                Header="Hello 4"
+                Style="{StaticResource TouchTreeViewItemStyle}" />
+        </xc:TreeView>-->
+        <xc:TreeView
+            x:Name="tvDataBound"
+            Grid.Row="1"
+            ItemsSource="{Binding TreeItems}"
+            Style="{StaticResource TouchTreeViewStyle}"
+            Margin="0,0,120,0">
+            <xc:TreeView.ItemTemplate>
+                <DataTemplate>
+                    <data:DataTemplateExtensions.Hierarchy>
+                        <data:HierarchicalDataTemplate
+                            ItemsSource="{Binding Children}" />
+                    </data:DataTemplateExtensions.Hierarchy>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Text}"
+                            Foreground="{StaticResource TextBrush}" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="10"
+                            Height="10"
+                            Fill="{Binding Brush}" />
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Below is what the template would look like in Silverlight Toolkit -->
+                <!--<data:HierarchicalDataTemplate
+                    ItemsSource="{Binding Children}">
+                    <StackPanel
+                        Orientation="Horizontal">
+                            Text="{Binding Text}"
+                            Foreground="Aquamarine" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="10"
+                            Height="10"
+                            Fill="{Binding Brush}" />
+                    </StackPanel>
+                </data:HierarchicalDataTemplate>-->
+            </xc:TreeView.ItemTemplate>
+        </xc:TreeView>
+        <StackPanel
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+            <RadioButton
+                x:Name="TouchThemeRadioButton"
+                Content="TouchTreeViewStyle"
+                Checked="ToggleButton_OnChecked"
+                HorizontalAlignment="Left"
+                Margin="0,0,15,0"
+                Style="{StaticResource TextRadioButtonStyle}"
+                IsChecked="True" />
+            <RadioButton
+                x:Name="MouseThemeRadioButton"
+                Content="MouseTreeViewStyle"
+                Checked="ToggleButton_OnChecked"
+                HorizontalAlignment="Left"
+                Margin="0,0,15,0"
+                Style="{StaticResource TextRadioButtonStyle}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

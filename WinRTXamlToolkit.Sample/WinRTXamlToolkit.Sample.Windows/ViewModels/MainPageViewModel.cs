@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using WinRTXamlToolkit.Controls;
@@ -21,348 +22,349 @@ namespace WinRTXamlToolkit.Sample.ViewModels
             get { return _instance ?? (_instance = new MainPageViewModel()); }
         }
         #endregion
-        
-        public ObservableCollection<ButtonViewModel> Samples { get; private set; }
+
+        public List<SampleButtonViewModel> UngroupedSamples { get; private set; }
+        public ObservableCollection<ButtonViewModel> SampleGroups { get; private set; }
 
         private MainPageViewModel()
         {
-            var samples = new ObservableCollection<SampleButtonViewModel>
+            this.UngroupedSamples = new List<SampleButtonViewModel>
             {
                 new SampleButtonViewModel
-                {
-                    Caption = "AlternativeFrame",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(AlternativeFrameTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "AlternativeFrame",
+                    typeof(AlternativeFrameTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "AnimatingContainer",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(AnimatingContainerTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "AnimatingContainer",
+                    typeof(AnimatingContainerTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "BackgroundTimer",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(BackgroundTimerTestPage))),
-                    SampleType = SampleTypes.Miscellaneous
-                },
+                (
+                    "BackgroundTimer",
+                    typeof(BackgroundTimerTestView),
+                    SampleTypes.Miscellaneous
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "EventThrottler",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(EventThrottlerTestPage))),
-                    SampleType = SampleTypes.Miscellaneous
-                },
+                (
+                    "EventThrottler",
+                    typeof(EventThrottlerTestView),
+                    SampleTypes.Miscellaneous
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Behavior",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(BehaviorsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "Behavior",
+                    typeof(BehaviorsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "BindingDebugConverter",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(BindingDebugConverterTestPage))),
-                    SampleType = SampleTypes.Debugging
-                },
+                (
+                    "BindingDebugConverter",
+                    typeof(BindingDebugConverterTestView),
+                    SampleTypes.Debugging
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ButtonBaseExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ButtonBaseExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ButtonBaseExtensions",
+                    typeof(ButtonBaseExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Calendar",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CalendarTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "Calendar",
+                    typeof(CalendarTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CameraCaptureControl",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CameraCaptureControlPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CameraCaptureControl",
+                    typeof(CameraCaptureControlTestView),
+                    SampleTypes.Controls
+                ),
+                //new SampleButtonViewModel
+                //(
+                //    "CameraCaptureUI",
+                //    Command = new RelayCommand(StartCameraCaptureUITest),
+                //    SampleTypes.Controls
+                //),
                 new SampleButtonViewModel
-                {
-                    Caption = "CameraCaptureUI",
-                    Command = new RelayCommand(StartCameraCaptureUITest),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CascadingImage",
+                    typeof(CascadingImageTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CascadingImage",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CascadingImageTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CascadingTextBlock",
+                    typeof(CascadingTextBlockTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CascadingTextBlock",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CascadingTextBlockTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "Chart",
+                    typeof(ChartTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Chart",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ChartTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "ColorPicker",
+                    typeof(ColorPickerTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ColorPicker",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ColorPickerTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "ColorPicker Primitives",
+                    typeof(ColorPickerPrimitivesTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ColorPicker Primitives",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ColorPickerPrimitivesTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "Content Fade",
+                    typeof(ContentControlExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Content Fade",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ContentControlExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "CountdownControl",
+                    typeof(CountdownTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CountdownControl",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CountdownTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CustomAppBar",
+                    typeof(CustomAppBarTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CustomAppBar",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CustomAppBarTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "CustomGridSplitter",
+                    typeof(CustomGridSplitterTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "CustomGridSplitter",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(CustomGridSplitterTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "DebugConsole Log",
+                    typeof(DebugConsoleTestView),
+                    SampleTypes.Debugging
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "DebugConsole Log",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(DebugConsoleTestPage))),
-                    SampleType = SampleTypes.Debugging
-                },
+                (
+                    "DebugConsole Visual Tree",
+                    typeof(DebugTreeViewTestView),
+                    SampleTypes.Debugging
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "DebugConsole Visual Tree",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(DebugTreeViewTestPage))),
-                    SampleType = SampleTypes.Debugging
-                },
+                (
+                    "DockPanel",
+                    typeof(DockPanelTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "DockPanel",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(DockPanelTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "FrameworkElementExtensions.(System)Cursor",
+                    typeof(FrameworkElementExtensionsCursorTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "FrameworkElementExtensions.(System)Cursor",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(FrameworkElementExtensionsCursorTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "Gauge",
+                    typeof(GaugeTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Gauge",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(GaugeTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "HighlightBehavior",
+                    typeof(HighlightBehaviorTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "HighlightBehavior",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(HighlightBehaviorTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ImageButton",
+                    typeof(ImageButtonTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ImageButton",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ImageButtonTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "ImageToggleButton",
+                    typeof(ImageToggleButtonTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ImageToggleButton",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ImageToggleButtonTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "ImageExtensions",
+                    typeof(ImageExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ImageExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ImageExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "Imaging",
+                    typeof(ImagingTestView),
+                    SampleTypes.Imaging
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "Imaging",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ImagingTestPage))),
-                    SampleType = SampleTypes.Imaging
-                },
+                (
+                    "InputDialog",
+                    typeof(InputDialogTestView),
+                    SampleTypes.Controls
+                ),
+                //new SampleButtonViewModel
+                //(
+                //    "I/O",
+                //    Command = new RelayCommand(InputDialogAndStringIOTest),
+                //    SampleTypes.Miscellaneous
+                //),
                 new SampleButtonViewModel
-                {
-                    Caption = "InputDialog",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(InputDialogTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "LayoutTransformControl",
+                    typeof(LayoutTransformControlTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "I/O",
-                    Command = new RelayCommand(InputDialogAndStringIOTest),
-                    SampleType = SampleTypes.Miscellaneous
-                },
+                (
+                    "ListViewExtensions",
+                    typeof(ListViewExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "LayoutTransformControl",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(LayoutTransformControlTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "ListViewItemExtensions.ItemToBringIntoView",
+                    typeof(ListViewExtensionsItemToBringIntoViewTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ListViewExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ListViewExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ListViewItemExtensions",
+                    typeof(ListViewItemExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ListViewItemExtensions.ItemToBringIntoView",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ListViewExtensionsItemToBringIntoViewTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "MessageDialogExtensions",
+                    typeof(MessageDialogExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ListViewItemExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ListViewItemExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "NumericUpDown",
+                    typeof(NumericUpDownTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "MessageDialogExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(MessageDialogExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ParallaxBackgroundBehavior",
+                    typeof(ParallaxBackgroundBehaviorTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "NumericUpDown",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(NumericUpDownTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "RingSlice/PieSlice",
+                    typeof(RingSliceTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ParallaxBackgroundBehavior",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ParallaxBackgroundBehaviorTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ScrollViewerExtensions",
+                    typeof(ScrollViewerExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "RingSlice/PieSlice",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(RingSliceTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "SquareGrid",
+                    typeof(SquareGridTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ScrollViewerExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ScrollViewerExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "TextBox Validation",
+                    typeof(TextBoxValidationTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "SquareGrid",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(SquareGridTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "TextBoxFocusExtensions",
+                    typeof(TextBoxFocusExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "TextBox Validation",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TextBoxValidationTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "ToolWindow",
+                    typeof(ToolWindowTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "TextBoxFocusExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TextBoxFocusExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "TreeView",
+                    typeof(TreeViewTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "ToolWindow",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ToolWindowTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "UIElementAnimationExtensions",
+                    typeof(UIElementAnimationExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "TreeView",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TreeViewTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "UniformGrid",
+                    typeof(UniformGridTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "UIElementAnimationExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(UIElementAnimationExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
+                (
+                    "WatermarkPasswordBox",
+                    typeof(WatermarkPasswordBoxTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "UniformGrid",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(UniformGridTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "WatermarkTextBox",
+                    typeof(WatermarkTextBoxTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "WatermarkPasswordBox",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WatermarkPasswordBoxTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "WebBrowser",
+                    typeof(WebBrowserTestView),
+                    SampleTypes.Controls
+                ),
+                //new SampleButtonViewModel
+                //(
+                //    "WebFile",
+                //    Command = new RelayCommand(RunWebFileTest),
+                //    SampleTypes.Miscellaneous
+                //),
                 new SampleButtonViewModel
-                {
-                    Caption = "WatermarkTextBox",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WatermarkTextBoxTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "WrapPanel",
+                    typeof(WrapPanelTestView),
+                    SampleTypes.Controls
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "WebBrowser",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WebBrowserTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
+                (
+                    "WriteableBitmapLoadExtensions",
+                    typeof(WriteableBitmapLoadExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "WebFile",
-                    Command = new RelayCommand(RunWebFileTest),
-                    SampleType = SampleTypes.Miscellaneous
-                },
+                (
+                    "XML DataContract Serialization",
+                    typeof(XmlDataContractSerializerTestView),
+                    SampleTypes.Miscellaneous
+                ),
                 new SampleButtonViewModel
-                {
-                    Caption = "WrapPanel",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WrapPanelTestPage))),
-                    SampleType = SampleTypes.Controls
-                },
-                new SampleButtonViewModel
-                {
-                    Caption = "WriteableBitmapLoadExtensions",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(WriteableBitmapLoadExtensionsTestPage))),
-                    SampleType = SampleTypes.Extensions
-                },
-                new SampleButtonViewModel
-                {
-                    Caption = "XML DataContract Serialization",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(XmlDataContractSerializerTestPage))),
-                    SampleType = SampleTypes.Miscellaneous
-                },
-                new SampleButtonViewModel
-                {
-                    Caption = "XML Serialization",
-                    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(XmlSerializerTestPage))),
-                    SampleType = SampleTypes.Miscellaneous
-                }
+                (
+                    "XML Serialization",
+                    typeof(XmlSerializerTestView),
+                    SampleTypes.Miscellaneous
+                )
             };
 
-            this.Samples =
+            this.SampleGroups =
                 new ObservableCollection<ButtonViewModel>(
-                    samples
+                    this.UngroupedSamples
                         .OrderBy(s => s.Caption) // samples ordered by name
                         .GroupBy(s => s.SampleType) // samples grouped by group type in the order based on enum value order
                         .Select(g => new SampleGroupViewModel(
@@ -370,9 +372,9 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                             g))
                         .OrderBy(g => (int)g.SampleType)); // groups ordered by name
 
-            foreach (var sampleButtonViewModel in this.Samples.Cast<SampleGroupViewModel>())
+            foreach (var sampleGroupViewModel in this.SampleGroups.Cast<SampleGroupViewModel>())
             {
-                sampleButtonViewModel.ParentList = this.Samples;
+                sampleGroupViewModel.ParentList = this.SampleGroups;
             }
         }
 
