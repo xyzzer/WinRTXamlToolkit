@@ -10,7 +10,7 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.InitializeComponent();
         }
 
-        private void EditTextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        private void EditTextBox_OnKeyUp(object sender, KeyRoutedEventArgs e)
         {
             this.EditTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
