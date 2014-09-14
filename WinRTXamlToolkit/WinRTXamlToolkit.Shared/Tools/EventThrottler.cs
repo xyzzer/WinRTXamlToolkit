@@ -20,17 +20,20 @@ namespace WinRTXamlToolkit.Tools
         public async void Run(Func<Task> action)
         {
             if (isRunning)
-                next = action;
+            {
+                this.next = action;
+            }
             else
             {
                 isRunning = true;
                 try
                 {
                     await action();
-                    while (next != null)
+
+                    while (this.next != null)
                     {
-                        var nextCopy = next;
-                        next = null;
+                        var nextCopy = this.next;
+                        this.next = null;
                         await nextCopy();
                     }
                 }

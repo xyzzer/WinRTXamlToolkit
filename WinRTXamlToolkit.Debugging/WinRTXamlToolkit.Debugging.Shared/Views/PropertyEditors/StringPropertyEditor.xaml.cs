@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
 {
@@ -7,6 +8,16 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         public StringPropertyEditor()
         {
             this.InitializeComponent();
+        }
+
+        private void EditTextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            this.EditTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
+
+        private void EditTextBox_OnPaste(object sender, TextControlPasteEventArgs e)
+        {
+            this.EditTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

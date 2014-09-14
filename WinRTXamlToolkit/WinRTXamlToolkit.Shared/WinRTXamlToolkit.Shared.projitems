@@ -88,6 +88,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\WebViewExtensions 8.1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\CpuShaderEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\BlurShaderEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\AlphaExpandShaderEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\FxContentControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\HeaderedItemsControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HeaderedItemsControl\ItemsControlHelper.cs" />

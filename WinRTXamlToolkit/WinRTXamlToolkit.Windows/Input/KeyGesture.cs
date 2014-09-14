@@ -36,7 +36,6 @@ namespace WinRTXamlToolkit.Input
 
             try
             {
-                var state = ParserStates.Key;
                 KeyCombination combination = null;
                 int start = 0;
 

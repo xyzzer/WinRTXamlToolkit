@@ -104,19 +104,16 @@
             Margin="10,47,0,0"
             AutomationProperties.Name=""
             Style="{StaticResource NoAppBarButtonStyle}" />
-        <controls:FxContentControl
+        <TextBlock
             Grid.Column="1"
-            VerticalAlignment="Top">
-            <TextBlock
-                Text="WinRT XAML Toolkit Tests"
-                VerticalAlignment="Top"
-                LineHeight="120"
-                Style="{StaticResource PageHeaderTextStyle}">
-                <TextBlock.RenderTransform>
-                    <TranslateTransform/>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-        </controls:FxContentControl>
+            Text="WinRT XAML Toolkit Tests"
+            VerticalAlignment="Top"
+            LineHeight="120"
+            Style="{StaticResource PageHeaderTextStyle}">
+            <TextBlock.RenderTransform>
+                <TranslateTransform/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
         <GridView
             x:Name="ButtonsGridView"

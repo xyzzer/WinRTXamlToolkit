@@ -3,19 +3,146 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using WinRTXamlToolkit.Controls.Fx;
 using WinRTXamlToolkit.Imaging;
+using WinRTXamlToolkit.Tools;
 
 namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
-    /// TODO: Control that applies shader effects to its content.
+    /// Control that applies shader effects to its content. Uses CPU for shading.
     /// </summary>
     public class FxContentControl : ContentControl
     {
+        private readonly EventThrottler updateThrottler = new EventThrottler();
         private Image _backgroundFxImage;
         private Image _foregroundFxImage;
         private ContentPresenter _contentPresenter;
         private Grid _renderedGrid;
+
+        #region BackgroundFx
+        /// <summary>
+        /// BackgroundFx Dependency Property
+        /// </summary>
+        private static readonly DependencyProperty _BackgroundFxProperty =
+            DependencyProperty.Register(
+                "BackgroundFx",
+                typeof(CpuShaderEffect),
+                typeof(FxContentControl),
+                new PropertyMetadata(null, OnBackgroundFxChanged));
+
+        /// <summary>
+        /// Identifies the BackgroundFx dependency property.
+        /// </summary>
+        public static DependencyProperty BackgroundFxProperty { get { return _BackgroundFxProperty; } }
+
+        /// <summary>
+        /// Gets or sets the shader effect for bitmap shown behind the content.
+        /// </summary>
+        public CpuShaderEffect BackgroundFx
+        {
+            get { return (CpuShaderEffect)this.GetValue(BackgroundFxProperty); }
+            set { this.SetValue(BackgroundFxProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the BackgroundFx property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnBackgroundFxChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var target = (FxContentControl)d;
+            CpuShaderEffect oldBackgroundFx = (CpuShaderEffect)e.OldValue;
+            CpuShaderEffect newBackgroundFx = target.BackgroundFx;
+            target.OnBackgroundFxChanged(oldBackgroundFx, newBackgroundFx);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes
+        /// to the BackgroundFx property.
+        /// </summary>
+        /// <param name="oldBackgroundFx">The old BackgroundFx value</param>
+        /// <param name="newBackgroundFx">The new BackgroundFx value</param>
+        private void OnBackgroundFxChanged(
+            CpuShaderEffect oldBackgroundFx, CpuShaderEffect newBackgroundFx)
+        {
+            if (_renderedGrid != null &&
+                _renderedGrid.ActualHeight > 0)
+            {
+                this.UpdateFx();
+            }
+        }
+        #endregion
+
+        #region ForegroundFx
+        /// <summary>
+        /// ForegroundFx Dependency Property
+        /// </summary>
+        private static readonly DependencyProperty _ForegroundFxProperty =
+            DependencyProperty.Register(
+                "ForegroundFx",
+                typeof(CpuShaderEffect),
+                typeof(FxContentControl),
+                new PropertyMetadata(null, OnForegroundFxChanged));
+
+        /// <summary>
+        /// Identifies the ForegroundFx dependency property.
+        /// </summary>
+        public static DependencyProperty ForegroundFxProperty { get { return _ForegroundFxProperty; } }
+
+        /// <summary>
+        /// Gets or sets the shader effect for bitmap shown in front of the content.
+        /// </summary>
+        public CpuShaderEffect ForegroundFx
+        {
+            get { return (CpuShaderEffect)this.GetValue(ForegroundFxProperty); }
+            set { this.SetValue(ForegroundFxProperty, value); }
+        }
+
+        /// <summary>
+        /// Handles changes to the ForegroundFx property.
+        /// </summary>
+        /// <param name="d">
+        /// The <see cref="DependencyObject"/> on which
+        /// the property has changed value.
+        /// </param>
+        /// <param name="e">
+        /// Event data that is issued by any event that
+        /// tracks changes to the effective value of this property.
+        /// </param>
+        private static void OnForegroundFxChanged(
+            DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var target = (FxContentControl)d;
+            CpuShaderEffect oldForegroundFx = (CpuShaderEffect)e.OldValue;
+            CpuShaderEffect newForegroundFx = target.ForegroundFx;
+            target.OnForegroundFxChanged(oldForegroundFx, newForegroundFx);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes
+        /// to the ForegroundFx property.
+        /// </summary>
+        /// <param name="oldForegroundFx">The old ForegroundFx value</param>
+        /// <param name="newForegroundFx">The new ForegroundFx value</param>
+        private void OnForegroundFxChanged(
+            CpuShaderEffect oldForegroundFx, CpuShaderEffect newForegroundFx)
+        {
+            if (_renderedGrid != null &&
+                _renderedGrid.ActualHeight > 0)
+            {
+                this.UpdateFx();
+            }
+        }
+        #endregion
 
         public FxContentControl()
         {
@@ -46,17 +173,42 @@ namespace WinRTXamlToolkit.Controls
             await this.UpdateFx();
         }
 
-        private async Task UpdateFx()
+        public async Task UpdateFx()
         {
-            if (_renderedGrid.ActualHeight < 1 ||
+            if (_renderedGrid.ActualHeight < 2 ||
+                _renderedGrid.ActualWidth < 2 ||
                 _backgroundFxImage == null ||
                 _foregroundFxImage == null)
             {
+                if (_backgroundFxImage != null)
+                {
+                    _backgroundFxImage.Source = null;
+                }
+
+                if (_foregroundFxImage != null)
+                {
+                    _foregroundFxImage.Source = null;
+                }
+
                 return;
             }
 
             var rtb = new RenderTargetBitmap();
             await rtb.RenderAsync(_renderedGrid);
+
+            if (rtb.PixelHeight == 0)
+            {
+                {
+                    _backgroundFxImage.Source = null;
+                }
+
+                if (_foregroundFxImage != null)
+                {
+                    _foregroundFxImage.Source = null;
+                }
+
+                return;
+            }
 
             await this.UpdateBackgroundFx(rtb);
             await this.UpdateForegroundFx(rtb);
@@ -64,10 +216,15 @@ namespace WinRTXamlToolkit.Controls
 
         private async Task UpdateBackgroundFx(RenderTargetBitmap rtb)
         {
-            ////await Task.Delay(1000);
             if (_renderedGrid.ActualHeight < 1 ||
                 _backgroundFxImage == null)
             {
+                return;
+            }
+
+            if (this.BackgroundFx == null)
+            {
+                _backgroundFxImage.Source = null;
                 return;
             }
 
@@ -83,7 +240,7 @@ namespace WinRTXamlToolkit.Controls
                 wb = new WriteableBitmap(pw, ph);
             }
 
-            await ProcessBackgroundImage(rtb, wb, pw, ph);
+            await OnProcessBackgroundImage(rtb, wb, pw, ph);
 
             _backgroundFxImage.Source = wb;
         }
@@ -94,6 +251,12 @@ namespace WinRTXamlToolkit.Controls
             if (_renderedGrid.ActualHeight < 1 ||
                 _foregroundFxImage == null)
             {
+                return;
+            }
+
+            if (this.ForegroundFx == null)
+            {
+                _foregroundFxImage.Source = null;
                 return;
             }
 
@@ -114,43 +277,14 @@ namespace WinRTXamlToolkit.Controls
             _foregroundFxImage.Source = wb;
         }
 
-        protected virtual async Task ProcessBackgroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        private Task OnProcessBackgroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
-            var rtbBuffer = await rtb.GetPixelsAsync();
-            var rtbPixels = rtbBuffer.GetPixels();
-            var wbBuffer = wb.PixelBuffer;
-            var wbPixels = wbBuffer.GetPixels();
-
-            // Expand
-            int expansion = 1;
-
-            for (int x = 0; x < pw; x++)
-                for (int y = 0; y < ph; y++)
-                {
-                    int x1min = Math.Max(0, x - expansion);
-                    int x1max = Math.Min(x + expansion, pw - 1);
-                    int y1min = Math.Max(0, y - expansion);
-                    int y1max = Math.Min(y + expansion, ph - 1);
-                    byte maxa = 0;
-
-                    for (int x1 = x1min; x1 <= x1max; x1++)
-                        for (int y1 = y1min; y1 <= y1max; y1++)
-                        {
-                            var a = rtbPixels.Bytes[4 * (y1 * pw + x1) + 3];
-                            if (a > maxa)
-                                maxa = a;
-                        }
-                    wbPixels.Bytes[4 * (y * pw + x)] = 0;
-                    wbPixels.Bytes[4 * (y * pw + x) + 1] = 0;
-                    wbPixels.Bytes[4 * (y * pw + x) + 2] = 0;
-                    wbPixels.Bytes[4 * (y * pw + x) + 3] = maxa;
-                }
-
-            wbPixels.UpdateFromBytes();
+            return this.BackgroundFx.ProcessBitmap(rtb, wb, pw, ph);
         }
 
-        protected virtual async Task ProcessForegroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        private Task ProcessForegroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
+            return this.ForegroundFx.ProcessBitmap(rtb, wb, pw, ph);
         }
     }
 }

@@ -27,7 +27,10 @@
                 FontWeight="Bold"
                 Margin="0,0,10,0" />
             <TextBox
+                x:Name="EditTextBox"
                 Text="{Binding Value, Mode=TwoWay}"
+                KeyUp="EditTextBox_OnKeyUp"
+                Paste="EditTextBox_OnPaste"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"/>
             <StackPanel

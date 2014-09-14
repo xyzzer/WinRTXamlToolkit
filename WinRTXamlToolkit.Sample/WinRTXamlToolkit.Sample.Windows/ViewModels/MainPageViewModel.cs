@@ -170,6 +170,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 ),
                 new SampleButtonViewModel
                 (
+                    "FxContentControl",
+                    typeof(FxContentControlTestView),
+                    SampleTypes.Controls
+                ),
+                new SampleButtonViewModel
+                (
                     "Gauge",
                     typeof(GaugeTestView),
                     SampleTypes.Controls

@@ -117,9 +117,19 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         private void OnModelChanged(
             BasePropertyViewModel oldModel, BasePropertyViewModel newModel)
         {
+            if (oldModel != null)
+            {
+                oldModel.PropertyChanged -= OnModelPropertyChanged;
+            }
+
             if (this.NumericType != null)
             {
                 ReadModelValue();
+            }
+
+            if (newModel != null)
+            {
+                newModel.PropertyChanged += OnModelPropertyChanged;
             }
         }
         #endregion
@@ -127,6 +137,14 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         public NumericPropertyEditor()
         {
             this.InitializeComponent();
+        }
+
+        private void OnModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Value")
+            {
+                ReadModelValue();
+            }
         }
 
         /// <summary>

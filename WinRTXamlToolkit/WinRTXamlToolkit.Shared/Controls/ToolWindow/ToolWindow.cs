@@ -1024,7 +1024,9 @@ namespace WinRTXamlToolkit.Controls
 
                     if (!_isDraggingFromSnapped)
                     {
+#pragma warning disable 4014
                         this.AnimateStraightSnapAsync(_lastWindowPosition.X, _lastWindowPosition.Y);
+#pragma warning restore 4014
                     }
                 }
                 else if (oldWindowState == WindowStates.Maximized)
@@ -1063,14 +1065,14 @@ namespace WinRTXamlToolkit.Controls
 
         #region Public methods
         #region Activate()
-        public void Activate()
+        public async Task Activate()
         {
             var maxZIndex = this.GetSiblings().Aggregate(0, (z, dob) => Math.Max(z, Canvas.GetZIndex((UIElement)dob)));
             Canvas.SetZIndex(this, maxZIndex + 1);
             if (_layoutGridTransform != null &&
                 _layoutGridTransform.Rotation != 0)
             {
-                AnimateToStraighten();
+                await AnimateToStraighten();
             }
         }
         #endregion
@@ -1197,11 +1199,11 @@ namespace WinRTXamlToolkit.Controls
 
             if (WindowEdgeSnapBehavior != WindowEdgeSnapBehavior.ToTitleBarWithRotation)
             {
-                AnimateStraightSnapAsync(x, y);
+                await AnimateStraightSnapAsync(x, y);
             }
             else
             {
-                AnimateRotatedSnapAsync(x, y, angle);
+                await AnimateRotatedSnapAsync(x, y, angle);
             }
         }
         #endregion
@@ -1214,7 +1216,7 @@ namespace WinRTXamlToolkit.Controls
         {
             this.Visibility = Visibility.Visible;
             this.WindowState = WindowStates.Normal;
-            this.Activate();
+            await this.Activate();
         }
         #endregion
 
@@ -1222,9 +1224,9 @@ namespace WinRTXamlToolkit.Controls
         /// <summary>
         /// Minimizes the window.
         /// </summary>
-        public void Minimize()
+        public async Task Minimize()
         {
-            this.SnapToEdge();
+            await this.SnapToEdge();
         }
         #endregion
 
@@ -1259,7 +1261,7 @@ namespace WinRTXamlToolkit.Controls
 
         #region Event handlers and overrides
         #region OnLoaded()
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             this.InitializeStartupLocation();
             this.SnapToEdgeIfNecessary();
@@ -1454,11 +1456,15 @@ namespace WinRTXamlToolkit.Controls
 
                 if (WindowEdgeSnapBehavior != WindowEdgeSnapBehavior.ToTitleBarWithRotation)
                 {
+#pragma warning disable 4014
                     AnimateStraightSnapAsync(_flickAdjustedEndX, _flickAdjustedEndY);
+#pragma warning restore 4014
                 }
                 else
                 {
+#pragma warning disable 4014
                     AnimateRotatedSnapAsync(_flickAdjustedEndX, _flickAdjustedEndY, _flickAdjustedEndAngle);
+#pragma warning restore 4014
                 }
             }
         }
@@ -1523,11 +1529,15 @@ namespace WinRTXamlToolkit.Controls
             if (WindowEdgeSnapBehavior == WindowEdgeSnapBehavior.Straight ||
                 WindowEdgeSnapBehavior == WindowEdgeSnapBehavior.StraightToTitleBar)
             {
+#pragma warning disable 4014
                 AnimateStraightSnapAsync(x, y);
+#pragma warning restore 4014
             }
             else
             {
+#pragma warning disable 4014
                 AnimateRotatedSnapAsync(x, y, angle);
+#pragma warning restore 4014
             }
         }
 
@@ -1630,14 +1640,18 @@ namespace WinRTXamlToolkit.Controls
         #region OnSnapButtonClick()
         private void OnSnapButtonClick(object sender, RoutedEventArgs e)
         {
+#pragma warning disable 4014
             SnapToEdge();
+#pragma warning restore 4014
         }
         #endregion
 
         #region OnRestoreButtonClick()
         private void OnRestoreButtonClick(object sender, RoutedEventArgs e)
         {
+#pragma warning disable 4014
             this.Restore();
+#pragma warning restore 4014
         }
         #endregion
 
@@ -1976,7 +1990,9 @@ namespace WinRTXamlToolkit.Controls
         {
             if (this.WindowState == WindowStates.Snapped)
             {
+#pragma warning disable 4014
                 this.SnapToEdge();
+#pragma warning restore 4014
             }
         }
 
@@ -2260,7 +2276,9 @@ namespace WinRTXamlToolkit.Controls
                 }
 
                 this._currentSnapStoryboard.Stop();
+#pragma warning disable 4014
                 AnimateToStraighten();
+#pragma warning restore 4014
             }
         }
         #endregion
