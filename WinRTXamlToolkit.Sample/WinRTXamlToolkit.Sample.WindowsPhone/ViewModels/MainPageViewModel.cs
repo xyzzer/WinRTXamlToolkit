@@ -279,12 +279,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(ToolWindowTestPage))),
                 //    SampleType = SampleTypes.Controls
                 //},
-                //new SampleButtonViewModel
-                //{
-                //    Caption = "TreeView",
-                //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(TreeViewTestPage))),
-                //    SampleType = SampleTypes.Controls
-                //},
+                new SampleButtonViewModel
+                (
+                    "TreeView",
+                    SampleTypes.Controls,
+                    typeof(TreeViewTestView)
+                ),
                 //new SampleButtonViewModel
                 //{
                 //    Caption = "UIElementAnimationExtensions",

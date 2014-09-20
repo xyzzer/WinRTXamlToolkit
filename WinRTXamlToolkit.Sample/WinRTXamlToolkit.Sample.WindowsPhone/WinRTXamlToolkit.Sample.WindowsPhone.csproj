@@ -109,7 +109,11 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\Controls\TreeViewTestView.xaml.cs">
+      <DependentUpon>TreeViewTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\TreeViewTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

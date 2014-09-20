@@ -79,13 +79,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\WinRTXamlToolkit\WinRTXamlToolkit.WindowsPhone\WinRTXamlToolkit.WindowsPhone.csproj">
-      <Project>{1af78321-7d45-487b-bcfb-ce6b92389eb2}</Project>
-      <Name>WinRTXamlToolkit.WindowsPhone</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

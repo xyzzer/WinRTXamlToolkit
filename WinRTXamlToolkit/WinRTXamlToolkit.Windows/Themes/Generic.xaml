@@ -32,6 +32,8 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeView.xaml" />
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml" />

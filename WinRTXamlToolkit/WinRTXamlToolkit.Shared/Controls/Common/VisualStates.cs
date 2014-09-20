@@ -121,28 +121,6 @@ namespace WinRTXamlToolkit.Controls
         public const string StatePopupClosed = "PopupClosed";
         #endregion
 
-        #region GroupValidation
-        /// <summary>
-        /// ValidationStates state group.
-        /// </summary>
-        public const string GroupValidation = "ValidationStates";
-
-        /// <summary>
-        /// The valid state for the ValidationStates group.
-        /// </summary>
-        public const string StateValid = "Valid";
-
-        /// <summary>
-        /// Invalid, focused state for the ValidationStates group.
-        /// </summary>
-        public const string StateInvalidFocused = "InvalidFocused";
-
-        /// <summary>
-        /// Invalid, unfocused state for the ValidationStates group.
-        /// </summary>
-        public const string StateInvalidUnfocused = "InvalidUnfocused";
-        #endregion
-
         #region GroupExpandDirection
         /// <summary>
         /// ExpandDirection state group.
