@@ -16,6 +16,11 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WinRTXamlToolkit.Sample.Windows.App">
       <m2:VisualElements DisplayName="XAML Toolkit" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="WinRTXamlToolkit.Sample.Windows" ForegroundText="light" BackgroundColor="#00A000">
+        <m2:DefaultTile ShortName="XAML Toolkit">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>

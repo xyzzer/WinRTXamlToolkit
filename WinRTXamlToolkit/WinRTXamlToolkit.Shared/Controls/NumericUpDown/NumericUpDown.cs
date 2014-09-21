@@ -261,6 +261,23 @@ namespace WinRTXamlToolkit.Controls
         public NumericUpDown()
         {
             this.DefaultStyleKey = typeof(NumericUpDown);
+            this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_dragOverlay != null)
+            {
+                Window.Current.CoreWindow.PointerReleased += CoreWindowOnPointerReleased;
+                Window.Current.CoreWindow.VisibilityChanged += OnCoreWindowVisibilityChanged;
+            }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.CoreWindow.PointerReleased -= CoreWindowOnPointerReleased;
+            Window.Current.CoreWindow.VisibilityChanged -= OnCoreWindowVisibilityChanged;
         }
 
         #region OnApplyTemplate()
@@ -300,8 +317,6 @@ namespace WinRTXamlToolkit.Controls
                 _dragOverlay.Tapped += OnDragOverlayTapped;
                 _dragOverlay.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
                 _dragOverlay.PointerPressed += OnDragOverlayPointerPressed;
-                Window.Current.CoreWindow.PointerReleased += CoreWindowOnPointerReleased;
-                Window.Current.CoreWindow.VisibilityChanged += OnCoreWindowVisibilityChanged;
                 _dragOverlay.PointerReleased += OnDragOverlayPointerReleased;
                 _dragOverlay.PointerCaptureLost += OnDragOverlayPointerCaptureLost;
             }
