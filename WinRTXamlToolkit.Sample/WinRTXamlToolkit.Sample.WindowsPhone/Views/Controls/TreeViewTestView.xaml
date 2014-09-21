@@ -7,30 +7,68 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:WinRTXamlToolkit.Controls.Data"
+    xmlns:controls1="using:WinRTXamlToolkit.Sample.ViewModels.Controls"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <controls1:TreeItemTemplateSelector
+            x:Key="TreeItemTemplateSelector">
+            <controls1:TreeItemTemplateSelector.BranchTemplate>
+                <DataTemplate>
+                    <data:DataTemplateExtensions.Hierarchy>
+                        <data:HierarchicalDataTemplate
+                            ItemsSource="{Binding Children}" />
+                    </data:DataTemplateExtensions.Hierarchy>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Text}" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="15"
+                            Height="15"
+                            StrokeThickness="3"
+                            Stroke="{Binding Brush}" />
+                    </StackPanel>
+                </DataTemplate>
+            </controls1:TreeItemTemplateSelector.BranchTemplate>
+            <controls1:TreeItemTemplateSelector.LeafTemplate>
+                <DataTemplate>
+                    <data:DataTemplateExtensions.Hierarchy>
+                        <data:HierarchicalDataTemplate
+                            ItemsSource="{Binding Children}" />
+                    </data:DataTemplateExtensions.Hierarchy>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Text}" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="15"
+                            Height="15"
+                            Fill="{Binding Brush}" />
+                    </StackPanel>
+                </DataTemplate>
+            </controls1:TreeItemTemplateSelector.LeafTemplate>
+        </controls1:TreeItemTemplateSelector>
+    </UserControl.Resources>
     <controls:TreeView
         x:Name="tvDataBound"
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
-        ItemsSource="{Binding TreeItems}">
-        <controls:TreeView.ItemTemplate>
-            <DataTemplate>
+        ItemsSource="{Binding TreeItems}"
+        ItemTemplateSelector="{StaticResource TreeItemTemplateSelector}">
+        <!--<controls:TreeView.ItemTemplate>-->
+            <!--<DataTemplate>
                 <data:DataTemplateExtensions.Hierarchy>
                     <data:HierarchicalDataTemplate
                         ItemsSource="{Binding Children}" />
                 </data:DataTemplateExtensions.Hierarchy>
-                <StackPanel
-                    Orientation="Horizontal">
-                    <TextBlock
-                        Text="{Binding Text}" />
-                    <Ellipse
-                        VerticalAlignment="Center"
-                        Margin="5"
-                        Width="15"
-                        Height="15"
-                        Fill="{Binding Brush}" />
-                </StackPanel>
-            </DataTemplate>
+                <ContentControl
+                    ContentTemplateSelector="{StaticResource TreeItemTemplateSelector}"
+                    Content="{Binding}" />
+            </DataTemplate>-->
 
             <!-- Below is what the template would look like in Silverlight Toolkit -->
             <!--<data:HierarchicalDataTemplate
@@ -46,7 +84,7 @@
                             Height="10"
                             Fill="{Binding Brush}" />
                     </StackPanel>
-                </data:HierarchicalDataTemplate>-->
-        </controls:TreeView.ItemTemplate>
+                </data:HierarchicalDataTemplate>--><!--
+        </controls:TreeView.ItemTemplate>-->
     </controls:TreeView>
 </UserControl>

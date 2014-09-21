@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Imaging;
 using WinRTXamlToolkit.Sample.Common;
 using WinRTXamlToolkit.Tools;
@@ -95,5 +97,31 @@ namespace WinRTXamlToolkit.Sample.ViewModels.Controls
             set { this.SetProperty(ref _brush, value); }
         }
         #endregion
+    }
+
+    public class TreeItemTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate BranchTemplate { get; set; }
+        public DataTemplate LeafTemplate { get; set; }
+
+        protected override DataTemplate SelectTemplateCore(object item)
+        {
+            var treeItem = (TreeItemViewModel)item;
+
+            if (treeItem.Children == null ||
+                treeItem.Children.Count == 0)
+            {
+                return this.LeafTemplate;
+            }
+            else
+            {
+                return this.BranchTemplate;
+            }
+        }
+
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
+        {
+            return this.SelectTemplateCore(item);
+        }
     }
 }

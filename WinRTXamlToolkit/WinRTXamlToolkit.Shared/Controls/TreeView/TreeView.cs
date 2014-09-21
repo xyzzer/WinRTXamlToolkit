@@ -579,7 +579,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             ItemsControlHelper.PrepareContainerForItemOverride(element, ItemContainerStyle);
-            HeaderedItemsControl.PreparePrepareHeaderedItemsControlContainerForItemOverride(element, item, this, ItemContainerStyle);
+            HeaderedItemsControl.PrepareHeaderedItemsControlContainerForItemOverride(element, item, this, ItemContainerStyle);
             base.PrepareContainerForItemOverride(element, item);
         }
 

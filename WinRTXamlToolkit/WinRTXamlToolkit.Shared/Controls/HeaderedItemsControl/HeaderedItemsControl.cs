@@ -239,7 +239,7 @@ namespace WinRTXamlToolkit.Controls
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             ItemsControlHelper.PrepareContainerForItemOverride(element, ItemContainerStyle);
-            PreparePrepareHeaderedItemsControlContainerForItemOverride(element, item, this, ItemContainerStyle);
+            PrepareHeaderedItemsControlContainerForItemOverride(element, item, this, ItemContainerStyle);
 
             base.PrepareContainerForItemOverride(element, item);
         }
@@ -255,7 +255,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="parentItemContainerStyle">
         /// The ItemContainerStyle for the parent ItemsControl.
         /// </param>
-        internal static void PreparePrepareHeaderedItemsControlContainerForItemOverride(DependencyObject element, object item, ItemsControl parent, Style parentItemContainerStyle)
+        internal static void PrepareHeaderedItemsControlContainerForItemOverride(DependencyObject element, object item, ItemsControl parent, Style parentItemContainerStyle)
         {
             HeaderedItemsControl headeredItemsControl = element as HeaderedItemsControl;
             if (headeredItemsControl != null)
@@ -280,10 +280,18 @@ namespace WinRTXamlToolkit.Controls
             {
                 // Copy the ItemsControl properties from parent to child
                 DataTemplate parentItemTemplate = parentItemsControl.ItemTemplate;
-                if (parentItemTemplate != null)
+                DataTemplateSelector parentItemTemplateSelector = parentItemsControl.ItemTemplateSelector;
+
+                if (parentItemTemplateSelector != null)
+                {
+                    control.SetValue(HeaderedItemsControl.ItemTemplateSelectorProperty, parentItemTemplateSelector);
+                    parentItemTemplate = parentItemTemplateSelector.SelectTemplate(item, control);
+                }
+                else if (parentItemTemplate != null)
                 {
                     control.SetValue(HeaderedItemsControl.ItemTemplateProperty, parentItemTemplate);
                 }
+
                 if (parentItemContainerStyle != null && HasDefaultValue(control, HeaderedItemsControl.ItemContainerStyleProperty))
                 {
                     control.SetValue(HeaderedItemsControl.ItemContainerStyleProperty, parentItemContainerStyle);
@@ -295,6 +303,7 @@ namespace WinRTXamlToolkit.Controls
                     control.Header = item;
                     control.HeaderIsItem = true;
                 }
+
                 if (parentItemTemplate != null)
                 {
                     control.SetValue(HeaderedItemsControl.HeaderTemplateProperty, parentItemTemplate);
