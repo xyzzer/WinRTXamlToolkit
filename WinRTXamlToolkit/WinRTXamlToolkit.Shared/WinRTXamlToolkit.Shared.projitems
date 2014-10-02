@@ -100,6 +100,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LayoutTransformControl\LayoutTransformControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ListItemButton\ListItemButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\UpDownTextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PieSlice\PieSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RingSlice\RingSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquareGrid\SquareGrid.cs" />

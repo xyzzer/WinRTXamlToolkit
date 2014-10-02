@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:WinRTXamlToolkit.Controls" xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
     <!-- NumericUpDown default style -->
     <Style
         TargetType="controls:NumericUpDown">
@@ -71,6 +72,9 @@
                                 <Setter
                                     Property="MinHeight"
                                     Value="24" />
+                                <Setter
+                                    Property="IsTabStop"
+                                    Value="False" />
                                 <Setter
                                     Property="Template">
                                     <Setter.Value>
@@ -297,7 +301,7 @@
                                     x:Name="PART_ValueBar"
                                     IsHitTestVisible="False"
                                     Fill="#FFFFFFFF" />
-                                <TextBox
+                                <controls:UpDownTextBox
                                     x:Name="PART_ValueTextBox"
                                     FontFamily="{TemplateBinding FontFamily}"
                                     FontSize="{TemplateBinding FontSize}"

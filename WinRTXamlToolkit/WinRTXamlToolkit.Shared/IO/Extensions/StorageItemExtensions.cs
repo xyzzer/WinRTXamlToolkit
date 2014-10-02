@@ -9,6 +9,7 @@ namespace WinRTXamlToolkit.IO.Extensions
     /// </summary>
     public static class StorageItemExtensions
     {
+        #region GetFreeSpace()
         /// <summary>
         /// Returns the free space of the storage associate with the given storage item.
         /// </summary>
@@ -20,8 +21,10 @@ namespace WinRTXamlToolkit.IO.Extensions
             var filteredProperties = await properties.RetrievePropertiesAsync(new[] { "System.FreeSpace" });
             var freeSpace = filteredProperties["System.FreeSpace"];
             return (UInt64)freeSpace;
-        }
+        } 
+        #endregion
 
+        #region GetSize()
         /// <summary>
         /// Gets the file size in bytes.
         /// </summary>
@@ -33,8 +36,10 @@ namespace WinRTXamlToolkit.IO.Extensions
             ulong sizeInB = props.Size;
 
             return sizeInB;
-        }
+        } 
+        #endregion
 
+        #region GetSizeString()
         /// <summary>
         /// Gets the file size string given size in bytes.
         /// </summary>
@@ -43,8 +48,10 @@ namespace WinRTXamlToolkit.IO.Extensions
         public static string GetSizeString(this long sizeInB)
         {
             return GetSizeString((ulong)sizeInB);
-        }
+        } 
+        #endregion
 
+        #region GetSizeString()
         /// <summary>
         /// Gets the file size string given size in bytes.
         /// </summary>
@@ -88,6 +95,7 @@ namespace WinRTXamlToolkit.IO.Extensions
                 return string.Format("{0:F1}{1}TB", sizeInTB, separator);
 
             return string.Format("{0:F0}{1}TB", sizeInTB, separator);
-        }
+        } 
+        #endregion
     }
 }

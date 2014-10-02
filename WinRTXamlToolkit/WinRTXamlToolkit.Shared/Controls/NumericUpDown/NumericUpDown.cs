@@ -54,7 +54,7 @@ namespace WinRTXamlToolkit.Controls
         private const string ValueTextBoxName = "PART_ValueTextBox";
         private const string ValueBarName = "PART_ValueBar";
         private UIElement _dragOverlay;
-        private TextBox _valueTextBox;
+        private UpDownTextBox _valueTextBox;
         private RepeatButton _decrementButton;
         private RepeatButton _incrementButton;
         private FrameworkElement _valueBar;
@@ -296,7 +296,7 @@ namespace WinRTXamlToolkit.Controls
             this.GotFocus += OnGotFocus;
             this.LostFocus += OnLostFocus;
             this.PointerWheelChanged += OnPointerWheelChanged;
-            _valueTextBox = GetTemplateChild(ValueTextBoxName) as TextBox;
+            _valueTextBox = GetTemplateChild(ValueTextBoxName) as UpDownTextBox;
             _dragOverlay = GetTemplateChild(DragOverlayName) as UIElement;
             _decrementButton = GetTemplateChild(DecrementButtonName) as RepeatButton;
             _incrementButton = GetTemplateChild(IncrementButtonName) as RepeatButton;
@@ -309,6 +309,8 @@ namespace WinRTXamlToolkit.Controls
                 _valueTextBox.Text = Value.ToString();
                 _valueTextBox.TextChanged += OnValueTextBoxTextChanged;
                 _valueTextBox.KeyDown += OnValueTextBoxKeyDown;
+                _valueTextBox.UpPressed += (s, e) => this.Increment();
+                _valueTextBox.DownPressed += (s, e) => this.Decrement();
                 _valueTextBox.PointerExited += OnValueTextBoxPointerExited;
             }
 
@@ -396,6 +398,7 @@ namespace WinRTXamlToolkit.Controls
                 {
                     UpdateValueText();
                     _valueTextBox.SelectAll();
+                    e.Handled = true;
                 }
             }
         }
