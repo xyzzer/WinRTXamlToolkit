@@ -1,0 +1,293 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
+    <FontFamily
+        x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
+    <x:Double
+        x:Key="ContentControlFontSize">20.26</x:Double>
+
+    <!-- NumericUpDown default style -->
+    <Style
+        TargetType="controls:NumericUpDown">
+        <Setter
+            Property="Foreground"
+            Value="{ThemeResource TextBoxForegroundThemeBrush}" />
+        <Setter
+            Property="FontFamily"
+            Value="{ThemeResource PhoneFontFamilyNormal}" />
+        <Setter
+            Property="FontSize"
+            Value="{ThemeResource ContentControlFontSize}" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:NumericUpDown">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        VerticalAlignment="Top">
+                        <Border.Resources>
+                            <!-- NumericUpDownButtonStyle -->
+                            <Style
+                                x:Key="NumericUpDownButtonStyle"
+                                TargetType="RepeatButton">
+                                <Setter
+                                    Property="Background"
+                                    Value="Transparent" />
+                                <Setter
+                                    Property="BorderBrush"
+                                    Value="{ThemeResource PhoneForegroundBrush}" />
+                                <Setter
+                                    Property="Foreground"
+                                    Value="{ThemeResource PhoneForegroundBrush}" />
+                                <Setter
+                                    Property="BorderThickness"
+                                    Value="{ThemeResource PhoneBorderThickness}" />
+                                <Setter
+                                    Property="HorizontalAlignment"
+                                    Value="Left" />
+                                <Setter
+                                    Property="VerticalAlignment"
+                                    Value="Center" />
+                                <Setter
+                                    Property="Padding"
+                                    Value="0,-1,0,0" />
+                                <Setter
+                                    Property="FontFamily"
+                                    Value="Segoe UI Symbol" />
+                                <Setter
+                                    Property="FontWeight"
+                                    Value="SemiBold" />
+                                <Setter
+                                    Property="Width"
+                                    Value="38.75" />
+                                <Setter
+                                    Property="Height"
+                                    Value="38.75" />
+                                <Setter
+                                    Property="FontSize"
+                                    Value="18.667" />
+                                <Setter
+                                    Property="MinWidth"
+                                    Value="24" />
+                                <Setter
+                                    Property="MinHeight"
+                                    Value="24" />
+                                <Setter
+                                    Property="IsTabStop"
+                                    Value="False" />
+                                <Setter
+                                    Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate
+                                            TargetType="RepeatButton">
+                                            <Grid>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup
+                                                        x:Name="CommonStates">
+                                                        <VisualState
+                                                            x:Name="Normal" />
+                                                        <VisualState
+                                                            x:Name="PointerOver" />
+                                                        <VisualState
+                                                            x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames
+                                                                    Storyboard.TargetProperty="Foreground"
+                                                                    Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame
+                                                                        KeyTime="0"
+                                                                        Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames
+                                                                    Storyboard.TargetProperty="Background"
+                                                                    Storyboard.TargetName="Border">
+                                                                    <DiscreteObjectKeyFrame
+                                                                        KeyTime="0"
+                                                                        Value="{ThemeResource ButtonPressedBackgroundThemeBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState
+                                                            x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames
+                                                                    Storyboard.TargetProperty="Foreground"
+                                                                    Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame
+                                                                        KeyTime="0"
+                                                                        Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames
+                                                                    Storyboard.TargetProperty="BorderBrush"
+                                                                    Storyboard.TargetName="Border">
+                                                                    <DiscreteObjectKeyFrame
+                                                                        KeyTime="0"
+                                                                        Value="{ThemeResource ButtonDisabledBorderThemeBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames
+                                                                    Storyboard.TargetProperty="Background"
+                                                                    Storyboard.TargetName="Border">
+                                                                    <DiscreteObjectKeyFrame
+                                                                        KeyTime="0"
+                                                                        Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Border
+                                                    x:Name="Border"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}"
+                                                    Margin="0">
+                                                    <!--Margin="{ThemeResource PhoneTouchTargetOverhang}"-->
+                                                    <ContentPresenter
+                                                        x:Name="ContentPresenter"
+                                                        AutomationProperties.AccessibilityView="Raw"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                        Content="{TemplateBinding Content}"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        Margin="{TemplateBinding Padding}"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <!-- DecrementButtonStyle -->
+                            <Style
+                                x:Key="DecrementButtonStyle"
+                                BasedOn="{StaticResource NumericUpDownButtonStyle}"
+                                TargetType="RepeatButton">
+                                <Setter
+                                    Property="Content"
+                                    Value="&#x2796;" />
+                            </Style>
+
+                            <!-- IncrementButtonStyle -->
+                            <Style
+                                x:Key="IncrementButtonStyle"
+                                BasedOn="{StaticResource NumericUpDownButtonStyle}"
+                                TargetType="RepeatButton">
+                                <Setter
+                                    Property="Content"
+                                    Value="&#x2795;" />
+                            </Style>
+                        </Border.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="IncrementalButtonStates">
+                                <VisualState
+                                    x:Name="IncrementEnabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_IncrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="IncrementDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_IncrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="DecrementalButtonStates">
+                                <VisualState
+                                    x:Name="DecrementEnabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_DecrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="DecrementDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="PART_DecrementButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid
+                                Grid.Column="0">
+                                <Rectangle
+                                    x:Name="PART_ValueBar"
+                                    IsHitTestVisible="False"
+                                    Fill="#FFFFFFFF" />
+                                <controls:UpDownTextBox
+                                    x:Name="PART_ValueTextBox"
+                                    Margin="0"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    InputScope="Number"
+                                    HorizontalAlignment="Stretch"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"
+                                    IsEnabled="{TemplateBinding IsEnabled}" />
+                                <Rectangle
+                                    x:Name="PART_DragOverlay"
+                                    extensions:FrameworkElementExtensions.SystemCursor="SizeAll"
+                                    Fill="Transparent" />
+                            </Grid>
+                            <RepeatButton
+                                Grid.Column="1"
+                                x:Name="PART_DecrementButton"
+                                Margin="8,0,0,0"
+                                Style="{StaticResource DecrementButtonStyle}" />
+                            <RepeatButton
+                                Grid.Column="2"
+                                x:Name="PART_IncrementButton"
+                                Margin="8,0,0,0"
+                                Style="{StaticResource IncrementButtonStyle}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Top" />
+    </Style>
+</ResourceDictionary>

@@ -243,7 +243,8 @@
                 x:Key="NullableBoolToBoolConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        x:Name="LayoutGrid">
         <controls:ToolWindow
             x:Name="Window"
             Width="800"

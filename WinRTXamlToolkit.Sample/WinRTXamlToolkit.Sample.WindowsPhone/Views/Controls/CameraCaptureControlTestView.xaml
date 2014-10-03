@@ -37,25 +37,21 @@
                 Width="120">
                 <ToggleButton
                     x:Name="ShowHidePreviewButton"
-                    Foreground="Black"
                     HorizontalAlignment="Stretch"
                     Click="OnShowHidePreviewButtonClick"
                     Content="Hide" />
                 <Button
                     x:Name="CycleCamerasButton"
-                    Foreground="Black"
                     HorizontalAlignment="Stretch"
                     Click="OnCycleCamerasButtonClick"
                     Content="Cycle" />
                 <Button
                     x:Name="CapturePhotoButton"
-                    Foreground="Black"
                     HorizontalAlignment="Stretch"
                     Click="OnCapturePhotoButtonClick"
                     Content="Take a pic" />
                 <Button
                     x:Name="CaptureVideoButton"
-                    Foreground="Black"
                     HorizontalAlignment="Stretch"
                     Click="OnCaptureVideoButtonClick"
                     Content="Record" />
