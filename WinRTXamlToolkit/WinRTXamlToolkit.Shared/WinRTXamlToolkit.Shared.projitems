@@ -265,4 +265,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Tools\Notes.txt" />
+  </ItemGroup>
 </Project>
