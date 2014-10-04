@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources.Core;
+using Windows.Graphics.Display;
 using Windows.Storage;
 
 namespace WinRTXamlToolkit.IO
@@ -21,7 +22,11 @@ namespace WinRTXamlToolkit.IO
             var mainResourceMap = ResourceManager.Current.MainResourceMap;
 
             if (!mainResourceMap.ContainsKey(resourceKey))
+            {
                 return null;
+            }
+
+            // ResourceContext.GetForCurrentView() makes it get the version of the resource for the scale used in the current view/screen
             return await mainResourceMap[resourceKey].Resolve(ResourceContext.GetForCurrentView()).GetValueAsFileAsync();
         }
     }
