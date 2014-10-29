@@ -30,6 +30,7 @@
                             <Style
                                 x:Key="NumericUpDownButtonStyle"
                                 TargetType="RepeatButton">
+                                <!-- accessibility -->
                                 <Setter
                                     Property="Background"
                                     Value="{StaticResource ButtonBackgroundThemeBrush}" />
