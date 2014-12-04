@@ -1,9 +1,9 @@
 set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
-set MSBUILD="c:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
+set MSBUILD="c:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
 
 if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE)
 
-set VisualStudioVersion=12.0
+set VisualStudioVersion=14.0
 
 @echo Building Windows 8.1 projects
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj" || GOTO :REPORT_ERROR

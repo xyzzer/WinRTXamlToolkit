@@ -30,7 +30,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 _coercionHelper = value;
             }
-        } 
+        }
         #endregion
 
         #region DependencyProperty
@@ -41,7 +41,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 return _dependencyProperty;
             }
-        } 
+        }
         #endregion
 
         #region Category
@@ -92,7 +92,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 )
                 {
                     return BrushCategoryName;
-                } 
+                }
                 #endregion
 
                 #region Common
@@ -209,12 +209,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == VariableSizedWrapGrid.MaximumRowsOrColumnsProperty ||
                     _dependencyProperty == VariableSizedWrapGrid.OrientationProperty ||
                     _dependencyProperty == ScrollViewer.HorizontalScrollBarVisibilityProperty ||
-                    _dependencyProperty == ScrollViewer.VerticalScrollBarVisibilityProperty||
+                    _dependencyProperty == ScrollViewer.VerticalScrollBarVisibilityProperty ||
                     _dependencyProperty == WrapPanel.ItemWidthProperty ||
                     _dependencyProperty == WrapPanel.ItemHeightProperty)
                 {
                     return LayoutCategoryName;
-                } 
+                }
                 #endregion
 
                 #region Text
@@ -294,14 +294,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (propertyOwnerNamespace.StartsWith(typeof(ListBoxExtensions).Namespace))
                 {
                     return WinRTXamlToolkitExtensionsCategoryName;
-                } 
+                }
                 #endregion
 
                 #region WinRTXamlToolkitControl
                 if (propertyOwnerNamespace.StartsWith(typeof(WrapPanel).Namespace))
                 {
                     return WinRTXamlToolkitControlCategoryName;
-                } 
+                }
                 #endregion
 
                 #region WinRTXamlToolkitDebugging
@@ -309,12 +309,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                             typeof(DependencyPropertyViewModel).GetTypeInfo().Assembly))
                 {
                     return WinRTXamlToolkitDebuggingCategoryName;
-                } 
+                }
                 #endregion
 
                 return MiscCategoryName;
             }
-        } 
+        }
         #endregion
 
         public object DefaultValue { get; private set; }
@@ -329,13 +329,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
                     _asObjectViewModel = new DependencyObjectViewModel(this.ElementModel.TreeModel, null, (DependencyObject)this.Value);
 #pragma warning disable 4014
-                    _asObjectViewModel.LoadProperties();
+                    _asObjectViewModel.LoadPropertiesAsync();
 #pragma warning restore 4014
                 }
 
                 return _asObjectViewModel;
             }
-        } 
+        }
         #endregion
 
         #region CTOR
@@ -368,7 +368,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
                 else
                 {
-                    _propertyType = typeof (object);
+                    _propertyType = typeof(object);
                 }
             }
 
@@ -382,19 +382,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                if (!(this.ElementModel.Model is UIElement) &&
-                    (this.DependencyProperty == Grid.RowProperty
-                    || this.DependencyProperty == Grid.ColumnProperty
-                    || this.DependencyProperty == Grid.RowSpanProperty
-                    || this.DependencyProperty == Grid.ColumnSpanProperty
-                    || this.DependencyProperty == Canvas.LeftProperty
-                    || this.DependencyProperty == Canvas.TopProperty
-                    || this.DependencyProperty == Canvas.ZIndexProperty))
+                object val;
+
+                if (this.TryGetValue(this.ElementModel.Model, out val))
                 {
-                    return 0;
+                    return val;
                 }
 
-                return this.ElementModel.Model.GetValue(this.DependencyProperty);
+                return 0;
             }
             set
             {
@@ -408,10 +403,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     this.ElementModel.Model.SetValue(DependencyProperty, value);
                     _isDefault = null;
                     OnPropertyChanged();
-// ReSharper disable ExplicitCallerInfoArgument
+                    // ReSharper disable ExplicitCallerInfoArgument
                     OnPropertyChanged("CanResetValue");
                     OnPropertyChanged("IsDefault");
-// ReSharper restore ExplicitCallerInfoArgument
+                    // ReSharper restore ExplicitCallerInfoArgument
                 }
                 catch
                 {
@@ -494,7 +489,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 return !this.IsReadOnly && !this.IsDefault;
             }
-        } 
+        }
         #endregion
 
         #region IsAttached
@@ -504,7 +499,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 return _dpi.IsAttached;
             }
-        } 
+        }
         #endregion
 
         #region ResetValue()
@@ -519,7 +514,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             OnPropertyChanged("CanResetValue");
             OnPropertyChanged("IsDefault");
             // ReSharper restore ExplicitCallerInfoArgument
-        } 
+        }
         #endregion
 
         #region CanAnalyze
@@ -529,7 +524,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 return true;
             }
-        } 
+        }
         #endregion
 
         #region Analyze()
@@ -575,6 +570,44 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning disable 4014
             new MessageDialog(sb.ToString()).ShowAsync();
 #pragma warning restore 4014
+        }
+        #endregion
+
+        #region TryGetValue()
+        public override bool TryGetValue(object model, out object val)
+        {
+            var dob = model as DependencyObject;
+
+            if (dob == null)
+            {
+                val = 0;
+                return false;
+            }
+
+            if (!(this.ElementModel.Model is UIElement) &&
+                (this.DependencyProperty == Grid.RowProperty
+                || this.DependencyProperty == Grid.ColumnProperty
+                || this.DependencyProperty == Grid.RowSpanProperty
+                || this.DependencyProperty == Grid.ColumnSpanProperty
+                || this.DependencyProperty == Canvas.LeftProperty
+                || this.DependencyProperty == Canvas.TopProperty
+                || this.DependencyProperty == Canvas.ZIndexProperty))
+            {
+                val = 0;
+                return false;
+            }
+
+            try
+            {
+                val = dob.GetValue(this.DependencyProperty);
+            }
+            catch
+            {
+                val = 0;
+                return false;
+            }
+
+            return true;
         } 
         #endregion
     }

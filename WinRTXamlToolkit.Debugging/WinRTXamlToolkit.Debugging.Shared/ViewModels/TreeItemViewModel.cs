@@ -48,7 +48,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     {
                         _everSelected = true;
 #pragma warning disable 4014
-                        LoadProperties();
+                        LoadPropertiesAsync();
 #pragma warning restore 4014
                     }
 
@@ -71,7 +71,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
                     _everExpanded = true;
 #pragma warning disable 4014
-                    LoadChildren();
+                    LoadChildrenAsync();
 #pragma warning restore 4014
                 }
             }
@@ -96,15 +96,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
 
 #pragma warning disable 1998
-        internal virtual async Task LoadProperties()
+        internal virtual async Task LoadPropertiesAsync()
         {
         }
 
-        internal virtual async Task LoadChildren()
+        internal virtual async Task LoadChildrenAsync()
         {
         }
 
-        internal virtual async Task Refresh()
+        internal virtual async Task RefreshAsync()
         {
         }
 #pragma warning restore 1998

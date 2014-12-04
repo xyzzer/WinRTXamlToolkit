@@ -24,17 +24,17 @@
             Stretch="Fill"
             Width="40"
             Height="35"
-            NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-            HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
-            PressedStateImageSource="/Assets/Images/RedButton_Pressed.png" />
+            NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+            HoverStateImageSource="ms-appx:///Assets/Images/RedButton_Hover.png"
+            PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
 
         <StackPanel
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <controls:ImageButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png" />
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
                 Text="Two state ImageButton"
                 Style="{StaticResource TitleTextStyle}" />
@@ -46,9 +46,9 @@
             HorizontalAlignment="Center">
             <controls:ImageButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png" />
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                HoverStateImageSource="ms-appx:///Assets/Images/RedButton_Hover.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
                 Text="Three state ImageButton"
                 Style="{StaticResource TitleTextStyle}" />
@@ -61,8 +61,8 @@
             <controls:ImageButton
                 HorizontalAlignment="Center"
                 RecyclePressedStateImageForHover="True"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png" />
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
                 Style="{StaticResource TitleTextStyle}"
                 TextAlignment="Center">
@@ -89,7 +89,7 @@
             HorizontalAlignment="Center">
             <controls:ImageButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
                 GenerateMissingImages="True" />
             <TextBlock
                 Style="{StaticResource TitleTextStyle}"
@@ -117,7 +117,7 @@
             HorizontalAlignment="Center">
             <controls:ImageButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
                 GenerateMissingImages="True"
                 IsEnabled="False" />
             <TextBlock
@@ -148,11 +148,11 @@
                 HorizontalAlignment="Center">
                 <controls:ImageButton
                     HorizontalAlignment="Center"
-                    NormalStateImageSource="/Assets/Images/RedButtonMultiScale.png"
+                    NormalStateImageSource="ms-appx:///Assets/Images/RedButtonMultiScale.png"
                     GenerateMissingImages="True" />
                 <controls:ImageButton
                     HorizontalAlignment="Center"
-                    NormalStateImageSource="/Assets/Images/GreenButtonMultiScale.png"
+                    NormalStateImageSource="ms-appx:///Assets/Images/GreenButtonMultiScale.png"
                     GenerateMissingImages="True" />
             </StackPanel>
             <TextBlock

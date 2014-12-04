@@ -33,21 +33,7 @@
                 Paste="EditTextBox_OnPaste"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"/>
-            <StackPanel
-                Orientation="Horizontal">
-                <Button
-                    x:Name="ResetValueButton"
-                    Content="Reset"
-                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                    Visibility="{Binding CanResetValue, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding ResetValueCommand}" />
-                <Button
-                    x:Name="AnalyzeButton"
-                    Content="Analyze"
-                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                    Visibility="{Binding CanAnalyze, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding AnalyzeCommand}" />
-            </StackPanel>
+            <local:PropertyEditorFooter />
         </StackPanel>
     </Grid>
 </UserControl>

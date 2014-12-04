@@ -74,7 +74,7 @@
             </GridView.ItemsPanel>
             <Image
                 Extensions:ImageExtensions.FadeInOnLoaded="True"
-                Source="/Assets/Logo.png"
+                Source="ms-appx:///Assets/Logo.png"
                 Stretch="UniformToFill" />
             <Image
                 Extensions:ImageExtensions.FadeInOnLoaded="True"

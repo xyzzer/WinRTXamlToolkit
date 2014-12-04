@@ -19,7 +19,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             get
             {
-                return _propertyInfo.GetValue(this.ElementModel.Model, new object[] { });
+                object val;
+
+                if (this.TryGetValue(this.ElementModel.Model, out val))
+                {
+                    return val;
+                }
+
+                return 0;
             }
             set
             {
@@ -111,5 +118,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public override void Analyze()
         {
         }
+
+        #region TryGetValue()
+        public override bool TryGetValue(object model, out object val)
+        {
+            val = _propertyInfo.GetValue(model, new object[] { });
+            return true;
+        } 
+        #endregion
     }
 }

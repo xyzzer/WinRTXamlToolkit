@@ -64,39 +64,39 @@
             Grid.Row="1">
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GrayButton.png" 
+                Source="ms-appx:///Assets/Images/GrayButton.png" 
                 Width="80"
                 Height="80" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GreenButton_Disabled.png" />
+                Source="ms-appx:///Assets/Images/GreenButton_Disabled.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GreenButton_Hover.png" />
+                Source="ms-appx:///Assets/Images/GreenButton_Hover.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GreenButton_Idle.png" />
+                Source="ms-appx:///Assets/Images/GreenButton_Idle.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GreenButton_Pressed.png" />
+                Source="ms-appx:///Assets/Images/GreenButton_Pressed.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/RedButton_Disabled.png" />
+                Source="ms-appx:///Assets/Images/RedButton_Disabled.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/RedButton_Hover.png" />
+                Source="ms-appx:///Assets/Images/RedButton_Hover.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/RedButton_Idle.png" />
+                Source="ms-appx:///Assets/Images/RedButton_Idle.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/RedButton_Pressed.png" />
+                Source="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/RedButtonMultiScale.png" />
+                Source="ms-appx:///Assets/Images/RedButtonMultiScale.png" />
             <Image
                 Stretch="None"
-                Source="/Assets/Images/GreenButtonMultiScale.png" />
+                Source="ms-appx:///Assets/Images/GreenButtonMultiScale.png" />
         </GridView>
     </Grid>
 </Controls:AlternativePage>

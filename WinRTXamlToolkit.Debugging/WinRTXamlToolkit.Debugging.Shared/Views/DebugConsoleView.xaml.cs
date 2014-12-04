@@ -37,7 +37,7 @@ namespace WinRTXamlToolkit.Debugging.Views
             };
 #endif
 
-            this.DataContext = _viewModel = new DebugConsoleViewModel();
+            this.DataContext = _viewModel = DebugConsoleViewModel.Instance;
             VisualStateManager.GoToState(this, "Expanded", false);
             this.DefaultStyleKey = typeof(DebugConsoleView);
             DebugTextBox.Text = _unFlushedLines.ToString();

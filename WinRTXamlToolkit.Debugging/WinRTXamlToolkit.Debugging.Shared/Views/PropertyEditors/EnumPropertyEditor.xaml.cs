@@ -70,6 +70,14 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
         private void OnEnumTypeChanged(
             Type oldEnumType, Type newEnumType)
         {
+            if (newEnumType == null)
+            {
+                _valueList = null;
+                combo.ItemsSource = null;
+
+                return;
+            }
+
             var typeInfo = newEnumType.GetTypeInfo();
 
             _isFlags = typeInfo.GetCustomAttribute(typeof (FlagsAttribute)) != null;
