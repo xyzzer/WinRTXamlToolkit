@@ -26,7 +26,7 @@
                 Opacity="0.5"
                 Extensions:ImageExtensions.FadeInOnLoaded="True"
                 Extensions:ImageExtensions.ImageLoadedTransitionType="Random"
-                Source="/Assets/Logo.png"
+                Source="ms-appx:///Assets/Logo.png"
                 Stretch="UniformToFill"
                 HorizontalAlignment="Center" />
         </Grid>

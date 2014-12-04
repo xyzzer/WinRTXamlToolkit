@@ -389,7 +389,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
 
 #pragma warning disable 4014
-            this.RefreshCommand = new RelayCommand(() => Refresh());
+            this.RefreshCommand = new RelayCommand(() => RefreshAsync());
 #pragma warning restore 4014
         } 
         #endregion
@@ -429,7 +429,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region LoadProperties()
-        internal override async Task LoadProperties()
+        internal override async Task LoadPropertiesAsync()
         {
             var type = this.Model.GetType();
 
@@ -508,7 +508,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
 #pragma warning disable 1998
         #region LoadChildren()
-        internal override async Task LoadChildren()
+        internal override async Task LoadChildrenAsync()
 #pragma warning restore 1998
         {
             if (this.Model is UIElement)
@@ -517,7 +517,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     new ObservableCollection<TreeItemViewModel>(
                         from childElement in this.Model.GetChildren().Cast<UIElement>()
                         select new DependencyObjectViewModel(this.TreeModel, this, childElement));
-                UpdateAscendantChildCounts();
+                this.UpdateAscendantChildCounts();
             }
             else
             {
@@ -527,11 +527,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region Refresh()
-        internal override async Task Refresh()
+        internal override async Task RefreshAsync()
         {
-            await base.Refresh();
-            await LoadChildren();
-            await LoadProperties();
+            await base.RefreshAsync();
+            await LoadChildrenAsync();
+            await LoadPropertiesAsync();
         } 
         #endregion
 

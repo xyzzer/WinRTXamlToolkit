@@ -58,7 +58,7 @@
             Tapped="UIElement_OnTapped">
             <controls:CascadingImageControl.ImageSource>
                 <BitmapImage
-                    UriSource="/Assets/SplashScreen.png"
+                    UriSource="ms-appx:///Assets/SplashScreen.png"
                     DecodePixelWidth="620"
                     DecodePixelHeight="300" />
             </controls:CascadingImageControl.ImageSource>

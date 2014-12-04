@@ -118,7 +118,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 newSelectedItem.ModelPropertyChanged += OnModelPropertyChanged;
 #pragma warning disable 4014
-                newSelectedItem.LoadProperties();
+                newSelectedItem.LoadPropertiesAsync();
 #pragma warning restore 4014
             }
 
@@ -329,7 +329,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (!vm.IsExpanded)
                 {
-                    await vm.LoadChildren();
+                    await vm.LoadChildrenAsync();
                     vm.IsExpanded = true;
                 }
                 var child =
@@ -455,7 +455,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.RootElements[0] is DependencyObjectViewModel &&
                 ((DependencyObjectViewModel)this.RootElements[0]).Model == Window.Current.Content)
             {
-                await this.RootElements[0].Refresh();
+                await this.RootElements[0].RefreshAsync();
             }
             else
             {
