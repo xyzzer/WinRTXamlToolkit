@@ -1,8 +1,12 @@
-﻿using System;
+﻿//#define DUMPTYPES
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+#if DUMPTYPES
+using System.Text;
+#endif
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Tools;
 using Windows.UI.Xaml;
@@ -37,10 +41,21 @@ namespace WinRTXamlToolkit.Debugging.Common
 
             var platformTypes = typeof(FrameworkElement).GetTypeInfo().Assembly.ExportedTypes;
 
+#if DUMPTYPES
+            var sb = new StringBuilder();
+            foreach (var type in platformTypes)
+            {
+                sb.AppendFormat("typeof({0}),\r\n", type.FullName);
+                FindDependencyProperties(type);
+            }
+            var str = sb.ToString();
+            Debug.WriteLine(str);
+#else
             foreach (var type in platformTypes)
             {
                 FindDependencyProperties(type);
             }
+#endif
 
             var userAssemblies = await PackageHelper.GetPackageAssembliesAsync();
 
