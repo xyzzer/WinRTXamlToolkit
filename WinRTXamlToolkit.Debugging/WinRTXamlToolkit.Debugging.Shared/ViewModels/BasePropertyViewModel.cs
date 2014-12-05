@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using WinRTXamlToolkit.Debugging.Commands;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
@@ -58,6 +60,67 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public RelayCommand AnalyzeCommand { get; private set; }
 
+        #region CanFindSimilar
+        public bool CanFindSimilar
+        {
+            get
+            {
+                return true;
+            }
+        }
+        #endregion
+
+        #region FindSimilar()
+        public async void FindSimilar()
+        {
+            var elements = new List<object>();
+            var baseValue = this.Value;
+
+            foreach (var root in DebugConsoleViewModel.Instance.VisualTreeView.RootElements)
+            {
+                await this.AddSimilarElementsAsync(elements, baseValue, root);
+            }
+
+            var vm = new ElementListToolWindowViewModel(elements, this.Name + " == " + this.ValueString);
+            DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
+        }
+
+        private async Task AddSimilarElementsAsync(List<object> elements, object baseValue, TreeItemViewModel item)
+        {
+            var dobvm = item as DependencyObjectViewModel;
+
+            if (dobvm != null)
+            {
+                object itemValue;
+
+                if (TryGetValue(dobvm.Model, out itemValue) &&
+                    object.Equals(itemValue, baseValue))
+                {
+                    elements.Add(item);
+                }
+            }
+
+            if (item.Children == null ||
+                item.Children.Count == 0 ||
+                (item.Children.Count == 1 && item.Children[0] is StubTreeItemViewModel))
+            {
+                await item.LoadChildrenAsync();
+            }
+
+            if (item.Children == null)
+            {
+                return;
+            }
+
+            foreach (var child in item.Children)
+            {
+                await this.AddSimilarElementsAsync(elements, baseValue, child);
+            }
+        }
+        #endregion
+
+        public RelayCommand FindSimilarCommand { get; private set; }
+
         public BasePropertyViewModel(DependencyObjectViewModel elementModel)
         {
             this.ElementModel = elementModel;
@@ -67,6 +130,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.AnalyzeCommand = new RelayCommand(
                 this.Analyze,
                 () => this.CanAnalyze);
+            this.FindSimilarCommand = new RelayCommand(
+                this.FindSimilar,
+                () => this.CanFindSimilar);
             this.PropertyChanged += OnPropertyChanged;
         }
 
@@ -86,5 +152,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             OnPropertyChanged("IsDefault");
             // ReSharper restore ExplicitCallerInfoArgument
         }
+
+        /// <summary>
+        /// Gets the value of the property on the specified object.
+        /// </summary>
+        public abstract bool TryGetValue(object model, out object value);
     }
 }

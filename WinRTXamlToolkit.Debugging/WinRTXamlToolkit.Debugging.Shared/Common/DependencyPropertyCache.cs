@@ -39,7 +39,20 @@ namespace WinRTXamlToolkit.Debugging.Common
             AttachedProperties = new HashSet<DependencyPropertyInfo>();
             DependencyProperties = new Dictionary<Type, List<DependencyPropertyInfo>>();
 
-            var platformTypes = typeof(FrameworkElement).GetTypeInfo().Assembly.ExportedTypes;
+            var someType = typeof(FrameworkElement);
+            var someTypeInfo = someType.GetTypeInfo();
+            var someAssembly = someTypeInfo.Assembly;
+            IEnumerable<Type> platformTypes = null;
+
+            try
+            {
+                platformTypes = someAssembly.ExportedTypes;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                platformTypes = KnownTypes.Types;
+            }
 
 #if DUMPTYPES
             var sb = new StringBuilder();
@@ -57,14 +70,28 @@ namespace WinRTXamlToolkit.Debugging.Common
             }
 #endif
 
-            var userAssemblies = await PackageHelper.GetPackageAssembliesAsync();
-
-            foreach (var userAssembly in userAssemblies)
+            try
             {
-                foreach (var type in userAssembly.ExportedTypes)
+                var userAssemblies = await PackageHelper.GetPackageAssembliesAsync();
+
+                foreach (var userAssembly in userAssemblies)
                 {
-                    FindDependencyProperties(type);
+                    try
+                    {
+                        foreach (var type in userAssembly.ExportedTypes)
+                        {
+                            FindDependencyProperties(type);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
 
             tcs.SetResult(true);

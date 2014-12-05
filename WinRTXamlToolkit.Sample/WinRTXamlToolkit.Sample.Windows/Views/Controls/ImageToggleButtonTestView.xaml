@@ -26,28 +26,28 @@
             Stretch="Fill"
             Width="40"
             Height="35"
-            NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-            HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
-            PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
-            DisabledStateImageSource="/Assets/Images/RedButton_Disabled.png"
-            CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
-            CheckedHoverStateImageSource="/Assets/Images/GreenButton_Hover.png"
-            CheckedPressedStateImageSource="/Assets/Images/GreenButton_Pressed.png"
-            CheckedDisabledStateImageSource="/Assets/Images/GreenButton_Disabled.png"
+            NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+            HoverStateImageSource="ms-appx:///Assets/Images/RedButton_Hover.png"
+            PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png"
+            DisabledStateImageSource="ms-appx:///Assets/Images/RedButton_Disabled.png"
+            CheckedStateImageSource="ms-appx:///Assets/Images/GreenButton_Idle.png"
+            CheckedHoverStateImageSource="ms-appx:///Assets/Images/GreenButton_Hover.png"
+            CheckedPressedStateImageSource="ms-appx:///Assets/Images/GreenButton_Pressed.png"
+            CheckedDisabledStateImageSource="ms-appx:///Assets/Images/GreenButton_Disabled.png"
             IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
         <StackPanel
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
-                DisabledStateImageSource="/Assets/Images/RedButton_Disabled.png"
-                CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
-                CheckedHoverStateImageSource="/Assets/Images/GreenButton_Hover.png"
-                CheckedPressedStateImageSource="/Assets/Images/GreenButton_Pressed.png"
-                CheckedDisabledStateImageSource="/Assets/Images/GreenButton_Disabled.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                HoverStateImageSource="ms-appx:///Assets/Images/RedButton_Hover.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png"
+                DisabledStateImageSource="ms-appx:///Assets/Images/RedButton_Disabled.png"
+                CheckedStateImageSource="ms-appx:///Assets/Images/GreenButton_Idle.png"
+                CheckedHoverStateImageSource="ms-appx:///Assets/Images/GreenButton_Hover.png"
+                CheckedPressedStateImageSource="ms-appx:///Assets/Images/GreenButton_Pressed.png"
+                CheckedDisabledStateImageSource="ms-appx:///Assets/Images/GreenButton_Disabled.png"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
                 Text="ImageToggleButton with all images set"
@@ -60,10 +60,10 @@
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
-                CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
-                CheckedPressedStateImageSource="/Assets/Images/GreenButton_Pressed.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png"
+                CheckedStateImageSource="ms-appx:///Assets/Images/GreenButton_Idle.png"
+                CheckedPressedStateImageSource="ms-appx:///Assets/Images/GreenButton_Pressed.png"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
                 Text="ImageToggleButton with idle and pressed images set"
@@ -76,10 +76,10 @@
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
-                CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
-                CheckedPressedStateImageSource="/Assets/Images/GreenButton_Pressed.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png"
+                CheckedStateImageSource="ms-appx:///Assets/Images/GreenButton_Idle.png"
+                CheckedPressedStateImageSource="ms-appx:///Assets/Images/GreenButton_Pressed.png"
                 RecyclePressedStateImageForHover="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
@@ -105,10 +105,10 @@
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                HoverStateImageSource="/Assets/Images/RedButton_Hover.png"
-                PressedStateImageSource="/Assets/Images/RedButton_Pressed.png"
-                DisabledStateImageSource="/Assets/Images/RedButton_Disabled.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                HoverStateImageSource="ms-appx:///Assets/Images/RedButton_Hover.png"
+                PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png"
+                DisabledStateImageSource="ms-appx:///Assets/Images/RedButton_Disabled.png"
                 RecycleUncheckedStateImagesForCheckedStates="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
@@ -133,8 +133,8 @@
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
-                CheckedStateImageSource="/Assets/Images/GreenButton_Idle.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
+                CheckedStateImageSource="ms-appx:///Assets/Images/GreenButton_Idle.png"
                 GenerateMissingImages="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
@@ -157,7 +157,7 @@
             HorizontalAlignment="Center">
             <controls:ImageToggleButton
                 HorizontalAlignment="Center"
-                NormalStateImageSource="/Assets/Images/RedButton_Idle.png"
+                NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
                 GenerateMissingImages="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock

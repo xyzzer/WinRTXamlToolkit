@@ -2067,6 +2067,11 @@ namespace WinRTXamlToolkit.Controls
             double right = this.BorderThickness.Right;
             double bottom = this.BorderThickness.Bottom;
 
+            if (_topLeftSizingThumb == null)
+            {
+                return;
+            }
+
             _topLeftSizingThumb.Width = left;
             _topLeftSizingThumb.Height = top;
             _topCenterSizingThumb.Margin = new Thickness(left, 0, right, 0);

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
+﻿using Windows.ApplicationModel.Activation;
 using Windows.Phone.UI.Input;
-using Windows.Storage;
-using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Debugging;
 using WinRTXamlToolkit.Sample.Views;
 using Windows.UI.Xaml.Controls;
@@ -42,6 +37,8 @@ namespace WinRTXamlToolkit.Sample
 
             Frame.Navigate(typeof(MainPage), e);
             InitializeNavigationHelper();
+
+            // Uncomment to show visual tree debugger on phone
             //this.Loaded += (s, e2) =>
             //{
             //    DC.ShowVisualTree();

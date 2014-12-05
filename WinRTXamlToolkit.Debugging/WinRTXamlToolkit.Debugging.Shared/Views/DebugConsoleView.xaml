@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
+    xmlns:views="using:WinRTXamlToolkit.Debugging.Shared.Views"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -243,7 +244,8 @@
                 x:Key="NullableBoolToBoolConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        x:Name="LayoutGrid">
         <controls:ToolWindow
             x:Name="Window"
             Width="800"
@@ -315,6 +317,20 @@
                     IsHitTestVisible="{Binding IsChecked, ElementName=EditButton, Converter={StaticResource NullableBoolToBoolConverter}}"/>
             </Grid>
         </controls:ToolWindow>
+        <ItemsControl
+            x:Name="Windows"
+            ItemsSource="{Binding ToolWindows}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <views:ElementListWindow />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <Grid
             x:Name="HighlightGrid"
             VerticalAlignment="Stretch"

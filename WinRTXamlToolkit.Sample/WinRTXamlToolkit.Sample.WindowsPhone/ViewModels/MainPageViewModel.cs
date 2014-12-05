@@ -231,12 +231,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(MessageDialogExtensionsTestPage))),
                 //    SampleType = SampleTypes.Extensions
                 //},
-                //new SampleButtonViewModel
-                //{
-                //    Caption = "NumericUpDown",
-                //    Command = new RelayCommand(() => AppShell.Frame.Navigate(typeof(NumericUpDownTestPage))),
-                //    SampleType = SampleTypes.Controls
-                //},
+                new SampleButtonViewModel
+                (
+                    "NumericUpDown",
+                    SampleTypes.Controls,
+                    typeof(NumericUpDownTestView)
+                ),
                 //new SampleButtonViewModel
                 //{
                 //    Caption = "ParallaxBackgroundBehavior",

@@ -111,6 +111,9 @@
     </Compile>
     <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\Controls\NumericUpDownTestView.xaml.cs">
+      <DependentUpon>NumericUpDownTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\TreeViewTestView.xaml.cs">
       <DependentUpon>TreeViewTestView.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\NumericUpDownTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

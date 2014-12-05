@@ -41,7 +41,7 @@ namespace WinRTXamlToolkit.Imaging
 
             if (originalString.StartsWith("ms-appx:/"))
             {
-                string installedFolderImageSourceUri = originalString.Replace("ms-appx:/", "");
+                string installedFolderImageSourceUri = originalString.Replace("ms-appx:/", "").TrimStart('/');
                 await target.LoadAsync(installedFolderImageSourceUri);
             }
             else

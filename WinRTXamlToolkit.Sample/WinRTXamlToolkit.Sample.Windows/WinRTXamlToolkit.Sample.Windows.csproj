@@ -160,8 +160,8 @@
     <Compile Include="Views\Controls.Extensions\ContentControlExtensionsTestView.xaml.cs">
       <DependentUpon>ContentControlExtensionsTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls.Extensions\ControlExtensionsCursorTestView.xaml.cs">
-      <DependentUpon>ControlExtensionsCursorTestView.xaml</DependentUpon>
+    <Compile Include="Views\Controls.Extensions\FrameworkElementExtensionsCursorTestView.xaml.cs">
+      <DependentUpon>FrameworkElementExtensionsCursorTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls.Extensions\ImageExtensionsTestView.xaml.cs">
       <DependentUpon>ImageExtensionsTestView.xaml</DependentUpon>
@@ -390,7 +390,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls.Extensions\ControlExtensionsCursorTestView.xaml">
+    <Page Include="Views\Controls.Extensions\FrameworkElementExtensionsCursorTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

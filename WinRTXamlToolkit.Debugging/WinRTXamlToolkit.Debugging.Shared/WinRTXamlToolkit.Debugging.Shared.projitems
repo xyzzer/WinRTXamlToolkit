@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommandGeneric.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DependencyPropertyCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DependencyPropertyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\KnownTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PackageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\EditableListBox\EditableListBoxItem.cs" />
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StubTreeItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToolWindowViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TreeItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VisualTreeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DebugConsoleView.xaml.cs">
@@ -40,6 +42,9 @@
       <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\EditablePropertyTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ElementListWindow.xaml.cs">
+      <DependentUpon>ElementListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertiesView.xaml.cs">
       <DependentUpon>PropertiesView.xaml</DependentUpon>
     </Compile>
@@ -73,6 +78,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\NumericPropertyEditor.xaml.cs">
       <DependentUpon>NumericPropertyEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\PropertyEditorFooter.xaml.cs">
+      <DependentUpon>PropertyEditorFooter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\StringPropertyEditor.xaml.cs">
       <DependentUpon>StringPropertyEditor.xaml</DependentUpon>
     </Compile>
@@ -80,9 +88,7 @@
       <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyTemplateSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml.cs">
-      <DependentUpon>VisualTreeView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeViewItemDetailsTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualTreeDebugger.cs" />
   </ItemGroup>
@@ -109,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\DependencyObjectDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ElementListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,15 +166,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\PropertyEditorFooter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\StringPropertyEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ThicknessPropertyEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

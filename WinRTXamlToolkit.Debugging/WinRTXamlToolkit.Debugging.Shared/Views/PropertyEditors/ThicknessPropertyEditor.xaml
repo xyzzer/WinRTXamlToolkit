@@ -153,21 +153,7 @@
                 GotFocus="TextInput_OnGotFocus"
                 LostFocus="TextInput_OnLostFocus"
                 KeyDown="TextInput_OnKeyDown"/>
-            <StackPanel
-                Orientation="Horizontal">
-                <Button
-                    x:Name="ResetValueButton"
-                    Content="Reset"
-                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                    Visibility="{Binding CanResetValue, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding ResetValueCommand}" />
-                <Button
-                    x:Name="AnalyzeButton"
-                    Content="Analyze"
-                    Style="{StaticResource WrtxtdTextButtonStyleSmall}"
-                    Visibility="{Binding CanAnalyze, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding AnalyzeCommand}" />
-            </StackPanel>
+            <local:PropertyEditorFooter />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -20,7 +20,24 @@ namespace WinRTXamlToolkit.Debugging.Views
         public DebugConsoleView()
         {
             this.InitializeComponent();
-            this.DataContext = _viewModel = new DebugConsoleViewModel();
+
+#if WINDOWS_PHONE_APP
+            this.Window.WindowEdgeSnapBehavior = WindowEdgeSnapBehavior.None;
+            this.LayoutGrid.Children.Remove(this.Window);
+            var vb = new Viewbox();
+            var sg = new Grid();
+            sg.Children.Add(this.Window);
+            vb.Child = sg;
+            this.LayoutGrid.Children.Insert(0, vb);
+
+            this.SizeChanged += (s, e) =>
+            {
+                sg.Width = this.ActualWidth * 2;
+                sg.Height = this.ActualHeight * 2;
+            };
+#endif
+
+            this.DataContext = _viewModel = DebugConsoleViewModel.Instance;
             VisualStateManager.GoToState(this, "Expanded", false);
             this.DefaultStyleKey = typeof(DebugConsoleView);
             DebugTextBox.Text = _unFlushedLines.ToString();

@@ -106,15 +106,18 @@ namespace WinRTXamlToolkit.Sample.Views
                     return;
                 }
 
-                CapturedVideoElement.SetSource(stream, _videoFile.ContentType);
+                if (this.CapturedVideoElement == null)
+                {
+                    return;
+                }
+
+                this.CapturedVideoElement.SetSource(stream, _videoFile.ContentType);
             }
             else
             {
                 CaptureVideoButton.Content = "Record";
                 _capturingVideo = false;
-#pragma warning disable 4014
-                TestedControl.StopCapture();
-#pragma warning restore 4014
+                await TestedControl.StopCapture();
             }
         }
 
