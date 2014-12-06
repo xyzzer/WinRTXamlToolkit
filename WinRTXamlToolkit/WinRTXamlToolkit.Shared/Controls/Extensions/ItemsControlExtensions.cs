@@ -13,6 +13,33 @@ namespace WinRTXamlToolkit.Controls.Extensions
             return itemsControl.GetFirstDescendantOfType<ScrollViewer>();
         }
 
+        public static object GetFirstVisibleItem(this ItemsControl itemsControl)
+        {
+            var index = GetFirstVisibleIndex(itemsControl);
+
+            if (index == -1)
+            {
+                return null;
+            }
+
+            var list = itemsControl.ItemsSource as IList;
+
+            if (itemsControl.ItemsSource != null &&
+                list != null &&
+                list.Count > index)
+            {
+                return list[index];
+            }
+
+            if (itemsControl.Items != null &&
+                itemsControl.Items.Count > index)
+            {
+                return itemsControl.Items[index];
+            }
+
+            throw new InvalidOperationException();
+        }
+
         public static int GetFirstVisibleIndex(this ItemsControl itemsControl)
         {
             // First checking if no items source or an empty one is used

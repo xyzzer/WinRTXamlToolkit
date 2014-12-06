@@ -224,6 +224,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 //),
                 new SampleButtonViewModel
                 (
+                    "ItemsControlExtensions",
+                    typeof(ItemsControlExtensionsTestView),
+                    SampleTypes.Extensions
+                ),
+                new SampleButtonViewModel
+                (
                     "LayoutTransformControl",
                     typeof(LayoutTransformControlTestView),
                     SampleTypes.Controls

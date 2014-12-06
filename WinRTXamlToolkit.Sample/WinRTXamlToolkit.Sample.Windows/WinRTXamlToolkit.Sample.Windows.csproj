@@ -148,6 +148,9 @@
     <Compile Include="Views\Behaviors\ParallaxBackgroundBehaviorTestView.xaml.cs">
       <DependentUpon>ParallaxBackgroundBehaviorTestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls.Extensions\ItemsControlExtensionsTestView.xaml.cs">
+      <DependentUpon>ItemsControlExtensionsTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\FxContentControlTestView.xaml.cs">
       <DependentUpon>FxContentControlTestView.xaml</DependentUpon>
     </Compile>
@@ -371,6 +374,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Behaviors\ParallaxBackgroundBehaviorTestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\ItemsControlExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
