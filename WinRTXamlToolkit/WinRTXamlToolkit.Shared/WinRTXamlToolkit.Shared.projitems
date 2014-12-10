@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\GridViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\GridViewItemExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ImageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ItemsControlExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListBoxExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListBoxItemExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\ListViewExtensions.cs" />
@@ -264,5 +265,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Tools\Notes.txt" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,15 @@
 ﻿Unsnap/undock gesture
-- even if the flick is very light - if this is a flick out of a docked position
-  - it shouldn't cause the window to snap back and rather it should animate to the nearest non-snapped position.
+- Even if the flick is very light - if this is a flick out of a docked position.
+  - It shouldn't cause the window to snap back and rather it should animate to the nearest non-snapped position.
 
-Others
-- snap to side of screen
- 
+Snap experience
+- Windows snap rotate too easily. need a better way to control it.
+  Perhaps only snal rotate when the window is flicked at the edge or goes beyond a certain threshold
+
+Other
+- Snap to side of screen
+- Snap to other windows
+  - Consider automatically docking the windows together
+
+- Dock containers
+  - Implement logic similar to that of VS to enable easy docking of windows

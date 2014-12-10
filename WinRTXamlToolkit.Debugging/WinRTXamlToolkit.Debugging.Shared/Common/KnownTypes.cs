@@ -102,10 +102,12 @@ namespace WinRTXamlToolkit.Debugging.Common
             typeof(Windows.UI.Xaml.Controls.WebViewNavigationFailedEventArgs),
             typeof(Windows.UI.Xaml.Controls.ICommandBarElement),
             typeof(Windows.UI.Xaml.Controls.HubSectionCollection),
+#if WINDOWS_APP
             typeof(Windows.UI.Xaml.Controls.SearchBoxQueryChangedEventArgs),
             typeof(Windows.UI.Xaml.Controls.SearchBoxSuggestionsRequestedEventArgs),
             typeof(Windows.UI.Xaml.Controls.SearchBoxQuerySubmittedEventArgs),
             typeof(Windows.UI.Xaml.Controls.SearchBoxResultSuggestionChosenEventArgs),
+#endif
             typeof(Windows.UI.Xaml.Controls.TimePickerValueChangedEventArgs),
             typeof(Windows.UI.Xaml.Controls.WebViewNavigationStartingEventArgs),
             typeof(Windows.UI.Xaml.Controls.WebViewContentLoadingEventArgs),
@@ -344,8 +346,10 @@ namespace WinRTXamlToolkit.Debugging.Common
             typeof(Windows.UI.Xaml.Controls.SymbolIcon),
             typeof(Windows.UI.Xaml.Controls.WebView),
             typeof(Windows.UI.Xaml.Controls.WrapGrid),
+#if WINDOWS_APP
             typeof(Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter),
             typeof(Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter),
+#endif
             typeof(Windows.UI.Xaml.VisualState),
             typeof(Windows.UI.Xaml.VisualStateGroup),
             typeof(Windows.UI.Xaml.VisualStateManager),
@@ -554,7 +558,9 @@ namespace WinRTXamlToolkit.Debugging.Common
             typeof(Windows.UI.Xaml.Controls.MenuFlyoutPresenter),
             typeof(Windows.UI.Xaml.Controls.MenuFlyoutSeparator),
             typeof(Windows.UI.Xaml.Controls.Page),
+#if WINDOWS_APP
             typeof(Windows.UI.Xaml.Controls.SearchBox),
+#endif
             typeof(Windows.UI.Xaml.Controls.TimePicker),
             typeof(Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem),
             typeof(Windows.UI.Xaml.Controls.ControlTemplate),

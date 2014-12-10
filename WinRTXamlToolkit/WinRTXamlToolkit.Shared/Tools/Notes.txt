@@ -1,0 +1,23 @@
+﻿On display scale info
+
+DisplayProperties.ResolutionScale - deprecated
+DisplayInformation.GetForCurrentView().ResolutionScale - gets the scale for current view
+DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel - is the best way to get the current scale
+Application.Current.Host.Content.ScaleFactor - was some old API you'd use on the phone but probably should stop using
+Windows.ApplicationModel.Resources.Core.ResourceManager.Current.DefaultContext.QualifierValues.TryGetValue("Scale", out scale);
+  - might be fine for resources, but you should prefer the automatic solution, e.g. for files get:
+    ResourceManager.Current.MainResourceMap[resourceKey].Resolve(ResourceContext.GetForCurrentView()).GetValueAsFileAsync();
+
+On resource qualifiers:
+
+Windows.ApplicationModel.Resources.Core.ResourceManager.Current.DefaultContext.QualifierValues.TryGetValue("Scale", out scale);
+From <http://social.msdn.microsoft.com/Forums/windowsapps/en-US/4e891f32-bd5c-493d-8a6e-7a116f259504/defaultcontextqualifiervalues-scale-not-working-properly?forum=winappswithcsharp> 
+[0]	"Language"	string
+[1]	"Contrast"	string
+[2]	"Scale"	string
+[3]	"HomeRegion"	string
+[4]	"TargetSize"	string
+[5]	"LayoutDirection"	string
+[6]	"Configuration"	string
+[7]	"AlternateForm"	string
+[8]	"DXFeatureLevel"	string
