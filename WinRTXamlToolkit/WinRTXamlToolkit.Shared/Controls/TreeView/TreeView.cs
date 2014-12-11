@@ -1243,7 +1243,11 @@ namespace WinRTXamlToolkit.Controls
                     // scroll the header into view, if possible, because an
                     // expanded TreeViewItem contains all of its child items
                     // as well.
+#if WINDOWS_APP
+                    ItemsControlHelper.ScrollIntoView(container.HeaderElement ?? container, new Thickness(0, 0, 20, 20));
+#else
                     ItemsControlHelper.ScrollIntoView(container.HeaderElement ?? container);
+#endif
                 }
                 else if (!selected && container == SelectedContainer)
                 {

@@ -8,7 +8,7 @@ namespace WinRTXamlToolkit.Sample.Views
         public MainPage()
         {
             this.InitializeComponent();
-            this.Loaded += (s, e) => DC.ShowVisualTree(this);
+            //DC.ShowVisualTree(this);
         }
     }
 }

@@ -174,7 +174,7 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="element">Element to scroll into view.</param>
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "File is linked across multiple projects and this method is used in some but not others.")]
-        internal void ScrollIntoView(FrameworkElement element)
+        internal void ScrollIntoView(FrameworkElement element, Thickness? margin = null)
         {
             // Get the ScrollHost
             ScrollViewer scrollHost = ScrollHost;
@@ -197,9 +197,14 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
-            Rect itemRect = new Rect(
-                transform.TransformPoint(new Point()),
-                transform.TransformPoint(new Point(element.ActualWidth, element.ActualHeight)));
+            Rect itemRect = 
+                margin == null
+                ? new Rect(
+                    transform.TransformPoint(new Point()),
+                    transform.TransformPoint(new Point(element.ActualWidth, element.ActualHeight)))
+                : new Rect(
+                    transform.TransformPoint(new Point(-margin.Value.Left, -margin.Value.Top)),
+                    transform.TransformPoint(new Point(element.ActualWidth + margin.Value.Left + margin.Value.Right, element.ActualHeight + margin.Value.Top + margin.Value.Bottom)));
 
             // Scroll vertically
             double verticalOffset = scrollHost.VerticalOffset;

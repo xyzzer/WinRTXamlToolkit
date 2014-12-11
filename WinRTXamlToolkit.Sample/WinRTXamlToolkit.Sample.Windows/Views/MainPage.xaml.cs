@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Search;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
+using WinRTXamlToolkit.Debugging;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -12,6 +13,7 @@ namespace WinRTXamlToolkit.Sample.Views
         public MainPage()
         {
             this.InitializeComponent();
+            //DC.ShowVisualTree(this);
         }
 
 #pragma warning disable 1998
