@@ -80,12 +80,11 @@ namespace WinRTXamlToolkit.Debugging.Views
         internal async void ShowVisualTree(UIElement element = null)
         {
             await this.WaitForLoadedAsync();
-            VisualTreeButton.IsChecked = true;
-            //EditButton.IsChecked = true;
 
             if (element != null &&
                 _viewModel.VisualTreeView != null)
             {
+                _viewModel.VisualTreeView.IsShown = true;
 #pragma warning disable 4014
                 _viewModel.VisualTreeView.SelectItem(element);
 #pragma warning restore 4014

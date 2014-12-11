@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using DiagnosticsDebug = System.Diagnostics.Debug;
+﻿using DiagnosticsDebug = System.Diagnostics.Debug;
 
 namespace WinRTXamlToolkit.Debugging
 {

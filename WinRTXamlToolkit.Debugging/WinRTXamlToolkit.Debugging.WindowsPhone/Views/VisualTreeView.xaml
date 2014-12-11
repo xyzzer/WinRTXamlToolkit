@@ -91,28 +91,28 @@
             ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
         <StackPanel
             Grid.Row="1">
-            <ScrollViewer
+            <!--<ScrollViewer
                 HorizontalScrollMode="Auto"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollMode="Disabled"
                 VerticalScrollBarVisibility="Hidden"
-                ZoomMode="Disabled">
+                ZoomMode="Disabled">-->
                 <StackPanel
                     Orientation="Horizontal"
-                    Margin="0,0,0,20">
+                    Margin="10,0,0,0">
                     <Button
                         x:Name="RefreshButton"
                         Content="Refresh"
                         Click="OnRefreshButtonClick"
                         Style="{StaticResource WrtxtdTextButtonStyle}"
-                        Margin="0,0,20,0" />
+                        Margin="0,0,10,0" />
                     <Button
                         x:Name="SelectFocusedButton"
                         Content="Select Focused"
                         Click="OnSelectFocusedClick"
                         IsTabStop="False"
                         Style="{StaticResource WrtxtdTextButtonStyle}"
-                        Margin="0,0,20,0" />
+                        Margin="0,0,10,0" />
                     <Button
                         x:Name="FocusSelectedButton"
                         Content="Focused Selected"
@@ -120,7 +120,7 @@
                         IsTabStop="False"
                         Style="{StaticResource WrtxtdTextButtonStyle}" />
                 </StackPanel>
-            </ScrollViewer>
+            <!--</ScrollViewer>-->
             <TextBlock
                 Text="Hover with Ctrl+Shift to select element."
                 VerticalAlignment="Bottom" />

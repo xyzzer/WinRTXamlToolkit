@@ -4,6 +4,7 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace WinRTXamlToolkit.Sample
 {
@@ -29,10 +30,11 @@ namespace WinRTXamlToolkit.Sample
         /// </summary>
         public App()
         {
+            PasswordDisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
+            DisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
 #if USE_XAML_SPY
             this.service = new FirstFloor.XamlSpy.XamlSpyService(this) { Password = XamlSpyServicePassword };
 #endif
-
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
@@ -63,7 +65,6 @@ namespace WinRTXamlToolkit.Sample
             }
             
             Window.Current.Activate();
-            //DisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
 
             base.OnFileActivated(e);
         }
