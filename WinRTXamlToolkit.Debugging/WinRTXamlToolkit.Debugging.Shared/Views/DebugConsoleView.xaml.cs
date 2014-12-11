@@ -112,6 +112,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         {
             ((ToolWindow)sender).Hide();
             e.Cancel = true;
+            this._viewModel.VisualTreeView.HighlightVisibility = Visibility.Collapsed;
         }
     }
 }
