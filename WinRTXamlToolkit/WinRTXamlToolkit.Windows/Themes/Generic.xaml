@@ -18,6 +18,8 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/FocusVisualizer/FocusVisualizer.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ImageButton/ImageButton.xaml" />

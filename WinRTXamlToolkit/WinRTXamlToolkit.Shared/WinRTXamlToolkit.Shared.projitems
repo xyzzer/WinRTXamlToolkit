@@ -9,6 +9,7 @@
     <Import_RootNamespace>WinRTXamlToolkit</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AwaitableUI\UIElementExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeFrame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeNavigatingCancelEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AlternativeFrame\AlternativeNavigationEventArgs.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\ControlExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\FieldValidationExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\FieldValidationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\FocusTracker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\PasswordBoxFocusExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\PasswordBoxFormatValidationHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\Forms\TextBoxFocusExtensions.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Extensions\WebViewExtensions 8.1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FocusVisualizer\FocusVisualizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\CpuShaderEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\BlurShaderEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\AlphaExpandShaderEffect.cs" />
@@ -224,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\FocusVisualizer\FocusVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

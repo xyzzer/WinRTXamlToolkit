@@ -254,7 +254,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="origin">The relative (0..1,0..1 range) position of a point within the element to evaluate. Defaults to 0,0 for top-left corner.</param>
         /// <param name="relativeTo">The element of reference. Defaults to visual tree root.</param>
         /// <returns>The position of origin point relative to specified element.</returns>
-        public static Point GetPosition(this FrameworkElement dob, Point origin = new Point(), FrameworkElement relativeTo = null)
+        public static Point GetPosition(this UIElement dob, Point origin = new Point(), UIElement relativeTo = null)
         {
             if (DesignMode.DesignModeEnabled)
             {
@@ -263,7 +263,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             if (relativeTo == null)
             {
-                relativeTo = Window.Current.Content as FrameworkElement;
+                relativeTo = Window.Current.Content;
             }
 
             if (relativeTo == null)
@@ -271,7 +271,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 throw new InvalidOperationException("Element not in visual tree.");
             }
 
-            var absoluteOrigin = new Point(relativeTo.ActualWidth * origin.X, relativeTo.ActualHeight * origin.X);
+            var fe = relativeTo as FrameworkElement;
+            var aw = fe != null ? fe.ActualWidth : 0;
+            var ah = fe != null ? fe.ActualHeight : 0;
+
+            var absoluteOrigin = new Point(aw * origin.X, ah * origin.X);
 
             if (dob == relativeTo)
             {
@@ -305,7 +309,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="relativeTo">The relative to element.</param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">Element not in visual tree.</exception>
-        public static Rect GetBoundingRect(this FrameworkElement dob, FrameworkElement relativeTo = null)
+        public static Rect GetBoundingRect(this UIElement dob, UIElement relativeTo = null)
         {
             if (DesignMode.DesignModeEnabled)
             {
@@ -324,15 +328,24 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             if (dob == relativeTo)
             {
-                return new Rect(0, 0, relativeTo.ActualWidth, relativeTo.ActualHeight);
+                var fe = relativeTo as FrameworkElement;
+                var aw = fe != null ? fe.ActualWidth : 0;
+                var ah = fe != null ? fe.ActualHeight : 0;
+
+                return new Rect(0, 0, aw, ah);
             }
 
-            var ancestors = dob.GetAncestors().ToArray();
+            //var ancestors = dob.GetAncestors().ToArray();
 
-            if (!ancestors.Contains(relativeTo))
-            {
-                throw new InvalidOperationException("Element not in visual tree.");
-            }
+            //if (!ancestors.Contains(relativeTo))
+            //{
+            //    throw new InvalidOperationException("Element not in visual tree.");
+            //}
+
+
+            var fe2 = dob as FrameworkElement;
+            var aw2 = fe2 != null ? fe2.ActualWidth : 0;
+            var ah2 = fe2 != null ? fe2.ActualHeight : 0;
 
             var topLeft =
                 dob
@@ -343,7 +356,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                     .TransformToVisual(relativeTo)
                     .TransformPoint(
                         new Point(
-                            dob.ActualWidth,
+                            aw2,
                             0));
             var bottomLeft =
                 dob
@@ -351,14 +364,14 @@ namespace WinRTXamlToolkit.Controls.Extensions
                     .TransformPoint(
                         new Point(
                             0,
-                            dob.ActualHeight));
+                            ah2));
             var bottomRight =
                 dob
                     .TransformToVisual(relativeTo)
                     .TransformPoint(
                         new Point(
-                            dob.ActualWidth,
-                            dob.ActualHeight));
+                            aw2,
+                            ah2));
 
             var minX = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Min();
             var maxX = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Max();

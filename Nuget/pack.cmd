@@ -58,6 +58,7 @@ mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\Countdown
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\CustomAppBar"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\CustomGridSplitter"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\DelayedLoadControl"
+mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\FocusVisualizer"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\FxContentControl"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\ImageButton"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\ImageToggleButton"
