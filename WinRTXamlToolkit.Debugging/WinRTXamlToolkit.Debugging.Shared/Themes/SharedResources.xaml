@@ -4,6 +4,45 @@
     xmlns:converters="using:WinRTXamlToolkit.Converters"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary
+            x:Key="Default">
+            <SolidColorBrush
+                x:Key="Foreground"
+                Color="#BBB" />
+            <SolidColorBrush
+                x:Key="ForegroundHover"
+                Color="#DDD" />
+            <SolidColorBrush
+                x:Key="ForegroundPressed"
+                Color="#FFF" />
+            <SolidColorBrush
+                x:Key="ForegroundChecked"
+                Color="#FFF" />
+            <SolidColorBrush
+                x:Key="ForegroundDisabled"
+                Color="#222" />
+        </ResourceDictionary>
+        <ResourceDictionary
+            x:Key="Light">
+            <SolidColorBrush
+                x:Key="Foreground"
+                Color="#444" />
+            <SolidColorBrush
+                x:Key="ForegroundHover"
+                Color="#222" />
+            <SolidColorBrush
+                x:Key="ForegroundPressed"
+                Color="#000" />
+            <SolidColorBrush
+                x:Key="ForegroundChecked"
+                Color="#000" />
+            <SolidColorBrush
+                x:Key="ForegroundDisabled"
+                Color="#DDD" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <converters:BooleanToVisibilityConverter
         x:Key="BooleanToVisibilityConverter" />
     <converters:BooleanToVisibilityConverter
@@ -24,7 +63,7 @@
             Value="0" />
         <Setter
             Property="FontSize"
-            Value="24" />
+            Value="16" />
         <Setter
             Property="FontWeight"
             Value="Light" />
@@ -142,7 +181,7 @@
         BasedOn="{StaticResource WrtxtdTextButtonStyle}">
         <Setter
             Property="FontSize"
-            Value="14" />
+            Value="16" />
         <Setter
             Property="Margin"
             Value="0,0,10,0" />
@@ -498,10 +537,10 @@
         TargetType="TextBlock">
         <Setter
             Property="Foreground"
-            Value="{StaticResource ApplicationForegroundThemeBrush}" />
+            Value="{ThemeResource Foreground}" />
         <Setter
             Property="FontSize"
-            Value="{StaticResource ControlContentThemeFontSize}" />
+            Value="14" />
         <Setter
             Property="FontFamily"
             Value="{StaticResource ContentControlThemeFontFamily}" />
@@ -520,9 +559,6 @@
         <Setter
             Property="Typography.CaseSensitiveForms"
             Value="True" />
-        <Setter
-            Property="FontSize"
-            Value="26.667" />
         <Setter
             Property="FontWeight"
             Value="Light" />
@@ -554,7 +590,7 @@
             Value="0" />
         <Setter
             Property="Margin"
-            Value="0,0,30,0" />
+            Value="0,0,20,0" />
         <Setter
             Property="Template">
             <Setter.Value>
@@ -567,6 +603,7 @@
                             Text="{TemplateBinding Content}"
                             Margin="3,-7,3,10"
                             TextWrapping="NoWrap"
+                            TextTrimming="None"
                             Style="{StaticResource WrtxtdSubheaderTextStyle}" />
                         <Rectangle
                             x:Name="FocusVisualWhite"
@@ -598,7 +635,7 @@
                                             Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame
                                                 KeyTime="0"
-                                                Value="{StaticResource ApplicationPointerOverForegroundThemeBrush}" />
+                                                Value="{ThemeResource ForegroundHover}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -610,7 +647,7 @@
                                             Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame
                                                 KeyTime="0"
-                                                Value="{StaticResource ApplicationPressedForegroundThemeBrush}" />
+                                                Value="{ThemeResource ForegroundPressed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -622,7 +659,7 @@
                                             Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame
                                                 KeyTime="0"
-                                                Value="{StaticResource ButtonDisabledForegroundThemeBrush}" />
+                                                Value="{ThemeResource ForegroundDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -659,7 +696,7 @@
                                             Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame
                                                 KeyTime="0"
-                                                Value="{StaticResource ApplicationSecondaryForegroundThemeBrush}" />
+                                                Value="{ThemeResource ForegroundChecked}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

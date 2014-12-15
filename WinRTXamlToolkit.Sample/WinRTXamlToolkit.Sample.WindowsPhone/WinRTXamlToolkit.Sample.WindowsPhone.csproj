@@ -111,6 +111,9 @@
     </Compile>
     <Compile Include="ViewModels\Controls\TreeViewPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestView.xaml.cs">
+      <DependentUpon>TextBoxFocusExtensionsTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\NumericUpDownTestView.xaml.cs">
       <DependentUpon>NumericUpDownTestView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls.Extensions\TextBoxFocusExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

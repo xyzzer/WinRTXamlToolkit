@@ -29,6 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyObjectViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyPropertyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DependencyPropertyViewModelValueCoercion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FocusTrackerToolWindowViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ElementListToolWindowViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StubTreeItemViewModel.cs" />
@@ -44,6 +46,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\EditablePropertyTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ElementListWindow.xaml.cs">
       <DependentUpon>ElementListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FocusTrackerWindow.xaml.cs">
+      <DependentUpon>FocusTrackerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertiesView.xaml.cs">
       <DependentUpon>PropertiesView.xaml</DependentUpon>
@@ -119,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\ElementListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FocusTrackerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

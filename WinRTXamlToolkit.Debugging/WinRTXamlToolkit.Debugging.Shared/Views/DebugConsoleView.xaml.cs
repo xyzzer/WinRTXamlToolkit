@@ -80,12 +80,18 @@ namespace WinRTXamlToolkit.Debugging.Views
         internal async void ShowVisualTree(UIElement element = null)
         {
             await this.WaitForLoadedAsync();
-            VisualTreeButton.IsChecked = true;
-            //EditButton.IsChecked = true;
 
             if (element != null &&
                 _viewModel.VisualTreeView != null)
             {
+                _viewModel.VisualTreeView.IsShown = true;
+                var fe = element as FrameworkElement;
+
+                if (fe != null)
+                {
+                    await fe.WaitForLoadedAsync();
+                }
+
 #pragma warning disable 4014
                 _viewModel.VisualTreeView.SelectItem(element);
 #pragma warning restore 4014
@@ -106,6 +112,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         {
             ((ToolWindow)sender).Hide();
             e.Cancel = true;
+            this._viewModel.VisualTreeView.HighlightVisibility = Visibility.Collapsed;
         }
     }
 }

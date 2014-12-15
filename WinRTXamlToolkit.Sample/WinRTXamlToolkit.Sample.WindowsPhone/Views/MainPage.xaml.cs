@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using WinRTXamlToolkit.Debugging;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -7,6 +8,7 @@ namespace WinRTXamlToolkit.Sample.Views
         public MainPage()
         {
             this.InitializeComponent();
+            //DC.ShowVisualTree(this);
         }
     }
 }

@@ -479,6 +479,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                     catch (UnauthorizedAccessException)
                     {
                         Debug.WriteLine("Checking for Search capability throws exceptions when the capability is missing. To avoid it set WinRTXamlToolkit.Controls.Extensions.PasswordDisableSearchPaneOnFocusHandler.IsSearchEnabled explicitly before WinRTXamlToolkit.Controls.Extensions.PasswordBoxFocusExtensions.DisableSearchPaneOnFocus behavior is applied.");
+                        Debug.WriteLine("Set PasswordDisableSearchPaneOnFocusHandler.IsSearchEnabled = false; to avoid the exception in the future");
                         _isSearchEnabled = false;
                     }
                 }

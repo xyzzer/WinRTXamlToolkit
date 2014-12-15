@@ -94,36 +94,42 @@
             ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
         <StackPanel
             Grid.Row="1">
-            <ScrollViewer
+            <!--<ScrollViewer
                 HorizontalScrollMode="Auto"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollMode="Disabled"
                 VerticalScrollBarVisibility="Hidden"
-                ZoomMode="Disabled">
-                <StackPanel
-                    Orientation="Horizontal"
-                    Margin="0,0,0,20">
-                    <Button
-                        x:Name="RefreshButton"
-                        Content="Refresh"
-                        Click="OnRefreshButtonClick"
-                        Style="{StaticResource WrtxtdTextButtonStyle}"
-                        Margin="0,0,20,0" />
-                    <Button
-                        x:Name="SelectFocusedButton"
-                        Content="Select Focused"
-                        Click="OnSelectFocusedClick"
-                        IsTabStop="False"
-                        Style="{StaticResource WrtxtdTextButtonStyle}"
-                        Margin="0,0,20,0" />
-                    <Button
-                        x:Name="FocusSelectedButton"
-                        Content="Focused Selected"
-                        Click="OnFocusSelectedClick"
-                        IsTabStop="False"
-                        Style="{StaticResource WrtxtdTextButtonStyle}" />
-                </StackPanel>
-            </ScrollViewer>
+                ZoomMode="Disabled">-->
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="10,0,0,0">
+                <Button
+                    x:Name="RefreshButton"
+                    Content="Refresh"
+                    Click="OnRefreshButtonClick"
+                    Style="{StaticResource WrtxtdTextButtonStyle}"
+                    Margin="0,0,20,0" />
+                <Button
+                    x:Name="SelectFocusedButton"
+                    Content="Select Focused"
+                    Click="OnSelectFocusedClick"
+                    IsTabStop="False"
+                    Style="{StaticResource WrtxtdTextButtonStyle}"
+                    Margin="0,0,20,0" />
+                <Button
+                    x:Name="FocusSelectedButton"
+                    Content="Focused Selected"
+                    Click="OnFocusSelectedClick"
+                    IsTabStop="False"
+                    Style="{StaticResource WrtxtdTextButtonStyle}" />
+                <Button
+                    x:Name="FocusTrackerButton"
+                    Content="Track Focus"
+                    Click="OnFocusTrackerButtonClick"
+                    IsTabStop="False"
+                    Style="{StaticResource WrtxtdTextButtonStyle}" />
+            </StackPanel>
+            <!--</ScrollViewer>-->
             <TextBlock
                 Text="Hover with Ctrl+Shift to select element."
                 VerticalAlignment="Bottom" />
