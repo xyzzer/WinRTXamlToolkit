@@ -34,6 +34,8 @@ namespace WinRTXamlToolkit.Controls
         private bool _isLoaded;
         private UIElement _focusedElement;
 
+        public FocusTracker FocusTracker { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageButton" /> class.
         /// </summary>
@@ -44,8 +46,8 @@ namespace WinRTXamlToolkit.Controls
             new PropertyChangeEventSource<Brush>(this, "BorderBrush").ValueChanged += this.OnBorderBrushChanged;
             this.Loaded += OnLoaded;
             this.Unloaded += OnUnloaded;
-            var ft = new FocusTracker();
-            ft.FocusChanged += OnFocusChanged;
+            this.FocusTracker = new FocusTracker();
+            this.FocusTracker.FocusChanged += OnFocusChanged;
             _focusedElement = FocusManager.GetFocusedElement() as UIElement;
         }
 

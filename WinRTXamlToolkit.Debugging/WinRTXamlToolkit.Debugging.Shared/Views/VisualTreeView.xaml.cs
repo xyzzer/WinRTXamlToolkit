@@ -42,5 +42,11 @@ namespace WinRTXamlToolkit.Debugging.Views
                 control.Focus(FocusState.Programmatic);
             }
         }
+
+        private void OnFocusTrackerButtonClick(object sender, RoutedEventArgs e)
+        {
+            var vm = new FocusTrackerToolWindowViewModel();
+            DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
+        }
     }
 }

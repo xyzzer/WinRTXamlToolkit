@@ -8,6 +8,7 @@
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
     xmlns:views="using:WinRTXamlToolkit.Debugging.Shared.Views"
+    xmlns:common="using:WinRTXamlToolkit.Common"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -96,11 +97,18 @@
                     <Grid />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <views:ElementListWindow />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemTemplateSelector>
+                <common:ImplicitDataTemplateSelector>
+                    <DataTemplate
+                        x:Key="ElementListToolWindowViewModel">
+                        <views:ElementListWindow />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="FocusTrackerToolWindowViewModel">
+                        <views:FocusTrackerWindow />
+                    </DataTemplate>
+                </common:ImplicitDataTemplateSelector>
+            </ItemsControl.ItemTemplateSelector>
         </ItemsControl>
         <Grid
             x:Name="HighlightGrid"
