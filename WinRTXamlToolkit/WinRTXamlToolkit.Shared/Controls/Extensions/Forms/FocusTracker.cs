@@ -2,13 +2,17 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls.Extensions.Forms
 {
     public class FocusTracker
     {
+        private UIElement focusedElement;
         private const int DefaultFocusPollingInterval = 100;
+        private DispatcherTimer timer;
+
+        #region FocusPollingInterval
+        private int focusPollingInterval;
 
         /// <summary>
         /// Gets or sets the focus polling interval in ms.
@@ -16,7 +20,26 @@ namespace WinRTXamlToolkit.Controls.Extensions.Forms
         /// <value>
         /// The focus polling interval.
         /// </value>
-        public int FocusPollingInterval { get; set; }
+        public int FocusPollingInterval
+        {
+            get
+            {
+                return focusPollingInterval;
+            }
+            set
+            {
+                if (focusPollingInterval != value)
+                {
+                    focusPollingInterval = value;
+
+                    if (this.timer != null)
+                    {
+                        this.timer.Interval = TimeSpan.FromMilliseconds(focusPollingInterval);
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region FocusChanged event
         /// <summary>
@@ -38,6 +61,7 @@ namespace WinRTXamlToolkit.Controls.Extensions.Forms
         }
         #endregion
 
+        #region CTOR
         public FocusTracker()
         {
             FocusPollingInterval = DefaultFocusPollingInterval;
@@ -46,33 +70,56 @@ namespace WinRTXamlToolkit.Controls.Extensions.Forms
             RunFocusTrackingAsync();
 #pragma warning restore 4014
         }
+        #endregion
 
+        #region RunFocusTrackingAsync()
         private async Task RunFocusTrackingAsync()
         {
-            var focusedElement = FocusManager.GetFocusedElement() as UIElement;
-            var lastFocusedElement = focusedElement;
+            this.UpdateFocusedElement();
+            this.timer = new DispatcherTimer();
+            this.timer.Interval = TimeSpan.FromMilliseconds(FocusPollingInterval);
+            this.timer.Tick += this.OnTick;
+            this.timer.Start();
+        }
+        #endregion
 
-            while (true)
+        #region OnLostFocus()
+        private void OnLostFocus(object sender, RoutedEventArgs args)
+        {
+            this.UpdateFocusedElement();
+        }
+        #endregion
+
+        #region OnTick()
+        private void OnTick(object sender, object o)
+        {
+            this.UpdateFocusedElement();
+        }
+        #endregion
+
+        #region UpdateFocusedElement()
+        private void UpdateFocusedElement()
+        {
+            var newFocusedElement = FocusManager.GetFocusedElement() as UIElement;
+
+            if (this.focusedElement == newFocusedElement)
             {
-                if (focusedElement != null)
-                {
-                    await focusedElement.WaitForLostFocusAsync();
-                    focusedElement = FocusManager.GetFocusedElement() as UIElement;
-                    RaiseFocusChanged(focusedElement);
-                }
-                else
-                {
-                    await Task.Delay(FocusPollingInterval);
-                    focusedElement = FocusManager.GetFocusedElement() as UIElement;
+                return;
+            }
 
-                    if (lastFocusedElement != focusedElement)
-                    {
-                        RaiseFocusChanged(focusedElement);
-                    }
-                }
+            if (this.focusedElement != null)
+            {
+                this.focusedElement.LostFocus -= this.OnLostFocus;
+            }
 
-                lastFocusedElement = focusedElement;
+            this.focusedElement = newFocusedElement;
+            RaiseFocusChanged(this.focusedElement);
+
+            if (this.focusedElement != null)
+            {
+                this.focusedElement.LostFocus += this.OnLostFocus;
             }
         }
+        #endregion
     }
 }
