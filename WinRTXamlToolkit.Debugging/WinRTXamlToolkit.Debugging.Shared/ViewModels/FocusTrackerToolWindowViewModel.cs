@@ -1,9 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Controls.Extensions.Forms;
+using WinRTXamlToolkit.Debugging.Views;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
@@ -93,7 +96,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         private void OnFocusChanged(object sender, UIElement e)
         {
-            if (!ignoreFocusChange)
+            if (!ignoreFocusChange &&
+                !(e is DebugConsoleView) &&
+                !(e.GetAncestorsOfType<DebugConsoleView>().Any()))
             {
                 AddFocusEvent(e);
             }

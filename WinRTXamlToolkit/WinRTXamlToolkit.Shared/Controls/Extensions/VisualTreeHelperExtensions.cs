@@ -19,6 +19,33 @@ namespace WinRTXamlToolkit.Controls.Extensions
     /// </summary>
     public static class VisualTreeHelperExtensions
     {
+        public static UIElement GetRealWindowRoot(Window window = null)
+        {
+            if (window == null)
+            {
+                window = Window.Current;
+            }
+
+            if (window == null)
+            {
+                return null;
+            }
+
+            var root = window.Content as FrameworkElement;
+
+            if (root != null)
+            {
+                var ancestors = root.GetAncestors().ToList();
+
+                if (ancestors.Count > 0)
+                {
+                    root = (FrameworkElement)ancestors[ancestors.Count - 1];
+                }
+            }
+
+            return root;
+        }
+
         /// <summary>
         /// Gets the first descendant that is of the given type.
         /// </summary>

@@ -47,7 +47,6 @@ namespace WinRTXamlToolkit.Debugging.Views
         internal void Clear()
         {
             _unFlushedLines.Length = 0;
-
             DebugTextBox.Text = "";
         }
 

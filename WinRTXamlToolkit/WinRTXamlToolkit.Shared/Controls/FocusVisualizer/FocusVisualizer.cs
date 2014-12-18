@@ -114,31 +114,26 @@ namespace WinRTXamlToolkit.Controls
         #region UpdateBrush()
         private void UpdateBrush()
         {
-            if (_leftRectangle != null)
+            if (_leftRectangle == null)
             {
-                _leftRectangle.Fill = this.BorderBrush;
+                return;
             }
 
-            if (_topRectangle != null)
-            {
-                _topRectangle.Fill = this.BorderBrush;
-            }
-
-            if (_rightRectangle != null)
-            {
-                _rightRectangle.Fill = this.BorderBrush;
-            }
-
-            if (_bottomRectangle != null)
-            {
-                _bottomRectangle.Fill = this.BorderBrush;
-            }
+            _leftRectangle.Fill = this.BorderBrush;
+            _topRectangle.Fill = this.BorderBrush;
+            _rightRectangle.Fill = this.BorderBrush;
+            _bottomRectangle.Fill = this.BorderBrush;
         } 
         #endregion
 
         #region UpdateThickness()
         private void UpdateThickness()
         {
+            if (_leftRectangle == null)
+            {
+                return;
+            }
+
             _leftRectangle.Width = this.BorderThickness.Left;
             _topRectangle.Height = this.BorderThickness.Top;
             _rightRectangle.Width = this.BorderThickness.Right;
@@ -187,11 +182,7 @@ namespace WinRTXamlToolkit.Controls
                 await this.WaitForLoadedAsync();
             }
 
-#if WINDOWS_APP
-            var scale = 1.0;
-#else
-            var scale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
-#endif
+            var scale = GetResolutionScale();
 
             var boundingRect = _focusedElement.GetBoundingRect(this);
             var leftRectangleLeft = boundingRect.Left - this.BorderThickness.Left;
@@ -246,6 +237,41 @@ namespace WinRTXamlToolkit.Controls
             AddAnimation(sb, _rightRectangle, "Opacity", 1, duration);
             AddAnimation(sb, _bottomRectangle, "Opacity", 1, duration);
             sb.Begin();
+        }
+
+        private static double GetResolutionScale()
+        {
+#if WINDOWS_APP
+            var scale = 1.0;
+
+            switch (DisplayInformation.GetForCurrentView().ResolutionScale)
+            {
+                case ResolutionScale.Scale100Percent:
+                    scale = 1.0;
+                    break;
+                case ResolutionScale.Scale120Percent:
+                    scale = 1.2;
+                    break;
+                case ResolutionScale.Scale140Percent:
+                    scale = 1.4;
+                    break;
+                case ResolutionScale.Scale150Percent:
+                    scale = 1.5;
+                    break;
+                case ResolutionScale.Scale160Percent:
+                    scale = 1.6;
+                    break;
+                case ResolutionScale.Scale180Percent:
+                    scale = 1.8;
+                    break;
+                case ResolutionScale.Scale225Percent:
+                    scale = 2.25;
+                    break;
+            }
+#else
+            var scale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+#endif
+            return scale;
         }
 
         private void AddAnimation(Storyboard sb, DependencyObject target, string propertyName, double toValue, double duration)
