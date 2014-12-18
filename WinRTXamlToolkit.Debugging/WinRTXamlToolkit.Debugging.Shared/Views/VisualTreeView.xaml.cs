@@ -9,7 +9,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         public VisualTreeView()
         {
             this.InitializeComponent();
-            this.DataContext = new VisualTreeViewModel();
+            this.DataContext = VisualTreeViewModel.Instance;
         }
 
         private void OnRefreshButtonClick(object sender, RoutedEventArgs e)

@@ -35,7 +35,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region VisualTreeView
-        private VisualTreeViewModel _visualTreeView = new VisualTreeViewModel();
+        private VisualTreeViewModel _visualTreeView = VisualTreeViewModel.Instance;
         public VisualTreeViewModel VisualTreeView
         {
             get { return _visualTreeView; }

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls.Primitives;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.Foundation;
 using Windows.System;
@@ -52,6 +53,25 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         private Point _pointerPosition;
         private bool _isShiftPressed;
         private bool _isCtrlPressed;
+
+        #region Instance (singleton implementation)
+        private static VisualTreeViewModel _instance;
+        public static VisualTreeViewModel Instance
+        {
+            get { return _instance ?? (_instance = new VisualTreeViewModel()); }
+        }
+
+        private VisualTreeViewModel()
+        {
+#pragma warning disable 4014
+            this.GetPropertyLists();
+            this.Build();
+#pragma warning restore 4014
+            Window.Current.CoreWindow.KeyDown += OnKeyDown;
+            Window.Current.CoreWindow.KeyUp += OnKeyUp;
+            Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
+        }
+        #endregion
 
         #region IsShown
         private bool _isShown;
@@ -145,6 +165,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        #region HighlightTextMargin
+        private Thickness _highlightTextMargin;
+        public Thickness HighlightTextMargin
+        {
+            get { return _highlightTextMargin; }
+            set { this.SetProperty(ref _highlightTextMargin, value); }
+        }
+        #endregion
+
+        #region HighlightText
+        private string _highlightText;
+        public string HighlightText
+        {
+            get { return _highlightText; }
+            set { this.SetProperty(ref _highlightText, value); }
+        }
+        #endregion
+
         #region HighlightVisibility
         private Visibility _highlightVisibility = Visibility.Collapsed;
         public Visibility HighlightVisibility
@@ -229,19 +267,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
-        #region CTOR
-        public VisualTreeViewModel()
-        {
-#pragma warning disable 4014
-            this.GetPropertyLists();
-            this.Build();
-#pragma warning restore 4014
-            Window.Current.CoreWindow.KeyDown += OnKeyDown;
-            Window.Current.CoreWindow.KeyUp += OnKeyUp;
-            Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
-        }
-        #endregion
-
         #region OnPointerMoved()
         private void OnPointerMoved(CoreWindow sender, PointerEventArgs args)
         {
@@ -263,11 +288,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region SelectElementUnderPointer()
         internal async Task SelectElementUnderPointer(bool showDebugger = true)
         {
-            var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
-                _pointerPosition,
-                Window.Current.Content).First();
+            var roots = VisualTreeHelper.GetOpenPopups(Window.Current).Select(p => p.Child).Reverse().ToList();
+            roots.Add(VisualTreeHelperExtensions.GetRealWindowRoot());
 
-            await SelectItem(hoveredElement, true);
+            foreach (var root in roots)
+            {
+                var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
+                    _pointerPosition,
+                    root).FirstOrDefault();
+
+                if (hoveredElement != null)
+                {
+                    await SelectItem(hoveredElement, true);
+                    break;
+                }
+            }
 
             if (showDebugger)
             {
@@ -304,10 +339,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (ancestorIndex < 0)
             {
-                await Refresh();
-            }
+                for (int i = 1; i < this.RootElements.Count && ancestorIndex < 0; i++)
+                {
+                    // Handling popups
+                    var popup = this.RootElements[i];
+                    await popup.LoadChildrenAsync();
+                    popup.IsExpanded = true;
+                    vm = popup.Children[0] as DependencyObjectViewModel;
+                    ancestorIndex = ancestors.IndexOf(vm.Model);
+                }
 
-            ancestorIndex = ancestors.IndexOf(vm.Model);
+                if (ancestorIndex < 0)
+                {
+                    await Refresh();
+                    ancestorIndex = ancestors.IndexOf(vm.Model);
+                }
+            }
 
             if (ancestorIndex < 0)
             {
@@ -434,6 +481,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (rootElement != null)
             {
+                var ancestors = rootElement.GetAncestors();
+
+                if (ancestors != null)
+                {
+                    var newRoot = ancestors.OfType<UIElement>().LastOrDefault();
+
+                    if (newRoot != null)
+                    {
+                        rootElement = newRoot;
+                    }
+                }
+
                 this.RootElements.Add(new DependencyObjectViewModel(this, null, rootElement));
             }
 
@@ -472,7 +531,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (dovm == null)
             {
-                HighlightVisibility = Visibility.Collapsed;
+                this.HighlightVisibility = Visibility.Collapsed;
                 return;
             }
 
@@ -480,37 +539,65 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (fe == null)
             {
-                HighlightVisibility = Visibility.Collapsed;
+                this.HighlightVisibility = Visibility.Collapsed;
                 return;
             }
 
             try
             {
-                var ancestors = fe.GetAncestors().ToArray();
+                var ancestors = fe.GetAncestors().ToList();
 
-                if (!ancestors.Contains(Window.Current.Content))
+                if (!ancestors.Contains(VisualTreeHelperExtensions.GetRealWindowRoot()))
                 {
-                    HighlightVisibility = Visibility.Collapsed;
-                    return;
+                    var root = ancestors.Count > 0 ? ancestors[ancestors.Count - 1] : fe;
+                    Popup popupRoot = null;
+                    var popups = VisualTreeHelper.GetOpenPopups(Window.Current);
+
+                    foreach (var openPopup in popups)
+                    {
+                        if (openPopup.Child == root)
+                        {
+                            popupRoot = openPopup;
+                            break;
+                        }
+                    }
+
+                    if (popupRoot == null)
+                    {
+                        this.HighlightVisibility = Visibility.Collapsed;
+                        return;
+                    }
                 }
 
                 var elementBounds = fe.GetBoundingRect();
                 var windowBounds = Window.Current.Bounds;
 
-                HighlightMargin = new Thickness(
+                this.HighlightMargin = new Thickness(
                     elementBounds.Left,
                     elementBounds.Top,
                     windowBounds.Width - elementBounds.Right,
                     windowBounds.Height - elementBounds.Bottom);
+                this.HighlightText = string.Format(
+                    "{0}\r\nx: {1:F0}\r\ny: {2:F0}\r\nw: {3:F0}\r\nh: {4:F0}",
+                    dovm.DisplayName,
+                    elementBounds.Left,
+                    elementBounds.Top,
+                    elementBounds.Width,
+                    elementBounds.Height);
+                this.HighlightTextMargin = new Thickness(
+                    elementBounds.Left,
+                    elementBounds.Bottom,
+                    0,
+                    0);
             }
 #pragma warning disable 168
             catch (Exception ex)
 #pragma warning restore 168
             {
-                HighlightVisibility = Visibility.Collapsed;
+                this.HighlightVisibility = Visibility.Collapsed;
             }
 
-            HighlightVisibility = Visibility.Visible;
+            this.HighlightVisibility = Visibility.Visible;
         } 
         #endregion
     }
