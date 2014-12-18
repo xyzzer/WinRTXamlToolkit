@@ -118,21 +118,32 @@ namespace WinRTXamlToolkit.Debugging.Common
             {
                 try
                 {
+                    // Uncomment to printf-debug app-crashing type scanning issues
+                    //System.Diagnostics.Debug.WriteLine("S{2}>{0}.{1}", type.ToString(), dpPropertyInfo.Name, type.GetTypeInfo().Assembly.FullName);
+                    //if (type.FullName == "Windows.UI.Xaml.Controls.Primitives.LoopingSelector" &&
+                    //    dpPropertyInfo.Name == "ShouldLoopProperty")
+                    //{
+                    //    Debugger.Break();
+                    //}
+
                     if (type == typeof (AutomationProperties) &&
                         dpPropertyInfo.Name == "AccessibilityViewProperty")
                     {
                         continue;
                     }
 
-#if WINDOWS_PHONE_APP
+                    if (type.FullName == "Windows.UI.Xaml.Controls.Maps.MapControl")
+                    {
+                        continue;
+                    }
 
-                    if (type == typeof(Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs) &&
+                    if (type.FullName == "Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs" &&
                         dpPropertyInfo.Name == "ReasonProperty" )
                     {
                         continue;
                     }
 
-                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapIcon) &&
+                    if (type.FullName == "Windows.UI.Xaml.Controls.Maps.MapIcon" &&
                         (dpPropertyInfo.Name == "LocationProperty" ||
                         dpPropertyInfo.Name == "NormalizedAnchorPointProperty" ||
                         dpPropertyInfo.Name == "TitleProperty"))
@@ -140,7 +151,7 @@ namespace WinRTXamlToolkit.Debugging.Common
                         continue;
                     }
 
-                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapItemsControl) &&
+                    if (type.FullName == "Windows.UI.Xaml.Controls.Maps.MapItemsControl" &&
                         (dpPropertyInfo.Name == "ItemTemplateProperty" ||
                         dpPropertyInfo.Name == "ItemsProperty" ||
                         dpPropertyInfo.Name == "ItemsSourceProperty"))
@@ -148,7 +159,7 @@ namespace WinRTXamlToolkit.Debugging.Common
                         continue;
                     }
 
-                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapPolygon) &&
+                    if (type.FullName == "Windows.UI.Xaml.Controls.Maps.MapPolygon" &&
                         (dpPropertyInfo.Name == "PathProperty" ||
                         dpPropertyInfo.Name == "StrokeDashedProperty" ||
                         dpPropertyInfo.Name == "StrokeThicknessProperty"))
@@ -156,13 +167,12 @@ namespace WinRTXamlToolkit.Debugging.Common
                         continue;
                     }
 
-                    if (type == typeof(Windows.UI.Xaml.Controls.Maps.MapPolyline) &&
+                    if (type.FullName == "Windows.UI.Xaml.Controls.Maps.MapPolyline" &&
                         (dpPropertyInfo.Name == "PathProperty" ||
                         dpPropertyInfo.Name == "StrokeDashedProperty"))
                     {
                         continue;
                     }
-#endif
 
                     var dependencyProperty = (DependencyProperty)dpPropertyInfo.GetValue(type);
                     var propertyName =
@@ -173,7 +183,7 @@ namespace WinRTXamlToolkit.Debugging.Common
                 }
                 catch
                 {
-                    System.Diagnostics.Debug.WriteLine(">{0}.{1}", type.ToString(), dpPropertyInfo.Name);
+                    System.Diagnostics.Debug.WriteLine("Failed>{0}.{1}", type.ToString(), dpPropertyInfo.Name);
                 }
             }
 
