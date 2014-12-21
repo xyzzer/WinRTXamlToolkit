@@ -343,8 +343,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
                     // Handling popups
                     var popup = this.RootElements[i];
-                    await popup.LoadChildrenAsync();
-                    popup.IsExpanded = true;
+
+                    if (!popup.IsExpanded)
+                    {
+                        await popup.LoadChildrenAsync();
+                        popup.IsExpanded = true;
+                    }
+
                     vm = popup.Children[0] as DependencyObjectViewModel;
                     ancestorIndex = ancestors.IndexOf(vm.Model);
                 }
@@ -555,7 +560,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                     foreach (var openPopup in popups)
                     {
-                        if (openPopup.Child == root)
+                        if (openPopup == root)
+                        {
+                            popupRoot = openPopup;
+                            break;
+                        }
+
+                        if (ancestors.Contains(openPopup.Child))
                         {
                             popupRoot = openPopup;
                             break;
