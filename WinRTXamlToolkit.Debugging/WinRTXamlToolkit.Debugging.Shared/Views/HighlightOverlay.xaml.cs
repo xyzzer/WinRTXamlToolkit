@@ -1,6 +1,8 @@
-﻿using Windows.Foundation;
+﻿using System;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Shapes;
 
 namespace WinRTXamlToolkit.Debugging.Shared.Views
 {
@@ -61,7 +63,6 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             Thickness oldHighlightBounds, Thickness newHighlightBounds)
         {
             this.HighlightRect.Margin = newHighlightBounds;
-            //this.UpdateHighlightTextPosition();
         }
         #endregion
 
@@ -120,7 +121,6 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             string oldHighlightText, string newHighlightText)
         {
             this.HighlightTextBlock.Text = newHighlightText;
-            //this.UpdateHighlightTextPosition();
         }
         #endregion
 
@@ -130,9 +130,42 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             this.Loaded += this.OnLoaded;
         }
 
+        private Line[] _extendedLines;
+        private Line _extendedLineLeftUpper;
+        private Line _extendedLineLeftLower;
+        private Line _extendedLineTopLeft;
+        private Line _extendedLineTopRight;
+        private Line _extendedLineRightUpper;
+        private Line _extendedLineRightLower;
+        private Line _extendedLineBottomLeft;
+        private Line _extendedLineBottomRight;
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            
+            this.EnsureExtendedLinesInitialized();
+        }
+
+        private void EnsureExtendedLinesInitialized()
+        {
+            if (_extendedLines == null)
+            {
+                _extendedLines = new[]
+                {
+                    _extendedLineLeftUpper = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineLeftLower = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineTopLeft = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineTopRight = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineRightUpper = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineRightLower = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineBottomLeft = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                    _extendedLineBottomRight = (Line)(this.ExtendedLineTemplate.LoadContent()),
+                };
+
+                foreach (var extendedLine in _extendedLines)
+                {
+                    this.LayoutGrid.Children.Add(extendedLine);
+                }
+            }
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -144,10 +177,39 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            UpdateHighlightTextPosition();
+            this.UpdateHighlightTextPosition();
+            this.UpdateExtendedLinesPositions();
             return base.ArrangeOverride(finalSize);
         }
 
+        private void UpdateExtendedLinesPositions()
+        {
+            this.EnsureExtendedLinesInitialized();
+            var aw = this.ActualWidth;
+            var ah = this.ActualHeight;
+            var l = this.HighlightBounds.Left;
+            var t = this.HighlightBounds.Top;
+            var r = aw - this.HighlightBounds.Right;
+            var b = ah - this.HighlightBounds.Bottom;
+            SetLineCoords(_extendedLineLeftUpper,   -.5, -.5, -.5, -.5, 0, t, l, t);
+            SetLineCoords(_extendedLineLeftLower,   -.5,  .5, -.5,  .5, 0, b, l, b);
+            SetLineCoords(_extendedLineTopLeft,     -.5, -.5, -.5, -.5, l, 0, l, t);
+            SetLineCoords(_extendedLineTopRight,     .5, -.5,  .5, -.5, r, 0, r, t);
+            SetLineCoords(_extendedLineRightUpper,   .5, -.5,  .5, -.5, r, t, aw, t);
+            SetLineCoords(_extendedLineRightLower,   .5,  .5,  .5,  .5, r, b, aw, b);
+            SetLineCoords(_extendedLineBottomLeft,  -.5,  .5, -.5,  .5, l, b, l, ah);
+            SetLineCoords(_extendedLineBottomRight,  .5,  .5,  .5,  .5, r, b, r, ah);
+        }
+
+        private static void SetLineCoords(Line l, double ax1, double ay1, double ax2, double ay2, double x1, double y1, double x2, double y2)
+        {
+            l.X1 = Math.Round(x1) + ax1;
+            l.Y1 = Math.Round(y1) + ay1;
+            l.X2 = Math.Round(x2) + ax2;
+            l.Y2 = Math.Round(y2) + ay2;
+        }
+
+        #region UpdateHighlightTextPosition()
         private void UpdateHighlightTextPosition()
         {
             //ElementDescriptionBorder.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
@@ -250,6 +312,7 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
                         0,
                         0);
             }
-        }
+        } 
+        #endregion
     }
 }

@@ -7,21 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
-    
-    <Grid>
+    d:DesignWidth="400"
+    IsHitTestVisible="False">
+    <UserControl.Resources>
+        <DataTemplate
+            x:Name="ExtendedLineTemplate"
+            x:Key="ExtendedLineTemplate">
+            <Line
+                Stroke="#FFFF0000"
+                StrokeThickness="1"
+                StrokeDashArray="7,3"
+                UseLayoutRounding="True"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid
+        x:Name="LayoutGrid">
         <Rectangle
             x:Name="HighlightRect"
             StrokeThickness="2"
             Stroke="#80FF0000"
-            Stretch="Fill"
-            IsHitTestVisible="False" />
+            Stretch="Fill" />
         <Border
             x:Name="ElementDescriptionBorder"
             Background="#99000000"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
-            IsHitTestVisible="False"
             Padding="10">
             <TextBlock
                 x:Name="HighlightTextBlock"
