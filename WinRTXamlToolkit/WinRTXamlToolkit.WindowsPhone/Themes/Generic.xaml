@@ -6,6 +6,8 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml" />
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml" />

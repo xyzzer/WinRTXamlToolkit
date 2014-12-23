@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommandGeneric.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ButtonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Controls\AutoCompleteTextBoxTestsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Controls\FakeWordDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleButtonViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleGroupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleTypes.cs" />

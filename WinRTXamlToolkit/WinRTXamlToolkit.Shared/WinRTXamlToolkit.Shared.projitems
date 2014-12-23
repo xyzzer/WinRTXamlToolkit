@@ -32,6 +32,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AnimatingContainer\AnimatingContainer.xaml.cs">
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\CommonSubstringSuggestion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\IAutoCompletable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\DamerauLevenshteinDistance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\PrefixSuggestion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\ScoredString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\AutoCompleteTextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\SimpleThemingListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\SimpleThemingListBoxItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Behaviors\ParallaxBackgroundBehavior.cs" />
@@ -205,6 +213,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\AutoCompleteTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\CameraCaptureControl\CameraCaptureControl.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -233,6 +246,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Controls\FocusVisualizer\FocusVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\FxContentControl\FxContentControl.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

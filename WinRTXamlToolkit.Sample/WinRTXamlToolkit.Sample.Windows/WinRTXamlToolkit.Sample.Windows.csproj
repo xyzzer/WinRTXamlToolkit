@@ -160,6 +160,9 @@
     <Compile Include="Views\Controls.Extensions\ButtonBaseExtensionsTestView.xaml.cs">
       <DependentUpon>ButtonBaseExtensionsTestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\AutoCompleteTextBoxTestView.xaml.cs">
+      <DependentUpon>AutoCompleteTextBoxTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls.Extensions\ContentControlExtensionsTestView.xaml.cs">
       <DependentUpon>ContentControlExtensionsTestView.xaml</DependentUpon>
     </Compile>
@@ -392,6 +395,10 @@
     <Page Include="Views\Controls.Extensions\ButtonBaseExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\AutoCompleteTextBoxTestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls.Extensions\ContentControlExtensionsTestView.xaml">
       <Generator>MSBuild:Compile</Generator>

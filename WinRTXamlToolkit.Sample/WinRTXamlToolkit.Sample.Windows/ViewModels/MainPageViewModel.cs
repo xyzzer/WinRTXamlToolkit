@@ -5,7 +5,6 @@ using System.Linq;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.IO.Extensions;
 using WinRTXamlToolkit.Net;
-using WinRTXamlToolkit.Sample.Commands;
 using WinRTXamlToolkit.Sample.Views;
 using Windows.Media.Capture;
 using Windows.Storage;
@@ -40,6 +39,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 (
                     "AnimatingContainer",
                     typeof(AnimatingContainerTestView),
+                    SampleTypes.Controls
+                ),
+                new SampleButtonViewModel
+                (
+                    "AutoCompleteTextBox",
+                    typeof(AutoCompleteTextBoxTestPage),
                     SampleTypes.Controls
                 ),
                 new SampleButtonViewModel
