@@ -463,6 +463,7 @@ namespace WinRTXamlToolkit.Controls
                         suggestions.Count > this.autocompleteItemsContainer.SelectedIndex + 1)
                     {
                         this.autocompleteItemsContainer.SelectedIndex += 1;
+                        //TODO: Scroll into view here and in other SelectedIndex manipulation cases
                     }
                 }
             }
