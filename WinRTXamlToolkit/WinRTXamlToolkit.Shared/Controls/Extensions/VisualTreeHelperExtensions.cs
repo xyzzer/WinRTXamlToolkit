@@ -19,6 +19,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
     /// </summary>
     public static class VisualTreeHelperExtensions
     {
+        /// <summary>
+        /// Gets the window root that is the top level ascendant of the window.Content.
+        /// </summary>
+        /// <param name="window">The window.</param>
+        /// <returns></returns>
         public static UIElement GetRealWindowRoot(Window window = null)
         {
             if (window == null)

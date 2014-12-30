@@ -6,10 +6,12 @@ namespace WinRTXamlToolkit.Controls
 {
     public sealed partial class AutoCompleteTextBox
     {
-        public class CommonSubstringSuggestion : IAutoCompletable
+        /// <summary>
+        /// Algorithm implementation for AutoCompleteTextBox that scores suggestions from the dictionary
+        /// based on the longest common substring.
+        /// </summary>
+        public class CommonSubstringSuggestion : AutoCompletable
         {
-            private readonly int maximumSuggestionCount = 25;
-
             private ScoredString GetScoreByLongestCommonSubstring(string wordToSuggest, string suggestion)
             {
                 int[,] subproblems = new int[wordToSuggest.Length + 1, suggestion.Length + 1];
@@ -26,10 +28,16 @@ namespace WinRTXamlToolkit.Controls
                         }
                     }
 
-                return new ScoredString() {Text = suggestion, Score = score};
+                return new ScoredString {Text = suggestion, Score = score};
             }
 
-            public IList<string> GetSuggestedWords(string wordToSuggest, ICollection<string> suggestionDictionary)
+            /// <summary>
+            /// Gets a list of suggested word completions for the specified word, given a dictionary of words.
+            /// </summary>
+            /// <param name="wordToSuggest">Word/string to get suggestions for.</param>
+            /// <param name="suggestionDictionary">Dictionary of words to select suggestions from.</param>
+            /// <returns>A list of suggestions.</returns>
+            public override IList<string> GetSuggestedWords(string wordToSuggest, ICollection<string> suggestionDictionary)
             {
                 var suggestions =
                     suggestionDictionary.Select(
@@ -41,7 +49,7 @@ namespace WinRTXamlToolkit.Controls
                         stringWithScore => stringWithScore.Score > 0 && maximalScore - stringWithScore.Score <= 1)
                         .OrderBy(scoreString => scoreString.Score,
                             Comparer<int>.Create((first, second) => second.CompareTo(first)))
-                        .Take(maximumSuggestionCount)
+                        .Take(this.MaximumSuggestionCount)
                         .Select(stringWithScore => stringWithScore.Text)
                         .ToList();
             }

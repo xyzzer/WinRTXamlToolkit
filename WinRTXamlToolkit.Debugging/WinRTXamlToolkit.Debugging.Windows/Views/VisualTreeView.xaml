@@ -121,7 +121,8 @@
                     Content="Focused Selected"
                     Click="OnFocusSelectedClick"
                     IsTabStop="False"
-                    Style="{StaticResource WrtxtdTextButtonStyle}" />
+                    Style="{StaticResource WrtxtdTextButtonStyle}"
+                    Margin="0,0,20,0"  />
                 <Button
                     x:Name="FocusTrackerButton"
                     Content="Track Focus"

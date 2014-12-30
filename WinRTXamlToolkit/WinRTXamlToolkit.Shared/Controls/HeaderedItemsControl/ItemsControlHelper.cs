@@ -173,6 +173,10 @@ namespace WinRTXamlToolkit.Controls
         /// Scroll the desired element into the ScrollHost's viewport.
         /// </summary>
         /// <param name="element">Element to scroll into view.</param>
+        /// <param name="margin">
+        /// The optional margin value to add to the element to be scrolled into view.
+        /// The main purpose is to make sure the element isn't obscured by the ScrollBars.
+        /// </param>
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "File is linked across multiple projects and this method is used in some but not others.")]
         internal void ScrollIntoView(FrameworkElement element, Thickness? margin = null)
         {

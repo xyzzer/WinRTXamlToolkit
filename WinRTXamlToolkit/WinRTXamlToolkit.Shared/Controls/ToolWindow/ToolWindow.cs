@@ -20,6 +20,9 @@ using FrameworkElementExtensions = WinRTXamlToolkit.Controls.Extensions.Framewor
 namespace WinRTXamlToolkit.Controls
 {
     #region Enums
+    /// <summary>
+    /// Defines options for where a window should show up.
+    /// </summary>
     public enum WindowStartupLocation
     {
         /// <summary>
@@ -41,9 +44,21 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     public enum WindowEdgeSnapBehavior
     {
+        /// <summary>
+        /// The window should not snap to the edges.
+        /// </summary>
         None,
+        /// <summary>
+        /// The window snaps straight to its movable area edge with no rotation.
+        /// </summary>
         Straight,
+        /// <summary>
+        /// The window snaps straight to its movable area edge showing just the title bar.
+        /// </summary>
         StraightToTitleBar,
+        /// <summary>
+        /// The window snaps straight to its movable area edge rotating to show the title bar.
+        /// </summary>
         ToTitleBarWithRotation
     }
 
@@ -64,21 +79,52 @@ namespace WinRTXamlToolkit.Controls
         UseAppWindowBounds,
     }
 
+    /// <summary>
+    /// Defines possible window states.
+    /// </summary>
     public enum WindowStates
     {
+        /// <summary>
+        /// The normal state.
+        /// </summary>
         Normal,
+        /// <summary>
+        /// The window is minimized.
+        /// </summary>
         Minimized,
+        /// <summary>
+        /// The window is maximized.
+        /// </summary>
         Maximized,
+        /// <summary>
+        /// The window is snapped to the edge of its movable area.
+        /// </summary>
         Snapped
     }
     #endregion
 
     #region struct DoublePoint
+    /// <summary>
+    /// Defines a point specified with double precision coordinates.
+    /// Note that a Point struct specifies its dimensions using double precision X and Y coordinates,
+    /// but the backing native struct that is projected to CLR is using single precision float values.
+    /// </summary>
     public struct DoublePoint
     {
+        /// <summary>
+        /// The X coordinate.
+        /// </summary>
         public double X;
+        /// <summary>
+        /// The Y coordinate.
+        /// </summary>
         public double Y;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DoublePoint"/> struct.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
         public DoublePoint(double x, double y)
         {
             this.X = x;
@@ -96,6 +142,9 @@ namespace WinRTXamlToolkit.Controls
     public delegate void CancelEventHandler(object sender, CancelEventArgs e);
     #endregion
 
+    /// <summary>
+    /// Defines a draggable window control that can be hosted in the XAML visual tree.
+    /// </summary>
     #region Template parts
     [TemplatePart(Name = LayoutGridName, Type = typeof(Grid))]
     [TemplatePart(Name = SizingGridName, Type = typeof(Grid))]
@@ -118,7 +167,6 @@ namespace WinRTXamlToolkit.Controls
     [TemplateVisualState(GroupName = "CloseButtonStates", Name = "CloseButtonVisible")]
     [TemplateVisualState(GroupName = "CloseButtonStates", Name = "CloseButtonCollapsed")]
     #endregion
-
     public class ToolWindow : ContentControl
     {
         #region Fields
@@ -1064,11 +1112,17 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Public methods
-        #region Activate()
-        public async Task Activate()
+        #region ActivateAsync()
+        /// <summary>
+        /// Activates the window.
+        /// The method can be awaited to wait for the unsnap animation to complete.
+        /// </summary>
+        /// <returns></returns>
+        public async Task ActivateAsync()
         {
             var maxZIndex = this.GetSiblings().Aggregate(0, (z, dob) => Math.Max(z, Canvas.GetZIndex((UIElement)dob)));
             Canvas.SetZIndex(this, maxZIndex + 1);
+
             if (_layoutGridTransform != null &&
                 _layoutGridTransform.Rotation != 0)
             {
@@ -1078,6 +1132,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region Close()
+        /// <summary>
+        /// Closes the window.
+        /// </summary>
         public void Close()
         {
             if (!this.CanClose)
@@ -1136,11 +1193,11 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region SnapToEdge()
+        #region SnapToEdgeAsync()
         /// <summary>
         /// Snaps to nearest edge.
         /// </summary>
-        public async Task SnapToEdge()
+        public async Task SnapToEdgeAsync()
         {
             if (WindowEdgeSnapBehavior == WindowEdgeSnapBehavior.None)
             {
@@ -1208,25 +1265,25 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region Restore()
+        #region RestoreAsync()
         /// <summary>
         /// Restores the window
         /// </summary>
-        public async Task Restore()
+        public async Task RestoreAsync()
         {
             this.Visibility = Visibility.Visible;
             this.WindowState = WindowStates.Normal;
-            await this.Activate();
+            await this.ActivateAsync();
         }
         #endregion
 
-        #region Minimize()
+        #region MinimizeAsync()
         /// <summary>
         /// Minimizes the window.
         /// </summary>
-        public async Task Minimize()
+        public async Task MinimizeAsync()
         {
-            await this.SnapToEdge();
+            await this.SnapToEdgeAsync();
         }
         #endregion
 
@@ -1289,6 +1346,9 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region OnApplyTemplate()
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -1327,7 +1387,7 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region OnBorderManipulationStarting()
-        private void OnBorderManipulationStarting(object sender, ManipulationStartedRoutedEventArgs e)
+        private async void OnBorderManipulationStarting(object sender, ManipulationStartedRoutedEventArgs e)
         {
             if (this.WindowState == WindowStates.Normal)
             {
@@ -1348,7 +1408,7 @@ namespace WinRTXamlToolkit.Controls
             _restorePositionOnStateChange = false;
             this.WindowState = WindowStates.Normal;
             _restorePositionOnStateChange = true;
-            this.Activate(); 
+            await this.ActivateAsync(); 
             
             _isAdjustedFlick = false;
         }
@@ -1641,7 +1701,7 @@ namespace WinRTXamlToolkit.Controls
         private void OnSnapButtonClick(object sender, RoutedEventArgs e)
         {
 #pragma warning disable 4014
-            SnapToEdge();
+            SnapToEdgeAsync();
 #pragma warning restore 4014
         }
         #endregion
@@ -1650,15 +1710,15 @@ namespace WinRTXamlToolkit.Controls
         private void OnRestoreButtonClick(object sender, RoutedEventArgs e)
         {
 #pragma warning disable 4014
-            this.Restore();
+            this.RestoreAsync();
 #pragma warning restore 4014
         }
         #endregion
 
         #region OnMinimizeButtonClick()
-        private void OnMinimizeButtonClick(object sender, RoutedEventArgs e)
+        private async void OnMinimizeButtonClick(object sender, RoutedEventArgs e)
         {
-            Minimize();
+            await MinimizeAsync();
         }
         #endregion
 
@@ -1991,7 +2051,7 @@ namespace WinRTXamlToolkit.Controls
             if (this.WindowState == WindowStates.Snapped)
             {
 #pragma warning disable 4014
-                this.SnapToEdge();
+                this.SnapToEdgeAsync();
 #pragma warning restore 4014
             }
         }

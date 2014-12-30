@@ -12,6 +12,9 @@ using WinRTXamlToolkit.Controls.Extensions;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// A TextBox-like control with auto-complete suggestions dropdown.
+    /// </summary>
     [TemplatePart(Name = TextBoxPropertyName, Type = typeof(TextBox))]
     [TemplatePart(Name = AutoCompletePresenterPropertyName, Type = typeof(Popup))]
     [TemplatePart(Name = AutocompleteItemsContainerPropertyName, Type = typeof(ItemsControl))]
@@ -40,16 +43,37 @@ namespace WinRTXamlToolkit.Controls
         #region Settings
         private SuggestionPopupDisplaySide suggestionPopupDisplaySide;
 
+        /// <summary>
+        /// Specifies options for where the suggestion popup is showing up.
+        /// </summary>
         public enum SuggestionPopupDisplaySide
         {
+            /// <summary>
+            /// The suggestions popup shows up above the TextBox.
+            /// </summary>
             Top = 0,
+            /// <summary>
+            /// The suggestions popup shows up below the TextBox.
+            /// </summary>
             Bottom = 1
         }
 
+        /// <summary>
+        /// Specifies visual states for AutoCompleteTextBox.
+        /// </summary>
         public enum VisualControlState
         {
+            /// <summary>
+            /// The disabled state
+            /// </summary>
             Disabled = 0,
+            /// <summary>
+            /// The normal state.
+            /// </summary>
             Normal = 1,
+            /// <summary>
+            /// The pointer over state.
+            /// </summary>
             PointerOver = 2
         }
         #endregion settings
@@ -241,8 +265,6 @@ namespace WinRTXamlToolkit.Controls
         /// object instead of IAutoCompletable because of:
         /// http://stackoverflow.com/questions/20906222/interface-as-dependency-property-converter-failed
         /// </summary>
-
-        /// </summary>
         public object AutoCompleteService
         {
             get { return (object)GetValue(AutoCompleteServiceProperty); }
@@ -311,6 +333,9 @@ namespace WinRTXamlToolkit.Controls
 
         private bool isLoaded = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoCompleteTextBox"/> class.
+        /// </summary>
         public AutoCompleteTextBox()
         {
             this.DefaultStyleKey = typeof(AutoCompleteTextBox);
@@ -332,6 +357,9 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override void OnApplyTemplate()
         {
             this.UnsubscribeEvents();
@@ -345,12 +373,20 @@ namespace WinRTXamlToolkit.Controls
             this.SubscribeEvents();
         }
 
+        /// <summary>
+        /// Called before the PointerEntered event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerEntered(PointerRoutedEventArgs e)
         {
             base.OnPointerEntered(e);
             this.UpdateState(VisualControlState.PointerOver);
         }
 
+        /// <summary>
+        /// Called before the PointerExited event occurs.
+        /// </summary>
+        /// <param name="e">Event data for the event.</param>
         protected override void OnPointerExited(PointerRoutedEventArgs e)
         {
             base.OnPointerExited(e);
@@ -553,6 +589,10 @@ namespace WinRTXamlToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Tries to open auto-completion suggestions.
+        /// </summary>
+        /// <param name="textToComplete">The text to complete.</param>
         public void TryOpenAutoComplete(string textToComplete)
         {
             var autoCompletableService = AutoCompleteService as IAutoCompletable;
@@ -586,6 +626,9 @@ namespace WinRTXamlToolkit.Controls
             this.SetBorderThickness();
         }
 
+        /// <summary>
+        /// Hides the auto-complete suggestions.
+        /// </summary>
         public void HideAutoCompleteSuggestions()
         {
             this.autoCompletePresenter.IsOpen = false;

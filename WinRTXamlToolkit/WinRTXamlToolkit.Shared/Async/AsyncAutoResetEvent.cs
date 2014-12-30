@@ -13,7 +13,7 @@ namespace WinRTXamlToolkit.Async
         private bool _signaled;
 
         /// <summary>
-        /// Initializes a new instance of the AsyncAutoResetEvent class,
+        /// Initializes a new instance of the <see cref="AsyncAutoResetEvent"/> class,
         /// specifying whether the wait handle is initially signaled.
         /// </summary>
         /// <param name="initialState">true to set the initial state to signaled; false to set it to nonsignaled.</param>

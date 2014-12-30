@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -10,6 +6,9 @@ using WinRTXamlToolkit.AwaitableUI;
 
 namespace WinRTXamlToolkit.Controls.Extensions
 {
+    /// <summary>
+    /// Page extensions. Allows to specify Page's top and bottom app bars by setting them on its descendant.
+    /// </summary>
     public static class PageExtensions
     {
         #region BottomAppBar

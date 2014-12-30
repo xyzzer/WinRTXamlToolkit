@@ -13,7 +13,9 @@ namespace WinRTXamlToolkit.Sample.Views
         public FxContentControlTestView()
         {
             this.InitializeComponent();
+#pragma warning disable 4014
             this.RunAsync();
+#pragma warning restore 4014
         }
 
         private async Task RunAsync()
@@ -39,7 +41,7 @@ namespace WinRTXamlToolkit.Sample.Views
                     this.Gauge2.Value = value;
                     var sw = new Stopwatch();
                     sw.Start();
-                    await this.Gauge2FxContentControl.UpdateFx();
+                    await this.Gauge2FxContentControl.UpdateFxAsync();
                     sw.Stop();
                     this.InfoTextBlock.Text = string.Format("{0}ms per frame", sw.ElapsedMilliseconds);
                 } while (progress < 1);

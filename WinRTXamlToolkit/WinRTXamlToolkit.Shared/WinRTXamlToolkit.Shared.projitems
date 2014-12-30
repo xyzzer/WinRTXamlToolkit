@@ -33,6 +33,7 @@
       <DependentUpon>AnimatingContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\CommonSubstringSuggestion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\AutoCompletable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\IAutoCompletable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\DamerauLevenshteinDistance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AutoCompleteTextBox\Algorithm\PrefixSuggestion.cs" />

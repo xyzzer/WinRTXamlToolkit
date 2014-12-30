@@ -6,10 +6,12 @@ namespace WinRTXamlToolkit.Controls
 {
     public sealed partial class AutoCompleteTextBox
     {
-        public class DamerauLevenshteinDistance : IAutoCompletable
+        /// <summary>
+        /// Algorithm implementation for AutoCompleteTextBox that scores suggestions from the dictionary
+        /// based on the Damerau-Levenshtein distance.
+        /// </summary>
+        public class DamerauLevenshteinDistance : AutoCompletable
         {
-            private readonly int maximumSuggestionCount = 25;
-
             private ScoredString CalculateDistance(string first, string second)
             {
                 int replaceCost = 0;
@@ -47,7 +49,13 @@ namespace WinRTXamlToolkit.Controls
                 return new ScoredString {Text = second, Score = subproblems[first.Length, second.Length]};
             }
 
-            public IList<string> GetSuggestedWords(string wordToSuggest, ICollection<string> suggestionDictionary)
+            /// <summary>
+            /// Gets a list of suggested word completions for the specified word, given a dictionary of words.
+            /// </summary>
+            /// <param name="wordToSuggest">Word/string to get suggestions for.</param>
+            /// <param name="suggestionDictionary">Dictionary of words to select suggestions from.</param>
+            /// <returns>A list of suggestions.</returns>
+            public override IList<string> GetSuggestedWords(string wordToSuggest, ICollection<string> suggestionDictionary)
             {
                 var scoredSuggestions =
                     suggestionDictionary.Select(suggestion => CalculateDistance(wordToSuggest, suggestion));
@@ -61,7 +69,7 @@ namespace WinRTXamlToolkit.Controls
                             scoredString.Score < wordToSuggest.Length &&
                             Math.Abs(maximalScore - scoredString.Score) <= 1)
                         .OrderBy(scoredString => scoredString.Score, scoreComparer)
-                        .Take(maximumSuggestionCount)
+                        .Take(this.MaximumSuggestionCount)
                         .Select(scoredString => scoredString.Text)
                         .ToList();
             }

@@ -4,20 +4,32 @@ using System.Linq;
 
 namespace WinRTXamlToolkit.Input
 {
+    /// <summary>
+    /// Specifies a key gesture or an ordered sequence of key combinations.
+    /// </summary>
     public class KeyGesture : List<KeyCombination>
     {
-        private enum ParserStates
-        {
-            Key,
-            Combine,
-            Separator
-        }
-
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Join(",", this.Select(c => c.ToString()));
         }
 
+        /// <summary>
+        /// Parses the specified key gesture string.
+        /// </summary>
+        /// <param name="keyGestureString">The key gesture string.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">keyGestureString;Key gesture string not specified</exception>
+        /// <exception cref="System.FormatException">
+        /// Key gesture string empty
+        /// or could not be recognized.
+        /// </exception>
         public static KeyGesture Parse(string keyGestureString)
         {
             if (keyGestureString == null)

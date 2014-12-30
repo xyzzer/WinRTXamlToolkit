@@ -14,8 +14,7 @@ using WinRTXamlToolkit.Controls.Extensions.Forms;
 namespace WinRTXamlToolkit.Controls
 {
     /// <summary>
-    /// A Button control templated to use images for its states.
-    /// Provides ImageSource properties for each of the button's states as well as mechanisms for generating missing images.
+    /// A control used for visualizing focus changes with an animated rectangle that moves from focused element to focused element.
     /// </summary>
     [TemplatePart(Name = LayoutGridName, Type = typeof(Grid))]
     public class FocusVisualizer : Control
@@ -34,6 +33,9 @@ namespace WinRTXamlToolkit.Controls
         private bool _isLoaded;
         private UIElement _focusedElement;
 
+        /// <summary>
+        /// The <see cref="FocusTracker"/> instance used by this FocusVisualizer control.
+        /// </summary>
         public FocusTracker FocusTracker { get; private set; }
 
         /// <summary>

@@ -69,7 +69,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 // Save current value
                 object currentValue = target.GetValue(animatingDependencyProperty);
                 storyBoard.Stop();
-                // Restore that value so it doesn't snap back to its starting value
+                // RestoreAsync that value so it doesn't snap back to its starting value
                 target.SetValue(animatingDependencyProperty, currentValue);
                 target.Resources.Remove(GetStoryboardKey(propertyPath));
             }

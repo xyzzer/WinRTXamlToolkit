@@ -150,6 +150,10 @@ namespace WinRTXamlToolkit.Controls
         #endregion
 
         #region GetContainerForItemOverride()
+        /// <summary>
+        /// Gets the container for item override.
+        /// </summary>
+        /// <returns></returns>
         protected override DependencyObject GetContainerForItemOverride()
         {
             // as far as I know there is no way to change Container in .xaml 
@@ -174,6 +178,10 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        /// <summary>
+        /// Gets the item height.
+        /// </summary>
+        /// <returns></returns>
         public double GetItemHeight()
         {
             return this.ItemHeight;

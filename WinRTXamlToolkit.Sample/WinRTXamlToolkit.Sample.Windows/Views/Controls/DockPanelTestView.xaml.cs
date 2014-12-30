@@ -20,15 +20,17 @@ namespace WinRTXamlToolkit.Sample.Views
         public DockPanelTestView()
         {
             this.InitializeComponent();
-            this.RandomizeChildren();
+#pragma warning disable 4014
+            this.RandomizeChildrenAsync();
+#pragma warning restore 4014
         }
 
-        private void RandomizeChildrenButton_OnClick(object sender, RoutedEventArgs e)
+        private async void RandomizeChildrenButton_OnClick(object sender, RoutedEventArgs e)
         {
-            this.RandomizeChildren();
+            await this.RandomizeChildrenAsync();
         }
 
-        private async Task RandomizeChildren()
+        private async Task RandomizeChildrenAsync()
         {
             this.dockPanel.Children.Clear();
             await this.dockPanel.WaitForNonZeroSizeAsync();

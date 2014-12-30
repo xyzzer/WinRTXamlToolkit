@@ -4,6 +4,10 @@ using Windows.UI.Xaml.Media;
 
 namespace WinRTXamlToolkit.Controls
 {
+    /// <summary>
+    /// ListBoxItem implementation for use in SimpleThemingListBox.
+    /// Provides properties to set brushes for hover states.
+    /// </summary>
     public class SimpleThemingListBoxItem : ListBoxItem
     {
         #region PointerOverItemBackgroundBrush
@@ -68,6 +72,9 @@ namespace WinRTXamlToolkit.Controls
         /// </value>
         protected Brush OriginalForegroundBrush { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleThemingListBoxItem"/> class.
+        /// </summary>
         public SimpleThemingListBoxItem()
         {
             this.Loaded += this.OnLoaded;

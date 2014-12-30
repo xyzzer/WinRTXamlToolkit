@@ -69,7 +69,7 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public CountdownControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         /// <summary>

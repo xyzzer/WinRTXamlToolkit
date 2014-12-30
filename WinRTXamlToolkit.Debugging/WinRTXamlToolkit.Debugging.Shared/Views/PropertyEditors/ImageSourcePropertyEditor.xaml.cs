@@ -88,7 +88,9 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
                 fop.FileTypeFilter.Add(".jpg");
                 fop.FileTypeFilter.Add(".png");
                 fop.FileTypeFilter.Add(".gif");
+#pragma warning disable 618
                 var file = await fop.PickSingleFileAsync();
+#pragma warning restore 618
 
                 if (file != null)
                 {

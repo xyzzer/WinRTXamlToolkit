@@ -39,7 +39,7 @@ namespace WinRTXamlToolkit.Sample
             this.Suspending += this.OnSuspending;
         }
 
-        protected override async void OnFileActivated(FileActivatedEventArgs e)
+        protected override void OnFileActivated(FileActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -61,7 +61,9 @@ namespace WinRTXamlToolkit.Sample
             }
             else
             {
-                appShell.HandleFileActivation(e);
+#pragma warning disable 4014
+                appShell.HandleFileActivationAsync(e);
+#pragma warning restore 4014
             }
             
             Window.Current.Activate();

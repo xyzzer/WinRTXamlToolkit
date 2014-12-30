@@ -18,6 +18,10 @@ namespace WinRTXamlToolkit.Tools
         private Func<Task> next;
         private bool isRunning;
 
+        /// <summary>
+        /// Runs the specified async action through the throttle.
+        /// </summary>
+        /// <param name="action">The async action.</param>
         public void Run(Func<Task> action)
         {
             bool shouldStartRunning = false;

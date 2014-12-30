@@ -6,15 +6,36 @@ using WinRTXamlToolkit.Imaging;
 
 namespace WinRTXamlToolkit.Controls.Fx
 {
+    /// <summary>
+    /// Implements alpha-smoothed expansion effect using CPU.
+    /// The effect expands opaque and semi-transparent pixels of a bitmap using the source alpha values
+    /// for smoothing and the key color for hue.
+    /// It makes sense for providing an outline for text overlaid on top of an unknown background (photo/video).
+    /// </summary>
     public class AlphaExpandShaderEffect : CpuShaderEffect
     {
+        /// <summary>
+        /// Color that specifies the hue of the expanded pixels.
+        /// The alpha value is ignored.
+        /// </summary>
         public Color Color { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlphaExpandShaderEffect"/> class,
+        /// </summary>
         public AlphaExpandShaderEffect()
         {
             this.Color = Colors.Red;
         }
 
+        /// <summary>
+        /// Processes the RenderTargetBitmap and outputs the result to the output WriteableBitmap.
+        /// </summary>
+        /// <param name="rtb">The RenderTargetBitmap that typically includes a screen grab of the portion of UI.</param>
+        /// <param name="wb">The WriteableBitmap that the effect output is written to.</param>
+        /// <param name="pw">The pixel width of both bitmaps.</param>
+        /// <param name="ph">The pixel height of both bitmaps.</param>
+        /// <returns>A task that completes when the processing is complete.</returns>
         public override async Task ProcessBitmap(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
             var rtbBuffer = await rtb.GetPixelsAsync();
@@ -26,7 +47,7 @@ namespace WinRTXamlToolkit.Controls.Fx
             var b = this.Color.B;
 
             // Expand
-            int expansion = 1;
+            const int expansion = 1;
 
             for (int x = 0; x < pw; x++)
                 for (int y = 0; y < ph; y++)

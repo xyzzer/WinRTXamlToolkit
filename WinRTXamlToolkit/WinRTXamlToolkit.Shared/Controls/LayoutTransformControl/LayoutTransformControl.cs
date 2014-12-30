@@ -220,7 +220,7 @@ namespace WinRTXamlToolkit.Controls
             _layoutRoot = GetTemplateChild("LayoutRoot") as Panel;
             _matrixTransform = GetTemplateChild("MatrixTransform") as MatrixTransform;
 
-            // Restore saved content
+            // RestoreAsync saved content
             Child = savedContent;
 
             // Apply the current transform

@@ -99,12 +99,12 @@ namespace WinRTXamlToolkit.Debugging.Views
 
         internal void Collapse()
         {
-            this.Window.SnapToEdge();
+            this.Window.SnapToEdgeAsync();
         }
 
         internal void Expand()
         {
-            this.Window.Restore();
+            this.Window.RestoreAsync();
         }
 
         private void Window_OnClosing(object sender, CancelEventArgs e)

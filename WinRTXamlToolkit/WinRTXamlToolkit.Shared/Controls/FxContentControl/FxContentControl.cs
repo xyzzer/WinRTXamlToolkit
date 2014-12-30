@@ -71,13 +71,13 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="oldBackgroundFx">The old BackgroundFx value</param>
         /// <param name="newBackgroundFx">The new BackgroundFx value</param>
-        private void OnBackgroundFxChanged(
+        private async void OnBackgroundFxChanged(
             CpuShaderEffect oldBackgroundFx, CpuShaderEffect newBackgroundFx)
         {
             if (_renderedGrid != null &&
                 _renderedGrid.ActualHeight > 0)
             {
-                this.UpdateFx();
+                await this.UpdateFxAsync();
             }
         }
         #endregion
@@ -133,22 +133,28 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="oldForegroundFx">The old ForegroundFx value</param>
         /// <param name="newForegroundFx">The new ForegroundFx value</param>
-        private void OnForegroundFxChanged(
+        private async void OnForegroundFxChanged(
             CpuShaderEffect oldForegroundFx, CpuShaderEffect newForegroundFx)
         {
             if (_renderedGrid != null &&
                 _renderedGrid.ActualHeight > 0)
             {
-                this.UpdateFx();
+                await this.UpdateFxAsync();
             }
         }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FxContentControl"/> class,
+        /// </summary>
         public FxContentControl()
         {
             this.DefaultStyleKey = typeof(FxContentControl);
         }
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate. In simplest terms, this means the method is called just before a UI element displays in your app. Override this method to influence the default post-template logic of a class.
+        /// </summary>
         protected override async void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -164,16 +170,20 @@ namespace WinRTXamlToolkit.Controls
 
             if (_renderedGrid.ActualHeight > 0)
             {
-                await this.UpdateFx();
+                await this.UpdateFxAsync();
             }
         }
 
         private async void OnContentPresenterSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            await this.UpdateFx();
+            await this.UpdateFxAsync();
         }
 
-        public async Task UpdateFx()
+        /// <summary>
+        /// Updates the effects asynchronously.
+        /// </summary>
+        /// <returns>A task that completes once the effects have been applied.</returns>
+        public async Task UpdateFxAsync()
         {
             if (_renderedGrid.ActualHeight < 2 ||
                 _renderedGrid.ActualWidth < 2 ||

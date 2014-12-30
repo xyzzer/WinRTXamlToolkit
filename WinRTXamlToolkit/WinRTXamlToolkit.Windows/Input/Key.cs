@@ -42,6 +42,12 @@ namespace WinRTXamlToolkit.Input
             KeyMap.Add("\"", (VirtualKey)0xDE);
         }
 
+        /// <summary>
+        /// Parses a key from its name.
+        /// </summary>
+        /// <param name="keyName">Name of the key.</param>
+        /// <returns>A VirtualKey value on success. Throws <see cref="FormatException"/> otherwise.</returns>
+        /// <exception cref="System.FormatException"></exception>
         public static VirtualKey Parse(string keyName)
         {
             VirtualKey key;

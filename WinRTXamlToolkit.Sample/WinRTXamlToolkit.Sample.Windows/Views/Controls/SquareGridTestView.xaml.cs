@@ -41,6 +41,7 @@ namespace WinRTXamlToolkit.Sample.Views
                 Add();
             }
 
+#pragma warning disable 4014
             this.Dispatcher.RunAsync(
                 CoreDispatcherPriority.Normal,
                 async () =>
@@ -50,26 +51,29 @@ namespace WinRTXamlToolkit.Sample.Views
                         await Task.Delay(2);
 
                         if (!isAuto)
+                        {
                             continue;
+                        }
 
                         if (isUp)
                         {
-                            Add();
+                            this.Add();
                         }
                         else
                         {
-                            Remove();
+                            this.Remove();
                         }
                     }
                 })
             ;
+#pragma warning restore 4014
             CoreWindow.GetForCurrentThread().KeyDown += OnKeyDown;
             this.Unloaded += OnUnloaded;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            isAlive = false;
+            this.isAlive = false;
             CoreWindow.GetForCurrentThread().KeyDown -= OnKeyDown;
         }
 
@@ -77,13 +81,13 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             if (args.VirtualKey == VirtualKey.Up)
             {
-                isAuto = false;
-                Add();
+                this.isAuto = false;
+                this.Add();
             }
             if (args.VirtualKey == VirtualKey.Down)
             {
-                isAuto = false;
-                Remove();
+                this.isAuto = false;
+                this.Remove();
             }
         }
 

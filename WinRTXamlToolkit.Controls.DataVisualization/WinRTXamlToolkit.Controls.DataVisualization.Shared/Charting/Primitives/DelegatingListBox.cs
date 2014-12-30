@@ -99,7 +99,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
                 //Debug.WriteLine("C: {0:20}: {1}", element.GetHashCode(), item.GetHashCode());
                 base.ClearContainerForItemOverride(element, item);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // No clue why it would throw. ClearContainerForItemOverride is supposed to undo the effects of PrepareContainerForItemOverride and both are run in the correct order.
                 //Debug.WriteLine(ex.ToString());

@@ -37,7 +37,7 @@ namespace WinRTXamlToolkit.Sample
             this.Suspending += this.OnSuspending;
         }
 
-        protected override async void OnFileActivated(FileActivatedEventArgs e)
+        protected override void OnFileActivated(FileActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)

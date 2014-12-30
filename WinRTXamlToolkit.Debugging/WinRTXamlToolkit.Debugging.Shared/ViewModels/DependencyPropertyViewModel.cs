@@ -142,7 +142,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == Selector.SelectedValuePathProperty ||
                     _dependencyProperty == ListBox.SelectionModeProperty ||
                     _dependencyProperty == ListViewBase.CanDragItemsProperty ||
-                    _dependencyProperty == ListViewBase.CanReorderItemsProperty ||
+                    //_dependencyProperty == ListViewBase.CanReorderItemsProperty || // deprecated
                     _dependencyProperty == ListViewBase.IsItemClickEnabledProperty ||
                     _dependencyProperty == ListViewBase.IsSwipeEnabledProperty ||
                     _dependencyProperty == RichEditBox.AcceptsReturnProperty ||

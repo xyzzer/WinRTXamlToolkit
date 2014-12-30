@@ -30,10 +30,12 @@ namespace WinRTXamlToolkit.Sample
             this.InitializeComponent();
             Frame = this.RootFrame;
             Frame.Navigate(typeof(MainPage), e);
-            HandleFileActivation(e);
+#pragma warning disable 4014
+            this.HandleFileActivationAsync(e);
+#pragma warning restore 4014
         }
 
-        public async Task HandleFileActivation(FileActivatedEventArgs e)
+        internal async Task HandleFileActivationAsync(FileActivatedEventArgs e)
         {
             foreach (StorageFile file in e.Files.OfType<StorageFile>())
             {

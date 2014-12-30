@@ -91,20 +91,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             this.FocusEvents = new ObservableCollection<FocusEvent>();
             //DebugConsoleViewModel.Instance.ToolWindows.Add(this);
-            AddFocusEvent(FocusManager.GetFocusedElement() as UIElement);
+#pragma warning disable 4014
+            this.AddFocusEventAsync(FocusManager.GetFocusedElement() as UIElement);
+#pragma warning restore 4014
         }
 
-        private void OnFocusChanged(object sender, UIElement e)
+        private async void OnFocusChanged(object sender, UIElement e)
         {
             if (!ignoreFocusChange &&
                 !(e is DebugConsoleView) &&
                 !(e.GetAncestorsOfType<DebugConsoleView>().Any()))
             {
-                AddFocusEvent(e);
+                await this.AddFocusEventAsync(e);
             }
         }
 
-        private async Task AddFocusEvent(UIElement uiElement)
+        private async Task AddFocusEventAsync(UIElement uiElement)
         {
             await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
             var fe = new FocusEvent(DebugConsoleViewModel.Instance.VisualTreeView.SelectedItem);

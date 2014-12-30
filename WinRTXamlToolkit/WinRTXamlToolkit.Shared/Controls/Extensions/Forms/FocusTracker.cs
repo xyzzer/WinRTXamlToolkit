@@ -1,10 +1,15 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
 namespace WinRTXamlToolkit.Controls.Extensions.Forms
 {
+    /// <summary>
+    /// Provides a FocusChanged event that fires whenever an element loses focus.
+    /// Some polling is used for robustness which means the event might fire with a delay or
+    /// that some rapid focus changes might be missed due to some early failurs coming from relying solely
+    /// on the UIElement.LostFocus event.
+    /// </summary>
     public class FocusTracker
     {
         private UIElement focusedElement;
@@ -62,24 +67,37 @@ namespace WinRTXamlToolkit.Controls.Extensions.Forms
         #endregion
 
         #region CTOR
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FocusTracker"/> class,
+        /// </summary>
         public FocusTracker()
         {
             FocusPollingInterval = DefaultFocusPollingInterval;
 
 #pragma warning disable 4014
-            RunFocusTrackingAsync();
+            StartFocusTracking();
 #pragma warning restore 4014
         }
         #endregion
 
-        #region RunFocusTrackingAsync()
-        private async Task RunFocusTrackingAsync()
+        #region StartFocusTracking()
+        private void StartFocusTracking()
         {
             this.UpdateFocusedElement();
             this.timer = new DispatcherTimer();
             this.timer.Interval = TimeSpan.FromMilliseconds(FocusPollingInterval);
             this.timer.Tick += this.OnTick;
             this.timer.Start();
+        }
+        #endregion
+
+        #region StopFocusTracking()
+        private void StopFocusTracking()
+        {
+            if (this.timer != null)
+            {
+                this.timer.Stop();
+            }
         }
         #endregion
 

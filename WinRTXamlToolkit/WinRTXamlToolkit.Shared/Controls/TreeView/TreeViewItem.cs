@@ -1099,7 +1099,7 @@ namespace WinRTXamlToolkit.Controls
                     // Select the item when it's focused
                     Select(true);
 
-                    // Activate the selection
+                    // ActivateAsync the selection
                     IsSelectionActive = true;
                     UpdateVisualState(true);
 
@@ -1143,7 +1143,7 @@ namespace WinRTXamlToolkit.Controls
         {
             CancelGotFocusBubble = true;
 
-            // Activate the selection
+            // ActivateAsync the selection
             IsSelectionActive = true;
             UpdateVisualState(true);
         }
