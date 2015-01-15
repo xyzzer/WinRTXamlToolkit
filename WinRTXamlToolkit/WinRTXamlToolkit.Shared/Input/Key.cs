@@ -17,6 +17,7 @@ namespace WinRTXamlToolkit.Input
         {
             KeyMap = new Dictionary<string, VirtualKey>();
             EnumExtensions.GetValues<VirtualKey>().Where(vk => !KeyMap.ContainsKey(vk.ToString().ToLower())).ForEach(vk => KeyMap.Add(vk.ToString().ToLower(), vk));
+            KeyMap.Add("alt", VirtualKey.Menu);
             KeyMap.Add("ctrl", VirtualKey.Control);
             KeyMap.Add(" ", VirtualKey.Space);
             KeyMap.Add("+", VirtualKey.Add);

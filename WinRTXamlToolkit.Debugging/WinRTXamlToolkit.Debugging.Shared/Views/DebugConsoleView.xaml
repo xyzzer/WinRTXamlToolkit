@@ -94,6 +94,7 @@
         </Grid>
         <ItemsControl
             x:Name="Windows"
+            IsTabStop="False"
             ItemsSource="{Binding ToolWindows}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

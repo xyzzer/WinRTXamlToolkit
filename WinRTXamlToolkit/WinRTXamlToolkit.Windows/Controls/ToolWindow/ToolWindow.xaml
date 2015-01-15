@@ -13,7 +13,7 @@
                 Color="#FFFFFFFF" />
             <SolidColorBrush
                 x:Key="WindowBackgroundThemeBrush"
-                Color="#FF222222" />
+                Color="#FF2C2C2C" />
             <SolidColorBrush
                 x:Key="WindowBorderThemeBrush"
                 Color="#FF444444" />
@@ -28,7 +28,7 @@
                 Color="#FF444444" />
             <SolidColorBrush
                 x:Key="WindowBackgroundThemeBrush"
-                Color="#FFDDDDDD" />
+                Color="#FFD3D3D3" />
             <SolidColorBrush
                 x:Key="WindowBorderThemeBrush"
                 Color="#FFBBBBBB" />
@@ -52,6 +52,12 @@
     <Style
         x:Key="ToolWindowTitleButtonStyle"
         TargetType="Button">
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="Background"
+            Value="{ThemeResource WindowTitleBarThemeBrush}" />
         <Setter
             Property="BorderThickness"
             Value="0" />
@@ -79,6 +85,9 @@
     </Style>
     <Style
         TargetType="controls:ToolWindow">
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
         <Setter
             Property="HorizontalAlignment"
             Value="Left" />
@@ -213,6 +222,7 @@
                                         </Grid.ColumnDefinitions>
                                         <ContentControl
                                             Height="32"
+                                            IsTabStop="False"
                                             UseLayoutRounding="False"
                                             ContentTemplate="{TemplateBinding TitleTemplate}"
                                             Content="{TemplateBinding Title}"

@@ -32,6 +32,8 @@
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml" />
         <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ToolStrip/ToolStrip.xaml" />
+        <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml" />
         <ResourceDictionary
             Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeView.xaml" />

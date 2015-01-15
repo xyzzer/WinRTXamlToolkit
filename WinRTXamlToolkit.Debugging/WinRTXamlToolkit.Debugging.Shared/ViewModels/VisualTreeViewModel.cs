@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using WinRTXamlToolkit.Controls.Extensions;
 using Windows.Foundation;
@@ -288,20 +289,56 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region SelectElementUnderPointer()
         internal async Task SelectElementUnderPointer(bool showDebugger = true)
         {
-            var roots = VisualTreeHelper.GetOpenPopups(Window.Current).Select(p => p.Child).Reverse().ToList();
+            var roots =
+                VisualTreeHelper.GetOpenPopups(Window.Current)
+                    .Where(p => p.Child != null)
+                    .Select(p => p.Child)
+                    .Reverse()
+                    .ToList();
             roots.Add(VisualTreeHelperExtensions.GetRealWindowRoot());
+
+            UIElement hoveredElement = null;
 
             foreach (var root in roots)
             {
-                var hoveredElement = VisualTreeHelper.FindElementsInHostCoordinates(
+                var hoveredElements = VisualTreeHelper.FindElementsInHostCoordinates(
                     _pointerPosition,
-                    root).FirstOrDefault();
+                    root);
 
-                if (hoveredElement != null)
+                var hoveredElementCandidate = hoveredElements.FirstOrDefault();
+
+                if (hoveredElementCandidate != null)
                 {
-                    await SelectItem(hoveredElement, true);
+                    if (hoveredElement == null)
+                    {
+                        hoveredElement = hoveredElementCandidate;
+                    }
+
+                    // If multiple popups are overlaid and possibly also overlay a non-popup
+                    // - how to select the right root?
+                    // Consider if the selected element is actually hoverable -
+                    //   popups might have a canvas that will show as being in host coordinates
+                    //   even though it's not necessarily hit test visible.
+
+                    var control = hoveredElementCandidate as Control;
+                    var panel = hoveredElementCandidate as Panel;
+
+                    if (control != null &&
+                        control.Background == null ||
+                        panel != null &&
+                        panel.Background == null)
+                    {
+                        continue;
+                    }
+
+                    hoveredElement = hoveredElementCandidate;
                     break;
                 }
+            }
+
+            if (hoveredElement != null)
+            {
+                await SelectItem(hoveredElement, true);
             }
 
             if (showDebugger)
@@ -350,8 +387,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         popup.IsExpanded = true;
                     }
 
-                    vm = popup.Children[0] as DependencyObjectViewModel;
-                    ancestorIndex = ancestors.IndexOf(vm.Model);
+                    if (popup.Children.Count > 0)
+                    {
+                        vm = popup.Children[0] as DependencyObjectViewModel;
+                        ancestorIndex = ancestors.IndexOf(vm.Model);
+                    }
                 }
 
                 if (ancestorIndex < 0)

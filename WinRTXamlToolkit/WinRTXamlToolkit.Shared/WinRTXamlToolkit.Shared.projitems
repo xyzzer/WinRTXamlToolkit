@@ -117,6 +117,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PieSlice\PieSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RingSlice\RingSlice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SquareGrid\SquareGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolStrip\ToolBarButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolStrip\ToolBarToggleButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolStrip\ToolStrip.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolWindow\ToolWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TreeView\TreeViewAutomationPeer.cs" />
@@ -143,6 +146,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapLightenExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapLoadExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\WriteableBitmapSaveExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\Key.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\Keyboard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\KeyCombination.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\KeyCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\KeyCommandCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\KeyGesture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\KeyGestureRecognizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\Behavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\BehaviorCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\BehaviorOfT.cs" />
@@ -268,6 +278,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\ListItemButton\ListItemButton.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ToolStrip\ToolStrip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

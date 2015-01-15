@@ -100,36 +100,27 @@
                 VerticalScrollMode="Disabled"
                 VerticalScrollBarVisibility="Hidden"
                 ZoomMode="Disabled">-->
-            <StackPanel
-                Orientation="Horizontal"
-                Margin="10,0,0,0">
-                <Button
+            <controls:ToolStrip>
+                <controls:ToolBarButton
                     x:Name="RefreshButton"
                     Content="Refresh"
-                    Click="OnRefreshButtonClick"
-                    Style="{StaticResource WrtxtdTextButtonStyle}"
-                    Margin="0,0,20,0" />
-                <Button
+                    Click="OnRefreshButtonClick" />
+                <controls:ToolBarButton
                     x:Name="SelectFocusedButton"
                     Content="Select Focused"
                     Click="OnSelectFocusedClick"
-                    IsTabStop="False"
-                    Style="{StaticResource WrtxtdTextButtonStyle}"
-                    Margin="0,0,20,0" />
-                <Button
+                    IsTabStop="False" />
+                <controls:ToolBarButton
                     x:Name="FocusSelectedButton"
                     Content="Focused Selected"
                     Click="OnFocusSelectedClick"
-                    IsTabStop="False"
-                    Style="{StaticResource WrtxtdTextButtonStyle}"
-                    Margin="0,0,20,0"  />
-                <Button
+                    IsTabStop="False" />
+                <controls:ToolBarButton
                     x:Name="FocusTrackerButton"
                     Content="Track Focus"
                     Click="OnFocusTrackerButtonClick"
-                    IsTabStop="False"
-                    Style="{StaticResource WrtxtdTextButtonStyle}" />
-            </StackPanel>
+                    IsTabStop="False" />
+            </controls:ToolStrip>
             <!--</ScrollViewer>-->
             <TextBlock
                 Text="Hover with Ctrl+Shift to select element."

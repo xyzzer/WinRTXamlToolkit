@@ -269,14 +269,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 return false;
             }
 
-            //TODO: consider making it work with Popups too.
             if (Window.Current == null)
             {
                 // This may happen when a picker or CameraCaptureUI etc. is open.
                 return false;
             }
 
-            return Window.Current.Content != null && dob.GetAncestors().Contains(Window.Current.Content);
+            var root = GetRealWindowRoot();
+
+            return
+                root != null && dob.GetAncestors().Contains(root) ||
+                VisualTreeHelper.GetOpenPopups(Window.Current)
+                    .Any(popup => popup.Child != null && dob.GetAncestors().Contains(popup.Child));
         }
 
         /// <summary>

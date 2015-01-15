@@ -122,12 +122,6 @@
     <Compile Include="Controls\CustomAppBar\CustomAppBar.cs" />
     <Compile Include="Controls\Extensions\AppBarExtensions.cs" />
     <Compile Include="Device\DeviceHelper.cs" />
-    <Compile Include="Input\Key.cs" />
-    <Compile Include="Input\Keyboard.cs" />
-    <Compile Include="Input\KeyCombination.cs" />
-    <Compile Include="Input\KeyCommand.cs" />
-    <Compile Include="Input\KeyCommandCollection.cs" />
-    <Compile Include="Input\KeyGesture.cs" />
     <Compile Include="Licensing\LicenseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\WebBrowser\WebBrowser.cs" />

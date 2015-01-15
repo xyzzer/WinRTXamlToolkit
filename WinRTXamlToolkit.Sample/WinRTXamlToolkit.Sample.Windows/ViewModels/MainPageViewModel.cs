@@ -307,6 +307,12 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 ),
                 new SampleButtonViewModel
                 (
+                    "ToolStrip",
+                    typeof(ToolStripTestView),
+                    SampleTypes.Controls
+                ),
+                new SampleButtonViewModel
+                (
                     "ToolWindow",
                     typeof(ToolWindowTestView),
                     SampleTypes.Controls

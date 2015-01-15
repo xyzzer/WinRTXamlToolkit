@@ -39,11 +39,11 @@ namespace WinRTXamlToolkit.Sample
             InitializeNavigationHelper();
 
             // Uncomment to show visual tree debugger on phone
-            //this.Loaded += (s, e2) =>
-            //{
-            //    DC.ShowVisualTree();
-            //    DC.Collapse();
-            //};
+            this.Loaded += (s, e2) =>
+            {
+                DC.ShowVisualTree();
+                DC.Collapse();
+            };
         }
         
         public AppShell(FileActivatedEventArgs e)
