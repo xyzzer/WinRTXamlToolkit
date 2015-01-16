@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Search;
+using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Debugging;
+using WinRTXamlToolkit.Sample.ViewModels;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -41,6 +45,23 @@ namespace WinRTXamlToolkit.Sample.Views
         private void OnExitButtonClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void ButtonsGridView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var vm = e.ClickedItem as ButtonViewModel;
+            vm.Command.Execute(null);
+        }
+
+        private void ButtonsGridView_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            var gvi = e.OriginalSource as GridViewItem;
+            if (gvi != null &&
+                e.Key == VirtualKey.Space)
+            {
+                var vm = gvi.Content as ButtonViewModel;
+                vm.Command.Execute(null);
+            }
         }
     }
 }

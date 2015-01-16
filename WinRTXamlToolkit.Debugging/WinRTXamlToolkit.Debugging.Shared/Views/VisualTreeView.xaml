@@ -14,10 +14,28 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
-                    Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml" />
-                <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary
+                    x:Key="Default">
+                    <SolidColorBrush
+                        x:Key="ToolStripBackground"
+                        Color="#FF2C2C2C" />
+                    <SolidColorBrush
+                        x:Key="ToolBarButtonBackground"
+                        Color="#FF444444" />
+                </ResourceDictionary>
+                <ResourceDictionary
+                    x:Key="Light">
+                    <SolidColorBrush
+                        x:Key="ToolStripBackground"
+                        Color="#FFD3D3D3" />
+                    <SolidColorBrush
+                        x:Key="ToolBarButtonBackground"
+                        Color="#FFBBBBBB" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <DataTemplate
                 x:Key="DependencyPropertyDetailsTemplate">
                 <local:DependencyObjectDetailsView />
@@ -37,7 +55,8 @@
                 DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        Background="{ThemeResource ToolBarButtonBackground}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition
@@ -52,7 +71,6 @@
         <controls:TreeView
             x:Name="treeView"
             ItemsSource="{Binding RootElements}"
-            Style="{StaticResource MouseTreeViewStyle}"
             IsSelectedBindingPath="IsSelected"
             IsExpandedBindingPath="IsExpanded">
             <controls:TreeView.ItemTemplate>
@@ -94,13 +112,8 @@
             ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
         <StackPanel
             Grid.Row="1">
-            <!--<ScrollViewer
-                HorizontalScrollMode="Auto"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollMode="Disabled"
-                VerticalScrollBarVisibility="Hidden"
-                ZoomMode="Disabled">-->
-            <controls:ToolStrip>
+            <controls:ToolStrip
+                Background="{ThemeResource ToolBarButtonBackground}">
                 <controls:ToolBarButton
                     x:Name="RefreshButton"
                     Content="Refresh"
@@ -115,13 +128,12 @@
                     Content="Focused Selected"
                     Click="OnFocusSelectedClick"
                     IsTabStop="False" />
-                <controls:ToolBarButton
+                <controls:ToolBarToggleButton
                     x:Name="FocusTrackerButton"
                     Content="Track Focus"
                     Click="OnFocusTrackerButtonClick"
                     IsTabStop="False" />
             </controls:ToolStrip>
-            <!--</ScrollViewer>-->
             <TextBlock
                 Text="Hover with Ctrl+Shift to select element."
                 VerticalAlignment="Bottom" />

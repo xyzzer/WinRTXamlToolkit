@@ -11,7 +11,8 @@
     xmlns:common="using:WinRTXamlToolkit.Common"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    IsTabStop="False">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -19,7 +20,6 @@
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <converters:NullableBoolToBoolConverter
                 x:Key="NullableBoolToBoolConverter" />
         </ResourceDictionary>
@@ -35,10 +35,9 @@
                 MinWidth="200"
                 MinHeight="100"
                 Closing="Window_OnClosing"
-                Opacity="{Binding Opacity}">
-                <controls:ToolWindow.Title>
-                    WinRT XAML Toolkit Debug Console
-                </controls:ToolWindow.Title>
+                WindowStartupLocation="CenterOwner"
+                Opacity="{Binding Opacity}"
+                Title="WinRT XAML Toolkit Debug Console">
                 <Grid
                     x:Name="MainDebuggingGrid">
                     <Grid.RowDefinitions>

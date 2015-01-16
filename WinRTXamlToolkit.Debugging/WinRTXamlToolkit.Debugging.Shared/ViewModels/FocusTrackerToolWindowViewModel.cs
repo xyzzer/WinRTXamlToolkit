@@ -122,6 +122,27 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
 
             DebugConsoleViewModel.Instance.ToolWindows.Remove(this);
+            this.RaiseRemoved();
         }
+
+        #region Removed event
+        /// <summary>
+        /// Removed event property.
+        /// </summary>
+        public event EventHandler Removed;
+
+        /// <summary>
+        /// Raises Removed event.
+        /// </summary>
+        private void RaiseRemoved()
+        {
+            var handler = this.Removed;
+
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+        #endregion
     }
 }

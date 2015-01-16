@@ -12,7 +12,8 @@
     xmlns:wrtxtd="using:WinRTXamlToolkit.Debugging.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    IsTabStop="False">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -1,4 +1,7 @@
-﻿using WinRTXamlToolkit.Debugging.ViewModels;
+﻿using System;
+using System.Linq;
+using WinRTXamlToolkit.Controls;
+using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,6 +12,16 @@ namespace WinRTXamlToolkit.Debugging.Views
         public VisualTreeView()
         {
             this.InitializeComponent();
+#if WINDOWS_APP
+            var treeViewMouseResources =
+                new ResourceDictionary
+                {
+                    Source = new Uri("ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml")
+                };
+            this.Resources.MergedDictionaries.Add(treeViewMouseResources);
+            this.treeView.Style = (Style)treeViewMouseResources["MouseTreeViewStyle"];
+#endif
+
             this.DataContext = VisualTreeViewModel.Instance;
         }
 
@@ -45,8 +58,27 @@ namespace WinRTXamlToolkit.Debugging.Views
 
         private void OnFocusTrackerButtonClick(object sender, RoutedEventArgs e)
         {
-            var vm = new FocusTrackerToolWindowViewModel();
-            DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
+            this.FocusTrackerButton = (ToolBarToggleButton)sender;
+            var show = this.FocusTrackerButton.IsChecked.Value;
+
+            if (show)
+            {
+                var vm = new FocusTrackerToolWindowViewModel();
+                DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
+                vm.Removed += this.OnFocusTrackerRemoved;
+            }
+            else
+            {
+                var vm = DebugConsoleViewModel.Instance.ToolWindows.OfType<FocusTrackerToolWindowViewModel>().First();
+                vm.Remove();
+            }
+        }
+
+        private void OnFocusTrackerRemoved(object sender, EventArgs e)
+        {
+            var vm = (FocusTrackerToolWindowViewModel)sender;
+            vm.Removed -= this.OnFocusTrackerRemoved;
+            this.FocusTrackerButton.IsChecked = false;
         }
     }
 }

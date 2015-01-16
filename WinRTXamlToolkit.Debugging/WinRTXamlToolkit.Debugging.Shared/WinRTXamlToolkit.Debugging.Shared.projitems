@@ -96,7 +96,9 @@
       <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\PropertyTemplateSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml.cs">
+      <DependentUpon>VisualTreeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VisualTreeViewItemDetailsTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualTreeDebugger.cs" />
   </ItemGroup>
@@ -191,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\PropertyEditors\ThicknessPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VisualTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

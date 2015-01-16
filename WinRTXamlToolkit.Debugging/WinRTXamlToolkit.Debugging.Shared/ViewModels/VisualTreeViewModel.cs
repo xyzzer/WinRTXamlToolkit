@@ -83,15 +83,25 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (this.SetProperty(ref _isShown, value))
                 {
-                    if (value)
-                    {
-                        UpdateHighlight();
-                    }
-                    else
-                    {
-                        HighlightVisibility = Visibility.Collapsed;
-                    }
+                    this.OnIsShownChanged(value);
                 }
+            }
+        }
+
+        private async void OnIsShownChanged(bool value)
+        {
+            if (value)
+            {
+                if (this.RootElements.Count == 0)
+                {
+                    await this.Refresh();
+                }
+
+                this.UpdateHighlight();
+            }
+            else
+            {
+                this.HighlightVisibility = Visibility.Collapsed;
             }
         }
         #endregion
@@ -522,7 +532,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning restore 1998
         {
             this.RootElements.Clear();
-            var rootElement = Window.Current.Content as UIElement;
+            var rootElement = VisualTreeHelperExtensions.GetRealWindowRoot();
 
             if (rootElement != null)
             {
@@ -549,23 +559,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         internal async Task Refresh()
         {
-            //TODO: Work on getting a partial refresh working. Right now if a refreshed element is not in visual tree - it doesn't rebuild the tree as it should.
             //if (this.SelectedItem != null)
             //{
             //    await this.SelectedItem.Refresh();
             //}
             //else 
-            if (this.RootElements.Count == 1 &&
-                this.RootElements[0] is DependencyObjectViewModel &&
-                ((DependencyObjectViewModel)this.RootElements[0]).Model == Window.Current.Content)
-            {
-                await this.RootElements[0].RefreshAsync();
-            }
-            else
-            {
+            //if (this.RootElements.Count == 1 &&
+            //    this.RootElements[0] is DependencyObjectViewModel &&
+            //    ((DependencyObjectViewModel)this.RootElements[0]).Model == Window.Current.Content)
+            //{
+            //    await this.RootElements[0].RefreshAsync();
+            //}
+            //else
+            //{
                 this.RootElements.Clear();
                 await this.Build();
-            }
+            //}
         } 
         #endregion
 

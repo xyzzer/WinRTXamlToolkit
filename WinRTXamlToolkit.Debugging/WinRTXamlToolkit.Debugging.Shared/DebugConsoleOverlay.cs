@@ -58,7 +58,7 @@ namespace WinRTXamlToolkit.Debugging
 
             _popup.IsOpen = true;
 
-            Window.Current.SizeChanged += OnWindowSizeChanged;
+            Window.Current.SizeChanged += this.OnWindowSizeChanged;
         }
 
         /// <summary>

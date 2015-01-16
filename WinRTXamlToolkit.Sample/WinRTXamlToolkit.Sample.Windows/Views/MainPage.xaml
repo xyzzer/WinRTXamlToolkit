@@ -62,6 +62,7 @@
                 <Button
                     Content="{Binding Caption}"
                     Command="{Binding Command}"
+                    IsTabStop="False"
                     HorizontalAlignment="Stretch"
                     Style="{StaticResource TextButtonStyle}"
                     VerticalAlignment="Stretch"
@@ -74,6 +75,7 @@
                 <Button
                     Content="{Binding Caption}"
                     Command="{Binding Command}"
+                    IsTabStop="False"
                     Foreground="White"
                     FontWeight="Bold"
                     HorizontalAlignment="Stretch"
@@ -121,6 +123,9 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             SelectionMode="None"
+            IsItemClickEnabled="True"
+            ItemClick="ButtonsGridView_OnItemClick"
+            KeyDown="ButtonsGridView_OnKeyDown"
             ItemsSource="{Binding SampleGroups}"
             ItemContainerStyleSelector="{StaticResource SampleLinkContainerStyleSelector}"
             ItemTemplateSelector="{StaticResource SampleLinkDataTemplateSelector}">
