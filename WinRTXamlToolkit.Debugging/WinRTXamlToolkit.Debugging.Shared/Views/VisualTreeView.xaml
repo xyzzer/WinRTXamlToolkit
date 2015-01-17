@@ -72,7 +72,9 @@
             x:Name="treeView"
             ItemsSource="{Binding RootElements}"
             IsSelectedBindingPath="IsSelected"
-            IsExpandedBindingPath="IsExpanded">
+            IsExpandedBindingPath="IsExpanded"
+            BorderThickness="0"
+            Padding="0">
             <controls:TreeView.ItemTemplate>
                 <DataTemplate>
                     <data:DataTemplateExtensions.Hierarchy>

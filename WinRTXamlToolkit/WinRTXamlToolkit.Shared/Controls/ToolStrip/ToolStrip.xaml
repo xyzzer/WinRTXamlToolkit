@@ -58,6 +58,7 @@
                             Orientation="Horizontal">
                             <local:ToolBarButton
                                 x:Name="DropDownButton"
+                                IsTabStop="False"
                                 Content="&#xE0A1;"
                                 FontFamily="Segoe UI Symbol" />
                         </StackPanel>

@@ -24,7 +24,7 @@ namespace WinRTXamlToolkit.Debugging.Common
         {
             var folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
 
-            List<Assembly> list = new List<Assembly>();
+            var list = new List<Assembly>();
 
             foreach (StorageFile file in (await folder.GetFilesAsync()))
             {
