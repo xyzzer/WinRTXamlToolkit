@@ -19,6 +19,7 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name = LayoutGridName, Type = typeof(Grid))]
     public class FocusVisualizer : Control
     {
+        #region Fields
         private const string LayoutGridName = "LayoutGrid";
         private Grid _layoutGrid;
         private Rectangle _leftRectangle;
@@ -31,13 +32,15 @@ namespace WinRTXamlToolkit.Controls
         private CompositeTransform _rightTransform;
         private CompositeTransform _bottomTransform;
         private bool _isLoaded;
-        private UIElement _focusedElement;
+        private UIElement _focusedElement; 
+        #endregion
 
         /// <summary>
         /// The <see cref="FocusTracker"/> instance used by this FocusVisualizer control.
         /// </summary>
         public FocusTracker FocusTracker { get; private set; }
 
+        #region CTOR
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageButton" /> class.
         /// </summary>
@@ -51,8 +54,10 @@ namespace WinRTXamlToolkit.Controls
             this.FocusTracker = new FocusTracker();
             this.FocusTracker.FocusChanged += OnFocusChanged;
             _focusedElement = FocusManager.GetFocusedElement() as UIElement;
-        }
+        } 
+        #endregion
 
+        #region Event handlers
         private void OnFocusChanged(object sender, UIElement uiElement)
         {
             var useAnimation = _focusedElement != null && uiElement != null && _focusedElement != uiElement;
@@ -81,8 +86,8 @@ namespace WinRTXamlToolkit.Controls
         private void OnUnloaded(object sender, RoutedEventArgs args)
         {
             _isLoaded = false;
-        }
-
+        } 
+        #endregion
 
         #region CreateRectangles()
         private void CreateRectangles()
@@ -159,6 +164,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
+        #region UpdatePosition()
         private async void UpdatePosition(bool useAnimation)
         {
             if (_leftTransform == null)
@@ -239,8 +245,10 @@ namespace WinRTXamlToolkit.Controls
             AddAnimation(sb, _rightRectangle, "Opacity", 1, duration);
             AddAnimation(sb, _bottomRectangle, "Opacity", 1, duration);
             sb.Begin();
-        }
+        } 
+        #endregion
 
+        #region GetResolutionScale()
         private static double GetResolutionScale()
         {
 #if WINDOWS_APP
@@ -274,8 +282,10 @@ namespace WinRTXamlToolkit.Controls
             var scale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
 #endif
             return scale;
-        }
+        } 
+        #endregion
 
+        #region AddAnimation()
         private void AddAnimation(Storyboard sb, DependencyObject target, string propertyName, double toValue, double duration)
         {
             var da = new DoubleAnimation();
@@ -283,8 +293,9 @@ namespace WinRTXamlToolkit.Controls
             Storyboard.SetTargetProperty(da, propertyName);
             da.To = toValue;
             da.Duration = TimeSpan.FromSeconds(duration);
-            da.EasingFunction = new ExponentialEase { Exponent = 10, EasingMode = EasingMode.EaseOut};
+            da.EasingFunction = new ExponentialEase { Exponent = 10, EasingMode = EasingMode.EaseOut };
             sb.Children.Add(da);
-        }
+        } 
+        #endregion
     }
 }

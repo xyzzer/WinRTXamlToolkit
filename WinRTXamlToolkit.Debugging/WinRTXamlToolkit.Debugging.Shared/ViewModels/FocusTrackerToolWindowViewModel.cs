@@ -12,6 +12,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class FocusTrackerToolWindowViewModel : ToolWindowViewModel
     {
+        #region class FocusEvent
         public class FocusEvent
         {
             public object Element { get; private set; }
@@ -22,7 +23,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 Element = element;
                 this.TimeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
             }
-        }
+        } 
+        #endregion
 
         public ObservableCollection<FocusEvent> FocusEvents { get; private set; }
 
@@ -87,6 +89,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         } 
         #endregion
 
+        #region FocusTrackerToolWindowViewModel()
         public FocusTrackerToolWindowViewModel()
         {
             this.FocusEvents = new ObservableCollection<FocusEvent>();
@@ -94,8 +97,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning disable 4014
             this.AddFocusEventAsync(FocusManager.GetFocusedElement() as UIElement);
 #pragma warning restore 4014
-        }
+        } 
+        #endregion
 
+        #region OnFocusChanged()
         private async void OnFocusChanged(object sender, UIElement e)
         {
             if (!ignoreFocusChange &&
@@ -104,16 +109,20 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 await this.AddFocusEventAsync(e);
             }
-        }
+        } 
+        #endregion
 
+        #region AddFocusEventAsync()
         private async Task AddFocusEventAsync(UIElement uiElement)
         {
             await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
             var fe = new FocusEvent(DebugConsoleViewModel.Instance.VisualTreeView.SelectedItem);
             this.FocusEvents.Add(fe);
             this.SelectedEvent = fe;
-        }
+        } 
+        #endregion
 
+        #region Remove()
         internal void Remove()
         {
             if (_focusTracker != null)
@@ -123,7 +132,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             DebugConsoleViewModel.Instance.ToolWindows.Remove(this);
             this.RaiseRemoved();
-        }
+        } 
+        #endregion
 
         #region Removed event
         /// <summary>
