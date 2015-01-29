@@ -102,8 +102,8 @@ namespace WinRTXamlToolkit.Controls
 
             foreach (var rectangle in _rectangles)
             {
-                rectangle.Width = 1;
-                rectangle.Height = 1;
+                rectangle.Width = 10;
+                rectangle.Height = 10;
                 rectangle.VerticalAlignment = VerticalAlignment.Top;
                 rectangle.HorizontalAlignment = HorizontalAlignment.Left;
                 rectangle.IsHitTestVisible = false;
@@ -184,36 +184,34 @@ namespace WinRTXamlToolkit.Controls
                 await this.WaitForLoadedAsync();
             }
 
-            var scale = GetResolutionScale();
-
             var boundingRect = _focusedElement.GetBoundingRect(this);
             var leftRectangleLeft = boundingRect.Left - this.BorderThickness.Left;
             var leftRectangleTop = boundingRect.Top;
-            var leftRectangleHeight = boundingRect.Height * scale;
+            var leftRectangleHeight = boundingRect.Height;
             var topRectangleLeft = boundingRect.Left - this.BorderThickness.Left;
             var topRectangleTop = boundingRect.Top - this.BorderThickness.Top;
-            var topRectangleWidth = (boundingRect.Width + this.BorderThickness.Left + this.BorderThickness.Right) * scale;
+            var topRectangleWidth = (boundingRect.Width + this.BorderThickness.Left + this.BorderThickness.Right);
             var rightRectangleLeft = boundingRect.Right;
             var rightRectangleTop = boundingRect.Top;
-            var rightRectangleHeight = boundingRect.Height * scale;
+            var rightRectangleHeight = boundingRect.Height;
             var bottomRectangleLeft = boundingRect.Left - this.BorderThickness.Left;
             var bottomRectangleTop = boundingRect.Bottom;
-            var bottomRectangleWidth = (boundingRect.Width + this.BorderThickness.Left + this.BorderThickness.Right) * scale;
+            var bottomRectangleWidth = (boundingRect.Width + this.BorderThickness.Left + this.BorderThickness.Right);
 
             if (!useAnimation)
             {
                 _leftTransform.TranslateX = leftRectangleLeft;
                 _leftTransform.TranslateY = leftRectangleTop;
-                _leftTransform.ScaleY = leftRectangleHeight;
+                _leftTransform.ScaleY = leftRectangleHeight / 10;
                 _topTransform.TranslateX = topRectangleLeft;
                 _topTransform.TranslateY = topRectangleTop;
-                _topTransform.ScaleX = topRectangleWidth;
+                _topTransform.ScaleX = topRectangleWidth / 10;
                 _rightTransform.TranslateX = rightRectangleLeft;
                 _rightTransform.TranslateY = rightRectangleTop;
-                _rightTransform.ScaleY = rightRectangleHeight;
+                _rightTransform.ScaleY = rightRectangleHeight / 10;
                 _bottomTransform.TranslateX = bottomRectangleLeft;
                 _bottomTransform.TranslateY = bottomRectangleTop;
-                _bottomTransform.ScaleX = bottomRectangleWidth;
+                _bottomTransform.ScaleX = bottomRectangleWidth / 10;
                 _leftRectangle.Opacity = 1;
                 _topRectangle.Opacity = 1;
                 _rightRectangle.Opacity = 1;
@@ -224,16 +222,16 @@ namespace WinRTXamlToolkit.Controls
             var sb = new Storyboard();
             AddAnimation(sb, _leftTransform, "TranslateX", leftRectangleLeft, duration);
             AddAnimation(sb, _leftTransform, "TranslateY", leftRectangleTop, duration);
-            AddAnimation(sb, _leftTransform, "ScaleY", leftRectangleHeight, duration);
+            AddAnimation(sb, _leftTransform, "ScaleY", leftRectangleHeight / 10, duration);
             AddAnimation(sb, _topTransform, "TranslateX", topRectangleLeft, duration);
             AddAnimation(sb, _topTransform, "TranslateY", topRectangleTop, duration);
-            AddAnimation(sb, _topTransform, "ScaleX", topRectangleWidth, duration);
+            AddAnimation(sb, _topTransform, "ScaleX", topRectangleWidth / 10, duration);
             AddAnimation(sb, _rightTransform, "TranslateX", rightRectangleLeft, duration);
             AddAnimation(sb, _rightTransform, "TranslateY", rightRectangleTop, duration);
-            AddAnimation(sb, _rightTransform, "ScaleY", rightRectangleHeight, duration);
+            AddAnimation(sb, _rightTransform, "ScaleY", rightRectangleHeight / 10, duration);
             AddAnimation(sb, _bottomTransform, "TranslateX", bottomRectangleLeft, duration);
             AddAnimation(sb, _bottomTransform, "TranslateY", bottomRectangleTop, duration);
-            AddAnimation(sb, _bottomTransform, "ScaleX", bottomRectangleWidth, duration);
+            AddAnimation(sb, _bottomTransform, "ScaleX", bottomRectangleWidth / 10, duration);
             AddAnimation(sb, _leftRectangle, "Opacity", 1, duration);
             AddAnimation(sb, _topRectangle, "Opacity", 1, duration);
             AddAnimation(sb, _rightRectangle, "Opacity", 1, duration);
