@@ -115,6 +115,7 @@
     <Compile Include="CalculatorTests.cs" />
     <Compile Include="KeyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -137,6 +138,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.Windows\WinRTXamlToolkit.Debugging.Windows.csproj">
+      <Project>{B5EA4B9D-3300-4023-8110-E085854398A7}</Project>
+      <Name>WinRTXamlToolkit.Debugging.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj">
       <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
       <Name>WinRTXamlToolkit.Windows</Name>

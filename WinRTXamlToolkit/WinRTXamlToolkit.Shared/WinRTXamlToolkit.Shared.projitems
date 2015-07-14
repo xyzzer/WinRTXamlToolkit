@@ -130,6 +130,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WatermarkTextBox\WatermarkTextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\OrientedSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WrapPanel\WrapPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\BitmapImageLoadExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\ColorExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Imaging\IBufferExtensions.cs" />

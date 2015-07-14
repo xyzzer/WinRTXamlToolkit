@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("WinRT XAML Toolkit - Debugging Tools for Windows 8.1")]
@@ -14,3 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.8.1.0")]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
+[assembly: InternalsVisibleTo("WinRTXamlToolkit.UnitTests")]

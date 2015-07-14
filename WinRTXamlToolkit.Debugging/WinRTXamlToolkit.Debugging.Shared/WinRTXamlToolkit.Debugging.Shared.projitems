@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ElementListToolWindowViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PropertyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StubTreeItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToolWindowViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TreeItemViewModel.cs" />
