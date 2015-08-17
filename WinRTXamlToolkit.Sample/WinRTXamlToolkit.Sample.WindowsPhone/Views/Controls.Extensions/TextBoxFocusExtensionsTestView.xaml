@@ -24,20 +24,7 @@
                 HorizontalAlignment="Left"
                 MaxLength="5"
                 Text="123"
-                extensions:TextBoxFocusExtensions.AutoTabOnMaxLength="True"
-                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="True" />
-            <TextBlock
-                Margin="0,20,0,0"
-                Text="extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus=False" />
-            <TextBox
-                HorizontalAlignment="Left"
-                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="False" />
-            <TextBlock
-                Margin="0,20,0,0"
-                Text="extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus=True" />
-            <TextBox
-                HorizontalAlignment="Left"
-                extensions:TextBoxFocusExtensions.DisableSearchPaneOnFocus="True" />
+                extensions:TextBoxFocusExtensions.AutoTabOnMaxLength="True" />
         </StackPanel>
         <controls:FocusVisualizer />
     </Grid>

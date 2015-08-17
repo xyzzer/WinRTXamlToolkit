@@ -218,9 +218,6 @@
     <ProjectReference Include="..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WinRTProxy.Windows\WinRTXamlToolkit.Debugging.WinRTProxy.Windows.csproj">
       <Project>{5e7ebd80-9ae9-4847-9d84-672023289b33}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\WinRTXamlToolkit\WinRTXamlToolkit.Windows\WinRTXamlToolkit.Windows.csproj">
-      <Project>{7b7966be-213f-4b84-867d-2a0ccf61245f}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

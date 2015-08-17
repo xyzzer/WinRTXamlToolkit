@@ -63,7 +63,6 @@ namespace WinRTXamlToolkit.Sample
             }
             
             Window.Current.Activate();
-            //DisableSearchPaneOnFocusHandler.IsSearchEnabled = false;
 
             base.OnFileActivated(e);
         }

@@ -81,18 +81,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.WindowsPhone\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.csproj">
-      <Project>{4a7c8c3f-19e3-47f2-9546-b5d849e9627a}</Project>
-      <Name>WinRTXamlToolkit.Controls.Calendar.WindowsPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.csproj">
-      <Project>{77b94f47-8d24-40d7-9113-bf052a0e9def}</Project>
-      <Name>WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.WindowsPhone\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.csproj">
-      <Project>{c9abec71-cf10-4ffc-b9b3-835f994753e8}</Project>
-      <Name>WinRTXamlToolkit.Controls.Gauge.WindowsPhone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WindowsPhone\WinRTXamlToolkit.Debugging.WindowsPhone.csproj">
       <Project>{b7b93918-2be1-46ce-b326-119305b51634}</Project>
       <Name>WinRTXamlToolkit.Debugging.WindowsPhone</Name>
@@ -207,7 +195,6 @@
   <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
   </PropertyGroup>
-  <Import Project="..\WinRTXamlToolkit.Sample.Shared\WinRTXamlToolkit.Sample.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

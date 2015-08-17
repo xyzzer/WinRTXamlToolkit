@@ -9,19 +9,6 @@
     <Import_RootNamespace>WinRTXamlToolkit.Sample</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\RelayCommandGeneric.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BindableBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ButtonViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Controls\AutoCompleteTextBoxTestsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Controls\FakeWordDictionary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleButtonViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleGroupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SampleTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)App.Shared.cs" />
   </ItemGroup>
 </Project>

@@ -8,13 +8,4 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>WinRTXamlToolkit.Controls</Import_RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Gauge.cs" />
-  </ItemGroup>
 </Project>

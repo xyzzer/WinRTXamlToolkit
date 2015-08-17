@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C6B8275-5A06-4132-8028-C2ACBA41C33C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinRTXamlToolkit.Debugging</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit.Debugging</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommandGeneric.cs" />
+    <Compile Include="Common\DependencyPropertyCache.cs" />
+    <Compile Include="Common\DependencyPropertyInfo.cs" />
+    <Compile Include="Common\KnownTypes.cs" />
+    <Compile Include="Common\PackageHelper.cs" />
+    <Compile Include="Controls\EditableListBox\EditableListBox.cs" />
+    <Compile Include="Controls\EditableListBox\EditableListBoxItem.cs" />
+    <Compile Include="Converters\BindingDebugConverter.cs" />
+    <Compile Include="Debug.cs" />
+    <Compile Include="DebugConsoleOverlay.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BasePropertyViewModel.cs" />
+    <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\DebugConsoleViewModel.cs" />
+    <Compile Include="ViewModels\DependencyObjectViewModel.cs" />
+    <Compile Include="ViewModels\DependencyPropertyViewModel.cs" />
+    <Compile Include="ViewModels\DependencyPropertyViewModelValueCoercion.cs" />
+    <Compile Include="ViewModels\ElementListToolWindowViewModel.cs" />
+    <Compile Include="ViewModels\FocusTrackerToolWindowViewModel.cs" />
+    <Compile Include="ViewModels\PropertyGroupViewModel.cs" />
+    <Compile Include="ViewModels\PropertyViewModel.cs" />
+    <Compile Include="ViewModels\StubTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\ToolWindowViewModel.cs" />
+    <Compile Include="ViewModels\TreeItemViewModel.cs" />
+    <Compile Include="ViewModels\VisualTreeViewModel.cs" />
+    <Compile Include="Views\DebugConsoleView.xaml.cs">
+      <DependentUpon>DebugConsoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DependencyObjectDetailsView.xaml.cs">
+      <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditablePropertyTemplateSelector.cs" />
+    <Compile Include="Views\ElementListWindow.xaml.cs">
+      <DependentUpon>ElementListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FocusTrackerWindow.xaml.cs">
+      <DependentUpon>FocusTrackerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HighlightOverlay.xaml.cs">
+      <DependentUpon>HighlightOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\BooleanPropertyEditor.xaml.cs">
+      <DependentUpon>BooleanPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\BrushPropertyEditor.xaml.cs">
+      <DependentUpon>BrushPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\CacheModePropertyEditor.xaml.cs">
+      <DependentUpon>CacheModePropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml.cs">
+      <DependentUpon>CornerRadiusPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\DefaultPropertyEditor.xaml.cs">
+      <DependentUpon>DefaultPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\DependencyObjectPropertyEditor.xaml.cs">
+      <DependentUpon>DependencyObjectPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\EnumPropertyEditor.xaml.cs">
+      <DependentUpon>EnumPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\FontWeightPropertyEditor.xaml.cs">
+      <DependentUpon>FontWeightPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\ImageSourcePropertyEditor.xaml.cs">
+      <DependentUpon>ImageSourcePropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\NumericPropertyEditor.xaml.cs">
+      <DependentUpon>NumericPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\PropertyEditorFooter.xaml.cs">
+      <DependentUpon>PropertyEditorFooter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\StringPropertyEditor.xaml.cs">
+      <DependentUpon>StringPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyEditors\ThicknessPropertyEditor.xaml.cs">
+      <DependentUpon>ThicknessPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropertyTemplateSelector.cs" />
+    <Compile Include="Views\VisualTreeView.xaml.cs">
+      <DependentUpon>VisualTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisualTreeViewItemDetailsTemplateSelector.cs" />
+    <Compile Include="VisualTreeDebugger.cs" />
+    <Content Include="Properties\WinRTXamlToolkit.Debugging.UWP.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\EditableListBox\EditableListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EditableListBox\EditableListBoxItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SharedResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\DebugConsoleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DependencyObjectDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ElementListWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FocusTrackerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HighlightOverlay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertiesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\BooleanPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\BrushPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\CacheModePropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\CornerRadiusPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\DefaultPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\DependencyObjectPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\EnumPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\FontWeightPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\ImageSourcePropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\NumericPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\PropertyEditorFooter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\StringPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\ThicknessPropertyEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VisualTreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinRTXamlToolkit.UWP\WinRTXamlToolkit.UWP.csproj">
+      <Project>{ffb67e2d-f098-48d9-8bf6-b4355c18cd80}</Project>
+      <Name>WinRTXamlToolkit.UWP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
