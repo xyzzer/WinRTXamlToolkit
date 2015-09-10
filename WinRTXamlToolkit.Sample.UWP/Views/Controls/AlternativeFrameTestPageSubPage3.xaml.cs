@@ -18,7 +18,7 @@ namespace WinRTXamlToolkit.Sample.Views
         private bool _isPreloaded;
 
 #pragma warning disable 1998
-        protected override async Task Preload(object parameter)
+        protected override async Task PreloadAsync(object parameter)
         {
             _secondsOfLife = 0;
             _isPreloaded = true;
@@ -37,34 +37,34 @@ namespace WinRTXamlToolkit.Sample.Views
         }
 
 #pragma warning disable 1998
-        protected override async Task UnloadPreloaded()
+        protected override async Task UnloadPreloadedAsync()
         {
             _isPreloaded = false;
         }
 #pragma warning restore 1998
 
-        protected override async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
+        protected override async Task OnNavigatingToAsync(AlternativeNavigationEventArgs e)
         {
             _isPreloaded = false;
             _parameter = (int)e.Parameter;
             ParameterTextBlock.Text = "Parameter: " + _parameter;
-            await base.OnNavigatingTo(e);
+            await base.OnNavigatingToAsync(e);
         }
 
-        private void OnNavigateButtonClick(object sender, RoutedEventArgs e)
+        private async void OnNavigateButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(
-                typeof (AlternativeFrameTestPageSubPage2), _parameter + 1);
+            await this.Frame.NavigateAsync(
+                typeof(AlternativeFrameTestPageSubPage2), _parameter + 1);
         }
 
-        private void OnBackButtonClick(object sender, RoutedEventArgs e)
+        private async void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoBack();
+            await this.Frame.GoBackAsync();
         }
 
-        private void OnForwardButtonClick(object sender, RoutedEventArgs e)
+        private async void OnForwardButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoForward();
+            await this.Frame.GoForwardAsync();
         }
     }
 }

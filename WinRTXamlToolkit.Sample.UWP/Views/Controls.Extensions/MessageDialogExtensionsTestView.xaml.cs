@@ -16,21 +16,25 @@ namespace WinRTXamlToolkit.Sample.Views
         private void ShowAsyncQueueButton_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new MessageDialog("Dialog 1 ShowAsyncQueue", "Dialog 1");
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             dialog.ShowAsyncQueue();
             dialog = new MessageDialog("Dialog 2 ShowAsyncQueue", "Dialog 2");
             dialog.ShowAsyncQueue();
             dialog = new MessageDialog("Dialog 3 ShowAsyncQueue", "Dialog 3");
             dialog.ShowAsyncQueue();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         private void ShowAsyncIfPossibleButton_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new MessageDialog("Dialog 1 ShowAsyncIfPossible", "Dialog 1");
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             dialog.ShowAsyncIfPossible();
             dialog = new MessageDialog("Dialog 2 ShowAsyncIfPossible", "Dialog 2");
             dialog.ShowAsyncIfPossible();
             dialog = new MessageDialog("Dialog 3 ShowAsyncIfPossible", "Dialog 3");
             dialog.ShowAsyncIfPossible();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         private async void ShowAsyncQueuePlusIfPossibleButton_OnClick(object sender, RoutedEventArgs e)

@@ -31,7 +31,7 @@
                     Text="No Effect"
                     HorizontalAlignment="Center"
                     Margin="0,20,0,0"
-                    Style="{StaticResource TitleTextStyle}" />
+                    Style="{StaticResource TitleTextBlockStyle}" />
             </StackPanel>
             <StackPanel
                 Margin="20">
@@ -58,7 +58,7 @@
                     Text="BlurShaderEffect"
                     HorizontalAlignment="Center"
                     Margin="0,20,0,0"
-                    Style="{StaticResource TitleTextStyle}" />
+                    Style="{StaticResource TitleTextBlockStyle}" />
             </StackPanel>
         </StackPanel>
         <TextBlock
@@ -72,7 +72,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Margin="20"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource TitleTextBlockStyle}" />
             <controls:FxContentControl
                 Margin="20"
                 VerticalAlignment="Center"
@@ -92,7 +92,7 @@
                     Text="AlphaExpandShaderEffect"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Style="{StaticResource TitleTextStyle}" />
+                    Style="{StaticResource TitleTextBlockStyle}" />
             </controls:FxContentControl>
         </StackPanel>
     </StackPanel>

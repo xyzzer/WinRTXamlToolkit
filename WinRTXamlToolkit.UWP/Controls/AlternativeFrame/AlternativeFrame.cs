@@ -396,7 +396,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region Preload()
+        #region PreloadAsync()
         /// <summary>
         /// Preloads a page of the specified source page type.
         /// </summary>
@@ -407,7 +407,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="sourcePageType">Type of the source page.</param>
         /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
-        public async Task<bool> Preload(Type sourcePageType, object parameter)
+        public async Task<bool> PreloadAsync(Type sourcePageType, object parameter)
         {
             var je = new JournalEntry { SourcePageType = sourcePageType, Parameter = parameter };
 
@@ -432,14 +432,14 @@ namespace WinRTXamlToolkit.Controls
             Canvas.SetZIndex(cp, int.MinValue);
             _pagePresentersPanel.Children.Insert(0, cp);
             _preloadedPageCache.Add(je, cp);
-            await newPage.PreloadInternal(parameter);
+            await newPage.PreloadInternalAsync(parameter);
             cp.Opacity = 0;
 
             return true;
         }
         #endregion
 
-        #region UnloadPreloaded()
+        #region UnloadPreloadedAsync()
         /// <summary>
         /// Unloads the preloaded page of a given type and parameter.
         /// </summary>
@@ -452,7 +452,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="sourcePageType">Type of the source page.</param>
         /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
-        public async Task UnloadPreloaded(Type sourcePageType, object parameter)
+        public async Task UnloadPreloadedAsync(Type sourcePageType, object parameter)
         {
             var je = new JournalEntry { SourcePageType = sourcePageType, Parameter = parameter };
 
@@ -463,7 +463,7 @@ namespace WinRTXamlToolkit.Controls
 
             var cp = _preloadedPageCache[je];
             var page = (AlternativePage)cp.Content;
-            await page.UnloadPreloadedInternal();
+            await page.UnloadPreloadedInternalAsync();
             _frameCache.Store(page);
 
             _pagePresentersPanel.Children.Remove(cp);
@@ -471,7 +471,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region UnloadAllPreloaded()
+        #region UnloadAllPreloadedAsync()
         /// <summary>
         /// Unloads all preloaded pages.
         /// </summary>
@@ -482,13 +482,13 @@ namespace WinRTXamlToolkit.Controls
         /// The preloaded page will be released or cached depending on its NavigationCacheMode property.
         /// </remarks>
         /// <returns></returns>
-        public async Task UnloadAllPreloaded()
+        public async Task UnloadAllPreloadedAsync()
         {
             foreach (var kvp in _preloadedPageCache)
             {
                 _pagePresentersPanel.Children.Remove(kvp.Value);
                 var page = (AlternativePage)kvp.Value.Content;
-                await page.UnloadPreloadedInternal();
+                await page.UnloadPreloadedInternalAsync();
                 _frameCache.Store(page);
             }
 
@@ -496,15 +496,15 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region Navigate()
+        #region NavigateAsync()
         /// <summary>
         /// Navigates to source page of the specified type.
         /// </summary>
         /// <param name="sourcePageType">Type of the source page.</param>
         /// <returns></returns>
-        public async Task<bool> Navigate(Type sourcePageType)
+        public async Task<bool> NavigateAsync(Type sourcePageType)
         {
-            return await Navigate(sourcePageType, null);
+            return await NavigateAsync(sourcePageType, null);
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace WinRTXamlToolkit.Controls
         /// or
         /// Navigate() call failed. CanNavigate is false.
         /// </exception>
-        public async Task<bool> Navigate(Type sourcePageType, object parameter)
+        public async Task<bool> NavigateAsync(Type sourcePageType, object parameter)
         {
             if (_isNavigating)
             {
@@ -537,7 +537,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region GoBack()
+        #region GoBackAsync()
         /// <summary>
         /// Goes back in history back stack.
         /// </summary>
@@ -549,7 +549,7 @@ namespace WinRTXamlToolkit.Controls
         /// or
         /// GoBack() call failed. CanNavigate is false.
         /// </exception>
-        public async Task<bool> GoBack()
+        public async Task<bool> GoBackAsync()
         {
             if (_isNavigating)
             {
@@ -575,9 +575,9 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region GoForward()
+        #region GoForwardAsync()
         /// <summary>
-        /// Runs the forward transiiton.
+        /// Runs the forward transition.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">
@@ -587,7 +587,7 @@ namespace WinRTXamlToolkit.Controls
         /// or
         /// GoForward() call failed. CanNavigate is false.
         /// </exception>
-        public async Task<bool> GoForward()
+        public async Task<bool> GoForwardAsync()
         {
             if (_isNavigating)
             {
@@ -613,7 +613,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region SetNavigationState()
+        #region SetNavigationStateAsync()
         /// <summary>
         /// Reads and restores the navigation history of a Frame from a provided serialization string.
         /// </summary>
@@ -621,7 +621,7 @@ namespace WinRTXamlToolkit.Controls
         /// The serialization string that supplies the restore point for navigation history.
         /// </param>
         /// <returns></returns>
-        public async Task SetNavigationState(string navigationState)
+        public async Task SetNavigationStateAsync(string navigationState)
         {
             try
             {
@@ -650,7 +650,7 @@ namespace WinRTXamlToolkit.Controls
                 if (totalPages == 0)
                 {
                     this.CurrentJournalEntry = null;
-                    await UnloadAllPreloaded();
+                    await UnloadAllPreloadedAsync();
                     return;
                 }
 
@@ -970,7 +970,7 @@ namespace WinRTXamlToolkit.Controls
 
                     if (!cancelArgs.Cancel)
                     {
-                        await currentPage.OnNavigatingFromInternal(cancelArgs);
+                        await currentPage.OnNavigatingFromInternalAsync(cancelArgs);
                     }
 
                     if (cancelArgs.Cancel)
@@ -1009,13 +1009,13 @@ namespace WinRTXamlToolkit.Controls
 
                 newPagePresenter.Opacity = 0.005;
 
-                await UnloadAllPreloaded();
+                await UnloadAllPreloadedAsync();
                 #endregion
 
                 #region OnNavigatingTo part
                 var args = new AlternativeNavigationEventArgs(
                             newPage.Content, navigationMode, je.Parameter, je.SourcePageType);
-                await newPage.OnNavigatingToInternal(args);
+                await newPage.OnNavigatingToInternalAsync(args);
                 #endregion
 
                 #region Journal Bookeeping part
@@ -1054,14 +1054,16 @@ namespace WinRTXamlToolkit.Controls
                 #endregion
 
                 #region OnNavigated~() calls
-                await this.OnNavigated(args);
+                this.UpdateCans();
 
                 if (currentPage != null)
                 {
-                    await currentPage.OnNavigatedFromInternal(args);
+                    await currentPage.OnNavigatedFromInternalAsync(args);
                 }
 
-                await newPage.OnNavigatedToInternal(args);
+                await this.OnNavigated(args);
+
+                await newPage.OnNavigatedToInternalAsync(args);
                 #endregion
 
                 #region Transition part
@@ -1110,11 +1112,16 @@ namespace WinRTXamlToolkit.Controls
             {
                 this.IsHitTestVisible = true;
                 _isNavigating = false;
-                this.CanNavigate = true;
-                this.CanGoBack = this.BackStack.Count > 0;
-                this.CanGoForward = this.ForwardStack.Count > 0;
+                this.UpdateCans();
                 //DC.TraceLocalized(GetNavigationState());
             }
+        }
+
+        private void UpdateCans()
+        {
+            this.CanNavigate = true;
+            this.CanGoBack = this.BackStack.Count > 0;
+            this.CanGoForward = this.ForwardStack.Count > 0;
         }
         #endregion
 
@@ -1155,24 +1162,24 @@ namespace WinRTXamlToolkit.Controls
             {
                 if (currentPage != null)
                 {
-                    await currentPage.OnTransitioningFromInternal();
+                    await currentPage.OnTransitioningFromInternalAsync();
                 }
 
                 if (newPage != null)
                 {
-                    await newPage.OnTransitioningToInternal();
+                    await newPage.OnTransitioningToInternalAsync();
                 }
 
                 await transition.TransitionForward(previousPagePresenter, newPagePresenter);
 
                 if (currentPage != null)
                 {
-                    await currentPage.OnTransitionedFromInternal();
+                    await currentPage.OnTransitionedFromInternalAsync();
                 }
 
                 if (newPage != null)
                 {
-                    await newPage.OnTransitionedToInternal();
+                    await newPage.OnTransitionedToInternalAsync();
                 }
             }
         }
@@ -1191,24 +1198,24 @@ namespace WinRTXamlToolkit.Controls
             {
                 if (currentPage != null)
                 {
-                    await currentPage.OnTransitioningFromInternal();
+                    await currentPage.OnTransitioningFromInternalAsync();
                 }
 
                 if (newPage != null)
                 {
-                    await newPage.OnTransitioningToInternal();
+                    await newPage.OnTransitioningToInternalAsync();
                 }
 
                 await transition.TransitionBackward(previousPagePresenter, newPagePresenter);
 
                 if (currentPage != null)
                 {
-                    await currentPage.OnTransitionedFromInternal();
+                    await currentPage.OnTransitionedFromInternalAsync();
                 }
 
                 if (newPage != null)
                 {
-                    await newPage.OnTransitionedToInternal();
+                    await newPage.OnTransitionedToInternalAsync();
                 }
             }
         }

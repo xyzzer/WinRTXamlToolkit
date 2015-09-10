@@ -153,7 +153,7 @@
                 GotFocus="TextInput_OnGotFocus"
                 LostFocus="TextInput_OnLostFocus"
                 KeyDown="TextInput_OnKeyDown"/>
-            <local:PropertyEditorFooter />
+            <!--<local:PropertyEditorFooter />-->
         </StackPanel>
     </Grid>
 </UserControl>

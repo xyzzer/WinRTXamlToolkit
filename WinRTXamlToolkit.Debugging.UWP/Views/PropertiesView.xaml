@@ -62,6 +62,9 @@
                     Property="FontWeight"
                     Value="Bold" />
                 <Setter
+                    Property="UseSystemFocusVisuals"
+                    Value="True" />
+                <Setter
                     Property="Template">
                     <Setter.Value>
                         <ControlTemplate
@@ -184,11 +187,12 @@
                                             Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Control.IsTemplateFocusTarget="False">
                                         <Grid
                                             x:Name="Root"
                                             HorizontalAlignment="Right"
-                                            Margin="2 2 5 2">
+                                            Margin="2,2,5,2">
                                             <Path
                                                 x:Name="UncheckedVisual"
                                                 Width="6"
@@ -215,24 +219,6 @@
                                                 Data="M 6,0 L 6,6 L 0,6 Z"
                                                 StrokeLineJoin="Miter" />
                                         </Grid>
-                                        <Rectangle
-                                            x:Name="FocusVisualWhite"
-                                            Height="15"
-                                            Opacity="0"
-                                            StrokeDashOffset="0.5"
-                                            StrokeEndLineCap="Square"
-                                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                                            StrokeDashArray="1,1"
-                                            Width="15" />
-                                        <Rectangle
-                                            x:Name="FocusVisualBlack"
-                                            Height="15"
-                                            Opacity="0"
-                                            StrokeDashOffset="1.5"
-                                            StrokeEndLineCap="Square"
-                                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                                            StrokeDashArray="1,1"
-                                            Width="15" />
                                     </Grid>
                                     <ContentPresenter
                                         x:Name="ContentPresenter"
@@ -261,6 +247,7 @@
                 </Setter>
             </Style>
 
+            <!-- PropertyTemplateSelector -->
             <local:PropertyTemplateSelector
                 x:Key="PropertyTemplateSelector">
                 <DataTemplate

@@ -23,7 +23,7 @@
         <TextBlock
             Text="SourceListView"
             Margin="0,0,0,15"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <ListView
             x:Name="SourceListView"
             ItemsSource="{Binding MyItems}"
@@ -35,7 +35,7 @@
             Text="TargetListView"
             Grid.Column="1"
             Margin="0,0,0,15"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <ListView
             x:Name="TargetListView"
             ItemsSource="{Binding MyItems}"
@@ -49,6 +49,6 @@
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Margin="0,0,0,15"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
     </Grid>
 </UserControl>

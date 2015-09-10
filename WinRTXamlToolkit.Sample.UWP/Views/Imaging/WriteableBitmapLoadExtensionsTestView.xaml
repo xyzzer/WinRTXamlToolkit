@@ -31,7 +31,7 @@
         <TextBlock
             Grid.Row="2"
             Text="Original 1600x1200 px image - uses about 7.5MB memory"
-            Style="{StaticResource TitleTextStyle}" />
+            Style="{StaticResource TitleTextBlockStyle}" />
         
         <Image
             x:Name="resizedImage"
@@ -42,6 +42,6 @@
             Grid.Row="2"
             Grid.Column="1"
             Text="Original decoded to 160x120 px - uses about 75kB memory"
-            Style="{StaticResource TitleTextStyle}" />
+            Style="{StaticResource TitleTextBlockStyle}" />
     </Grid>
 </UserControl>

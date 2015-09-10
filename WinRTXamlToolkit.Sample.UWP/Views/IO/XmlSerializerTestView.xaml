@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Text="Class Definition"
-            Style="{StaticResource BasicTextStyle}" />
+            Style="{StaticResource BaseTextBlockStyle}" />
         <TextBox
             x:Name="classDefinitionTextBox"
             Grid.Row="1"
@@ -38,7 +38,7 @@
         <TextBlock
             Text="Serialized Data"
             Grid.Column="2"
-            Style="{StaticResource BasicTextStyle}" />
+            Style="{StaticResource BaseTextBlockStyle}" />
         <TextBox
             x:Name="serializedDataTextBox"
             Grid.Row="1"

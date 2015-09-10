@@ -13,37 +13,37 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private int _parameter;
 
-        protected override async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
+        protected override async Task OnNavigatingToAsync(AlternativeNavigationEventArgs e)
         {
             _parameter = (int)e.Parameter;
             ParameterTextBlock.Text = "Parameter: " + _parameter;
-            await base.OnNavigatingTo(e);
+            await base.OnNavigatingToAsync(e);
         }
 
-        protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
+        protected override async Task OnNavigatedToAsync(AlternativeNavigationEventArgs e)
         {
-            await this.Frame.Preload(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
+            await this.Frame.PreloadAsync(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
         }
 
-        private void OnNavigateButtonClick(object sender, RoutedEventArgs e)
+        private async void OnNavigateButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(
+            await this.Frame.NavigateAsync(
                 typeof (AlternativeFrameTestPageSubPage2), _parameter + 1);
         }
 
-        private void OnBackButtonClick(object sender, RoutedEventArgs e)
+        private async void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoBack();
+            await this.Frame.GoBackAsync();
         }
 
-        private void OnForwardButtonClick(object sender, RoutedEventArgs e)
+        private async void OnForwardButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoForward();
+            await this.Frame.GoForwardAsync();
         }
 
-        private void OnNavigatePreloadedButtonClick(object sender, RoutedEventArgs e)
+        private async void OnNavigatePreloadedButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
+            await this.Frame.NavigateAsync(typeof(AlternativeFrameTestPageSubPage3), _parameter + 1);
         }
     }
 }

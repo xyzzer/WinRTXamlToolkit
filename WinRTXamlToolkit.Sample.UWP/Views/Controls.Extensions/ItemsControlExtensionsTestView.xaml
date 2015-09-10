@@ -64,12 +64,12 @@
         <TextBlock
             Text="First Visible Item"
             HorizontalAlignment="Right"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <TextBlock
             Text="ItemsControl"
             Grid.Row="1"
             HorizontalAlignment="Right"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
 
         <ContentControl
             x:Name="FirstVisibleItemControl"
@@ -90,7 +90,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="ItemsControl"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <ItemsControl
                     x:Name="ItemsControl"
@@ -104,7 +104,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="ListBox"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <ListBox
                     x:Name="ListBox"
@@ -118,7 +118,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="ListView"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <ListView
                     x:Name="ListView"
@@ -132,7 +132,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="ListView with ItemsPanel=StackPanel"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <ListView
                     x:Name="ListViewWithStackPanelAsItemsPanel"
@@ -152,7 +152,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="ListView with ItemsPanel=VirtualizingStackPanel"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <ListView
                     x:Name="ListViewWithVirtualizingStackPanelAsItemsPanel"
@@ -172,7 +172,7 @@
                     Style="{StaticResource LabelBorderStyle}">
                     <TextBlock
                         Text="GridView"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Border>
                 <GridView
                     x:Name="GridView"

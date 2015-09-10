@@ -91,7 +91,9 @@ namespace WinRTXamlToolkit.Sample.Views
             var triangleWidth = innerRingRadius * Math.Sqrt(3);
             var triangleHeight = innerRingRadius * 3 / 2;
             var wb = new WriteableBitmap((int)triangleWidth, (int)triangleHeight);
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             wb.RenderColorPickerSaturationValueTriangleAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             saturationValueTriangleImage.Source = wb;
             saturationValueTriangleImage.Margin = new Thickness(0, outerRingRadius - innerRingRadius, 0, outerRingRadius - innerRingRadius * 0.5);
         }

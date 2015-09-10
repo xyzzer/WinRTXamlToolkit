@@ -163,7 +163,7 @@ namespace WinRTXamlToolkit.Controls
         /// </param>
         /// <returns></returns>
 #pragma warning disable 1998
-        protected virtual async Task OnNavigatedFrom(AlternativeNavigationEventArgs e)
+        protected virtual async Task OnNavigatedFromAsync(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
         {
         }
@@ -178,7 +178,7 @@ namespace WinRTXamlToolkit.Controls
         /// </param>
         /// <returns></returns>
 #pragma warning disable 1998
-        protected virtual async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
+        protected virtual async Task OnNavigatedToAsync(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
         {
         }
@@ -194,7 +194,7 @@ namespace WinRTXamlToolkit.Controls
         /// </param>
         /// <returns></returns>
 #pragma warning disable 1998
-        protected virtual async Task OnNavigatingFrom(AlternativeNavigatingCancelEventArgs e)
+        protected virtual async Task OnNavigatingFromAsync(AlternativeNavigatingCancelEventArgs e)
 #pragma warning restore 1998
         {
             this.NavigationState = NavigationState.NavigatingFrom;
@@ -206,7 +206,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="e">The <see cref="AlternativeNavigationEventArgs"/> instance containing the event data.</param>
         /// <returns></returns>
 #pragma warning disable 1998
-        protected virtual async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
+        protected virtual async Task OnNavigatingToAsync(AlternativeNavigationEventArgs e)
 #pragma warning restore 1998
         {
             this.NavigationState = NavigationState.NavigatingTo;
@@ -217,7 +217,7 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <returns></returns>
 #pragma warning disable 1998
-        protected virtual async Task OnTransitioningTo()
+        protected virtual async Task OnTransitioningToAsync()
 #pragma warning restore 1998
         {
         }
@@ -227,7 +227,7 @@ namespace WinRTXamlToolkit.Controls
         /// Called when the page is being transitioned to.
         /// </summary>
         /// <returns></returns>
-        protected virtual async Task OnTransitionedTo()
+        protected virtual async Task OnTransitionedToAsync()
 #pragma warning restore 1998
         {
         }
@@ -237,7 +237,7 @@ namespace WinRTXamlToolkit.Controls
         /// Called when the page is being transitioning from.
         /// </summary>
         /// <returns></returns>
-        protected virtual async Task OnTransitioningFrom()
+        protected virtual async Task OnTransitioningFromAsync()
 #pragma warning restore 1998
         {
         }
@@ -247,39 +247,39 @@ namespace WinRTXamlToolkit.Controls
         /// Called when the page has transitioned from.
         /// </summary>
         /// <returns></returns>
-        protected virtual async Task OnTransitionedFrom()
+        protected virtual async Task OnTransitionedFromAsync()
 #pragma warning restore 1998
         {
         }
 
-        internal async Task OnTransitioningToInternal()
+        internal async Task OnTransitioningToInternalAsync()
         {
             this.NavigationState = NavigationState.TransitioningTo;
-            await OnTransitioningTo();
+            await OnTransitioningToAsync();
         }
 
-        internal async Task OnTransitionedToInternal()
+        internal async Task OnTransitionedToInternalAsync()
         {
             this.NavigationState = NavigationState.TransitionedTo;
-            await OnTransitionedTo();
+            await OnTransitionedToAsync();
         }
 
-        internal async Task OnTransitioningFromInternal()
+        internal async Task OnTransitioningFromInternalAsync()
         {
             this.NavigationState = NavigationState.TransitioningFrom;
-            await OnTransitioningFrom();
+            await OnTransitioningFromAsync();
         }
 
-        internal async Task OnTransitionedFromInternal()
+        internal async Task OnTransitionedFromInternalAsync()
         {
             this.NavigationState = NavigationState.TransitionedFrom;
-            await OnTransitionedFrom();
+            await OnTransitionedFromAsync();
         }
 
-        internal async Task OnNavigatingFromInternal(AlternativeNavigatingCancelEventArgs e)
+        internal async Task OnNavigatingFromInternalAsync(AlternativeNavigatingCancelEventArgs e)
         {
             this.NavigationState = NavigationState.NavigatingFrom;
-            await OnNavigatingFrom(e);
+            await OnNavigatingFromAsync(e);
         }
 
         /// <summary>
@@ -288,22 +288,22 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        internal async Task OnNavigatingToInternal(AlternativeNavigationEventArgs e)
+        internal async Task OnNavigatingToInternalAsync(AlternativeNavigationEventArgs e)
         {
             this.NavigationState = NavigationState.NavigatingTo;
-            await OnNavigatingTo(e);
+            await OnNavigatingToAsync(e);
         }
 
-        internal async Task OnNavigatedFromInternal(AlternativeNavigationEventArgs e)
+        internal async Task OnNavigatedFromInternalAsync(AlternativeNavigationEventArgs e)
         {
             this.NavigationState = NavigationState.NavigatedFrom;
-            await OnNavigatedFrom(e);
+            await OnNavigatedFromAsync(e);
         }
 
-        internal async Task OnNavigatedToInternal(AlternativeNavigationEventArgs e)
+        internal async Task OnNavigatedToInternalAsync(AlternativeNavigationEventArgs e)
         {
             this.NavigationState = NavigationState.NavigatedTo;
-            await OnNavigatedTo(e);
+            await OnNavigatedToAsync(e);
         }
 
 #pragma warning disable 1998
@@ -316,7 +316,7 @@ namespace WinRTXamlToolkit.Controls
         /// </remarks>
         /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
-        protected virtual async Task Preload(object parameter)
+        protected virtual async Task PreloadAsync(object parameter)
 #pragma warning restore 1998
         {
         }
@@ -326,22 +326,22 @@ namespace WinRTXamlToolkit.Controls
         /// When overriden in a derived class - unloads the preloaded page data.
         /// </summary>
         /// <returns></returns>
-        protected virtual async Task UnloadPreloaded()
+        protected virtual async Task UnloadPreloadedAsync()
 #pragma warning restore 1998
         {
         }
 
-        internal async Task PreloadInternal(object parameter)
+        internal async Task PreloadInternalAsync(object parameter)
         {
             this.NavigationState = NavigationState.Preloading;
-            await Preload(parameter);
+            await PreloadAsync(parameter);
             this.NavigationState = NavigationState.Preloaded;
         }
 
-        internal async Task UnloadPreloadedInternal()
+        internal async Task UnloadPreloadedInternalAsync()
         {
             this.NavigationState = NavigationState.UnloadingPreloaded;
-            await UnloadPreloaded();
+            await UnloadPreloadedAsync();
             this.NavigationState = NavigationState.UnloadedPreloaded;
         }
     }

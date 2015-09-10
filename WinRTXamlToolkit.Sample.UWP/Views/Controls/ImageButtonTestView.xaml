@@ -8,8 +8,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <Style
+            x:Key="LightTitleTextBlockStyle"
+            TargetType="TextBlock">
+            <Setter
+                Property="Foreground"
+                Value="White"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid
+        Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -37,7 +46,7 @@
                 PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
                 Text="Two state ImageButton"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource LightTitleTextBlockStyle}" />
         </StackPanel>
 
         <StackPanel
@@ -51,7 +60,7 @@
                 PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
                 Text="Three state ImageButton"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource LightTitleTextBlockStyle}" />
         </StackPanel>
 
         <StackPanel
@@ -64,7 +73,7 @@
                 NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
                 PressedStateImageSource="ms-appx:///Assets/Images/RedButton_Pressed.png" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
                     <Run
@@ -92,7 +101,7 @@
                 NormalStateImageSource="ms-appx:///Assets/Images/RedButton_Idle.png"
                 GenerateMissingImages="True" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 LineStackingStrategy="MaxHeight"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
@@ -121,7 +130,7 @@
                 GenerateMissingImages="True"
                 IsEnabled="False" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 LineStackingStrategy="MaxHeight"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
@@ -156,7 +165,7 @@
                     GenerateMissingImages="True" />
             </StackPanel>
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 LineStackingStrategy="MaxHeight"
                 TextAlignment="Center">
                 <TextBlock.Inlines>

@@ -12,8 +12,7 @@
     IsTabStop="False">
     <UserControl.Resources>
         <DataTemplate
-            x:Name="ExtendedLineTemplate"
-            x:Key="ExtendedLineTemplate">
+            x:Name="ExtendedLineTemplate">
             <Line
                 Stroke="#FFFF0000"
                 StrokeThickness="1"

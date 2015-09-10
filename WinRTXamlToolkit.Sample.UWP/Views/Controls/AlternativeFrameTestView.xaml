@@ -119,7 +119,7 @@
                 Grid.ColumnSpan="2"
                 Text="Navigation State"
                 Margin="0,0,0,10"
-                Style="{StaticResource SubheaderTextStyle}" />
+                Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBox
                 x:Name="NavigationStateTextBox"
                 Grid.Row="2"
@@ -136,20 +136,20 @@
                 <StackPanel>
                     <TextBlock
                         Text="BackStack"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ItemsControl
                         x:Name="BackStackItemsControl"
                         ItemsSource="{Binding BackStack, ElementName=subFrame}"
                         ItemTemplate="{StaticResource JournalEntryDataTemplate}" />
                     <TextBlock
                         Text="CurrentJournalEntry"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ContentControl
                         x:Name="CurrentJournalEntryContentControl"
                         ContentTemplate="{StaticResource JournalEntryDataTemplate}" />
                     <TextBlock
                         Text="ForwardStack"
-                        Style="{StaticResource SubheaderTextStyle}" />
+                        Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ItemsControl
                         x:Name="ForwardStackItemsControl"
                         ItemsSource="{Binding ForwardStack, ElementName=subFrame}"

@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Text="RingSlice"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
 
         <controls:RingSlice
             Fill="{StaticResource AccentBrush}"
@@ -40,7 +40,7 @@
             Grid.Row="2">
             <TextBlock
                 Text="StartAngle"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource TitleTextBlockStyle}" />
             <Slider
                 x:Name="StartAngleSlider"
                 Minimum="0"
@@ -48,7 +48,7 @@
                 Maximum="{Binding Value, ElementName=EndAngleSlider}" />
             <TextBlock
                 Text="EndAngle"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource TitleTextBlockStyle}" />
             <Slider
                 x:Name="EndAngleSlider"
                 Minimum="{Binding Value, ElementName=StartAngleSlider}"
@@ -56,7 +56,7 @@
                 Maximum="359.99" />
             <TextBlock
                 Text="InnerRadius"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource TitleTextBlockStyle}" />
             <Slider
                 x:Name="InnerRadiusSlider"
                 Minimum="0"
@@ -64,7 +64,7 @@
                 Maximum="{Binding Value, ElementName=RadiusSlider}" />
             <TextBlock
                 Text="Radius"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource TitleTextBlockStyle}" />
             <Slider
                 x:Name="RadiusSlider"
                 Minimum="{Binding Value, ElementName=InnerRadiusSlider}"
@@ -76,7 +76,7 @@
         <TextBlock
             Text="PieSlice"
             Grid.Column="1"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
 
         <controls:PieSlice
             Fill="{StaticResource AccentBrush}"

@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Text="SourceListView"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <ListView
             x:Name="SourceListView"
             Grid.Row="1"
@@ -35,7 +35,7 @@
         <TextBlock
             Text="TargetListView (BindableSelection)"
             Grid.Column="1"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <ListView
             x:Name="TargetListView"
             ItemsSource="{Binding SelectedItems, Mode=TwoWay}"
@@ -48,10 +48,10 @@
             <TextBlock
                 Text="SelectedItem: "
                 Margin="0,0,20,0"
-                Style="{StaticResource SubheaderTextStyle}" />
+                Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBlock
                 Text="{Binding SelectedItem, ElementName=SourceListView}"
-                Style="{StaticResource SubheaderTextStyle}" />
+                Style="{StaticResource SubheaderTextBlockStyle}" />
         </StackPanel>
         <controls:CustomAppBar
             Grid.Row="3"

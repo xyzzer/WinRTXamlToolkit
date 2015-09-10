@@ -21,7 +21,7 @@
             <FlipView.Items>
                 <FlipViewItem>
                     <TextBlock
-                        Style="{StaticResource PageHeaderTextStyle}"
+                        Style="{StaticResource PageHeaderTextBlockStyle}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Margin="0 25 0 25"
@@ -31,7 +31,7 @@
 
                 <FlipViewItem>
                     <TextBlock
-                        Style="{StaticResource PageHeaderTextStyle}"
+                        Style="{StaticResource PageHeaderTextBlockStyle}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Margin="0 25 0 25"
@@ -49,7 +49,7 @@
             <StackPanel
                 Margin="0 10 0 0">
                 <TextBlock
-                    Style="{StaticResource SubheaderTextStyle}"
+                    Style="{StaticResource SubheaderTextBlockStyle}"
                     HorizontalAlignment="Center"
                     Text="Pick maximum visible suggestion count (without scrolling):" />
                 <Slider
@@ -59,7 +59,7 @@
                     Height="35"
                     Value="{Binding MaximalVisibleSuggestionCount, Mode=TwoWay}" />
                 <TextBlock
-                    Style="{StaticResource SubheaderTextStyle}"
+                    Style="{StaticResource SubheaderTextBlockStyle}"
                     HorizontalAlignment="Center"
                     Text="Pick suggestion algorithm:" />
                 <ListBox
@@ -83,7 +83,7 @@
                     </ContentControl>
                 </ListBox>
                 <TextBlock
-                    Style="{StaticResource SubheaderTextStyle}"
+                    Style="{StaticResource SubheaderTextBlockStyle}"
                     HorizontalAlignment="Center"
                     Text="Manage word dictionary (it will be used to give TextBox suggestions):" />
                 <ListBox

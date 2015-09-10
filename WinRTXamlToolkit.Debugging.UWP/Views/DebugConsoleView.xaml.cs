@@ -7,6 +7,7 @@ using WinRTXamlToolkit.Debugging.ViewModels;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {
@@ -97,14 +98,14 @@ namespace WinRTXamlToolkit.Debugging.Views
             }
         }
 
-        internal void Collapse()
+        internal async Task Collapse()
         {
-            this.Window.SnapToEdgeAsync();
+            await this.Window.SnapToEdgeAsync();
         }
 
-        internal void Expand()
+        internal async Task Expand()
         {
-            this.Window.RestoreAsync();
+            await this.Window.RestoreAsync();
         }
 
         private void Window_OnClosing(object sender, CancelEventArgs e)

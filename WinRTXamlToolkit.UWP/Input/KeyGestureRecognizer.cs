@@ -78,9 +78,12 @@ namespace WinRTXamlToolkit.Input
         {
             if (!this.window.Dispatcher.HasThreadAccess)
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 this.window.Dispatcher.RunAsync(
                     CoreDispatcherPriority.High,
                     Dispose);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
                 return;
             }
 

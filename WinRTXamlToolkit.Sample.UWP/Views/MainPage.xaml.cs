@@ -20,26 +20,21 @@ namespace WinRTXamlToolkit.Sample.Views
             //DC.ShowVisualTree(this);
         }
 
-#pragma warning disable 1998
-        protected override async Task OnNavigatedTo(AlternativeNavigationEventArgs e)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        protected override async Task OnNavigatedToAsync(AlternativeNavigationEventArgs e)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             GC.Collect();
 #pragma warning disable 4014
-            base.OnNavigatedTo(e);
+            base.OnNavigatedToAsync(e);
 #pragma warning restore 4014
 
-            //SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+            WindowTitleBar.SetText("WinRT XAML Toolkit Samples", true);
         }
 
-        protected override async Task OnNavigatedFrom(AlternativeNavigationEventArgs e)
+        protected override async Task OnNavigatedFromAsync(AlternativeNavigationEventArgs e)
         {
-            await base.OnNavigatedFrom(e);
-        }
-#pragma warning restore 1998
-
-        private void OnExitButtonClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
+            await base.OnNavigatedFromAsync(e);
         }
 
         private void ButtonsGridView_OnItemClick(object sender, ItemClickEventArgs e)

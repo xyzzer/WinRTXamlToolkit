@@ -25,11 +25,11 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Text="WrapPanel"
-            Style="{StaticResource TitleTextStyle}" />
+            Style="{StaticResource TitleTextBlockStyle}" />
         <TextBlock
             Text="VariableSizedWrapGrid"
             Grid.Column="1"
-            Style="{StaticResource TitleTextStyle}" />
+            Style="{StaticResource TitleTextBlockStyle}" />
 
         <controls:WrapPanel
             x:Name="wrapPanel"

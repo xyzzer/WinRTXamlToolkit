@@ -52,7 +52,7 @@
                     Value="65" />
                 <Setter
                     Property="Background"
-                    Value="#FF00A000" />
+                    Value="{StaticResource AccentBrush}" />
             </Style>
         </common:ImplicitStyleSelector>
         <common:ImplicitDataTemplateSelector
@@ -89,39 +89,10 @@
     </controls:AlternativePage.Resources>
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="140" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="120" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Button
-            x:Name="ExitButton"
-            Click="OnExitButtonClick"
-            Margin="10,47,0,0"
-            AutomationProperties.Name=""
-            Style="{StaticResource NoAppBarButtonStyle}" />
-        <TextBlock
-            Grid.Column="1"
-            Text="WinRT XAML Toolkit Tests"
-            VerticalAlignment="Top"
-            LineHeight="120"
-            Style="{StaticResource PageHeaderTextStyle}">
-            <TextBlock.RenderTransform>
-                <TranslateTransform/>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-
         <GridView
             x:Name="ButtonsGridView"
-            Grid.Row="1"
-            Grid.Column="1"
-            HorizontalAlignment="Left"
+            Margin="10"
+            HorizontalAlignment="Stretch"
             SelectionMode="None"
             IsItemClickEnabled="True"
             ItemClick="ButtonsGridView_OnItemClick"

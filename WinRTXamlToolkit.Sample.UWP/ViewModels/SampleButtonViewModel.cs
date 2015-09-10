@@ -10,14 +10,14 @@ namespace WinRTXamlToolkit.Sample.ViewModels
         public Type ViewType { get; private set; }
 
         public SampleButtonViewModel(string caption, SampleTypes sampleType, Type viewType)
-            : base(new RelayCommand(() => AppShell.Frame.Navigate(typeof(TestPage), caption)), null, caption)
+            : base(new RelayCommand(async () => await AppShell.Frame.NavigateAsync(typeof(TestPage), caption)), null, caption)
         {
             this.SampleType = sampleType;
             this.ViewType = viewType;
         }
 
         public SampleButtonViewModel(string caption, Type viewType, SampleTypes sampleType)
-            : base(new RelayCommand(() => AppShell.Frame.Navigate(typeof(TestPage), caption)), null, caption)
+            : base(new RelayCommand(async () => await AppShell.Frame.NavigateAsync(typeof(TestPage), caption)), null, caption)
         {
             this.SampleType = sampleType;
             this.ViewType = viewType;

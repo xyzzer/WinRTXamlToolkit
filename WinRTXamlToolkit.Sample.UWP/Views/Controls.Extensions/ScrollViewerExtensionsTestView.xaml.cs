@@ -44,15 +44,17 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void OnAnimatedScrollTestButtonClick(object sender, RoutedEventArgs e)
         {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             scrollViewer.ScrollToVerticalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight));
             scrollViewer.ScrollToHorizontalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             //scrollViewer.ScrollToHorizontalOffsetWithAnimation(500 - scrollViewer.HorizontalOffset);
             //scrollViewer.ScrollToVerticalOffsetWithAnimation(500 - scrollViewer.VerticalOffset);
         }
 
-        private void OnAnimatedZoomTestButtonClick(object sender, RoutedEventArgs e)
+        private async void OnAnimatedZoomTestButtonClick(object sender, RoutedEventArgs e)
         {
-            scrollViewer.ZoomToFactorWithAnimation((float)
+            await scrollViewer.ZoomToFactorWithAnimation((float)
                 (r.NextDouble() * (scrollViewer.MaxZoomFactor - scrollViewer.MinZoomFactor) + scrollViewer.MinZoomFactor));
         }
     }

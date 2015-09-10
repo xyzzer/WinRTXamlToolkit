@@ -74,6 +74,9 @@
             Property="Padding"
             Value="0" />
         <Setter
+            Property="UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
             Property="Template">
             <Setter.Value>
                 <ControlTemplate
@@ -88,23 +91,6 @@
                             FontSize="{TemplateBinding FontSize}"
                             FontWeight="{TemplateBinding FontWeight}"
                             FontFamily="{TemplateBinding FontFamily}" />
-                        <Rectangle
-                            x:Name="FocusVisualWhite"
-                            IsHitTestVisible="False"
-                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                            StrokeEndLineCap="Square"
-                            StrokeDashArray="1,1"
-                            Opacity="0"
-                            StrokeDashOffset="1.5" />
-                        <Rectangle
-                            x:Name="FocusVisualBlack"
-                            IsHitTestVisible="False"
-                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                            StrokeEndLineCap="Square"
-                            StrokeDashArray="1,1"
-                            Opacity="0"
-                            StrokeDashOffset="0.5" />
-
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup
                                 x:Name="CommonStates">
@@ -146,26 +132,6 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup
-                                x:Name="FocusStates">
-                                <VisualState
-                                    x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualWhite"
-                                            Storyboard.TargetProperty="Opacity" />
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualBlack"
-                                            Storyboard.TargetProperty="Opacity" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState
-                                    x:Name="Unfocused" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Grid>
@@ -258,6 +224,9 @@
                                     Property="MinHeight"
                                     Value="32" />
                                 <Setter
+                                    Property="UseSystemFocusVisuals"
+                                    Value="True" />
+                                <Setter
                                     Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate
@@ -333,28 +302,6 @@
                                                             </Storyboard>
                                                         </VisualState>
                                                     </VisualStateGroup>
-                                                    <VisualStateGroup
-                                                        x:Name="FocusStates">
-                                                        <VisualState
-                                                            x:Name="Focused">
-                                                            <Storyboard>
-                                                                <DoubleAnimation
-                                                                    Storyboard.TargetName="FocusVisualWhite"
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="1"
-                                                                    Duration="0" />
-                                                                <DoubleAnimation
-                                                                    Storyboard.TargetName="FocusVisualBlack"
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="1"
-                                                                    Duration="0" />
-                                                            </Storyboard>
-                                                        </VisualState>
-                                                        <VisualState
-                                                            x:Name="Unfocused" />
-                                                        <VisualState
-                                                            x:Name="PointerFocused" />
-                                                    </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
                                                 <Border
                                                     x:Name="Border"
@@ -371,22 +318,6 @@
                                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                                 </Border>
-                                                <Rectangle
-                                                    x:Name="FocusVisualWhite"
-                                                    IsHitTestVisible="False"
-                                                    Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                                                    StrokeEndLineCap="Square"
-                                                    StrokeDashArray="1,1"
-                                                    Opacity="0"
-                                                    StrokeDashOffset="1.5" />
-                                                <Rectangle
-                                                    x:Name="FocusVisualBlack"
-                                                    IsHitTestVisible="False"
-                                                    Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                                                    StrokeEndLineCap="Square"
-                                                    StrokeDashArray="1,1"
-                                                    Opacity="0"
-                                                    StrokeDashOffset="0.5" />
                                             </Grid>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -531,9 +462,9 @@
             Value="Top" />
     </Style>
 
-    <!--WrtxtdSubheaderTextStyle-->
+    <!--WrtxtdSubheaderTextBlockStyle-->
     <Style
-        x:Key="WrtxtdSubheaderTextStyle"
+        x:Key="WrtxtdSubheaderTextBlockStyle"
         TargetType="TextBlock">
         <Setter
             Property="Foreground"
@@ -592,6 +523,9 @@
             Property="Margin"
             Value="0,0,20,0" />
         <Setter
+            Property="UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
             Property="Template">
             <Setter.Value>
                 <ControlTemplate
@@ -604,24 +538,7 @@
                             Margin="3,-7,3,10"
                             TextWrapping="NoWrap"
                             TextTrimming="None"
-                            Style="{StaticResource WrtxtdSubheaderTextStyle}" />
-                        <Rectangle
-                            x:Name="FocusVisualWhite"
-                            IsHitTestVisible="False"
-                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
-                            StrokeEndLineCap="Square"
-                            StrokeDashArray="1,1"
-                            Opacity="0"
-                            StrokeDashOffset="1.5" />
-                        <Rectangle
-                            x:Name="FocusVisualBlack"
-                            IsHitTestVisible="False"
-                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
-                            StrokeEndLineCap="Square"
-                            StrokeDashArray="1,1"
-                            Opacity="0"
-                            StrokeDashOffset="0.5" />
-
+                            Style="{StaticResource WrtxtdSubheaderTextBlockStyle}" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup
                                 x:Name="CommonStates">
@@ -663,26 +580,6 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup
-                                x:Name="FocusStates">
-                                <VisualState
-                                    x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualWhite"
-                                            Storyboard.TargetProperty="Opacity" />
-                                        <DoubleAnimation
-                                            Duration="0"
-                                            To="1"
-                                            Storyboard.TargetName="FocusVisualBlack"
-                                            Storyboard.TargetProperty="Opacity" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState
-                                    x:Name="Unfocused" />
                             </VisualStateGroup>
                             <VisualStateGroup
                                 x:Name="CheckStates">

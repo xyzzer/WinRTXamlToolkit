@@ -12,10 +12,10 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary
                     x:Key="Default">

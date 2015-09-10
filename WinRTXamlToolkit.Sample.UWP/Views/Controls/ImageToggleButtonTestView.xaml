@@ -8,8 +8,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <Style
+            x:Key="LightTitleTextBlockStyle"
+            TargetType="TextBlock">
+            <Setter
+                Property="Foreground"
+                Value="White" />
+        </Style>
+    </UserControl.Resources>
+    <Grid
+        Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -51,7 +60,7 @@
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
                 Text="ImageToggleButton with all images set"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource LightTitleTextBlockStyle}" />
         </StackPanel>
 
         <StackPanel
@@ -67,7 +76,7 @@
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
                 Text="ImageToggleButton with idle and pressed images set"
-                Style="{StaticResource TitleTextStyle}" />
+                Style="{StaticResource LightTitleTextBlockStyle}" />
         </StackPanel>
 
         <StackPanel
@@ -83,7 +92,7 @@
                 RecyclePressedStateImageForHover="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
                     <Run
@@ -112,7 +121,7 @@
                 RecycleUncheckedStateImagesForCheckedStates="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
                     <Run
@@ -138,7 +147,7 @@
                 GenerateMissingImages="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
                     <Run
@@ -161,7 +170,7 @@
                 GenerateMissingImages="True"
                 IsEnabled="{Binding IsChecked, ElementName=cbIsEnabled}" />
             <TextBlock
-                Style="{StaticResource TitleTextStyle}"
+                Style="{StaticResource LightTitleTextBlockStyle}"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
                     <Run
@@ -175,6 +184,7 @@
 
         <CheckBox
             x:Name="cbIsEnabled"
+            Foreground="White"
             Grid.Row="3"
             Margin="0,15"
             Content="IsEnabled"

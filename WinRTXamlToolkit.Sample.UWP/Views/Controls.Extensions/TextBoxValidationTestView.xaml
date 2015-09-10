@@ -28,7 +28,7 @@
         <controls:WrapPanel
             Orientation="Vertical">
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="Any" />
             <TextBox
@@ -36,7 +36,7 @@
                 HorizontalAlignment="Left"
                 extensions:FieldValidationExtensions.Format="Any" />
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="NonEmpty" />
             <StackPanel
@@ -53,7 +53,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="Numeric" />
             <StackPanel
@@ -70,7 +70,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="NonEmptyNumeric" />
             <StackPanel
@@ -87,7 +87,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="Numeric,SpecificLength - AutoTabOnMaxLength=&quot;True&quot;" />
             <StackPanel
@@ -106,7 +106,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="MatchesRegexPattern" />
             <StackPanel
@@ -125,7 +125,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="IsStrongPassword,NonEmpty - AutoSelectOnFocus=&quot;True&quot;, AutoTabOnMaxLength=&quot;True&quot;" />
             <StackPanel
@@ -147,7 +147,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="EqualsPattern (password confirmation) - AutoSelectOnFocus=&quot;True&quot;" />
             <StackPanel
@@ -168,7 +168,7 @@
             </StackPanel>
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="NonEmptyNumeric Custom Brushes" />
             <TextBox
@@ -179,7 +179,7 @@
                 extensions:FieldValidationExtensions.ValidBrush="Green" />
 
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="Numeric, Data-bound" />
             <StackPanel

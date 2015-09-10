@@ -22,7 +22,7 @@
                 <controls:ToolStrip
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch">
-                    <controls:ToolBarButton
+                    <!--<controls:ToolBarButton
                         Content="File"
                         Shortcut="Ctrl+F,i"
                         Click="OnFileClick">
@@ -61,7 +61,7 @@
                             <SymbolIcon
                                 Symbol="View" />
                         </controls:ToolBarButton.Icon>
-                    </controls:ToolBarButton>
+                    </controls:ToolBarButton>-->
                 </controls:ToolStrip>
             </Grid>
         </controls:ToolWindow>

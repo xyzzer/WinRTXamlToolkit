@@ -167,19 +167,19 @@ namespace WinRTXamlToolkit.Controls
         ////}
         #endregion
 
-        #region IsPasswordRevealButtonEnabled
+        #region PasswordRevealModeProperty
         /// <summary>
-        /// IsPasswordRevealButtonEnabled Dependency Property
+        /// PasswordRevealModeProperty Dependency Property
         /// </summary>
-        public static readonly DependencyProperty IsPasswordRevealButtonEnabledProperty =
+        public static readonly DependencyProperty PasswordRevealModeProperty =
             DependencyProperty.Register(
-                "IsPasswordRevealButtonEnabled",
-                typeof(bool),
+                "PasswordRevealMode",
+                typeof(PasswordRevealMode),
                 typeof(WatermarkPasswordBox),
                 new PropertyMetadata(false));
 
         /// <summary>
-        /// Gets or sets the IsPasswordRevealButtonEnabled property. This dependency property 
+        /// Gets or sets the PasswordRevealMode property. This dependency property 
         /// indicates whether the visual UI of the PasswordBox
         /// should include a button element that toggles showing or hiding the typed
         /// characters.
@@ -188,10 +188,10 @@ namespace WinRTXamlToolkit.Controls
         /// True to show a password reveal button; false to not show a password reveal
         /// button.
         /// </returns>
-        public bool IsPasswordRevealButtonEnabled
+        public bool PasswordRevealMode
         {
-            get { return (bool)GetValue(IsPasswordRevealButtonEnabledProperty); }
-            set { SetValue(IsPasswordRevealButtonEnabledProperty, value); }
+            get { return (bool)GetValue(PasswordRevealModeProperty); }
+            set { SetValue(PasswordRevealModeProperty, value); }
         }
         #endregion
 
@@ -328,10 +328,10 @@ namespace WinRTXamlToolkit.Controls
                     Source = this
                 });
             _innerPasswordBox.SetBinding(
-                PasswordBox.IsPasswordRevealButtonEnabledProperty,
+                PasswordBox.PasswordRevealModeProperty,
                 new Binding
                 {
-                    Path = new PropertyPath("IsPasswordRevealButtonEnabled"),
+                    Path = new PropertyPath("PasswordRevealMode"),
                     Mode = BindingMode.TwoWay,
                     Source = this
                 });

@@ -28,7 +28,7 @@
     <Grid>
         <TextBlock
             Text="Click button to see ContentTemplate transition"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
 
         <Button
             x:Name="TestButton"

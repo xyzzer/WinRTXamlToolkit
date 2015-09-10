@@ -19,9 +19,9 @@ namespace WinRTXamlToolkit.Sample.Views
             this.InitializeComponent();
         }
 
-        private void OnCycleCamerasButtonClick(object sender, RoutedEventArgs e)
+        private async void OnCycleCamerasButtonClick(object sender, RoutedEventArgs e)
         {
-            TestedControl.CycleCamerasAsync();
+            await TestedControl.CycleCamerasAsync();
         }
 
         private async void OnShowPreviewButtonClick(object sender, RoutedEventArgs e)
@@ -29,9 +29,9 @@ namespace WinRTXamlToolkit.Sample.Views
             var result = await TestedControl.ShowAsync();
         }
 
-        private void OnHidePreviewButtonClick(object sender, RoutedEventArgs e)
+        private async void OnHidePreviewButtonClick(object sender, RoutedEventArgs e)
         {
-            TestedControl.HideAsync();
+            await TestedControl.HideAsync();
         }
 
         private delegate Task TaskDelegate();

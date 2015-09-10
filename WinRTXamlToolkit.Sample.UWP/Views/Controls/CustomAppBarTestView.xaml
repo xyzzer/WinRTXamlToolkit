@@ -35,7 +35,7 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Text="CustomAppBar Test"
-                    Style="{StaticResource PageHeaderTextStyle}" />
+                    Style="{StaticResource PageHeaderTextBlockStyle}" />
             </StackPanel>
         </controls:CustomAppBar>
         <controls:CustomAppBar
@@ -47,7 +47,7 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Text="Inner CustomAppBar"
-                    Style="{StaticResource PageSubheaderTextStyle}" />
+                    Style="{StaticResource PageSubheaderTextBlockStyle}" />
             </StackPanel>
         </controls:CustomAppBar>
         <controls:CustomAppBar
@@ -60,7 +60,7 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Text="Inner CustomAppBar with FrameworkElementExtensions.ClipToBounds=&quot;True&quot;"
-                    Style="{StaticResource PageSubheaderTextStyle}" />
+                    Style="{StaticResource PageSubheaderTextBlockStyle}" />
             </StackPanel>
         </controls:CustomAppBar>
         <controls:CustomAppBar
@@ -97,7 +97,7 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource SubheaderTextStyle}"
+            Style="{StaticResource SubheaderTextBlockStyle}"
             TextWrapping="Wrap"
             Text="Test CustomAppBar by swiping from bottom, right-clicking or pressing WinKey+Z" />
     </Grid>

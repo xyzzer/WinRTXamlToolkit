@@ -35,7 +35,7 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             await this.WaitForLoadedAsync();
             subFrame.Visibility = Visibility.Visible;
-            await subFrame.Navigate(typeof(AlternativeFrameTestPageSubPage1), (int)1);
+            await subFrame.NavigateAsync(typeof(AlternativeFrameTestPageSubPage1), (int)1);
         }
 
         private void GetNavigationStateButton_OnClick(object sender, RoutedEventArgs e)
@@ -43,11 +43,11 @@ namespace WinRTXamlToolkit.Sample.Views
             NavigationStateTextBox.Text = subFrame.GetNavigationState();
         }
 
-        private void SetNavigationStateButton_OnClick(object sender, RoutedEventArgs e)
+        private async void SetNavigationStateButton_OnClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                subFrame.SetNavigationState(NavigationStateTextBox.Text);
+                await subFrame.SetNavigationStateAsync(NavigationStateTextBox.Text);
             }
             catch(Exception ex)
             {

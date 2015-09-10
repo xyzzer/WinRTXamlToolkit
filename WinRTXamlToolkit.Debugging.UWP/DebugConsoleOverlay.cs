@@ -71,6 +71,8 @@ namespace WinRTXamlToolkit.Debugging
         public static void Show()
         {
             Instance._popup.IsOpen = true;
+            Instance._popup.Opacity = 1;
+            Instance._popup.IsHitTestVisible = true;
         }
 
         public static void ShowLog()
@@ -85,19 +87,25 @@ namespace WinRTXamlToolkit.Debugging
             _instance._debugConsoleView.ShowVisualTree(element);
         }
 
+        //public static void Collapse()
+        //{
+        //    Instance._popup.IsOpen = false;
+        //}
+
         public static void Hide()
         {
-            Instance._popup.IsOpen = false;
+            Instance._popup.Opacity = 0;
+            Instance._popup.IsHitTestVisible = false;
         }
 
-        public static void Expand()
+        public static async void Expand()
         {
-            Instance._debugConsoleView.Expand();
+            await Instance._debugConsoleView.Expand();
         }
 
-        public static void Collapse()
+        public static async void Collapse()
         {
-            Instance._debugConsoleView.Collapse();
+            await Instance._debugConsoleView.Collapse();
         }
 
         private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)

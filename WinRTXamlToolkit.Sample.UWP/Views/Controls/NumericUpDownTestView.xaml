@@ -32,7 +32,7 @@
         <TextBlock
             Grid.Row="1"
             Text="Default NumericUpDown"
-            Style="{StaticResource SubheaderTextStyle}" />
+            Style="{StaticResource SubheaderTextBlockStyle}" />
         <controls:NumericUpDown
             Grid.Column="2"
             Width="200"
@@ -44,7 +44,7 @@
         <TextBlock
             Grid.Row="1"
             Grid.Column="2"
-            Style="{StaticResource SubheaderTextStyle}">
+            Style="{StaticResource SubheaderTextBlockStyle}">
             <TextBlock.Inlines>
                 <Run
                     Text="Width=&quot;200&quot;" />
@@ -74,7 +74,7 @@
             LargeChange="1000" />
         <TextBlock
             Grid.Row="3"
-            Style="{StaticResource SubheaderTextStyle}">
+            Style="{StaticResource SubheaderTextBlockStyle}">
             <TextBlock.Inlines>
                 <Run
                     Text="Width=&quot;600&quot;" />
@@ -110,7 +110,7 @@
         <TextBlock
             Grid.Column="2"
             Grid.Row="3"
-            Style="{StaticResource SubheaderTextStyle}">
+            Style="{StaticResource SubheaderTextBlockStyle}">
             <TextBlock.Inlines>
                 <Run
                     Text="Width=&quot;200&quot;" />

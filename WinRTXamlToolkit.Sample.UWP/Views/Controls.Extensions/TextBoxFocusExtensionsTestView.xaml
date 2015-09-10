@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="AutoSelectOnFocus" />
             <TextBox
@@ -19,7 +19,7 @@
                 extensions:TextBoxFocusExtensions.AutoSelectOnFocus="True"
                 Text="AutoSelectOnFocus makes the TextBox select all text when it gets keyboard focus." />
             <TextBlock
-                Style="{StaticResource BasicTextStyle}"
+                Style="{StaticResource BaseTextBlockStyle}"
                 Margin="0,20,0,0"
                 Text="AutoTabOnMaxLength=5" />
             <TextBox

@@ -15,7 +15,7 @@
                 PulseScale="1.07"
                 Duration="0:0:6">
                 <TextBlock
-                    Style="{StaticResource HeaderTextStyle}"
+                    Style="{StaticResource HeaderTextBlockStyle}"
                     Text="6s pulse" />
             </controls:AnimatingContainer>
             
@@ -25,7 +25,7 @@
                 RadiusY="2"
                 Duration="0:0:10">
                 <TextBlock
-                    Style="{StaticResource HeaderTextStyle}"
+                    Style="{StaticResource HeaderTextBlockStyle}"
                     Text="10s rotation" />
             </controls:AnimatingContainer>
         </StackPanel>

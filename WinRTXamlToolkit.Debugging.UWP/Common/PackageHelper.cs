@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -26,7 +27,7 @@ namespace WinRTXamlToolkit.Debugging.Common
 
             var list = new List<Assembly>();
 
-            foreach (StorageFile file in (await folder.GetFilesAsync()))
+            foreach (StorageFile file in (await folder.GetFilesAsync()).Where(f => f.Name != "ClrCompression.dll"))
             {
                 if (file.FileType == ".dll" ||
                     file.FileType == ".exe")
@@ -42,6 +43,7 @@ namespace WinRTXamlToolkit.Debugging.Common
                     catch
 // ReSharper restore EmptyGeneralCatchClause
                     {
+                        Debug.WriteLine($"Found a package assembly that could not be loaded named: {file.Name}");
                     }
                 }
             }

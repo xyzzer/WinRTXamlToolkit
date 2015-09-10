@@ -12,7 +12,7 @@
         <!--<TextBlock
             Text="Note: Positioning glitches showed up in Consumer Preview. They occur less if the RingSlice Path is placed in a Canvas control."
             TextWrapping="Wrap"
-            Style="{StaticResource SubheaderTextStyle}" />-->
+            Style="{StaticResource SubheaderTextBlockStyle}" />-->
 
         <Canvas
             VerticalAlignment="Center"

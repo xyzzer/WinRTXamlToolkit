@@ -13,27 +13,27 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private int _parameter;
 
-        protected override async Task OnNavigatingTo(AlternativeNavigationEventArgs e)
+        protected override async Task OnNavigatingToAsync(AlternativeNavigationEventArgs e)
         {
             _parameter = (int)e.Parameter;
             ParameterTextBlock.Text = "Parameter: " + _parameter;
-            await base.OnNavigatingTo(e);
+            await base.OnNavigatingToAsync(e);
         }
 
-        private void OnNavigateButtonClick(object sender, RoutedEventArgs e)
+        private async void OnNavigateButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(
+            await this.Frame.NavigateAsync(
                 typeof(AlternativeFrameTestPageSubPage1), _parameter + 1);
         }
 
-        private void OnBackButtonClick(object sender, RoutedEventArgs e)
+        private async void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoBack();
+            await this.Frame.GoBackAsync();
         }
 
-        private void OnForwardButtonClick(object sender, RoutedEventArgs e)
+        private async void OnForwardButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoForward();
+            await this.Frame.GoForwardAsync();
         }
     }
 }
