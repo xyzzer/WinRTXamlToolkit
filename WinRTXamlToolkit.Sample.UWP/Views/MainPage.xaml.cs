@@ -41,6 +41,7 @@ namespace WinRTXamlToolkit.Sample.Views
         {
             var vm = e.ClickedItem as ButtonViewModel;
             vm.Command.Execute(null);
+            this.ButtonsGridView.GetScrollViewer().InvalidateMeasure();
         }
 
         private void ButtonsGridView_OnKeyDown(object sender, KeyRoutedEventArgs e)

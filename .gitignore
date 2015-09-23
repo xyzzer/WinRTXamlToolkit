@@ -16,3 +16,11 @@ Nuget/*.nupkg
 **Release
 **Generated Files
 **ipch
+/.vs/config/applicationhost.config
+/WinRTXamlToolkit.Controls.Calendar.UWP/project.lock.json
+/WinRTXamlToolkit.Controls.DataVisualization.UWP/project.lock.json
+/WinRTXamlToolkit.UWP/project.lock.json
+/WinRTXamlToolkit.UnitTests.UWP/project.lock.json
+/WinRTXamlToolkit.Sample.UWP/project.lock.json
+/WinRTXamlToolkit.Debugging.UWP/project.lock.json
+/WinRTXamlToolkit.Controls.Gauge.UWP/project.lock.json
