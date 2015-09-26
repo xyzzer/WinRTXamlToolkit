@@ -63,6 +63,8 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             Thickness oldHighlightBounds, Thickness newHighlightBounds)
         {
             this.HighlightRect.Margin = newHighlightBounds;
+            this.UpdateExtendedLinesPositions();
+            this.UpdateHighlightTextPosition();
         }
         #endregion
 
@@ -121,6 +123,7 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             string oldHighlightText, string newHighlightText)
         {
             this.HighlightTextBlock.Text = newHighlightText;
+            this.UpdateHighlightTextPosition();
         }
         #endregion
 
