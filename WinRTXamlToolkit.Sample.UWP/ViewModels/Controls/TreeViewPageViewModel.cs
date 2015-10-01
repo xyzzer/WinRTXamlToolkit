@@ -28,6 +28,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels.Controls
         public TreeViewPageViewModel()
         {
             _branchId = 1;
+            
+        }
+
+        public void BuildTree()
+        {
             TreeItems = BuildTree(10, 10);
         }
 
