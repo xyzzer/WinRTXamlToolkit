@@ -47,7 +47,7 @@
             </Style>
         </Grid.Resources>
         <TextBlock
-            Style="{StaticResource PageSubheaderTextBlockStyle}"
+            Style="{StaticResource SubheaderTextBlockStyle}"
             Text="Note the limited performance of animations around LayoutTransformControl" />
         <controls:WrapPanel
             VerticalAlignment="Stretch"
