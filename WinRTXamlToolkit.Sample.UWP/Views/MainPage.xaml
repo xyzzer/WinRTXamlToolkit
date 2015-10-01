@@ -95,7 +95,6 @@
             HorizontalAlignment="Stretch"
             SelectionMode="None"
             IsItemClickEnabled="True"
-            ItemClick="ButtonsGridView_OnItemClick"
             KeyDown="ButtonsGridView_OnKeyDown"
             ItemsSource="{Binding SampleGroups}"
             ItemContainerStyleSelector="{StaticResource SampleLinkContainerStyleSelector}"
