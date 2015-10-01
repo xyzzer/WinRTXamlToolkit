@@ -36,7 +36,7 @@ namespace WinRTXamlToolkit.Sample
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            DC.ShowVisualTree(this);
+            //DC.ShowVisualTree(this);
             //DC.Hide();
         }
 

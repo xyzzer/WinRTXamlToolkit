@@ -19,11 +19,13 @@
             <ColumnDefinition
                 x:Name="BackButtonColumn"
                 Width="Auto" />
-            <ColumnDefinition 
-                x:Name="LabelColumn"/>
             <ColumnDefinition
-                x:Name="RightColumn"
+                x:Name="LabelColumn" />
+            <ColumnDefinition
+                x:Name="ButtonColumn"
                 Width="Auto" />
+            <ColumnDefinition
+                x:Name="RightColumn" />
         </Grid.ColumnDefinitions>
         <Button
             x:Name="BackButton"
@@ -37,13 +39,30 @@
             BorderThickness="0"
             Padding="0"
             Margin="0"/>
-        <TextBlock
-            x:Name="Label"
-            Margin="10,0"
-            TextTrimming="CharacterEllipsis"
+        <Grid
+            x:Name="LabelGrid"
+            Background="Transparent"
+            HorizontalAlignment="Stretch"
+            Grid.Column="2">
+            <TextBlock
+                x:Name="Label"
+                Margin="10,0"
+                TextTrimming="CharacterEllipsis"
+                Foreground="White"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" />
+        </Grid>
+        <Button
+            x:Name="DebugButton"
+            Click="DebugButton_Click"
+            FontFamily="Segoe MDL2 Assets"
+            Content="&#xE15E;"
+            Width="48"
+            Background="Red"
             Foreground="White"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Grid.Column="2" />
+            BorderThickness="0"
+            Padding="0"
+            Margin="0"
+            Grid.Column="3" />
     </Grid>
 </UserControl>
