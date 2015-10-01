@@ -278,9 +278,9 @@ namespace WinRTXamlToolkit.Controls
         private static void PrepareHeaderedItemsControlContainer(HeaderedItemsControl control, object item, ItemsControl parentItemsControl, Style parentItemContainerStyle)
         {
             //TODO: It seems like there might be a platform issue here. Will investigate more with the XAML platform guys.
-            for (int _ = 0; _ < 2; _++)
-                try
-                {
+            //for (int _ = 0; _ < 2; _++)
+            //    try
+            //    {
                     if (control != item)
                     {
                         // Copy the ItemsControl properties from parent to child
@@ -378,12 +378,12 @@ namespace WinRTXamlToolkit.Controls
                     }
 
                     return; // TODO: returning on no exception to avoid retries
-                }
-                catch (Exception ex)
-                {
-                    // TODO: The ComException should never happen here
-                    Debug.WriteLine(ex.ToString());
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    // TODO: The ComException should never happen here
+                //    Debug.WriteLine(ex.ToString());
+                //}
         }
 
         /// <summary>
