@@ -47,7 +47,7 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Text="Inner CustomAppBar"
-                    Style="{StaticResource PageSubheaderTextBlockStyle}" />
+                    Style="{StaticResource SubheaderTextBlockStyle}" />
             </StackPanel>
         </controls:CustomAppBar>
         <controls:CustomAppBar
@@ -60,7 +60,7 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Text="Inner CustomAppBar with FrameworkElementExtensions.ClipToBounds=&quot;True&quot;"
-                    Style="{StaticResource PageSubheaderTextBlockStyle}" />
+                    Style="{StaticResource SubheaderTextBlockStyle}" />
             </StackPanel>
         </controls:CustomAppBar>
         <controls:CustomAppBar

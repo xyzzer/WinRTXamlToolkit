@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Text="HSL Conversion tools"
-                Style="{StaticResource PageSubheaderTextBlockStyle}" />
+                Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBlock
                 Grid.Row="1"
                 Text="RenderColorPickerHueLightness(1.0)"
@@ -106,7 +106,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Text="HSV Conversion tools"
-                Style="{StaticResource PageSubheaderTextBlockStyle}" />
+                Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBlock
                 Grid.Row="1"
                 Text="RenderColorPickerHueValue(1.0)"
