@@ -414,7 +414,7 @@
                                     x:Name="PART_ValueBar"
                                     IsHitTestVisible="False"
                                     Fill="#FFFFFFFF" />
-                                <TextBox
+                                <controls:UpDownTextBox
                                     x:Name="PART_ValueTextBox"
                                     FontFamily="{TemplateBinding FontFamily}"
                                     FontSize="{TemplateBinding FontSize}"
