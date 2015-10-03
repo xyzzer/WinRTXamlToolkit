@@ -1,18 +1,26 @@
-set PATH=%PATH%;C:\Windows\Microsoft.NET\Framework\v4.0.30319
-set MSBUILD="c:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
+set PATH=%PATH%;c:\Program Files (x86)\MSBuild\14.0\Bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319
+set MSBUILD="c:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
+set NUGET_PLATFORM=uap10.0
+set PLATFORM_SUFFIX=.UWP
+set VisualStudioVersion=14.0
 
-if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE)
+if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE_CALL)
 
-rem set VisualStudioVersion=12.0
+@CALL :BUILD || GOTO :REPORT_ERROR
+if "%1"=="onlybuild" ( & @GOTO :EOF)
+:CREATE_FOLDER_STRUCTURE_CALL
+@CALL :CREATE_FOLDER_STRUCTURE || GOTO :REPORT_ERROR
+@CALL :COPY_FILES || GOTO :REPORT_ERROR
+@GOTO :PACK_FILES
 
+:BUILD
 @echo Building UWP projects
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.UWP\WinRTXamlToolkit.UWP.csproj" || GOTO :REPORT_ERROR
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging.UWP\WinRTXamlToolkit.Debugging.UWP.csproj" || GOTO :REPORT_ERROR
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar.UWP\WinRTXamlToolkit.Controls.Calendar.UWP.csproj" || GOTO :REPORT_ERROR
 %MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge.UWP\WinRTXamlToolkit.Controls.Gauge.UWP.csproj" || GOTO :REPORT_ERROR
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.UWP\WinRTXamlToolkit.Controls.DataVisualization.UWP.csproj" || GOTO :REPORT_ERROR
-
-if "%1"=="onlybuild" ( & @GOTO :EOF)
+%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization.UWP\WinRTXamlToolkit.Controls.DataVisualization.UWP.csproj" || GOTO :REPORT_ERROR
+@GOTO :EOF
 
 :CREATE_FOLDER_STRUCTURE
 @rem Base folder structure
@@ -20,24 +28,12 @@ rd /Q /S lib
 rd /Q /S tools
 rd /Q /S content
 
+@rem Creating base NuGet folders
 mkdir lib
 mkdir tools
 mkdir content
 mkdir content\controllers
 
-@echo Copying Windows 8.1 build
-set NUGET_PLATFORM=netcore451
-set PLATFORM_SUFFIX=.Windows
-@CALL :COPY_FILES || GOTO :REPORT_ERROR
-
-@echo Copying Windows Phone 8.1 build
-set NUGET_PLATFORM=wpa
-set PLATFORM_SUFFIX=.WindowsPhone
-@CALL :COPY_FILES || GOTO :REPORT_ERROR
-
-@GOTO :PACK_FILES
-
-:COPY_FILES
 @rem WinRTXamlToolkit folders
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit%PLATFORM_SUFFIX%\Controls\AlternativeFrame"
@@ -91,40 +87,46 @@ mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\Controls\EditableListBox"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\Themes"
 mkdir "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\Views\PropertyEditors"
+@GOTO :EOF
 
-@rem copy "..\src\SomeController.cs" content
-copy "..\WinRTXamlToolkit\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Calendar.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-copy "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
-@rem if [%PLATFORM_SUFFIX%]==[.Windows] (copy "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WinRTProxy%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.WinRTProxy.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR)
+:COPY_FILES
+@echo Copying UWP build
 
+copy "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Calendar.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.DataVisualization.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Controls.Gauge.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
+copy "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\WinRTXamlToolkit.Debugging.*" "lib\%NUGET_PLATFORM%" || GOTO :REPORT_ERROR
 
-xcopy /E /Y "..\WinRTXamlToolkit\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\"
-xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\"
-xcopy /E /Y "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\"
-@rem if [%PLATFORM_SUFFIX%]==[.Windows] (xcopy /E /Y "..\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.WinRTProxy%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging.WinRTProxy\")
+@rem XBFs are required for all the XAML files
+xcopy /E /Y "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\"
+xcopy /E /Y "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\bin\Release\*.xbf" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\"
 
-@rem copy "..\src\SomePowershellScript.ps1 tools || GOTO :REPORT_ERROR
+@rem XAML files enable something in VS IIRC (toolbox support, designer support or templates)
+xcopy /E /Y "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\*.xaml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\*.xaml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\*.xaml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\*.xaml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\"
+xcopy /E /Y "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\*.xaml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\"
+
+@rem rd.xml are required to build (for ProjectN/.Net Native Compile)
+xcopy /E /Y "..\WinRTXamlToolkit%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Calendar%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Calendar\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.DataVisualization%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.DataVisualization\"
+xcopy /E /Y "..\WinRTXamlToolkit.Controls.Gauge%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Controls.Gauge\"
+xcopy /E /Y "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGET_PLATFORM%\WinRTXamlToolkit.Debugging\"
 @GOTO :EOF
 
 :PACK_FILES
 @echo Packing NuGets
-nuget pack "WinRTXamlToolkit.Windows.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.DataVisualization.Windows.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.Calendar.Windows.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.Gauge.Windows.nuspec"
-nuget pack "WinRTXamlToolkit.Debugging.Windows.nuspec"
-@rem nuget pack "WinRTXamlToolkit.Debugging.WinRTProxy.Windows.nuspec"
-
-nuget pack "WinRTXamlToolkit.WindowsPhone.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.Calendar.WindowsPhone.nuspec"
-nuget pack "WinRTXamlToolkit.Controls.Gauge.WindowsPhone.nuspec"
-nuget pack "WinRTXamlToolkit.Debugging.WindowsPhone.nuspec"
+nuget pack "WinRTXamlToolkit.UWP.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.DataVisualization.UWP.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.Calendar.UWP.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.Gauge.UWP.nuspec"
+nuget pack "WinRTXamlToolkit.Debugging.UWP.nuspec"
 @GOTO :EOF
 
 :REPORT_ERROR
