@@ -8,23 +8,31 @@ namespace WinRTXamlToolkit.Sample.Views
 {
     public sealed partial class ChartTestView : UserControl
     {
+        private bool isInitialized;
+
         public ChartTestView()
         {
             this.InitializeComponent();
-
-            UpdateCharts();
+            this.isInitialized = true;
+            //UpdateCharts();
         }
 
         private Random _random = new Random();
+        private bool axisLabelsHidden = false;
 
         private void UpdateCharts()
         {
+            if (!this.isInitialized)
+            {
+                return;
+            }
+
             List<NameValueItem> items = new List<NameValueItem>();
-            items.Add(new NameValueItem { Name = "Test1", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test2", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test3", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test4", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test5", Value = _random.Next(10, 100) });
+
+            for (int i = 0; i < NumberOfItemsSlider.Value; i++)
+            {
+                items.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+            }
 
             ((ColumnSeries)this.Chart.Series[0]).ItemsSource = items;
             ((BarSeries)this.BarChart.Series[0]).ItemsSource = items;
@@ -33,6 +41,29 @@ namespace WinRTXamlToolkit.Sample.Views
             ((ColumnSeries)this.MixedChart.Series[0]).ItemsSource = items;
             ((LineSeries)this.MixedChart.Series[1]).ItemsSource = items;
             ((AreaSeries)this.AreaChart.Series[0]).ItemsSource = items;
+            var series = ((AreaSeries)this.AreaChartWithNoLabels.Series[0]);
+            series.ItemsSource = items;
+
+            if (!this.axisLabelsHidden)
+            {
+                series.DependentRangeAxis =
+                    new LinearAxis
+                    {
+                        Minimum = 0,
+                        Maximum = 100,
+                        Orientation = AxisOrientation.Y,
+                        Interval = 20,
+                        ShowGridLines = false,
+                        Width = 0
+                    };
+                series.IndependentAxis =
+                    new CategoryAxis
+                    {
+                        Orientation = AxisOrientation.X,
+                        Height = 0
+                    };
+                this.axisLabelsHidden = true;
+            }
             ((BubbleSeries)this.BubbleChart.Series[0]).ItemsSource = items;
             ((ScatterSeries)this.ScatterChart.Series[0]).ItemsSource = items;
             ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items;
@@ -80,6 +111,11 @@ namespace WinRTXamlToolkit.Sample.Views
         }
 
         private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
+        {
+            UpdateCharts();
+        }
+
+        private void NumberOfItemsSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
         {
             UpdateCharts();
         }

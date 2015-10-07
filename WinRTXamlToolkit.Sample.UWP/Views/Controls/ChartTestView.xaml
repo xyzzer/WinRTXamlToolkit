@@ -17,8 +17,14 @@
             <ColumnDefinition
                 Width="*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <ListView
             x:Name="ChartsIndex"
+            Grid.RowSpan="2"
             SelectionMode="Single"
             SelectedIndex="{Binding SelectedIndex, ElementName=ChartsList, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
@@ -41,6 +47,7 @@
             <TextBlock>Line Chart Without Data Points</TextBlock>
             <TextBlock>Mixed Chart</TextBlock>
             <TextBlock>Area Chart</TextBlock>
+            <TextBlock>Area Chart / No Labels</TextBlock>
             <TextBlock>Bubble Chart</TextBlock>
             <TextBlock>Scatter Chart</TextBlock>
             <TextBlock>Stacked Bar Chart</TextBlock>
@@ -50,8 +57,39 @@
             <!--ItemsSource="{Binding Items, ElementName=ChartsList}"
             DisplayMemberPath="Content.Title">-->
         </ListView>
+        <Grid
+            Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition 
+                    Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Number of items"/>
+                <Slider
+                    x:Name="NumberOfItemsSlider"
+                    ValueChanged="NumberOfItemsSlider_ValueChanged"
+                    Width="200"
+                    Minimum="0"
+                    Maximum="50"
+                    StepFrequency="1"
+                    SmallChange="1"
+                    LargeChange="1"
+                    Value="5" />
+            </StackPanel>
+            <controls:ToolStrip
+                Grid.Column="1">
+                <controls:ToolBarButton
+                    Content="Update"
+                    Click="OnUpdateButtonClick" />
+            </controls:ToolStrip>
+        </Grid>
         <FlipView
             x:Name="ChartsList"
+            Grid.Row="1"
             Grid.Column="1">
             <charting:Chart
                 x:Name="PieChart"
@@ -485,6 +523,52 @@
                     IsSelectionEnabled="True" />
             </charting:Chart>
             <charting:Chart
+                x:Name="AreaChartWithNoLabels"
+                Margin="70,0">
+                <charting:Chart.LegendStyle>
+                    <Style
+                        TargetType="datavis:Legend">
+                        <Setter
+                            Property="Width"
+                            Value="0"/>
+                    </Style>
+                </charting:Chart.LegendStyle>
+                <charting:AreaSeries
+                    Title="Population"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True">
+                    <charting:AreaSeries.DataPointStyle>
+                        <Style
+                            TargetType="charting:AreaDataPoint">
+                            <Setter
+                                Property="BorderThickness"
+                                Value="0" />
+                            <Setter
+                                Property="IsTabStop"
+                                Value="False" />
+                            <Setter
+                                Property="Width"
+                                Value="0" />
+                            <Setter
+                                Property="Height"
+                                Value="0" />
+                            <Setter
+                                Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate
+                                        TargetType="charting:AreaDataPoint">
+                                        <Grid
+                                            x:Name="Root"
+                                            Opacity="0" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </charting:AreaSeries.DataPointStyle>
+                </charting:AreaSeries>
+            </charting:Chart>
+            <charting:Chart
                 x:Name="BubbleChart"
                 Title="Bubble Chart"
                 Margin="70,0">
@@ -595,18 +679,5 @@
                 </Series:Stacked100ColumnSeries>
             </charting:Chart>
         </FlipView>
-        <controls:CustomAppBar
-            Margin="-120,0,0,0"
-            MinHeight="140"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Bottom"
-            IsOpen="True">
-            <StackPanel
-                Orientation="Horizontal">
-                <Button
-                    Content="Update"
-                    Click="OnUpdateButtonClick" />
-            </StackPanel>
-        </controls:CustomAppBar>
     </Grid>
 </UserControl>

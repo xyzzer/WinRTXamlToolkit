@@ -469,6 +469,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         protected override Size MeasureOverride(Size availableSize)
         {
             double offset = 0.0;
+
             if (Children.Count > 0)
             {
                 Size totalSize = new Size(double.PositiveInfinity, double.PositiveInfinity);
