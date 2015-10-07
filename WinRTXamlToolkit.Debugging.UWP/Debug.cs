@@ -1,4 +1,5 @@
-﻿using DiagnosticsDebug = System.Diagnostics.Debug;
+﻿using System.Diagnostics;
+using DiagnosticsDebug = System.Diagnostics.Debug;
 
 namespace WinRTXamlToolkit.Debugging
 {
@@ -7,6 +8,7 @@ namespace WinRTXamlToolkit.Debugging
         public static bool TraceToDebugger = true;
         public static bool TraceToDebugConsoleOverlay = true;
 
+        [Conditional("DEBUG")]
         public static void WriteLine(string format, params object[] args)
         {
             if (TraceToDebugger)
@@ -16,6 +18,7 @@ namespace WinRTXamlToolkit.Debugging
                 DC.Trace(format, args);
         }
 
+        [Conditional("DEBUG")]
         public static void WriteLine(string message)
         {
             if (TraceToDebugger)
@@ -24,6 +27,7 @@ namespace WinRTXamlToolkit.Debugging
                 DC.Trace(message);
         }
 
+        [Conditional("DEBUG")]
         public static void WriteLine(object value)
         {
             if (TraceToDebugger)
@@ -32,11 +36,13 @@ namespace WinRTXamlToolkit.Debugging
                 DC.Trace((value ?? "<null>").ToString());
         }
 
+        [Conditional("DEBUG")]
         public static void Assert(bool condition)
         {
             DiagnosticsDebug.Assert(condition);
         }
 
+        [Conditional("DEBUG")]
         public static void Assert(bool condition, string message)
         {
             DiagnosticsDebug.Assert(condition, message);
