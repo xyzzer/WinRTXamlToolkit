@@ -142,6 +142,46 @@
                     Property="Margin"
                     Value="0,0,30,40" />
             </Style>
+
+            <Style
+                x:Key="VerticalScrollViewerStyle"
+                TargetType="ScrollViewer">
+                <Setter
+                    Property="HorizontalScrollBarVisibility"
+                    Value="Disabled" />
+                <Setter
+                    Property="VerticalScrollBarVisibility"
+                    Value="Auto" />
+                <Setter
+                    Property="ScrollViewer.HorizontalScrollMode"
+                    Value="Disabled" />
+                <Setter
+                    Property="ScrollViewer.VerticalScrollMode"
+                    Value="Enabled" />
+                <Setter
+                    Property="ScrollViewer.ZoomMode"
+                    Value="Disabled" />
+            </Style>
+
+            <Style
+                x:Key="HorizontalScrollViewerStyle"
+                TargetType="ScrollViewer">
+                <Setter
+                    Property="HorizontalScrollBarVisibility"
+                    Value="Auto" />
+                <Setter
+                    Property="VerticalScrollBarVisibility"
+                    Value="Disabled" />
+                <Setter
+                    Property="ScrollViewer.HorizontalScrollMode"
+                    Value="Enabled" />
+                <Setter
+                    Property="ScrollViewer.VerticalScrollMode"
+                    Value="Disabled" />
+                <Setter
+                    Property="ScrollViewer.ZoomMode"
+                    Value="Disabled" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

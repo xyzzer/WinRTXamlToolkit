@@ -15,26 +15,6 @@
             x:Key="NullableBoolToBoolConverter" />
         <converters:DoubleToIntConverter
             x:Key="DoubleToIntConverter" />
-
-        <Style
-            x:Key="VerticalScrollViewerStyle"
-            TargetType="ScrollViewer">
-            <Setter
-                Property="HorizontalScrollBarVisibility"
-                Value="Disabled" />
-            <Setter
-                Property="VerticalScrollBarVisibility"
-                Value="Auto" />
-            <Setter
-                Property="ScrollViewer.HorizontalScrollMode"
-                Value="Disabled" />
-            <Setter
-                Property="ScrollViewer.VerticalScrollMode"
-                Value="Enabled" />
-            <Setter
-                Property="ScrollViewer.ZoomMode"
-                Value="Disabled" />
-        </Style>
     </UserControl.Resources>
 
     <Grid>
