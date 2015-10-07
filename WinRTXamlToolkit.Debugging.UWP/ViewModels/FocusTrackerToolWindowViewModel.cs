@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls.Extensions;
@@ -20,7 +21,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             public FocusEvent(object element)
             {
-                Element = element;
+                Element = element ?? new { FontWeight = FontWeights.Normal, DisplayName = "<null>" };
                 this.TimeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
             }
         } 
@@ -103,11 +104,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region OnFocusChanged()
         private async void OnFocusChanged(object sender, UIElement e)
         {
-            if (!ignoreFocusChange &&
-                !(e is DebugConsoleView) &&
-                !(e.GetAncestorsOfType<DebugConsoleView>().Any()))
+            if (!ignoreFocusChange)
             {
-                await this.AddFocusEventAsync(e);
+                if (e == null)
+                {
+                    await this.AddFocusEventAsync(null);
+                }
+                else if (
+                    !(e is DebugConsoleView) &&
+                    !(e.GetAncestorsOfType<DebugConsoleView>().Any()))
+                {
+                    await this.AddFocusEventAsync(e);
+                }
             }
         } 
         #endregion
@@ -115,10 +123,19 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region AddFocusEventAsync()
         private async Task AddFocusEventAsync(UIElement uiElement)
         {
-            await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
-            var fe = new FocusEvent(DebugConsoleViewModel.Instance.VisualTreeView.SelectedItem);
-            this.FocusEvents.Add(fe);
-            this.SelectedEvent = fe;
+            if (uiElement != null)
+            {
+                await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
+                var fe = new FocusEvent(DebugConsoleViewModel.Instance.VisualTreeView.SelectedItem);
+                this.FocusEvents.Add(fe);
+                this.SelectedEvent = fe;
+            }
+            else
+            {
+                var fe = new FocusEvent(null);
+                this.FocusEvents.Add(fe);
+                this.SelectedEvent = fe;
+            }
         } 
         #endregion
 
