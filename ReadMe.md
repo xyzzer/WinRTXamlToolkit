@@ -178,7 +178,7 @@ Please share your experience with the toolkit either in the [DISCUSSIONS](http:/
 * [AsyncUI](http://asyncui.codeplex.com) - a separate version of the AsyncUI library with support for WPF, Silverlight and Windows Phone 7 with Async CTP3 (it might not yet have all the features that WinRT XAML Toolkit has in the AsyncUI namespace, but has the most useful ones)
 * [Michiel Post's](https://twitter.com/michielpostnl) [Q42.WinRT library](https://github.com/Q42/Q42.WinRT) for data driven Windows 8 C# / XAML WinRT projects
 * [Mahmoud Moussa](http://twitter.com/MahmoudMoussa) [Windows 8 Toolkit - Charts and More](http://modernuitoolkit.codeplex.com/team/view) - the original location of the Silverlight Toolkit's chart controls ported to Jupiter that are now also part of this project.
-* [https://xamlcropcontrol.codeplex.com/] - XAML Crop Control
+* [XAML Crop Control](https://xamlcropcontrol.codeplex.com/) - A XAML control for cropping images, implemented in C#.  WinRT only.
 
 ### Commercial component libraries
 This library gives you some helpful controls and extensions, but it is an open source project developed in free time. If you need controls not available here and otherwise well tested controls - consider the commercial solutions.
