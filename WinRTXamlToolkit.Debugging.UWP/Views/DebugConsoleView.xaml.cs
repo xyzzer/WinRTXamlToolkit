@@ -77,7 +77,7 @@ namespace WinRTXamlToolkit.Debugging.Views
             LogTabButton.IsChecked = true;
         }
 
-        internal async void ShowVisualTree(UIElement element = null)
+        internal async Task ShowVisualTreeAsync(UIElement element = null)
         {
             await this.WaitForLoadedAsync();
 

@@ -74,7 +74,7 @@ namespace WinRTXamlToolkit.Sample.Views
                 await childGrid.WaitForNonZeroSizeAsync();
             }
 
-            DC.ShowVisualTree(_grids[random.Next(_grids.Count)]);
+            DC.ShowVisualTreeAsync(_grids[random.Next(_grids.Count)]);
             DC.Expand();
         }
     }

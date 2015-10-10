@@ -64,6 +64,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         private VisualTreeViewModel()
         {
+            //this.RootElements.Add(new StubTreeItemViewModel(this, null));
 #pragma warning disable 4014
             this.GetPropertyLists();
             this.Build();
@@ -92,8 +93,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             if (value)
             {
-                if (this.RootElements.Count == 0)
+                if (this.RootElements.Count == 0 ||
+                    this.RootElements[0] is StubTreeItemViewModel)
                 {
+                    //await Task.Delay(3000);
                     await this.Refresh();
                 }
 

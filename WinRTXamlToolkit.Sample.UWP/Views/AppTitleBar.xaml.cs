@@ -61,14 +61,22 @@ namespace WinRTXamlToolkit.Sample.Views
             coreTitleBar.IsVisibleChanged += CoreTitleBar_IsVisibleChanged;
             coreTitleBar.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged;
             coreTitleBar.ExtendViewIntoTitleBar = true;
+            this.UpdateDebugConsoleMargin(coreTitleBar);
             this.Visibility = coreTitleBar.IsVisible || this.alwaysShow ? Visibility.Visible : Visibility.Collapsed;
             this.UpdateBackButtonVisibility();
             Window.Current.SetTitleBar(this.LabelGrid);
+            
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             this.DeferInitializationAsync();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             this.Loaded += this.OnLoaded;
             this.Unloaded += this.OnUnloaded;
+        }
+
+        private void UpdateDebugConsoleMargin(CoreApplicationViewTitleBar coreTitleBar = null)
+        {
+            coreTitleBar = coreTitleBar ?? CoreApplication.GetCurrentView().TitleBar;
+            DC.Margin = new Thickness(0, coreTitleBar.IsVisible ? coreTitleBar.Height : 0, 0, 0);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -104,12 +112,14 @@ namespace WinRTXamlToolkit.Sample.Views
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             this.Visibility = coreTitleBar.IsVisible || this.alwaysShow ? Visibility.Visible : Visibility.Collapsed;
             this.UpdateBackButtonVisibility();
+            this.UpdateDebugConsoleMargin(coreTitleBar);
             //this.Visibility = Visibility.Visible;
         }
 
-        private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
+        private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar coreTitleBar, object args)
         {
-            UpdateContentLayout(sender);
+            UpdateContentLayout(coreTitleBar);
+            this.UpdateDebugConsoleMargin(coreTitleBar);
         }
 
         private void UpdateContentLayout(CoreApplicationViewTitleBar sender)
@@ -128,7 +138,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void DebugButton_Click(object sender, RoutedEventArgs e)
         {
-            DC.ShowVisualTree(this);
+            DC.ShowVisualTreeAsync(this);
         }
     }
 }

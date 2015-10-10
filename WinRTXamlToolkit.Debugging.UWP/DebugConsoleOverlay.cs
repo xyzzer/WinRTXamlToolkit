@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using WinRTXamlToolkit.IO.Extensions;
+using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Debugging
 {
@@ -26,6 +27,8 @@ namespace WinRTXamlToolkit.Debugging
                 {
                     _instance = new DebugConsoleOverlay();
                     _instance.Initialize();
+                    _instance._popup.Opacity = 0;
+                    _instance._popup.IsHitTestVisible = false;
                 }
 
                 return _instance;
@@ -36,14 +39,45 @@ namespace WinRTXamlToolkit.Debugging
         private DebugConsoleView _debugConsoleView;
         private Popup _popup;
 
+        private Thickness _instanceMargin;
+        private Thickness InstanceMargin
+        {
+            get
+            {
+                return _instanceMargin;
+            }
+            set
+            {
+                _instanceMargin = value;
+
+                if (_instanceMargin == new Thickness())
+                {
+                    FrameworkElementExtensions.SetClipToBounds(_debugConsoleView, false);
+                }
+                else
+                {
+                    FrameworkElementExtensions.SetClipToBounds(_debugConsoleView, true);
+                }
+
+                this.UpdateLayout();
+            }
+        }
+
+        public static Thickness Margin
+        {
+            get
+            {
+                return Instance.InstanceMargin;
+            }
+            set
+            {
+                Instance.InstanceMargin = value;
+            }
+        }
+
         private void Initialize()
         {
-            _debugConsoleView = new DebugConsoleView
-            {
-                Width = Window.Current.Bounds.Width,
-                Height = Window.Current.Bounds.Height,
-            };
-
+            _debugConsoleView = new DebugConsoleView();
             _popup = new Popup
             {
                 Child = _debugConsoleView,
@@ -58,6 +92,7 @@ namespace WinRTXamlToolkit.Debugging
 
             _popup.IsOpen = true;
 
+            UpdateLayout();
             Window.Current.SizeChanged += this.OnWindowSizeChanged;
         }
 
@@ -81,10 +116,10 @@ namespace WinRTXamlToolkit.Debugging
             _instance._debugConsoleView.ShowLog();
         }
 
-        public static void ShowVisualTree(UIElement element = null)
+        public static Task ShowVisualTreeAsync(UIElement element = null)
         {
             Show();
-            _instance._debugConsoleView.ShowVisualTree(element);
+            return _instance._debugConsoleView.ShowVisualTreeAsync(element);
         }
 
         //public static void Collapse()
@@ -110,8 +145,15 @@ namespace WinRTXamlToolkit.Debugging
 
         private void OnWindowSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
         {
-            _debugConsoleView.Width = Window.Current.Bounds.Width;
-            _debugConsoleView.Height = Window.Current.Bounds.Height;
+            UpdateLayout();
+        }
+
+        private void UpdateLayout()
+        {
+            _popup.HorizontalOffset = _instanceMargin.Left;
+            _popup.VerticalOffset = _instanceMargin.Top;
+            _debugConsoleView.Width = Window.Current.Bounds.Width - _instanceMargin.Left - _instanceMargin.Right;
+            _debugConsoleView.Height = Window.Current.Bounds.Height - _instanceMargin.Top - _instanceMargin.Bottom;
         }
 
         public static void Trace(string format, params object[] args)
@@ -177,6 +219,18 @@ namespace WinRTXamlToolkit.Debugging
     public static class DC
     {
         private static DateTime _previousTraceIntervalTimeStamp = DateTime.Now;
+
+        public static Thickness Margin
+        {
+            get
+            {
+                return DebugConsoleOverlay.Margin;
+            }
+            set
+            {
+                DebugConsoleOverlay.Margin = value;
+            }
+        }
 
         public static void TraceLocalized(
             string message = "Checkpoint",
@@ -291,9 +345,9 @@ namespace WinRTXamlToolkit.Debugging
             DebugConsoleOverlay.ShowLog();
         }
 
-        public static void ShowVisualTree(UIElement element = null)
+        public static Task ShowVisualTreeAsync(UIElement element = null)
         {
-            DebugConsoleOverlay.ShowVisualTree(element);
+            return DebugConsoleOverlay.ShowVisualTreeAsync(element);
         }
 
         public static void Expand()
