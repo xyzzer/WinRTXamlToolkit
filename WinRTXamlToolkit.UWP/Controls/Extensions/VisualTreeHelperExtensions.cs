@@ -147,6 +147,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns></returns>
         public static IEnumerable<DependencyObject> GetChildren(this DependencyObject parent)
         {
+            if (parent == null)
+            {
+                yield break;
+            }
+
             var popup = parent as Popup;
 
             if (popup != null)
@@ -218,6 +223,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns>The ancestor elements, starting with parent and going towards the visual tree root.</returns>
         public static IEnumerable<DependencyObject> GetAncestors(this DependencyObject start)
         {
+            if (start == null)
+            {
+                yield break;
+            }
+
             var parent = VisualTreeHelper.GetParent(start);
 
             while (parent != null)
@@ -234,6 +244,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <returns>The siblings, including the start element.</returns>
         public static IEnumerable<DependencyObject> GetSiblings(this DependencyObject start)
         {
+            if (start == null)
+            {
+                yield break;
+            }
+
             var parent = VisualTreeHelper.GetParent(start);
 
             if (parent == null)

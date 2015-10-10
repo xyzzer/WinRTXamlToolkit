@@ -18,6 +18,7 @@
                     Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <!-- This style is already defined in the toolkit samples app, but if used outside of it - we need a copy of the style -->
             <Style
                 x:Key="VerticalScrollViewerStyle"
                 TargetType="ScrollViewer">

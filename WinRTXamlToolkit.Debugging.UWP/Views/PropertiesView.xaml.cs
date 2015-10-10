@@ -27,7 +27,11 @@ namespace WinRTXamlToolkit.Debugging.Views
         {
             _updatePropertyNameFilterDelayTimer.Stop();
             var vm = (DependencyObjectViewModel)this.DataContext;
-            vm.PropertyNameFilter = this.SearchBox.Text;
+
+            if (vm != null)
+            {
+                vm.PropertyNameFilter = this.SearchBox.Text;
+            }
         }
 
         private void Border_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
