@@ -35,5 +35,13 @@ namespace WinRTXamlToolkit.Debugging.Shared.Views
             //((ToolWindow)sender).Hide();
             //e.Cancel = true;
         }
+
+        private void OnSelectedEventChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.FocusEventsListView.SelectedItem != null)
+            {
+                this.FocusEventsListView.ScrollIntoView(this.FocusEventsListView.SelectedItem);
+            }
+        }
     }
 }

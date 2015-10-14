@@ -125,7 +125,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             if (uiElement != null)
             {
-                await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
+                await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(
+                    uiElement,
+                    refreshOnFail: true // need to refresh because otherwise if the tree is not up to date - selection won't change for elements in the tree already loaded
+                    );
                 var fe = new FocusEvent(DebugConsoleViewModel.Instance.VisualTreeView.SelectedItem);
                 this.FocusEvents.Add(fe);
                 this.SelectedEvent = fe;

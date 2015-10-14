@@ -437,9 +437,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     await vm.LoadChildrenAsync();
                     vm.IsExpanded = true;
                 }
+
                 var child =
                     vm.Children.OfType<DependencyObjectViewModel>()
                         .FirstOrDefault(dovm => dovm.Model == ancestors[ancestorIndex]);
+
                 if (child == null)
                 {
                     System.Diagnostics.Debug.WriteLine("Something's wrong, but let's not throw exceptions here.");
@@ -447,7 +449,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     //Debugger.Break();
                     if (refreshOnFail)
                     {
-                        await Refresh();
+                        vm.Children.Clear();
+                        //await vm.LoadPropertiesAsync();
+                        await vm.LoadChildrenAsync();
+                        //if (vm.Parent == null)
+                        //{
+                        //    await Refresh();
+                        //}
+                        //else
+                        //{
+                        //    // do a partial refresh on the stale subtree
+                        //    var i = vm.Parent.Children.IndexOf(vm);
+                        //    vm.Parent.Children.RemoveAt(i);
+                        //    vm.Parent.Children.Insert(i, new DependencyObjectViewModel(this, vm.Parent, ancestors[ancestorIndex]));
+                        //}
+
                         return await SelectItem(element, false);
                     }
 
@@ -575,7 +591,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             //}
             //else
             //{
-                this.RootElements.Clear();
+                //this.RootElements.Clear(); // this is already done inside of Build()
                 await this.Build();
             //}
         } 

@@ -19,8 +19,10 @@
             MinHeight="100"
             Closing="Window_OnClosing">
             <ListView
+                x:Name="FocusEventsListView"
                 ItemsSource="{Binding FocusEvents}"
-                SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
+                SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                SelectionChanged="OnSelectedEventChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
