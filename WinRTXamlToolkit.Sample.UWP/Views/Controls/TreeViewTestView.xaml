@@ -32,35 +32,27 @@
                 <ResourceDictionary
                     Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <DataTemplate
-                x:Name="TreeViewTemplate">
-                <xc:TreeView
-                    ItemsSource="{Binding TreeItems}"
-                    Style="{StaticResource TouchTreeViewStyle}"
-                    Margin="0,0,120,0">
-                    <xc:TreeView.ItemTemplate>
-                        <DataTemplate>
-                            <data:DataTemplateExtensions.Hierarchy>
-                                <data:HierarchicalDataTemplate
-                                    ItemsSource="{Binding Children}" />
-                            </data:DataTemplateExtensions.Hierarchy>
-                            <StackPanel
-                                Orientation="Horizontal">
-                                <TextBlock
-                                    Text="{Binding Text}"
-                                    Foreground="{StaticResource TextBrush}" />
-                                <Ellipse
-                                    VerticalAlignment="Center"
-                                    Margin="5"
-                                    Width="10"
-                                    Height="10"
-                                    Fill="{Binding Brush}" />
-                            </StackPanel>
-                        </DataTemplate>
-
-                        <!-- Below is what the template would look like in Silverlight Toolkit -->
-                        <!--<data:HierarchicalDataTemplate
+                x:Key="TreeViewItemTemplate">
+                <data:DataTemplateExtensions.Hierarchy>
+                    <data:HierarchicalDataTemplate
+                        ItemsSource="{Binding Children}" />
+                </data:DataTemplateExtensions.Hierarchy>
+                <StackPanel
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Text="{Binding Text}"
+                        Foreground="{StaticResource TextBrush}" />
+                    <Ellipse
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="10"
+                        Height="10"
+                        Fill="{Binding Brush}" />
+                </StackPanel>
+            </DataTemplate>
+            <!-- Below is what the template would look like in Silverlight Toolkit -->
+            <!--<data:HierarchicalDataTemplate
                             ItemsSource="{Binding Children}">
                             <StackPanel
                                 Orientation="Horizontal">
@@ -74,8 +66,14 @@
                                     Fill="{Binding Brush}" />
                             </StackPanel>
                         </data:HierarchicalDataTemplate>-->
-                    </xc:TreeView.ItemTemplate>
-                </xc:TreeView>
+
+            <DataTemplate
+                x:Name="TreeViewTemplate">
+                <xc:TreeView
+                    ItemTemplate="{StaticResource TreeViewItemTemplate}"
+                    ItemsSource="{Binding TreeItems}"
+                    Style="{StaticResource TouchTreeViewStyle}"
+                    Margin="0,0,120,0" />
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>

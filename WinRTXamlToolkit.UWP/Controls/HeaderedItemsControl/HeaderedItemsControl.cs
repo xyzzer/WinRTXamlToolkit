@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using System;
+using System.Runtime.InteropServices;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -277,113 +278,108 @@ namespace WinRTXamlToolkit.Controls
         /// </param>
         private static void PrepareHeaderedItemsControlContainer(HeaderedItemsControl control, object item, ItemsControl parentItemsControl, Style parentItemContainerStyle)
         {
-            //TODO: It seems like there might be a platform issue here. Will investigate more with the XAML platform guys.
-            //for (int _ = 0; _ < 2; _++)
-            //    try
-            //    {
-                    if (control != item)
+            try
+            {
+                if (control != item)
+                {
+                    // Copy the ItemsControl properties from parent to child
+                    DataTemplate parentItemTemplate = parentItemsControl.ItemTemplate;
+                    DataTemplateSelector parentItemTemplateSelector = parentItemsControl.ItemTemplateSelector;
+
+                    if (parentItemTemplateSelector != null)
                     {
-                        // Copy the ItemsControl properties from parent to child
-                        DataTemplate parentItemTemplate = parentItemsControl.ItemTemplate;
-                        DataTemplateSelector parentItemTemplateSelector = parentItemsControl.ItemTemplateSelector;
+                        control.SetValue(HeaderedItemsControl.ItemTemplateSelectorProperty, parentItemTemplateSelector);
+                        parentItemTemplate = parentItemTemplateSelector.SelectTemplate(item, control);
+                    }
+                    else if (parentItemTemplate != null)
+                    {
+                        control.SetValue(HeaderedItemsControl.ItemTemplateProperty, parentItemTemplate);
+                    }
 
-                        if (parentItemTemplateSelector != null)
+                    if (parentItemContainerStyle != null && HasDefaultValue(control, HeaderedItemsControl.ItemContainerStyleProperty))
+                    {
+                        control.SetValue(HeaderedItemsControl.ItemContainerStyleProperty, parentItemContainerStyle);
+                    }
+
+                    // Copy the Header properties from parent to child
+                    if (control.HeaderIsItem || HasDefaultValue(control, HeaderedItemsControl.HeaderProperty))
+                    {
+                        control.Header = item;
+                        control.HeaderIsItem = true;
+                    }
+
+                    if (parentItemTemplate != null)
+                    {
+                        control.SetValue(HeaderedItemsControl.HeaderTemplateProperty, parentItemTemplate);
+                    }
+
+                    if (parentItemContainerStyle != null && control.Style == null)
+                    {
+                        control.SetValue(HeaderedItemsControl.StyleProperty, parentItemContainerStyle);
+                    }
+
+                    // Note: this is where we would apply the HeaderTemplateSelector
+                    // (if implemented) or attempt to lookup the implicit template
+                    // for the type of the item if the headerTemplate were null.
+
+                    // Setup a hierarchical template
+                    //HierarchicalDataTemplate headerTemplate = parentItemTemplate as HierarchicalDataTemplate;
+                    var headerTemplate = parentItemTemplate as DataTemplate;
+
+                    if (headerTemplate != null)
+                    {
+                        var hierarchy = DataTemplateExtensions.GetHierarchy(headerTemplate);
+
+                        if (hierarchy != null &&
+                            hierarchy.ItemsSource != null &&
+                            HasDefaultValue(control, HeaderedItemsControl.ItemsSourceProperty))
                         {
-                            control.SetValue(HeaderedItemsControl.ItemTemplateSelectorProperty, parentItemTemplateSelector);
-                            parentItemTemplate = parentItemTemplateSelector.SelectTemplate(item, control);
-                        }
-                        else if (parentItemTemplate != null)
-                        {
-                            control.SetValue(HeaderedItemsControl.ItemTemplateProperty, parentItemTemplate);
-                        }
-
-                        if (parentItemContainerStyle != null && HasDefaultValue(control, HeaderedItemsControl.ItemContainerStyleProperty))
-                        {
-                            control.SetValue(HeaderedItemsControl.ItemContainerStyleProperty, parentItemContainerStyle);
-                        }
-
-                        // Copy the Header properties from parent to child
-                        if (control.HeaderIsItem || HasDefaultValue(control, HeaderedItemsControl.HeaderProperty))
-                        {
-                            control.Header = item;
-                            control.HeaderIsItem = true;
-                        }
-
-                        if (parentItemTemplate != null)
-                        {
-                            control.SetValue(HeaderedItemsControl.HeaderTemplateProperty, parentItemTemplate);
-                        }
-
-                        if (parentItemContainerStyle != null && control.Style == null)
-                        {
-                            control.SetValue(HeaderedItemsControl.StyleProperty, parentItemContainerStyle);
-                        }
-
-                        // Note: this is where we would apply the HeaderTemplateSelector
-                        // (if implemented) or attempt to lookup the implicit template
-                        // for the type of the item if the headerTemplate were null.
-
-                        // Setup a hierarchical template
-                        //HierarchicalDataTemplate headerTemplate = parentItemTemplate as HierarchicalDataTemplate;
-                        var headerTemplate = parentItemTemplate as DataTemplate;
-
-                        if (headerTemplate != null)
-                        {
-                            var hierarchy = DataTemplateExtensions.GetHierarchy(headerTemplate);
-
-                            if (hierarchy != null &&
-                                hierarchy.ItemsSource != null &&
-                                HasDefaultValue(control, HeaderedItemsControl.ItemsSourceProperty))
-                            {
-                                control.SetBinding(
-                                    HeaderedItemsControl.ItemsSourceProperty,
-                                    new Binding
-                                    {
-                                        Converter = hierarchy.ItemsSource.Converter,
-                                        ConverterLanguage = hierarchy.ItemsSource.ConverterLanguage,
-                                        ConverterParameter = hierarchy.ItemsSource.ConverterParameter,
-                                        Mode = hierarchy.ItemsSource.Mode,
-                                        //NotifyOnValidationError = headerTemplate.ItemsSource.NotifyOnValidationError,
-                                        Path = hierarchy.ItemsSource.Path,
-                                        Source = control.Header,
-                                        //ElementName = 
-                                        //ValidatesOnExceptions = headerTemplate.ItemsSource.ValidatesOnExceptions
-                                    });
-                            }
-
-                            if (hierarchy != null &&
-                                hierarchy.IsItemTemplateSet &&
-                                control.ItemTemplate == parentItemTemplate)
-                            {
-                                control.ClearValue(HeaderedItemsControl.ItemTemplateProperty);
-
-                                if (hierarchy.ItemTemplate != null)
+                            control.SetBinding(
+                                HeaderedItemsControl.ItemsSourceProperty,
+                                new Binding
                                 {
-                                    control.ItemTemplate = hierarchy.ItemTemplate;
-                                }
-                            }
+                                    Converter = hierarchy.ItemsSource.Converter,
+                                    ConverterLanguage = hierarchy.ItemsSource.ConverterLanguage,
+                                    ConverterParameter = hierarchy.ItemsSource.ConverterParameter,
+                                    Mode = hierarchy.ItemsSource.Mode,
+                                    //NotifyOnValidationError = headerTemplate.ItemsSource.NotifyOnValidationError,
+                                    Path = hierarchy.ItemsSource.Path,
+                                    Source = control.Header,
+                                    //ElementName = 
+                                    //ValidatesOnExceptions = headerTemplate.ItemsSource.ValidatesOnExceptions
+                                });
+                        }
 
-                            if (hierarchy != null &&
-                                hierarchy.IsItemContainerStyleSet &&
-                                control.ItemContainerStyle == parentItemContainerStyle)
+                        if (hierarchy != null &&
+                            hierarchy.IsItemTemplateSet &&
+                            control.ItemTemplate == parentItemTemplate)
+                        {
+                            control.ClearValue(HeaderedItemsControl.ItemTemplateProperty);
+
+                            if (hierarchy.ItemTemplate != null)
                             {
-                                control.ClearValue(HeaderedItemsControl.ItemContainerStyleProperty);
+                                control.ItemTemplate = hierarchy.ItemTemplate;
+                            }
+                        }
 
-                                if (hierarchy.ItemContainerStyle != null)
-                                {
-                                    control.ItemContainerStyle = hierarchy.ItemContainerStyle;
-                                }
+                        if (hierarchy != null &&
+                            hierarchy.IsItemContainerStyleSet &&
+                            control.ItemContainerStyle == parentItemContainerStyle)
+                        {
+                            control.ClearValue(HeaderedItemsControl.ItemContainerStyleProperty);
+
+                            if (hierarchy.ItemContainerStyle != null)
+                            {
+                                control.ItemContainerStyle = hierarchy.ItemContainerStyle;
                             }
                         }
                     }
-
-                    return; // TODO: returning on no exception to avoid retries
-                //}
-                //catch (Exception ex)
-                //{
-                //    // TODO: The ComException should never happen here
-                //    Debug.WriteLine(ex.ToString());
-                //}
+                }
+            }
+            catch (COMException ex)
+            {
+                Debug.Assert(false, "Due to some change in the platform in Windows 10 - you now need to set the ItemTemplate before setting the ItemsSource when using a TreeView.");
+            }
         }
 
         /// <summary>

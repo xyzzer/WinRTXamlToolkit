@@ -49,6 +49,30 @@
                 x:Key="VisualTreeViewItemDetailsTemplateSelector"
                 DependencyPropertyDetailsTemplate="{StaticResource DependencyPropertyDetailsTemplate}"
                 DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
+            <DataTemplate
+                x:Key="TreeViewItemTemplate">
+                <data:DataTemplateExtensions.Hierarchy>
+                    <data:HierarchicalDataTemplate
+                        ItemsSource="{Binding Children}" />
+                </data:DataTemplateExtensions.Hierarchy>
+                <TextBlock
+                    FontWeight="{Binding FontWeight}"
+                    Text="{Binding DisplayName}" />
+            </DataTemplate>
+            <!--<data:HierarchicalDataTemplate
+                    ItemsSource="{Binding Children}">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Text}" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="10"
+                            Height="10"
+                            Fill="{Binding Brush}" />
+                    </StackPanel>
+                </data:HierarchicalDataTemplate>-->
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid
@@ -67,36 +91,11 @@
         <controls:TreeView
             x:Name="treeView"
             ItemsSource="{Binding RootElements}"
+            ItemTemplate="{StaticResource TreeViewItemTemplate}"
             IsSelectedBindingPath="IsSelected"
             IsExpandedBindingPath="IsExpanded"
             BorderThickness="0"
-            Padding="0">
-            <controls:TreeView.ItemTemplate>
-                <DataTemplate>
-                    <data:DataTemplateExtensions.Hierarchy>
-                        <data:HierarchicalDataTemplate
-                            ItemsSource="{Binding Children}" />
-                    </data:DataTemplateExtensions.Hierarchy>
-                    <TextBlock
-                        FontWeight="{Binding FontWeight}"
-                        Text="{Binding DisplayName}" />
-                </DataTemplate>
-                <!--<data:HierarchicalDataTemplate
-                    ItemsSource="{Binding Children}">
-                    <StackPanel
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Text="{Binding Text}" />
-                        <Ellipse
-                            VerticalAlignment="Center"
-                            Margin="5"
-                            Width="10"
-                            Height="10"
-                            Fill="{Binding Brush}" />
-                    </StackPanel>
-                </data:HierarchicalDataTemplate>-->
-            </controls:TreeView.ItemTemplate>
-        </controls:TreeView>
+            Padding="0" />
         <controls:CustomGridSplitter
             Grid.Column="1"
             Grid.RowSpan="2"
