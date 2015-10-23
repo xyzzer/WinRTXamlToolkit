@@ -36,6 +36,14 @@ namespace WinRTXamlToolkit.Debugging
         }
         #endregion
 
+        internal static FrameworkElement View
+        {
+            get
+            {
+                return Instance._debugConsoleView;
+            }
+        }
+
         private DebugConsoleView _debugConsoleView;
         private Popup _popup;
 
@@ -116,10 +124,11 @@ namespace WinRTXamlToolkit.Debugging
             _instance._debugConsoleView.ShowLog();
         }
 
-        public static Task ShowVisualTreeAsync(UIElement element = null)
+        public static async Task ShowVisualTreeAsync(UIElement element = null)
         {
             Show();
-            return _instance._debugConsoleView.ShowVisualTreeAsync(element);
+            await _instance._debugConsoleView.Expand();
+            await _instance._debugConsoleView.ShowVisualTreeAsync(element);
         }
 
         //public static void Collapse()

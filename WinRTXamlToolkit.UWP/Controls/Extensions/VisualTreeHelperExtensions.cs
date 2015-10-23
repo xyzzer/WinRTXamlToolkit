@@ -81,11 +81,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// </summary>
         /// <param name="start">The start.</param>
         /// <returns></returns>
-        public static IEnumerable<DependencyObject> GetDescendants(this DependencyObject start)
+        /// <param name="includeStart">Specifies whether the start object should be included in enumeration.</param>
+        /// <returns>The ancestor elements, starting with parent and going towards the visual tree root.</returns>
+        public static IEnumerable<DependencyObject> GetDescendants(this DependencyObject start, bool includeStart = false)
         {
             if (start == null)
             {
                 yield break;
+            }
+
+            if (includeStart)
+            {
+                yield return start;
             }
 
             var queue = new Queue<DependencyObject>();
@@ -220,12 +227,18 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// Gets the ancestors, starting with parent and going towards the visual tree root.
         /// </summary>
         /// <param name="start">The starting element.</param>
+        /// <param name="includeStart">Specifies whether the start object should be included in enumeration.</param>
         /// <returns>The ancestor elements, starting with parent and going towards the visual tree root.</returns>
-        public static IEnumerable<DependencyObject> GetAncestors(this DependencyObject start)
+        public static IEnumerable<DependencyObject> GetAncestors(this DependencyObject start, bool includeStart = false)
         {
             if (start == null)
             {
                 yield break;
+            }
+
+            if (includeStart)
+            {
+                yield return start;
             }
 
             var parent = VisualTreeHelper.GetParent(start);
@@ -293,9 +306,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
             var root = GetRealWindowRoot();
 
             return
-                root != null && dob.GetAncestors().Contains(root) ||
+                root != null && dob.GetAncestors(includeStart: true).Contains(root) ||
                 VisualTreeHelper.GetOpenPopups(Window.Current)
-                    .Any(popup => popup.Child != null && dob.GetAncestors().Contains(popup.Child));
+                    .Any(popup => dob.GetAncestors(includeStart: true).Contains(popup.Child));
         }
 
         /// <summary>

@@ -648,14 +648,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     }
                 }
 
-                var elementBounds = fe.GetBoundingRect();
-                var windowBounds = Window.Current.Bounds;
+                var debugConsoleView = DebugConsoleOverlay.View;
+                var elementBounds = fe.GetBoundingRect(debugConsoleView);
 
                 this.HighlightMargin = new Thickness(
                     elementBounds.Left,
                     elementBounds.Top,
-                    windowBounds.Width - elementBounds.Right,
-                    windowBounds.Height - elementBounds.Bottom);
+                    debugConsoleView.ActualWidth - elementBounds.Right,
+                    debugConsoleView.ActualHeight - elementBounds.Bottom);
                 this.HighlightText = string.Format(
                     "{0}\r\nx: {1:F0}\r\ny: {2:F0}\r\nw: {3:F0}\r\nh: {4:F0}",
                     dovm.DisplayName,
