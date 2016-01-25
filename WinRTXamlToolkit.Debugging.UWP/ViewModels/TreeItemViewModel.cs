@@ -4,6 +4,12 @@ using Windows.UI.Text;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
+    /// <summary>
+    /// Base class of tree items in the VisualTreeViewModel.
+    /// </summary>
+    /// <remarks>
+    /// Base class for DependencyObjectViewModel and StubTreeItemViewModel.
+    /// </remarks>
     public class TreeItemViewModel : BindableBase
     {
         public VisualTreeViewModel TreeModel { get; protected set; }

@@ -376,7 +376,7 @@ namespace WinRTXamlToolkit.Controls
                     }
                 }
             }
-            catch (COMException ex)
+            catch (COMException)
             {
                 Debug.Assert(false, "Due to some change in the platform in Windows 10 - you now need to set the ItemTemplate before setting the ItemsSource when using a TreeView.");
             }

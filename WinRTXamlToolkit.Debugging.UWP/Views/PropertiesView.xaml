@@ -360,6 +360,10 @@
                     x:Key="DependencyObjectPropertyEditor">
                     <propertyEditors:DependencyObjectPropertyEditor />
                 </DataTemplate>
+                <DataTemplate
+                    x:Key="ResourceDictionaryPropertyEditor">
+                    <propertyEditors:ResourceDictionaryPropertyEditor />
+                </DataTemplate>
             </local:EditablePropertyTemplateSelector>
         </ResourceDictionary>
     </UserControl.Resources>    

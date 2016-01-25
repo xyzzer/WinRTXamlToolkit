@@ -24,8 +24,6 @@
             <SolidColorBrush
                 x:Key="AccentBrush"
                 Color="#FF00A000" />
-            <vm:ViewModelLocator
-                x:Key="Locator" />
             
             <Style x:Key="TextButtonStyle" TargetType="Button">
                 <Setter Property="MinWidth" Value="0"/>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\Solution Items\WinRTXamlToolkit.common.targets" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -191,6 +192,9 @@
     <Compile Include="Views\PropertyEditors\PropertyEditorFooter.xaml.cs">
       <DependentUpon>PropertyEditorFooter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PropertyEditors\ResourceDictionaryPropertyEditor.xaml.cs">
+      <DependentUpon>ResourceDictionaryPropertyEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PropertyEditors\StringPropertyEditor.xaml.cs">
       <DependentUpon>StringPropertyEditor.xaml</DependentUpon>
     </Compile>
@@ -288,6 +292,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PropertyEditors\PropertyEditorFooter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PropertyEditors\ResourceDictionaryPropertyEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -3,6 +3,7 @@ set MSBUILD="c:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe"
 set NUGET_PLATFORM=uap10.0
 set PLATFORM_SUFFIX=.UWP
 set VisualStudioVersion=14.0
+set VERBOSITY=minimal
 
 if "%1"=="nobuild" (@GOTO CREATE_FOLDER_STRUCTURE_CALL)
 
@@ -15,11 +16,17 @@ if "%1"=="onlybuild" ( & @GOTO :EOF)
 
 :BUILD
 @echo Building UWP projects
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.UWP\WinRTXamlToolkit.UWP.csproj" || GOTO :REPORT_ERROR
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging.UWP\WinRTXamlToolkit.Debugging.UWP.csproj" || GOTO :REPORT_ERROR
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar.UWP\WinRTXamlToolkit.Controls.Calendar.UWP.csproj" || GOTO :REPORT_ERROR
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge.UWP\WinRTXamlToolkit.Controls.Gauge.UWP.csproj" || GOTO :REPORT_ERROR
-%MSBUILD% /verbosity:quiet /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization.UWP\WinRTXamlToolkit.Controls.DataVisualization.UWP.csproj" || GOTO :REPORT_ERROR
+%MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.UWP\WinRTXamlToolkit.UWP.csproj" || GOTO :REPORT_ERROR
+@rem mv msbuild.log msbuild.%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%%TIME:~3,2%_%TIME:~6,2%.%TIME:~-2%.log
+%MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Debugging.UWP\WinRTXamlToolkit.Debugging.UWP.csproj" || GOTO :REPORT_ERROR
+@rem mv msbuild.log msbuild.%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%%TIME:~3,2%_%TIME:~6,2%.%TIME:~-2%.log
+%MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Calendar.UWP\WinRTXamlToolkit.Controls.Calendar.UWP.csproj" || GOTO :REPORT_ERROR
+@rem mv msbuild.log msbuild.%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%%TIME:~3,2%_%TIME:~6,2%.%TIME:~-2%.log
+%MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.Gauge.UWP\WinRTXamlToolkit.Controls.Gauge.UWP.csproj" || GOTO :REPORT_ERROR
+@rem mv msbuild.log msbuild.%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%%TIME:~3,2%_%TIME:~6,2%.%TIME:~-2%.log
+%MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Controls.DataVisualization.UWP\WinRTXamlToolkit.Controls.DataVisualization.UWP.csproj" || GOTO :REPORT_ERROR
+@rem mv msbuild.log msbuild.%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%%TIME:~3,2%_%TIME:~6,2%.%TIME:~-2%.log
+@rem %MSBUILD% /v:%VERBOSITY% /fl /t:Rebuild /p:Configuration=Release "..\WinRTXamlToolkit.Sample.UWP\WinRTXamlToolkit.Sample.UWP.csproj" || GOTO :REPORT_ERROR
 @GOTO :EOF
 
 :CREATE_FOLDER_STRUCTURE

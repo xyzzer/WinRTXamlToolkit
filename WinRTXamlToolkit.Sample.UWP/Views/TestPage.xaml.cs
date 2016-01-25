@@ -23,13 +23,13 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private async void GoBack(object sender, RoutedEventArgs e)
         {
+            // TODO: Hook it up. Seems unused nowadays.
             await this.Frame.GoBackAsync();
         }
 
         protected override Task OnNavigatedToAsync(AlternativeNavigationEventArgs e)
         {
             var title = e.Parameter as string;
-            Window.Current.SetTitleBar(new TextBlock { Text = "WinRT XAML Toolkit - " + title });
             WindowTitleBar.SetText("WinRT XAML Toolkit - " + title, true);
 
             //this.TitleTextBlock.Text = title;

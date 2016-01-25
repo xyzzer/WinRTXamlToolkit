@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using WinRTXamlToolkit.Controls;
 using WinRTXamlToolkit.Sample.Commands;
 
 namespace WinRTXamlToolkit.Sample.ViewModels
 {
     /// <summary>
-    /// AutoCompleteTextBoxTestPage ViewModel
+    /// AutoCompleteTextBoxTestView ViewModel
     /// Created to test do bindings works and does control dependency properties reflects on changed properties
     /// </summary>
     public class AutoCompleteTextBoxTestsViewModel : ViewModel

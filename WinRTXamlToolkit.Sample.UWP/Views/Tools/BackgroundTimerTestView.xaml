@@ -97,21 +97,21 @@
             Grid.Row="2"
             Grid.ColumnSpan="5"
             Orientation="Horizontal">
-            <Button
+            <AppBarButton
                 x:Name="Start"
                 Click="OnStartClick"
                 AutomationProperties.Name="Start()"
-                Style="{StaticResource PlayAppBarButtonStyle}" />
-            <Button
+                Icon="Play" />
+            <AppBarButton
                 x:Name="Stop"
                 Click="OnStopClick"
                 AutomationProperties.Name="Stop()"
-                Style="{StaticResource StopAppBarButtonStyle}" />
-            <Button
+                Icon="Stop" />
+            <AppBarButton
                 x:Name="Clear"
                 Click="OnClearClick"
                 AutomationProperties.Name="Clear()"
-                Style="{StaticResource DeleteAppBarButtonStyle}" />
+                Icon="Clear" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -6,9 +6,9 @@ using WinRTXamlToolkit.Sample.ViewModels;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
-    public sealed partial class AutoCompleteTextBoxTestPage : UserControl
+    public sealed partial class AutoCompleteTextBoxTestView : UserControl
     {
-        public AutoCompleteTextBoxTestPage()
+        public AutoCompleteTextBoxTestView()
         {
             this.InitializeComponent();
             this.DataContext = new AutoCompleteTextBoxTestsViewModel();

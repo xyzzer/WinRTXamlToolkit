@@ -29,6 +29,7 @@ namespace WinRTXamlToolkit.Sample
         {
             //Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync();
             this.InitializeComponent();
+            
             this.Suspending += OnSuspending;
         }
 
@@ -50,6 +51,7 @@ namespace WinRTXamlToolkit.Sample
 
             if (appShell == null)
             {
+                this.Resources.Add("Locator", new ViewModels.ViewModelLocator());
                 appShell = new AppShell(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

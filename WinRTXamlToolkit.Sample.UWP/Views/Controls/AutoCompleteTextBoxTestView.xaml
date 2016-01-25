@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="WinRTXamlToolkit.Sample.Views.AutoCompleteTextBoxTestPage"
+    x:Class="WinRTXamlToolkit.Sample.Views.AutoCompleteTextBoxTestView"
     IsTabStop="false"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

@@ -16,8 +16,8 @@
             IsOpen="True">
             <StackPanel
                 Orientation="Horizontal">
-                <Button
-                    Style="{StaticResource PlayAppBarButtonStyle}"/>
+                <AppBarButton
+                    Icon="Play" />
                 <CheckBox
                     x:Name="IsLightDismissEnabledCheckBox"
                     Content="IsLightDismissEnabled"
@@ -74,11 +74,11 @@
                         Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button
+                <AppBarButton
                     x:Name="LeftButton"
                     Click="OnLeftButtonClick"
                     AutomationProperties.Name="Left"
-                    Style="{StaticResource OpenPaneAppBarButtonStyle}" />
+                    Icon="OpenPane" />
             </Grid>
         </controls:CustomAppBar>
         <controls:CustomAppBar
@@ -87,11 +87,11 @@
             VerticalAlignment="Stretch"
             Margin="0,140,0,100">
             <StackPanel>
-                <Button
+                <AppBarButton
                     x:Name="RightButton"
                     Click="OnRightButtonClick"
                     AutomationProperties.Name="Right"
-                    Style="{StaticResource ClosePaneAppBarButtonStyle}" />
+                    Icon="ClosePane" />
             </StackPanel>
         </controls:CustomAppBar>
         <TextBlock

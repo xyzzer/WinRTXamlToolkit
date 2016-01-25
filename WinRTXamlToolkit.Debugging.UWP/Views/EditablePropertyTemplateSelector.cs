@@ -102,6 +102,11 @@ namespace WinRTXamlToolkit.Debugging.Views
                         return (DataTemplate)this.Resources["FontWeightPropertyEditor"];
                     }
 
+                    if (type == typeof(ResourceDictionary))
+                    {
+                        return (DataTemplate)this.Resources["ResourceDictionaryPropertyEditor"];
+                    }
+
                     return (DataTemplate)this.Resources["DefaultPropertyEditor"];
                 }
 

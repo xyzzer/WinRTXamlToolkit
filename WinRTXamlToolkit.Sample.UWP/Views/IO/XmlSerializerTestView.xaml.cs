@@ -104,6 +104,7 @@ namespace WinRTXamlToolkit.Sample.Views
                 fileName,
                 folder);
 
+            //TODO: Bug - for some reason it doesn't serialize the Width property of the RootElement in the "w" xml attribute...
             Debug.Assert(deserializedData.Width == data.Width);
             var file = await folder.GetFileAsync(fileName);
             await file.DeleteAsync();
@@ -111,6 +112,7 @@ namespace WinRTXamlToolkit.Sample.Views
     }
 
     [XmlRoot(ElementName = "RootElement")]
+    [XmlType(TypeName = "RootElement")]
     public class SampleXmlSerializableData : List<SampleXmlSerializableDataItem>
     {
         [XmlAttribute(AttributeName = "w")]

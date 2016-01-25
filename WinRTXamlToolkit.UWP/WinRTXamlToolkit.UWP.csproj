@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\Solution Items\WinRTXamlToolkit.common.targets" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -166,6 +167,7 @@
     <Compile Include="Controls\AutoCompleteTextBox\AutoCompleteTextBox.cs" />
     <Compile Include="Controls\AutoCompleteTextBox\SimpleThemingListBox.cs" />
     <Compile Include="Controls\AutoCompleteTextBox\SimpleThemingListBoxItem.cs" />
+    <Compile Include="Controls\AutoOrientingStackPanel\AutoOrientingStackPanel.cs" />
     <Compile Include="Controls\Behaviors\FlickBehavior.cs" />
     <Compile Include="Controls\Behaviors\HighlightBehavior.cs" />
     <Compile Include="Controls\Behaviors\ParallaxBackgroundBehavior.cs" />

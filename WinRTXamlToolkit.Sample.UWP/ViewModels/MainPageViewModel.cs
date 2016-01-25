@@ -44,7 +44,13 @@ namespace WinRTXamlToolkit.Sample.ViewModels
                 new SampleButtonViewModel
                 (
                     "AutoCompleteTextBox",
-                    typeof(AutoCompleteTextBoxTestPage),
+                    typeof(AutoCompleteTextBoxTestView),
+                    SampleTypes.Controls
+                ),
+                new SampleButtonViewModel
+                (
+                    "AutoOrientingStackPanel",
+                    typeof(AutoOrientingStackPanelTestView),
                     SampleTypes.Controls
                 ),
                 new SampleButtonViewModel
