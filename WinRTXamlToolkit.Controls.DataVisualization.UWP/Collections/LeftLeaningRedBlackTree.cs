@@ -114,7 +114,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Collections
         {
             if (null == keyComparison)
             {
-                throw new ArgumentNullException("keyComparison");
+                throw new ArgumentNullException(nameof(keyComparison));
             }
             _keyComparison = keyComparison;
         }
@@ -129,7 +129,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Collections
         {
             if (null == valueComparison)
             {
-                throw new ArgumentNullException("valueComparison");
+                throw new ArgumentNullException(nameof(valueComparison));
             }
             _valueComparison = valueComparison;
         }

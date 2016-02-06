@@ -64,7 +64,7 @@ namespace WinRTXamlToolkit.Debugging.Commands
         {
             if (execute == null)
             {
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException(nameof(execute));
             }
 
             _execute = execute;

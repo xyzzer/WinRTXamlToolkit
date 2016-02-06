@@ -61,7 +61,7 @@ namespace WinRTXamlToolkit.Input
         {
             if (gesture == null)
             {
-                throw new ArgumentNullException("gesture");
+                throw new ArgumentNullException(nameof(gesture));
             }
 
             if (gesture.Count == 0)

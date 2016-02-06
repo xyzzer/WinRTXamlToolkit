@@ -124,7 +124,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             return (double) element.GetValue(CenterCoordinateProperty);
         }
@@ -139,7 +139,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             element.SetValue(CenterCoordinateProperty, value);
         }
@@ -164,7 +164,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             UIElement source = dependencyObject as UIElement;
             if (source == null)
             {
-                throw new ArgumentNullException("dependencyObject");
+                throw new ArgumentNullException(nameof(dependencyObject));
             }
             OrientedPanel parent = VisualTreeHelper.GetParent(source) as OrientedPanel;
             if (parent != null)
@@ -229,7 +229,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             return (int) element.GetValue(PriorityProperty);
         }
@@ -244,7 +244,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             element.SetValue(PriorityProperty, value);
         }
@@ -269,7 +269,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             UIElement source = dependencyObject as UIElement;
             if (source == null)
             {
-                throw new ArgumentNullException("dependencyObject");
+                throw new ArgumentNullException(nameof(dependencyObject));
             }
             OrientedPanel parent = VisualTreeHelper.GetParent(source) as OrientedPanel;
             if (parent != null)

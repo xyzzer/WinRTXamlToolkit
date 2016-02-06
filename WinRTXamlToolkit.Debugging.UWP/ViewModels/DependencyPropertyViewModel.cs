@@ -402,11 +402,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                     this.ElementModel.Model.SetValue(DependencyProperty, value);
                     _isDefault = null;
-                    OnPropertyChanged();
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    OnPropertyChanged("CanResetValue");
-                    OnPropertyChanged("IsDefault");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged();
+                    this.OnPropertyChanged(nameof(this.CanResetValue));
+                    this.OnPropertyChanged(nameof(this.IsDefault));
                 }
                 catch
                 {
@@ -508,12 +506,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.ElementModel.Model.ClearValue(_dependencyProperty);
             _isDefault = null;
 
-            // ReSharper disable ExplicitCallerInfoArgument
-            OnPropertyChanged("Value");
-            OnPropertyChanged("ValueString");
-            OnPropertyChanged("CanResetValue");
-            OnPropertyChanged("IsDefault");
-            // ReSharper restore ExplicitCallerInfoArgument
+            this.OnPropertyChanged(nameof(this.Value));
+            this.OnPropertyChanged(nameof(this.ValueString));
+            this.OnPropertyChanged(nameof(this.CanResetValue));
+            this.OnPropertyChanged(nameof(this.IsDefault));
         }
         #endregion
 

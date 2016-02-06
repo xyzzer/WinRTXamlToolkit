@@ -163,7 +163,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (previousPage == null && newPage == null)
             {
-                throw new ArgumentNullException("newPage");
+                throw new ArgumentNullException(nameof(newPage));
             }
 
             PrepareForwardAnimations(previousPage, newPage);
@@ -249,7 +249,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (previousPage == null && newPage == null)
             {
-                throw new ArgumentNullException("newPage");
+                throw new ArgumentNullException(nameof(newPage));
             }
 
             PrepareBackwardAnimations(previousPage, newPage);

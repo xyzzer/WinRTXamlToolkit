@@ -241,7 +241,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -273,7 +273,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -306,7 +306,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -338,7 +338,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -370,7 +370,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -438,7 +438,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -470,7 +470,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             return Control.IsEnabled;
@@ -489,7 +489,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             return Control.IsEnabled;

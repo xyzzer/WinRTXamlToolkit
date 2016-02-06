@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Shapes;
 
-namespace WinRTXamlToolkit.Debugging.Shared.Views
+namespace WinRTXamlToolkit.Debugging.Views
 {
     public sealed partial class HighlightOverlay : UserControl
     {

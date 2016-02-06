@@ -22,9 +22,6 @@ namespace WinRTXamlToolkit.Controls
     /// </summary>
     internal sealed partial class InteractionHelper
     {
-        // TODO: Consult with user experience experts to validate the double
-        // click distance and time thresholds.
-
         /// <summary>
         /// The threshold used to determine whether two clicks are temporally
         /// local and considered a double click (or triple, quadruple, etc.).
@@ -44,7 +41,7 @@ namespace WinRTXamlToolkit.Controls
         /// <summary>
         /// Gets the control the InteractionHelper is targeting.
         /// </summary>
-        public Control Control { get; private set; }
+        public Control Control { get; }
 
         /// <summary>
         /// Gets a value indicating whether the control has focus.
@@ -100,7 +97,7 @@ namespace WinRTXamlToolkit.Controls
         public InteractionHelper(Control control)
         {
             Debug.Assert(control != null, "control should not be null!");
-            Control = control;
+            this.Control = control;
             _updateVisualState = control as IUpdateVisualState;
 
             // Wire up the event handlers for events without a virtual override
@@ -182,7 +179,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="e">Event arguments.</param>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateVisualState(false);
+            this.UpdateVisualState(false);
         }
 
         /// <summary>
@@ -192,16 +189,16 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="e">Event arguments.</param>
         private void OnIsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            bool enabled = (bool)e.NewValue;
+            bool isEnabled = (bool)e.NewValue;
 
-            if (!enabled)
+            if (!isEnabled)
             {
-                IsPressed = false;
-                IsMouseOver = false;
-                IsFocused = false;
+                this.IsPressed = false;
+                this.IsMouseOver = false;
+                this.IsFocused = false;
             }
 
-            UpdateVisualState(true);
+            this.UpdateVisualState(true);
         }
 
         /// <summary>
@@ -211,15 +208,16 @@ namespace WinRTXamlToolkit.Controls
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Linked file.")]
         public void OnIsReadOnlyChanged(bool value)
         {
-            IsReadOnly = value;
+            this.IsReadOnly = value;
+
             if (!value)
             {
-                IsPressed = false;
-                IsMouseOver = false;
-                IsFocused = false;
+                this.IsPressed = false;
+                this.IsMouseOver = false;
+                this.IsFocused = false;
             }
 
-            UpdateVisualState(true);
+            this.UpdateVisualState(true);
         }
 
         /// <summary>
@@ -227,7 +225,7 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public void OnApplyTemplateBase()
         {
-            UpdateVisualState(false);
+            this.UpdateVisualState(false);
         }
 
         #region GotFocus
@@ -242,7 +240,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -274,7 +272,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -307,15 +305,17 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
-            bool enabled = Control.IsEnabled;
-            if (enabled)
+            bool isEnabled = this.Control.IsEnabled;
+
+            if (isEnabled)
             {
-                IsMouseOver = true;
+                this.IsMouseOver = true;
             }
-            return enabled;
+
+            return isEnabled;
         }
 
         /// <summary>
@@ -339,7 +339,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -371,7 +371,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -439,7 +439,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             bool enabled = Control.IsEnabled;
@@ -471,7 +471,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             return Control.IsEnabled;
@@ -490,7 +490,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             return Control.IsEnabled;

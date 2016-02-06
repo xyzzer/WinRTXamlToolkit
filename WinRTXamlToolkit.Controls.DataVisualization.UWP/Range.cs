@@ -83,11 +83,11 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (minimum == null)
             {
-                throw new ArgumentNullException("minimum");
+                throw new ArgumentNullException(nameof(minimum));
             }
             if (maximum == null)
             {
-                throw new ArgumentNullException("maximum");
+                throw new ArgumentNullException(nameof(maximum));
             }
 
             _hasData = true;

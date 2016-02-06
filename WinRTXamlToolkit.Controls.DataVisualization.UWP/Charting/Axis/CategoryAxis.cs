@@ -133,7 +133,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (category == null)
             {
-                throw new ArgumentNullException("category");
+                throw new ArgumentNullException(nameof(category));
             }
             int index = Categories.IndexOf(category);
             if (index == -1)
@@ -261,7 +261,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             Range<UnitValue> range = GetPlotAreaCoordinateRange(value);

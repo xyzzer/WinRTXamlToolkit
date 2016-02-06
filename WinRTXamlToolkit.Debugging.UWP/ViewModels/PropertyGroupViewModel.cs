@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using WinRTXamlToolkit.Debugging.Commands;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {

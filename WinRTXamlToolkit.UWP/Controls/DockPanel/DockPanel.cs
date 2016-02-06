@@ -87,7 +87,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             return (Dock)element.GetValue(DockProperty);
         }
@@ -108,7 +108,7 @@ namespace WinRTXamlToolkit.Controls
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             element.SetValue(DockProperty, dock);
         }

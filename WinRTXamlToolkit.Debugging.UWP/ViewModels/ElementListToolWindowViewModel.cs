@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
-    public class ElementListToolWindowViewModel : ToolWindowViewModel
+    internal class ElementListToolWindowViewModel : ToolWindowViewModel
     {
         public List<object> Elements { get; private set; }
 

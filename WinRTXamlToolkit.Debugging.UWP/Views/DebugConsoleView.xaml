@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
-    xmlns:views="using:WinRTXamlToolkit.Debugging.Shared.Views"
+    xmlns:views="using:WinRTXamlToolkit.Debugging.Views"
     xmlns:common="using:WinRTXamlToolkit.Common"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -104,11 +104,15 @@
                 <common:ImplicitDataTemplateSelector>
                     <DataTemplate
                         x:Key="ElementListToolWindowViewModel">
-                        <views:ElementListWindow />
+                        <views:ElementListToolWindow />
                     </DataTemplate>
                     <DataTemplate
                         x:Key="FocusTrackerToolWindowViewModel">
-                        <views:FocusTrackerWindow />
+                        <views:FocusTrackerToolWindow />
+                    </DataTemplate>
+                    <DataTemplate
+                        x:Key="ResourceBrowserToolWindowViewModel">
+                        <views:ResourceBrowserToolWindow />
                     </DataTemplate>
                 </common:ImplicitDataTemplateSelector>
             </ItemsControl.ItemTemplateSelector>

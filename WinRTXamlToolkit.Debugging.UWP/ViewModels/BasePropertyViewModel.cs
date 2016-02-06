@@ -146,11 +146,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public void Refresh()
         {
-            // ReSharper disable ExplicitCallerInfoArgument
-            OnPropertyChanged("Value");
-            OnPropertyChanged("ValueString");
-            OnPropertyChanged("IsDefault");
-            // ReSharper restore ExplicitCallerInfoArgument
+            this.OnPropertyChanged(nameof(this.Value));
+            this.OnPropertyChanged(nameof(this.ValueString));
+            this.OnPropertyChanged(nameof(this.IsDefault));
         }
 
         /// <summary>

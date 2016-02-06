@@ -69,12 +69,12 @@
 //        {
 //            if (culture == null)
 //            {
-//                throw new ArgumentNullException("culture");
+//                throw new ArgumentNullException(nameof(culture));
 //            }
 
 //            if (value == null)
 //            {
-//                throw new ArgumentNullException("value");
+//                throw new ArgumentNullException(nameof(value));
 //            }
 
 //            DateTimeFormatInfo info = (DateTimeFormatInfo) culture.GetFormat(typeof(DateTimeFormatInfo));
@@ -127,12 +127,12 @@
 //        {
 //            if (destinationType == null)
 //            {
-//                throw new ArgumentNullException("destinationType");
+//                throw new ArgumentNullException(nameof(destinationType));
 //            }
 
 //            if (culture == null)
 //            {
-//                throw new ArgumentNullException("culture");
+//                throw new ArgumentNullException(nameof(culture));
 //            }
 
 //            DateTime? date = value as DateTime?;

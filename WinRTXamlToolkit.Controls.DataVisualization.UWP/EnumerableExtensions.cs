@@ -47,7 +47,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (that == null)
             {
-                throw new ArgumentNullException("that");
+                throw new ArgumentNullException(nameof(that));
             }
 
             yield return value;

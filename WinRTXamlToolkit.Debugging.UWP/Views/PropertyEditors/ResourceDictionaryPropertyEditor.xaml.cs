@@ -1,5 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using WinRTXamlToolkit.Debugging.ViewModels;
 
 namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
 {
@@ -10,9 +11,12 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             this.InitializeComponent();
         }
 
-        private void OnResourceBrowserButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnResourceBrowserButtonClick(object sender, RoutedEventArgs e)
         {
-
+            var propertyViewModel = (BasePropertyViewModel)this.DataContext;
+            var resourceDictionary = (ResourceDictionary)propertyViewModel.Value;
+            var vm = new ResourceBrowserToolWindowViewModel(resourceDictionary);
+            DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
         }
     }
 }

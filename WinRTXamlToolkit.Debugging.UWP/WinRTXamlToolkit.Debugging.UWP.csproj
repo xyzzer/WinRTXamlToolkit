@@ -136,6 +136,8 @@
     <Compile Include="ViewModels\FocusTrackerToolWindowViewModel.cs" />
     <Compile Include="ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowserToolWindowViewModel.cs" />
+    <Compile Include="ViewModels\ResourceViewModel.cs" />
     <Compile Include="ViewModels\StubTreeItemViewModel.cs" />
     <Compile Include="ViewModels\ToolWindowViewModel.cs" />
     <Compile Include="ViewModels\TreeItemViewModel.cs" />
@@ -147,11 +149,14 @@
       <DependentUpon>DependencyObjectDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditablePropertyTemplateSelector.cs" />
-    <Compile Include="Views\ElementListWindow.xaml.cs">
-      <DependentUpon>ElementListWindow.xaml</DependentUpon>
+    <Compile Include="Views\ElementListToolWindow.xaml.cs">
+      <DependentUpon>ElementListToolWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FocusTrackerWindow.xaml.cs">
-      <DependentUpon>FocusTrackerWindow.xaml</DependentUpon>
+    <Compile Include="Views\ResourceBrowserToolWindow.xaml.cs">
+      <DependentUpon>ResourceBrowserToolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FocusTrackerToolWindow.xaml.cs">
+      <DependentUpon>FocusTrackerToolWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HighlightOverlay.xaml.cs">
       <DependentUpon>HighlightOverlay.xaml</DependentUpon>
@@ -235,11 +240,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ElementListWindow.xaml">
+    <Page Include="Views\ElementListToolWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FocusTrackerWindow.xaml">
+    <Page Include="Views\ResourceBrowserToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FocusTrackerToolWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

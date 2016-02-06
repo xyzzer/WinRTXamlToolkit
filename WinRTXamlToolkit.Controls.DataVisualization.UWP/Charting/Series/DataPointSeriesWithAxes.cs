@@ -523,7 +523,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         {
             if (consumer == null)
             {
-                throw new ArgumentNullException("consumer");
+                throw new ArgumentNullException(nameof(consumer));
             }
 
             if (consumer == InternalActualDependentAxis)
@@ -593,7 +593,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             IAxis axis = (IAxis)dataConsumer;
             if (axis == null)
             {
-                throw new ArgumentNullException("dataConsumer");
+                throw new ArgumentNullException(nameof(dataConsumer));
             }
 
             Func<DataPoint, object> selector = null;

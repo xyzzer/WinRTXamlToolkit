@@ -32,11 +32,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 _propertyInfo.SetValue(this.ElementModel.Model, value);
                 _isDefault = null;
-                OnPropertyChanged();
-                // ReSharper disable ExplicitCallerInfoArgument
-                OnPropertyChanged("CanResetValue");
-                OnPropertyChanged("IsDefault");
-                // ReSharper restore ExplicitCallerInfoArgument
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.CanResetValue));
+                this.OnPropertyChanged(nameof(this.IsDefault));
             }
         }
 
@@ -100,11 +98,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public override void ResetValue()
         {
             _isDefault = null;
-            OnPropertyChanged();
-            // ReSharper disable ExplicitCallerInfoArgument
-            OnPropertyChanged("CanResetValue");
-            OnPropertyChanged("IsDefault");
-            // ReSharper restore ExplicitCallerInfoArgument
+            this.OnPropertyChanged();
+            this.OnPropertyChanged(nameof(this.CanResetValue));
+            this.OnPropertyChanged(nameof(this.IsDefault));
         }
 
         public override bool CanAnalyze

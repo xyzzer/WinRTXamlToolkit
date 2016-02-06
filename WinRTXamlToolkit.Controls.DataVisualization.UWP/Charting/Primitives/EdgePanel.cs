@@ -46,7 +46,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             return (Edge)element.GetValue(EdgeProperty);
         }
@@ -63,7 +63,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
             element.SetValue(EdgeProperty, edge);
         }

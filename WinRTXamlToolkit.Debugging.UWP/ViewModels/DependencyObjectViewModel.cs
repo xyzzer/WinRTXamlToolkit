@@ -161,9 +161,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 if (!_skipUpdatingProperties)
                 {
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    this.OnPropertyChanged("Properties");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
         }
@@ -186,9 +184,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    this.OnPropertyChanged("Properties");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
         }
@@ -211,9 +207,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    this.OnPropertyChanged("Properties");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
         }
@@ -240,9 +234,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    this.OnPropertyChanged("Properties");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
         }
@@ -282,9 +274,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 _groupedProperties = null;
-                // ReSharper disable ExplicitCallerInfoArgument
-                this.OnPropertyChanged("Properties");
-                // ReSharper restore ExplicitCallerInfoArgument
+                this.OnPropertyChanged(nameof(this.Properties));
             }
         }
         #endregion
@@ -309,9 +299,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (this.SetProperty(ref _name, value))
                 {
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    OnPropertyChanged("DisplayName");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.DisplayName));
                 }
             }
         }
@@ -329,9 +317,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (this.SetProperty(ref _descendantCount, value))
                 {
-                    // ReSharper disable ExplicitCallerInfoArgument
-                    OnPropertyChanged("DisplayName");
-                    // ReSharper restore ExplicitCallerInfoArgument
+                    this.OnPropertyChanged(nameof(this.DisplayName));
                 }
             }
         }
@@ -366,8 +352,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             this.Model = model;
 
-            if (!Equals(
-                    Model.GetType().GetTypeInfo().Assembly,
+            if (!Equals(this.Model.GetType().GetTypeInfo().Assembly,
                     typeof (FrameworkElement).GetTypeInfo().Assembly))
             {
                 this.FontWeight = FontWeights.Bold;
@@ -389,7 +374,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
 
 #pragma warning disable 4014
-            this.RefreshCommand = new RelayCommand(() => RefreshAsync());
+            this.RefreshCommand = new RelayCommand(() => this.RefreshAsync());
 #pragma warning restore 4014
         } 
         #endregion
@@ -412,7 +397,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region ToString()
         public override string ToString()
         {
-            var typeName = Model.GetType().Name;
+            var typeName = this.Model.GetType().Name;
 
             if (_name == null)
             {
@@ -452,14 +437,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             foreach (var propertyViewModel in _allProperties)
             {
-                propertyViewModel.PropertyChanged += OnPropertyPropertyChanged;
+                propertyViewModel.PropertyChanged += this.OnPropertyPropertyChanged;
             }
 
             _groupedProperties = null;
 
-            // ReSharper disable ExplicitCallerInfoArgument
-            OnPropertyChanged("Properties");
-            // ReSharper restore ExplicitCallerInfoArgument
+            this.OnPropertyChanged(nameof(this.Properties));
             this.Details.Clear();
             this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
 
@@ -468,6 +451,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
             }
 
+            //TODO: Dig into why this was here
             //if (TreeModel.IsPreviewShown)
             //{
             //    await this.LoadPreview();

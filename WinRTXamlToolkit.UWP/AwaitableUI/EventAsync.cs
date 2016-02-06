@@ -107,12 +107,12 @@ namespace WinRTXamlToolkit.AwaitableUI
             {
                 if (addEventHandler == null)
                 {
-                    throw new ArgumentNullException("addEventHandler");
+                    throw new ArgumentNullException(nameof(addEventHandler));
                 }
 
                 if (removeEventHandler == null)
                 {
-                    throw new ArgumentNullException("removeEventHandler");
+                    throw new ArgumentNullException(nameof(removeEventHandler));
                 }
 
                 this.tcs = new TaskCompletionSource<object>();
@@ -152,12 +152,12 @@ namespace WinRTXamlToolkit.AwaitableUI
             {
                 if (addEventHandler == null)
                 {
-                    throw new ArgumentNullException("addEventHandler");
+                    throw new ArgumentNullException(nameof(addEventHandler));
                 }
 
                 if (removeEventHandler == null)
                 {
-                    throw new ArgumentNullException("removeEventHandler");
+                    throw new ArgumentNullException(nameof(removeEventHandler));
                 }
 
                 this.tcs = new TaskCompletionSource<RoutedEventArgs>();
