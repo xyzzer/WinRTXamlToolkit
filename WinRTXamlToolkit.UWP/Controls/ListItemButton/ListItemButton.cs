@@ -135,6 +135,12 @@ namespace WinRTXamlToolkit.Controls
         protected override void OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             base.OnTapped(e);
+            
+            if (FlyoutBase.GetAttachedFlyout(this) != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(this);
+                return;
+            }
 
             if (Click != null)
                 Click(this, new RoutedEventArgs());
