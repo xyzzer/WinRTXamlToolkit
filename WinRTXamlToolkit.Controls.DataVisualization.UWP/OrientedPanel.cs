@@ -503,22 +503,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                          (from element in priorityGroup
                           orderby GetCenterCoordinate(element) ascending
                           select element).ToList()
-                     where orderedElements.Count >= 2
-                     select
-                         (EnumerableFunctions.Zip(
-                             orderedElements,
-                             orderedElements.Skip(1),
-                             (leftElement, rightElement) =>
-                             {
-                                 double halfLeftLength = lengthSelector(leftElement) / 2;
-                                 double leftCenterCoordinate = GetCenterCoordinate(leftElement);
-
-                                 double halfRightLength = lengthSelector(rightElement) / 2;
-                                 double rightCenterCoordinate = GetCenterCoordinate(rightElement);
-
-                                 return (rightCenterCoordinate - halfRightLength) - (leftCenterCoordinate + halfLeftLength);
-                             }))
-                             .Min())
+                     select GetMinimumDistanceBetweenItems(orderedElements, lengthSelector))
                         .Min();
 
                 IEnumerable<int> priorities =
@@ -674,6 +659,38 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             else
             {
                 return element.DesiredSize;
+            }
+        }
+
+        /// <summary>
+        /// get the minimum distance between the given items
+        /// </summary>
+        /// <param name="orderedElements">elements in the order they are arranged</param>
+        /// <param name="lengthSelector">function that gets the length of a given element</param>
+        /// <returns>minimum distance between the items</returns>
+        private double GetMinimumDistanceBetweenItems(IList<UIElement> orderedElements, Func<UIElement, double> lengthSelector)
+        {
+            // if there are at least 2 items, calculate the minimum between them
+            if (orderedElements.Count >= 2)
+            {
+                return EnumerableFunctions.Zip(
+                    orderedElements,
+                    orderedElements.Skip(1),
+                    (leftElement, rightElement) =>
+                    {
+                        double halfLeftLength = lengthSelector(leftElement) / 2;
+                        double leftCenterCoordinate = GetCenterCoordinate(leftElement);
+
+                        double halfRightLength = lengthSelector(rightElement) / 2;
+                        double rightCenterCoordinate = GetCenterCoordinate(rightElement);
+
+                        return (rightCenterCoordinate - halfRightLength) - (leftCenterCoordinate + halfLeftLength);
+                    }).Min();
+            }
+            else
+            {
+                // one or less items means no distance between something and nothing.
+                return 0.0;
             }
         }
     }
