@@ -503,7 +503,6 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                          (from element in priorityGroup
                           orderby GetCenterCoordinate(element) ascending
                           select element).ToList()
-                     where orderedElements.Count >= 2
                      select GetMinimumDistanceBetweenItems(orderedElements, lengthSelector))
                         .Min();
 
