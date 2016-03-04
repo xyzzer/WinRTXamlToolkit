@@ -151,7 +151,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region TransitionForward()
+        #region TransitionForwardAsync()
         /// <summary>
         /// Runs forward transition.
         /// </summary>
@@ -159,7 +159,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="newPage">The new page.</param>
         /// <returns>The task that completes when the transition is complete.</returns>
         /// <exception cref="System.ArgumentNullException"></exception>
-        public async Task TransitionForward(DependencyObject previousPage, DependencyObject newPage)
+        public async Task TransitionForwardAsync(DependencyObject previousPage, DependencyObject newPage)
         {
             if (previousPage == null && newPage == null)
             {
@@ -174,14 +174,14 @@ namespace WinRTXamlToolkit.Controls
             {
                 if (ForwardInAnimation != null)
                 {
-                    await ForwardInAnimation.Animate(newPage);
+                    await ForwardInAnimation.AnimateAsync(newPage);
                 }
             }
             else if (newPage == null)
             {
                 if (ForwardOutAnimation != null)
                 {
-                    await ForwardOutAnimation.Animate(previousPage);
+                    await ForwardOutAnimation.AnimateAsync(previousPage);
                 }
             }
             else if (this.Mode == PageTransitionMode.Parallel)
@@ -216,20 +216,21 @@ namespace WinRTXamlToolkit.Controls
                 {
                     this.ForwardInAnimation.CleanupAnimation(newPage, inSb);
                 }
+
                 //await Task.WhenAll(
-                //    ForwardOutAnimation.Animate(previousPage),
-                //    ForwardInAnimation.Animate(newPage));
+                //    ForwardOutAnimation.AnimateAsync(previousPage),
+                //    ForwardInAnimation.AnimateAsync(newPage));
             }
             else
             {
                 if (this.ForwardOutAnimation != null)
                 {
-                    await this.ForwardOutAnimation.Animate(previousPage);
+                    await this.ForwardOutAnimation.AnimateAsync(previousPage);
                 }
 
                 if (this.ForwardInAnimation != null)
                 {
-                    await this.ForwardInAnimation.Animate(newPage);
+                    await this.ForwardInAnimation.AnimateAsync(newPage);
                 }
             }
 
@@ -237,7 +238,7 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region TransitionBackward()
+        #region TransitionBackwardAsync()
         /// <summary>
         /// Runs backward transition.
         /// </summary>
@@ -245,7 +246,7 @@ namespace WinRTXamlToolkit.Controls
         /// <param name="newPage">The new page.</param>
         /// <returns>The task that completes when the transition is complete.</returns>
         /// <exception cref="System.ArgumentNullException"></exception>
-        public async Task TransitionBackward(DependencyObject previousPage, DependencyObject newPage)
+        public async Task TransitionBackwardAsync(DependencyObject previousPage, DependencyObject newPage)
         {
             if (previousPage == null && newPage == null)
             {
@@ -258,11 +259,11 @@ namespace WinRTXamlToolkit.Controls
 
             if (previousPage == null)
             {
-                await BackwardInAnimation.Animate(newPage);
+                await BackwardInAnimation.AnimateAsync(newPage);
             }
             else if (newPage == null)
             {
-                await BackwardOutAnimation.Animate(previousPage);
+                await BackwardOutAnimation.AnimateAsync(previousPage);
             }
             else if (this.Mode == PageTransitionMode.Parallel)
             {
@@ -297,19 +298,19 @@ namespace WinRTXamlToolkit.Controls
                     this.BackwardInAnimation.CleanupAnimation(newPage, inSb);
                 }
                 //await Task.WhenAll(
-                //    BackwardOutAnimation.Animate(previousPage),
-                //    BackwardInAnimation.Animate(newPage));
+                //    BackwardOutAnimation.AnimateAsync(previousPage),
+                //    BackwardInAnimation.AnimateAsync(newPage));
             }
             else
             {
                 if (this.BackwardOutAnimation != null)
                 {
-                    await this.BackwardOutAnimation.Animate(previousPage);
+                    await this.BackwardOutAnimation.AnimateAsync(previousPage);
                 }
 
                 if (this.BackwardInAnimation != null)
                 {
-                    await this.BackwardInAnimation.Animate(newPage);
+                    await this.BackwardInAnimation.AnimateAsync(newPage);
                 }
             }
 

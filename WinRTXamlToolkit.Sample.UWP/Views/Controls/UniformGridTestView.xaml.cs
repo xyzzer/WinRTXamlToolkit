@@ -51,7 +51,7 @@ namespace WinRTXamlToolkit.Sample.Views
             list.ItemsSource = colors;
 
 #pragma warning disable 4014
-            list.FadeInCustom();
+            list.FadeInCustomAsync();
 #pragma warning restore 4014
         }
 

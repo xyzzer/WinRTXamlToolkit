@@ -16,45 +16,41 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region class FocusEvent
         public class FocusEvent
         {
-            public object Element { get; private set; }
+            public object Element { get; }
             public string TimeStamp { get; private set; }
 
             public FocusEvent(object element)
             {
-                Element = element ?? new { FontWeight = FontWeights.Normal, DisplayName = "<null>" };
+                this.Element = element ?? new { FontWeight = FontWeights.Normal, DisplayName = "<null>" };
                 this.TimeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
             }
-        } 
+        }
         #endregion
 
-        public ObservableCollection<FocusEvent> FocusEvents { get; private set; }
-
-        private bool ignoreFocusChange;
+        private bool _ignoreFocusChange;
+        public ObservableCollection<FocusEvent> FocusEvents { get; }
 
         #region SelectedEvent
-        private FocusEvent selectedEvent;
+        private FocusEvent _selectedEvent;
 
         public FocusEvent SelectedEvent
         {
-            get { return this.selectedEvent; }
+            get { return _selectedEvent; }
             set
             {
-                if (this.SetProperty(ref this.selectedEvent, value))
+                if (this.SetProperty(ref _selectedEvent, value))
                 {
-                    var dobvm = this.selectedEvent.Element as DependencyObjectViewModel;
+                    var dobvm = _selectedEvent.Element as DependencyObjectViewModel;
 
-                    if (dobvm != null)
+                    var uiElement = dobvm?.Model as UIElement;
+
+                    if (uiElement != null)
                     {
-                        var uiElement = dobvm.Model as UIElement;
-
-                        if (uiElement != null)
-                        {
-                            ignoreFocusChange = true;
+                        _ignoreFocusChange = true;
 #pragma warning disable 4014
-                            DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
+                        DebugConsoleViewModel.Instance.VisualTreeView.SelectItemAsync(uiElement);
 #pragma warning restore 4014
-                            ignoreFocusChange = false;
-                        }
+                        _ignoreFocusChange = false;
                     }
                 }
             }
@@ -87,7 +83,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
             }
-        } 
+        }
         #endregion
 
         #region FocusTrackerToolWindowViewModel()
@@ -104,7 +100,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region OnFocusChanged()
         private async void OnFocusChanged(object sender, UIElement e)
         {
-            if (!ignoreFocusChange)
+            if (!_ignoreFocusChange)
             {
                 if (e == null)
                 {
@@ -125,7 +121,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
             if (uiElement != null)
             {
-                await DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(
+                await DebugConsoleViewModel.Instance.VisualTreeView.SelectItemAsync(
                     uiElement,
                     refreshOnFail: true // need to refresh because otherwise if the tree is not up to date - selection won't change for elements in the tree already loaded
                     );
@@ -139,39 +135,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.FocusEvents.Add(fe);
                 this.SelectedEvent = fe;
             }
-        } 
+        }
         #endregion
 
         #region Remove()
-        internal void Remove()
+        internal override void Remove()
         {
             if (_focusTracker != null)
             {
                 _focusTracker.FocusChanged -= this.OnFocusChanged;
             }
 
-            DebugConsoleViewModel.Instance.ToolWindows.Remove(this);
-            this.RaiseRemoved();
-        } 
-        #endregion
-
-        #region Removed event
-        /// <summary>
-        /// Removed event property.
-        /// </summary>
-        public event EventHandler Removed;
-
-        /// <summary>
-        /// Raises Removed event.
-        /// </summary>
-        private void RaiseRemoved()
-        {
-            var handler = this.Removed;
-
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            base.Remove();
         }
         #endregion
     }

@@ -61,12 +61,13 @@
                 x:Name="DetailsTabButton"
                 Content="Details"
                 Style="{StaticResource TabButtonStyle}" />
-            <!--<RadioButton
+            <RadioButton
                 x:Name="PreviewTabButton"
                 Content="Preview"
                 Checked="PreviewTabButton_OnChecked"
+                Unchecked="PreviewTabButton_OnUnchecked"
                 IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
-                Style="{StaticResource TabButtonStyle}" />-->
+                Style="{StaticResource TabButtonStyle}" />
         </StackPanel>
         <local:PropertiesView
             x:Name="PropertiesView"
@@ -90,8 +91,9 @@
                                 FontSize="12"
                                 FontWeight="Bold"
                                 TextWrapping="Wrap" />
-                            <TextBlock
+                            <TextBox
                                 Text="{Binding Detail}"
+                                IsReadOnly="True"
                                 TextWrapping="Wrap"
                                 Margin="0,0,0,10" />
                         </StackPanel>
@@ -99,7 +101,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <!--<ScrollViewer
+        <ScrollViewer
             x:Name="PreviewView"
             Visibility="{Binding IsChecked, ElementName=PreviewTabButton, Converter={StaticResource BooleanToVisibilityConverter}}"
             Grid.Row="1"
@@ -112,6 +114,6 @@
             HorizontalAlignment="Stretch">
             <Image
                 Source="{Binding PreviewImageSource}"/>
-        </ScrollViewer>-->
+        </ScrollViewer>
     </Grid>
 </UserControl>

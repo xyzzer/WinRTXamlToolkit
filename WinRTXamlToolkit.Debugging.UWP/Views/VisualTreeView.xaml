@@ -39,7 +39,8 @@
             <DataTemplate
                 x:Key="DefaultDetailsTemplate">
                 <Grid>
-                    <TextBlock
+                    <TextBox
+                        IsReadOnly="True"
                         TextWrapping="Wrap"
                         VerticalAlignment="Top"
                         Text="{Binding Description}" />

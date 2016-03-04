@@ -65,7 +65,7 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="bitmap">The bitmap into which the image will be loaded.</param>
         /// <param name="img">The Base64-encoded image string.</param>
         /// <returns></returns>
-        public static async Task<BitmapImage> LoadFromBase64String(this BitmapImage bitmap, string img)
+        public static async Task<BitmapImage> LoadFromBase64StringAsync(this BitmapImage bitmap, string img)
         {
             //img = @"/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQ ... "; // Full Base64 image as string here
             var imgBytes = Convert.FromBase64String(img);
@@ -89,10 +89,10 @@ namespace WinRTXamlToolkit.Imaging
         /// </summary>
         /// <param name="img">The Base64-encoded image string.</param>
         /// <returns></returns>
-        public static async Task<BitmapImage> LoadFromBase64String(string img)
+        public static async Task<BitmapImage> LoadFromBase64StringAsync(string img)
         {
             var bm = new BitmapImage();
-            await bm.LoadFromBase64String(img);
+            await bm.LoadFromBase64StringAsync(img);
 
             return bm;
         }

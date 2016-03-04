@@ -441,11 +441,11 @@ namespace WinRTXamlToolkit.Sample.ViewModels
             var dialog = new InputDialog();
             await dialog.ShowAsync("Title", "Text", "OK", "Cancel");
             await new MessageDialog(dialog.InputText, "WinRTXamlToolkit.Sample").ShowAsync();
-            await "ABC".WriteToFile("abc.txt", KnownFolders.DocumentsLibrary);
-            await "DEF".WriteToFile("abc.txt", KnownFolders.DocumentsLibrary);
-            await "ABC2".WriteToFile("abc2.txt", KnownFolders.DocumentsLibrary);
+            await "ABC".SaveAsync("abc.txt", KnownFolders.DocumentsLibrary);
+            await "DEF".SaveAsync("abc.txt", KnownFolders.DocumentsLibrary);
+            await "ABC2".SaveAsync("abc2.txt", KnownFolders.DocumentsLibrary);
             await new MessageDialog("Test files written", "WinRTXamlToolkit.Sample").ShowAsync();
-            var abc = await StringIOExtensions.ReadFromFile("abc.txt", KnownFolders.DocumentsLibrary);
+            var abc = await StringIOExtensions.LoadAsync("abc.txt", KnownFolders.DocumentsLibrary);
             await new MessageDialog(abc, "Test file read").ShowAsync();
         }
 

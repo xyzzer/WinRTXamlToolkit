@@ -11,6 +11,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using WinRTXamlToolkit.Debugging.Views;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
@@ -207,12 +208,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region IsPreviewShown
-        //private bool _isPreviewShown;
-        //public bool IsPreviewShown
-        //{
-        //    get { return _isPreviewShown; }
-        //    set { this.SetProperty(ref _isPreviewShown, value); }
-        //}
+        private bool _isPreviewShown;
+        public bool IsPreviewShown
+        {
+            get { return _isPreviewShown; }
+            set { this.SetProperty(ref _isPreviewShown, value); }
+        }
         #endregion
 
         #region ShowPropertiesGrouped
@@ -293,14 +294,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
 
 #pragma warning disable 4014
-            SelectElementUnderPointer();
+            this.SelectElementUnderPointerAsync();
             this.IsShown = true;
 #pragma warning restore 4014
         } 
         #endregion
 
-        #region SelectElementUnderPointer()
-        internal async Task SelectElementUnderPointer(bool showDebugger = true)
+        #region SelectElementUnderPointerAsync()
+        internal async Task SelectElementUnderPointerAsync(bool showDebugger = true)
         {
             var roots =
                 VisualTreeHelper.GetOpenPopups(Window.Current)
@@ -318,7 +319,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _pointerPosition,
                     root);
 
-                var hoveredElementCandidate = hoveredElements.FirstOrDefault();
+                var hoveredElementCandidate = hoveredElements.FirstOrDefault(element => !element.GetAncestorsOfType<VisualTreeView>().Any());
 
                 if (hoveredElementCandidate != null)
                 {
@@ -351,7 +352,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (hoveredElement != null)
             {
-                await SelectItem(hoveredElement, true);
+                await this.SelectItemAsync(hoveredElement, true);
             }
 
             if (showDebugger)
@@ -362,20 +363,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         } 
         #endregion
 
-        #region SelectFocused()
-        internal async Task SelectFocused()
+        #region SelectFocusedAsync()
+        internal async Task SelectFocusedAsync()
         {
             var focusedElement = FocusManager.GetFocusedElement() as UIElement;
 
-            if (focusedElement != null)
+            if (focusedElement != null &&
+                !focusedElement.GetAncestorsOfType<VisualTreeView>().Any())
             {
-                await SelectItem(focusedElement, true);
+                await this.SelectItemAsync(focusedElement, true);
             }
         } 
         #endregion
 
-        #region SelectItem()
-        internal async Task<bool> SelectItem(UIElement element, bool refreshOnFail = false)
+        #region SelectItemAsync()
+        internal async Task<bool> SelectItemAsync(UIElement element, bool refreshOnFail = false)
         {
             var ancestors = new[] { element }.Concat(element.GetAncestors()).ToList();
 
@@ -422,7 +424,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (refreshOnFail)
                 {
                     await Refresh();
-                    return await SelectItem(element, false);
+                    return await this.SelectItemAsync(element, false);
                 }
 
                 return false;
@@ -464,7 +466,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         //    vm.Parent.Children.Insert(i, new DependencyObjectViewModel(this, vm.Parent, ancestors[ancestorIndex]));
                         //}
 
-                        return await SelectItem(element, false);
+                        return await this.SelectItemAsync(element, false);
                     }
 
                     return false;
@@ -504,7 +506,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (_isCtrlPressed)
                 {
 #pragma warning disable 4014
-                    SelectElementUnderPointer();
+                    this.SelectElementUnderPointerAsync();
                     this.IsShown = true;
 #pragma warning restore 4014
                 }
@@ -516,7 +518,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 if (_isShiftPressed)
                 {
 #pragma warning disable 4014
-                    SelectElementUnderPointer();
+                    this.SelectElementUnderPointerAsync();
                     this.IsShown = true;
 #pragma warning restore 4014
                 }

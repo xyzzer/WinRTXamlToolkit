@@ -128,7 +128,7 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         /// <param name="target">The target.</param>
         /// <returns></returns>
-        internal async Task Animate(DependencyObject target)
+        internal async Task AnimateAsync(DependencyObject target)
         {
             var anim = this.Animation;
             Storyboard.SetTarget(anim, target);

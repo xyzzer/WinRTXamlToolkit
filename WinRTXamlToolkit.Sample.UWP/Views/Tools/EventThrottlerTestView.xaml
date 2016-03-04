@@ -16,7 +16,7 @@
                 Height="Auto" />
         </Grid.RowDefinitions>
         <Button
-            Content="Animate"
+            Content="AnimateAsync"
             Grid.Row="1"
             Click="OnAnimateButtonClick"/>
         <Grid

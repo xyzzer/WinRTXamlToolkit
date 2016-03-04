@@ -59,7 +59,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region FadeIn()
+        #region FadeInAsync()
         /// <summary>
         /// Fades the element in using the FadeInThemeAnimation.
         /// </summary>
@@ -71,7 +71,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="element"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static async Task FadeIn(this UIElement element, TimeSpan? duration = null)
+        public static async Task FadeInAsync(this UIElement element, TimeSpan? duration = null)
         {
             ((FrameworkElement)element).Visibility = Visibility.Visible;
             var fadeInStoryboard = new Storyboard();
@@ -85,10 +85,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
             Storyboard.SetTarget(fadeInAnimation, element);
             fadeInStoryboard.Children.Add(fadeInAnimation);
             await fadeInStoryboard.BeginAsync();
-        } 
+        }
         #endregion
 
-        #region FadeOut()
+        #region FadeOutAsync()
         /// <summary>
         /// Fades the element out using the FadeOutThemeAnimation.
         /// </summary>
@@ -100,7 +100,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="element"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static async Task FadeOut(this UIElement element, TimeSpan? duration = null)
+        public static async Task FadeOutAsync(this UIElement element, TimeSpan? duration = null)
         {
             var fadeOutStoryboard = new Storyboard();
             var fadeOutAnimation = new FadeOutThemeAnimation();
@@ -116,7 +116,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         } 
         #endregion
 
-        #region FadeInCustom()
+        #region FadeInCustomAsync()
         /// <summary>
         /// Fades the element in using a custom DoubleAnimation of the Opacity property.
         /// </summary>
@@ -125,7 +125,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="easingFunction">The easing function.</param>
         /// <param name="targetOpacity">The target opacity.</param>
         /// <returns>Task that completes after the animation is complete.</returns>
-        public static async Task FadeInCustom(this UIElement element, TimeSpan? duration = null, EasingFunctionBase easingFunction = null, double targetOpacity = 1.0)
+        public static async Task FadeInCustomAsync(this UIElement element, TimeSpan? duration = null, EasingFunctionBase easingFunction = null, double targetOpacity = 1.0)
         {
             CleanUpPreviousFadeStoryboard(element);
 
@@ -149,7 +149,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region FadeOutCustom()
+        #region FadeOutCustomAsync()
         /// <summary>
         /// Fades the element out using a custom DoubleAnimation of the Opacity property.
         /// </summary>
@@ -157,7 +157,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="duration"></param>
         /// <param name="easingFunction"> </param>
         /// <returns></returns>
-        public static async Task FadeOutCustom(this UIElement element, TimeSpan? duration = null, EasingFunctionBase easingFunction = null)
+        public static async Task FadeOutCustomAsync(this UIElement element, TimeSpan? duration = null, EasingFunctionBase easingFunction = null)
         {
             CleanUpPreviousFadeStoryboard(element); 
             

@@ -35,7 +35,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         {
             var vm = (VisualTreeViewModel)this.DataContext;
 #pragma warning disable 4014
-            vm.SelectFocused();
+            vm.SelectFocusedAsync();
 #pragma warning restore 4014
         }
 
@@ -57,7 +57,7 @@ namespace WinRTXamlToolkit.Debugging.Views
         private void OnFocusTrackerButtonClick(object sender, RoutedEventArgs e)
         {
             this.FocusTrackerButton = (ToolBarToggleButton)sender;
-            var show = this.FocusTrackerButton.IsChecked.Value;
+            var show = this.FocusTrackerButton.IsChecked == true;
 
             if (show)
             {

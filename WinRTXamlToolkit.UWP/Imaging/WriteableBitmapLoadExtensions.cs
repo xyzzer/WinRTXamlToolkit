@@ -77,7 +77,7 @@ namespace WinRTXamlToolkit.Imaging
             this WriteableBitmap writeableBitmap,
             string relativePath)
         {
-            var resolvedFile = await ScaledImageFile.Get(relativePath);
+            var resolvedFile = await ScaledImageFile.GetAsync(relativePath);
 
             if (resolvedFile == null)
                 throw new FileNotFoundException("Could not load image.", relativePath);
@@ -146,7 +146,7 @@ namespace WinRTXamlToolkit.Imaging
             uint decodePixelWidth,
             uint decodePixelHeight)
         {
-            var resolvedFile = await ScaledImageFile.Get(relativePath);
+            var resolvedFile = await ScaledImageFile.GetAsync(relativePath);
 
             return await writeableBitmap.LoadAsync(
                 resolvedFile,

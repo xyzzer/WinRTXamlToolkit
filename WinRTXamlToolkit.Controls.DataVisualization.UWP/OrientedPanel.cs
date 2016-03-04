@@ -126,7 +126,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 throw new ArgumentNullException(nameof(element));
             }
-            return (double) element.GetValue(CenterCoordinateProperty);
+            return (double)element.GetValue(CenterCoordinateProperty);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 "CenterCoordinate",
                 typeof(double),
                 typeof(OrientedPanel),
-                new PropertyMetadata(null,OnCenterCoordinatePropertyChanged));
+                new PropertyMetadata(null, OnCenterCoordinatePropertyChanged));
 
         /// <summary>
         /// CenterCoordinateProperty property changed handler.
@@ -231,7 +231,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 throw new ArgumentNullException(nameof(element));
             }
-            return (int) element.GetValue(PriorityProperty);
+            return (int)element.GetValue(PriorityProperty);
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 "Priority",
                 typeof(int),
                 typeof(OrientedPanel),
-                new PropertyMetadata(null,OnPriorityPropertyChanged));
+                new PropertyMetadata(null, OnPriorityPropertyChanged));
 
         /// <summary>
         /// PriorityProperty property changed handler.
@@ -429,7 +429,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         private void UpdateActualLength()
         {
             string length = "ActualWidth";
-            if(Orientation == Orientation.Horizontal)
+            if (Orientation == Orientation.Horizontal)
             {
                 length = "ActualWidth";
             }
@@ -437,7 +437,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 length = "ActualHeight";
             }
-            this.SetBinding(ActualLengthProperty, new Binding { Path=new PropertyPath(length), Source = this });
+            this.SetBinding(ActualLengthProperty, new Binding { Path = new PropertyPath(length), Source = this });
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
         /// <returns>A sequence of ranges.</returns>
         private static IEnumerable<Range<double>> GetRanges(IEnumerable<UIElement> children, Func<UIElement, double> lengthSelector)
         {
-            return 
+            return
                 children
                     .Select(child =>
                     {
@@ -503,22 +503,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                          (from element in priorityGroup
                           orderby GetCenterCoordinate(element) ascending
                           select element).ToList()
-                     where orderedElements.Count >= 2
-                     select
-                         (EnumerableFunctions.Zip(
-                             orderedElements,
-                             orderedElements.Skip(1),
-                             (leftElement, rightElement) =>
-                             {
-                                 double halfLeftLength = lengthSelector(leftElement) / 2;
-                                 double leftCenterCoordinate = GetCenterCoordinate(leftElement);
-
-                                 double halfRightLength = lengthSelector(rightElement) / 2;
-                                 double rightCenterCoordinate = GetCenterCoordinate(rightElement);
-
-                                 return (rightCenterCoordinate - halfRightLength) - (leftCenterCoordinate + halfLeftLength);
-                             }))
-                             .Min())
+                     select GetMinimumDistanceBetweenItems(orderedElements, lengthSelector))
                         .Min();
 
                 IEnumerable<int> priorities =
@@ -675,6 +660,34 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             {
                 return element.DesiredSize;
             }
+        }
+
+        /// <summary>
+        /// Gets the minimum distance between the given elements.
+        /// </summary>
+        /// <param name="orderedElements">Elements in the order they are arranged.</param>
+        /// <param name="lengthSelector">Function that gets the length of a given element.</param>
+        /// <returns>Minimum distance between the items.</returns>
+        private double GetMinimumDistanceBetweenItems(IList<UIElement> orderedElements, Func<UIElement, double> lengthSelector)
+        {
+            if (orderedElements.Count < 2)
+            {
+                return 0;
+            }
+
+            return EnumerableFunctions.Zip(
+                orderedElements,
+                orderedElements.Skip(1),
+                (leftElement, rightElement) =>
+                {
+                    double halfLeftLength = lengthSelector(leftElement) / 2;
+                    double leftCenterCoordinate = GetCenterCoordinate(leftElement);
+
+                    double halfRightLength = lengthSelector(rightElement) / 2;
+                    double rightCenterCoordinate = GetCenterCoordinate(rightElement);
+
+                    return (rightCenterCoordinate - halfRightLength) - (leftCenterCoordinate + halfLeftLength);
+                }).Min();
         }
     }
 }

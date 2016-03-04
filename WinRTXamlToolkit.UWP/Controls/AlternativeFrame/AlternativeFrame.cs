@@ -10,6 +10,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.Tools;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -381,7 +382,7 @@ namespace WinRTXamlToolkit.Controls
             //        new AlternativeNavigatingCancelEventArgs(
             //            NavigationMode.Forward,
             //            null);
-            //    await this.OnNavigating(cancelArgs);
+            //    await this.OnNavigatingAsync(cancelArgs);
 
             //    await currentPage.OnNavigatingFromInternal(cancelArgs);
             //    var args = new AlternativeNavigationEventArgs(null, NavigationMode.Forward, null, null);
@@ -520,22 +521,34 @@ namespace WinRTXamlToolkit.Controls
         /// </exception>
         public async Task<bool> NavigateAsync(Type sourcePageType, object parameter)
         {
+            return
+                await _navigationCallThrottler.RunAsync(() => this.ThrottledNavigateAsync(sourcePageType, parameter), false);
+        }
+
+        private async Task<bool> ThrottledNavigateAsync(Type sourcePageType, object parameter)
+        {
             if (_isNavigating)
             {
-                throw new InvalidOperationException("Navigation already in progress.");
+                //Debug.Assert(false, "Navigation already in progress.");
+                return false;
+                //throw new InvalidOperationException("Navigation already in progress.");
             }
 
             if (!this.CanNavigate)
             {
-                throw new InvalidOperationException("Navigate() call failed. CanNavigate is false.");
+                //Debug.Assert(false, "Navigate() call failed. CanNavigate is false.");
+                return false;
+                //throw new InvalidOperationException("Navigate() call failed. CanNavigate is false.");
             }
 
-            return await NavigateCore(
+            return await this.NavigateCoreAsync(
                 sourcePageType,
                 parameter,
                 NavigationMode.New);
         }
         #endregion
+
+        EventThrottler<bool> _navigationCallThrottler = new EventThrottler<bool>();
 
         #region GoBackAsync()
         /// <summary>
@@ -551,27 +564,39 @@ namespace WinRTXamlToolkit.Controls
         /// </exception>
         public async Task<bool> GoBackAsync()
         {
+            return
+                await _navigationCallThrottler.RunAsync(this.ThrottledGoBackAsync, false);
+        }
+
+        private async Task<bool> ThrottledGoBackAsync()
+        {
             if (_isNavigating)
             {
-                throw new InvalidOperationException("Navigation already in progress.");
+                //Debug.Assert(false, "Navigation already in progress.");
+                return false;
+                //throw new InvalidOperationException("Navigation already in progress.");
             }
 
             if (!this.CanGoBack)
             {
-                throw new InvalidOperationException("GoBack() call failed. CanGoBack is false.");
+                //Debug.Assert(false, "GoBack() call failed. CanGoBack is false.");
+                return false;
+                //throw new InvalidOperationException("GoBack() call failed. CanGoBack is false.");
             }
 
             if (!this.CanNavigate)
             {
-                throw new InvalidOperationException("GoBack() call failed. CanNavigate is false.");
+                //Debug.Assert(false, "GoBack() call failed. CanNavigate is false.");
+                return false;
+                //throw new InvalidOperationException("GoBack() call failed. CanNavigate is false.");
             }
 
             var backJournalEntry = this.BackStack.Peek();
 
-            return await NavigateCore(
+            return await _navigationCallThrottler.RunAsync(() => this.NavigateCoreAsync(
                 backJournalEntry.SourcePageType,
                 backJournalEntry.Parameter,
-                NavigationMode.Back);
+                NavigationMode.Back), false);
         }
         #endregion
 
@@ -606,7 +631,7 @@ namespace WinRTXamlToolkit.Controls
 
             var forwardJournalEntry = this.ForwardStack.Peek();
 
-            return await NavigateCore(
+            return await this.NavigateCoreAsync(
                 forwardJournalEntry.SourcePageType,
                 forwardJournalEntry.Parameter,
                 NavigationMode.Forward);
@@ -682,7 +707,7 @@ namespace WinRTXamlToolkit.Controls
 
                 var forwardJournalEntry = this.ForwardStack.Peek();
 
-                await NavigateCore(
+                await this.NavigateCoreAsync(
                     forwardJournalEntry.SourcePageType,
                     forwardJournalEntry.Parameter,
                     NavigationMode.Forward);
@@ -932,8 +957,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region NavigateCore()
-        private async Task<bool> NavigateCore(
+        #region NavigateCoreAsync()
+        private async Task<bool> NavigateCoreAsync(
             Type sourcePageType, object parameter, NavigationMode navigationMode)
         {
             _isNavigating = true;
@@ -948,7 +973,7 @@ namespace WinRTXamlToolkit.Controls
                 Task<bool> navigateCoreTask = null;
                 await Dispatcher.RunAsync(
                     CoreDispatcherPriority.High,
-                    () => navigateCoreTask = NavigateCore(sourcePageType, parameter, navigationMode));
+                    () => navigateCoreTask = this.NavigateCoreAsync(sourcePageType, parameter, navigationMode));
                 return await navigateCoreTask;
             }
 
@@ -966,7 +991,7 @@ namespace WinRTXamlToolkit.Controls
                         new AlternativeNavigatingCancelEventArgs(
                             navigationMode,
                             sourcePageType);
-                    await this.OnNavigating(cancelArgs);
+                    await this.OnNavigatingAsync(cancelArgs);
 
                     if (!cancelArgs.Cancel)
                     {
@@ -1053,7 +1078,7 @@ namespace WinRTXamlToolkit.Controls
                 this.CurrentJournalEntry = je;
                 #endregion
 
-                #region OnNavigated~() calls
+                #region OnNavigatedAsync~() calls
                 this.UpdateCans();
 
                 if (currentPage != null)
@@ -1061,7 +1086,7 @@ namespace WinRTXamlToolkit.Controls
                     await currentPage.OnNavigatedFromInternalAsync(args);
                 }
 
-                await this.OnNavigated(args);
+                await this.OnNavigatedAsync(args);
 
                 await newPage.OnNavigatedToInternalAsync(args);
                 #endregion
@@ -1075,14 +1100,14 @@ namespace WinRTXamlToolkit.Controls
                     newPage.ShouldWaitForImagesToLoad == true &&
                     this.ShouldWaitForImagesToLoad != false)
                 {
-                    await newPage.WaitForImagesToLoad(WaitForImagesToLoadTimeout);
+                    await newPage.WaitForImagesToLoadAsync(WaitForImagesToLoadTimeout);
                 }
 
                 newPagePresenter.Opacity = 1.0;
 
                 if (navigationMode == NavigationMode.Back)
                 {
-                    await TransitionBackward(
+                    await this.TransitionBackwardAsync(
                         currentPage,
                         newPage,
                         _currentPagePresenter,
@@ -1090,7 +1115,7 @@ namespace WinRTXamlToolkit.Controls
                 }
                 else
                 {
-                    await TransitionForward(
+                    await this.TransitionForwardAsync(
                         currentPage,
                         newPage,
                         _currentPagePresenter,
@@ -1125,8 +1150,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region OnNavigating()
-        private async Task OnNavigating(AlternativeNavigatingCancelEventArgs args)
+        #region OnNavigatingAsync()
+        private async Task OnNavigatingAsync(AlternativeNavigatingCancelEventArgs args)
         {
             AlternativeNavigatingCancelEventHandler handler = this.Navigating;
 
@@ -1137,8 +1162,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region OnNavigated()
-        private async Task OnNavigated(AlternativeNavigationEventArgs args)
+        #region OnNavigatedAsync()
+        private async Task OnNavigatedAsync(AlternativeNavigationEventArgs args)
         {
             AlternativeNavigationEventHandler handler = this.Navigated;
 
@@ -1149,8 +1174,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region TransitionForward()
-        private async Task TransitionForward(
+        #region TransitionForwardAsync()
+        private async Task TransitionForwardAsync(
             AlternativePage currentPage,
             AlternativePage newPage,
             ContentPresenter previousPagePresenter,
@@ -1170,7 +1195,7 @@ namespace WinRTXamlToolkit.Controls
                     await newPage.OnTransitioningToInternalAsync();
                 }
 
-                await transition.TransitionForward(previousPagePresenter, newPagePresenter);
+                await transition.TransitionForwardAsync(previousPagePresenter, newPagePresenter);
 
                 if (currentPage != null)
                 {
@@ -1185,8 +1210,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region TransitionBackward()
-        private async Task TransitionBackward(
+        #region TransitionBackwardAsync()
+        private async Task TransitionBackwardAsync(
             AlternativePage currentPage,
             AlternativePage newPage,
             ContentPresenter previousPagePresenter,
@@ -1206,7 +1231,7 @@ namespace WinRTXamlToolkit.Controls
                     await newPage.OnTransitioningToInternalAsync();
                 }
 
-                await transition.TransitionBackward(previousPagePresenter, newPagePresenter);
+                await transition.TransitionBackwardAsync(previousPagePresenter, newPagePresenter);
 
                 if (currentPage != null)
                 {

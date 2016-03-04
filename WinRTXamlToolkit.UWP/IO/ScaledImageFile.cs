@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources.Core;
-using Windows.Graphics.Display;
 using Windows.Storage;
 
 namespace WinRTXamlToolkit.IO
@@ -16,7 +15,7 @@ namespace WinRTXamlToolkit.IO
         /// </summary>
         /// <param name="relativePath"></param>
         /// <returns></returns>
-        public static async Task<StorageFile> Get(string relativePath)
+        public static async Task<StorageFile> GetAsync(string relativePath)
         {
             string resourceKey = string.Format("Files/{0}", relativePath);
             var mainResourceMap = ResourceManager.Current.MainResourceMap;

@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using WinRTXamlToolkit.Debugging.ViewModels;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {
@@ -9,31 +11,31 @@ namespace WinRTXamlToolkit.Debugging.Views
             this.InitializeComponent();
         }
 
-//        private void PreviewTabButton_OnChecked(object sender, RoutedEventArgs e)
-//        {
-//            var vm = this.DataContext as DependencyObjectViewModel;
+        private void PreviewTabButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as DependencyObjectViewModel;
 
-//            if (vm == null)
-//            {
-//                return;
-//            }
+            if (vm == null)
+            {
+                return;
+            }
 
-//            //vm.TreeModel.IsPreviewShown = true;
-//#pragma warning disable 4014
-//            vm.LoadPreview();
-//#pragma warning restore 4014
-//        }
+            vm.TreeModel.IsPreviewShown = true;
+#pragma warning disable 4014
+            vm.LoadPreviewAsync();
+#pragma warning restore 4014
+        }
 
-//        private void PreviewTabButton_OnUnchecked(object sender, RoutedEventArgs e)
-//        {
-//            var vm = this.DataContext as DependencyObjectViewModel;
+        private void PreviewTabButton_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as DependencyObjectViewModel;
 
-//            if (vm == null)
-//            {
-//                return;
-//            }
+            if (vm == null)
+            {
+                return;
+            }
 
-//            //vm.TreeModel.IsPreviewShown = false;
-//        }
+            vm.TreeModel.IsPreviewShown = false;
+        }
     }
 }

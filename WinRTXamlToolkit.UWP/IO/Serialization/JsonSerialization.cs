@@ -82,13 +82,13 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
         /// <returns></returns>
-        public static async Task<T> LoadFromJsonFile<T>(
+        public static async Task<T> LoadAsync<T>(
             string fileName,
             StorageFolder folder = null)
         {
-            var json = await StringIOExtensions.ReadFromFile(fileName, folder);
+            var json = await StringIOExtensions.LoadAsync(fileName, folder);
 
-            return LoadFromJsonString<T>(json);
+            return Parse<T>(json);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <typeparam name="T">The type of the expected object graph reference.</typeparam>
         /// <param name="json">The JSON string.</param>
         /// <returns></returns>
-        public static T LoadFromJsonString<T>(string json)
+        public static T Parse<T>(string json)
         {
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
             var ser = new DataContractJsonSerializer(typeof(T));

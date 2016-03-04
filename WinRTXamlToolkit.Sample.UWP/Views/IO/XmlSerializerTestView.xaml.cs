@@ -21,8 +21,8 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private async void RunTest()
         {
-            await RunTestOnTempFile();
-            RunTestInMemory();
+            await RunTestOnTempFileAsync();
+            this.RunTestInMemory();
         }
 
         private void RunTestInMemory()
@@ -92,7 +92,7 @@ namespace WinRTXamlToolkit.Sample.Views
     }";
         }
 
-        private static async Task RunTestOnTempFile()
+        private static async Task RunTestOnTempFileAsync()
         {
             var data = new SampleXmlSerializableData {Width = 12345};
             var folder = ApplicationData.Current.TemporaryFolder;
@@ -100,7 +100,7 @@ namespace WinRTXamlToolkit.Sample.Views
             await data.SerializeAsXml(
                 fileName,
                 folder);
-            var deserializedData = await XmlSerialization.LoadFromXmlFile<SampleXmlSerializableData>(
+            var deserializedData = await XmlSerialization.LoadXmlSerializedAsync<SampleXmlSerializableData>(
                 fileName,
                 folder);
 

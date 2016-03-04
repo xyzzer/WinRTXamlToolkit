@@ -78,7 +78,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region ScrollToHorizontalOffsetWithAnimation()
+        #region ScrollToHorizontalOffsetWithAnimationAsync()
         /// <summary>
         /// Scrolls to the specified offset using an animation instead of
         /// immediately jumping to that offset as with ScrollToHorizontalOffset().
@@ -90,10 +90,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="scrollViewer"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
+        //TODO: Clean this up
 ////// The below doesn't work well, so leaving it commented out for now.
 ////#if WIN81
 ////#pragma warning disable 1998
-////        public static async Task ScrollToHorizontalOffsetWithAnimation(
+////        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
 ////            this ScrollViewer scrollViewer,
 ////            double offset)
 ////        {
@@ -101,11 +102,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
 ////        }
 ////#pragma warning restore 1998
 ////#else
-        public static async Task ScrollToHorizontalOffsetWithAnimation(
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset)
         {
-            await scrollViewer.ScrollToHorizontalOffsetWithAnimation(offset, DefaultAnimatedScrollDuration);
+            await scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(offset, DefaultAnimatedScrollDuration);
         }
 ////#endif
 
@@ -121,12 +122,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="offset"></param>
         /// <param name="durationInSeconds"></param>
         /// <returns></returns>
-        public static async Task ScrollToHorizontalOffsetWithAnimation(
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             double durationInSeconds)
         {
-            await scrollViewer.ScrollToHorizontalOffsetWithAnimation(
+            await scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(
                 offset,
                 TimeSpan.FromSeconds(durationInSeconds),
                 DefaultEasingFunction);
@@ -145,13 +146,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="durationInSeconds"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ScrollToHorizontalOffsetWithAnimation(
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             double durationInSeconds,
             EasingFunctionBase easingFunction)
         {
-            await scrollViewer.ScrollToHorizontalOffsetWithAnimation(
+            await scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(
                 offset,
                 TimeSpan.FromSeconds(durationInSeconds),
                 easingFunction);
@@ -169,12 +170,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="offset"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static async Task ScrollToHorizontalOffsetWithAnimation(
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             TimeSpan duration)
         {
-            await scrollViewer.ScrollToHorizontalOffsetWithAnimation(
+            await scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(
                 offset,
                 duration,
                 DefaultEasingFunction);
@@ -193,7 +194,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="duration"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ScrollToHorizontalOffsetWithAnimation(
+        public static async Task ScrollToHorizontalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             TimeSpan duration,
@@ -207,12 +208,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 SetAnimatedScrollHandler(scrollViewer, handler);
             }
 
-            await handler.ScrollToHorizontalOffsetWithAnimation(
+            await handler.ScrollToHorizontalOffsetWithAnimationAsync(
                 offset, duration, easingFunction);
         }
         #endregion
 
-        #region ScrollToVerticalOffsetWithAnimation()
+        #region ScrollToVerticalOffsetWithAnimationAsync()
         /// <summary>
         /// Scrolls to the specified offset using an animation instead of
         /// immediately jumping to that offset as with ScrollToVerticalOffset().
@@ -227,7 +228,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 ////// The below doesn't work well, so leaving it commented out for now.
 ////#if WIN81
 ////#pragma warning disable 1998
-////        public static async Task ScrollToVerticalOffsetWithAnimation(
+////        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
 ////            this ScrollViewer scrollViewer,
 ////            double offset)
 ////        {
@@ -235,11 +236,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
 ////        }
 ////#pragma warning restore 1998
 ////#else
-        public static async Task ScrollToVerticalOffsetWithAnimation(
+        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset)
         {
-            await scrollViewer.ScrollToVerticalOffsetWithAnimation(offset, DefaultAnimatedScrollDuration);
+            await scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(offset, DefaultAnimatedScrollDuration);
         }
 //#endif
 
@@ -255,12 +256,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="offset"></param>
         /// <param name="durationInSeconds"></param>
         /// <returns></returns>
-        public static async Task ScrollToVerticalOffsetWithAnimation(
+        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             double durationInSeconds)
         {
-            await scrollViewer.ScrollToVerticalOffsetWithAnimation(
+            await scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(
                 offset,
                 TimeSpan.FromSeconds(durationInSeconds),
                 DefaultEasingFunction);
@@ -279,13 +280,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="durationInSeconds"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ScrollToVerticalOffsetWithAnimation(
+        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             double durationInSeconds,
             EasingFunctionBase easingFunction)
         {
-            await scrollViewer.ScrollToVerticalOffsetWithAnimation(
+            await scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(
                 offset,
                 TimeSpan.FromSeconds(durationInSeconds),
                 easingFunction);
@@ -303,12 +304,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="offset"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static async Task ScrollToVerticalOffsetWithAnimation(
+        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             TimeSpan duration)
         {
-            await scrollViewer.ScrollToVerticalOffsetWithAnimation(
+            await scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(
                 offset,
                 duration,
                 DefaultEasingFunction);
@@ -327,7 +328,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="duration"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ScrollToVerticalOffsetWithAnimation(
+        public static async Task ScrollToVerticalOffsetWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double offset,
             TimeSpan duration,
@@ -341,12 +342,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 SetAnimatedScrollHandler(scrollViewer, handler);
             }
 
-            await handler.ScrollToVerticalOffsetWithAnimation(
+            await handler.ScrollToVerticalOffsetWithAnimationAsync(
                 offset, duration, easingFunction);
         }
         #endregion
 
-        #region ZoomToFactorWithAnimation()
+        #region ZoomToFactorWithAnimationAsync()
         /// <summary>
         /// Zooms to the specified factor using an animation instead of
         /// immediately jumping to that value as with ZoomToFactor().
@@ -358,11 +359,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="scrollViewer"></param>
         /// <param name="factor"></param>
         /// <returns></returns>
-        public static async Task ZoomToFactorWithAnimation(
+        public static async Task ZoomToFactorWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double factor)
         {
-            await scrollViewer.ZoomToFactorWithAnimation(factor, DefaultAnimatedScrollDuration);
+            await scrollViewer.ZoomToFactorWithAnimationAsync(factor, DefaultAnimatedScrollDuration);
         }
 
         /// <summary>
@@ -377,12 +378,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="factor"></param>
         /// <param name="durationInSeconds"></param>
         /// <returns></returns>
-        public static async Task ZoomToFactorWithAnimation(
+        public static async Task ZoomToFactorWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double factor,
             double durationInSeconds)
         {
-            await scrollViewer.ZoomToFactorWithAnimation(
+            await scrollViewer.ZoomToFactorWithAnimationAsync(
                 factor,
                 TimeSpan.FromSeconds(durationInSeconds),
                 DefaultEasingFunction);
@@ -401,13 +402,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="durationInSeconds"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ZoomToFactorWithAnimation(
+        public static async Task ZoomToFactorWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double factor,
             double durationInSeconds,
             EasingFunctionBase easingFunction)
         {
-            await scrollViewer.ZoomToFactorWithAnimation(
+            await scrollViewer.ZoomToFactorWithAnimationAsync(
                 factor,
                 TimeSpan.FromSeconds(durationInSeconds),
                 easingFunction);
@@ -425,12 +426,12 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="factor"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
-        public static async Task ZoomToFactorWithAnimation(
+        public static async Task ZoomToFactorWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double factor,
             TimeSpan duration)
         {
-            await scrollViewer.ZoomToFactorWithAnimation(
+            await scrollViewer.ZoomToFactorWithAnimationAsync(
                 factor,
                 duration,
                 DefaultEasingFunction);
@@ -449,7 +450,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <param name="duration"></param>
         /// <param name="easingFunction"></param>
         /// <returns></returns>
-        public static async Task ZoomToFactorWithAnimation(
+        public static async Task ZoomToFactorWithAnimationAsync(
             this ScrollViewer scrollViewer,
             double factor,
             TimeSpan duration,
@@ -463,7 +464,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 SetAnimatedScrollHandler(scrollViewer, handler);
             }
 
-            await handler.ZoomToFactorWithAnimation(
+            await handler.ZoomToFactorWithAnimationAsync(
                 factor, duration, easingFunction);
         }
         #endregion
@@ -577,8 +578,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region ScrollToHorizontalOffsetWithAnimation()
-        internal async Task ScrollToHorizontalOffsetWithAnimation(
+        #region ScrollToHorizontalOffsetWithAnimationAsync()
+        internal async Task ScrollToHorizontalOffsetWithAnimationAsync(
             double offset,
             TimeSpan duration,
             EasingFunctionBase easingFunction)
@@ -597,8 +598,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region ScrollToVerticalOffsetWithAnimation()
-        internal async Task ScrollToVerticalOffsetWithAnimation(
+        #region ScrollToVerticalOffsetWithAnimationAsync()
+        internal async Task ScrollToVerticalOffsetWithAnimationAsync(
             double offset,
             TimeSpan duration,
             EasingFunctionBase easingFunction)
@@ -617,8 +618,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
         }
         #endregion
 
-        #region ZoomToFactorWithAnimation()
-        internal async Task ZoomToFactorWithAnimation(
+        #region ZoomToFactorWithAnimationAsync()
+        internal async Task ZoomToFactorWithAnimationAsync(
             double factor,
             TimeSpan duration,
             EasingFunctionBase easingFunction)

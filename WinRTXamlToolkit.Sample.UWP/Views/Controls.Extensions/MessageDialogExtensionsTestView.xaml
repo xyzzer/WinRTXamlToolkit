@@ -13,15 +13,15 @@
         AllowDrop="True">
         <Button
             x:Name="ShowAsyncQueueButton"
-            Content="ShowAsyncQueue"
+            Content="ShowQueuedAsync"
             Click="ShowAsyncQueueButton_OnClick" />
         <Button
             x:Name="ShowAsyncIfPossibleButton"
-            Content="ShowAsyncIfPossible"
+            Content="ShowIfPossibleAsync"
             Click="ShowAsyncIfPossibleButton_OnClick" />
         <Button
             x:Name="ShowAsyncQueuePlusIfPossibleButton"
-            Content="ShowAsyncIfPossible + ShowAsyncQueue mix"
+            Content="ShowIfPossibleAsync + ShowQueuedAsync mix"
             Click="ShowAsyncQueuePlusIfPossibleButton_OnClick" />
     </StackPanel>
 </UserControl>

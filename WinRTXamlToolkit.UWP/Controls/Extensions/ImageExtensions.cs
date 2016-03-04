@@ -395,7 +395,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
             switch (transitionType)
             {
                 case ImageLoadedTransitionTypes.FadeIn:
-                    await _image.FadeInCustom(TimeSpan.FromSeconds(1), null, _targetOpacity);
+                    await _image.FadeInCustomAsync(TimeSpan.FromSeconds(1), null, _targetOpacity);
                     break;
                 case ImageLoadedTransitionTypes.SlideUp:
                 default:

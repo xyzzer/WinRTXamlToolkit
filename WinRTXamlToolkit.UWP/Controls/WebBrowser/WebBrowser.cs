@@ -474,7 +474,7 @@ namespace WinRTXamlToolkit.Controls
             // Need to close the app bars instead to force the WebView to show up
             _addressAppBar.IsOpen = false;
             _titleAppBar.IsOpen = false;
-            var address = await _webView.GetAddress();
+            var address = await _webView.GetAddressAsync();
 
             this.Source = address == null ? null : new Uri(address);
 
@@ -485,7 +485,7 @@ namespace WinRTXamlToolkit.Controls
 
             if (_titleBar != null)
             {
-                _titleBar.Text = await _webView.GetTitle();
+                _titleBar.Text = await _webView.GetTitleAsync();
             }
 
             if (_favIconImage != null &&

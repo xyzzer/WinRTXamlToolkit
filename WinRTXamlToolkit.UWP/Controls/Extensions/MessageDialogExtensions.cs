@@ -55,13 +55,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <summary>
         /// Begins an asynchronous operation showing a dialog.
         /// If another dialog is already shown using
-        /// ShowAsyncQueue or ShowAsyncIfPossible method - it will wait
+        /// ShowQueuedAsync or ShowIfPossibleAsync method - it will wait
         /// for that previous dialog to be dismissed before showing the new one.
         /// </summary>
         /// <param name="dialog">The dialog.</param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">This method can only be invoked from UI thread.</exception>
-        public static async Task<IUICommand> ShowAsyncQueue(this MessageDialog dialog)
+        public static async Task<IUICommand> ShowQueuedAsync(this MessageDialog dialog)
         {
             if (!Window.Current.Dispatcher.HasThreadAccess)
             {
@@ -84,13 +84,13 @@ namespace WinRTXamlToolkit.Controls.Extensions
         /// <summary>
         /// Begins an asynchronous operation showing a dialog.
         /// If another dialog is already shown using
-        /// ShowAsyncQueue or ShowAsyncIfPossible method - it will wait
+        /// ShowQueuedAsync or ShowIfPossibleAsync method - it will wait
         /// return immediately and the new dialog won't be displayed.
         /// </summary>
         /// <param name="dialog">The dialog.</param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">This method can only be invoked from UI thread.</exception>
-        public static async Task<IUICommand> ShowAsyncIfPossible(this MessageDialog dialog)
+        public static async Task<IUICommand> ShowIfPossibleAsync(this MessageDialog dialog)
         {
             if (!Window.Current.Dispatcher.HasThreadAccess)
             {

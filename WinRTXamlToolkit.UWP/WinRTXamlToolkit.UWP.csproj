@@ -227,7 +227,7 @@
     <Compile Include="Controls\Extensions\ViewboxExtensions.cs" />
     <Compile Include="Controls\Extensions\VisualStateExtensions.cs" />
     <Compile Include="Controls\Extensions\VisualTreeHelperExtensions.cs" />
-    <Compile Include="Controls\Extensions\WebViewExtensions 8.1.cs" />
+    <Compile Include="Controls\Extensions\WebViewExtensions.cs" />
     <Compile Include="Controls\FocusVisualizer\FocusVisualizer.cs" />
     <Compile Include="Controls\FxContentControl\AlphaExpandShaderEffect.cs" />
     <Compile Include="Controls\FxContentControl\BlurShaderEffect.cs" />

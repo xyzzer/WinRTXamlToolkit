@@ -220,11 +220,11 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
-            await this.UpdateBackgroundFx(rtb);
-            await this.UpdateForegroundFx(rtb);
+            await this.UpdateBackgroundFxAsync(rtb);
+            await this.UpdateForegroundFxAsync(rtb);
         }
 
-        private async Task UpdateBackgroundFx(RenderTargetBitmap rtb)
+        private async Task UpdateBackgroundFxAsync(RenderTargetBitmap rtb)
         {
             if (_renderedGrid.ActualHeight < 1 ||
                 _backgroundFxImage == null)
@@ -250,12 +250,12 @@ namespace WinRTXamlToolkit.Controls
                 wb = new WriteableBitmap(pw, ph);
             }
 
-            await OnProcessBackgroundImage(rtb, wb, pw, ph);
+            await this.OnProcessBackgroundImageAsync(rtb, wb, pw, ph);
 
             _backgroundFxImage.Source = wb;
         }
 
-        private async Task UpdateForegroundFx(RenderTargetBitmap rtb)
+        private async Task UpdateForegroundFxAsync(RenderTargetBitmap rtb)
         {
             ////await Task.Delay(1000);
             if (_renderedGrid.ActualHeight < 1 ||
@@ -282,19 +282,19 @@ namespace WinRTXamlToolkit.Controls
                 wb = new WriteableBitmap(pw, ph);
             }
 
-            await ProcessForegroundImage(rtb, wb, pw, ph);
+            await this.ProcessForegroundImageAsync(rtb, wb, pw, ph);
 
             _foregroundFxImage.Source = wb;
         }
 
-        private Task OnProcessBackgroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        private Task OnProcessBackgroundImageAsync(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
-            return this.BackgroundFx.ProcessBitmap(rtb, wb, pw, ph);
+            return this.BackgroundFx.ProcessBitmapAsync(rtb, wb, pw, ph);
         }
 
-        private Task ProcessForegroundImage(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
+        private Task ProcessForegroundImageAsync(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph)
         {
-            return this.ForegroundFx.ProcessBitmap(rtb, wb, pw, ph);
+            return this.ForegroundFx.ProcessBitmapAsync(rtb, wb, pw, ph);
         }
     }
 }

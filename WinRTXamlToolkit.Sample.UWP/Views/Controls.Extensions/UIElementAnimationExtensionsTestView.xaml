@@ -37,7 +37,7 @@
             Width="200"
             Height="100"
             Margin="0,50"
-            Content="FadeIn (Theme)"
+            Content="FadeInAsync (Theme)"
             Click="OnFadeInThemeButtonClick" />
         <Button
             x:Name="FadeOutThemeButton"
@@ -48,7 +48,7 @@
             Width="200"
             Height="100"
             Margin="0,50"
-            Content="FadeOut (Theme)"
+            Content="FadeOutAsync (Theme)"
             Click="OnFadeOutThemeButtonClick" />
 
         <Button
@@ -59,7 +59,7 @@
             Width="200"
             Height="100"
             Margin="0,50"
-            Content="FadeInCustom"
+            Content="FadeInAsyncCustom"
             Click="OnFadeInCustomButtonClick" />
         <Button
             x:Name="FadeOutCustomButton"
@@ -70,7 +70,7 @@
             Width="200"
             Height="100"
             Margin="0,50"
-            Content="FadeOutCustom"
+            Content="FadeOutAsyncCustom"
             Click="OnFadeOutCustomButtonClick" />
 
         <Grid

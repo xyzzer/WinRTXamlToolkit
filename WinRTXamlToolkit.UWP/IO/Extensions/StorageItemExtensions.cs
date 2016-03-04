@@ -9,13 +9,13 @@ namespace WinRTXamlToolkit.IO.Extensions
     /// </summary>
     public static class StorageItemExtensions
     {
-        #region GetFreeSpace()
+        #region GetFreeSpaceAsync()
         /// <summary>
         /// Returns the free space of the storage associate with the given storage item.
         /// </summary>
         /// <param name="sf">Storage item</param>
         /// <returns>Free space.</returns>
-        public static async Task<UInt64> GetFreeSpace(this IStorageItem sf)
+        public static async Task<UInt64> GetFreeSpaceAsync(this IStorageItem sf)
         {
             var properties = await sf.GetBasicPropertiesAsync();
             var filteredProperties = await properties.RetrievePropertiesAsync(new[] { "System.FreeSpace" });
@@ -24,13 +24,13 @@ namespace WinRTXamlToolkit.IO.Extensions
         } 
         #endregion
 
-        #region GetSize()
+        #region GetSizeAsync()
         /// <summary>
         /// Gets the file size in bytes.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <returns></returns>
-        public static async Task<ulong> GetSize(this IStorageItem file)
+        public static async Task<ulong> GetSizeAsync(this IStorageItem file)
         {
             var props = await file.GetBasicPropertiesAsync();
             ulong sizeInB = props.Size;

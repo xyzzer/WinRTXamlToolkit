@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 using WinRTXamlToolkit.IO.Extensions;
 using WinRTXamlToolkit.IO.Serialization;
 using Windows.Storage;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinRTXamlToolkit.IO;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -22,7 +20,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private async void RunTest()
         {
-            await RunTestOnTempFile();
+            await RunTestOnTempFileAsync();
             RunTestInMemory();
         }
 
@@ -97,7 +95,7 @@ namespace WinRTXamlToolkit.Sample.Views
     }";
         }
 
-        private static async Task RunTestOnTempFile()
+        private static async Task RunTestOnTempFileAsync()
         {
             var data = new SampleSerializableData {Width = 12345};
             var folder = ApplicationData.Current.TemporaryFolder;
@@ -105,7 +103,7 @@ namespace WinRTXamlToolkit.Sample.Views
             await data.SerializeAsXmlDataContract(
                 fileName,
                 folder);
-            var deserializedData = await XmlSerialization.LoadFromXmlDataContractFile<SampleSerializableData>(
+            var deserializedData = await XmlSerialization.LoadDataContractAsync<SampleSerializableData>(
                 fileName,
                 folder);
 

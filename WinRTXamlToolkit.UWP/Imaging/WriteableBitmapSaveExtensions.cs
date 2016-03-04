@@ -19,10 +19,10 @@ namespace WinRTXamlToolkit.Imaging
         /// </summary>
         /// <param name="writeableBitmap">The writeable bitmap.</param>
         /// <returns>The file the bitmap was saved to.</returns>
-        public static async Task<StorageFile> SaveToFile(
+        public static async Task<StorageFile> SaveAsync(
             this WriteableBitmap writeableBitmap)
         {
-            return await writeableBitmap.SaveToFile(
+            return await writeableBitmap.SaveAsync(
                 KnownFolders.PicturesLibrary,
                 string.Format(
                     "{0}_{1}.png",
@@ -37,11 +37,11 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="writeableBitmap">The writeable bitmap.</param>
         /// <param name="storageFolder">The storage folder.</param>
         /// <returns>The file the bitmap was saved to.</returns>
-        public static async Task<StorageFile> SaveToFile(
+        public static async Task<StorageFile> SaveAsync(
             this WriteableBitmap writeableBitmap,
             StorageFolder storageFolder)
         {
-            return await writeableBitmap.SaveToFile(
+            return await writeableBitmap.SaveAsync(
                 storageFolder,
                 string.Format(
                     "{0}_{1}.png",
@@ -61,7 +61,7 @@ namespace WinRTXamlToolkit.Imaging
         /// as the name of an existing file in the current folder. Defaults to ReplaceExisting.
         /// </param>
         /// <returns></returns>
-        public static async Task<StorageFile> SaveToFile(
+        public static async Task<StorageFile> SaveAsync(
             this WriteableBitmap writeableBitmap,
             StorageFolder storageFolder,
             string fileName,
@@ -101,7 +101,7 @@ namespace WinRTXamlToolkit.Imaging
                 encoderId = BitmapEncoder.PngEncoderId;
             }
 
-            await writeableBitmap.SaveToFile(outputFile, encoderId);
+            await writeableBitmap.SaveAsync(outputFile, encoderId);
 
             return outputFile;
         }
@@ -113,7 +113,7 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="outputFile">The output file.</param>
         /// <param name="encoderId">The encoder id.</param>
         /// <returns></returns>
-        public static async Task SaveToFile(
+        public static async Task SaveAsync(
             this WriteableBitmap writeableBitmap,
             StorageFile outputFile,
             Guid encoderId)

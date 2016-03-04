@@ -16,6 +16,6 @@ namespace WinRTXamlToolkit.Controls.Fx
         /// <param name="pw">The pixel width of both bitmaps.</param>
         /// <param name="ph">The pixel height of both bitmaps.</param>
         /// <returns>A task that completes when the processing is complete.</returns>
-        public abstract Task ProcessBitmap(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph);
+        public abstract Task ProcessBitmapAsync(RenderTargetBitmap rtb, WriteableBitmap wb, int pw, int ph);
     }
 }

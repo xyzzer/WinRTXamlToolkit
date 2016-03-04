@@ -25,7 +25,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         if (uiElement != null)
                         {
 #pragma warning disable 4014
-                            DebugConsoleViewModel.Instance.VisualTreeView.SelectItem(uiElement);
+                            DebugConsoleViewModel.Instance.VisualTreeView.SelectItemAsync(uiElement);
 #pragma warning restore 4014
                         }
                     }

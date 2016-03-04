@@ -625,7 +625,7 @@ namespace WinRTXamlToolkit.Controls
                     }
                     else
                     {
-                        await ShowMicrophoneSelector();
+                        await this.ShowMicrophoneSelectorAsync();
                     }
                 }
 
@@ -698,7 +698,7 @@ namespace WinRTXamlToolkit.Controls
                         return result;
                     }
 
-                    bool success = await ShowWebCamSelector();
+                    bool success = await this.ShowWebCamSelectorAsync();
 
                     if (success)
                     {
@@ -814,9 +814,9 @@ namespace WinRTXamlToolkit.Controls
                 this.PhotoCaptureCountdownSeconds > 0)
             {
 #pragma warning disable 4014
-                _countdownControl.FadeInCustom();
+                _countdownControl.FadeInCustomAsync();
                 await _countdownControl.StartCountdownAsync(this.PhotoCaptureCountdownSeconds);
-                _countdownControl.FadeOutCustom();
+                _countdownControl.FadeOutCustomAsync();
 #pragma warning restore 4014
             }
 
@@ -976,12 +976,12 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region StopCapture()
+        #region StopCaptureAsync()
         /// <summary>
         /// Stops the video capture.
         /// </summary>
         /// <returns></returns>
-        public async Task<StorageFile> StopCapture()
+        public async Task<StorageFile> StopCaptureAsync()
         {
             if (_internalState != CameraCaptureControlStates.Recording)
             {
@@ -1081,8 +1081,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region ShowMicrophoneSelector()
-        private async Task<bool> ShowMicrophoneSelector()
+        #region ShowMicrophoneSelectorAsync()
+        private async Task<bool> ShowMicrophoneSelectorAsync()
         {
             if (_webCamSelector == null)
                 return false;
@@ -1116,8 +1116,8 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        #region ShowWebCamSelector()
-        private async Task<bool> ShowWebCamSelector()
+        #region ShowWebCamSelectorAsync()
+        private async Task<bool> ShowWebCamSelectorAsync()
         {
             if (_webCamSelector == null)
                 return false;

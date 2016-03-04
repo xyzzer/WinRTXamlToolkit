@@ -117,7 +117,7 @@ namespace WinRTXamlToolkit.Sample.Views
             {
                 CaptureVideoButton.Content = "Record";
                 _capturingVideo = false;
-                await TestedControl.StopCapture();
+                await TestedControl.StopCaptureAsync();
             }
         }
 

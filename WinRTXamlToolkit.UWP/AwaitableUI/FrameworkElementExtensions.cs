@@ -93,7 +93,7 @@ namespace WinRTXamlToolkit.AwaitableUI
         /// <param name="frameworkElement">The framework element.</param>
         /// <param name="millisecondsTimeout">The timeout in milliseconds.</param>
         /// <returns></returns>
-        public static async Task WaitForImagesToLoad(this FrameworkElement frameworkElement, int millisecondsTimeout = 0)
+        public static async Task WaitForImagesToLoadAsync(this FrameworkElement frameworkElement, int millisecondsTimeout = 0)
         {
             //TODO: See if finding popups would be possible too.
 

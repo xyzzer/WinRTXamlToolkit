@@ -19,7 +19,7 @@ namespace WinRTXamlToolkit.IO.Extensions
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
         /// <returns></returns>
-        public static async Task<string> ReadFromFile(
+        public static async Task<string> LoadAsync(
             string fileName,
             StorageFolder folder = null)
         {
@@ -53,7 +53,7 @@ namespace WinRTXamlToolkit.IO.Extensions
         /// as the name of an existing file in the current folder. Defaults to ReplaceExisting.
         /// </param>
         /// <returns></returns>
-        public static async Task WriteToFile(
+        public static async Task SaveAsync(
             this string text,
             string fileName,
             StorageFolder folder = null,

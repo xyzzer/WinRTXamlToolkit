@@ -16,11 +16,11 @@ namespace WinRTXamlToolkit.Imaging
         /// </summary>
         /// <param name="source">The source BitmapImage.</param>
         /// <returns></returns>
-        public static async Task<WriteableBitmap> FromBitmapImage(BitmapImage source)
+        public static async Task<WriteableBitmap> LoadFromBitmapImageSourceAsync(BitmapImage source)
         {
             var ret = new WriteableBitmap(1, 1);
 
-            return await FromBitmapImage(ret, source);
+            return await LoadFromBitmapImageSourceAsync(ret, source);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="target">The target WriteableBitmap.</param>
         /// <param name="source">The source BitmapImage.</param>
         /// <returns></returns>
-        public static async Task<WriteableBitmap> FromBitmapImage(this WriteableBitmap target, BitmapImage source)
+        public static async Task<WriteableBitmap> LoadFromBitmapImageSourceAsync(this WriteableBitmap target, BitmapImage source)
         {
             if (source.UriSource == null ||
                 source.UriSource.OriginalString == null)
@@ -61,13 +61,13 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="decodePixelWidth">Width to decode to.</param>
         /// <param name="decodePixelHeight">Height to decode to.</param>
         /// <returns></returns>
-        public static async Task<WriteableBitmap> FromBitmapImage(
+        public static async Task<WriteableBitmap> LoadFromBitmapImageSourceAsync(
             BitmapImage source,
             uint decodePixelWidth,
             uint decodePixelHeight)
         {
             var ret = new WriteableBitmap(1, 1);
-            return await FromBitmapImage(ret, source, decodePixelWidth, decodePixelHeight);
+            return await LoadFromBitmapImageSourceAsync(ret, source, decodePixelWidth, decodePixelHeight);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace WinRTXamlToolkit.Imaging
         /// <param name="decodePixelWidth">Width to decode to.</param>
         /// <param name="decodePixelHeight">Height to decode to.</param>
         /// <returns></returns>
-        public static async Task<WriteableBitmap> FromBitmapImage(
+        public static async Task<WriteableBitmap> LoadFromBitmapImageSourceAsync(
             this WriteableBitmap target,
             BitmapImage source,
             uint decodePixelWidth,

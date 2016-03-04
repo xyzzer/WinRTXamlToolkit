@@ -12,6 +12,7 @@ using WinRTXamlToolkit.Debugging.Common;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
@@ -419,7 +420,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             var type = this.Model.GetType();
 
             var dependencyProperties =
-                (await DependencyPropertyCache.GetDependencyProperties(type))
+                (await DependencyPropertyCache.GetDependencyPropertiesAsync(type))
                     .Select(dpi => new DependencyPropertyViewModel(this, dpi)).ToList();
 
             var plainProperties =
@@ -451,11 +452,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
             }
 
-            //TODO: Dig into why this was here
-            //if (TreeModel.IsPreviewShown)
-            //{
-            //    await this.LoadPreview();
-            //}
+            if (TreeModel.IsPreviewShown)
+            {
+                await this.LoadPreviewAsync();
+            }
         } 
         #endregion
 
@@ -516,30 +516,31 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             await base.RefreshAsync();
             await LoadChildrenAsync();
             await LoadPropertiesAsync();
-        } 
+        }
         #endregion
 
-        #region LoadPreview()
-        //        public async Task LoadPreview()
-        //        {
-        //            var fe = this.Model as FrameworkElement;
-        //            if (fe == null)
-        //            {
-        //                return;
-        //            }
+        #region LoadPreviewAsync()
+        public async Task LoadPreviewAsync()
+        {
+            var fe = this.Model as FrameworkElement;
+            if (fe == null)
+            {
+                return;
+            }
 
-        //            try
-        //            {
-        //                var wb = await WriteableBitmapRenderExtensions.Render(fe);
+            try
+            {
+                var rtb = new RenderTargetBitmap();
+                await rtb.RenderAsync(fe);
 
-        //                PreviewImageSource = wb;
-        //            }
-        //// ReSharper disable EmptyGeneralCatchClause
-        //            catch
-        //// ReSharper restore EmptyGeneralCatchClause
-        //            {
-        //            }
-        //        } 
+                this.PreviewImageSource = rtb;
+            }
+            // ReSharper disable EmptyGeneralCatchClause
+            catch
+            // ReSharper restore EmptyGeneralCatchClause
+            {
+            }
+        }
         #endregion
     }
 

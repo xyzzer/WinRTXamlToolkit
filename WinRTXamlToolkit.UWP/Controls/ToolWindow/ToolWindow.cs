@@ -1126,7 +1126,7 @@ namespace WinRTXamlToolkit.Controls
             if (_layoutGridTransform != null &&
                 _layoutGridTransform.Rotation != 0)
             {
-                await AnimateToStraighten();
+                await this.AnimateToStraightenAsync();
             }
         }
         #endregion
@@ -2340,14 +2340,14 @@ namespace WinRTXamlToolkit.Controls
 
                 this._currentSnapStoryboard.Stop();
 #pragma warning disable 4014
-                AnimateToStraighten();
+                this.AnimateToStraightenAsync();
 #pragma warning restore 4014
             }
         }
         #endregion
 
-        #region AnimateToStraighten()
-        private async Task AnimateToStraighten()
+        #region AnimateToStraightenAsync()
+        private async Task AnimateToStraightenAsync()
         {
             if (_layoutGridTransform == null)
             {

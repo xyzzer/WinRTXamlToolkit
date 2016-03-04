@@ -279,7 +279,7 @@ namespace WinRTXamlToolkit.Debugging.Common
             }
         }
 
-        public static async Task<List<DependencyPropertyInfo>> GetDependencyProperties(Type type)
+        public static async Task<List<DependencyPropertyInfo>> GetDependencyPropertiesAsync(Type type)
         {
             await _initializationTask;
 

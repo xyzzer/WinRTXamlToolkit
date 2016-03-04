@@ -86,8 +86,8 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public string ValueFormat
         {
-            get { return (string)GetValue(ValueFormatProperty); }
-            set { SetValue(ValueFormatProperty, value); }
+            get { return (string)this.GetValue(ValueFormatProperty); }
+            set { this.SetValue(ValueFormatProperty, value); }
         }
 
         /// <summary>
@@ -105,21 +105,16 @@ namespace WinRTXamlToolkit.Controls
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var target = (NumericUpDown)d;
-            string oldValueFormat = (string)e.OldValue;
-            string newValueFormat = target.ValueFormat;
-            target.OnValueFormatChanged(oldValueFormat, newValueFormat);
+            target.OnValueFormatChanged();
         }
 
         /// <summary>
         /// Provides derived classes an opportunity to handle changes
         /// to the ValueFormat property.
         /// </summary>
-        /// <param name="oldValueFormat">The old ValueFormat value</param>
-        /// <param name="newValueFormat">The new ValueFormat value</param>
-        private void OnValueFormatChanged(
-            string oldValueFormat, string newValueFormat)
+        private void OnValueFormatChanged()
         {
-            UpdateValueText();
+            this.UpdateValueText();
         }
         #endregion
 
@@ -140,8 +135,8 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public NumericUpDownValueBarVisibility ValueBarVisibility
         {
-            get { return (NumericUpDownValueBarVisibility)GetValue(ValueBarVisibilityProperty); }
-            set { SetValue(ValueBarVisibilityProperty, value); }
+            get { return (NumericUpDownValueBarVisibility)this.GetValue(ValueBarVisibilityProperty); }
+            set { this.SetValue(ValueBarVisibilityProperty, value); }
         }
 
         /// <summary>
@@ -159,21 +154,16 @@ namespace WinRTXamlToolkit.Controls
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var target = (NumericUpDown)d;
-            NumericUpDownValueBarVisibility oldValueBarVisibility = (NumericUpDownValueBarVisibility)e.OldValue;
-            NumericUpDownValueBarVisibility newValueBarVisibility = target.ValueBarVisibility;
-            target.OnValueBarVisibilityChanged(oldValueBarVisibility, newValueBarVisibility);
+            target.OnValueBarVisibilityChanged();
         }
 
         /// <summary>
         /// Provides derived classes an opportunity to handle changes
         /// to the ValueBarVisibility property.
         /// </summary>
-        /// <param name="oldValueBarVisibility">The old ValueBarVisibility value</param>
-        /// <param name="newValueBarVisibility">The new ValueBarVisibility value</param>
-        private void OnValueBarVisibilityChanged(
-            NumericUpDownValueBarVisibility oldValueBarVisibility, NumericUpDownValueBarVisibility newValueBarVisibility)
+        private void OnValueBarVisibilityChanged()
         {
-            UpdateValueBar();
+            this.UpdateValueBar();
         }
         #endregion
 
@@ -194,8 +184,8 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public bool IsReadOnly
         {
-            get { return (bool)GetValue(IsReadOnlyProperty); }
-            set { SetValue(IsReadOnlyProperty, value); }
+            get { return (bool)this.GetValue(IsReadOnlyProperty); }
+            set { this.SetValue(IsReadOnlyProperty, value); }
         }
 
         /// <summary>
@@ -213,21 +203,16 @@ namespace WinRTXamlToolkit.Controls
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var target = (NumericUpDown)d;
-            bool oldIsReadOnly = (bool)e.OldValue;
-            bool newIsReadOnly = target.IsReadOnly;
-            target.OnIsReadOnlyChanged(oldIsReadOnly, newIsReadOnly);
+            target.OnIsReadOnlyChanged();
         }
 
         /// <summary>
         /// Provides derived classes an opportunity to handle changes
         /// to the IsReadOnly property.
         /// </summary>
-        /// <param name="oldIsReadOnly">The old IsReadOnly value</param>
-        /// <param name="newIsReadOnly">The new IsReadOnly value</param>
-        private void OnIsReadOnlyChanged(
-            bool oldIsReadOnly, bool newIsReadOnly)
+        private void OnIsReadOnlyChanged()
         {
-            UpdateIsReadOnlyDependants();
+            this.UpdateIsReadOnlyDependants();
         }
         #endregion
 
@@ -250,8 +235,8 @@ namespace WinRTXamlToolkit.Controls
         /// </summary>
         public double DragSpeed
         {
-            get { return (double)GetValue(DragSpeedProperty); }
-            set { SetValue(DragSpeedProperty, value); }
+            get { return (double)this.GetValue(DragSpeedProperty); }
+            set { this.SetValue(DragSpeedProperty, value); }
         }
         #endregion
 
@@ -261,23 +246,23 @@ namespace WinRTXamlToolkit.Controls
         public NumericUpDown()
         {
             this.DefaultStyleKey = typeof(NumericUpDown);
-            this.Loaded += OnLoaded;
-            this.Unloaded += OnUnloaded;
+            this.Loaded += this.OnLoaded;
+            this.Unloaded += this.OnUnloaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (_dragOverlay != null)
             {
-                Window.Current.CoreWindow.PointerReleased += CoreWindowOnPointerReleased;
-                Window.Current.CoreWindow.VisibilityChanged += OnCoreWindowVisibilityChanged;
+                Window.Current.CoreWindow.PointerReleased += this.CoreWindowOnPointerReleased;
+                Window.Current.CoreWindow.VisibilityChanged += this.OnCoreWindowVisibilityChanged;
             }
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.CoreWindow.PointerReleased -= CoreWindowOnPointerReleased;
-            Window.Current.CoreWindow.VisibilityChanged -= OnCoreWindowVisibilityChanged;
+            Window.Current.CoreWindow.PointerReleased -= this.CoreWindowOnPointerReleased;
+            Window.Current.CoreWindow.VisibilityChanged -= this.OnCoreWindowVisibilityChanged;
         }
 
         #region OnApplyTemplate()
@@ -293,63 +278,63 @@ namespace WinRTXamlToolkit.Controls
                 return;
             }
 
-            this.GotFocus += OnGotFocus;
-            this.LostFocus += OnLostFocus;
-            this.PointerWheelChanged += OnPointerWheelChanged;
-            _valueTextBox = GetTemplateChild(ValueTextBoxName) as UpDownTextBox;
-            _dragOverlay = GetTemplateChild(DragOverlayName) as UIElement;
-            _decrementButton = GetTemplateChild(DecrementButtonName) as RepeatButton;
-            _incrementButton = GetTemplateChild(IncrementButtonName) as RepeatButton;
-            _valueBar = GetTemplateChild(ValueBarName) as FrameworkElement;
+            this.GotFocus += this.OnGotFocus;
+            this.LostFocus += this.OnLostFocus;
+            this.PointerWheelChanged += this.OnPointerWheelChanged;
+            _valueTextBox = this.GetTemplateChild(ValueTextBoxName) as UpDownTextBox;
+            _dragOverlay = this.GetTemplateChild(DragOverlayName) as UIElement;
+            _decrementButton = this.GetTemplateChild(DecrementButtonName) as RepeatButton;
+            _incrementButton = this.GetTemplateChild(IncrementButtonName) as RepeatButton;
+            _valueBar = this.GetTemplateChild(ValueBarName) as FrameworkElement;
             
             if (_valueTextBox != null)
             {
-                _valueTextBox.LostFocus += OnValueTextBoxLostFocus;
-                _valueTextBox.GotFocus += OnValueTextBoxGotFocus;
-                _valueTextBox.Text = Value.ToString();
-                _valueTextBox.TextChanged += OnValueTextBoxTextChanged;
-                _valueTextBox.KeyDown += OnValueTextBoxKeyDown;
+                _valueTextBox.LostFocus += this.OnValueTextBoxLostFocus;
+                _valueTextBox.GotFocus += this.OnValueTextBoxGotFocus;
+                _valueTextBox.Text = this.Value.ToString(CultureInfo.CurrentCulture);
+                _valueTextBox.TextChanged += this.OnValueTextBoxTextChanged;
+                _valueTextBox.KeyDown += this.OnValueTextBoxKeyDown;
                 _valueTextBox.UpPressed += (s, e) => this.Increment();
                 _valueTextBox.DownPressed += (s, e) => this.Decrement();
-                _valueTextBox.PointerExited += OnValueTextBoxPointerExited;
+                _valueTextBox.PointerExited += this.OnValueTextBoxPointerExited;
             }
 
             if (_dragOverlay != null)
             {
-                _dragOverlay.Tapped += OnDragOverlayTapped;
+                _dragOverlay.Tapped += this.OnDragOverlayTapped;
                 _dragOverlay.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
-                _dragOverlay.PointerPressed += OnDragOverlayPointerPressed;
-                _dragOverlay.PointerReleased += OnDragOverlayPointerReleased;
-                _dragOverlay.PointerCaptureLost += OnDragOverlayPointerCaptureLost;
+                _dragOverlay.PointerPressed += this.OnDragOverlayPointerPressed;
+                _dragOverlay.PointerReleased += this.OnDragOverlayPointerReleased;
+                _dragOverlay.PointerCaptureLost += this.OnDragOverlayPointerCaptureLost;
             }
 
             if (_decrementButton != null)
             {
-                _decrementButton.Click += OnDecrementButtonClick;
+                _decrementButton.Click += this.OnDecrementButtonClick;
                 var pcc =
                     new PropertyChangeEventSource<bool>
                         (_decrementButton, "IsPressed");
-                pcc.ValueChanged += OnDecrementButtonIsPressedChanged;
+                pcc.ValueChanged += this.OnDecrementButtonIsPressedChanged;
             }
 
             if (_incrementButton != null)
             {
-                _incrementButton.Click += OnIncrementButtonClick;
+                _incrementButton.Click += this.OnIncrementButtonClick;
                 var pcc =
                     new PropertyChangeEventSource<bool>
                         (_incrementButton, "IsPressed");
-                pcc.ValueChanged += OnIncrementButtonIsPressedChanged;
+                pcc.ValueChanged += this.OnIncrementButtonIsPressedChanged;
             }
 
             if (_valueBar != null)
             {
-                _valueBar.SizeChanged += OnValueBarSizeChanged;
+                _valueBar.SizeChanged += this.OnValueBarSizeChanged;
 
-                UpdateValueBar();
+                this.UpdateValueBar();
             }
 
-            UpdateIsReadOnlyDependants();
-            SetValidIncrementDirection();
+            this.UpdateIsReadOnlyDependants();
+            this.SetValidIncrementDirection();
         }
 
         private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
@@ -374,6 +359,7 @@ namespace WinRTXamlToolkit.Controls
         }
 
         private bool _hasFocus;
+        private const double Epsilon = .00001;
 
         private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -387,16 +373,16 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnValueTextBoxTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            UpdateValueFromText();
+            this.UpdateValueFromText();
         }
 
         private void OnValueTextBoxKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
-                if (UpdateValueFromText())
+                if (this.UpdateValueFromText())
                 {
-                    UpdateValueText();
+                    this.UpdateValueText();
                     _valueTextBox.SelectAll();
                     e.Handled = true;
                 }
@@ -416,7 +402,7 @@ namespace WinRTXamlToolkit.Controls
                 Calculator.TryCalculate(_valueTextBox.Text, out val))
             {
                 _isChangingValueWithCode = true;
-                SetValueAndUpdateValidDirections(val);
+                this.SetValueAndUpdateValidDirections(val);
                 _isChangingValueWithCode = false;
 
                 return true;
@@ -449,14 +435,18 @@ namespace WinRTXamlToolkit.Controls
         }
         #endregion
 
-        private bool Decrement()
+        /// <summary>
+        /// Decrements the value by SmallChange.
+        /// </summary>
+        /// <returns><c>true</c> if the value was decremented by exactly <c>SmallChange</c>; <c>false</c> if it was constrained.</returns>
+        public bool Decrement()
         {
-            return SetValueAndUpdateValidDirections(this.Value - this.SmallChange);
+            return this.SetValueAndUpdateValidDirections(this.Value - this.SmallChange);
         }
 
-        private bool Increment()
+        public bool Increment()
         {
-            return SetValueAndUpdateValidDirections(this.Value + this.SmallChange);
+            return this.SetValueAndUpdateValidDirections(this.Value + this.SmallChange);
         }
 
         private void OnValueTextBoxGotFocus(object sender, RoutedEventArgs routedEventArgs)
@@ -474,7 +464,7 @@ namespace WinRTXamlToolkit.Controls
             if (_dragOverlay != null)
             {
                 _dragOverlay.IsHitTestVisible = true;
-                UpdateValueText();
+                this.UpdateValueText();
             }
         }
 
@@ -489,51 +479,66 @@ namespace WinRTXamlToolkit.Controls
             {
                 _isDraggingWithMouse = true;
                 _mouseDevice = MouseDevice.GetForCurrentView();
-                _mouseDevice.MouseMoved += OnMouseDragged;
+                _mouseDevice.MouseMoved += this.OnMouseDragged;
                 Window.Current.CoreWindow.PointerCursor = null;
             }
             else
             {
-                _dragOverlay.ManipulationDelta += OnDragOverlayManipulationDelta;
+                _dragOverlay.ManipulationDelta += this.OnDragOverlayManipulationDelta;
             }
         }
 
-        private async void CoreWindowOnPointerReleased(CoreWindow sender, PointerEventArgs args)
+        private void CoreWindowOnPointerReleased(CoreWindow sender, PointerEventArgs args)
         {
             if (_isDragUpdated)
             {
                 args.Handled = true;
-                await Task.Delay(100);
-
-                if (_valueTextBox != null)
-                {
-                    _valueTextBox.IsTabStop = true;
-                }
+                this.ResumeValueTextBoxTabStopAsync();
             }
         }
 
-        private async void OnDragOverlayPointerReleased(object sender, PointerRoutedEventArgs args)
+        private void SuspendValueTextBoxTabStop()
         {
-            await EndDragging(args);
+            if (_valueTextBox != null)
+            {
+                _valueTextBox.IsTabStop = false;
+            }
         }
 
-        private async void OnDragOverlayPointerCaptureLost(object sender, PointerRoutedEventArgs args)
+        private async void ResumeValueTextBoxTabStopAsync()
         {
-            await EndDragging(args);
+            // We need to wait for just a bit to allow manipulation events to complete.
+            // It's a bit hacky, but it's the simplest solution.
+            await Task.Delay(100);
+
+            if (_valueTextBox != null)
+            {
+                _valueTextBox.IsTabStop = true;
+            }
         }
 
-        private async Task EndDragging(PointerRoutedEventArgs args)
+        private void OnDragOverlayPointerReleased(object sender, PointerRoutedEventArgs args)
+        {
+            this.EndDragging(args);
+        }
+
+        private void OnDragOverlayPointerCaptureLost(object sender, PointerRoutedEventArgs args)
+        {
+            this.EndDragging(args);
+        }
+
+        private void EndDragging(PointerRoutedEventArgs args)
         {
             if (_isDraggingWithMouse)
             {
                 _isDraggingWithMouse = false;
-                _mouseDevice.MouseMoved -= OnMouseDragged;
+                _mouseDevice.MouseMoved -= this.OnMouseDragged;
                 Window.Current.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeAll, 1);
                 _mouseDevice = null;
             }
             else if (_dragOverlay != null)
             {
-                _dragOverlay.ManipulationDelta -= OnDragOverlayManipulationDelta;
+                _dragOverlay.ManipulationDelta -= this.OnDragOverlayManipulationDelta;
             }
 
             if (_isDragUpdated)
@@ -543,12 +548,7 @@ namespace WinRTXamlToolkit.Controls
                     args.Handled = true;
                 }
 
-                await Task.Delay(100);
-
-                if (_valueTextBox != null)
-                {
-                    _valueTextBox.IsTabStop = true;
-                }
+                this.ResumeValueTextBoxTabStopAsync();
             }
         }
 
@@ -581,7 +581,7 @@ namespace WinRTXamlToolkit.Controls
                 _totalDeltaY > MinMouseDragDelta ||
                 _totalDeltaY < -MinMouseDragDelta)
             {
-                UpdateByDragging(_totalDeltaX, _totalDeltaY);
+                this.UpdateByDragging(_totalDeltaX, _totalDeltaY);
                 _totalDeltaX = 0;
                 _totalDeltaY = 0;
             }
@@ -592,7 +592,7 @@ namespace WinRTXamlToolkit.Controls
             var dx = manipulationDeltaRoutedEventArgs.Delta.Translation.X;
             var dy = manipulationDeltaRoutedEventArgs.Delta.Translation.Y;
 
-            if (UpdateByDragging(dx, dy))
+            if (this.UpdateByDragging(dx, dy))
                 return;
 
             manipulationDeltaRoutedEventArgs.Handled = true;
@@ -620,12 +620,9 @@ namespace WinRTXamlToolkit.Controls
                 delta = -dy;
             }
 
-            ApplyManipulationDelta(delta);
+            this.ApplyManipulationDelta(delta);
 
-            if (_valueTextBox != null)
-            {
-                _valueTextBox.IsTabStop = false;
-            }
+            this.SuspendValueTextBoxTabStop();
 
             _isDragUpdated = true;
 
@@ -677,7 +674,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var screenAdjustedDelta = speed * _unusedManipulationDelta / smallerScreenDimension;
-            SetValueAndUpdateValidDirections(this.Value + screenAdjustedDelta);
+            this.SetValueAndUpdateValidDirections(this.Value + screenAdjustedDelta);
             _unusedManipulationDelta = 0;
         }
 
@@ -708,11 +705,11 @@ namespace WinRTXamlToolkit.Controls
         {
             base.OnValueChanged(oldValue, newValue);
 
-            UpdateValueBar();
+            this.UpdateValueBar();
 
             if (!_isChangingValueWithCode)
             {
-                UpdateValueText();
+                this.UpdateValueText();
             }
         }
 
@@ -721,7 +718,7 @@ namespace WinRTXamlToolkit.Controls
             if (_valueBar == null)
                 return;
 
-            var effectiveValueBarVisibility = ValueBarVisibility;
+            var effectiveValueBarVisibility = this.ValueBarVisibility;
 
             if (effectiveValueBarVisibility == NumericUpDownValueBarVisibility.Collapsed)
             {
@@ -738,7 +735,7 @@ namespace WinRTXamlToolkit.Controls
                         X = 0,
                         Y = 0,
                         Height = _valueBar.ActualHeight,
-                        Width = _valueBar.ActualWidth * (Value - Minimum) / (Maximum - Minimum)
+                        Width = _valueBar.ActualWidth * (this.Value - this.Minimum) / (this.Maximum - this.Minimum)
                     }
                 };
 
@@ -748,7 +745,7 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnValueBarSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            UpdateValueBar();
+            this.UpdateValueBar();
         }
 
         private void UpdateValueText()
@@ -756,7 +753,7 @@ namespace WinRTXamlToolkit.Controls
             if (_valueTextBox != null)
             {
                 _isChangingTextWithCode = true;
-                _valueTextBox.Text = Value.ToString(ValueFormat);
+                _valueTextBox.Text = this.Value.ToString(this.ValueFormat);
                 _isChangingTextWithCode = false;
             }
         }
@@ -765,12 +762,12 @@ namespace WinRTXamlToolkit.Controls
         {
             if (_decrementButton != null)
             {
-                _decrementButton.Visibility = IsReadOnly ? Visibility.Collapsed : Visibility.Visible;
+                _decrementButton.Visibility = this.IsReadOnly ? Visibility.Collapsed : Visibility.Visible;
             }
 
             if (_incrementButton != null)
             {
-                _incrementButton.Visibility = IsReadOnly ? Visibility.Collapsed : Visibility.Visible;
+                _incrementButton.Visibility = this.IsReadOnly ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 
@@ -781,28 +778,13 @@ namespace WinRTXamlToolkit.Controls
             this.Value = value;
             this.SetValidIncrementDirection();
 
-            return this.Value != oldValue;
+            return Math.Abs(this.Value - oldValue) > Epsilon;
         }
 
         private void SetValidIncrementDirection()
         {
-            if (this.Value < this.Maximum)
-            {
-                VisualStateManager.GoToState(this, "IncrementEnabled", true);
-            }
-            if (this.Value > this.Minimum)
-            {
-                VisualStateManager.GoToState(this, "DecrementEnabled", true);
-            }
-            if (this.Value == this.Maximum)
-            {
-                VisualStateManager.GoToState(this, "IncrementDisabled", true);
-            }
-
-            if (this.Value == this.Minimum)
-            {
-                VisualStateManager.GoToState(this, "DecrementDisabled", true);
-            }
+            VisualStateManager.GoToState(this, this.Value < this.Maximum ? "IncrementEnabled" : "IncrementDisabled", true);
+            VisualStateManager.GoToState(this, this.Value > this.Minimum ? "DecrementEnabled" : "DecrementDisabled", true);
         }
     }
 

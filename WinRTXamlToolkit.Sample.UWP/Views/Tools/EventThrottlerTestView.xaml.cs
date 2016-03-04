@@ -21,10 +21,10 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void OnAnimateButtonClick(object sender, RoutedEventArgs e)
         {
-            throttler.Run(Animate);
+            throttler.Run(this.AnimateAsync);
         }
 
-        private async Task Animate()
+        private async Task AnimateAsync()
         {
             var sb = new Storyboard();
             var daX = new DoubleAnimation();

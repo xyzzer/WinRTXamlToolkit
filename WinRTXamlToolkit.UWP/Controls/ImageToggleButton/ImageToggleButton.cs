@@ -1549,7 +1549,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var wb = new WriteableBitmap(1, 1);
-            await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+            await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoadedAsync();
             wb.Lighten(GeneratedHoverStateLightenAmount);
             _hoverStateImage.Source = wb;
@@ -1565,7 +1565,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var wb = new WriteableBitmap(1, 1);
-            await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+            await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoadedAsync();
             wb.Lighten(GeneratedPressedStateLightenAmount);
             _pressedStateImage.Source = wb;
@@ -1581,7 +1581,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var wb = new WriteableBitmap(1, 1);
-            await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+            await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoadedAsync();
             wb.Grayscale(GeneratedDisabledStateGrayscaleAmount);
             _disabledStateImage.Source = wb;
@@ -1597,7 +1597,7 @@ namespace WinRTXamlToolkit.Controls
             }
 
             var wb = new WriteableBitmap(1, 1);
-            await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+            await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             await wb.WaitForLoadedAsync();
             wb.Lighten(GeneratedCheckedStateLightenAmount);
             _checkedStateImage.Source = wb;
@@ -1616,11 +1616,11 @@ namespace WinRTXamlToolkit.Controls
 
             if (CheckedStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)CheckedStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)CheckedStateImageSource);
             }
             else if (NormalStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             }
 
             await wb.WaitForLoadedAsync();
@@ -1641,11 +1641,11 @@ namespace WinRTXamlToolkit.Controls
 
             if (CheckedStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)CheckedStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)CheckedStateImageSource);
             }
             else if (NormalStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
             }
 
             await wb.WaitForLoadedAsync();
@@ -1666,19 +1666,19 @@ namespace WinRTXamlToolkit.Controls
 
             if (CheckedStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)CheckedStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)CheckedStateImageSource);
                 await wb.WaitForLoadedAsync();
                 wb.Grayscale(GeneratedCheckedDisabledStateGrayscaleAmount);
             }
             else if (PressedStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)PressedStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)PressedStateImageSource);
                 await wb.WaitForLoadedAsync();
                 wb.Grayscale(GeneratedCheckedDisabledStateGrayscaleAmount);
             }
             else if (NormalStateImageSource != null)
             {
-                await wb.FromBitmapImage((BitmapImage)NormalStateImageSource);
+                await wb.LoadFromBitmapImageSourceAsync((BitmapImage)NormalStateImageSource);
                 await wb.WaitForLoadedAsync();
                 wb.Grayscale(GeneratedCheckedDisabledStateGrayscaleAmount);
             }

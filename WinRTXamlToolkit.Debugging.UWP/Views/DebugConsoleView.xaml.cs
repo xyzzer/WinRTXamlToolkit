@@ -93,7 +93,7 @@ namespace WinRTXamlToolkit.Debugging.Views
                 }
 
 #pragma warning disable 4014
-                _viewModel.VisualTreeView.SelectItem(element);
+                _viewModel.VisualTreeView.SelectItemAsync(element);
 #pragma warning restore 4014
             }
         }

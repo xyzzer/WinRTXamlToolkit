@@ -13,16 +13,16 @@ namespace WinRTXamlToolkit.Sample.Views
         public AlternativeFrameTestView()
         {
             this.InitializeComponent();
-            this.subFrame.Navigated += subFrame_Navigated;
+            this.subFrame.Navigated += this.OnSubFrameNavigatedAsync;
             InitializeTest();
         }
 
-        private async Task subFrame_Navigated(object sender, Controls.AlternativeNavigationEventArgs args)
+        private async Task OnSubFrameNavigatedAsync(object sender, Controls.AlternativeNavigationEventArgs args)
         {
-            await UpdateStacks();
+            await this.UpdateStacksAsync();
         }
 
-        private async Task UpdateStacks()
+        private async Task UpdateStacksAsync()
         {
             // Wait for the transition to complete to keep it smooth
             await Task.Delay(400);

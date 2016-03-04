@@ -55,9 +55,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
             DataTemplate oldFadeTransitioningContentTemplate = (DataTemplate)e.OldValue;
             DataTemplate newFadeTransitioningContentTemplate = (DataTemplate)d.GetValue(FadeTransitioningContentTemplateProperty);
             var control = (ContentControl)d;
-            await control.FadeOut();
+            await control.FadeOutAsync();
             control.ContentTemplate = newFadeTransitioningContentTemplate;
-            await control.FadeIn();
+            await control.FadeInAsync();
         }
         #endregion
 
@@ -107,9 +107,9 @@ namespace WinRTXamlToolkit.Controls.Extensions
             DataTemplate oldFadeInTransitioningContentTemplate = (DataTemplate)e.OldValue;
             DataTemplate newFadeInTransitioningContentTemplate = (DataTemplate)d.GetValue(FadeTransitioningContentTemplateProperty);
             var control = (ContentControl)d;
-            await control.FadeOut(TimeSpan.FromSeconds(0));
+            await control.FadeOutAsync(TimeSpan.FromSeconds(0));
             control.ContentTemplate = newFadeInTransitioningContentTemplate;
-            await control.FadeIn();
+            await control.FadeInAsync();
         }
         #endregion
 

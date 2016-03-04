@@ -45,16 +45,16 @@ namespace WinRTXamlToolkit.Sample.Views
         private void OnAnimatedScrollTestButtonClick(object sender, RoutedEventArgs e)
         {
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            scrollViewer.ScrollToVerticalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight));
-            scrollViewer.ScrollToHorizontalOffsetWithAnimation(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
+            scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(r.NextDouble() * (scrollViewer.ExtentHeight - scrollViewer.ViewportHeight));
+            scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(r.NextDouble() * (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth));
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            //scrollViewer.ScrollToHorizontalOffsetWithAnimation(500 - scrollViewer.HorizontalOffset);
-            //scrollViewer.ScrollToVerticalOffsetWithAnimation(500 - scrollViewer.VerticalOffset);
+            //scrollViewer.ScrollToHorizontalOffsetWithAnimationAsync(500 - scrollViewer.HorizontalOffset);
+            //scrollViewer.ScrollToVerticalOffsetWithAnimationAsync(500 - scrollViewer.VerticalOffset);
         }
 
         private async void OnAnimatedZoomTestButtonClick(object sender, RoutedEventArgs e)
         {
-            await scrollViewer.ZoomToFactorWithAnimation((float)
+            await scrollViewer.ZoomToFactorWithAnimationAsync((float)
                 (r.NextDouble() * (scrollViewer.MaxZoomFactor - scrollViewer.MinZoomFactor) + scrollViewer.MinZoomFactor));
         }
     }

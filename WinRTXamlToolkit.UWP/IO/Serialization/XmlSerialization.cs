@@ -78,11 +78,11 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
         /// <returns>Object graph reference.</returns>
-        public static async Task<T> LoadFromXmlDataContractFile<T>(
+        public static async Task<T> LoadDataContractAsync<T>(
             string fileName,
             StorageFolder folder = null)
         {
-            var xmlString = await StringIOExtensions.ReadFromFile(fileName, folder);
+            var xmlString = await StringIOExtensions.LoadAsync(fileName, folder);
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlString));
             var ser = new DataContractSerializer(typeof(T));
             T result = (T)ser.ReadObject(ms);
@@ -152,11 +152,11 @@ namespace WinRTXamlToolkit.IO.Serialization
         /// <param name="fileName">Name of the file.</param>
         /// <param name="folder">The folder.</param>
         /// <returns>Object graph reference.</returns>
-        public static async Task<T> LoadFromXmlFile<T>(
+        public static async Task<T> LoadXmlSerializedAsync<T>(
             string fileName,
             StorageFolder folder = null)
         {
-            var xmlString = await StringIOExtensions.ReadFromFile(fileName, folder);
+            var xmlString = await StringIOExtensions.LoadAsync(fileName, folder);
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlString));
             var ser = new XmlSerializer(typeof(T));
             T result = (T)ser.Deserialize(ms);
