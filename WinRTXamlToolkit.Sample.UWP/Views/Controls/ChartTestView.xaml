@@ -69,16 +69,17 @@
                 <TextBlock
                     VerticalAlignment="Center"
                     Text="Number of items"/>
-                <Slider
-                    x:Name="NumberOfItemsSlider"
-                    ValueChanged="NumberOfItemsSlider_ValueChanged"
+                <controls:NumericUpDown
+                    x:Name="NumberOfIitemsNumericUpDown"
+                    Margin="5,0"
                     Width="200"
                     Minimum="0"
                     Maximum="50"
-                    StepFrequency="1"
+                    Value="5"
+                    ValueFormat="F0"
                     SmallChange="1"
                     LargeChange="1"
-                    Value="5" />
+                    ValueChanged="NumberOfIitemsNumericUpDown_ValueChanged" />
             </StackPanel>
             <controls:ToolStrip
                 Grid.Column="1">
@@ -90,7 +91,8 @@
         <FlipView
             x:Name="ChartsList"
             Grid.Row="1"
-            Grid.Column="1">
+            Grid.Column="1"
+            SelectionChanged="ChartsList_OnSelectionChanged">
             <charting:Chart
                 x:Name="PieChart"
                 Title="Pie Chart"
@@ -415,7 +417,7 @@
                 </charting:Chart.Series>
             </charting:Chart>
             <charting:Chart
-                x:Name="Chart"
+                x:Name="ColumnChart"
                 Title="Column Chart"
                 Margin="70,0">
                 <charting:Chart.Series>

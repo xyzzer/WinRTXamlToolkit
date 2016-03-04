@@ -575,7 +575,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">
@@ -691,7 +691,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">
@@ -1421,7 +1421,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">
@@ -1544,7 +1544,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">
@@ -1722,7 +1722,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">
@@ -1844,7 +1844,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.001" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">

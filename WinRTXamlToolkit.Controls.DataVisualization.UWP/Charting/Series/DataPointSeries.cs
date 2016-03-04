@@ -27,6 +27,11 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
     public abstract partial class DataPointSeries : Series
     {
         /// <summary>
+        /// The staggered state change animation duration in ms.
+        /// </summary>
+        private const double DefaultStateChangeDurationInMs = 1;
+
+        /// <summary>
         /// The name of the template part with the plot area.
         /// </summary>
         protected const string PlotAreaName = "PlotArea";
@@ -620,7 +625,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 "TransitionDuration",
                 typeof(TimeSpan),
                 typeof(DataPointSeries),
-                new PropertyMetadata(TimeSpan.FromSeconds(0.5)));
+                new PropertyMetadata(TimeSpan.FromMilliseconds(DefaultStateChangeDurationInMs)));
         #endregion public TimeSpan TransitionDuration
 
 
@@ -1197,6 +1202,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             }
 
             Storyboard stateChangeStoryBoard = new Storyboard();
+            stateChangeStoryBoard.Duration = TimeSpan.FromMilliseconds(DefaultStateChangeDurationInMs);
 
             dataPoints.ForEachWithIndex((dataPoint, count) =>
             {
@@ -1217,10 +1223,10 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                         discreteObjectKeyFrame.KeyTime = TimeSpan.Zero;
                         break;
                     case AnimationSequence.FirstToLast:
-                        discreteObjectKeyFrame.KeyTime = TimeSpan.FromMilliseconds(1000 * ((double)count / dataPointCount));
+                        discreteObjectKeyFrame.KeyTime = TimeSpan.FromMilliseconds(DefaultStateChangeDurationInMs * ((double)count / dataPointCount));
                         break;
                     case AnimationSequence.LastToFirst:
-                        discreteObjectKeyFrame.KeyTime = TimeSpan.FromMilliseconds(1000 * ((double)(dataPointCount - count - 1) / dataPointCount));
+                        discreteObjectKeyFrame.KeyTime = TimeSpan.FromMilliseconds(DefaultStateChangeDurationInMs * ((double)(dataPointCount - count - 1) / dataPointCount));
                         break;
                 }
 

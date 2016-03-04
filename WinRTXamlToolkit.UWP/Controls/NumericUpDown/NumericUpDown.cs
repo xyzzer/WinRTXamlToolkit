@@ -426,12 +426,18 @@ namespace WinRTXamlToolkit.Controls
 
         private void OnDecrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.Decrement();
+            if (Window.Current.CoreWindow.IsInputEnabled)
+            {
+                this.Decrement();
+            }
         }
 
         private void OnIncrementButtonClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.Increment();
+            if (Window.Current.CoreWindow.IsInputEnabled)
+            {
+                this.Increment();
+            }
         }
         #endregion
 

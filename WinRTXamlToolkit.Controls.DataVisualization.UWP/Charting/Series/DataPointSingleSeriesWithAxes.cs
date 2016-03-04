@@ -283,6 +283,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 // Add it to the visual tree so that its style will be applied
                 if (null != LegendItem.DataContext)
                 {
+                    var dataPoint = LegendItem.DataContext as DataPoint;
                     PlotArea.Children.Remove(LegendItem.DataContext as UIElement);
                 }
             }

@@ -77,7 +77,7 @@
                                 x:Name="RevealStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition
-                                        GeneratedDuration="0:0:0.5" />
+                                        GeneratedDuration="0:0:0.1" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState
                                     x:Name="Shown">

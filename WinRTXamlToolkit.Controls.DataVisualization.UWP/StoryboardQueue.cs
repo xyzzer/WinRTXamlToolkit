@@ -29,23 +29,24 @@ namespace Controls.DataVisualization.Toolkit
         /// storyboard completes.</param>
         public void Enqueue(Storyboard storyBoard, EventHandler completedAction)
         {
-            storyBoard.Completed +=
-                (sender, args) =>
-                {
-                    if (completedAction != null)
-                    {
-                        completedAction(sender, (EventArgs)args);
-                    }
+            //storyBoard.Completed +=
+            //    (sender, args) =>
+            //    {
+            //        if (completedAction != null)
+            //        {
+            //            completedAction(sender, (EventArgs)args);
+            //        }
 
-                    _storyBoards.Dequeue();
-                    Dequeue();
-                };
+            //        _storyBoards.Dequeue();
+            //        Dequeue();
+            //    };
 
             _storyBoards.Enqueue(storyBoard);
 
             if (_storyBoards.Count == 1)
             {
                 Dequeue();
+                _storyBoards.Dequeue();
             }
         }
 
