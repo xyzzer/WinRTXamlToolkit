@@ -8,10 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56
 		Nuget\NuGet.exe = Nuget\NuGet.exe
 		Nuget\pack.cmd = Nuget\pack.cmd
 		Nuget\push.cmd = Nuget\push.cmd
+		Nuget\WinRTXamlToolkit.Controls.Calendar.nuspec = Nuget\WinRTXamlToolkit.Controls.Calendar.nuspec
 		Nuget\WinRTXamlToolkit.Controls.Calendar.UWP.nuspec = Nuget\WinRTXamlToolkit.Controls.Calendar.UWP.nuspec
+		Nuget\WinRTXamlToolkit.Controls.DataVisualization.nuspec = Nuget\WinRTXamlToolkit.Controls.DataVisualization.nuspec
 		Nuget\WinRTXamlToolkit.Controls.DataVisualization.UWP.nuspec = Nuget\WinRTXamlToolkit.Controls.DataVisualization.UWP.nuspec
+		Nuget\WinRTXamlToolkit.Controls.Gauge.nuspec = Nuget\WinRTXamlToolkit.Controls.Gauge.nuspec
 		Nuget\WinRTXamlToolkit.Controls.Gauge.UWP.nuspec = Nuget\WinRTXamlToolkit.Controls.Gauge.UWP.nuspec
+		Nuget\WinRTXamlToolkit.Debugging.nuspec = Nuget\WinRTXamlToolkit.Debugging.nuspec
 		Nuget\WinRTXamlToolkit.Debugging.UWP.nuspec = Nuget\WinRTXamlToolkit.Debugging.UWP.nuspec
+		Nuget\WinRTXamlToolkit.nuspec = Nuget\WinRTXamlToolkit.nuspec
 		Nuget\WinRTXamlToolkit.UWP.nuspec = Nuget\WinRTXamlToolkit.UWP.nuspec
 	EndProjectSection
 EndProject

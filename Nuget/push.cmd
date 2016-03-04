@@ -1,3 +1,9 @@
+nuget push WinRTXamlToolkit.2.0.0.nupkg
+nuget push WinRTXamlToolkit.Debugging.2.0.0.nupkg
+nuget push WinRTXamlToolkit.Controls.Calendar.2.0.0.nupkg
+nuget push WinRTXamlToolkit.Controls.DataVisualization.2.0.0.nupkg
+nuget push WinRTXamlToolkit.Controls.Gauge.2.0.0.nupkg
+
 nuget push WinRTXamlToolkit.UWP.2.0.0.nupkg
 nuget push WinRTXamlToolkit.Debugging.UWP.2.0.0.nupkg
 nuget push WinRTXamlToolkit.Controls.Calendar.UWP.2.0.0.nupkg

@@ -129,6 +129,12 @@ xcopy /E /Y "..\WinRTXamlToolkit.Debugging%PLATFORM_SUFFIX%\*.rd.xml" "lib\%NUGE
 
 :PACK_FILES
 @echo Packing NuGets
+nuget pack "WinRTXamlToolkit.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.DataVisualization.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.Calendar.nuspec"
+nuget pack "WinRTXamlToolkit.Controls.Gauge.nuspec"
+nuget pack "WinRTXamlToolkit.Debugging.nuspec"
+
 nuget pack "WinRTXamlToolkit.UWP.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.DataVisualization.UWP.nuspec"
 nuget pack "WinRTXamlToolkit.Controls.Calendar.UWP.nuspec"
