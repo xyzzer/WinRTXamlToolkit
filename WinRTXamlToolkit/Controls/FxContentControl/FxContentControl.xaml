@@ -1,0 +1,49 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <Style
+        TargetType="controls:FxContentControl">
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Top" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:FxContentControl">
+                    <Grid>
+                        <Image
+                            x:Name="BackgroundFxImage"
+                            Stretch="None"
+                            IsHitTestVisible="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Grid
+                            x:Name="RenderedGrid"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                        <Image
+                            x:Name="ForegroundFxImage"
+                            Stretch="None"
+                            IsHitTestVisible="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

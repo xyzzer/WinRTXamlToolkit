@@ -1,0 +1,571 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary
+            x:Key="Default">
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBackground">White</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxForeground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBorderBrush">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBackground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBorderBrush">Transparent</SolidColorBrush>
+            <Thickness
+                x:Key="AutocompleteScrollBarBorderThickness">0</Thickness>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverBackgroundThemeBrush">Wheat</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverForegroundThemeBrush">Black</SolidColorBrush>
+        </ResourceDictionary>
+
+        <ResourceDictionary
+            x:Key="Light">
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBackground">White</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxForeground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBorderBrush">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBackground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBorderBrush">Transparent</SolidColorBrush>
+            <Thickness
+                x:Key="AutocompleteScrollBarBorderThickness">0</Thickness>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverBackgroundThemeBrush">Wheat</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverForegroundThemeBrush">Black</SolidColorBrush>
+        </ResourceDictionary>
+
+        <ResourceDictionary
+            x:Key="Dark">
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBackground">White</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxForeground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteTextBoxBorderBrush">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBackground">Black</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteScrollBarBorderBrush">Transparent</SolidColorBrush>
+            <Thickness
+                x:Key="AutocompleteScrollBarBorderThickness">0</Thickness>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverBackgroundThemeBrush">Wheat</SolidColorBrush>
+            <SolidColorBrush
+                x:Key="AutocompleteItemPointerOverForegroundThemeBrush">Black</SolidColorBrush>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <!-- Styles to get touch looking SrollViewer in mouse mode -->
+    <!-- TouchStyleVerticalScrollBarStyle -->
+    <Style
+        x:Key="TouchStyleVerticalScrollBarStyle"
+        TargetType="ScrollBar">
+        <Setter
+            Property="MinWidth"
+            Value="17" />
+        <Setter
+            Property="MinHeight"
+            Value="17" />
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="Foreground"
+            Value="Transparent" />
+        <Setter
+            Property="BorderBrush"
+            Value="Transparent" />
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ScrollBar">
+                    <Grid
+                        x:Name="Root">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="CommonStates">
+                                <VisualState
+                                    x:Name="Normal" />
+                                <VisualState
+                                    x:Name="PointerOver" />
+                                <VisualState
+                                    x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            To="0.5"
+                                            Storyboard.TargetProperty="Opacity"
+                                            Storyboard.TargetName="Root" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="ScrollingIndicatorStates">
+                                <VisualState
+                                    x:Name="TouchIndicator">
+                                    <Storyboard>
+                                        <FadeInThemeAnimation
+                                            TargetName="VerticalPanningRoot" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="NoIndicator">
+                                    <Storyboard>
+                                        <FadeOutThemeAnimation
+                                            BeginTime="0"
+                                            TargetName="VerticalPanningRoot" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid
+                            x:Name="VerticalPanningRoot"
+                            MinHeight="66"
+                            VerticalAlignment="Top">
+                            <Border
+                                x:Name="VerticalPanningThumb"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                MinHeight="17"
+                                Width="4" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TouchStyleVerticalScrollViewer -->
+    <Style
+        x:Key="TouchStyleVerticalScrollViewer"
+        TargetType="ScrollViewer">
+        <Setter
+            Property="HorizontalScrollMode"
+            Value="Disabled" />
+        <Setter
+            Property="VerticalScrollMode"
+            Value="Enabled" />
+        <Setter
+            Property="IsHorizontalRailEnabled"
+            Value="False" />
+        <Setter
+            Property="IsVerticalRailEnabled"
+            Value="True" />
+        <Setter
+            Property="BringIntoViewOnFocusChange"
+            Value="True" />
+        <Setter
+            Property="IsDeferredScrollingEnabled"
+            Value="False" />
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="ZoomMode"
+            Value="Disabled" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Top" />
+        <Setter
+            Property="VerticalScrollBarVisibility"
+            Value="Visible" />
+        <Setter
+            Property="Padding"
+            Value="0" />
+        <Setter
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            Property="BorderBrush"
+            Value="Transparent" />
+        <Setter
+            Property="Background"
+            Value="Gray" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ScrollViewer">
+                    <Border
+                        BorderBrush="Transparent"
+                        BorderThickness="0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="ScrollingIndicatorStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition
+                                        From="MouseIndicator"
+                                        To="NoIndicator">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="IndicatorMode"
+                                                Storyboard.TargetName="VerticalScrollBar">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <ScrollingIndicatorMode>None</ScrollingIndicatorMode>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition
+                                        From="TouchIndicator"
+                                        To="NoIndicator">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="IndicatorMode"
+                                                Storyboard.TargetName="VerticalScrollBar">
+                                                <DiscreteObjectKeyFrame
+                                                    KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <ScrollingIndicatorMode>None</ScrollingIndicatorMode>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState
+                                    x:Name="TouchIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Duration="0"
+                                            Storyboard.TargetProperty="IndicatorMode"
+                                            Storyboard.TargetName="VerticalScrollBar">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <ScrollingIndicatorMode>TouchIndicator</ScrollingIndicatorMode>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="MouseIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Duration="0"
+                                            Storyboard.TargetProperty="IndicatorMode"
+                                            Storyboard.TargetName="VerticalScrollBar">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <ScrollingIndicatorMode>TouchIndicator</ScrollingIndicatorMode>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid
+                            Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter
+                                x:Name="ScrollContentPresenter"
+                                Grid.ColumnSpan="2"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Margin="{TemplateBinding Padding}"
+                                Grid.RowSpan="2" />
+                            <ScrollBar
+                                x:Name="VerticalScrollBar"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                IsTabStop="False"
+                                Maximum="{TemplateBinding ScrollableHeight}"
+                                Orientation="Vertical"
+                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                Value="{TemplateBinding VerticalOffset}"
+                                ViewportSize="{TemplateBinding ViewportHeight}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Style="{StaticResource TouchStyleVerticalScrollBarStyle}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Customizing ListBox and ListBoxItem of popup, it will contain suggestions
+        reasons are explained in SimpleThemingListBox.cs & SimpleThemingListBoxItem.cs -->
+    <!-- AutoCompleteListBox -->
+    <Style
+        x:Key="AutoCompleteListBox"
+        TargetType="controls:SimpleThemingListBox">
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource ListBoxForegroundThemeBrush}" />
+        <Setter
+            Property="Background"
+            Value="{StaticResource ListBoxBackgroundThemeBrush}" />
+        <Setter
+            Property="BorderBrush"
+            Value="{StaticResource ListBoxBorderThemeBrush}" />
+        <Setter
+            Property="BorderThickness"
+            Value="{StaticResource ListBoxBorderThemeThickness}" />
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="TabNavigation"
+            Value="Once" />
+        <Setter
+            Property="FontFamily"
+            Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter
+            Property="FontSize"
+            Value="{StaticResource ControlContentThemeFontSize}" />
+        <Setter
+            Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:SimpleThemingListBox">
+                    <Border
+                        x:Name="LayoutRoot"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="CommonStates">
+                                <VisualState
+                                    x:Name="Normal" />
+                                <VisualState
+                                    x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Background"
+                                            Storyboard.TargetName="LayoutRoot">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Transparent" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="BorderBrush"
+                                            Storyboard.TargetName="LayoutRoot">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="{StaticResource ListBoxDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="FocusStates">
+                                <VisualState
+                                    x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Background"
+                                            Storyboard.TargetName="LayoutRoot">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="{StaticResource ListBoxFocusBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer
+                            x:Name="ScrollViewer"
+                            Background="{TemplateBinding ScrollViewerBackground}"
+                            BorderBrush="{TemplateBinding ScrollViewerBorderBrush}"
+                            BorderThickness="{TemplateBinding ScrollViewerBorderThickness}"
+                            Style="{StaticResource TouchStyleVerticalScrollViewer}"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- AutoCompleteListBoxItem -->
+    <Style
+        x:Key="AutoCompleteListBoxItem"
+        TargetType="ListBoxItem">
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="TabNavigation"
+            Value="Local" />
+        <Setter
+            Property="BorderBrush"
+            Value="Black" />
+        <Setter
+            Property="Padding"
+            Value="8,10" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="ListBoxItem">
+                    <Border
+                        x:Name="LayoutRoot"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}">
+                        <Grid
+                            x:Name="InnerGrid"
+                            Background="Transparent">
+                            <Rectangle
+                                x:Name="PressedBackground"
+                                Fill="{StaticResource ListBoxItemPressedBackgroundThemeBrush}"
+                                Opacity="0" />
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                Content="{TemplateBinding Content}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- AutoCompleteTextBox -->
+    <Style
+        TargetType="controls:AutoCompleteTextBox">
+        <Setter
+            Property="Background"
+            Value="{StaticResource AutocompleteTextBoxBackground}" />
+        <Setter
+            Property="Foreground"
+            Value="{StaticResource AutocompleteTextBoxForeground}" />
+        <Setter
+            Property="BorderBrush"
+            Value="{StaticResource AutocompleteTextBoxBorderBrush}" />
+        <Setter
+            Property="ScrollBarBackground"
+            Value="{StaticResource AutocompleteScrollBarBackground}" />
+        <Setter
+            Property="ScrollBarBorderBrush"
+            Value="{StaticResource AutocompleteScrollBarBorderBrush}" />
+        <Setter
+            Property="ScrollBarBorderThickness"
+            Value="{StaticResource AutocompleteScrollBarBorderThickness}" />
+        <Setter
+            Property="ItemPointerOverBackgroundThemeBrush"
+            Value="{StaticResource AutocompleteItemPointerOverBackgroundThemeBrush}" />
+        <Setter
+            Property="ItemPointerOverForegroundThemeBrush"
+            Value="{StaticResource AutocompleteItemPointerOverForegroundThemeBrush}" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:AutoCompleteTextBox">
+                    <Grid
+                        x:Name="ControlContainer">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="CommonStates">
+                                <VisualState
+                                    x:Name="Disabled" />
+                                <VisualState
+                                    x:Name="Normal" />
+                                <VisualState
+                                    x:Name="PointerOver" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <controls:UpDownTextBox
+                            x:Name="TextBox"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            Foreground="{TemplateBinding Foreground}"
+                            IsTextPredictionEnabled="False"
+                            Text="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}" />
+
+                        <Popup
+                            x:Name="AutoCompletePresenter"
+                            IsOpen="False">
+                            <controls:SimpleThemingListBox
+                                x:Name="AutocompleteItemsContainer"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                ScrollViewerBackground="{TemplateBinding ScrollBarBackground}"
+                                ScrollViewerBorderBrush="{TemplateBinding ScrollBarBorderBrush}"
+                                ScrollViewerBorderThickness="{TemplateBinding ScrollBarBorderThickness}"
+                                PointerOverItemBackground="{TemplateBinding ItemPointerOverBackgroundThemeBrush}"
+                                PointerOverItemForeground="{TemplateBinding ItemPointerOverForegroundThemeBrush}"
+                                Height="150"
+                                Style="{StaticResource AutoCompleteListBox}"
+                                ItemContainerStyle="{StaticResource AutoCompleteListBoxItem}">
+                                <controls:SimpleThemingListBox.Transitions>
+                                    <TransitionCollection>
+                                        <PopupThemeTransition />
+                                    </TransitionCollection>
+                                </controls:SimpleThemingListBox.Transitions>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </controls:SimpleThemingListBox>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

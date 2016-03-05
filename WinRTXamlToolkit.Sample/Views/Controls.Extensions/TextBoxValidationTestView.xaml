@@ -1,0 +1,200 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Sample.Views.TextBoxValidationTestView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="ValidationErrorLabelStyle"
+            TargetType="TextBlock">
+            <Setter
+                Property="Foreground"
+                Value="Red" />
+            <Setter
+                Property="FontSize"
+                Value="18" />
+            <Setter
+                Property="Margin"
+                Value="5" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer
+        Style="{StaticResource HorizontalScrollViewerStyle}">
+        <controls:WrapPanel
+            Orientation="Vertical">
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="Any" />
+            <TextBox
+                Width="400"
+                HorizontalAlignment="Left"
+                extensions:FieldValidationExtensions.Format="Any" />
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="NonEmpty" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="NonEmptyTextBox"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.Format="NonEmpty" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=NonEmptyTextBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=NonEmptyTextBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="Numeric" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="NumericTextBox"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.Format="Numeric" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=NumericTextBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=NumericTextBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="NonEmptyNumeric" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="NonEmptyNumericTextBox"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.Format="NonEmptyNumeric" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=NonEmptyNumericTextBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=NonEmptyNumericTextBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="Numeric,SpecificLength - AutoTabOnMaxLength=&quot;True&quot;" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="SpecificLengthTextBox"
+                    Width="400"
+                    MaxLength="5"
+                    HorizontalAlignment="Left"
+                    extensions:TextBoxFocusExtensions.AutoTabOnMaxLength="True"
+                    extensions:FieldValidationExtensions.Format="Numeric,SpecificLength" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=SpecificLengthTextBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=SpecificLengthTextBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="MatchesRegexPattern" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="PatternTextBox"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.PatternErrorMessage="The field needs to be a color defined according to following pattern: {0}"
+                    extensions:FieldValidationExtensions.Pattern="([bB]lack|[Ww]hite|#[0-9A-Fa-f]{3,8})"
+                    extensions:FieldValidationExtensions.Format="MatchesRegexPattern" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=PatternTextBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=PatternTextBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="IsStrongPassword,NonEmpty - AutoSelectOnFocus=&quot;True&quot;, AutoTabOnMaxLength=&quot;True&quot;" />
+            <StackPanel
+                Orientation="Horizontal">
+                <PasswordBox
+                    x:Name="StrongPasswordBox"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    MaxLength="8"
+                    extensions:PasswordBoxFocusExtensions.AutoSelectOnFocus="True"
+                    extensions:PasswordBoxFocusExtensions.AutoTabOnMaxLength="True"
+                    extensions:FieldValidationExtensions.Format="IsStrongPassword,NonEmpty"
+                    extensions:FieldValidationExtensions.NonEmptyErrorMessage="Password can't be empty."
+                    extensions:FieldValidationExtensions.DefaultErrorMessage="This is not a strong password." />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=StrongPasswordBox}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=StrongPasswordBox}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="EqualsPattern (password confirmation) - AutoSelectOnFocus=&quot;True&quot;" />
+            <StackPanel
+                Orientation="Horizontal">
+                <PasswordBox
+                    x:Name="StrongPasswordBoxConfirmation"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    MaxLength="8"
+                    extensions:PasswordBoxFocusExtensions.AutoSelectOnFocus="True"
+                    extensions:FieldValidationExtensions.Format="EqualsPattern"
+                    extensions:FieldValidationExtensions.Pattern="{Binding Password, ElementName=StrongPasswordBox}"
+                    extensions:FieldValidationExtensions.DefaultErrorMessage="Password entered doesn't match the one above." />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=StrongPasswordBoxConfirmation}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=StrongPasswordBoxConfirmation}" />
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="NonEmptyNumeric Custom Brushes" />
+            <TextBox
+                Width="400"
+                HorizontalAlignment="Left"
+                extensions:FieldValidationExtensions.Format="NonEmptyNumeric"
+                extensions:FieldValidationExtensions.InvalidBrush="Red"
+                extensions:FieldValidationExtensions.ValidBrush="Green" />
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}"
+                Margin="0,20,0,0"
+                Text="Numeric, Data-bound" />
+            <StackPanel
+                Orientation="Horizontal">
+                <TextBox
+                    x:Name="NumericTextBoxDataBound"
+                    Text="{Binding NumericText, Mode=TwoWay}"
+                    Width="400"
+                    HorizontalAlignment="Left"
+                    extensions:FieldValidationExtensions.Format="Numeric" />
+                <TextBlock
+                    Style="{StaticResource ValidationErrorLabelStyle}"
+                    Text="{Binding (extensions:FieldValidationExtensions.ValidationMessage), ElementName=NumericTextBoxDataBound}"
+                    Visibility="{Binding (extensions:FieldValidationExtensions.ValidationMessageVisibility), ElementName=NumericTextBoxDataBound}" />
+            </StackPanel>
+        </controls:WrapPanel>
+    </ScrollViewer>
+</UserControl>

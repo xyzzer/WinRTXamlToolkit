@@ -1,0 +1,99 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Sample.Views.FxContentControlTestView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Sample.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:fx="using:WinRTXamlToolkit.Controls.Fx"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <StackPanel
+            Orientation="Horizontal">
+            <StackPanel
+                Margin="20">
+                <Border
+                    Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                    <controls:Gauge
+                        x:Name="Gauge1"
+                        Height="200"
+                        Width="200"
+                        Minimum="0"
+                        Maximum="100" />
+                </Border>
+                <TextBlock
+                    Text="No Effect"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"
+                    Style="{StaticResource TitleTextBlockStyle}" />
+            </StackPanel>
+            <StackPanel
+                Margin="20">
+                <controls:FxContentControl
+                    x:Name="Gauge2FxContentControl">
+                    <!--<controls:FxContentControl.BackgroundFx>
+                    <fx:BlurShaderEffect />
+                </controls:FxContentControl.BackgroundFx>-->
+                    <controls:FxContentControl.ForegroundFx>
+                        <fx:BlurShaderEffect />
+                    </controls:FxContentControl.ForegroundFx>
+                    <Border
+                        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                        <controls:Gauge
+                            x:Name="Gauge2"
+                            Height="200"
+                            Width="200"
+                            Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                            Minimum="0"
+                            Maximum="100" />
+                    </Border>
+                </controls:FxContentControl>
+                <TextBlock
+                    Text="BlurShaderEffect"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"
+                    Style="{StaticResource TitleTextBlockStyle}" />
+            </StackPanel>
+        </StackPanel>
+        <TextBlock
+            x:Name="InfoTextBlock"
+            Margin="0,0,0,40" />
+        <StackPanel
+            Orientation="Horizontal">
+            <TextBlock
+                Text="No Effect"
+                RenderTransform="{x:Null}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="20"
+                Style="{StaticResource TitleTextBlockStyle}" />
+            <controls:FxContentControl
+                Margin="20"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center">
+                <controls:FxContentControl.BackgroundFx>
+                    <fx:AlphaExpandShaderEffect 
+                        Color="Red"/>
+                </controls:FxContentControl.BackgroundFx>
+                <!--<controls:FxContentControl.ForegroundFx>
+                    <fx:BlurShaderEffect />
+                </controls:FxContentControl.ForegroundFx>-->
+                <TextBlock
+                    Margin="1"
+                    RenderTransform="{x:Null}"
+                    Text="AlphaExpandShaderEffect"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource TitleTextBlockStyle}" />
+            </controls:FxContentControl>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

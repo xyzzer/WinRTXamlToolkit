@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Debugging.Views.PropertyEditors.EnumPropertyEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:WinRTXamlToolkit.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel
+            Margin="5">
+            <TextBlock
+                Text="{Binding Name}"
+                Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                FontWeight="Bold"
+                Margin="0,0,10,0" />
+            <ListBox
+                x:Name="combo"
+                SelectionChanged="OnComboSelectionChanged"
+                MaxHeight="160"
+                Padding="0,0,20,0">
+                <ListBox.ItemContainerStyle>
+                    <Style
+                        TargetType="ListBoxItem">
+                        <Setter
+                            Property="Padding"
+                            Value="8,3" />
+                        <Setter
+                            Property="FontSize"
+                            Value="12" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                            Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <local:PropertyEditorFooter />
+        </StackPanel>
+    </Grid>
+</UserControl>

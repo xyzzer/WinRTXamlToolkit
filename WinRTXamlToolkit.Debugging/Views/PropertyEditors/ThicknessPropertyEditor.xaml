@@ -1,0 +1,159 @@
+﻿<UserControl
+    x:Class="WinRTXamlToolkit.Debugging.Views.PropertyEditors.ThicknessPropertyEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinRTXamlToolkit.Debugging.Views.PropertyEditors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:converters="using:WinRTXamlToolkit.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="129">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="ms-appx:///WinRTXamlToolkit.Debugging/Themes/SharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid
+        Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel
+            Margin="5">
+            <TextBlock
+                Text="{Binding Name}"
+                Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                FontWeight="Bold"
+                Margin="0,0,10,0" />
+            <controls:WrapPanel
+                Margin="0,0,-15,2">
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0,0,15,3">
+                    <Border
+                        Width="25"
+                        Height="25"
+                        BorderThickness="2"
+                        BorderBrush="#FF636363">
+                        <TextBlock
+                            FontFamily="Segoe UI Symbol"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                            Text="&#x21A4;" />
+                    </Border>
+                    <controls:NumericUpDown
+                        x:Name="NumericUpDownLeft"
+                        Grid.Column="1"
+                        ValueChanged="OnNumericUpDownValueChanged"
+                        Minimum="0"
+                        Maximum="1000000"
+                        DragSpeed="100"
+                        SmallChange="1"
+                        ValueBarVisibility="Collapsed"
+                        Height="25"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Style="{StaticResource SmallNumericUpDownStyle}" />
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0,0,15,3">
+                    <Border
+                        Width="25"
+                        Height="25"
+                        BorderThickness="2"
+                        BorderBrush="#FF636363">
+                        <TextBlock
+                            FontFamily="Segoe UI Symbol"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                            Text="&#x21A5;" />
+                    </Border>
+                    <controls:NumericUpDown
+                        x:Name="NumericUpDownTop"
+                        ValueChanged="OnNumericUpDownValueChanged"
+                        Minimum="0"
+                        Maximum="1000000"
+                        DragSpeed="100"
+                        SmallChange="1"
+                        ValueBarVisibility="Collapsed"
+                        Height="25"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Style="{StaticResource SmallNumericUpDownStyle}" />
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0,0,15,3">
+                    <Border
+                        Width="25"
+                        Height="25"
+                        BorderThickness="2"
+                        BorderBrush="#FF636363">
+                        <TextBlock
+                            FontFamily="Segoe UI Symbol"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                            Text="↦" />
+                    </Border>
+                    <controls:NumericUpDown
+                        x:Name="NumericUpDownRight"
+                        ValueChanged="OnNumericUpDownValueChanged"
+                        Minimum="0"
+                        Maximum="1000000"
+                        DragSpeed="100"
+                        SmallChange="1"
+                        ValueBarVisibility="Collapsed"
+                        Height="25"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Style="{StaticResource SmallNumericUpDownStyle}" />
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="0,0,15,3">
+                    <Border
+                        Width="25"
+                        Height="25"
+                        BorderThickness="2"
+                        BorderBrush="#FF636363">
+                        <TextBlock
+                            FontFamily="Segoe UI Symbol"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            Foreground="{StaticResource ApplicationForegroundThemeBrush}"
+                            Text="&#x21A7;" />
+                    </Border>
+                    <controls:NumericUpDown
+                        x:Name="NumericUpDownBottom"
+                        ValueChanged="OnNumericUpDownValueChanged"
+                        Minimum="0"
+                        Maximum="1000000"
+                        DragSpeed="100"
+                        SmallChange="1"
+                        ValueBarVisibility="Collapsed"
+                        Height="25"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Style="{StaticResource SmallNumericUpDownStyle}" />
+                </StackPanel>
+            </controls:WrapPanel>
+            <TextBox
+                x:Name="TextInput"
+                FontSize="12"
+                GotFocus="TextInput_OnGotFocus"
+                LostFocus="TextInput_OnLostFocus"
+                KeyDown="TextInput_OnKeyDown"/>
+            <local:PropertyEditorFooter />
+        </StackPanel>
+    </Grid>
+</UserControl>

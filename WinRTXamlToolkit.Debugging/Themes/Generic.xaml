@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:controlsonv="using:WinRTXamlToolkit.Converters"
+    xmlns:views="using:WinRTXamlToolkit.Debugging.Views">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit.Debugging/Controls/EditableListBox/EditableListBoxItem.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit.Debugging/Controls/EditableListBox/EditableListBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+    

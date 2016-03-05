@@ -11,14 +11,14 @@ It is not a full port of the [Silverlight Toolkit](http://silverlight.codeplex.c
 ### How do I use it?
 Watch the [introduction video](http://aka.ms/IntroductionToWinRTXamlToolkit).
 
-Download the full [source code](http://winrtxamltoolkit.codeplex.com/SourceControl/list/changesets) or just the snippet you find useful. Be sure to try the samples! Find me on [twitter](http://twitter.com/#!/xyzzer) to ask any questions.
+Clone the full [source code](https://github.com/xyzzer/WinRTXamlToolkit.git) or just the snippet you find useful. Be sure to try the samples! Find me on [twitter](http://twitter.com/#!/xyzzer) to ask any questions.
 
 For current version for UWP (Windows 10 and Windows Phone 10) use NuGet
-* [WinRT XAML Toolkit for Windows 10](https://www.nuget.org/packages/winrtxamltoolkit.uwp)
-* [WinRT XAML Toolkit - Calendar Control for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Controls.Calendar.UWP/)
-* [WinRT XAML Toolkit - Data Visualization Controls for Windows 10](https://www.nuget.org/packages/winrtxamltoolkit.Controls.DataVisualization.UWP)
-* [WinRT XAML Toolkit - Gauge Control for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Controls.Gauge.UWP)
-* [WinRT XAML Toolkit - Debugging Tools for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Debugging.UWP)
+* [WinRT XAML Toolkit for Windows 10](https://www.nuget.org/packages/winrtxamltoolkit)
+* [WinRT XAML Toolkit - Calendar Control for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Controls.Calendar)
+* [WinRT XAML Toolkit - Data Visualization Controls for Windows 10](https://www.nuget.org/packages/winrtxamltoolkit.Controls.DataVisualization)
+* [WinRT XAML Toolkit - Gauge Control for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Controls.Gauge)
+* [WinRT XAML Toolkit - Debugging Tools for Windows 10](https://www.nuget.org/packages/WinRTXamlToolkit.Debugging)
 
 For older version for Windows 8.1 and Windows Phone 8.1 use NuGet
 * [WinRT XAML Toolkit for Windows 8.1](http://www.nuget.org/packages/winrtxamltoolkit.windows)
@@ -32,13 +32,13 @@ For older version for Windows 8.1 and Windows Phone 8.1 use NuGet
 * [WinRT XAML Toolkit - Debugging Tools for Windows 8.1](http://www.nuget.org/packages/WinRTXamlToolkit.Debugging.Windows)
 * [WinRT XAML Toolkit - Debugging Tools for Windows Phone 8.1](http://www.nuget.org/packages/WinRTXamlToolkit.Debugging.WindowsPhone)
 
-For even older versions supporting Windows 8.0 and 8.1 use
-* [WinRT XAML Toolkit - Core library](http://nuget.org/packages/winrtxamltoolkit)
-* [WinRT XAML Toolkit - Composition](http://www.nuget.org/packages/WinRTXamlToolkit.Composition)
-* [WinRT XAML Toolkit - Debugging Tools](http://nuget.org/packages/winrtxamltoolkit.debugging)
-* [WinRT XAML Toolkit - Calendar Control](http://www.nuget.org/packages/winrtxamltoolkit.Controls.Calendar)
-* [WinRT XAML Toolkit - Data Visualization Controls](http://www.nuget.org/packages/winrtxamltoolkit.Controls.DataVisualization)
-* [WinRT XAML Toolkit - Gauge Control](http://www.nuget.org/packages/WinRTXamlToolkit.Controls.Gauge)
+For even older versions supporting Windows 8.0 and newer
+* [WinRT XAML Toolkit - Core library](http://nuget.org/packages/winrtxamltoolkit/1.6.1.3)
+* [WinRT XAML Toolkit - Composition](http://www.nuget.org/packages/WinRTXamlToolkit.Composition/1.6.1.3)
+* [WinRT XAML Toolkit - Debugging Tools](http://nuget.org/packages/winrtxamltoolkit.debugging/1.6.1.3)
+* [WinRT XAML Toolkit - Calendar Control](http://www.nuget.org/packages/winrtxamltoolkit.Controls.Calendar/1.6.1.3)
+* [WinRT XAML Toolkit - Data Visualization Controls](http://www.nuget.org/packages/winrtxamltoolkit.Controls.DataVisualization/1.6.1.3)
+* [WinRT XAML Toolkit - Gauge Control](http://www.nuget.org/packages/WinRTXamlToolkit.Controls.Gauge/1.6.1.3)
 
 ### Features
 * Integrated extensions from the **[AsyncUI library](http://asyncui.codeplex.com/)** - a set of extension methods for UI classes that add support for async/await to wait for events such as:

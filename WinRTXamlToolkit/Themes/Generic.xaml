@@ -1,0 +1,59 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:WinRTXamlToolkit.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/FocusVisualizer/FocusVisualizer.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ImageButton/ImageButton.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ToolStrip/ToolStrip.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeView.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml" />
+        <ResourceDictionary
+            Source="ms-appx:///WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:NullableBoolToVisibilityConverter
+        x:Key="NullableBoolToVisibleConverter" />
+
+    <converters:NullableBoolToVisibilityConverter
+        x:Key="NullableBoolToCollapsedConverter"
+        TrueIsVisible="True" />
+
+    <converters:NullableBoolToBoolConverter
+        x:Key="NullableBoolToBoolConverter" />
+</ResourceDictionary>

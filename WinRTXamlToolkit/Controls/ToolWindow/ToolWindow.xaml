@@ -1,0 +1,279 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinRTXamlToolkit.Controls">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary
+            x:Key="Default">
+            <SolidColorBrush
+                x:Key="WindowTitleBarThemeBrush"
+                Color="#FF444444" />
+            <SolidColorBrush
+                x:Key="WindowTitleForegroundThemeBrush"
+                Color="#FFFFFFFF" />
+            <SolidColorBrush
+                x:Key="WindowBackgroundThemeBrush"
+                Color="#FF2C2C2C" />
+            <SolidColorBrush
+                x:Key="WindowBorderThemeBrush"
+                Color="#FF444444" />
+        </ResourceDictionary>
+        <ResourceDictionary
+            x:Key="Light">
+            <SolidColorBrush
+                x:Key="WindowTitleBarThemeBrush"
+                Color="#FFBBBBBB" />
+            <SolidColorBrush
+                x:Key="WindowTitleForegroundThemeBrush"
+                Color="#FF444444" />
+            <SolidColorBrush
+                x:Key="WindowBackgroundThemeBrush"
+                Color="#FFD3D3D3" />
+            <SolidColorBrush
+                x:Key="WindowBorderThemeBrush"
+                Color="#FFBBBBBB" />
+        </ResourceDictionary>
+        <ResourceDictionary
+            x:Key="HighContrast">
+            <SolidColorBrush
+                x:Key="WindowTitleBarThemeBrush"
+                Color="#FFFFFFFF" />
+            <SolidColorBrush
+                x:Key="WindowTitleForegroundThemeBrush"
+                Color="#FF000000" />
+            <SolidColorBrush
+                x:Key="WindowBackgroundThemeBrush"
+                Color="#FF000000" />
+            <SolidColorBrush
+                x:Key="WindowBorderThemeBrush"
+                Color="#FFFFFFFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    <Style
+        x:Key="ToolWindowTitleButtonStyle"
+        TargetType="Button">
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="Background"
+            Value="{ThemeResource WindowTitleBarThemeBrush}" />
+        <Setter
+            Property="BorderThickness"
+            Value="0" />
+        <Setter
+            Property="Width"
+            Value="48" />
+        <Setter
+            Property="Height"
+            Value="32" />
+        <Setter
+            Property="UseLayoutRounding"
+            Value="False" />
+        <Setter
+            Property="FontFamily"
+            Value="Marlett" />
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="Padding"
+            Value="4" />
+        <Setter
+            Property="Margin"
+            Value="-3" />
+    </Style>
+    <Style
+        TargetType="controls:ToolWindow">
+        <Setter
+            Property="IsTabStop"
+            Value="False" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Left" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Background"
+            Value="{ThemeResource WindowBackgroundThemeBrush}" />
+        <Setter
+            Property="BorderThickness"
+            Value="5" />
+        <Setter
+            Property="BorderBrush"
+            Value="{ThemeResource WindowBorderThemeBrush}" />
+        <Setter
+            Property="TitleBackgroundBrush"
+            Value="{ThemeResource WindowTitleBarThemeBrush}" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="controls:ToolWindow">
+                    <Grid
+                        x:Name="PART_LayoutGrid">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="CloseButtonStates">
+                                <VisualState
+                                    x:Name="CloseButtonVisible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Visibility"
+                                            Storyboard.TargetName="PART_CloseButton">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="CloseButtonCollapsed" />
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="SnapButtonStates">
+                                <VisualState
+                                    x:Name="SnapButtonVisible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Visibility"
+                                            Storyboard.TargetName="PART_SnapButton">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="SnapButtonCollapsed" />
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="RestoreButtonStates">
+                                <VisualState
+                                    x:Name="RestoreButtonVisible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Visibility"
+                                            Storyboard.TargetName="PART_RestoreButton">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="RestoreButtonCollapsed" />
+                            </VisualStateGroup>
+                            <VisualStateGroup
+                                x:Name="MaximizeButtonStates">
+                                <VisualState
+                                    x:Name="MaximizeButtonVisible">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Visibility"
+                                            Storyboard.TargetName="PART_MaximizeButton">
+                                            <DiscreteObjectKeyFrame
+                                                KeyTime="0"
+                                                Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState
+                                    x:Name="MaximizeButtonCollapsed" />
+                            </VisualStateGroup>
+                            <!--//[TemplateVisualState(GroupName = "MinimizeButtonStates", Name = "MinimizeButtonVisible")]
+                            //[TemplateVisualState(GroupName = "MinimizeButtonStates", Name = "MinimizeButtonCollapsed")]
+                            //[TemplateVisualState(GroupName = "MaximizeButtonStates", Name = "MaximizeButtonVisible")]
+                            //[TemplateVisualState(GroupName = "MaximizeButtonStates", Name = "MaximizeButtonCollapsed")]-->
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            x:Name="PART_Border"
+                            UseLayoutRounding="False"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid
+                                UseLayoutRounding="False">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Border
+                                    UseLayoutRounding="False"
+                                    Margin="-1,-1,-1,0"
+                                    Background="{TemplateBinding TitleBackgroundBrush}">
+                                    <Grid
+                                        x:Name="PART_TitleGrid"
+                                        Background="Transparent"
+                                        Margin="1,1,1,0"
+                                        UseLayoutRounding="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ContentControl
+                                            Height="32"
+                                            IsTabStop="False"
+                                            UseLayoutRounding="False"
+                                            ContentTemplate="{TemplateBinding TitleTemplate}"
+                                            Content="{TemplateBinding Title}"
+                                            FontSize="16"
+                                            FontWeight="ExtraLight"
+                                            Padding="10,5"
+                                            Foreground="{ThemeResource WindowTitleForegroundThemeBrush}" />
+                                        <StackPanel
+                                            x:Name="PART_ButtonsPanel"
+                                            Orientation="Horizontal"
+                                            Grid.Column="1"
+                                            Margin="0,-6,0,-2">
+                                            <Button
+                                                x:Name="PART_SnapButton"
+                                                Visibility="Collapsed"
+                                                Content="&#x71;"
+                                                Style="{StaticResource ToolWindowTitleButtonStyle}" />
+                                            <Button
+                                                x:Name="PART_RestoreButton"
+                                                Visibility="Collapsed"
+                                                Content="&#x32;"
+                                                Style="{StaticResource ToolWindowTitleButtonStyle}" />
+                                            <Button
+                                                x:Name="PART_MaximizeButton"
+                                                Visibility="Collapsed"
+                                                Content="&#x31;"
+                                                Style="{StaticResource ToolWindowTitleButtonStyle}" />
+                                            <Button
+                                                x:Name="PART_CloseButton"
+                                                Visibility="Collapsed"
+                                                Content="&#x72;"
+                                                Style="{StaticResource ToolWindowTitleButtonStyle}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <ContentPresenter
+                                    Grid.Row="1"
+                                    UseLayoutRounding="False"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTransitions="{TemplateBinding ContentTransitions}"
+                                    Content="{TemplateBinding Content}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Grid>
+                        </Border>
+                        <Grid
+                            x:Name="PART_SizingGrid" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

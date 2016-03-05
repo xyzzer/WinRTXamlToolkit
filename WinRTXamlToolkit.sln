@@ -50,19 +50,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinRTXamlToolkit.OldPhoneXa
 		WinRTXamlToolkit.OldPhoneXamls\TreeViewItem.xaml = WinRTXamlToolkit.OldPhoneXamls\TreeViewItem.xaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.UWP", "WinRTXamlToolkit.UWP\WinRTXamlToolkit.UWP.csproj", "{FFB67E2D-F098-48D9-8BF6-B4355C18CD80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit", "WinRTXamlToolkit\WinRTXamlToolkit.csproj", "{FFB67E2D-F098-48D9-8BF6-B4355C18CD80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.DataVisualization.UWP", "WinRTXamlToolkit.Controls.DataVisualization.UWP\WinRTXamlToolkit.Controls.DataVisualization.UWP.csproj", "{219F8BB2-33C0-4BCA-823A-5B8721BDE47C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.DataVisualization", "WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.csproj", "{219F8BB2-33C0-4BCA-823A-5B8721BDE47C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Calendar.UWP", "WinRTXamlToolkit.Controls.Calendar.UWP\WinRTXamlToolkit.Controls.Calendar.UWP.csproj", "{8945745B-255B-469F-8ACA-A47991C5CDE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Calendar", "WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.csproj", "{8945745B-255B-469F-8ACA-A47991C5CDE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Sample.UWP", "WinRTXamlToolkit.Sample.UWP\WinRTXamlToolkit.Sample.UWP.csproj", "{0B68993D-22D0-4F2F-9F59-8C5AE013F238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Sample", "WinRTXamlToolkit.Sample\WinRTXamlToolkit.Sample.csproj", "{0B68993D-22D0-4F2F-9F59-8C5AE013F238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Gauge.UWP", "WinRTXamlToolkit.Controls.Gauge.UWP\WinRTXamlToolkit.Controls.Gauge.UWP.csproj", "{F627EFA3-656F-45A0-9F1F-2F63F80DF7AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Gauge", "WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.csproj", "{F627EFA3-656F-45A0-9F1F-2F63F80DF7AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Debugging.UWP", "WinRTXamlToolkit.Debugging.UWP\WinRTXamlToolkit.Debugging.UWP.csproj", "{3C6B8275-5A06-4132-8028-C2ACBA41C33C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Debugging", "WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.csproj", "{3C6B8275-5A06-4132-8028-C2ACBA41C33C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.UnitTests.UWP", "WinRTXamlToolkit.UnitTests.UWP\WinRTXamlToolkit.UnitTests.UWP.csproj", "{1520057B-8081-44DD-9F8E-B5191CB40996}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.UnitTests", "WinRTXamlToolkit.UnitTests\WinRTXamlToolkit.UnitTests.csproj", "{1520057B-8081-44DD-9F8E-B5191CB40996}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinRTXamlToolkit.Sample.WP_8.1_Files", "WinRTXamlToolkit.Sample.WP_8.1_Files", "{EB80CED0-BA14-4570-AE60-0EA5AC87C40C}"
 	ProjectSection(SolutionItems) = preProject
