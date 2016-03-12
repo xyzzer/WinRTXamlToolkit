@@ -66,7 +66,7 @@
                 Content="Preview"
                 Checked="PreviewTabButton_OnChecked"
                 Unchecked="PreviewTabButton_OnUnchecked"
-                IsChecked="{Binding TreeModel.IsPreviewShown, Mode=TwoWay}"
+                IsChecked="{Binding TreeViewModel.IsPreviewShown, Mode=TwoWay}"
                 Style="{StaticResource TabButtonStyle}" />
         </StackPanel>
         <local:PropertiesView

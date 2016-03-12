@@ -12,7 +12,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
     /// </remarks>
     public class TreeItemViewModel : BindableBase
     {
-        public VisualTreeViewModel TreeModel { get; protected set; }
+        public ITreeViewModel TreeViewModel { get; protected set; }
         private bool _everExpanded;
         private bool _everSelected;
 
@@ -35,10 +35,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region DisplayName
-        public string DisplayName
-        {
-            get { return this.ToString(); }
-        }
+        public string DisplayName => this.ToString();
         #endregion
 
         #region IsSelected
@@ -54,11 +51,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     {
                         _everSelected = true;
 #pragma warning disable 4014
-                        LoadPropertiesAsync();
+                        this.LoadPropertiesAsync();
 #pragma warning restore 4014
                     }
 
-                    this.TreeModel.SelectedItem = this;
+                    this.TreeViewModel.SelectedItem = this;
                 }
             }
         }
@@ -77,7 +74,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 {
                     _everExpanded = true;
 #pragma warning disable 4014
-                    LoadChildrenAsync();
+                    this.LoadChildrenAsync();
 #pragma warning restore 4014
                 }
             }
@@ -94,10 +91,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         public TreeItemViewModel(
-            VisualTreeViewModel treeModel,
+            ITreeViewModel treeViewViewModel,
             TreeItemViewModel parent)
         {
-            this.TreeModel = treeModel;
+            this.TreeViewModel = treeViewViewModel;
             this.Parent = parent;
         }
 
@@ -114,5 +111,39 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         {
         }
 #pragma warning restore 1998
+    }
+
+    public interface ITreeViewModel
+    {
+        TreeItemViewModel SelectedItem { get; set; }
+    }
+
+    public class TreeViewModel : BindableBase, ITreeViewModel
+    {
+        #region SelectedItem
+        private TreeItemViewModel _selectedItem;
+        /// <summary>
+        /// Gets or sets the selected item.
+        /// </summary>
+        public TreeItemViewModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                var oldSelectedItem = _selectedItem;
+
+                if (this.SetProperty(ref _selectedItem, value))
+                {
+                    var newSelectedItem = _selectedItem;
+
+                    this.OnSelectedItemChanged(oldSelectedItem, newSelectedItem);
+                }
+            }
+        }
+        #endregion
+
+        protected virtual void OnSelectedItemChanged(TreeItemViewModel oldSelectedItem, TreeItemViewModel newSelectedItem)
+        {
+        }
     }
 }

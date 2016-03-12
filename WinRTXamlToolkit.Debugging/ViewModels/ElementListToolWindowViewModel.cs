@@ -42,10 +42,5 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.Header = header;
             //DebugConsoleViewModel.Instance.ToolWindows.Add(this);
         }
-
-        internal void Remove()
-        {
-            DebugConsoleViewModel.Instance.ToolWindows.Remove(this);
-        }
     }
 }

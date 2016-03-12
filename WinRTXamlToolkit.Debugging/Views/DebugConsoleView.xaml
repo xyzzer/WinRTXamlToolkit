@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
+    xmlns:data="using:WinRTXamlToolkit.Controls.Data"
     xmlns:views="using:WinRTXamlToolkit.Debugging.Views"
     xmlns:common="using:WinRTXamlToolkit.Common"
     mc:Ignorable="d"

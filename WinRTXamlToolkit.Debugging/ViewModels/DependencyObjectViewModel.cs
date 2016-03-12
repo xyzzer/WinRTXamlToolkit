@@ -16,35 +16,21 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
-    public class DependencyObjectViewModel : TreeItemViewModel
+    public class DependencyObjectViewModel : VisualTreeItemViewModel
     {
         private bool _skipUpdatingProperties;
 
-        internal DependencyObject Model { get; private set; }
+        internal object Model { get; }
 
         public event EventHandler ModelPropertyChanged;
 
-        public string Description { get { return null; } }
+        public string Description => null;
 
         #region Properties property
         private List<BasePropertyViewModel> _allProperties;
-        public IEnumerable<BindableBase> Properties
-        {
-            get
-            {
-                //if (!string.IsNullOrEmpty(this.PropertyNameFilter))
-                //{
-                //    return new ObservableCollection<BindableBase>(
-                //        _allProperties
-                //            .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
-                //}
-
-                return
-                    this.ShowPropertiesGrouped
-                        ? (IEnumerable<BindableBase>)this.GroupedProperties
-                        : (IEnumerable<BindableBase>)this.FilteredProperties; // UngroupedProperties;
-            }
-        }
+        public IEnumerable<BindableBase> Properties => this.ShowPropertiesGrouped
+            ? (IEnumerable<BindableBase>)this.GroupedProperties
+            : (IEnumerable<BindableBase>)this.FilteredProperties;
         #endregion
 
         #region GroupedProperties
@@ -62,7 +48,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                     _groupedProperties = new ObservableCollection<BindableBase>(
                         this.FilteredProperties
-                            .Cast<BasePropertyViewModel>()
                             .OrderBy(p => p.Name)
                             .GroupBy(p => p.Category)
                             .Select(g => new PropertyGroupViewModel(
@@ -93,8 +78,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (!string.IsNullOrEmpty(this.PropertyNameFilter))
                 {
-                    return new ObservableCollection<BasePropertyViewModel>(
-                        UngroupedProperties
+                    return new ObservableCollection<BasePropertyViewModel>(this.UngroupedProperties
                             .Where(p => p.Name.ToLower().Contains(this.PropertyNameFilter.ToLower())));
                 }
 
@@ -122,13 +106,13 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return
                         new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                             p =>
-                                (isPropertyNameFiltered || ShowDefaultedProperties || !p.IsDefault) &&
-                                (isPropertyNameFiltered || ShowReadOnlyProperties || !p.IsReadOnly) &&
+                                (isPropertyNameFiltered || this.ShowDefaultedProperties || !p.IsDefault) &&
+                                (isPropertyNameFiltered || this.ShowReadOnlyProperties || !p.IsReadOnly) &&
                                 this.CurrentPropertyList.PropertyNames.Contains(p.Name)));
                 }
 
                 // If no checkbox filters are set - simply return all properties
-                if (ShowDefaultedProperties && ShowReadOnlyProperties)
+                if (this.ShowDefaultedProperties && this.ShowReadOnlyProperties)
                 {
                     return new ObservableCollection<BasePropertyViewModel>(_allProperties);
                 }
@@ -137,8 +121,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 return
                     new ObservableCollection<BasePropertyViewModel>(_allProperties.Where(
                         p =>
-                        (isPropertyNameFiltered || ShowDefaultedProperties || !p.IsDefault) &&
-                        (isPropertyNameFiltered || ShowReadOnlyProperties || !p.IsReadOnly)));
+                        (isPropertyNameFiltered || this.ShowDefaultedProperties || !p.IsDefault) &&
+                        (isPropertyNameFiltered || this.ShowReadOnlyProperties || !p.IsReadOnly)));
             }
         } 
         #endregion
@@ -149,19 +133,20 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         /// </summary>
         public bool ShowPropertiesGrouped
         {
-            get { return this.TreeModel.ShowPropertiesGrouped; }
+            get { return this.VisualTreeViewModel.ShowPropertiesGrouped; }
             set
             {
-                if (this.TreeModel.ShowPropertiesGrouped == value)
+                if (this.VisualTreeViewModel.ShowPropertiesGrouped == value)
                 {
                     return;
                 }
 
-                this.TreeModel.ShowPropertiesGrouped = value;
+                this.VisualTreeViewModel.ShowPropertiesGrouped = value;
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
@@ -171,20 +156,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region ShowDefaultedProperties
         public bool ShowDefaultedProperties
         {
-            get { return TreeModel.ShowDefaultedProperties; }
+            get { return this.VisualTreeViewModel.ShowDefaultedProperties; }
             set
             {
-                if (this.TreeModel.ShowDefaultedProperties == value)
+                if (this.VisualTreeViewModel.ShowDefaultedProperties == value)
                 {
                     return;
                 }
 
-                this.TreeModel.ShowDefaultedProperties = value;
+                this.VisualTreeViewModel.ShowDefaultedProperties = value;
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
@@ -194,20 +180,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region ShowReadOnlyProperties
         public bool ShowReadOnlyProperties
         {
-            get { return TreeModel.ShowReadOnlyProperties; }
+            get { return this.VisualTreeViewModel.ShowReadOnlyProperties; }
             set
             {
-                if (this.TreeModel.ShowReadOnlyProperties == value)
+                if (this.VisualTreeViewModel.ShowReadOnlyProperties == value)
                 {
                     return;
                 }
 
-                this.TreeModel.ShowReadOnlyProperties = value;
+                this.VisualTreeViewModel.ShowReadOnlyProperties = value;
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
@@ -220,21 +207,22 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         /// </summary>
         public string PropertyNameFilter
         {
-            get { return this.TreeModel.PropertyNameFilter; }
+            get { return this.VisualTreeViewModel.PropertyNameFilter; }
             set
             {
-                if (this.TreeModel.PropertyNameFilter == value)
+                if (this.VisualTreeViewModel.PropertyNameFilter == value)
                 {
                     return;
                 }
 
-                this.TreeModel.PropertyNameFilter = value;
+                this.VisualTreeViewModel.PropertyNameFilter = value;
 
                 this.OnPropertyChanged();
 
                 if (!_skipUpdatingProperties)
                 {
                     _groupedProperties = null;
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.Properties));
                 }
             }
@@ -248,21 +236,21 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         /// </summary>
         public PropertyList CurrentPropertyList
         {
-            get { return this.TreeModel.CurrentPropertyList; }
+            get { return this.VisualTreeViewModel.CurrentPropertyList; }
             set
             {
-                if (this.TreeModel.CurrentPropertyList == value)
+                if (this.VisualTreeViewModel.CurrentPropertyList == value)
                 {
                     return;
                 }
 
-                var isOldPropertyListFiltered = this.TreeModel.CurrentPropertyList != null &&
-                                                this.TreeModel.CurrentPropertyList
+                var isOldPropertyListFiltered = this.VisualTreeViewModel.CurrentPropertyList != null &&
+                                                this.VisualTreeViewModel.CurrentPropertyList
                                                     .PropertyNames.Count > 0;
                 var isNewPropertyListFiltered = value != null &&
                                                 value.PropertyNames.Count > 0;
 
-                this.TreeModel.CurrentPropertyList = value;
+                this.VisualTreeViewModel.CurrentPropertyList = value;
                 this.OnPropertyChanged();
 
                 if (!isOldPropertyListFiltered &&
@@ -275,6 +263,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 }
 
                 _groupedProperties = null;
+                // ReSharper disable once ExplicitCallerInfoArgument
                 this.OnPropertyChanged(nameof(this.Properties));
             }
         }
@@ -285,10 +274,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         /// Gets the list of property name filters.
         /// The strings contain comma-separated lists of properties to display.
         /// </summary>
-        public ObservableCollection<PropertyList> PropertyLists
-        {
-            get { return this.TreeModel.PropertyLists; }
-        }
+        public ObservableCollection<PropertyList> PropertyLists => this.VisualTreeViewModel.PropertyLists;
         #endregion
 
         #region Name
@@ -300,6 +286,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (this.SetProperty(ref _name, value))
                 {
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.DisplayName));
                 }
             }
@@ -318,6 +305,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (this.SetProperty(ref _descendantCount, value))
                 {
+                    // ReSharper disable once ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.DisplayName));
                 }
             }
@@ -346,10 +334,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         #region CTOR
         public DependencyObjectViewModel(
-            VisualTreeViewModel treeModel,
-            TreeItemViewModel parent,
-            DependencyObject model)
-            : base(treeModel, parent)
+            VisualTreeViewModel treeViewModel,
+            VisualTreeItemViewModel parent,
+            object model)
+            : base(treeViewModel, parent)
         {
             this.Model = model;
 
@@ -359,8 +347,6 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 this.FontWeight = FontWeights.Bold;
             }
 
-            this.Children.Add(new StubTreeItemViewModel(this.TreeModel, this));
-
             var fe = model as FrameworkElement;
 
             if (fe != null)
@@ -368,10 +354,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 _name = fe.Name;
             }
 
-            if (!(model is UIElement) ||
-                !model.GetDescendants().Any())
+            var dob = model as DependencyObject;
+
+            if (dob != null &&
+                dob.GetDescendants().Any())
             {
-                this.Children.Clear();
+                this.Children.Add(new StubVisualTreeItemViewModel(this.VisualTreeViewModel, this));
             }
 
 #pragma warning disable 4014
@@ -443,16 +431,19 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             _groupedProperties = null;
 
+            // ReSharper disable once ExplicitCallerInfoArgument
             this.OnPropertyChanged(nameof(this.Properties));
             this.Details.Clear();
-            this.Details.Add(new DetailViewModel("Type", GetTypeInheritanceInfo()));
+            this.Details.Add(new DetailViewModel("Type", this.GetTypeInheritanceInfo()));
 
-            if (this.Model is UIElement)
+            var element = this.Model as UIElement;
+
+            if (element != null)
             {
-                this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(this.Model).ToString()));
+                this.Details.Add(new DetailViewModel("Child element count", VisualTreeHelper.GetChildrenCount(element).ToString()));
             }
 
-            if (TreeModel.IsPreviewShown)
+            if (this.VisualTreeViewModel.IsPreviewShown)
             {
                 await this.LoadPreviewAsync();
             }
@@ -462,12 +453,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region OnPropertyPropertyChanged()
         private void OnPropertyPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var handler = this.ModelPropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            this.ModelPropertyChanged?.Invoke(this, EventArgs.Empty);
         } 
         #endregion
 
@@ -495,27 +481,29 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         internal override async Task LoadChildrenAsync()
 #pragma warning restore 1998
         {
-            if (this.Model is UIElement)
+            var element = this.Model as UIElement;
+
+            if (element != null)
             {
                 this.Children =
                     new ObservableCollection<TreeItemViewModel>(
-                        from childElement in this.Model.GetChildren().Cast<UIElement>()
-                        select new DependencyObjectViewModel(this.TreeModel, this, childElement));
+                        from childElement in element.GetChildren().Cast<UIElement>()
+                        select new DependencyObjectViewModel(this.VisualTreeViewModel, this, childElement));
                 this.UpdateAscendantChildCounts();
             }
             else
             {
                 this.Children = new ObservableCollection<TreeItemViewModel>();
             }
-        } 
+        }
         #endregion
 
         #region Refresh()
         internal override async Task RefreshAsync()
         {
             await base.RefreshAsync();
-            await LoadChildrenAsync();
-            await LoadPropertiesAsync();
+            await this.LoadChildrenAsync();
+            await this.LoadPropertiesAsync();
         }
         #endregion
 
@@ -551,8 +539,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         public DetailViewModel(string label, string detail)
         {
-            Label = label;
-            Detail = detail;
+            this.Label = label;
+            this.Detail = detail;
         }
     }
 

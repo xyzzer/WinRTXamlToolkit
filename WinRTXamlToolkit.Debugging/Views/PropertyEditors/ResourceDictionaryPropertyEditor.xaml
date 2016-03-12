@@ -19,9 +19,13 @@
     </UserControl.Resources>
     <Grid
         Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Button
-            x:Name="ResourceBrowserButton"
-            Content="View"
-            Click="OnResourceBrowserButtonClick" />
+        <StackPanel>
+            <TextBlock
+                x:Name="InfoTextBlock" />
+            <Button
+                x:Name="ResourceBrowserButton"
+                Content="View"
+                Click="OnResourceBrowserButtonClick" />
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -91,20 +91,22 @@ namespace WinRTXamlToolkit.Debugging.Views
                         return (DataTemplate)this.Resources["ImageSourcePropertyEditor"];
                     }
 
-                    if (typeof(DependencyObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) &&
-                        propertyViewModel.Value != null)
+                    if (type == typeof(ResourceDictionary))
                     {
-                        return (DataTemplate)this.Resources["DependencyObjectPropertyEditor"];
+                        return (DataTemplate)this.Resources["ResourceDictionaryPropertyEditor"];
                     }
 
-                    if (type == typeof (FontWeight))
+                    if (type == typeof(FontWeight))
                     {
                         return (DataTemplate)this.Resources["FontWeightPropertyEditor"];
                     }
 
-                    if (type == typeof(ResourceDictionary))
+                    // Fallback editors
+
+                    if (typeof(DependencyObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) &&
+                        propertyViewModel.Value != null)
                     {
-                        return (DataTemplate)this.Resources["ResourceDictionaryPropertyEditor"];
+                        return (DataTemplate)this.Resources["DependencyObjectPropertyEditor"];
                     }
 
                     return (DataTemplate)this.Resources["DefaultPropertyEditor"];

@@ -9,7 +9,72 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:data="using:WinRTXamlToolkit.Controls.Data"
     IsTabStop="False">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary
+                    x:Key="Default">
+                    <SolidColorBrush
+                        x:Key="ToolStripBackground"
+                        Color="#FF2C2C2C" />
+                    <SolidColorBrush
+                        x:Key="ToolBarButtonBackground"
+                        Color="#FF444444" />
+                </ResourceDictionary>
+                <ResourceDictionary
+                    x:Key="Light">
+                    <SolidColorBrush
+                        x:Key="ToolStripBackground"
+                        Color="#FFD3D3D3" />
+                    <SolidColorBrush
+                        x:Key="ToolBarButtonBackground"
+                        Color="#FFBBBBBB" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <DataTemplate
+                x:Key="DependencyPropertyDetailsTemplate">
+                <local:DependencyObjectDetailsView
+                    DataContext="{Binding PropertiesViewModel}" />
+            </DataTemplate>
+            <DataTemplate
+                x:Key="DefaultDetailsTemplate">
+                <Grid>
+                    <TextBlock
+                        Text="{Binding DisplayName}" />
+                </Grid>
+            </DataTemplate>
+            <local:VisualTreeViewItemDetailsTemplateSelector
+                x:Key="VisualTreeViewItemDetailsTemplateSelector"
+                DependencyPropertyDetailsTemplate="{StaticResource DependencyPropertyDetailsTemplate}"
+                DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
+            <DataTemplate
+                x:Key="TreeViewItemTemplate">
+                <data:DataTemplateExtensions.Hierarchy>
+                    <data:HierarchicalDataTemplate
+                        ItemsSource="{Binding Children}" />
+                </data:DataTemplateExtensions.Hierarchy>
+                <TextBlock
+                    FontWeight="{Binding FontWeight}"
+                    Text="{Binding Key}" />
+            </DataTemplate>
+            <!--<data:HierarchicalDataTemplate
+                    ItemsSource="{Binding Children}">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Text}" />
+                        <Ellipse
+                            VerticalAlignment="Center"
+                            Margin="5"
+                            Width="10"
+                            Height="10"
+                            Fill="{Binding Brush}" />
+                    </StackPanel>
+                </data:HierarchicalDataTemplate>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <controls:ToolWindow
             Title="Resource Dictionary"
@@ -27,16 +92,25 @@
                 </Grid.ColumnDefinitions>
                 
                 <!-- List of resources -->
-                <ListView></ListView>
+                <controls:TreeView
+                    x:Name="treeView"
+                    ItemsSource="{Binding RootElements}"
+                    ItemTemplate="{StaticResource TreeViewItemTemplate}"
+                    IsSelectedBindingPath="IsSelected"
+                    IsExpandedBindingPath="IsExpanded"
+                    BorderThickness="0"
+                    Padding="0" />
                 <controls:CustomGridSplitter
                     Grid.Column="1" />
                 <!-- Properties of selected resource -->
-                <local:PropertiesView
-                    Grid.Column="2"></local:PropertiesView>
+                <ContentControl
+                    Grid.Column="2"
+                    DataContext="{Binding SelectedResourceViewModel}"
+                    Content="{Binding}"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
             </Grid>
         </controls:ToolWindow>
-        <controls:FocusVisualizer
-            x:Name="FocusVisualizer"
-            BorderThickness="5" />
     </Grid>
 </UserControl>

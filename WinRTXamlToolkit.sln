@@ -28,7 +28,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{C9D59FB1-F56B-41A3-9719-81E207BC6A5F}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\CodePlexLogo.png = Documents\CodePlexLogo.png
-		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{244C3E83-F7A8-4ADB-86C0-8704F78BD146}"
@@ -36,10 +35,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		License.md = License.md
 		ReadMe.md = ReadMe.md
+		ReadMe.txt = ReadMe.txt
 		Solution Items\WinRTXamlToolkit.common.targets = Solution Items\WinRTXamlToolkit.common.targets
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{70BD34AC-886D-426A-8636-A55DF9677CFB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinRTXamlToolkit.OldPhoneXamls", "WinRTXamlToolkit.OldPhoneXamls", "{FD6E380E-F40C-4EE6-BAC1-499CF97C7CBA}"
 	ProjectSection(SolutionItems) = preProject
@@ -238,8 +236,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1520057B-8081-44DD-9F8E-B5191CB40996} = {70BD34AC-886D-426A-8636-A55DF9677CFB}
 	EndGlobalSection
 EndGlobal

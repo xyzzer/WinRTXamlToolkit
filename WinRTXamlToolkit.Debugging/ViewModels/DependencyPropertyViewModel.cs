@@ -19,29 +19,12 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         private readonly Type _propertyType;
 
         #region CoercionHelper
-        private IValueCoercionHelper _coercionHelper;
-        internal IValueCoercionHelper CoercionHelper
-        {
-            get
-            {
-                return _coercionHelper;
-            }
-            set
-            {
-                _coercionHelper = value;
-            }
-        }
+        internal IValueCoercionHelper CoercionHelper { get; set; }
         #endregion
 
         #region DependencyProperty
         private readonly DependencyProperty _dependencyProperty;
-        public DependencyProperty DependencyProperty
-        {
-            get
-            {
-                return _dependencyProperty;
-            }
-        }
+        public DependencyProperty DependencyProperty => _dependencyProperty;
         #endregion
 
         #region Category
@@ -97,7 +80,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                 #region Common
                 if (_dependencyProperty == Control.IsEnabledProperty ||
-                    _dependencyProperty == FrameworkElement.AllowDropProperty ||
+                    _dependencyProperty == UIElement.AllowDropProperty ||
                     _dependencyProperty == FrameworkElement.DataContextProperty ||
                     _dependencyProperty == FrameworkElement.TagProperty ||
                     _dependencyProperty == UIElement.IsHitTestVisibleProperty ||
@@ -132,7 +115,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == ScrollViewer.HorizontalSnapPointsTypeProperty ||
                     _dependencyProperty == ScrollViewer.ZoomSnapPointsProperty ||
                     _dependencyProperty == ScrollViewer.ZoomSnapPointsTypeProperty ||
-                    (_dpi.OwnerType == typeof(ItemsControl) && Name == "Items") ||
+                    (_dpi.OwnerType == typeof(ItemsControl) && this.Name == "Items") ||
                     _dependencyProperty == ItemsControl.ItemsSourceProperty ||
                     _dependencyProperty == ItemsControl.DisplayMemberPathProperty ||
                     _dependencyProperty == Selector.IsSynchronizedWithCurrentItemProperty ||
@@ -147,7 +130,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == ListViewBase.IsSwipeEnabledProperty ||
                     _dependencyProperty == RichEditBox.AcceptsReturnProperty ||
                     _dependencyProperty == SymbolIcon.SymbolProperty ||
-                    _dependencyProperty == Flyout.PlacementProperty ||
+                    _dependencyProperty == FlyoutBase.PlacementProperty ||
                     _dependencyProperty == TextBox.PlaceholderTextProperty ||
                     _dependencyProperty == RichEditBox.PlaceholderTextProperty ||
                     _dependencyProperty == ComboBox.PlaceholderTextProperty ||
@@ -228,11 +211,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == TextBlock.TextAlignmentProperty ||
                     _dependencyProperty == TextBlock.TextTrimmingProperty ||
                     _dependencyProperty == TextBlock.TextWrappingProperty ||
-                    _dependencyProperty == TextBox.FontFamilyProperty ||
-                    _dependencyProperty == TextBox.FontSizeProperty ||
-                    _dependencyProperty == TextBox.FontStretchProperty ||
-                    _dependencyProperty == TextBox.FontStyleProperty ||
-                    _dependencyProperty == TextBox.FontWeightProperty ||
+                    _dependencyProperty == Control.FontFamilyProperty ||
+                    _dependencyProperty == Control.FontSizeProperty ||
+                    _dependencyProperty == Control.FontStretchProperty ||
+                    _dependencyProperty == Control.FontStyleProperty ||
+                    _dependencyProperty == Control.FontWeightProperty ||
                     _dependencyProperty == TextBox.TextAlignmentProperty ||
                     _dependencyProperty == TextBox.TextWrappingProperty ||
                     _dependencyProperty == TextBox.IsSpellCheckEnabledProperty ||
@@ -247,15 +230,15 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     _dependencyProperty == RichTextBlock.TextTrimmingProperty ||
                     _dependencyProperty == RichTextBlock.TextWrappingProperty ||
                     _dependencyProperty == RichTextBlock.TextIndentProperty ||
-                    _dependencyProperty == RichEditBox.FontFamilyProperty ||
-                    _dependencyProperty == RichEditBox.FontSizeProperty ||
-                    _dependencyProperty == RichEditBox.FontStretchProperty ||
-                    _dependencyProperty == RichEditBox.FontStyleProperty ||
-                    _dependencyProperty == RichEditBox.FontWeightProperty ||
+                    _dependencyProperty == Control.FontFamilyProperty ||
+                    _dependencyProperty == Control.FontSizeProperty ||
+                    _dependencyProperty == Control.FontStretchProperty ||
+                    _dependencyProperty == Control.FontStyleProperty ||
+                    _dependencyProperty == Control.FontWeightProperty ||
                     _dependencyProperty == RichEditBox.TextAlignmentProperty ||
                     _dependencyProperty == RichEditBox.TextWrappingProperty ||
                     _dependencyProperty == TextBlock.CharacterSpacingProperty ||
-                    _dependencyProperty == PasswordBox.CharacterSpacingProperty ||
+                    _dependencyProperty == Control.CharacterSpacingProperty ||
                     _dependencyProperty == RichTextBlock.CharacterSpacingProperty ||
                     _dependencyProperty == Control.FontFamilyProperty ||
                     _dependencyProperty == Control.FontSizeProperty ||
@@ -317,7 +300,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
-        public object DefaultValue { get; private set; }
+        public object DefaultValue { get; }
 
         #region AsObjectViewModel
         private DependencyObjectViewModel _asObjectViewModel;
@@ -327,7 +310,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 if (_asObjectViewModel == null)
                 {
-                    _asObjectViewModel = new DependencyObjectViewModel(this.ElementModel.TreeModel, null, (DependencyObject)this.Value);
+                       _asObjectViewModel = new DependencyObjectViewModel(this.ElementViewModel.VisualTreeViewModel, null, (DependencyObject)this.Value);
 #pragma warning disable 4014
                     _asObjectViewModel.LoadPropertiesAsync();
 #pragma warning restore 4014
@@ -338,16 +321,18 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         }
         #endregion
 
+        private DependencyObject ElementModel => (DependencyObject)this.ElementViewModel.Model;
+
         #region CTOR
         public DependencyPropertyViewModel(
-            DependencyObjectViewModel elementModel,
+            DependencyObjectViewModel elementViewModel,
             DependencyPropertyInfo dpi)
-            : base(elementModel)
+            : base(elementViewModel)
         {
             _dpi = dpi;
             _dependencyProperty = dpi.Property;
             this.Name = dpi.DisplayName;
-            _propertyInfo = elementModel.Model.GetType().GetRuntimeProperty(dpi.DisplayName);
+            _propertyInfo = this.ElementModel.GetType().GetRuntimeProperty(dpi.DisplayName);
 
             if (_propertyInfo != null)
             {
@@ -359,21 +344,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             if (_propertyType == null)
             {
                 this.DefaultValue =
-                    _dpi.Property.GetMetadata(this.ElementModel.Model.GetType())
+                    _dpi.Property.GetMetadata(this.ElementModel.GetType())
                         .DefaultValue;
 
-                if (this.DefaultValue != null)
-                {
-                    _propertyType = this.DefaultValue.GetType();
-                }
-                else
-                {
-                    _propertyType = typeof(object);
-                }
+                _propertyType = this.DefaultValue != null ? this.DefaultValue.GetType() : typeof(object);
             }
 
-            CoercionHelper =
-                ValueCoercionHelperFactory.GetValueCoercionHelper(DependencyProperty);
+            this.CoercionHelper =
+                ValueCoercionHelperFactory.GetValueCoercionHelper(this.DependencyProperty);
         }
         #endregion
 
@@ -384,7 +362,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 object val;
 
-                if (this.TryGetValue(this.ElementModel.Model, out val))
+                if (this.TryGetValue(this.ElementModel, out val))
                 {
                     return val;
                 }
@@ -395,30 +373,24 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 try
                 {
-                    if (CoercionHelper != null)
-                    {
-                        CoercionHelper.CoerceValue(ref value);
-                    }
+                    this.CoercionHelper?.CoerceValue(ref value);
 
-                    this.ElementModel.Model.SetValue(DependencyProperty, value);
+                    this.ElementModel.SetValue(this.DependencyProperty, value);
                     _isDefault = null;
                     this.OnPropertyChanged();
+                    // ReSharper disable ExplicitCallerInfoArgument
                     this.OnPropertyChanged(nameof(this.CanResetValue));
                     this.OnPropertyChanged(nameof(this.IsDefault));
+                    // ReSharper restore ExplicitCallerInfoArgument
                 }
-                catch
+                catch (Exception)
                 {
+                    // ignored
                 }
             }
         }
 
-        public override Type PropertyType
-        {
-            get
-            {
-                return _propertyType;
-            }
-        }
+        public override Type PropertyType => _propertyType;
         #endregion
 
         #region IsDefault
@@ -428,7 +400,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 try
                 {
-                    if (!(this.ElementModel.Model is UIElement) &&
+                    if (!(this.ElementModel is UIElement) &&
                         (this.DependencyProperty == Grid.RowProperty
                         || this.DependencyProperty == Grid.ColumnProperty
                         || this.DependencyProperty == Grid.RowSpanProperty
@@ -442,7 +414,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
                     if (_isDefault == null)
                     {
-                        var localValue = this.ElementModel.Model.ReadLocalValue(this.DependencyProperty);
+                        var localValue = this.ElementModel.ReadLocalValue(this.DependencyProperty);
                         _isDefault = localValue == DependencyProperty.UnsetValue;
                     }
 
@@ -468,12 +440,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return false;
                 }
 
-                if (_propertyInfo == null)
-                {
-                    return true;
-                }
-
-                var sm = _propertyInfo.SetMethod;
+                var sm = _propertyInfo?.SetMethod;
 
                 return sm == null;
             }
@@ -481,46 +448,30 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region CanResetValue
-        public override bool CanResetValue
-        {
-            get
-            {
-                return !this.IsReadOnly && !this.IsDefault;
-            }
-        }
+        public override bool CanResetValue => !this.IsReadOnly && !this.IsDefault;
         #endregion
 
         #region IsAttached
-        public bool IsAttached
-        {
-            get
-            {
-                return _dpi.IsAttached;
-            }
-        }
+        public bool IsAttached => _dpi.IsAttached;
         #endregion
 
         #region ResetValue()
         public override void ResetValue()
         {
-            this.ElementModel.Model.ClearValue(_dependencyProperty);
+            this.ElementModel.ClearValue(_dependencyProperty);
             _isDefault = null;
 
+            // ReSharper disable ExplicitCallerInfoArgument
             this.OnPropertyChanged(nameof(this.Value));
             this.OnPropertyChanged(nameof(this.ValueString));
             this.OnPropertyChanged(nameof(this.CanResetValue));
             this.OnPropertyChanged(nameof(this.IsDefault));
+            // ReSharper restore ExplicitCallerInfoArgument
         }
         #endregion
 
         #region CanAnalyze
-        public override bool CanAnalyze
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool CanAnalyze => true;
         #endregion
 
         #region Analyze()
@@ -530,7 +481,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         public override void Analyze()
         {
             var sb = new StringBuilder();
-            var dependencyObject = this.ElementModel.Model;
+            var dependencyObject = this.ElementModel;
             var dp = _dependencyProperty;
 
             // Value
@@ -549,8 +500,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             // Style value
             var fe = dependencyObject as FrameworkElement;
-            if (fe != null &&
-                fe.Style != null)
+            if (fe?.Style != null)
             {
                 var styleValue = fe.Style.GetPropertyValue(dp);
 
@@ -580,7 +530,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 return false;
             }
 
-            if (!(this.ElementModel.Model is UIElement) &&
+            if (!(this.ElementModel is UIElement) &&
                 (this.DependencyProperty == Grid.RowProperty
                 || this.DependencyProperty == Grid.ColumnProperty
                 || this.DependencyProperty == Grid.RowSpanProperty

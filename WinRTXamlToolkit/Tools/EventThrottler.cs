@@ -97,7 +97,11 @@ namespace WinRTXamlToolkit.Tools
                         this.next = null;
                         var task = nextCopy.Item1();
                         await task;
-                        nextCopy.Item2.SetResult(task.Result);
+
+                        if (!nextCopy.Item2.Task.IsCanceled)
+                        {
+                            nextCopy.Item2.SetResult(task.Result);
+                        }
                     }
                 }
                 finally

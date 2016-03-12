@@ -135,12 +135,14 @@
     <Compile Include="ViewModels\ElementListToolWindowViewModel.cs" />
     <Compile Include="ViewModels\FocusTrackerToolWindowViewModel.cs" />
     <Compile Include="ViewModels\PropertyGroupViewModel.cs" />
+    <Compile Include="ViewModels\PropertyList.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
     <Compile Include="ViewModels\ResourceBrowserToolWindowViewModel.cs" />
     <Compile Include="ViewModels\ResourceViewModel.cs" />
-    <Compile Include="ViewModels\StubTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\StubVisualTreeItemViewModel.cs" />
     <Compile Include="ViewModels\ToolWindowViewModel.cs" />
     <Compile Include="ViewModels\TreeItemViewModel.cs" />
+    <Compile Include="ViewModels\VisualTreeItemViewModel.cs" />
     <Compile Include="ViewModels\VisualTreeViewModel.cs" />
     <Compile Include="Views\DebugConsoleView.xaml.cs">
       <DependentUpon>DebugConsoleView.xaml</DependentUpon>

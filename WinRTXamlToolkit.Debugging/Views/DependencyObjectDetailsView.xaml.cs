@@ -20,7 +20,7 @@ namespace WinRTXamlToolkit.Debugging.Views
                 return;
             }
 
-            vm.TreeModel.IsPreviewShown = true;
+            vm.VisualTreeViewModel.IsPreviewShown = true;
 #pragma warning disable 4014
             vm.LoadPreviewAsync();
 #pragma warning restore 4014
@@ -35,7 +35,7 @@ namespace WinRTXamlToolkit.Debugging.Views
                 return;
             }
 
-            vm.TreeModel.IsPreviewShown = false;
+            vm.VisualTreeViewModel.IsPreviewShown = false;
         }
     }
 }

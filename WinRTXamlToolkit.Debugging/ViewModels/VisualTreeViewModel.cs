@@ -15,42 +15,7 @@ using WinRTXamlToolkit.Debugging.Views;
 
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
-    public class PropertyList : BindableBase
-    {
-        #region Name
-        private string _name;
-        /// <summary>
-        /// Gets or sets the name of the property list.
-        /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { this.SetProperty(ref _name, value); }
-        }
-        #endregion
-
-        #region CommaSeparatedPropertyNames
-        private string _commaSeparatedPropertyNames;
-        /// <summary>
-        /// Gets or sets the comma separated property names.
-        /// </summary>
-        public string CommaSeparatedPropertyNames
-        {
-            get { return _commaSeparatedPropertyNames; }
-            set
-            {
-                if (this.SetProperty(ref _commaSeparatedPropertyNames, value))
-                {
-                    this.PropertyNames = new ObservableCollection<string>(_commaSeparatedPropertyNames.Split(',').Select(pn => pn.Trim()).Where(pn => !string.IsNullOrEmpty(pn)));
-                }
-            }
-        }
-        #endregion
-
-        public ObservableCollection<string> PropertyNames { get; private set; }
-    }
-
-    public class VisualTreeViewModel : BindableBase
+    public class VisualTreeViewModel : TreeViewModel
     {
         private Point _pointerPosition;
         private bool _isShiftPressed;
@@ -58,10 +23,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
         #region Instance (singleton implementation)
         private static VisualTreeViewModel _instance;
-        public static VisualTreeViewModel Instance
-        {
-            get { return _instance ?? (_instance = new VisualTreeViewModel()); }
-        }
+        public static VisualTreeViewModel Instance => _instance ?? (_instance = new VisualTreeViewModel());
 
         private VisualTreeViewModel()
         {
@@ -70,9 +32,9 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.GetPropertyLists();
             this.Build();
 #pragma warning restore 4014
-            Window.Current.CoreWindow.KeyDown += OnKeyDown;
-            Window.Current.CoreWindow.KeyUp += OnKeyUp;
-            Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
+            Window.Current.CoreWindow.KeyDown += this.OnKeyDown;
+            Window.Current.CoreWindow.KeyUp += this.OnKeyUp;
+            Window.Current.CoreWindow.PointerMoved += this.OnPointerMoved;
         }
         #endregion
 
@@ -95,7 +57,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             if (value)
             {
                 if (this.RootElements.Count == 0 ||
-                    this.RootElements[0] is StubTreeItemViewModel)
+                    this.RootElements[0] is StubVisualTreeItemViewModel)
                 {
                     //await Task.Delay(3000);
                     await this.Refresh();
@@ -111,64 +73,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
         
         #region RootElements
-        private readonly ObservableCollection<TreeItemViewModel> _rootElements = new ObservableCollection<TreeItemViewModel>();
         /// <summary>
-        /// Gets or sets the root elements in the visual tree.
+        /// Gets the root elements in the visual tree.
         /// </summary>
-        public ObservableCollection<TreeItemViewModel> RootElements
-        {
-            get { return _rootElements; }
-            //set { this.SetProperty(ref _rootElements, value); }
-        }
-        #endregion
-
-        #region SelectedItem
-        private TreeItemViewModel _selectedItem;
-        public TreeItemViewModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                var oldSelectedItem = _selectedItem as DependencyObjectViewModel;
-
-                if (this.SetProperty(ref _selectedItem, value))
-                {
-                    var newSelectedItem = _selectedItem as DependencyObjectViewModel;
-
-                    OnSelectedItemChanged(oldSelectedItem, newSelectedItem);
-                }
-            }
-        }
-
-        private void OnSelectedItemChanged(
-            DependencyObjectViewModel oldSelectedItem,
-            DependencyObjectViewModel newSelectedItem)
-        {
-            if (oldSelectedItem != null)
-            {
-                oldSelectedItem.ModelPropertyChanged -= OnModelPropertyChanged;
-            }
-
-            if (newSelectedItem != null)
-            {
-                newSelectedItem.ModelPropertyChanged += OnModelPropertyChanged;
-#pragma warning disable 4014
-                newSelectedItem.LoadPropertiesAsync();
-#pragma warning restore 4014
-            }
-
-            UpdateHighlight();
-        }
-
-        private async void OnModelPropertyChanged(object sender, EventArgs eventArgs)
-        {
-            UpdateHighlight();
-
-            // Wait for pending layout updates
-            await Task.Delay(100);
-
-            UpdateHighlight();
-        }
+        public ObservableCollection<VisualTreeItemViewModel> RootElements { get; } = new ObservableCollection<VisualTreeItemViewModel>();
         #endregion
 
         #region HighlightMargin
@@ -217,7 +125,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #endregion
 
         #region ShowPropertiesGrouped
-        private bool _showPropertiesGrouped = false;
+        private bool _showPropertiesGrouped;
         /// <summary>
         /// Gets or sets the property that indicates whether the properties should be shown grouped.
         /// </summary>
@@ -383,11 +291,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (this.RootElements == null || this.RootElements.Count == 0)
             {
-                await Refresh();
+                await this.Refresh();
             }
 
             var vm = this.RootElements[0] as DependencyObjectViewModel;
-            var ancestorIndex = ancestors.IndexOf(vm.Model);
+            var ancestorIndex = ancestors.IndexOf(vm?.Model as DependencyObject);
 
             if (ancestorIndex < 0)
             {
@@ -405,14 +313,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     if (popup.Children.Count > 0)
                     {
                         vm = popup.Children[0] as DependencyObjectViewModel;
-                        ancestorIndex = ancestors.IndexOf(vm.Model);
+                        ancestorIndex = ancestors.IndexOf(vm?.Model as DependencyObject);
                     }
                 }
 
                 if (ancestorIndex < 0)
                 {
-                    await Refresh();
-                    ancestorIndex = ancestors.IndexOf(vm.Model);
+                    await this.Refresh();
+                    ancestorIndex = ancestors.IndexOf(vm?.Model as DependencyObject);
                 }
             }
 
@@ -423,14 +331,14 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 //Debugger.Break();
                 if (refreshOnFail)
                 {
-                    await Refresh();
-                    return await this.SelectItemAsync(element, false);
+                    await this.Refresh();
+                    return await this.SelectItemAsync(element);
                 }
 
                 return false;
             }
 
-            //Debug.Assert(vm.Model == ancestors[0]);
+            System.Diagnostics.Debug.Assert(vm != null);
 
             for (ancestorIndex = ancestorIndex - 1; ancestorIndex >= 0; ancestorIndex--)
             {
@@ -466,7 +374,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                         //    vm.Parent.Children.Insert(i, new DependencyObjectViewModel(this, vm.Parent, ancestors[ancestorIndex]));
                         //}
 
-                        return await this.SelectItemAsync(element, false);
+                        return await this.SelectItemAsync(element);
                     }
 
                     return false;
@@ -529,20 +437,20 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region GetPropertyLists()
         private void GetPropertyLists()
         {
-            this.PropertyLists = new ObservableCollection<PropertyList>();
-            this.PropertyLists.Add(
+            this.PropertyLists = new ObservableCollection<PropertyList>
+            {
                 new PropertyList
                 {
                     Name = "All",
                     CommaSeparatedPropertyNames = string.Empty
-                });
-            this.PropertyLists.Add(
+                },
                 new PropertyList
                 {
                     Name = "Layout",
                     CommaSeparatedPropertyNames =
                         "Width,Height,MinWidth,MinHeight,MaxWidth,MaxHeight,Orientation,Clip,ActualWidth,ActualHeight,Margin,Padding,Canvas.Left,Canvas.Top,Canvas.Zindex,ItemHeight,ItemWidth,LineStackingStrategy,LineHeight,Visibility,Opacity,RenderTransform,Projection,StrokeThickness,BorderThickness,Grid.Row,Grid.Column,Grid.RowSpan,Grid.ColumnSpan,VariableSizedWrapGrid.ColumnSpan,VariableSizedWrapGrid.RowSpan,VerticalAlignment,HorizontalAlignment,VerticalContentAlignment,HorizontalContentAlignment"
-                });
+                }
+            };
             this.CurrentPropertyList = this.PropertyLists[0];
         } 
         #endregion
@@ -559,14 +467,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 var ancestors = rootElement.GetAncestors();
 
-                if (ancestors != null)
-                {
-                    var newRoot = ancestors.OfType<UIElement>().LastOrDefault();
+                var newRoot = ancestors?.OfType<UIElement>().LastOrDefault();
 
-                    if (newRoot != null)
-                    {
-                        rootElement = newRoot;
-                    }
+                if (newRoot != null)
+                {
+                    rootElement = newRoot;
                 }
 
                 this.RootElements.Add(new DependencyObjectViewModel(this, null, rootElement));
@@ -672,14 +577,48 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     0);
             }
 #pragma warning disable 168
-            catch (Exception ex)
+            catch (Exception)
 #pragma warning restore 168
             {
                 this.HighlightVisibility = Visibility.Collapsed;
             }
 
             this.HighlightVisibility = Visibility.Visible;
-        } 
+        }
         #endregion
+
+        protected override void OnSelectedItemChanged(
+            TreeItemViewModel oldSelectedItem,
+            TreeItemViewModel newSelectedItem)
+        {
+            var oldItemAsDependencyObjectViewModel = oldSelectedItem as DependencyObjectViewModel;
+
+            if (oldItemAsDependencyObjectViewModel != null)
+            {
+                oldItemAsDependencyObjectViewModel.ModelPropertyChanged -= this.OnModelPropertyChanged;
+            }
+
+            var newItemAsDependencyObjectViewModel = newSelectedItem as DependencyObjectViewModel;
+
+            if (newItemAsDependencyObjectViewModel != null)
+            {
+                newItemAsDependencyObjectViewModel.ModelPropertyChanged += this.OnModelPropertyChanged;
+#pragma warning disable 4014
+                newSelectedItem.LoadPropertiesAsync();
+#pragma warning restore 4014
+            }
+
+            this.UpdateHighlight();
+        }
+
+        private async void OnModelPropertyChanged(object sender, EventArgs eventArgs)
+        {
+            this.UpdateHighlight();
+
+            // Wait for pending layout updates
+            await Task.Delay(100);
+
+            this.UpdateHighlight();
+        }
     }
 }

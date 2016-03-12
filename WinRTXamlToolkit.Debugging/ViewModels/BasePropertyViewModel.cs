@@ -8,7 +8,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public abstract class BasePropertyViewModel : BindableBase
     {
-        public DependencyObjectViewModel ElementModel { get; private set; }
+        public DependencyObjectViewModel ElementViewModel { get; private set; }
 
         public const string AppearanceCategoryName = "Appearance";
         public const string BrushCategoryName = "Brush";
@@ -85,7 +85,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
         }
 
-        private async Task AddSimilarElementsAsync(List<object> elements, object baseValue, TreeItemViewModel item)
+        private async Task AddSimilarElementsAsync(List<object> elements, object baseValue, VisualTreeItemViewModel item)
         {
             var dobvm = item as DependencyObjectViewModel;
 
@@ -102,7 +102,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             if (item.Children == null ||
                 item.Children.Count == 0 ||
-                (item.Children.Count == 1 && item.Children[0] is StubTreeItemViewModel))
+                (item.Children.Count == 1 && item.Children[0] is StubVisualTreeItemViewModel))
             {
                 await item.LoadChildrenAsync();
             }
@@ -114,16 +114,16 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 
             foreach (var child in item.Children)
             {
-                await this.AddSimilarElementsAsync(elements, baseValue, child);
+                await this.AddSimilarElementsAsync(elements, baseValue, (VisualTreeItemViewModel)child);
             }
         }
         #endregion
 
         public RelayCommand FindSimilarCommand { get; private set; }
 
-        public BasePropertyViewModel(DependencyObjectViewModel elementModel)
+        public BasePropertyViewModel(DependencyObjectViewModel elementViewModel)
         {
-            this.ElementModel = elementModel;
+            this.ElementViewModel = elementViewModel;
             this.ResetValueCommand = new RelayCommand(
                 this.ResetValue,
                 () => this.CanResetValue);
@@ -133,7 +133,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             this.FindSimilarCommand = new RelayCommand(
                 this.FindSimilar,
                 () => this.CanFindSimilar);
-            this.PropertyChanged += OnPropertyChanged;
+            this.PropertyChanged += this.OnPropertyChanged;
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

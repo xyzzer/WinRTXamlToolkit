@@ -8,8 +8,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
     {
         private readonly PropertyInfo _propertyInfo;
 
-        public PropertyViewModel(DependencyObjectViewModel elementModel, PropertyInfo propertyInfo)
-            : base(elementModel)
+        public PropertyViewModel(DependencyObjectViewModel elementViewModel, PropertyInfo propertyInfo)
+            : base(elementViewModel)
         {
             _propertyInfo = propertyInfo;
             this.Name = propertyInfo.Name;
@@ -21,7 +21,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             {
                 object val;
 
-                if (this.TryGetValue(this.ElementModel.Model, out val))
+                if (this.TryGetValue(this.ElementViewModel.Model, out val))
                 {
                     return val;
                 }
@@ -30,7 +30,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             }
             set
             {
-                _propertyInfo.SetValue(this.ElementModel.Model, value);
+                _propertyInfo.SetValue(this.ElementViewModel.Model, value);
                 _isDefault = null;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.CanResetValue));

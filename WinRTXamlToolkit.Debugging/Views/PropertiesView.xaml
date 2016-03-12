@@ -263,7 +263,7 @@
                             <Interactivity:Interaction.Behaviors>
                                 <Behaviors:HighlightBehavior
                                     x:Name="highlightBehavior"
-                                    SearchString="{Binding ElementModel.TreeModel.PropertyNameFilter}" />
+                                    SearchString="{Binding ElementViewModel.TreeViewModel.PropertyNameFilter}" />
                                     <!--HighlightBrush="Aqua" />-->
                             </Interactivity:Interaction.Behaviors>
                         </TextBlock>

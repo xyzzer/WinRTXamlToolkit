@@ -22,7 +22,7 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                     return new DoubleCoercionHelper(0, double.MaxValue);
                 }
 
-                if (dp == FrameworkElement.OpacityProperty)
+                if (dp == UIElement.OpacityProperty)
                 {
                     return new DoubleCoercionHelper(0, 1);
                 }

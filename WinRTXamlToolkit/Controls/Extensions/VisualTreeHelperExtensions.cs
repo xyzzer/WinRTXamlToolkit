@@ -38,14 +38,11 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             var root = window.Content as FrameworkElement;
 
-            if (root != null)
-            {
-                var ancestors = root.GetAncestors().ToList();
+            var ancestors = root?.GetAncestors().ToList();
 
-                if (ancestors.Count > 0)
-                {
-                    root = (FrameworkElement)ancestors[ancestors.Count - 1];
-                }
+            if (ancestors?.Count > 0)
+            {
+                root = (FrameworkElement)ancestors[ancestors.Count - 1];
             }
 
             return root;
@@ -109,9 +106,25 @@ namespace WinRTXamlToolkit.Controls.Extensions
             }
             else
             {
-                var count = VisualTreeHelper.GetChildrenCount(start);
+                int childrenCount;
 
-                for (int i = 0; i < count; i++)
+                try
+                {
+                    if (start is DataTemplate)
+                    {
+                        childrenCount = 0;
+                    }
+                    else
+                    {
+                        childrenCount = VisualTreeHelper.GetChildrenCount(start);
+                    }
+                }
+                catch (Exception)
+                {
+                    childrenCount = 0;
+                }
+
+                for (int i = 0; i < childrenCount; i++)
                 {
                     var child = VisualTreeHelper.GetChild(start, i);
                     queue.Enqueue(child);
@@ -135,9 +148,25 @@ namespace WinRTXamlToolkit.Controls.Extensions
                 }
                 else
                 {
-                    var count = VisualTreeHelper.GetChildrenCount(parent);
+                    int childrenCount;
 
-                    for (int i = 0; i < count; i++)
+                    try
+                    {
+                        if (start is DataTemplate)
+                        {
+                            childrenCount = 0;
+                        }
+                        else
+                        {
+                            childrenCount = VisualTreeHelper.GetChildrenCount(start);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        childrenCount = 0;
+                    }
+
+                    for (int i = 0; i < childrenCount; i++)
                     {
                         var child = VisualTreeHelper.GetChild(parent, i);
                         yield return child;
@@ -161,13 +190,10 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
             var popup = parent as Popup;
 
-            if (popup != null)
+            if (popup?.Child != null)
             {
-                if (popup.Child != null)
-                {
-                    yield return popup.Child;
-                    yield break;
-                }
+                yield return popup.Child;
+                yield break;
             }
 
             var count = VisualTreeHelper.GetChildrenCount(parent);
@@ -336,8 +362,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
             }
 
             var fe = relativeTo as FrameworkElement;
-            var aw = fe != null ? fe.ActualWidth : 0;
-            var ah = fe != null ? fe.ActualHeight : 0;
+            var aw = fe?.ActualWidth ?? 0;
+            var ah = fe?.ActualHeight ?? 0;
 
             var absoluteOrigin = new Point(aw * origin.X, ah * origin.X);
 
@@ -393,8 +419,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
             if (dob == relativeTo)
             {
                 var fe = relativeTo as FrameworkElement;
-                var aw = fe != null ? fe.ActualWidth : 0;
-                var ah = fe != null ? fe.ActualHeight : 0;
+                var aw = fe?.ActualWidth ?? 0;
+                var ah = fe?.ActualHeight ?? 0;
 
                 return new Rect(0, 0, aw, ah);
             }
@@ -408,8 +434,8 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
 
             var fe2 = dob as FrameworkElement;
-            var aw2 = fe2 != null ? fe2.ActualWidth : 0;
-            var ah2 = fe2 != null ? fe2.ActualHeight : 0;
+            var aw2 = fe2?.ActualWidth ?? 0;
+            var ah2 = fe2?.ActualHeight ?? 0;
 
             var topLeft =
                 dob
