@@ -13,6 +13,43 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using WinRTXamlToolkit.Debugging.Views;
 
+namespace WinRTXamlToolkit.Debugging.ViewModels.Stubs
+{
+    /// <summary>
+    /// A stub type - a hack really so that we could show the app object in the visual tree view.
+    /// </summary>
+    /// <seealso cref="Windows.UI.Xaml.Controls.Control" />
+    internal class Application : Control
+    {
+        private static void Clone(ResourceDictionary source, ResourceDictionary target)
+        {
+            foreach (var resourceKeyValue in source)
+            {
+                target.Add(resourceKeyValue.Key, resourceKeyValue.Value);
+            }
+
+            foreach (var dictionary in source.MergedDictionaries)
+            {
+                var clone = new ResourceDictionary();
+                Clone(dictionary, clone);
+                target.MergedDictionaries.Add(clone);
+            }
+
+            foreach (var dictionaryKeyValue in source.ThemeDictionaries)
+            {
+                var clone = new ResourceDictionary();
+                Clone((ResourceDictionary)dictionaryKeyValue.Value, clone);
+                target.ThemeDictionaries.Add(dictionaryKeyValue.Key, clone);
+            }
+        }
+
+        public Application()
+        {
+            Clone(Windows.UI.Xaml.Application.Current.Resources, this.Resources);
+        }
+    }
+}
+
 namespace WinRTXamlToolkit.Debugging.ViewModels
 {
     public class VisualTreeViewModel : TreeViewModel
@@ -188,6 +225,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
             get { return _propertyLists; }
             private set { this.SetProperty(ref _propertyLists, value); }
         }
+
+        public DependencyObjectViewModel AppViewModel { get; private set; }
         #endregion
 
         #region OnPointerMoved()
@@ -461,6 +500,11 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
 #pragma warning restore 1998
         {
             this.RootElements.Clear();
+
+            var appResourcesElement = new Stubs.Application();
+            this.AppViewModel = new DependencyObjectViewModel(this, null, appResourcesElement);
+            this.RootElements.Add(this.AppViewModel);
+
             var rootElement = VisualTreeHelperExtensions.GetRealWindowRoot();
 
             if (rootElement != null)

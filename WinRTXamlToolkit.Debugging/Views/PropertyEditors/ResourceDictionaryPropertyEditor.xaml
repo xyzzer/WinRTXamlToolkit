@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:WinRTXamlToolkit.Converters"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -22,10 +23,16 @@
         <StackPanel>
             <TextBlock
                 x:Name="InfoTextBlock" />
-            <Button
-                x:Name="ResourceBrowserButton"
-                Content="View"
-                Click="OnResourceBrowserButtonClick" />
+            <controls:WrapPanel>
+                <Button
+                    x:Name="ResourceBrowserButton"
+                    Content="View"
+                    Click="OnResourceBrowserButtonClick" />
+                <Button
+                    x:Name="AllResourceProvidersButton"
+                    Content="All Resource Providers"
+                    Click="OnAllResourceProvidersButtonClick"/>
+            </controls:WrapPanel>
         </StackPanel>
     </Grid>
 </UserControl>

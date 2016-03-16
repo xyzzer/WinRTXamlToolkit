@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Debugging.ViewModels;
 
@@ -38,6 +40,41 @@ namespace WinRTXamlToolkit.Debugging.Views.PropertyEditors
             var propertyViewModel = (BasePropertyViewModel)this.DataContext;
             var resourceDictionary = (ResourceDictionary)propertyViewModel.Value;
             var vm = new ResourceBrowserToolWindowViewModel(resourceDictionary);
+            DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
+        }
+
+        private void OnAllResourceProvidersButtonClick(object sender, RoutedEventArgs e)
+        {
+            var elements = new List<object>();
+
+            var propertyViewModel = (BasePropertyViewModel)this.DataContext;
+            var element = propertyViewModel.ElementViewModel;
+
+            while (element != null)
+            {
+                var resources = (element.Model as FrameworkElement)?.Resources;
+
+                if (resources != null)
+                {
+                    if (resources.Any() ||
+                        resources.ThemeDictionaries.Any() ||
+                        resources.MergedDictionaries.Any())
+                    {
+                        elements.Add(element);
+                    }
+                }
+
+                element = element.Parent as DependencyObjectViewModel;
+            }
+
+            if (Application.Current.Resources.Any() ||
+                Application.Current.Resources.ThemeDictionaries.Any() ||
+                Application.Current.Resources.MergedDictionaries.Any())
+            {
+                elements.Add(VisualTreeViewModel.Instance.AppViewModel);
+            }
+
+            var vm = new ElementListToolWindowViewModel(elements, "Elements with resources");
             DebugConsoleViewModel.Instance.ToolWindows.Add(vm);
         }
     }
