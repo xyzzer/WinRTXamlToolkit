@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Debugging.ViewModels;
+using WinRTXamlToolkit.Debugging.ViewModels.ResourceBrowser;
 
 namespace WinRTXamlToolkit.Debugging.Views
 {

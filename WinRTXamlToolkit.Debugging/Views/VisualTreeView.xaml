@@ -33,7 +33,7 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <DataTemplate
-                x:Key="DependencyPropertyDetailsTemplate">
+                x:Key="PropertyDetailsTemplate">
                 <local:DependencyObjectDetailsView />
             </DataTemplate>
             <DataTemplate
@@ -48,7 +48,7 @@
             </DataTemplate>
             <local:VisualTreeViewItemDetailsTemplateSelector
                 x:Key="VisualTreeViewItemDetailsTemplateSelector"
-                DependencyPropertyDetailsTemplate="{StaticResource DependencyPropertyDetailsTemplate}"
+                PropertyDetailsTemplate="{StaticResource PropertyDetailsTemplate}"
                 DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
             <DataTemplate
                 x:Key="TreeViewItemTemplate">

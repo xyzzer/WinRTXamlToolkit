@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    xmlns:common="using:WinRTXamlToolkit.Common"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     xmlns:data="using:WinRTXamlToolkit.Controls.Data"
     IsTabStop="False">
@@ -34,30 +35,35 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <DataTemplate
-                x:Key="DependencyPropertyDetailsTemplate">
-                <local:DependencyObjectDetailsView
-                    DataContext="{Binding PropertiesViewModel}" />
-            </DataTemplate>
-            <DataTemplate
-                x:Key="DefaultDetailsTemplate">
-                <Grid>
-                    <TextBlock
-                        Text="{Binding DisplayName}" />
-                </Grid>
-            </DataTemplate>
-            <local:VisualTreeViewItemDetailsTemplateSelector
-                x:Key="VisualTreeViewItemDetailsTemplateSelector"
-                DependencyPropertyDetailsTemplate="{StaticResource DependencyPropertyDetailsTemplate}"
-                DefaultDetailsTemplate="{StaticResource DefaultDetailsTemplate}" />
-            <DataTemplate
                 x:Key="TreeViewItemTemplate">
                 <data:DataTemplateExtensions.Hierarchy>
                     <data:HierarchicalDataTemplate
                         ItemsSource="{Binding Children}" />
                 </data:DataTemplateExtensions.Hierarchy>
-                <TextBlock
-                    FontWeight="{Binding FontWeight}"
-                    Text="{Binding Key}" />
+                <ContentControl
+                    Content="{Binding}">
+                    <ContentControl.ContentTemplateSelector>
+                        <common:ImplicitDataTemplateSelector>
+                            <DataTemplate
+                                x:Key="ResourceDictionaryTreeItemViewModel">
+                                <TextBlock>
+                                    Resource Dictionary<Run Text="{Binding QualifierString}" />
+                                </TextBlock>
+                            </DataTemplate>
+                            <DataTemplate
+                                x:Key="MergedDictionariesTreeItemViewModel">
+                                <TextBlock
+                                    Text="Merged Dictionaries" />
+                            </DataTemplate>
+                            <DataTemplate
+                                x:Key="ThemeDictionariesTreeItemViewModel">
+                                <TextBlock
+                                    Text="Theme Dictionaries" />
+                            </DataTemplate>
+                            
+                        </common:ImplicitDataTemplateSelector>
+                    </ContentControl.ContentTemplateSelector>
+                </ContentControl>
             </DataTemplate>
             <!--<data:HierarchicalDataTemplate
                     ItemsSource="{Binding Children}">
@@ -105,11 +111,16 @@
                 <!-- Properties of selected resource -->
                 <ContentControl
                     Grid.Column="2"
-                    DataContext="{Binding SelectedResourceViewModel}"
+                    DataContext="{Binding SelectedResourceDictionaryViewModel}"
                     Content="{Binding}"
                     HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"
-                    ContentTemplateSelector="{StaticResource VisualTreeViewItemDetailsTemplateSelector}" />
+                    VerticalContentAlignment="Stretch">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <local:PropertiesView />
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
             </Grid>
         </controls:ToolWindow>
     </Grid>

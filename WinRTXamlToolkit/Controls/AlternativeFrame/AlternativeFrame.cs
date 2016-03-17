@@ -564,8 +564,7 @@ namespace WinRTXamlToolkit.Controls
         /// </exception>
         public async Task<bool> GoBackAsync()
         {
-            return
-                await _navigationCallThrottler.RunAsync(this.ThrottledGoBackAsync, false);
+            return await this.ThrottledGoBackAsync();
         }
 
         private async Task<bool> ThrottledGoBackAsync()

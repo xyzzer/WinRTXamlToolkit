@@ -314,6 +314,7 @@
     <Compile Include="Tools\EnumExtensions.cs" />
     <Compile Include="Tools\EventThrottler.cs" />
     <Compile Include="Tools\EventThrottlerMultiThreaded.cs" />
+    <Compile Include="Tools\EventThrottler_TResult.cs" />
     <Compile Include="Tools\MathEx.cs" />
     <Compile Include="Tools\TimeoutCheck.cs" />
     <Compile Include="Tools\TryCatchRetry.cs" />

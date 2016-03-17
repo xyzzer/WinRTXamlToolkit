@@ -137,8 +137,11 @@
     <Compile Include="ViewModels\PropertyGroupViewModel.cs" />
     <Compile Include="ViewModels\PropertyList.cs" />
     <Compile Include="ViewModels\PropertyViewModel.cs" />
-    <Compile Include="ViewModels\ResourceBrowserToolWindowViewModel.cs" />
-    <Compile Include="ViewModels\ResourceViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowser\MergedDictionariesTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowser\ResourceBrowserToolWindowViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowser\ResourceDictionaryTreeItemViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowser\ResourceViewModel.cs" />
+    <Compile Include="ViewModels\ResourceBrowser\ThemeDictionariesTreeItemViewModel.cs" />
     <Compile Include="ViewModels\StubVisualTreeItemViewModel.cs" />
     <Compile Include="ViewModels\ToolWindowViewModel.cs" />
     <Compile Include="ViewModels\TreeItemViewModel.cs" />
