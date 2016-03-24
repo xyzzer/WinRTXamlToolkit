@@ -40,25 +40,31 @@ namespace WinRTXamlToolkit.Sample.Views
                 return;
             }
 
-            var items = new List<NameValueItem>();
+            var items1 = new List<NameValueItem>();
+            var items2 = new List<NameValueItem>();
+            var items3 = new List<NameValueItem>();
 
             for (int i = 0; i < NumberOfIitemsNumericUpDown.Value; i++)
             {
-                items.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                items1.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                items2.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                items3.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
             }
 
-            RunIfSelected(this.ColumnChart, () => ((ColumnSeries)this.ColumnChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.BarChart, () => ((BarSeries)this.BarChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart2.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.MixedChart, () => ((ColumnSeries)this.MixedChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.MixedChart, () => ((LineSeries)this.MixedChart.Series[1]).ItemsSource = items);;
-            RunIfSelected(this.AreaChart, () => ((AreaSeries)this.AreaChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.AreaChartWithNoLabels,
+            this.RunIfSelected(this.ColumnChart, () => ((ColumnSeries)this.ColumnChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.BarChart, () => ((BarSeries)this.BarChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart.Series[1]).ItemsSource = items2);
+            this.RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart.Series[2]).ItemsSource = items3);
+            this.RunIfSelected(this.LineChart, () => ((LineSeries)this.LineChart2.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.MixedChart, () => ((ColumnSeries)this.MixedChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.MixedChart, () => ((LineSeries)this.MixedChart.Series[1]).ItemsSource = items1);
+            this.RunIfSelected(this.AreaChart, () => ((AreaSeries)this.AreaChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.AreaChartWithNoLabels,
                 () =>
                 {
                     var series = (AreaSeries)this.AreaChartWithNoLabels.Series[0];
-                    series.ItemsSource = items;
+                    series.ItemsSource = items1;
 
                     if (!this.axisLabelsHidden)
                     {
@@ -82,29 +88,29 @@ namespace WinRTXamlToolkit.Sample.Views
                     }
                 });
 
-            RunIfSelected(this.BubbleChart, () => ((BubbleSeries)this.BubbleChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.ScatterChart, () => ((ScatterSeries)this.ScatterChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items);
-            RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items);
-            RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items);
-            RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource = items);
-            RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource = items);
-            RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource = items);
+            this.RunIfSelected(this.BubbleChart, () => ((BubbleSeries)this.BubbleChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.ScatterChart, () => ((ScatterSeries)this.ScatterChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[0].ItemsSource = items1);
+            this.RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[1].ItemsSource = items2);
+            this.RunIfSelected(this.StackedBar, () => ((StackedBarSeries)this.StackedBar.Series[0]).SeriesDefinitions[2].ItemsSource = items3);
+            this.RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[0].ItemsSource = items1);
+            this.RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[1].ItemsSource = items2);
+            this.RunIfSelected(this.StackedBar100, () => ((Stacked100BarSeries)this.StackedBar100.Series[0]).SeriesDefinitions[2].ItemsSource = items3);
 
-            RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource = items);
-            RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource = items);
-            RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource = items);
+            this.RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[0].ItemsSource = items1);
+            this.RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[1].ItemsSource = items2);
+            this.RunIfSelected(this.StackedColumn, () => ((StackedColumnSeries)this.StackedColumn.Series[0]).SeriesDefinitions[2].ItemsSource = items3);
 
-            RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[0].ItemsSource = items);
-            RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[1].ItemsSource = items);
-            RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[2].ItemsSource = items);
+            this.RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[0].ItemsSource = items1);
+            this.RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[1].ItemsSource = items2);
+            this.RunIfSelected(this.StackedColumn100, () => ((Stacked100ColumnSeries)this.StackedColumn100.Series[0]).SeriesDefinitions[2].ItemsSource = items3);
 
-            RunIfSelected(this.PieChart, () => ((PieSeries)this.PieChart.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.PieChartWithCustomDesign, () => ((PieSeries)this.PieChartWithCustomDesign.Series[0]).ItemsSource = items);;
-            RunIfSelected(this.LineChartWithAxes,
+            this.RunIfSelected(this.PieChart, () => ((PieSeries)this.PieChart.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.PieChartWithCustomDesign, () => ((PieSeries)this.PieChartWithCustomDesign.Series[0]).ItemsSource = items1);
+            this.RunIfSelected(this.LineChartWithAxes,
                 () =>
                 {
-                    ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = items;
+                    ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = items1;
                     ((LineSeries)LineChartWithAxes.Series[0]).DependentRangeAxis =
                         new LinearAxis
                         {

@@ -444,7 +444,17 @@
                 Title="Line Chart"
                 Margin="70,0">
                 <charting:LineSeries
-                    Title="Population"
+                    Title="Population in 2005"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True" />
+                <charting:LineSeries
+                    Title="Population in 2010"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True" />
+                <charting:LineSeries
+                    Title="Population in 2015"
                     IndependentValueBinding="{Binding Name}"
                     DependentValueBinding="{Binding Value}"
                     IsSelectionEnabled="True" />
