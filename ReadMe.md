@@ -9,9 +9,7 @@ This project is not managed by Microsoft. Its coordinator is currently employed 
 It is not a full port of the [Silverlight Toolkit](http://silverlight.codeplex.com/), though it includes ported versions of some of its controls. This does not diminish the value of the code that is part of it and that you are free to use and modify. Attribution is welcomed, but not required.
 
 ### How do I use it?
-Watch the [introduction video](http://aka.ms/IntroductionToWinRTXamlToolkit).
-
-Clone the full [source code](https://github.com/xyzzer/WinRTXamlToolkit.git) or just the snippet you find useful. Be sure to try the samples! Find me on [twitter](http://twitter.com/#!/xyzzer) to ask any questions.
+Clone the full [source code](https://github.com/xyzzer/WinRTXamlToolkit.git) or just the snippet you find useful. Be sure to try the samples! Ask questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/winrt-xaml-toolkit).
 
 For current version for UWP (Windows 10 and Windows Phone 10) use NuGet
 * [WinRT XAML Toolkit for Windows 10](https://www.nuget.org/packages/winrtxamltoolkit)
