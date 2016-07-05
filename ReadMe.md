@@ -2,7 +2,7 @@
 A set of controls, extensions and helper classes for [Windows Runtime XAML](http://en.wikipedia.org/wiki/Windows_Runtime_XAML_Framework) applications.
 
 ### Project Status
-The development of the project has kind of slowed down in 2013. I'm still hoping to speed it up, but I can't promise anything. I have a notebook with tons of ideas and a backlog of bugs and questions to fix. At this stage I would try cross-referencing questions here with [Stack Overflow](http://stackoverflow.com/questions/tagged/winrt-toolkit) to increase the change of getting an answer. If you see a bug that needs fixed - you should try fixing it yourself. I'll happily take a pull request to include it here and publish a fixed version to NuGet.
+The development of the project has kind of slowed down in 2013. I'm still hoping to speed it up, but I can't promise anything. I have a notebook with tons of ideas and a backlog of bugs and questions to fix. At this stage I would try cross-referencing questions here with [Stack Overflow](http://stackoverflow.com/questions/tagged/winrt-xaml-toolkit) to increase the change of getting an answer. If you see a bug that needs fixed - you should try fixing it yourself. I'll happily take a pull request to include it here and publish a fixed version to NuGet.
 
 ### Disclaimer
 This project is not managed by Microsoft. Its coordinator is currently employed by Microsoft, but the project has mostly been developed earlier and continues to be developed outside of work hours.
