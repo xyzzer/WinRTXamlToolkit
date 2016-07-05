@@ -76,11 +76,11 @@
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
                             x:Name="PART_ContainerGrid">
-                            <Image
-                                x:Name="PART_HueRingImage"
+                            <Ellipse
+                                x:Name="PART_HueRing"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
-                                Stretch="None"
+                                Stretch="Fill"
                                 Margin="{TemplateBinding ThumbBorderThickness}"/>
                             <controls:RingSlice
                                 x:Name="PART_RingThumb"
