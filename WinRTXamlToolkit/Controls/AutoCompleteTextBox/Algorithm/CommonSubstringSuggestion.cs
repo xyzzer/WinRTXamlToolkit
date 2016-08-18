@@ -14,6 +14,8 @@ namespace WinRTXamlToolkit.Controls
         {
             private ScoredString GetScoreByLongestCommonSubstring(string wordToSuggest, string suggestion)
             {
+                wordToSuggest = wordToSuggest.ToLower();
+                suggestion = suggestion.ToLower();
                 int[,] subproblems = new int[wordToSuggest.Length + 1, suggestion.Length + 1];
 
                 int score = int.MinValue;
@@ -22,7 +24,7 @@ namespace WinRTXamlToolkit.Controls
                     for (int j = 1; j <= suggestion.Length; ++j)
                     {
                         // To cater the comparison with case insensitive words
-                        if (wordToSuggest.ToLower()[i - 1] == suggestion.ToLower()[j - 1])
+                        if (wordToSuggest[i - 1] == suggestion[j - 1])
                         {
                             subproblems[i, j] = subproblems[i - 1, j - 1] + 1;
                             score = Math.Max(score, subproblems[i, j]);
