@@ -62,7 +62,10 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
             TimeSpan timeSpan,
             EasingFunctionBase easingFunction)
         {
-            Storyboard storyBoard = target.Resources[GetStoryboardKey(propertyPath)] as Storyboard;
+            string key = GetStoryboardKey(propertyPath);
+            object resource;
+            target.Resources.TryGetValue(key, out resource);
+            Storyboard storyBoard = resource as Storyboard;
 
             if (storyBoard != null)
             {
@@ -71,20 +74,20 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 storyBoard.Stop();
                 // RestoreAsync that value so it doesn't snap back to its starting value
                 target.SetValue(animatingDependencyProperty, currentValue);
-                target.Resources.Remove(GetStoryboardKey(propertyPath));
+                target.Resources.Remove(key);
             }
 
             storyBoard = CreateStoryboard(target, animatingDependencyProperty, propertyPath, ref targetValue, timeSpan, easingFunction);
 
-            storyBoard.Completed += 
+            storyBoard.Completed +=
                 (source, args) =>
-                    {
-                        storyBoard.Stop();
-                        target.SetValue(animatingDependencyProperty, targetValue);
-                        target.Resources.Remove(GetStoryboardKey(propertyPath));
-                    };
+                {
+                    storyBoard.Stop();
+                    target.SetValue(animatingDependencyProperty, targetValue);
+                    target.Resources.Remove(key);
+                };
 
-            target.Resources.Add(GetStoryboardKey(propertyPath), storyBoard);
+            target.Resources.Add(key, storyBoard);
             storyBoard.Begin();
         }
 
@@ -124,7 +127,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
 
             Storyboard storyBoard = new Storyboard();
             Storyboard.SetTarget(storyBoard, target);
-          
+
             Storyboard.SetTargetProperty(storyBoard, propertyPath);
 
             if ((fromValue != null && toValue != null))
@@ -186,7 +189,7 @@ namespace WinRTXamlToolkit.Controls.DataVisualization.Charting
                 storyBoard.Children.Add(keyFrameAnimation);
             }
 
-           return storyBoard;
+            return storyBoard;
         }
     }
 }
