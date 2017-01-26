@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
@@ -25,6 +26,10 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private EventThrottler _updateThrottler = new EventThrottler();
 
+        ObservableCollection<NameValueItem> items1 = new ObservableCollection<NameValueItem>();
+        ObservableCollection<NameValueItem> items2 = new ObservableCollection<NameValueItem>();
+        ObservableCollection<NameValueItem> items3 = new ObservableCollection<NameValueItem>();
+
         private void RunIfSelected(UIElement element, Action action)
         {
             if (ChartsList.SelectedItem == element)
@@ -40,15 +45,15 @@ namespace WinRTXamlToolkit.Sample.Views
                 return;
             }
 
-            var items1 = new List<NameValueItem>();
-            var items2 = new List<NameValueItem>();
-            var items3 = new List<NameValueItem>();
+            this.items1 = new ObservableCollection<NameValueItem>();
+            this.items2 = new ObservableCollection<NameValueItem>();
+            this.items3 = new ObservableCollection<NameValueItem>();
 
             for (int i = 0; i < NumberOfIitemsNumericUpDown.Value; i++)
             {
-                items1.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
-                items2.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
-                items3.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                this.items1.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                this.items2.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
+                this.items3.Add(new NameValueItem { Name = "Test" + i, Value = _random.Next(10, 100) });
             }
 
             this.RunIfSelected(this.ColumnChart, () => ((ColumnSeries)this.ColumnChart.Series[0]).ItemsSource = items1);
@@ -123,25 +128,52 @@ namespace WinRTXamlToolkit.Sample.Views
                 });
         }
 
-        public class NameValueItem
+        public class NameValueItem : INotifyPropertyChanged
         {
+            private int _value;
+
             public string Name { get; set; }
-            public int Value { get; set; }
+            public int Value
+            {
+                get
+                {
+                    return _value;
+                }
+                set
+                {
+                    if (_value != value)
+                    {
+                        _value = value;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
         }
 
         private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
         {
-            this.ThrottledUpdate();
+            this.ThrottledUpdate(
+                () =>
+                {
+                    for (int i = 0; i < items1.Count; ++i)
+                    {
+                        items1[i].Value = _random.Next(10, 100);
+                        items2[i].Value = _random.Next(10, 100);
+                        items3[i].Value = _random.Next(10, 100);
+                    }
+                });
         }
 
-        private void ThrottledUpdate()
+        private void ThrottledUpdate(Action updateAction)
         {
             _updateThrottler.Run(
                 async () =>
                 {
                     var sw = new Stopwatch();
                     sw.Start();
-                    this.UpdateCharts();
+                    updateAction();
                     sw.Stop();
                     await Task.Delay(sw.Elapsed);
                 });
@@ -149,12 +181,33 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private void NumberOfIitemsNumericUpDown_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
         {
-            this.ThrottledUpdate();
+            this.ThrottledUpdate(() =>
+            {
+                int diff = (int)(e.NewValue - items1.Count);
+                if (diff < 0)
+                {
+                    while (items1.Count > e.NewValue && items1.Count > 0)
+                    {
+                        items1.RemoveAt(items1.Count - 1);
+                        items2.RemoveAt(items2.Count - 1);
+                        items3.RemoveAt(items3.Count - 1);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < diff; ++i)
+                    {
+                        this.items1.Add(new NameValueItem { Name = "Test" + items1.Count, Value = _random.Next(10, 100) });
+                        this.items2.Add(new NameValueItem { Name = "Test" + items2.Count, Value = _random.Next(10, 100) });
+                        this.items3.Add(new NameValueItem { Name = "Test" + items3.Count, Value = _random.Next(10, 100) });
+                    }
+                }
+            });
         }
 
         private void ChartsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.ThrottledUpdate();
+            this.ThrottledUpdate(UpdateCharts);
         }
     }
 }
