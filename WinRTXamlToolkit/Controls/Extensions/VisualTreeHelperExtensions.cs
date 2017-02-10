@@ -158,7 +158,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
                         }
                         else
                         {
-                            childrenCount = VisualTreeHelper.GetChildrenCount(start);
+                            childrenCount = VisualTreeHelper.GetChildrenCount(parent);
                         }
                     }
                     catch (Exception)
