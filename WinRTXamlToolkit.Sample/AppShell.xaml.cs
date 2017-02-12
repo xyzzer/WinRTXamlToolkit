@@ -52,7 +52,9 @@ namespace WinRTXamlToolkit.Sample
             Frame.Navigated += async (s, e) =>
             {
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-                WindowTitleBar.Instance.IsBackButtonVisible = Frame.CanGoBack;
+
+                // TODO: Review if we still need this custom back button.
+                //WindowTitleBar.Instance.IsBackButtonVisible = Frame.CanGoBack;
             };
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
             SystemNavigationManager.GetForCurrentView().BackRequested += async (s, e) => await Frame.GoBackAsync();
