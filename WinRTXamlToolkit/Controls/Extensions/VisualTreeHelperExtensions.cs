@@ -152,7 +152,7 @@ namespace WinRTXamlToolkit.Controls.Extensions
 
                     try
                     {
-                        if (start is DataTemplate)
+                        if (parent is DataTemplate)
                         {
                             childrenCount = 0;
                         }
