@@ -20,7 +20,8 @@ namespace WinRTXamlToolkit.Controls
 
                 for (int i = 0; i < smallestLength; ++i)
                 {
-                    if (wordToSuggest[i] != suggestion[i])
+                    // To cater the comparison with case insensitive words
+                    if (wordToSuggest.ToLower()[i] != suggestion.ToLower()[i])
                         break;
 
                     score++;

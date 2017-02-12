@@ -21,7 +21,8 @@ namespace WinRTXamlToolkit.Controls
                 for (int i = 1; i <= wordToSuggest.Length; ++i)
                     for (int j = 1; j <= suggestion.Length; ++j)
                     {
-                        if (wordToSuggest[i - 1] == suggestion[j - 1])
+                        // To cater the comparison with case insensitive words
+                        if (wordToSuggest.ToLower()[i - 1] == suggestion.ToLower()[j - 1])
                         {
                             subproblems[i, j] = subproblems[i - 1, j - 1] + 1;
                             score = Math.Max(score, subproblems[i, j]);
