@@ -67,7 +67,7 @@ namespace WinRTXamlToolkit.Controls
                 return
                     scoredSuggestions
                         .Where(scoredString =>
-                            scoredString.Score < wordToSuggest.ToLower().Length &&
+                            scoredString.Score < wordToSuggest.Length &&
                             Math.Abs(maximalScore - scoredString.Score) <= 1)
                         .OrderBy(scoredString => scoredString.Score, scoreComparer)
                         .Take(this.MaximumSuggestionCount)
