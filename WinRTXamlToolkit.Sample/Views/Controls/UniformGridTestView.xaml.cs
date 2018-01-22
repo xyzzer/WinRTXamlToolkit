@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using System.Threading.Tasks;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
@@ -24,10 +25,9 @@ namespace WinRTXamlToolkit.Sample.Views
         public UniformGridTestView()
         {
             this.InitializeComponent();
-            this.Loaded += OnLoaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnGridLoaded(object sender, RoutedEventArgs e)
         {
             var colorsProperties = typeof (Colors).GetTypeInfo().DeclaredProperties;
 
@@ -41,11 +41,13 @@ namespace WinRTXamlToolkit.Sample.Views
             //.Shuffle();
             list.Opacity = 0;
 
+            await Task.Delay(1000);
+
             var ratio = list.ActualWidth / list.ActualHeight;
             var rows = Math.Sqrt((double)colors.Count / ratio);
             var columns = ratio * rows;
 
-            var uniformGrid = list.GetFirstDescendantOfType<UniformGrid>();
+            var uniformGrid = (UniformGrid)sender;//.GetFirstDescendantOfType<UniformGrid>();
             uniformGrid.Columns = (int)Math.Ceiling(columns);
             uniformGrid.Rows = (int)Math.Ceiling(rows);
             list.ItemsSource = colors;
