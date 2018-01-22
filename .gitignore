@@ -24,3 +24,5 @@ Nuget/*.nupkg
 /WinRTXamlToolkit.Sample/project.lock.json
 /WinRTXamlToolkit.Debugging/project.lock.json
 /WinRTXamlToolkit.Controls.Gauge/project.lock.json
+/.vs/*
+
