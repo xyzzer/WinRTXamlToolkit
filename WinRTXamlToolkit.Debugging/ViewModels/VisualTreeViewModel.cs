@@ -25,7 +25,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels.Stubs
         {
             foreach (var resourceKeyValue in source)
             {
-                target.Add(resourceKeyValue.Key, resourceKeyValue.Value);
+                if (!target.ContainsKey(resourceKeyValue.Key))
+                {
+                    target.Add(resourceKeyValue.Key, resourceKeyValue.Value);
+                }
             }
 
             foreach (var dictionary in source.MergedDictionaries)
@@ -39,7 +42,10 @@ namespace WinRTXamlToolkit.Debugging.ViewModels.Stubs
             {
                 var clone = new ResourceDictionary();
                 Clone((ResourceDictionary)dictionaryKeyValue.Value, clone);
-                target.ThemeDictionaries.Add(dictionaryKeyValue.Key, clone);
+                if (!target.ContainsKey(dictionaryKeyValue.Key))
+                {
+                    target.ThemeDictionaries.Add(dictionaryKeyValue.Key, clone);
+                }
             }
         }
 

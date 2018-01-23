@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.Controls.Extensions.Forms;
@@ -14,15 +15,27 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
     public class FocusTrackerToolWindowViewModel : ToolWindowViewModel
     {
         #region class FocusEvent
-        public class FocusEvent
+        public class FocusEvent : BindableBase
         {
             public object Element { get; }
             public string TimeStamp { get; private set; }
+            #region FocusLossPossibleReason
+            private string focusLossPossibleReason;
+            /// <summary>
+            /// Gets or sets a value indicating possible reason for loss of focus.
+            /// </summary>
+            public string FocusLossPossibleReason
+            {
+                get { return this.focusLossPossibleReason; }
+                set { this.SetProperty(ref this.focusLossPossibleReason, value); }
+            }
+            #endregion
 
             public FocusEvent(object element)
             {
                 this.Element = element ?? new { FontWeight = FontWeights.Normal, DisplayName = "<null>" };
                 this.TimeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
+                this.FocusLossPossibleReason = "Focused";
             }
         }
         #endregion
@@ -119,6 +132,8 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
         #region AddFocusEventAsync()
         private async Task AddFocusEventAsync(UIElement uiElement)
         {
+            this.AnalyzePossibleLossOfFocusReason();
+
             if (uiElement != null)
             {
                 await DebugConsoleViewModel.Instance.VisualTreeView.SelectItemAsync(
@@ -134,6 +149,42 @@ namespace WinRTXamlToolkit.Debugging.ViewModels
                 var fe = new FocusEvent(null);
                 this.FocusEvents.Add(fe);
                 this.SelectedEvent = fe;
+            }
+        }
+
+        private void AnalyzePossibleLossOfFocusReason()
+        {
+            var lastFocused = this.FocusEvents.LastOrDefault();
+
+            if (lastFocused == null)
+            {
+                return;
+            }
+
+            var element = (lastFocused.Element as DependencyObjectViewModel)?.Model as UIElement;
+
+            if (element != null)
+            {
+                string reasons = string.Empty;
+
+                if (!element.IsInVisualTree())
+                {
+                    reasons = "Removed from tree";
+                }
+                if (element.Visibility == Visibility.Collapsed)
+                {
+                    reasons = string.IsNullOrEmpty(reasons) ? "Collapsed" : reasons + ", Collapsed";
+                }
+                if ((element as Control)?.IsEnabled == false)
+                {
+                    reasons = string.IsNullOrEmpty(reasons) ? "Disabled" : reasons + ", Disabled";
+                }
+
+                lastFocused.FocusLossPossibleReason = string.IsNullOrEmpty(reasons) ? $"Lost focus ({element.GetType().Name})" : reasons;
+            }
+            else
+            {
+                lastFocused.FocusLossPossibleReason = "Lost focus";
             }
         }
         #endregion
