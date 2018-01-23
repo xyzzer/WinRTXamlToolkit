@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{4293AE56-4BA6-472F-A56E-DEF2DBB2D62E}"
 	ProjectSection(SolutionItems) = preProject
@@ -87,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinRTXamlToolkit.Sample.WP_
 		WinRTXamlToolkit.Sample.WP_8.1_Files\TreeViewTestView.xaml = WinRTXamlToolkit.Sample.WP_8.1_Files\TreeViewTestView.xaml
 		WinRTXamlToolkit.Sample.WP_8.1_Files\TreeViewTestView.xaml.cs = WinRTXamlToolkit.Sample.WP_8.1_Files\TreeViewTestView.xaml.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Debugging.WinRTProxy", "WinRTXamlToolkit.Debugging.WinRTProxy\WinRTXamlToolkit.Debugging.WinRTProxy.csproj", "{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -233,8 +235,27 @@ Global
 		{1520057B-8081-44DD-9F8E-B5191CB40996}.Release|x86.ActiveCfg = Release|x86
 		{1520057B-8081-44DD-9F8E-B5191CB40996}.Release|x86.Build.0 = Release|x86
 		{1520057B-8081-44DD-9F8E-B5191CB40996}.Release|x86.Deploy.0 = Release|x86
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|ARM.Build.0 = Debug|ARM
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|x64.ActiveCfg = Debug|x64
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|x64.Build.0 = Debug|x64
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|x86.ActiveCfg = Debug|x86
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Debug|x86.Build.0 = Debug|x86
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|ARM.ActiveCfg = Release|ARM
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|ARM.Build.0 = Release|ARM
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|x64.ActiveCfg = Release|x64
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|x64.Build.0 = Release|x64
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|x86.ActiveCfg = Release|x86
+		{3FD6D26C-6CFF-4D9A-A42D-0A043B80B2D0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81674A5A-670B-4243-9CE5-D5EEB04D2509}
 	EndGlobalSection
 EndGlobal
