@@ -31,6 +31,9 @@
                             <TextBlock
                                 FontWeight="{Binding Element.FontWeight}"
                                 Text="{Binding Element.DisplayName}" />
+                            <TextBlock
+                                FontStyle="Italic"
+                                Text="{Binding FocusLossPossibleReason}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
