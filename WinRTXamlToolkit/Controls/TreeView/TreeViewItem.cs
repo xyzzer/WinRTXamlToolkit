@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using TreeViewItemAutomationPeer = System.Windows.Automation.Peers.TreeViewItemAutomationPeer;
 
 namespace WinRTXamlToolkit.Controls
 {
@@ -40,6 +41,7 @@ namespace WinRTXamlToolkit.Controls
     [TemplatePart(Name = ExpanderButtonName, Type = typeof(ToggleButton))]
     [TemplatePart(Name = HeaderName, Type = typeof(FrameworkElement))]
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(TreeViewItem))]
+    [Obsolete("This control has been deprecated and should not be used in new apps. Use TreeView from WinUI instead.", false)]
     public partial class TreeViewItem : HeaderedItemsControl, IUpdateVisualState
     {
         #region Template Parts

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Automation.Peers;
+using Windows.Foundation.Metadata;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
@@ -31,6 +32,7 @@ namespace WinRTXamlToolkit.Controls
     [TemplateVisualState(Name = VisualStates.StateFocused, GroupName = VisualStates.GroupFocus)]
     [TemplateVisualState(Name = VisualStates.StateUnfocused, GroupName = VisualStates.GroupFocus)]
     [StyleTypedProperty(Property = "ItemContainerStyle", StyleTargetType = typeof(TreeViewItem))]
+    [Obsolete("This control has been deprecated and should not be used in new apps. Use TreeView from WinUI instead.", false)]
     public partial class TreeView : ItemsControl, IUpdateVisualState
     {
         /// <summary>
