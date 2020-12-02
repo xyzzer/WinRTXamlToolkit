@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using WinRTXamlToolkit.Controls;
 using System;
+using TreeView = WinRTXamlToolkit.Controls.TreeView;
 
 namespace WinRTXamlToolkit.Sample.Views
 {
