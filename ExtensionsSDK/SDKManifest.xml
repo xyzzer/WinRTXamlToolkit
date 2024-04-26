@@ -6,7 +6,7 @@
   MinToolsVersion="4.0"
   CopyRedistToSubDirectory="WinRTXamlToolkit"
   AppliesTo="WindowsAppContainer+Managed"
-  MoreInfo="http://winrtxamltoolkit.codeplex.com/">
+  MoreInfo="https://github.com/xyzzer/WinRTXamlToolkit">
   <File Reference="WinRTXamlToolkit.dll">
     <ToolboxItems VSCategory="WinRT XAML Toolkit" BlendCategory="WinRT XAML Toolkit" />
   </File>
