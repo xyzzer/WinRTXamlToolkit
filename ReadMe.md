@@ -2,7 +2,19 @@
 A set of controls, extensions and helper classes for [Windows Runtime XAML](http://en.wikipedia.org/wiki/Windows_Runtime_XAML_Framework) applications.
 
 ### Project Status
-The development of the project has kind of slowed down in 2013. I'm still hoping to speed it up, but I can't promise anything. I have a notebook with tons of ideas and a backlog of bugs and questions to fix. At this stage I would try cross-referencing questions here with [Stack Overflow](http://stackoverflow.com/questions/tagged/winrt-xaml-toolkit) to increase the change of getting an answer. If you see a bug that needs fixed - you should try fixing it yourself. I'll happily take a pull request to include it here and publish a fixed version to NuGet.
+The development of WinRT XAML Toolkit slowed down around 2013 with only a few limited updates and a complete freeze around 2018
+as work and life took over, some parts were replaced by things like WinUI, UWP Community Toolkit or other, better supported libraries.
+I have a notebook with tons of ideas and a backlog of bugs to fix the I haven't looked at in about a decade.
+At this stage I would try cross-referencing questions here with 
+[Stack Overflow](http://stackoverflow.com/questions/tagged/winrt-xaml-toolkit) to increase the change of getting an answer.
+If you see a bug that needs fixing - you will most likely need to fix it yourself.
+I might consider a pull request and publish an update to NuGet with fixes and improvements.
+
+Currently (2024) looking into updating some of it for WinUI3 to use some of the tools in other projects.
+Use the release/UWP branch if you need to look at the UWP version code.
+
+
+Most of the information below has not been updated since about 2015.
 
 ### Disclaimer
 This project is not managed by Microsoft. Its coordinator is currently employed by Microsoft, but the project has mostly been developed earlier and continues to be developed outside of work hours.
@@ -165,9 +177,9 @@ The libraries are just a set of helper methods and controls that I found useful 
 * **TextBox input patterns** - to be able to display watermarked patterns and allow only certain keys - e.g. for phone numbers, SSNs etc.
 
 ### Feedback
-Please share your experience with the toolkit either in the [DISCUSSIONS](http://winrtxamltoolkit.codeplex.com/discussions) page or directly on [twitter](https://twitter.com/#!/xyzzer/). What do you use? How does it work for you? What are you missing? What would you change? Feedback is crucial and drives further development.
+Please share your experience with the toolkit in the [Issues](https://github.com/xyzzer/WinRTXamlToolkit/issues) page.
 
-### Related Projects
+### Related Projects (list from 2015 - links may not be up to date)
 * [Tim Heuer's](https://twitter.com/#!/timheuer) and [Morten Nielsen's](http://twitter.com/dotmorten) [Callisto](https://github.com/timheuer/callisto/tree/master/src/Callisto) - contains a host of controls (DateTimePicker, Flyout, LiveTile, Menu, SettingsFlyout), converters, Tilt Effect, OAuth helper, SQLite connection helper, etc.
 * [Joost van Schaik's](https://twitter.com/LocalJoost) [Win8nl utilities](http://win8nl.codeplex.com/) - a helper library for Jupiter, featuring some excellent attached behaviors. Based on [WinRT Behaviors](http://winrtbehaviors.codeplex.com/) and [MVVM Light](mvvmlight.codeplex.com).
 * [Joost van Schaik's](https://twitter.com/LocalJoost) [WinRT Behaviors](http://winrtbehaviors.codeplex.com/) - modeled after the original Blend Behaviors - these make creating attached behaviors easier and are configurable with Blend.
