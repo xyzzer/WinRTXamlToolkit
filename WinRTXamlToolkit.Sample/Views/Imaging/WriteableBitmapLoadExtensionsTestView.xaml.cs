@@ -20,7 +20,7 @@ namespace WinRTXamlToolkit.Sample.Views
 
         private async void InitializeTest()
         {
-            var imageUri = new Uri("https://dl.dropbox.com/u/1192076/IMG_8839.JPG");
+            var imageUri = new Uri("https://www.ndigitec.com/wp-content/uploads/2019/05/Untitled-2Artboard_8.jpg");
             var fullSizeBitmap = new BitmapImage(imageUri);
             originalImage.Source = fullSizeBitmap;
 
