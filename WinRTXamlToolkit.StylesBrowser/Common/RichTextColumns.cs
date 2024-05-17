@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 
 namespace WinRTXamlToolkit.StylesBrowser.Common
 {
@@ -36,7 +36,7 @@ namespace WinRTXamlToolkit.StylesBrowser.Common
     /// <remarks>Typically used in a horizontally scrolling region where an unbounded amount of
     /// space allows for all needed columns to be created.  When used in a vertically scrolling
     /// space there will never be any additional columns.</remarks>
-    [Windows.UI.Xaml.Markup.ContentProperty(Name = "RichTextContent")]
+    [Microsoft.UI.Xaml.Markup.ContentProperty(Name = "RichTextContent")]
     public sealed class RichTextColumns : Panel
     {
         /// <summary>
