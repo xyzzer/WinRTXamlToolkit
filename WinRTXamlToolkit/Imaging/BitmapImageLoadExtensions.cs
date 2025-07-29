@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using WinRTXamlToolkit.IO.Extensions;
+//using WinRTXamlToolkit.IO.Extensions;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;

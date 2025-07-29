@@ -5,6 +5,7 @@
     xmlns:local="using:WinRTXamlToolkit.StylesBrowser"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tkcontrols="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -36,37 +37,93 @@
             Text="AppBar Button Styles"
             Grid.Column="1"
             Style="{StaticResource PageHeaderTextStyle}" />
-        <ListView
-            x:Name="BrushesListView"
+        <Grid
             Grid.Row="1"
-            Grid.Column="1"
-            SelectionMode="Extended">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        Width="580">
-                        <StackPanel
-                            Margin="0,0,0,5"
-                            Orientation="Horizontal">
-                            <Border
-                                Width="100"
-                                Margin="0,0,5,0"
-                                Background="{Binding Brush}"
-                                BorderThickness="2"
-                                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
-                            <TextBox
-                                Width="350"
-                                Margin="0,0,5,0"
-                                IsReadOnly="True"
-                                Text="{Binding Key}" />
-                            <TextBox
-                                Width="120"
-                                IsReadOnly="True"
-                                Text="{Binding Source}" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBox
+                x:Name="FilterBox"
+                Text="{x:Bind FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ListView
+                x:Name="BrushesListView"
+                SelectionMode="Extended"
+                Grid.Row="1"
+                Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Width="580">
+                            <StackPanel
+                                Margin="0,0,0,5"
+                                Orientation="Horizontal">
+                                <Border
+                                    Width="100"
+                                    Margin="0,0,5,0"
+                                    Background="{Binding Brush}"
+                                    BorderThickness="2"
+                                    BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" />
+                                <TextBox
+                                    Width="350"
+                                    Margin="0,0,5,0"
+                                    IsReadOnly="True"
+                                    Text="{Binding Key}" />
+                                <TextBox
+                                    Width="120"
+                                    IsReadOnly="True"
+                                    Text="{Binding Source}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <tkcontrols:GridSplitter
+                Grid.Column="1"
+                Grid.RowSpan="3"
+                Width="12"/>
+            <TabView
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                IsAddTabButtonVisible="False">
+                <TabViewItem
+                    Header="Text"
+                    IsClosable="False">
+                    <TextBox
+                        x:Name="TextView"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        AcceptsReturn="True"
+                        ScrollViewer.VerticalScrollMode="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                </TabViewItem>
+                <TabViewItem
+                    Header="Sort"
+                    IsClosable="False">
+                    <StackPanel>
+                        <RadioButton
+                            x:Name="rbKey"
+                            Content="By resource key"
+                            IsChecked="True"
+                            GroupName="Sort"
+                            Checked="rbKey_Checked"/>
+                        <RadioButton
+                            x:Name="rbAlpha"
+                            Content="By Alpha channel"
+                            GroupName="Sort"
+                            Checked="rbAlpha_Checked"/>
+                    </StackPanel>
+                </TabViewItem>
+            </TabView>
+        </Grid>
     </Grid>
 </Page>

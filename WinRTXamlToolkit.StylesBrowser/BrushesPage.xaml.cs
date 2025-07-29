@@ -7,22 +7,29 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+using System.Resources;
 
 namespace WinRTXamlToolkit.StylesBrowser
 {
     public sealed partial class BrushesPage : Page
     {
-        public class BrushResourceViewModel
+        enum SortOptions
         {
-            public Brush Brush { get; private set; }
-            public string Key { get; private set; }
-            public string Source { get; private set; }
+            Key,
+            Alpha
+        }
+        private SortOptions sortOption;
+        private string filterText = "";
 
-            public BrushResourceViewModel(Brush brush, string key, string source)
+        public string FilterText 
+        {
+            get => filterText; 
+            set 
             {
-                Brush = brush;
-                Key = key;
-                Source = source;
+                filterText = value;
+                FilterList();
             }
         }
 
@@ -32,11 +39,30 @@ namespace WinRTXamlToolkit.StylesBrowser
             this.Loaded += this.OnLoaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        DateTime lastFilterUpdate = DateTime.MinValue;
+        private IEnumerable<KeyValuePair<object, object>> brushes;
+
+        private async void FilterList()
         {
-            var brushes = this.GetBrushResources().OrderBy(r => r.Key);
-            this.BrushesListView.ItemsSource =
-                brushes.Select(
+            string initialText = this.filterText;
+            await Task.Delay(500);
+            if (initialText != this.filterText &&
+                (DateTime.Now.Subtract(lastFilterUpdate).TotalMilliseconds < 3000))
+            {
+                // Still typing?
+                return;
+            }
+
+            lastFilterUpdate = DateTime.Now;
+
+            var filteredList = 
+                brushes.Where(r => string.IsNullOrEmpty(this.filterText.Trim()) || ((string)r.Key).Contains(this.filterText.Trim(), StringComparison.CurrentCultureIgnoreCase));
+            var sortedList = 
+                sortOption == SortOptions.Key
+                ? filteredList.OrderBy(r => r.Key)
+                : filteredList.OrderBy(r => (r.Value as SolidColorBrush)?.Color.A ?? 0);
+            var brushList = 
+                sortedList.Select(
                     r => new BrushResourceViewModel(
                              (Brush)r.Value,
                              r.Key.ToString(),
@@ -44,6 +70,14 @@ namespace WinRTXamlToolkit.StylesBrowser
                                     ? ((SolidColorBrush)r.Value).Color.ToString() : r.Value is BitmapImage
                                     ? (((BitmapImage)r.Value).UriSource ?? new Uri(string.Empty)).ToString() : string.Empty
                          )).ToList();
+            this.BrushesListView.ItemsSource = brushList;
+            TextView.Text = string.Join(Environment.NewLine, brushList.Select(r => r.Key));
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            this.brushes = this.GetBrushResources();
+            FilterList();
         }
 
         private IEnumerable<KeyValuePair<object, object>> GetBrushResources()
@@ -116,6 +150,18 @@ namespace WinRTXamlToolkit.StylesBrowser
         private void GoBack(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
+        }
+
+        private void rbKey_Checked(object sender, RoutedEventArgs e)
+        {
+            sortOption = SortOptions.Key;
+            FilterList();
+        }
+
+        private void rbAlpha_Checked(object sender, RoutedEventArgs e)
+        {
+            sortOption = SortOptions.Alpha;
+            FilterList();
         }
     }
 }
